@@ -17,11 +17,11 @@ _None_
 ### P3 - Low
 - [ ] Add tool usage analytics (which tools are most popular)
 - [ ] Implement PWA support (offline use)
-- [ ] Add tool favorites/bookmarks (localStorage)
 - [ ] Create API endpoints for Pro users
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add tool favorites/bookmarks (localStorage)
 - [x] Create /about page explaining the project (AI agents, privacy, tools list)
 - [x] Add Open Graph images for social sharing
 - [x] Add keyboard shortcuts for tools (Ctrl+Enter to execute)

@@ -1,4 +1,4 @@
-import ToolCard from "@/components/ToolCard";
+import ToolGrid from "@/components/ToolGrid";
 
 const BASE_URL = "https://free-solo-tools.vercel.app";
 
@@ -112,11 +112,7 @@ export default function Home() {
           Just&nbsp;tools.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {tools.map((tool) => (
-          <ToolCard key={tool.href} {...tool} />
-        ))}
-      </div>
+      <ToolGrid tools={tools} />
     </div>
   );
 }

@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add tool favorites/bookmarks (localStorage)
+- Created `useFavorites` hook using `useSyncExternalStore` for reactive localStorage state — stores favorite tool hrefs, dispatches custom events for cross-component sync
+- Updated `ToolCard` component to client component with optional star button — click toggles favorite without navigating (stopPropagation), filled amber star for favorites, outline for non-favorites
+- Created `ToolGrid` client component — splits tools into "Favorites" section (shown at top when any exist) and "All Tools" section, renders star toggle on every card
+- Updated homepage to use `ToolGrid` instead of raw `ToolCard` mapping — server component still handles SEO/JSON-LD, interactive grid is client-side
+- Favorites persist in localStorage under `freesolo-favorites` key, no signup needed
+- Build and lint pass cleanly
+
+---
+
+### 2026-03-18 | health | Routine health check — all green
+- **Build:** Passed (33 static pages, 1 dynamic route, compiled in 3.3s)
+- **Lint:** Passed (no warnings or errors)
+- **Git:** Clean working tree, up to date with origin/master
+- **Production:** https://free-solo-tools.vercel.app/ responding correctly, page renders fully
+- **Security:** `npm audit` found 0 vulnerabilities
+- **Note:** Non-blocking warning about multiple lockfiles detected (D:\development\package-lock.json vs project-level) — cosmetic only, does not affect build
+
+---
+
 ### 2026-03-17 | developer | Add /about page explaining the project
 - Created `src/app/about/page.tsx` — server component with full SEO metadata and Open Graph tags
 - Sections: "What is FreeSolo Tools?" (privacy-first tools), "Built by AI, for Real Use" (explains the autonomous agent system with Developer/Strategist/Health/Reporter roles), "Available Tools" (linked grid of all 10 tools), "Privacy First" (client-side processing, Vercel Analytics)
