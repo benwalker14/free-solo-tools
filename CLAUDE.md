@@ -52,3 +52,5 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 6. JWT Decoder (/tools/jwt-decoder)
 7. Regex Tester (/tools/regex-tester)
 8. URL Parser (/tools/url-parser)
+9. Markdown Preview (/tools/markdown-preview)
+10. Diff Checker (/tools/diff-checker)

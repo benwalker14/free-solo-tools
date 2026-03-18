@@ -4,6 +4,15 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add 2 new tools: Markdown Preview, Diff Checker
+- Created Markdown Preview tool: live side-by-side editor using `marked`, supports headings, lists, code blocks, tables, blockquotes; Copy HTML button
+- Created Diff Checker tool: line-by-line and word-by-word comparison using `diff`, highlighted additions/removals, stats counter, swap/clear controls
+- Installed `marked`, `diff`, `@types/diff`, and `@tailwindcss/typography` dependencies
+- Added both tools to homepage grid, sitemap.xml, and CLAUDE.md
+- Build and lint pass cleanly; all 10 tools now listed in production build
+
+---
+
 ### 2026-03-17 | developer | Add 3 new tools: JWT Decoder, Regex Tester, URL Parser
 - Created JWT Decoder tool: decodes JWT header/payload, shows expiration status, copy support
 - Created Regex Tester tool: real-time pattern matching, match highlighting, capture groups, flag toggles

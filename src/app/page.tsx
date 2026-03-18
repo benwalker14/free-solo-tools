@@ -49,6 +49,18 @@ const tools = [
     href: "/tools/url-parser",
     icon: "URL",
   },
+  {
+    title: "Markdown Preview",
+    description: "Write and preview Markdown with live rendering",
+    href: "/tools/markdown-preview",
+    icon: "MD",
+  },
+  {
+    title: "Diff Checker",
+    description: "Compare two texts and see differences highlighted",
+    href: "/tools/diff-checker",
+    icon: "+-",
+  },
 ];
 
 export default function Home() {
