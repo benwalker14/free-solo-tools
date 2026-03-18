@@ -4,6 +4,16 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add missing Open Graph images for 8 tools
+
+- Identified 8 tools missing `opengraph-image.tsx` files (out of 36 total tools)
+- Created OG images for: color-palette, html-markdown, image-base64, image-compressor, json-path, json-to-typescript, svg-optimizer, yaml-formatter
+- Each OG image uses the shared `generateOgImage()` helper with tool-specific title, description, and icon
+- **Build:** Compiled successfully, all 36 tools now have OG image routes
+- **Lint:** 0 errors, 0 warnings
+
+---
+
 ### 2026-03-18 | developer | Add CSS Box Shadow Generator tool (#36)
 
 - Created `src/app/tools/box-shadow/BoxShadowTool.tsx` — interactive client component for designing CSS box shadows visually

@@ -24,6 +24,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add missing Open Graph images for 8 tools
 - [x] Add CSS Box Shadow Generator tool (#36)
 - [x] Add Image Compressor tool (#35)
 - [x] Add SVG Optimizer & Viewer tool (#34)
