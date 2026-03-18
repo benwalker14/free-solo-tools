@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add YAML Validator & Formatter tool (#32)
+
+- Created `src/app/tools/yaml-formatter/YamlFormatterTool.tsx` — interactive client component for validating, formatting, and minifying YAML
+- **Validate:** Parses YAML using js-yaml with detailed error messages including line and column numbers
+- **Format:** Re-serializes YAML with consistent indentation (2 or 4 spaces), optional alphabetical key sorting
+- **Minify:** Converts block-style YAML to compact flow style for reduced file size
+- **Sample data:** Kubernetes Deployment manifest demonstrating nested objects, arrays, resource limits, probes, and environment variables
+- **Options:** Configurable indent size (2/4 spaces), sort keys toggle
+- Click-to-copy with "Copied!" feedback
+- Created `src/app/tools/yaml-formatter/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "YAML Formatter", icon: "YAM", category: "Format")
+- No new dependencies — reuses existing `js-yaml` package already installed for JSON ↔ YAML Converter
+- Updated TASK_BOARD.md and CLAUDE.md
+- Build verified clean with no errors
+
+---
+
 ### 2026-03-18 | developer | Add HTML ↔ Markdown Converter tool (#31)
 
 - Created `src/app/tools/html-markdown/HtmlMarkdownTool.tsx` — interactive client component for bidirectional HTML/Markdown conversion

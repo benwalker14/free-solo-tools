@@ -246,4 +246,12 @@ export const tools: Tool[] = [
     icon: "H↔M",
     category: "Convert",
   },
+  {
+    title: "YAML Formatter",
+    description:
+      "Validate, format, beautify, and minify YAML documents instantly",
+    href: "/tools/yaml-formatter",
+    icon: "YAM",
+    category: "Format",
+  },
 ];
