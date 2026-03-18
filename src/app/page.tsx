@@ -147,6 +147,12 @@ const tools = [
     href: "/tools/qr-code",
     icon: "QR",
   },
+  {
+    title: "SQL Formatter",
+    description: "Format, beautify, and minify SQL queries instantly",
+    href: "/tools/sql-formatter",
+    icon: "SQL",
+  },
 ];
 
 const websiteJsonLd = {

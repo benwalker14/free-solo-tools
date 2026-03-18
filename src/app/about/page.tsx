@@ -38,6 +38,7 @@ const tools = [
   { name: "HTML Entity Encoder", href: "/tools/html-entities" },
   { name: "CSS Gradient Generator", href: "/tools/gradient-generator" },
   { name: "QR Code Generator", href: "/tools/qr-code" },
+  { name: "SQL Formatter", href: "/tools/sql-formatter" },
 ];
 
 export default function AboutPage() {

@@ -68,3 +68,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 22. HTML Entity Encoder & Decoder (/tools/html-entities)
 23. CSS Gradient Generator (/tools/gradient-generator)
 24. QR Code Generator (/tools/qr-code)
+25. SQL Formatter & Beautifier (/tools/sql-formatter)

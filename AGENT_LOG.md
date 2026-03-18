@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add SQL Formatter & Beautifier tool (#25)
+- Created `src/app/tools/sql-formatter/SqlFormatterTool.tsx` — interactive client component for formatting and minifying SQL queries
+- Full SQL tokenizer: handles single-quoted strings, double-quoted identifiers, backtick identifiers (MySQL), single-line (`--`) and multi-line (`/* */`) comments, numbers, multi-char operators (`<>`, `>=`, `<=`, `!=`, `||`, `::`), and all standard punctuation
+- Multi-word keyword merging: recognizes compound keywords like LEFT JOIN, ORDER BY, GROUP BY, INSERT INTO, FULL OUTER JOIN, PARTITION BY, etc.
+- Smart formatting: major clauses (SELECT, FROM, WHERE, JOIN, etc.) start on new lines; AND/OR get indented under WHERE; commas in SELECT lists get newlines; subqueries in parentheses get deeper indentation; CASE/WHEN/THEN/ELSE/END properly indented
+- Configurable indentation: 2 spaces, 4 spaces, or tabs — selectable via segmented control
+- Configurable keyword casing: UPPER, lower, or preserve original — selectable via segmented control
+- Minify mode: strips all unnecessary whitespace and comments, removes spaces around dots and inside parentheses, produces compact single-line SQL
+- "Load sample" button pre-fills a realistic multi-table JOIN query with GROUP BY, HAVING, ORDER BY, and LIMIT
+- Copy-to-clipboard button on output; auto-sizing output textarea
+- Collapsible "About SQL Formatting" reference section explaining formatting rules, keyword casing conventions, and minification use cases
+- Created `page.tsx` with full SEO metadata, keywords (SQL formatter, SQL beautifier, SQL pretty print, format SQL online, SQL minifier, SQL query formatter), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `SQL`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JavaScript string manipulation and regex
+- Build and lint pass cleanly; all 25 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add QR Code Generator tool (#24)
 - Created `src/app/tools/qr-code/QrCodeTool.tsx` — interactive client component for generating QR codes from text or URLs
 - Text/URL input with character count and capacity info
