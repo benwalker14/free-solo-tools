@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 interface RGB {
@@ -101,17 +101,15 @@ function hslToRgb(hsl: HSL): RGB {
   };
 }
 
-type Source = "hex" | "rgb" | "hsl" | "picker";
-
 export default function ColorConverterTool() {
   const [hexValue, setHexValue] = useState("#6366f1");
   const [rgb, setRgb] = useState<RGB>({ r: 99, g: 102, b: 241 });
   const [hsl, setHsl] = useState<HSL>({ h: 239, s: 84, l: 67 });
   const [error, setError] = useState("");
-  const [source, setSource] = useState<Source | null>(null);
 
-  const syncFromHex = useCallback((hex: string) => {
-    const parsed = hexToRgb(hex);
+  function handleHexChange(value: string) {
+    setHexValue(value);
+    const parsed = hexToRgb(value);
     if (parsed) {
       setRgb(parsed);
       setHsl(rgbToHsl(parsed));
@@ -119,55 +117,36 @@ export default function ColorConverterTool() {
     } else {
       setError("Invalid HEX color");
     }
-  }, []);
-
-  const syncFromRgb = useCallback((newRgb: RGB) => {
-    setHexValue(rgbToHex(newRgb));
-    setHsl(rgbToHsl(newRgb));
-    setError("");
-  }, []);
-
-  const syncFromHsl = useCallback((newHsl: HSL) => {
-    const newRgb = hslToRgb(newHsl);
-    setRgb(newRgb);
-    setHexValue(rgbToHex(newRgb));
-    setError("");
-  }, []);
-
-  useEffect(() => {
-    if (source === "hex") {
-      syncFromHex(hexValue);
-    } else if (source === "rgb") {
-      syncFromRgb(rgb);
-    } else if (source === "hsl") {
-      syncFromHsl(hsl);
-    } else if (source === "picker") {
-      syncFromHex(hexValue);
-    }
-    setSource(null);
-  }, [source, hexValue, rgb, hsl, syncFromHex, syncFromRgb, syncFromHsl]);
-
-  function handleHexChange(value: string) {
-    setHexValue(value);
-    setSource("hex");
   }
 
   function handlePickerChange(value: string) {
     setHexValue(value);
-    setSource("picker");
+    const parsed = hexToRgb(value);
+    if (parsed) {
+      setRgb(parsed);
+      setHsl(rgbToHsl(parsed));
+      setError("");
+    }
   }
 
   function handleRgbChange(channel: keyof RGB, value: number) {
     const clamped = Math.max(0, Math.min(255, isNaN(value) ? 0 : value));
-    setRgb((prev) => ({ ...prev, [channel]: clamped }));
-    setSource("rgb");
+    const newRgb = { ...rgb, [channel]: clamped };
+    setRgb(newRgb);
+    setHexValue(rgbToHex(newRgb));
+    setHsl(rgbToHsl(newRgb));
+    setError("");
   }
 
   function handleHslChange(channel: keyof HSL, value: number) {
     const max = channel === "h" ? 360 : 100;
     const clamped = Math.max(0, Math.min(max, isNaN(value) ? 0 : value));
-    setHsl((prev) => ({ ...prev, [channel]: clamped }));
-    setSource("hsl");
+    const newHsl = { ...hsl, [channel]: clamped };
+    setHsl(newHsl);
+    const newRgb = hslToRgb(newHsl);
+    setRgb(newRgb);
+    setHexValue(rgbToHex(newRgb));
+    setError("");
   }
 
   function copyText(text: string) {
