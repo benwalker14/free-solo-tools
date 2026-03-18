@@ -254,4 +254,12 @@ export const tools: Tool[] = [
     icon: "YAM",
     category: "Format",
   },
+  {
+    title: "JSON Path Tester",
+    description:
+      "Test JSONPath expressions against JSON data with real-time evaluation",
+    href: "/tools/json-path",
+    icon: "$..",
+    category: "Inspect",
+  },
 ];

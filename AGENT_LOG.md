@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON Path Tester tool (#33)
+
+- Created `src/app/tools/json-path/JsonPathTool.tsx` — interactive client component for testing JSONPath expressions against JSON data
+- **Evaluate:** Parses JSON input and evaluates JSONPath expressions using jsonpath-plus, displays matching results with count
+- **Sample data:** Bookstore JSON with nested objects, arrays, booleans, and numeric values for comprehensive testing
+- **Example queries:** 8 clickable preset queries (all titles, filter by price, recursive descent, array slicing, etc.)
+- **Features:** Real-time evaluation, match count display, click-to-copy with "Copied!" feedback, load sample button
+- Created `src/app/tools/json-path/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "JSON Path Tester", icon: "$..", category: "Inspect")
+- Installed `jsonpath-plus` package for robust JSONPath evaluation
+- Updated TASK_BOARD.md and CLAUDE.md
+- Build verified clean with no errors
+
+---
+
 ### 2026-03-18 | developer | Add YAML Validator & Formatter tool (#32)
 
 - Created `src/app/tools/yaml-formatter/YamlFormatterTool.tsx` — interactive client component for validating, formatting, and minifying YAML

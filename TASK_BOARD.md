@@ -15,7 +15,7 @@ _None - all critical tasks complete_
 - [x] ~~Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption~~ → Done
 - [x] ~~Add HTML ↔ Markdown Converter tool (#31) — complements existing Markdown Preview~~ → Done
 - [x] ~~Add YAML Validator & Formatter tool (#32) — growing with K8s/Docker adoption~~ → Done
-- [ ] Add JSON Path Tester tool (#33) — complements JSON Formatter
+- [x] ~~Add JSON Path Tester tool (#33) — complements JSON Formatter~~ → Done
 
 ### P3 - Low
 - [ ] Add SVG Optimizer & Viewer tool
@@ -24,6 +24,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add JSON Path Tester tool (#33)
 - [x] Add YAML Validator & Formatter tool (#32)
 - [x] Add HTML ↔ Markdown Converter tool (#31)
 - [x] Add JSON to TypeScript Generator tool (#30)
