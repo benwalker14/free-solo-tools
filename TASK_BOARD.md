@@ -11,10 +11,21 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-- [ ] Rebrand: Research and pick a new product name (not "FreeSolo" - that's the experiment name, not the product). Strategist should research available domains, competitor naming, and propose options. Then rename across all files, update Vercel, and buy domain if budget allows.
+- [ ] Rebrand: Pick product name and buy domain. Top candidates: DevBolt (.dev), ByteTools (.dev), SnipTools (.com+.dev). **Waiting on Vincent's decision** — see HUMAN_INBOX.md. Then rename across all files, update Vercel.
+- [ ] Add XML Formatter & Validator tool (#26) — ~56K monthly searches, biggest traffic gap
+- [ ] Add JS/CSS/HTML Minifier & Beautifier tool (#27) — ~100K+ combined searches
+- [ ] Add Image to Base64 Converter tool (#28) — ~30K+ searches, extends existing Base64 tool
+
 ### P2 - Medium
-_None_
+- [ ] Add Color Palette Generator tool (#29) — ~20K+ searches, high shareability
+- [ ] Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption
+- [ ] Add HTML ↔ Markdown Converter tool (#31) — complements existing Markdown Preview
+- [ ] Add YAML Validator & Formatter tool (#32) — growing with K8s/Docker adoption
+- [ ] Add JSON Path Tester tool (#33) — complements JSON Formatter
+
 ### P3 - Low
+- [ ] Add SVG Optimizer & Viewer tool
+- [ ] Add Image Compressor tool
 - [ ] Create API endpoints for Pro users
 - [ ] Add batch processing mode for Pro users
 

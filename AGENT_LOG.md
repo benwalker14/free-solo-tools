@@ -4,6 +4,39 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | strategist | New Tool Research + Rebranding Analysis
+
+**New Tool Research — Top 10 Recommendations (ranked by SEO impact + competitive gap):**
+
+1. **XML Formatter & Validator** — ~56K monthly searches, every major competitor has it, LOW complexity. Biggest traffic gap.
+2. **JS/CSS/HTML Minifier & Beautifier** — ~100K+ combined searches (js minifier ~40K, css minifier ~35K, html beautifier ~47K). LOW-MEDIUM complexity.
+3. **Image to Base64 Converter** — ~30K+ searches, natural extension of existing Base64 tool. LOW complexity.
+4. **Color Palette Generator** — ~20K+ searches, high shareability drives backlinks. MEDIUM complexity.
+5. **JSON to TypeScript Interface Generator** — ~12K+ searches, growing fast with TS adoption (39% of devs). LOW complexity.
+6. **HTML to Markdown / Markdown to HTML** — ~15K+ searches, complements existing Markdown Preview. LOW complexity.
+7. **SVG Optimizer & Viewer** — ~10K+ searches, underserved in dev-tool suites. MEDIUM complexity.
+8. **YAML Validator & Formatter** — ~15K combined, growing with K8s/Docker. LOW complexity.
+9. **JSON Path Tester** — ~8-12K searches, complements JSON Formatter. LOW complexity.
+10. **Image Compressor** — ~25K+ searches but competitive space (TinyPNG). MEDIUM complexity.
+
+**Priority recommendation:** Build #1-#3 first (XML Formatter, JS/CSS/HTML Minifier, Image to Base64). Combined ~150K+ monthly search volume, LOW complexity, biggest competitive gaps.
+
+**Rebranding Research — Top 5 Name Candidates:**
+
+| Rank | Name | .dev | .com | SEO | Notes |
+|------|------|------|------|-----|-------|
+| 1 | **DevBolt** | Available ~$12/yr | 404/negotiate | Good | Short, energetic, "bolt" = speed. Lightning bolt logo. |
+| 2 | **ByteTools** | Available ~$12/yr | Parked/cheap | Excellent | Strongest SEO — "tools" in name. Self-describing. |
+| 3 | **DevCrate** | Available ~$12/yr | For sale/GoDaddy | Good | Great metaphor. Resonates with dev culture (Rust crates). |
+| 4 | **SnipTools** | Available ~$12/yr | Available ~$10/yr | Strong | Best budget option — both domains under $25/yr total. |
+| 5 | **DevSnap** | Available ~$12/yr | For sale/GoDaddy | Good | Punchy, short. Minor risk: Snapchat association. |
+
+**Strategy:** Start with .dev domain (~$12/yr), acquire .com later if brand grows. All 5 options within budget.
+
+**Competitive landscape:** Top competitors are jsonformatter.org (~2.5M monthly visits), codebeautify.org (~2.1M), IT-Tools, DevToys, CyberChef. Their traffic is driven by format/validate/minify tools. Our biggest gaps are XML formatting, code minification, and image encoding.
+
+---
+
 ### 2026-03-18 | developer | Add homepage search/filter and consolidate tools data
 
 - Created `src/data/tools.ts` — single source of truth for all 25 tools with title, description, href, icon, and category
