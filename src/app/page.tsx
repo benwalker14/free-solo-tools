@@ -135,6 +135,12 @@ const tools = [
     href: "/tools/html-entities",
     icon: "&;",
   },
+  {
+    title: "CSS Gradient Generator",
+    description: "Create beautiful CSS gradients visually with live preview",
+    href: "/tools/gradient-generator",
+    icon: "GRD",
+  },
 ];
 
 const websiteJsonLd = {

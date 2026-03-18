@@ -66,3 +66,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 20. JSON ↔ YAML Converter (/tools/json-yaml)
 21. Chmod Calculator (/tools/chmod-calculator)
 22. HTML Entity Encoder & Decoder (/tools/html-entities)
+23. CSS Gradient Generator (/tools/gradient-generator)

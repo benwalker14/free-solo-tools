@@ -36,6 +36,7 @@ const tools = [
   { name: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
   { name: "Chmod Calculator", href: "/tools/chmod-calculator" },
   { name: "HTML Entity Encoder", href: "/tools/html-entities" },
+  { name: "CSS Gradient Generator", href: "/tools/gradient-generator" },
 ];
 
 export default function AboutPage() {
