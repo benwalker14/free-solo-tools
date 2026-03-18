@@ -4,6 +4,16 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add free-tier rate limiting (25 uses/tool/day)
+- Created `useRateLimit` hook: tracks daily usage per tool in localStorage, auto-resets each day
+- Created `RateLimitBanner` component: shows remaining count when low, upgrade CTA when exhausted
+- Integrated rate limiting into 5 action-based tools: JSON Formatter, Base64, Hash Generator, UUID Generator, JWT Decoder
+- Real-time tools (Color Converter, Regex Tester, URL Parser, Markdown Preview, Diff Checker) are exempt since they update on keystroke
+- Buttons are disabled when limit is reached; banner links to /pricing for Pro upgrade
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-17 | developer | Add 2 new tools: Markdown Preview, Diff Checker
 - Created Markdown Preview tool: live side-by-side editor using `marked`, supports headings, lists, code blocks, tables, blockquotes; Copy HTML button
 - Created Diff Checker tool: line-by-line and word-by-word comparison using `diff`, highlighted additions/removals, stats counter, swap/clear controls

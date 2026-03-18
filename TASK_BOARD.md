@@ -13,8 +13,6 @@ _None - all critical tasks complete_
 ### P1 - High
 - [ ] Add Google Analytics or privacy-friendly analytics (Plausible/Umami)
 - [ ] Create pricing page with Stripe integration
-- [ ] Add rate limiting for free tier (localStorage-based daily counter)
-
 ### P2 - Medium
 - [ ] Add Open Graph images for social sharing
 - [ ] Implement dark mode toggle (currently uses system preference)
@@ -39,3 +37,4 @@ _None - all critical tasks complete_
 - [x] Add SEO meta tags and sitemap.xml
 - [x] Add JWT Decoder, Regex Tester, URL Parser tools
 - [x] Add Markdown Preview and Diff Checker tools
+- [x] Add rate limiting for free tier (localStorage-based daily counter)

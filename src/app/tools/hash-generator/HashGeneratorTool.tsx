@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import RateLimitBanner from "@/components/RateLimitBanner";
 
 const HASH_TYPES = ["SHA-1", "SHA-256", "SHA-384", "SHA-512"] as const;
 type HashType = (typeof HASH_TYPES)[number];
@@ -11,9 +13,12 @@ export default function HashGeneratorTool() {
   const [hashType, setHashType] = useState<HashType>("SHA-256");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
+  const { remaining, dailyLimit, isLimited, recordUsage } =
+    useRateLimit("hash-generator");
 
   async function handleGenerate() {
-    if (!input) return;
+    if (!input || isLimited) return;
+    recordUsage();
     setLoading(true);
     setOutput("");
     try {
@@ -78,14 +83,19 @@ export default function HashGeneratorTool() {
         ))}
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 flex items-center gap-2">
         <button
           onClick={handleGenerate}
-          disabled={loading || !input}
+          disabled={loading || !input || isLimited}
           className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
           {loading ? "Generating..." : "Generate Hash"}
         </button>
+        <RateLimitBanner
+          remaining={remaining}
+          dailyLimit={dailyLimit}
+          isLimited={isLimited}
+        />
       </div>
 
       {output && (

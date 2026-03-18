@@ -2,12 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function UuidGeneratorTool() {
   const [uuids, setUuids] = useState<string[]>([]);
   const [count, setCount] = useState(1);
+  const { remaining, dailyLimit, isLimited, recordUsage } =
+    useRateLimit("uuid-generator");
 
   function handleGenerate() {
+    if (isLimited) return;
+    recordUsage();
     const clamped = Math.max(1, Math.min(100, count));
     const generated: string[] = [];
     for (let i = 0; i < clamped; i++) {
@@ -49,7 +55,8 @@ export default function UuidGeneratorTool() {
       <div className="flex flex-wrap gap-2 items-center">
         <button
           onClick={handleGenerate}
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors"
+          disabled={isLimited}
+          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
           Generate UUID
         </button>
@@ -82,6 +89,11 @@ export default function UuidGeneratorTool() {
             </button>
           </>
         )}
+        <RateLimitBanner
+          remaining={remaining}
+          dailyLimit={dailyLimit}
+          isLimited={isLimited}
+        />
       </div>
 
       {uuids.length > 0 && (

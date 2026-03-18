@@ -2,13 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function JsonFormatterTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
+  const { remaining, dailyLimit, isLimited, recordUsage } =
+    useRateLimit("json-formatter");
 
   function handleFormat() {
+    if (isLimited) return;
+    recordUsage();
     setError("");
     setOutput("");
     try {
@@ -20,6 +26,8 @@ export default function JsonFormatterTool() {
   }
 
   function handleMinify() {
+    if (isLimited) return;
+    recordUsage();
     setError("");
     setOutput("");
     try {
@@ -31,6 +39,8 @@ export default function JsonFormatterTool() {
   }
 
   function handleValidate() {
+    if (isLimited) return;
+    recordUsage();
     setError("");
     setOutput("");
     try {
@@ -71,25 +81,33 @@ export default function JsonFormatterTool() {
         className="w-full rounded-lg border border-gray-300 bg-white p-4 font-mono text-sm dark:border-gray-700 dark:bg-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
       />
 
-      <div className="flex flex-wrap gap-2 mt-4">
+      <div className="flex flex-wrap items-center gap-2 mt-4">
         <button
           onClick={handleFormat}
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors"
+          disabled={isLimited}
+          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
           Format
         </button>
         <button
           onClick={handleMinify}
-          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
+          disabled={isLimited}
+          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors disabled:opacity-50"
         >
           Minify
         </button>
         <button
           onClick={handleValidate}
-          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
+          disabled={isLimited}
+          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors disabled:opacity-50"
         >
           Validate
         </button>
+        <RateLimitBanner
+          remaining={remaining}
+          dailyLimit={dailyLimit}
+          isLimited={isLimited}
+        />
       </div>
 
       {error && (
