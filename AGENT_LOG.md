@@ -4,6 +4,16 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add keyboard shortcuts for tools (Ctrl+Enter to execute)
+- Created `useKeyboardShortcut` hook: listens for Ctrl+Enter (or Cmd+Enter on Mac) globally within the component
+- Added Ctrl+Enter shortcut to all 5 action-based tools: JSON Formatter (Format), Base64 (Encode), Hash Generator (Generate Hash), UUID Generator (Generate UUID), JWT Decoder (Decode)
+- Real-time tools (Color Converter, Regex Tester, URL Parser, Markdown Preview, Diff Checker) don't need shortcuts since they auto-update on input
+- Added subtle `<kbd>` shortcut hint badges on primary action buttons (hidden on mobile for space)
+- Converted primary action handlers to `useCallback` for stable hook references
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-17 | developer | Add structured data (JSON-LD) for search engines
 - Added `Organization` JSON-LD to root layout (site-wide)
 - Added `WebSite` JSON-LD with `SearchAction` to homepage

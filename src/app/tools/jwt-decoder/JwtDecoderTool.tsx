@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 interface DecodedJwt {
@@ -60,7 +61,7 @@ export default function JwtDecoderTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("jwt-decoder");
 
-  function handleDecode() {
+  const handleDecode = useCallback(() => {
     if (isLimited) return;
     setError("");
     setDecoded(null);
@@ -72,7 +73,9 @@ export default function JwtDecoderTool() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to decode JWT");
     }
-  }
+  }, [input, isLimited, recordUsage]);
+
+  useKeyboardShortcut("Enter", handleDecode);
 
   function handleCopy(text: string) {
     navigator.clipboard.writeText(text);
@@ -112,7 +115,10 @@ export default function JwtDecoderTool() {
             disabled={isLimited}
             className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
           >
-            Decode
+            Decode{" "}
+            <kbd className="ml-1 hidden rounded bg-indigo-500 px-1.5 py-0.5 text-xs font-normal text-indigo-100 sm:inline">
+              Ctrl+Enter
+            </kbd>
           </button>
           <button
             onClick={() => {

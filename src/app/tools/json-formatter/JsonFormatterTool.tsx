@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function JsonFormatterTool() {
@@ -12,7 +13,7 @@ export default function JsonFormatterTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("json-formatter");
 
-  function handleFormat() {
+  const handleFormat = useCallback(() => {
     if (isLimited) return;
     recordUsage();
     setError("");
@@ -23,7 +24,9 @@ export default function JsonFormatterTool() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Invalid JSON");
     }
-  }
+  }, [input, isLimited, recordUsage]);
+
+  useKeyboardShortcut("Enter", handleFormat);
 
   function handleMinify() {
     if (isLimited) return;
@@ -87,7 +90,10 @@ export default function JsonFormatterTool() {
           disabled={isLimited}
           className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
-          Format
+          Format{" "}
+          <kbd className="ml-1 hidden rounded bg-indigo-500 px-1.5 py-0.5 text-xs font-normal text-indigo-100 sm:inline">
+            Ctrl+Enter
+          </kbd>
         </button>
         <button
           onClick={handleMinify}

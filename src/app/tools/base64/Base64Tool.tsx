@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function Base64Tool() {
@@ -12,7 +13,7 @@ export default function Base64Tool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("base64");
 
-  function handleEncode() {
+  const handleEncode = useCallback(() => {
     if (isLimited) return;
     recordUsage();
     setError("");
@@ -23,7 +24,9 @@ export default function Base64Tool() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to encode");
     }
-  }
+  }, [input, isLimited, recordUsage]);
+
+  useKeyboardShortcut("Enter", handleEncode);
 
   function handleDecode() {
     if (isLimited) return;
@@ -74,7 +77,10 @@ export default function Base64Tool() {
           disabled={isLimited}
           className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
-          Encode
+          Encode{" "}
+          <kbd className="ml-1 hidden rounded bg-indigo-500 px-1.5 py-0.5 text-xs font-normal text-indigo-100 sm:inline">
+            Ctrl+Enter
+          </kbd>
         </button>
         <button
           onClick={handleDecode}

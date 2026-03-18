@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function UuidGeneratorTool() {
@@ -11,7 +12,7 @@ export default function UuidGeneratorTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("uuid-generator");
 
-  function handleGenerate() {
+  const handleGenerate = useCallback(() => {
     if (isLimited) return;
     recordUsage();
     const clamped = Math.max(1, Math.min(100, count));
@@ -20,7 +21,9 @@ export default function UuidGeneratorTool() {
       generated.push(crypto.randomUUID());
     }
     setUuids(generated);
-  }
+  }, [count, isLimited, recordUsage]);
+
+  useKeyboardShortcut("Enter", handleGenerate);
 
   function handleCopySingle(uuid: string) {
     navigator.clipboard.writeText(uuid);
@@ -58,7 +61,10 @@ export default function UuidGeneratorTool() {
           disabled={isLimited}
           className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
-          Generate UUID
+          Generate UUID{" "}
+          <kbd className="ml-1 hidden rounded bg-indigo-500 px-1.5 py-0.5 text-xs font-normal text-indigo-100 sm:inline">
+            Ctrl+Enter
+          </kbd>
         </button>
 
         <label className="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">

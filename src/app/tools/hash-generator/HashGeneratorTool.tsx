@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 const HASH_TYPES = ["SHA-1", "SHA-256", "SHA-384", "SHA-512"] as const;
@@ -16,7 +17,7 @@ export default function HashGeneratorTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("hash-generator");
 
-  async function handleGenerate() {
+  const handleGenerate = useCallback(async () => {
     if (!input || isLimited) return;
     recordUsage();
     setLoading(true);
@@ -34,7 +35,9 @@ export default function HashGeneratorTool() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [input, hashType, isLimited, recordUsage]);
+
+  useKeyboardShortcut("Enter", handleGenerate);
 
   function handleCopy() {
     if (output) {
@@ -89,7 +92,10 @@ export default function HashGeneratorTool() {
           disabled={loading || !input || isLimited}
           className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
         >
-          {loading ? "Generating..." : "Generate Hash"}
+          {loading ? "Generating..." : "Generate Hash"}{" "}
+          <kbd className="ml-1 hidden rounded bg-indigo-500 px-1.5 py-0.5 text-xs font-normal text-indigo-100 sm:inline">
+            Ctrl+Enter
+          </kbd>
         </button>
         <RateLimitBanner
           remaining={remaining}
