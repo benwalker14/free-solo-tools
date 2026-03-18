@@ -318,4 +318,12 @@ export const tools: Tool[] = [
     icon: "◜◝",
     category: "Generate",
   },
+  {
+    title: "Text Shadow Generator",
+    description:
+      "Design CSS text shadows visually with multiple layers, presets, and live preview",
+    href: "/tools/text-shadow",
+    icon: "Tˢ",
+    category: "Generate",
+  },
 ];

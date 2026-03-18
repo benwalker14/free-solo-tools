@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSS Text Shadow Generator tool (#41)
+
+- Created `src/app/tools/text-shadow/TextShadowTool.tsx` — interactive client component for designing CSS text-shadow visually
+- **Multiple shadow layers:** Up to 8 layers with tab-based layer management (add, duplicate, remove)
+- **Per-layer controls:** X offset, Y offset, blur radius — each with range slider and number input
+- **Color & opacity:** Color picker + hex input + opacity slider per layer
+- **Live preview:** Real-time rendering with customizable preview text, text color, background color, font size (16–120px), and font family (6 options)
+- **8 presets:** Subtle, Crisp, Neon (glow), Retro (offset block), 3D (stacked depth), Emboss (raised), Fire (flame glow), Outline (stroke simulation) — each with mini preview
+- **CSS output:** Generates clean text-shadow CSS with multi-value support; one-click copy to clipboard
+- **Quick reference:** Expandable section explaining text-shadow syntax, differences from box-shadow (no spread/inset), multiple shadows, and the outline trick
+- Created `src/app/tools/text-shadow/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/text-shadow/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Text Shadow Generator", icon: "Tˢ", category: "Generate")
+- Updated CLAUDE.md tool list (#41)
+- **Extends CSS tool family:** gradient, box-shadow, flexbox, grid, border-radius, text-shadow
+
+---
+
 ### 2026-03-18 | developer | Add CSS Border Radius Generator tool (#40)
 
 - Created `src/app/tools/border-radius/BorderRadiusTool.tsx` — interactive client component for designing CSS border-radius visually
