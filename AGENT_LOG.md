@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add QR Code Generator tool (#24)
+- Created `src/app/tools/qr-code/QrCodeTool.tsx` — interactive client component for generating QR codes from text or URLs
+- Text/URL input with character count and capacity info
+- QR code rendered on canvas via `qrcode` library with live preview
+- Configurable error correction level: L (~7%), M (~15%), Q (~25%), H (~30%) — selectable via button group
+- Configurable output size: 128px, 256px, 512px, 1024px
+- Custom foreground and background colors with color picker and hex input
+- Download as PNG button (named `qr-code-{size}x{size}.png`)
+- Copy QR code image to clipboard (uses ClipboardItem API with PNG blob, falls back to data URL)
+- "Load sample" button pre-fills with the tool's own URL for quick testing
+- "About QR Codes" collapsible reference section explaining error correction, capacity limits, and common data formats (URL, email, tel, SMS, Wi-Fi, vCard)
+- Created `page.tsx` with full SEO metadata, keywords (QR code generator, QR code maker, create QR code, QR code from URL, QR code from text), Open Graph, canonical URL, and JSON-LD structured data (UtilitiesApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `QR`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- Installed `qrcode` and `@types/qrcode` dependencies (26 packages, 0 vulnerabilities)
+- Build and lint pass cleanly; all 24 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add CSS Gradient Generator tool (#23)
 - Created `src/app/tools/gradient-generator/GradientGeneratorTool.tsx` — interactive client component for creating CSS gradients visually
 - Two gradient modes: Linear (with angle control, 0–360°, quick-select buttons for common angles) and Radial (circle/ellipse shape, 9 position presets)

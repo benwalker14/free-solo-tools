@@ -141,6 +141,12 @@ const tools = [
     href: "/tools/gradient-generator",
     icon: "GRD",
   },
+  {
+    title: "QR Code Generator",
+    description: "Generate customizable QR codes from text or URLs",
+    href: "/tools/qr-code",
+    icon: "QR",
+  },
 ];
 
 const websiteJsonLd = {

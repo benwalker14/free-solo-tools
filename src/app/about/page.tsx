@@ -37,6 +37,7 @@ const tools = [
   { name: "Chmod Calculator", href: "/tools/chmod-calculator" },
   { name: "HTML Entity Encoder", href: "/tools/html-entities" },
   { name: "CSS Gradient Generator", href: "/tools/gradient-generator" },
+  { name: "QR Code Generator", href: "/tools/qr-code" },
 ];
 
 export default function AboutPage() {
