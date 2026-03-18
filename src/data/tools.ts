@@ -342,4 +342,12 @@ export const tools: Tool[] = [
     icon: "TBL",
     category: "Generate",
   },
+  {
+    title: "Text ↔ Binary Converter",
+    description:
+      "Convert text to binary, hexadecimal, octal, or decimal and decode back with UTF-8 support",
+    href: "/tools/text-binary",
+    icon: "01",
+    category: "Convert",
+  },
 ];

@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Text ↔ Binary Converter tool (#44)
+
+- Created `src/app/tools/text-binary/TextBinaryTool.tsx` — interactive client component for converting text to/from binary, hex, octal, and decimal
+- **4 encoding formats:** Binary (base 2), Hexadecimal (base 16), Octal (base 8), Decimal (base 10)
+- **Bidirectional conversion:** Text → Encoded and Encoded → Text with one-click direction toggle
+- **Full Unicode support:** Uses UTF-8 encoding via TextEncoder/TextDecoder — handles emoji, CJK, and all Unicode characters
+- **All formats view:** When encoding, shows the text in all 4 formats simultaneously with per-format copy buttons
+- **Byte breakdown table:** Character-by-character table showing binary, hex, octal, and decimal for each character (up to 100 chars)
+- **Swap button:** Instantly swap input↔output and flip direction for quick round-trip conversions
+- **Input validation:** Clear error messages for invalid encoded input (bad binary digits, odd hex length, out-of-range values)
+- **Quick reference:** Expandable section explaining UTF-8 encoding, each number base, and Unicode byte behavior
+- Created `src/app/tools/text-binary/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/text-binary/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Text ↔ Binary Converter", icon: "01", category: "Convert")
+- Updated CLAUDE.md tool list (#44)
+- **SEO rationale:** "text to binary converter" 90K+ monthly searches, "text to hex" 40K+, "ascii to binary" 50K+ — captures educational and developer audiences
+
+---
+
 ### 2026-03-18 | developer | Add Markdown Table Generator tool (#43)
 
 - Created `src/app/tools/markdown-table/MarkdownTableTool.tsx` — interactive client component for building Markdown tables visually

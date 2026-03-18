@@ -87,3 +87,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 41. CSS Text Shadow Generator (/tools/text-shadow)
 42. CSS Animation Generator (/tools/css-animation)
 43. Markdown Table Generator (/tools/markdown-table)
+44. Text ↔ Binary Converter (/tools/text-binary)
