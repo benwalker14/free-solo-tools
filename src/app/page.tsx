@@ -31,6 +31,24 @@ const tools = [
     href: "/tools/color-converter",
     icon: "CLR",
   },
+  {
+    title: "JWT Decoder",
+    description: "Decode and inspect JSON Web Tokens instantly",
+    href: "/tools/jwt-decoder",
+    icon: "JWT",
+  },
+  {
+    title: "Regex Tester",
+    description: "Test regular expressions with real-time match highlighting",
+    href: "/tools/regex-tester",
+    icon: ".*",
+  },
+  {
+    title: "URL Parser",
+    description: "Parse URLs into protocol, host, path, and query params",
+    href: "/tools/url-parser",
+    icon: "URL",
+  },
 ];
 
 export default function Home() {

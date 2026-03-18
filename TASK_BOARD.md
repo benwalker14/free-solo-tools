@@ -16,7 +16,7 @@ _None - all critical tasks complete_
 - [ ] Add rate limiting for free tier (localStorage-based daily counter)
 
 ### P2 - Medium
-- [ ] Add more tools: Markdown Preview, Regex Tester, URL Parser, JWT Decoder, Diff Checker
+- [ ] Add more tools: Markdown Preview, Diff Checker
 - [ ] Add Open Graph images for social sharing
 - [ ] Implement dark mode toggle (currently uses system preference)
 - [ ] Add keyboard shortcuts for tools (Ctrl+Enter to execute)
@@ -38,3 +38,4 @@ _None - all critical tasks complete_
 - [x] Connect Vercel for auto-deployment (https://free-solo-tools.vercel.app/)
 - [x] Set up Windows Task Scheduler for agents
 - [x] Add SEO meta tags and sitemap.xml
+- [x] Add JWT Decoder, Regex Tester, URL Parser tools

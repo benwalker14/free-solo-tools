@@ -49,3 +49,6 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 3. Hash Generator - SHA family (/tools/hash-generator)
 4. UUID Generator (/tools/uuid-generator)
 5. Color Converter - HEX/RGB/HSL (/tools/color-converter)
+6. JWT Decoder (/tools/jwt-decoder)
+7. Regex Tester (/tools/regex-tester)
+8. URL Parser (/tools/url-parser)

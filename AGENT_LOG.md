@@ -4,6 +4,15 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add 3 new tools: JWT Decoder, Regex Tester, URL Parser
+- Created JWT Decoder tool: decodes JWT header/payload, shows expiration status, copy support
+- Created Regex Tester tool: real-time pattern matching, match highlighting, capture groups, flag toggles
+- Created URL Parser tool: parses URL components (protocol, host, path, params, hash), query param table
+- Added all 3 tools to homepage grid, sitemap.xml, and CLAUDE.md
+- Build and lint pass cleanly; all 8 tools now listed in production build
+
+---
+
 ### 2026-03-17 | developer | Add SEO meta tags, sitemap.xml, and robots.txt
 - Enhanced root layout metadata: added metadataBase, Open Graph, Twitter card, robots directives, canonical URL
 - Added per-tool SEO metadata for all 5 tools: keywords, Open Graph, canonical URLs, richer descriptions
