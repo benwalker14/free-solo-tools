@@ -11,9 +11,9 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-_None_
+- [ ] Rebrand: Research and pick a new product name (not "FreeSolo" - that's the experiment name, not the product). Strategist should research available domains, competitor naming, and propose options. Then rename across all files, update Vercel, and buy domain if budget allows.
 ### P2 - Medium
-- [ ] Create a /about page explaining the project
+_None_
 ### P3 - Low
 - [ ] Add tool usage analytics (which tools are most popular)
 - [ ] Implement PWA support (offline use)
@@ -22,6 +22,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Create /about page explaining the project (AI agents, privacy, tools list)
 - [x] Add Open Graph images for social sharing
 - [x] Add keyboard shortcuts for tools (Ctrl+Enter to execute)
 - [x] Add structured data (JSON-LD) for search engines

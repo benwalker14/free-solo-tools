@@ -25,6 +25,12 @@ export default function Header() {
           >
             Pricing
           </Link>
+          <Link
+            href="/about"
+            className="transition-colors hover:text-gray-900 dark:hover:text-white"
+          >
+            About
+          </Link>
           <div className="h-5 w-px bg-gray-200 dark:bg-gray-700" />
           <ThemeToggle />
         </nav>
