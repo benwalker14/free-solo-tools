@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON Schema Validator tool (#46)
+
+- Created `src/app/tools/json-schema/JsonSchemaValidatorTool.tsx` — interactive client component for validating JSON data against JSON Schema
+- **JSON Schema Draft 07 support** via `ajv` with `ajv-formats` for format validation (email, URI, date-time, IPv4, UUID, etc.)
+- **Two-panel layout:** Side-by-side JSON Schema and JSON Data text areas on desktop, stacked on mobile
+- **Detailed error reporting:** Validation errors shown in a table with row number, JSON path, keyword badge, and human-readable error message
+- **Smart error messages:** Custom formatting for type, required, additionalProperties, enum, format, minimum/maximum, pattern, length constraints, and array constraints
+- **Generate Schema from Data:** One-click schema generation that infers types, required properties, and array item schemas from pasted JSON data
+- **3 example presets:** User Profile (basic object with formats), API Response (nested objects with arrays/enums), Config File (pattern properties)
+- **Copy buttons:** Per-panel copy to clipboard for both schema and data
+- **All errors mode:** Uses `allErrors: true` so all validation issues are shown at once, not just the first failure
+- **Success/failure indicators:** Green checkmark for valid data, red X with error count and detailed table for invalid data
+- **Quick reference:** Expandable section covering type keywords, constraints (required, properties, items, enum, pattern, min/max), format strings, and combining schemas (allOf, anyOf, oneOf, not)
+- Created `src/app/tools/json-schema/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/json-schema/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "JSON Schema Validator", icon: "JSV", category: "Inspect")
+- Added `ajv` and `ajv-formats` dependencies to package.json
+- Updated CLAUDE.md tool list (#46)
+- **SEO rationale:** "json schema validator" 40K+ monthly searches, "validate json schema online" 15K+, "json schema tester" 10K+ — completes the JSON toolset (Formatter, Path Tester, JSON→TS, JSON↔YAML)
+
+---
+
 ### 2026-03-18 | developer | Add Meta Tag Generator tool (#45)
 
 - Created `src/app/tools/meta-tag-generator/MetaTagGeneratorTool.tsx` — interactive client component for generating HTML meta tags

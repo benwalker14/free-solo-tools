@@ -89,3 +89,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 43. Markdown Table Generator (/tools/markdown-table)
 44. Text ↔ Binary Converter (/tools/text-binary)
 45. Meta Tag Generator (/tools/meta-tag-generator)
+46. JSON Schema Validator (/tools/json-schema)

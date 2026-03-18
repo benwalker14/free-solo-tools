@@ -358,4 +358,12 @@ export const tools: Tool[] = [
     icon: "META",
     category: "Generate",
   },
+  {
+    title: "JSON Schema Validator",
+    description:
+      "Validate JSON data against JSON Schema (Draft 07) with detailed error reporting and schema generation",
+    href: "/tools/json-schema",
+    icon: "JSV",
+    category: "Inspect",
+  },
 ];
