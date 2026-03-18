@@ -326,4 +326,12 @@ export const tools: Tool[] = [
     icon: "Tˢ",
     category: "Generate",
   },
+  {
+    title: "CSS Animation Generator",
+    description:
+      "Build CSS keyframe animations visually with presets, live preview, and copy-ready code",
+    href: "/tools/css-animation",
+    icon: "ANI",
+    category: "Generate",
+  },
 ];

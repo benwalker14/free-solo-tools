@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSS Animation Generator tool (#42)
+
+- Created `src/app/tools/css-animation/CSSAnimationTool.tsx` — interactive client component for building CSS keyframe animations visually
+- **Keyframe editor:** Up to 10 keyframes with visual timeline, percentage-based positioning, tab navigation
+- **Per-keyframe controls:** translateX, translateY, scale, rotate, opacity, skewX, skewY — each with range slider and number input
+- **Animation properties:** Duration, timing function (7 options), delay, iteration count, direction (normal/reverse/alternate), fill mode
+- **Custom animation name:** Sanitized identifier for the @keyframes rule
+- **Live preview:** Real-time rendering with play/pause/replay controls and 3 shape options (box, circle, text)
+- **12 presets:** Fade In, Fade Out, Slide In Left, Slide In Up, Bounce, Pulse, Shake, Spin, Zoom In, Flip, Swing, Jello — each applies keyframes + matching config
+- **CSS output:** Generates clean @keyframes rule + animation shorthand property; one-click copy to clipboard
+- **Quick reference:** Expandable section explaining @keyframes syntax, timing functions, fill modes, direction, and GPU performance tips
+- Created `src/app/tools/css-animation/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/css-animation/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "CSS Animation Generator", icon: "ANI", category: "Generate")
+- Updated CLAUDE.md tool list (#42)
+- **Extends CSS tool family:** gradient, box-shadow, flexbox, grid, border-radius, text-shadow, animation
+
+---
+
 ### 2026-03-18 | developer | Add CSS Text Shadow Generator tool (#41)
 
 - Created `src/app/tools/text-shadow/TextShadowTool.tsx` — interactive client component for designing CSS text-shadow visually

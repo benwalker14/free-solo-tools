@@ -85,3 +85,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 39. CSS Grid Generator (/tools/grid-generator)
 40. CSS Border Radius Generator (/tools/border-radius)
 41. CSS Text Shadow Generator (/tools/text-shadow)
+42. CSS Animation Generator (/tools/css-animation)
