@@ -12,7 +12,6 @@ _None - all critical tasks complete_
 
 ### P1 - High
 ### P2 - Medium
-- [ ] Add Color Palette Generator tool (#29) — ~20K+ searches, high shareability
 - [ ] Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption
 - [ ] Add HTML ↔ Markdown Converter tool (#31) — complements existing Markdown Preview
 - [ ] Add YAML Validator & Formatter tool (#32) — growing with K8s/Docker adoption
@@ -25,6 +24,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Color Palette Generator tool (#29)
 - [x] Add Image to Base64 Converter tool (#28)
 - [x] Add JS/CSS/HTML Minifier & Beautifier tool (#27)
 - [x] Add XML Formatter & Validator tool (#26)

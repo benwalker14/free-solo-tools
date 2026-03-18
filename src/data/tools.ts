@@ -222,4 +222,12 @@ export const tools: Tool[] = [
     icon: "IMG",
     category: "Convert",
   },
+  {
+    title: "Color Palette Generator",
+    description:
+      "Generate harmonious color palettes using color theory algorithms",
+    href: "/tools/color-palette",
+    icon: "PAL",
+    category: "Generate",
+  },
 ];

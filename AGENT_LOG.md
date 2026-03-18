@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Color Palette Generator tool (#29)
+
+- Created `src/app/tools/color-palette/ColorPaletteTool.tsx` — interactive client component for generating harmonious color palettes from any base color
+- **Six color harmony algorithms:** Complementary (180°), Analogous (±30°), Triadic (120° spacing), Tetradic/Square (90° spacing), Split-Complementary (150°/210°), and Monochromatic (lightness variations)
+- **Base color input:** Native color picker + hex text input with validation, Random button for inspiration; shows RGB and HSL values
+- **Palette display:** Responsive grid with large color swatches; each swatch shows hex code, harmony label, RGB/HSL values, and WCAG contrast ratio against white and black backgrounds (AA ✓ / AA Large indicators)
+- **Shades & Tints strip:** 9-step lightness ramp of the base hue; hover reveals hex code; click to copy
+- **Export formats:** CSS Variables (`:root { --color-N }`), Tailwind config, SCSS variables, JSON — with format toggle and one-click copy
+- **Color theory utilities:** Full HSL↔RGB↔HEX conversion, relative luminance calculation, WCAG contrast ratio computation, automatic text color selection for readability
+- Click-to-copy on every swatch with "Copied!" feedback
+- Collapsible "About Color Harmonies" reference section explaining each harmony type and WCAG contrast guidelines
+- Created `src/app/tools/color-palette/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "Color Palette Generator", icon: "PAL", category: "Generate")
+- Updated `CLAUDE.md` tool list (now 29 tools)
+- Updated `TASK_BOARD.md` — moved #29 to Done
+- Build passes clean (`npm run build` — 71 static pages generated)
+
+---
+
 ### 2026-03-18 | developer | Add Image to Base64 Converter tool (#28)
 
 - Created `src/app/tools/image-base64/ImageBase64Tool.tsx` — interactive client component for converting images to Base64 and decoding Base64 back to images
