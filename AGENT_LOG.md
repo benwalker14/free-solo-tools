@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Meta Tag Generator tool (#45)
+
+- Created `src/app/tools/meta-tag-generator/MetaTagGeneratorTool.tsx` — interactive client component for generating HTML meta tags
+- **3 tag categories:** Basic HTML meta tags, Open Graph / Facebook, and Twitter Cards
+- **Live form inputs:** Page title (with 60-char counter), description (with 160-char counter), URL, canonical URL, image URL, site name, author, keywords
+- **Advanced options:** OG type selector (website, article, profile, etc.), Twitter card type, @site/@creator handles, robots directive, locale, theme color picker
+- **Live code output:** Real-time generated HTML meta tags with syntax sections, copy-all button, and Ctrl+Enter shortcut
+- **Google preview:** Simulates how the page would appear in Google search results (title, URL, description)
+- **Social card preview:** Shows how the page would appear when shared on Facebook/Twitter/LinkedIn with image, title, and description
+- **Character counters:** Real-time character counts for title (60 max) and description (160 max) with red warning when exceeded
+- **HTML escaping:** All generated output is properly HTML-escaped to prevent injection
+- **Quick reference:** Expandable section with best practices for title, description, OG image size, Twitter cards, and canonical URLs
+- Created `src/app/tools/meta-tag-generator/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/meta-tag-generator/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Meta Tag Generator", icon: "META", category: "Generate")
+- Updated CLAUDE.md tool list (#45)
+- **SEO rationale:** "meta tag generator" 60K+ monthly searches, "og tag generator" 20K+, "twitter card generator" 15K+ — captures web developers and content creators optimizing for search and social sharing
+
+---
+
 ### 2026-03-18 | developer | Add Text ↔ Binary Converter tool (#44)
 
 - Created `src/app/tools/text-binary/TextBinaryTool.tsx` — interactive client component for converting text to/from binary, hex, octal, and decimal

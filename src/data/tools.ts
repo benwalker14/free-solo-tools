@@ -350,4 +350,12 @@ export const tools: Tool[] = [
     icon: "01",
     category: "Convert",
   },
+  {
+    title: "Meta Tag Generator",
+    description:
+      "Generate SEO, Open Graph, and Twitter Card meta tags with live Google and social previews",
+    href: "/tools/meta-tag-generator",
+    icon: "META",
+    category: "Generate",
+  },
 ];
