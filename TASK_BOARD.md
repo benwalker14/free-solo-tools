@@ -24,6 +24,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add CSS Grid Generator tool (#39)
 - [x] Add CSS Flexbox Generator tool (#38)
 - [x] Add Color Contrast Checker tool (#37)
 - [x] Add missing Open Graph images for 8 tools

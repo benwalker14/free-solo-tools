@@ -302,4 +302,12 @@ export const tools: Tool[] = [
     icon: "FLX",
     category: "Generate",
   },
+  {
+    title: "Grid Generator",
+    description:
+      "Build CSS grid layouts visually with columns, rows, gap, item placement, and presets",
+    href: "/tools/grid-generator",
+    icon: "Grid",
+    category: "Generate",
+  },
 ];

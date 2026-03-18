@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSS Grid Generator tool (#39)
+
+- Created `src/app/tools/grid-generator/GridGeneratorTool.tsx` — interactive client component for building CSS grid layouts visually
+- **Container controls:** grid-template-columns, grid-template-rows, gap (uniform or split row/column), grid-auto-flow — all configurable via inputs/dropdowns
+- **Advanced controls:** justify-items, align-items, justify-content, align-content, grid-auto-columns, grid-auto-rows — hidden behind "Show advanced" toggle to keep UI clean
+- **Grid items:** Add up to 12 items, click to select and configure per-item properties (column span, row span, column start, row start, justify-self, align-self)
+- **Live preview:** Real-time visual rendering with color-coded items inside a dashed container; items are clickable for selection; properly applies grid-column span, grid-row span, and placement
+- **6 presets:** Basic 3-Column, Sidebar Layout, Holy Grail, Dashboard, Gallery (auto-fill responsive), Feature Grid — each sets container + items for common layout patterns
+- **CSS output:** Generates clean CSS for container (`.container`) and any items with non-default properties (`.item-N`); only outputs properties that differ from defaults; handles gap split (row-gap/column-gap) intelligently
+- **Copy CSS:** One-click copy to clipboard
+- **Quick reference:** Expandable section explaining CSS Grid concepts (template columns/rows, fr units, span, gap, auto-fill/auto-fit with minmax)
+- Created `src/app/tools/grid-generator/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/grid-generator/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Grid Generator", icon: "Grid", category: "Generate")
+- Updated CLAUDE.md tool list (#39)
+
+---
+
 ### 2026-03-18 | developer | Add CSS Flexbox Generator tool (#38)
 
 - Created `src/app/tools/flexbox-generator/FlexboxGeneratorTool.tsx` — interactive client component for building CSS flexbox layouts visually
