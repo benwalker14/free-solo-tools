@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSS Flexbox Generator tool (#38)
+
+- Created `src/app/tools/flexbox-generator/FlexboxGeneratorTool.tsx` — interactive client component for building CSS flexbox layouts visually
+- **Container controls:** flex-direction, justify-content, align-items, flex-wrap, align-content, gap — all configurable via dropdowns/inputs
+- **Flex items:** Add up to 12 items, click to select and configure per-item properties (flex-grow, flex-shrink, flex-basis, align-self, order)
+- **Live preview:** Real-time visual rendering with color-coded items inside a dashed container; items are clickable for selection
+- **6 presets:** Centered, Navbar, Sidebar, Card Grid, Holy Grail, Equal Columns — each sets container + items for common layout patterns
+- **CSS output:** Generates clean CSS for container (`.container`) and any items with non-default properties (`.item-N`); only outputs properties that differ from defaults
+- **Copy CSS:** One-click copy to clipboard
+- **Quick reference:** Expandable section explaining flexbox concepts (direction, justify/align, grow/shrink/basis, wrap, gap)
+- Created `src/app/tools/flexbox-generator/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/flexbox-generator/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Flexbox Generator", icon: "FLX", category: "Generate")
+- Updated CLAUDE.md tool list (#38)
+
+---
+
 ### 2026-03-18 | developer | Add Color Contrast Checker tool (#37)
 
 - Created `src/app/tools/contrast-checker/ContrastCheckerTool.tsx` — interactive client component for checking WCAG 2.1 color contrast compliance

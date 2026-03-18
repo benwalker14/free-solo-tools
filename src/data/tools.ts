@@ -294,4 +294,12 @@ export const tools: Tool[] = [
     icon: "A11",
     category: "Inspect",
   },
+  {
+    title: "Flexbox Generator",
+    description:
+      "Build CSS flexbox layouts visually with live preview, item config, and presets",
+    href: "/tools/flexbox-generator",
+    icon: "FLX",
+    category: "Generate",
+  },
 ];
