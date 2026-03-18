@@ -230,4 +230,12 @@ export const tools: Tool[] = [
     icon: "PAL",
     category: "Generate",
   },
+  {
+    title: "JSON to TypeScript",
+    description:
+      "Generate TypeScript interfaces and type aliases from JSON data",
+    href: "/tools/json-to-typescript",
+    icon: "TS",
+    category: "Convert",
+  },
 ];

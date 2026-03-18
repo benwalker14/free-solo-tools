@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON to TypeScript Generator tool (#30)
+
+- Created `src/app/tools/json-to-typescript/JsonToTypescriptTool.tsx` — interactive client component for generating TypeScript interfaces and type aliases from JSON data
+- **Two output styles:** `interface` (extendable, standard for object shapes) and `type` alias (supports unions/intersections) — toggle between them with a button group
+- **Configurable root name:** User can set the root type name (defaults to "Root")
+- **Nested object handling:** Each nested object gets its own named type by default (e.g., `RootAddress`, `RootAddressCoordinates`); "Inline nested" checkbox embeds them directly in the parent type
+- **Array inference:** Element types inferred from all items; homogeneous arrays become `string[]`, mixed arrays become union types like `(string | number)[]`; empty arrays infer as `unknown[]`
+- **Root array support:** When JSON is an array of objects, all objects are merged to produce a complete type with all possible keys
+- **Null handling:** null values inferred as `null` type
+- **Optional props toggle:** Marks all properties with `?` when enabled
+- **Readonly toggle:** Prefixes all properties with `readonly` when enabled
+- **Key quoting:** Non-identifier keys (containing spaces, hyphens, etc.) are automatically quoted
+- **PascalCase naming:** snake_case and kebab-case keys are converted to PascalCase for type names
+- Click-to-copy with "Copied!" feedback
+- Created `src/app/tools/json-to-typescript/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "JSON to TypeScript", icon: "TS", category: "Convert")
+- Updated `CLAUDE.md` tool list (now 30 tools)
+- Updated `TASK_BOARD.md` — moved #30 to Done
+- Build passes clean (`npm run build` — 72 static pages generated)
+
+---
+
 ### 2026-03-18 | developer | Add Color Palette Generator tool (#29)
 
 - Created `src/app/tools/color-palette/ColorPaletteTool.tsx` — interactive client component for generating harmonious color palettes from any base color

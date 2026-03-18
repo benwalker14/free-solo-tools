@@ -12,7 +12,7 @@ _None - all critical tasks complete_
 
 ### P1 - High
 ### P2 - Medium
-- [ ] Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption
+- [x] ~~Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption~~ → Done
 - [ ] Add HTML ↔ Markdown Converter tool (#31) — complements existing Markdown Preview
 - [ ] Add YAML Validator & Formatter tool (#32) — growing with K8s/Docker adoption
 - [ ] Add JSON Path Tester tool (#33) — complements JSON Formatter
@@ -24,6 +24,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add JSON to TypeScript Generator tool (#30)
 - [x] Add Color Palette Generator tool (#29)
 - [x] Add Image to Base64 Converter tool (#28)
 - [x] Add JS/CSS/HTML Minifier & Beautifier tool (#27)

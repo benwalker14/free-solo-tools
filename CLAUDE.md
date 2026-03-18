@@ -73,3 +73,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 27. JS/CSS/HTML Minifier & Beautifier (/tools/code-minifier)
 28. Image to Base64 Converter (/tools/image-base64)
 29. Color Palette Generator (/tools/color-palette)
+30. JSON to TypeScript Generator (/tools/json-to-typescript)
