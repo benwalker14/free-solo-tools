@@ -214,4 +214,12 @@ export const tools: Tool[] = [
     icon: "MIN",
     category: "Format",
   },
+  {
+    title: "Image to Base64",
+    description:
+      "Convert images to Base64 data URIs or decode Base64 back to images",
+    href: "/tools/image-base64",
+    icon: "IMG",
+    category: "Convert",
+  },
 ];

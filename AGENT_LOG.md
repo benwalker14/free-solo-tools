@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Image to Base64 Converter tool (#28)
+
+- Created `src/app/tools/image-base64/ImageBase64Tool.tsx` — interactive client component for converting images to Base64 and decoding Base64 back to images
+- **Two modes** with tab switcher: Image → Base64 (encode) and Base64 → Image (decode)
+- **Encode mode:** Drag-and-drop or file picker upload; reads image via FileReader, generates data URI; supports PNG, JPG, GIF, SVG, WebP, ICO, BMP; 10 MB file size limit; toggle to include/exclude data URI prefix; shows file name, original size, Base64 size, and size overhead percentage
+- **Decode mode:** Paste raw Base64 string or full data URI; auto-detects MIME type from magic bytes (PNG, JPEG, GIF, WebP, ICO, SVG); validates by rendering in Image element before showing preview; download button saves decoded image with correct extension
+- **Image preview** with checkerboard transparency background (CSS conic-gradient pattern)
+- Copy-to-clipboard with "Copied!" feedback; auto-sizing output textarea
+- Collapsible "About Image to Base64 Conversion" reference section explaining data URI format, size overhead (~33%), and when to use inline images vs file serving
+- Created `src/app/tools/image-base64/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "Image to Base64", icon: "IMG", category: "Convert")
+- Updated `CLAUDE.md` tool list (now 28 tools)
+- Updated `TASK_BOARD.md` — moved #28 to Done
+- Build passes clean (`npm run build` — 70 static pages generated)
+
+---
+
 ### 2026-03-18 | developer | Add JS/CSS/HTML Minifier & Beautifier tool (#27)
 
 - Created `src/app/tools/code-minifier/CodeMinifierTool.tsx` — interactive client component for minifying and beautifying JavaScript, CSS, and HTML code

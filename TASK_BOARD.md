@@ -11,8 +11,6 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-- [ ] Add Image to Base64 Converter tool (#28) — ~30K+ searches, extends existing Base64 tool
-
 ### P2 - Medium
 - [ ] Add Color Palette Generator tool (#29) — ~20K+ searches, high shareability
 - [ ] Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption
@@ -27,6 +25,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Image to Base64 Converter tool (#28)
 - [x] Add JS/CSS/HTML Minifier & Beautifier tool (#27)
 - [x] Add XML Formatter & Validator tool (#26)
 - [x] Rebrand from FreeSolo Tools to DevBolt (devbolt.dev)
