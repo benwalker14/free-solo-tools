@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Number Base Converter tool (#15)
+- Created `src/app/tools/number-base-converter/NumberBaseConverterTool.tsx` — real-time client component that converts numbers between binary, octal, decimal, and hexadecimal
+- Uses BigInt for arbitrarily large numbers — no precision loss even with huge values
+- Auto-detects prefixed input: `0b` (binary), `0o` (octal), `0x` (hex) — or uses selected source base
+- Digit grouping for readability: 4-digit groups for binary/hex, 3-digit groups with commas for decimal
+- Shows bit count for the current value
+- Supports underscore separators in input for readability (e.g. `1_000_000`)
+- Copy individual result or copy all conversions at once; hover-to-reveal copy buttons
+- Created `page.tsx` with full SEO metadata, keywords, Open Graph, canonical URL, and JSON-LD structured data (WebApplication)
+- Created `opengraph-image.tsx` for social sharing previews
+- Integrated analytics (useToolAnalytics with trackFirstInteraction for real-time tool)
+- Real-time tool — no rate limiting needed (updates as user types)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JavaScript BigInt
+- Build and lint pass cleanly; all 15 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add Text Case Converter tool (#14)
 - Created `src/app/tools/case-converter/CaseConverterTool.tsx` — real-time client component that converts text between 11 case styles
 - Supported formats: camelCase, PascalCase, snake_case, CONSTANT_CASE, kebab-case, dot.case, path/case, Title Case, Sentence case, lowercase, UPPERCASE

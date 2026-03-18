@@ -87,6 +87,12 @@ const tools = [
     href: "/tools/case-converter",
     icon: "Aa",
   },
+  {
+    title: "Number Base Converter",
+    description: "Convert numbers between binary, octal, decimal, and hex",
+    href: "/tools/number-base-converter",
+    icon: "0x",
+  },
 ];
 
 const websiteJsonLd = {

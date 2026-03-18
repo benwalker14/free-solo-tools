@@ -19,6 +19,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Number Base Converter tool (#15)
 - [x] Add Case Converter tool (#14)
 - [x] Add Lorem Ipsum Generator tool (#13)
 - [x] Add Password Generator tool (#12)

@@ -28,6 +28,7 @@ const tools = [
   { name: "Password Generator", href: "/tools/password-generator" },
   { name: "Lorem Ipsum Generator", href: "/tools/lorem-ipsum" },
   { name: "Case Converter", href: "/tools/case-converter" },
+  { name: "Number Base Converter", href: "/tools/number-base-converter" },
 ];
 
 export default function AboutPage() {
