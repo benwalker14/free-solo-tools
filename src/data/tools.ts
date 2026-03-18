@@ -310,4 +310,12 @@ export const tools: Tool[] = [
     icon: "Grid",
     category: "Generate",
   },
+  {
+    title: "Border Radius Generator",
+    description:
+      "Design CSS border-radius visually with per-corner controls, unit selection, and presets",
+    href: "/tools/border-radius",
+    icon: "◜◝",
+    category: "Generate",
+  },
 ];

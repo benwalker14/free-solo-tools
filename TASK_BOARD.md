@@ -26,6 +26,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add CSS Border Radius Generator tool (#40)
 - [x] Fix broken /privacy and /terms links, add custom 404 page, fix PWA icon branding
 - [x] Add CSS Grid Generator tool (#39)
 - [x] Add CSS Flexbox Generator tool (#38)

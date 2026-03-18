@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSS Border Radius Generator tool (#40)
+
+- Created `src/app/tools/border-radius/BorderRadiusTool.tsx` — interactive client component for designing CSS border-radius visually
+- **Per-corner controls:** Top Left, Top Right, Bottom Right, Bottom Left — each with range slider and number input
+- **Link/unlink toggle:** Link all corners for uniform rounding, or unlink for independent per-corner control
+- **Unit selection:** px, %, em, rem — slider max adjusts automatically per unit
+- **Live preview:** Real-time visual rendering with configurable box width, height, box color, and background color; dashed border overlay shows shape
+- **Corner diagram:** Visual wireframe showing current radius values at each corner, updates in real-time
+- **8 presets:** Rounded (subtle 8px), Pill (9999px), Circle (50%), Leaf (diagonal), Drop (teardrop), Ticket (12px card), Blob (organic), Tab (top-only)
+- **CSS output:** Generates clean shorthand (single value when all corners match, four values otherwise); one-click copy to clipboard
+- **Quick reference:** Expandable section explaining border-radius shorthand, units, pill shapes, and elliptical corners
+- Created `src/app/tools/border-radius/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/border-radius/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Border Radius Generator", icon: "◜◝", category: "Generate")
+- Updated CLAUDE.md tool list (#40)
+- **Completes CSS tool family:** gradient, box shadow, flexbox, grid, border radius
+
+---
+
 ### 2026-03-18 | developer | Fix broken links, PWA icon, and add 404 page
 
 - **Fixed broken footer/about links:** Created `src/app/privacy/page.tsx` — full Privacy Policy page covering data processing (all client-side), analytics (cookieless Vercel Analytics), localStorage usage, cookies (none), third-party services (Vercel, Stripe), and Pro subscription billing. Proper SEO metadata, Open Graph tags, and canonical URL.

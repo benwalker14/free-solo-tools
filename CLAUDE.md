@@ -83,3 +83,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 37. Color Contrast Checker (/tools/contrast-checker)
 38. CSS Flexbox Generator (/tools/flexbox-generator)
 39. CSS Grid Generator (/tools/grid-generator)
+40. CSS Border Radius Generator (/tools/border-radius)
