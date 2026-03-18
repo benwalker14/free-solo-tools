@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/uuid-generator",
   },
   openGraph: {
-    title: "UUID Generator - FreeSolo Tools",
+    title: "UUID Generator - DevBolt",
     description:
       "Generate random UUID v4 identifiers. Bulk generation supported.",
     url: "/tools/uuid-generator",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "UUID Generator",
-  url: "https://free-solo-tools.vercel.app/tools/uuid-generator",
+  url: "https://devbolt.dev/tools/uuid-generator",
   description:
     "Generate random UUID v4 identifiers instantly. Bulk generation supported.",
   applicationCategory: "DeveloperApplication",

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/regex-tester",
   },
   openGraph: {
-    title: "Regex Tester - FreeSolo Tools",
+    title: "Regex Tester - DevBolt",
     description:
       "Test and debug regular expressions in real time with match highlighting.",
     url: "/tools/regex-tester",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Regex Tester",
-  url: "https://free-solo-tools.vercel.app/tools/regex-tester",
+  url: "https://devbolt.dev/tools/regex-tester",
   description:
     "Test and debug regular expressions in real time. See matches highlighted, capture groups, and match details.",
   applicationCategory: "DeveloperApplication",

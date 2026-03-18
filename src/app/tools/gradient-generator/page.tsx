@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "/tools/gradient-generator",
   },
   openGraph: {
-    title: "CSS Gradient Generator - FreeSolo Tools",
+    title: "CSS Gradient Generator - DevBolt",
     description:
       "Create beautiful CSS gradients visually. Adjust colors, stops, and angles. Free online tool.",
     url: "/tools/gradient-generator",
@@ -28,7 +28,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "CSS Gradient Generator",
-  url: "https://free-solo-tools.vercel.app/tools/gradient-generator",
+  url: "https://devbolt.dev/tools/gradient-generator",
   description:
     "Create beautiful CSS linear and radial gradients visually. Adjust colors, stops, angles, and copy the CSS.",
   applicationCategory: "DeveloperApplication",

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/url-parser",
   },
   openGraph: {
-    title: "URL Parser - FreeSolo Tools",
+    title: "URL Parser - DevBolt",
     description:
       "Parse and inspect URL components. View protocol, host, path, query parameters, and hash.",
     url: "/tools/url-parser",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "URL Parser",
-  url: "https://free-solo-tools.vercel.app/tools/url-parser",
+  url: "https://devbolt.dev/tools/url-parser",
   description:
     "Parse and inspect URL components instantly. View protocol, host, path, query parameters, and hash.",
   applicationCategory: "DeveloperApplication",

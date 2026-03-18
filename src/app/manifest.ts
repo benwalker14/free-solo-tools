@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "FreeSolo Tools - Free Online Utilities",
-    short_name: "FreeSolo Tools",
+    name: "DevBolt - Free Online Utilities",
+    short_name: "DevBolt",
     description:
       "Fast, clean, free online tools. JSON formatter, Base64 encoder, hash generator, and more. No signup required.",
     start_url: "/",

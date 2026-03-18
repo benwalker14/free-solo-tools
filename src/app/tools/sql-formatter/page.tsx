@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "/tools/sql-formatter",
   },
   openGraph: {
-    title: "SQL Formatter & Beautifier - FreeSolo Tools",
+    title: "SQL Formatter & Beautifier - DevBolt",
     description:
       "Format, beautify, and minify SQL queries instantly. Free online tool.",
     url: "/tools/sql-formatter",
@@ -28,7 +28,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "SQL Formatter & Beautifier",
-  url: "https://free-solo-tools.vercel.app/tools/sql-formatter",
+  url: "https://devbolt.dev/tools/sql-formatter",
   description:
     "Format, beautify, and minify SQL queries instantly. Supports SELECT, INSERT, UPDATE, DELETE, JOINs, subqueries, and more.",
   applicationCategory: "DeveloperApplication",

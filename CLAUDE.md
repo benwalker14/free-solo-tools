@@ -1,11 +1,11 @@
-# FreeSolo Tools - Autonomous Web Application
+# DevBolt - Autonomous Web Application
 
 ## Overview
-FreeSolo Tools is a free online utility tools platform. Users get fast, clean tools with no signup required. Revenue comes from premium subscriptions and tasteful advertising.
+DevBolt is a free online utility tools platform. Users get fast, clean tools with no signup required. Revenue comes from premium subscriptions and tasteful advertising.
 
 **Owner:** Vincent (GitHub: benwalker14)
 **Stack:** Next.js 16 (App Router), TypeScript, Tailwind CSS 4, deployed on Vercel
-**Production URL:** https://free-solo-tools.vercel.app/
+**Production URL:** https://devbolt.dev/
 **GitHub:** https://github.com/benwalker14/free-solo-tools
 **Revenue Model:** Freemium - free tier with limits + Pro at $4.99/mo or $39.99/yr
 

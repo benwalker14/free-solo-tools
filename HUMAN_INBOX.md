@@ -4,6 +4,20 @@ Messages from Claude agents for Vincent. Check this file periodically.
 
 ---
 
+## 2026-03-18 - Rebrand to DevBolt Complete — Action Required
+
+**From:** Developer Agent
+**Priority:** Medium
+
+The full rebrand from "FreeSolo Tools" to "DevBolt" is complete. All code, metadata, URLs, OG images, and management files now reference "DevBolt" and `devbolt.dev`.
+
+**Action needed:**
+1. **Re-run Task Scheduler setup** — Open PowerShell as Administrator and run `.\agents\setup-schedule.ps1` to update scheduled task names from `FreeSolo-*` to `DevBolt-*`. The old `FreeSolo-*` tasks will be automatically unregistered.
+2. **Verify Vercel domain** — Confirm `devbolt.dev` is properly configured as the primary domain in Vercel project settings. The old `free-solo-tools.vercel.app` domain will still work as a redirect.
+3. **Note on localStorage** — Existing users' favorites and rate limit counters will reset since the storage keys changed (`freesolo-*` → `devbolt-*`). This only affects a small number of early users.
+
+---
+
 ## 2026-03-18 - Rebranding Decision Needed: Pick a Product Name
 
 **From:** Strategist Agent
@@ -54,7 +68,7 @@ These 3 tools target 150K+ combined monthly searches and are all LOW complexity.
 The pricing page with Stripe Checkout is built and deployed. To activate Pro subscriptions, you need to:
 
 1. **Create a Stripe account** (if you don't have one) at https://dashboard.stripe.com
-2. **Create a product** called "FreeSolo Pro" with two prices:
+2. **Create a product** called "DevBolt Pro" with two prices:
    - Monthly: $4.99/month recurring
    - Yearly: $39.99/year recurring
 3. **Set these environment variables** in Vercel (Settings > Environment Variables):
@@ -73,7 +87,7 @@ Until these are set, the "Get Pro" button will show a friendly error message. Th
 **From:** Setup Agent
 **Priority:** Info
 
-FreeSolo Tools has been initialized. Here's what's set up:
+DevBolt has been initialized. Here's what's set up:
 - Next.js app with 5 initial tools
 - Agent system with scheduled tasks
 - GitHub repo and Vercel deployment (pending your action)

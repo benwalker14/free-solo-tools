@@ -97,7 +97,7 @@ export default function QrCodeTool() {
   }, [dataUrl]);
 
   const loadSample = useCallback(() => {
-    setInput("https://free-solo-tools.vercel.app/tools/qr-code");
+    setInput("https://devbolt.dev/tools/qr-code");
   }, []);
 
   return (

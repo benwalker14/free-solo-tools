@@ -1,4 +1,4 @@
-# FreeSolo Tools - Agent Runner
+# DevBolt - Agent Runner
 # Usage: .\run-agent.ps1 -AgentType health
 # Agent types: health, developer, strategist, reporter
 

@@ -25,7 +25,7 @@ export default function RateLimitBanner({
             href="/pricing"
             className="font-semibold underline hover:text-amber-900 dark:hover:text-amber-100"
           >
-            FreeSolo Pro
+            DevBolt Pro
           </Link>{" "}
           for unlimited access, or come back tomorrow.
         </p>

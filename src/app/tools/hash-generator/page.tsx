@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/hash-generator",
   },
   openGraph: {
-    title: "Hash Generator (SHA-256, SHA-512) - FreeSolo Tools",
+    title: "Hash Generator (SHA-256, SHA-512) - DevBolt",
     description:
       "Generate SHA-1, SHA-256, SHA-384, SHA-512 hashes online. Secure and free.",
     url: "/tools/hash-generator",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Hash Generator (SHA-256, SHA-512)",
-  url: "https://free-solo-tools.vercel.app/tools/hash-generator",
+  url: "https://devbolt.dev/tools/hash-generator",
   description:
     "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes online. Uses the Web Crypto API for secure, client-side hashing.",
   applicationCategory: "DeveloperApplication",

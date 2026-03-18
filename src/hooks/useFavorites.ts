@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 
-const STORAGE_KEY = "freesolo-favorites";
+const STORAGE_KEY = "devbolt-favorites";
 
 function getSnapshot(): Set<string> {
   if (typeof window === "undefined") return new Set();

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "/tools/lorem-ipsum",
   },
   openGraph: {
-    title: "Lorem Ipsum Generator - FreeSolo Tools",
+    title: "Lorem Ipsum Generator - DevBolt",
     description:
       "Generate lorem ipsum placeholder text for designs and layouts.",
     url: "/tools/lorem-ipsum",
@@ -28,7 +28,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Lorem Ipsum Generator",
-  url: "https://free-solo-tools.vercel.app/tools/lorem-ipsum",
+  url: "https://devbolt.dev/tools/lorem-ipsum",
   description:
     "Generate lorem ipsum placeholder text in paragraphs, sentences, or words for designs and layouts.",
   applicationCategory: "UtilitiesApplication",

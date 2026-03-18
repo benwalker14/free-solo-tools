@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: "/tools/cron-parser",
   },
   openGraph: {
-    title: "Cron Expression Parser - FreeSolo Tools",
+    title: "Cron Expression Parser - DevBolt",
     description:
       "Parse cron expressions into human-readable descriptions with next scheduled runs.",
     url: "/tools/cron-parser",
@@ -32,7 +32,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Cron Expression Parser",
-  url: "https://free-solo-tools.vercel.app/tools/cron-parser",
+  url: "https://devbolt.dev/tools/cron-parser",
   description:
     "Parse and explain cron expressions with human-readable descriptions and next scheduled run times.",
   applicationCategory: "DeveloperApplication",

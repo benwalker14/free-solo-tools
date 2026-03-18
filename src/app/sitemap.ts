@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { tools } from "@/data/tools";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://free-solo-tools.vercel.app";
+  const baseUrl = "https://devbolt.dev";
 
   return [
     {

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/diff-checker",
   },
   openGraph: {
-    title: "Diff Checker - FreeSolo Tools",
+    title: "Diff Checker - DevBolt",
     description:
       "Compare two blocks of text and see differences highlighted. Free online tool.",
     url: "/tools/diff-checker",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Diff Checker",
-  url: "https://free-solo-tools.vercel.app/tools/diff-checker",
+  url: "https://devbolt.dev/tools/diff-checker",
   description:
     "Compare two blocks of text and see the differences highlighted side by side.",
   applicationCategory: "DeveloperApplication",

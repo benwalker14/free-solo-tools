@@ -1,12 +1,12 @@
 import ToolGrid from "@/components/ToolGrid";
 import { tools } from "@/data/tools";
 
-const BASE_URL = "https://free-solo-tools.vercel.app";
+const BASE_URL = "https://devbolt.dev";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "FreeSolo Tools",
+  name: "DevBolt",
   url: BASE_URL,
   description:
     "Fast, clean, free online tools for developers. No signup required.",

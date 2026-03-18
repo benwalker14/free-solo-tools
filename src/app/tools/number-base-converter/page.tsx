@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: "/tools/number-base-converter",
   },
   openGraph: {
-    title: "Number Base Converter - FreeSolo Tools",
+    title: "Number Base Converter - DevBolt",
     description:
       "Convert numbers between binary, octal, decimal, and hexadecimal instantly.",
     url: "/tools/number-base-converter",
@@ -32,7 +32,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Number Base Converter",
-  url: "https://free-solo-tools.vercel.app/tools/number-base-converter",
+  url: "https://devbolt.dev/tools/number-base-converter",
   description:
     "Convert numbers between binary, octal, decimal, and hexadecimal. Supports arbitrarily large numbers with BigInt.",
   applicationCategory: "UtilitiesApplication",

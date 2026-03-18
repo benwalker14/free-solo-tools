@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/jwt-decoder",
   },
   openGraph: {
-    title: "JWT Decoder - FreeSolo Tools",
+    title: "JWT Decoder - DevBolt",
     description:
       "Decode and inspect JSON Web Tokens instantly. View header, payload, and expiration.",
     url: "/tools/jwt-decoder",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "JWT Decoder",
-  url: "https://free-solo-tools.vercel.app/tools/jwt-decoder",
+  url: "https://devbolt.dev/tools/jwt-decoder",
   description:
     "Decode and inspect JSON Web Tokens instantly. View header, payload, and expiration status.",
   applicationCategory: "DeveloperApplication",

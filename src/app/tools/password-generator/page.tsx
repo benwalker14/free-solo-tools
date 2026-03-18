@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "/tools/password-generator",
   },
   openGraph: {
-    title: "Password Generator - FreeSolo Tools",
+    title: "Password Generator - DevBolt",
     description:
       "Generate strong, cryptographically secure random passwords with customizable options.",
     url: "/tools/password-generator",
@@ -28,7 +28,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Password Generator",
-  url: "https://free-solo-tools.vercel.app/tools/password-generator",
+  url: "https://devbolt.dev/tools/password-generator",
   description:
     "Generate strong, cryptographically secure random passwords with customizable length and character sets.",
   applicationCategory: "UtilitiesApplication",

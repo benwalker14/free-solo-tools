@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: "/tools/json-yaml",
   },
   openGraph: {
-    title: "JSON ↔ YAML Converter - FreeSolo Tools",
+    title: "JSON ↔ YAML Converter - DevBolt",
     description:
       "Convert between JSON and YAML formats instantly. Perfect for Kubernetes and CI/CD configs.",
     url: "/tools/json-yaml",
@@ -32,7 +32,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "JSON ↔ YAML Converter",
-  url: "https://free-solo-tools.vercel.app/tools/json-yaml",
+  url: "https://devbolt.dev/tools/json-yaml",
   description:
     "Convert JSON to YAML and YAML to JSON. Perfect for Kubernetes configs, Docker Compose, and CI/CD pipelines.",
   applicationCategory: "DeveloperApplication",

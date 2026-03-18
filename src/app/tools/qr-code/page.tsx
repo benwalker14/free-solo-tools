@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "/tools/qr-code",
   },
   openGraph: {
-    title: "QR Code Generator - FreeSolo Tools",
+    title: "QR Code Generator - DevBolt",
     description:
       "Generate customizable QR codes from text or URLs. Download as PNG. Free online tool.",
     url: "/tools/qr-code",
@@ -28,7 +28,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "QR Code Generator",
-  url: "https://free-solo-tools.vercel.app/tools/qr-code",
+  url: "https://devbolt.dev/tools/qr-code",
   description:
     "Generate QR codes from text, URLs, or any data. Customize colors, size, and error correction level. Download as PNG.",
   applicationCategory: "UtilitiesApplication",

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: "/tools/chmod-calculator",
   },
   openGraph: {
-    title: "Chmod Calculator - FreeSolo Tools",
+    title: "Chmod Calculator - DevBolt",
     description:
       "Calculate Unix file permissions with an interactive chmod calculator.",
     url: "/tools/chmod-calculator",
@@ -32,7 +32,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Chmod Calculator",
-  url: "https://free-solo-tools.vercel.app/tools/chmod-calculator",
+  url: "https://devbolt.dev/tools/chmod-calculator",
   description:
     "Calculate Unix file permissions interactively. Toggle read, write, and execute for owner, group, and others with instant octal and symbolic output.",
   applicationCategory: "DeveloperApplication",

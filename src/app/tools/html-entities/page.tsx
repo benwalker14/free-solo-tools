@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "/tools/html-entities",
   },
   openGraph: {
-    title: "HTML Entity Encoder & Decoder - FreeSolo Tools",
+    title: "HTML Entity Encoder & Decoder - DevBolt",
     description:
       "Encode and decode HTML entities online. Convert special characters to named or numeric entities. Free, fast, and private.",
     url: "/tools/html-entities",
@@ -31,7 +31,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "HTML Entity Encoder & Decoder",
-  url: "https://free-solo-tools.vercel.app/tools/html-entities",
+  url: "https://devbolt.dev/tools/html-entities",
   description:
     "Encode and decode HTML entities online. Convert special characters to named or numeric HTML entities and back. Supports named, decimal, and hex entity formats.",
   applicationCategory: "DeveloperApplication",

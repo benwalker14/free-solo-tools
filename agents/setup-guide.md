@@ -1,4 +1,4 @@
-# FreeSolo Tools - Setup Guide
+# DevBolt - Setup Guide
 
 ## Step 1: Create GitHub Repository
 ```bash
@@ -21,10 +21,10 @@ Option B (Web):
 ## Step 3: Set Up Scheduled Agents
 1. Open PowerShell as Administrator
 2. Run: `D:\development\free-solo\agents\setup-schedule.ps1`
-3. Verify: `Get-ScheduledTask | Where-Object {$_.TaskName -like 'FreeSolo*'}`
+3. Verify: `Get-ScheduledTask | Where-Object {$_.TaskName -like 'DevBolt*'}`
 
 ## Step 4: (Optional) Custom Domain
-1. Buy a domain (e.g., freesolotools.com from Namecheap ~$12/year)
+1. Buy a domain (e.g., devbolt.dev ~$12/year)
 2. Add it in Vercel dashboard > Project Settings > Domains
 3. Update DNS as instructed by Vercel
 

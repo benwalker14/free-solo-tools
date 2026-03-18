@@ -1,4 +1,4 @@
-# FreeSolo Tools - Financial Tracker
+# DevBolt - Financial Tracker
 
 ## Budget Rules
 - Initial budget: $500.00

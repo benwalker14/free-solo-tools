@@ -19,10 +19,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://free-solo-tools.vercel.app"),
+  metadataBase: new URL("https://devbolt.dev"),
   title: {
-    default: "FreeSolo Tools - Free Online Utilities",
-    template: "%s | FreeSolo Tools",
+    default: "DevBolt - Free Online Utilities",
+    template: "%s | DevBolt",
   },
   description:
     "Fast, clean, free online tools. JSON formatter, Base64 encoder, hash generator, UUID generator, color converter, and more. No signup required.",
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    siteName: "FreeSolo Tools",
-    title: "FreeSolo Tools - Free Online Utilities",
+    siteName: "DevBolt",
+    title: "DevBolt - Free Online Utilities",
     description:
       "Fast, clean, free online tools for developers. No signup required.",
-    url: "https://free-solo-tools.vercel.app",
+    url: "https://devbolt.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FreeSolo Tools - Free Online Utilities",
+    title: "DevBolt - Free Online Utilities",
     description:
       "Fast, clean, free online tools for developers. No signup required.",
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://free-solo-tools.vercel.app",
+    canonical: "https://devbolt.dev",
   },
   other: {
     "mobile-web-app-capable": "yes",
@@ -69,8 +69,8 @@ const themeScript = `(function(){var t=localStorage.getItem('theme');var d=t==='
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "FreeSolo Tools",
-  url: "https://free-solo-tools.vercel.app",
+  name: "DevBolt",
+  url: "https://devbolt.dev",
   description:
     "Fast, clean, free online tools for developers. No signup required.",
 };

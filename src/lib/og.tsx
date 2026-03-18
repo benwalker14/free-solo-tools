@@ -97,7 +97,7 @@ export function generateOgImage(
               color: "#3b82f6",
             }}
           >
-            FreeSolo Tools
+            DevBolt
           </div>
           <div
             style={{
@@ -105,7 +105,7 @@ export function generateOgImage(
               color: "#475569",
             }}
           >
-            free-solo-tools.vercel.app
+            devbolt.dev
           </div>
         </div>
       </div>

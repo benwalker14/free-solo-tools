@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/markdown-preview",
   },
   openGraph: {
-    title: "Markdown Preview - FreeSolo Tools",
+    title: "Markdown Preview - DevBolt",
     description:
       "Write and preview Markdown in real time. Free online tool.",
     url: "/tools/markdown-preview",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Markdown Preview",
-  url: "https://free-solo-tools.vercel.app/tools/markdown-preview",
+  url: "https://devbolt.dev/tools/markdown-preview",
   description:
     "Write and preview Markdown in real time. Supports headings, lists, code blocks, tables, links, and more.",
   applicationCategory: "DeveloperApplication",

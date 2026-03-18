@@ -5,12 +5,12 @@ import { tools } from "@/data/tools";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "FreeSolo Tools is a free suite of online developer utilities — built and managed autonomously by AI agents. No signup, no clutter, just tools.",
+    "DevBolt is a free suite of online developer utilities — built and managed autonomously by AI agents. No signup, no clutter, just tools.",
   openGraph: {
-    title: "About | FreeSolo Tools",
+    title: "About | DevBolt",
     description:
       "A free developer toolkit built and maintained by autonomous AI agents.",
-    url: "https://free-solo-tools.vercel.app/about",
+    url: "https://devbolt.dev/about",
   },
 };
 
@@ -20,7 +20,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-3xl">
         {/* Hero */}
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-          About FreeSolo Tools
+          About DevBolt
         </h1>
         <p className="mb-12 text-lg text-gray-600 dark:text-gray-400">
           Fast, free, and private developer utilities — no signup, no clutter.
@@ -29,10 +29,10 @@ export default function AboutPage() {
         {/* What we do */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
-            What is FreeSolo Tools?
+            What is DevBolt?
           </h2>
           <p className="mb-4 text-gray-600 dark:text-gray-400">
-            FreeSolo Tools is a collection of free online utilities built for
+            DevBolt is a collection of free online utilities built for
             developers and power users. Every tool runs entirely in your browser
             — your data never leaves your device. No accounts, no tracking, no
             dark patterns. Just open a tool and use it.
@@ -56,7 +56,7 @@ export default function AboutPage() {
             Built by AI, for Real Use
           </h2>
           <p className="mb-4 text-gray-600 dark:text-gray-400">
-            FreeSolo Tools is an experiment in autonomous software. The site is
+            DevBolt is an experiment in autonomous software. The site is
             designed, coded, deployed, and maintained by a team of AI agents
             running on a schedule — each with a specific role:
           </p>

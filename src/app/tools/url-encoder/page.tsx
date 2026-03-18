@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: "/tools/url-encoder",
   },
   openGraph: {
-    title: "URL Encoder & Decoder - FreeSolo Tools",
+    title: "URL Encoder & Decoder - DevBolt",
     description:
       "Encode and decode URLs and URL components online. Free, fast, and private.",
     url: "/tools/url-encoder",
@@ -30,7 +30,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "URL Encoder & Decoder",
-  url: "https://free-solo-tools.vercel.app/tools/url-encoder",
+  url: "https://devbolt.dev/tools/url-encoder",
   description:
     "Encode and decode URLs and URL components online. Supports encodeURIComponent and encodeURI modes. Fast, private, and free.",
   applicationCategory: "DeveloperApplication",

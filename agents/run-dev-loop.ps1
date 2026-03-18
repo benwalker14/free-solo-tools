@@ -1,4 +1,4 @@
-# FreeSolo Tools - Continuous Developer Loop
+# DevBolt - Continuous Developer Loop
 # Runs the developer agent repeatedly until the task board is clear or max iterations hit.
 # Usage: .\run-dev-loop.ps1 [-MaxIterations 10] [-CooldownSeconds 120]
 
@@ -22,7 +22,7 @@ Set-Location $projectDir
 
 $iteration = 0
 $totalTasks = Get-PendingTaskCount
-Write-Host "=== FreeSolo Developer Loop ==="
+Write-Host "=== DevBolt Developer Loop ==="
 Write-Host "Pending tasks: $totalTasks"
 Write-Host "Max iterations: $MaxIterations"
 Write-Host "Cooldown between runs: ${CooldownSeconds}s"

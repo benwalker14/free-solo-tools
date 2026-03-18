@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 
-const STORAGE_KEY = "freesolo_usage";
+const STORAGE_KEY = "devbolt_usage";
 const FREE_DAILY_LIMIT = 25;
 
 interface UsageEntry {

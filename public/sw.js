@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-const CACHE_NAME = "freesolo-v1";
+const CACHE_NAME = "devbolt-v1";
 
 // App shell — core routes cached on install
 const APP_SHELL = ["/", "/about", "/pricing"];

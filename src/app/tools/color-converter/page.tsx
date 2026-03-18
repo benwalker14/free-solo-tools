@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/color-converter",
   },
   openGraph: {
-    title: "Color Converter (HEX, RGB, HSL) - FreeSolo Tools",
+    title: "Color Converter (HEX, RGB, HSL) - DevBolt",
     description:
       "Convert colors between HEX, RGB, and HSL formats. Free online tool.",
     url: "/tools/color-converter",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Color Converter (HEX, RGB, HSL)",
-  url: "https://free-solo-tools.vercel.app/tools/color-converter",
+  url: "https://devbolt.dev/tools/color-converter",
   description:
     "Convert colors between HEX, RGB, and HSL formats instantly. Live color preview included.",
   applicationCategory: "DeveloperApplication",

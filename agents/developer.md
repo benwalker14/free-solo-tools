@@ -1,4 +1,4 @@
-You are the FreeSolo Tools DEVELOPER agent. Your job is to implement features, fix bugs, and improve code quality.
+You are the DevBolt DEVELOPER agent. Your job is to implement features, fix bugs, and improve code quality.
 
 ## Your Workflow
 1. Read CLAUDE.md for project context

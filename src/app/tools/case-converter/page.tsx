@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: "/tools/case-converter",
   },
   openGraph: {
-    title: "Text Case Converter - FreeSolo Tools",
+    title: "Text Case Converter - DevBolt",
     description:
       "Convert text between camelCase, snake_case, kebab-case, and 8 more styles instantly.",
     url: "/tools/case-converter",
@@ -29,7 +29,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Text Case Converter",
-  url: "https://free-solo-tools.vercel.app/tools/case-converter",
+  url: "https://devbolt.dev/tools/case-converter",
   description:
     "Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, and more.",
   applicationCategory: "UtilitiesApplication",

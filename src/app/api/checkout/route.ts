@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const origin = request.headers.get("origin") || "https://free-solo-tools.vercel.app";
+  const origin = request.headers.get("origin") || "https://devbolt.dev";
 
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/json-formatter",
   },
   openGraph: {
-    title: "JSON Formatter & Validator - FreeSolo Tools",
+    title: "JSON Formatter & Validator - DevBolt",
     description:
       "Format, validate, and minify JSON data instantly. Free online tool.",
     url: "/tools/json-formatter",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "JSON Formatter & Validator",
-  url: "https://free-solo-tools.vercel.app/tools/json-formatter",
+  url: "https://devbolt.dev/tools/json-formatter",
   description:
     "Format, validate, and minify JSON data instantly. Syntax highlighting, error detection, and pretty-printing.",
   applicationCategory: "DeveloperApplication",

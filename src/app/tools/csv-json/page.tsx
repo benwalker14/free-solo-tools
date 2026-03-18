@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: "/tools/csv-json",
   },
   openGraph: {
-    title: "CSV ↔ JSON Converter - FreeSolo Tools",
+    title: "CSV ↔ JSON Converter - DevBolt",
     description:
       "Convert between CSV and JSON formats instantly with support for custom delimiters.",
     url: "/tools/csv-json",
@@ -32,7 +32,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "CSV ↔ JSON Converter",
-  url: "https://free-solo-tools.vercel.app/tools/csv-json",
+  url: "https://devbolt.dev/tools/csv-json",
   description:
     "Convert CSV to JSON and JSON to CSV. Handles quoted fields, custom delimiters, and large datasets.",
   applicationCategory: "UtilitiesApplication",

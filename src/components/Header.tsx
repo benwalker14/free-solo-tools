@@ -9,8 +9,8 @@ export default function Header() {
           href="/"
           className="text-xl font-bold text-gray-900 dark:text-white"
         >
-          FreeSolo
-          <span className="text-indigo-600">Tools</span>
+          Dev
+          <span className="text-indigo-600">Bolt</span>
         </Link>
         <nav className="flex items-center gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">
           <Link

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/tools/base64",
   },
   openGraph: {
-    title: "Base64 Encoder & Decoder - FreeSolo Tools",
+    title: "Base64 Encoder & Decoder - DevBolt",
     description:
       "Encode and decode Base64 strings online. Free, fast, and private.",
     url: "/tools/base64",
@@ -27,7 +27,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Base64 Encoder & Decoder",
-  url: "https://free-solo-tools.vercel.app/tools/base64",
+  url: "https://devbolt.dev/tools/base64",
   description:
     "Encode and decode Base64 strings online with full Unicode support. Fast, private, and free.",
   applicationCategory: "DeveloperApplication",
