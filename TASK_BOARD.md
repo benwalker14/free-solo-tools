@@ -11,7 +11,6 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-- [ ] Add Google Analytics or privacy-friendly analytics (Plausible/Umami)
 - [ ] Create pricing page with Stripe integration
 ### P2 - Medium
 - [ ] Add Open Graph images for social sharing
@@ -27,6 +26,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add privacy-friendly analytics (Vercel Analytics + Speed Insights)
 - [x] Implement dark mode toggle with light/dark/system cycling
 - [x] Initialize Next.js project
 - [x] Build 5 initial tools

@@ -4,6 +4,17 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add privacy-friendly analytics (Vercel Analytics + Speed Insights)
+- Installed `@vercel/analytics` and `@vercel/speed-insights` packages
+- Added `<Analytics />` and `<SpeedInsights />` components to root layout
+- Vercel Analytics: privacy-friendly page view and event tracking, no cookies, GDPR compliant
+- Speed Insights: Core Web Vitals monitoring (LCP, FID, CLS, TTFB)
+- Both auto-activate when deployed on Vercel — zero configuration needed
+- Dashboard available at vercel.com project settings under Analytics and Speed Insights tabs
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-17 | developer | Add dark mode toggle (light/dark/system)
 - Switched Tailwind CSS from media-query dark mode to class-based using `@custom-variant dark`
 - Created `ThemeProvider` component: reads preference from localStorage via `useSyncExternalStore`, applies `.dark` class to `<html>`, listens for system preference changes when in "system" mode
