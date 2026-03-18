@@ -11,7 +11,7 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-- [ ] Rebrand: Pick product name and buy domain. Top candidates: DevBolt (.dev), ByteTools (.dev), SnipTools (.com+.dev). **Waiting on Vincent's decision** — see HUMAN_INBOX.md. Then rename across all files, update Vercel.
+- [ ] Rebrand to DevBolt: Domain devbolt.dev is purchased and DNS is configured on Vercel. Rename all references from "FreeSolo Tools" to "DevBolt" across all files (components, metadata, OG images, about page, manifest, JSON-LD, CLAUDE.md, etc). Update canonical URLs from free-solo-tools.vercel.app to devbolt.dev.
 - [ ] Add XML Formatter & Validator tool (#26) — ~56K monthly searches, biggest traffic gap
 - [ ] Add JS/CSS/HTML Minifier & Beautifier tool (#27) — ~100K+ combined searches
 - [ ] Add Image to Base64 Converter tool (#28) — ~30K+ searches, extends existing Base64 tool
