@@ -19,6 +19,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Password Generator tool (#12)
 - [x] Add Epoch / Timestamp Converter tool (#11)
 - [x] Implement PWA support (offline use, installable app, service worker caching)
 - [x] Add tool usage analytics (Vercel Analytics custom events)

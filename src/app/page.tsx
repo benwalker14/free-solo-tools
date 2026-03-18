@@ -69,6 +69,12 @@ const tools = [
     href: "/tools/epoch-converter",
     icon: "EP",
   },
+  {
+    title: "Password Generator",
+    description: "Generate strong, secure random passwords",
+    href: "/tools/password-generator",
+    icon: "PW",
+  },
 ];
 
 const websiteJsonLd = {

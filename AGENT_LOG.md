@@ -4,6 +4,19 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Password Generator tool (#12)
+- Created `src/app/tools/password-generator/PasswordGeneratorTool.tsx` — client component with configurable password generation
+- Features: adjustable length (4–128) via slider and number input, toggle character sets (uppercase, lowercase, numbers, symbols), entropy-based strength meter (Very Weak → Very Strong), bulk generation (up to 100), copy individual or all
+- Uses `crypto.getRandomValues()` Web Crypto API for cryptographically secure randomness — no passwords sent over the network
+- Strength meter calculates entropy from password length × log₂(character pool size) with color-coded bar
+- Created `page.tsx` with full SEO metadata, keywords, Open Graph, canonical URL, and JSON-LD structured data (UtilitiesApplication)
+- Created `opengraph-image.tsx` for social sharing previews
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- Build and lint pass cleanly; all 12 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add Epoch / Timestamp Converter tool (#11)
 - Created `src/app/tools/epoch-converter/EpochConverterTool.tsx` — client component with two modes: Epoch→Date and Date→Epoch
 - Features: auto-detects seconds vs milliseconds (threshold 1e12), shows UTC, local time (with timezone name), ISO 8601, day of week, and relative time
