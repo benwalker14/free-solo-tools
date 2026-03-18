@@ -11,7 +11,6 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-- [ ] Add SEO meta tags and sitemap.xml
 - [ ] Add Google Analytics or privacy-friendly analytics (Plausible/Umami)
 - [ ] Create pricing page with Stripe integration
 - [ ] Add rate limiting for free tier (localStorage-based daily counter)
@@ -38,3 +37,4 @@ _None - all critical tasks complete_
 - [x] Set up GitHub repo and push initial code
 - [x] Connect Vercel for auto-deployment (https://free-solo-tools.vercel.app/)
 - [x] Set up Windows Task Scheduler for agents
+- [x] Add SEO meta tags and sitemap.xml

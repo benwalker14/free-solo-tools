@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://free-solo-tools.vercel.app"),
   title: {
     default: "FreeSolo Tools - Free Online Utilities",
     template: "%s | FreeSolo Tools",
@@ -31,6 +32,27 @@ export const metadata: Metadata = {
     "free tools",
     "developer tools",
   ],
+  openGraph: {
+    type: "website",
+    siteName: "FreeSolo Tools",
+    title: "FreeSolo Tools - Free Online Utilities",
+    description:
+      "Fast, clean, free online tools for developers. No signup required.",
+    url: "https://free-solo-tools.vercel.app",
+  },
+  twitter: {
+    card: "summary",
+    title: "FreeSolo Tools - Free Online Utilities",
+    description:
+      "Fast, clean, free online tools for developers. No signup required.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://free-solo-tools.vercel.app",
+  },
 };
 
 export default function RootLayout({
