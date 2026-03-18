@@ -75,6 +75,12 @@ const tools = [
     href: "/tools/password-generator",
     icon: "PW",
   },
+  {
+    title: "Lorem Ipsum Generator",
+    description: "Generate placeholder text for designs and layouts",
+    href: "/tools/lorem-ipsum",
+    icon: "Li",
+  },
 ];
 
 const websiteJsonLd = {

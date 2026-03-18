@@ -26,6 +26,7 @@ const tools = [
   { name: "Diff Checker", href: "/tools/diff-checker" },
   { name: "Epoch Converter", href: "/tools/epoch-converter" },
   { name: "Password Generator", href: "/tools/password-generator" },
+  { name: "Lorem Ipsum Generator", href: "/tools/lorem-ipsum" },
 ];
 
 export default function AboutPage() {
