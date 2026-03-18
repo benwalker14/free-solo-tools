@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Create pricing page with Stripe Checkout integration
+- Installed `stripe` server-side SDK
+- Created `/api/checkout` API route: creates Stripe Checkout subscription sessions (monthly/yearly)
+- Rebuilt pricing page as interactive client component with monthly/yearly billing toggle
+- "Get Pro" button redirects to Stripe hosted checkout page
+- Created `/checkout/success` and `/checkout/cancel` post-checkout pages
+- Added `.env.example` documenting required Stripe environment variables (secret key + price IDs)
+- Fixed usage limit inconsistency: pricing page now correctly shows "25 operations per tool per day" (was showing 10)
+- Added pricing page to sitemap.xml
+- Added FAQ section with 4 common questions (cancellation, payments, trial, operations)
+- Updated `.gitignore` to allow `.env.example` while still excluding other `.env*` files
+- **ACTION NEEDED:** Vincent must create Stripe products/prices and set env vars in Vercel (see HUMAN_INBOX.md)
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-17 | developer | Add privacy-friendly analytics (Vercel Analytics + Speed Insights)
 - Installed `@vercel/analytics` and `@vercel/speed-insights` packages
 - Added `<Analytics />` and `<SpeedInsights />` components to root layout
