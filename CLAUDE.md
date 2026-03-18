@@ -54,3 +54,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 8. URL Parser (/tools/url-parser)
 9. Markdown Preview (/tools/markdown-preview)
 10. Diff Checker (/tools/diff-checker)
+11. Epoch Converter (/tools/epoch-converter)

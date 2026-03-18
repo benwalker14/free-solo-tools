@@ -4,6 +4,20 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Epoch / Timestamp Converter tool (#11)
+- Created `src/app/tools/epoch-converter/EpochConverterTool.tsx` — client component with two modes: Epoch→Date and Date→Epoch
+- Features: auto-detects seconds vs milliseconds (threshold 1e12), shows UTC, local time (with timezone name), ISO 8601, day of week, and relative time
+- "Use Current Time" button pre-fills the input with the current timestamp/date
+- Copy button on each result row (hover-to-reveal)
+- Quick reference section explaining Unix epoch and auto-detection logic
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Created `page.tsx` with full SEO metadata, keywords, Open Graph, canonical URL, and JSON-LD structured data
+- Created `opengraph-image.tsx` for social sharing previews
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- Build and lint pass cleanly; all 11 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Implement PWA support (offline use, installable app)
 - Created `src/app/manifest.ts` — Web App Manifest with app name, theme colors, standalone display mode, and icon references at 192px and 512px (including maskable)
 - Created `public/sw.js` — Service worker with network-first strategy for navigation (HTML pages) and cache-first for static assets (JS/CSS/fonts/images); caches app shell on install, tool pages on first visit; cleans up old caches on activation

@@ -63,6 +63,12 @@ const tools = [
     href: "/tools/diff-checker",
     icon: "+-",
   },
+  {
+    title: "Epoch Converter",
+    description: "Convert Unix timestamps to dates and back",
+    href: "/tools/epoch-converter",
+    icon: "EP",
+  },
 ];
 
 const websiteJsonLd = {
