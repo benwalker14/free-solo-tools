@@ -62,3 +62,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 16. CSV ↔ JSON Converter (/tools/csv-json)
 17. Cron Expression Parser (/tools/cron-parser)
 18. Word & Character Counter (/tools/word-counter)
+19. URL Encoder & Decoder (/tools/url-encoder)

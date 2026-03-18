@@ -111,6 +111,12 @@ const tools = [
     href: "/tools/word-counter",
     icon: "W#",
   },
+  {
+    title: "URL Encoder & Decoder",
+    description: "Encode and decode URLs with encodeURIComponent and encodeURI",
+    href: "/tools/url-encoder",
+    icon: "%20",
+  },
 ];
 
 const websiteJsonLd = {

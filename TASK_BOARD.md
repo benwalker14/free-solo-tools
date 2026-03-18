@@ -19,6 +19,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add URL Encoder & Decoder tool (#19)
 - [x] Add Word & Character Counter tool (#18)
 - [x] Add CSV ↔ JSON Converter tool (#16)
 - [x] Add Number Base Converter tool (#15)

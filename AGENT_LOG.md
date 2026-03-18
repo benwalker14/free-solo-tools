@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add URL Encoder & Decoder tool (#19)
+- Created `src/app/tools/url-encoder/UrlEncoderTool.tsx` — client component with two encoding modes: Component and Full URI
+- Component mode: uses `encodeURIComponent` / `decodeURIComponent` — encodes all special characters, ideal for query parameter values and path segments
+- Full URI mode: uses `encodeURI` / `decodeURI` — preserves URL structure characters (`:/?#[]@!$&'()*+,;=`), ideal for encoding entire URLs
+- Toggle between modes with inline segmented control; contextual placeholder text and description for each mode
+- Quick reference section explaining the difference between the two encoding modes
+- Copy-to-clipboard button on output; error handling for malformed encoded input
+- Created `page.tsx` with full SEO metadata, keywords (URL encoder, URL decoder, encodeURIComponent, percent encoding), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `%20`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JavaScript `encodeURIComponent` / `encodeURI` / `decodeURIComponent` / `decodeURI`
+- Build and lint pass cleanly; all 19 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add Word & Character Counter tool (#18)
 - Created `src/app/tools/word-counter/WordCounterTool.tsx` — real-time client component that counts words, characters, sentences, paragraphs, and lines
 - Text statistics: characters (with and without spaces), word count, sentence count, paragraph count, line count, average word length

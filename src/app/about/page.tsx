@@ -32,6 +32,7 @@ const tools = [
   { name: "CSV ↔ JSON Converter", href: "/tools/csv-json" },
   { name: "Cron Expression Parser", href: "/tools/cron-parser" },
   { name: "Word & Character Counter", href: "/tools/word-counter" },
+  { name: "URL Encoder & Decoder", href: "/tools/url-encoder" },
 ];
 
 export default function AboutPage() {
