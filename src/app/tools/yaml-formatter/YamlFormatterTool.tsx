@@ -140,7 +140,6 @@ export default function YamlFormatterTool() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error formatting YAML");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input, isLimited, recordUsage, trackAction, indentSize, sortKeys]);
 
   useKeyboardShortcut("Enter", handleFormat);
