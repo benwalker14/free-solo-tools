@@ -5,6 +5,8 @@ FreeSolo Tools is a free online utility tools platform. Users get fast, clean to
 
 **Owner:** Vincent (GitHub: benwalker14)
 **Stack:** Next.js 16 (App Router), TypeScript, Tailwind CSS 4, deployed on Vercel
+**Production URL:** https://free-solo-tools.vercel.app/
+**GitHub:** https://github.com/benwalker14/free-solo-tools
 **Revenue Model:** Freemium - free tier with limits + Pro at $4.99/mo or $39.99/yr
 
 ## Architecture
@@ -39,7 +41,7 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 - `npm run dev` - Start dev server (port 3000)
 - `npm run build` - Production build (always run before pushing)
 - `npm run lint` - Run ESLint
-- `git push origin main` - Deploy (Vercel auto-deploys from main)
+- `git push origin master` - Deploy (Vercel auto-deploys from master)
 
 ## Current Tools
 1. JSON Formatter & Validator (/tools/json-formatter)
