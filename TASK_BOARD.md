@@ -1,0 +1,39 @@
+# Task Board
+
+Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
+
+## In Progress
+_None_
+
+## To Do
+
+### P0 - Critical
+- [ ] Set up GitHub repo and push initial code
+- [ ] Connect Vercel for auto-deployment
+- [ ] Set up Windows Task Scheduler for agents
+
+### P1 - High
+- [ ] Add SEO meta tags and sitemap.xml
+- [ ] Add Google Analytics or privacy-friendly analytics (Plausible/Umami)
+- [ ] Create pricing page with Stripe integration
+- [ ] Add rate limiting for free tier (localStorage-based daily counter)
+
+### P2 - Medium
+- [ ] Add more tools: Markdown Preview, Regex Tester, URL Parser, JWT Decoder, Diff Checker
+- [ ] Add Open Graph images for social sharing
+- [ ] Implement dark mode toggle (currently uses system preference)
+- [ ] Add keyboard shortcuts for tools (Ctrl+Enter to execute)
+- [ ] Create a /about page explaining the project
+- [ ] Add structured data (JSON-LD) for search engines
+
+### P3 - Low
+- [ ] Add tool usage analytics (which tools are most popular)
+- [ ] Implement PWA support (offline use)
+- [ ] Add tool favorites/bookmarks (localStorage)
+- [ ] Create API endpoints for Pro users
+- [ ] Add batch processing mode for Pro users
+
+## Done
+- [x] Initialize Next.js project
+- [x] Build 5 initial tools
+- [x] Set up agent system

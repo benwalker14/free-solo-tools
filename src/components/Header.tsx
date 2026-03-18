@@ -1,0 +1,31 @@
+import Link from "next/link";
+
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+        <Link
+          href="/"
+          className="text-xl font-bold text-gray-900 dark:text-white"
+        >
+          FreeSolo
+          <span className="text-indigo-600">Tools</span>
+        </Link>
+        <nav className="flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+          <Link
+            href="/"
+            className="transition-colors hover:text-gray-900 dark:hover:text-white"
+          >
+            Tools
+          </Link>
+          <Link
+            href="/pricing"
+            className="transition-colors hover:text-gray-900 dark:hover:text-white"
+          >
+            Pricing
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
