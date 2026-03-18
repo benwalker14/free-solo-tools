@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSS Box Shadow Generator tool (#36)
+
+- Created `src/app/tools/box-shadow/BoxShadowTool.tsx` — interactive client component for designing CSS box shadows visually
+- **Multiple layers:** Up to 8 shadow layers with tab-based layer switching
+- **Controls:** X/Y offset (-50 to 50px), blur (0-100px), spread (-50 to 50px), color picker, opacity slider (0-100%)
+- **Inset toggle:** Switch any layer between outer and inner shadow
+- **Layer management:** Add, duplicate, and remove shadow layers
+- **Live preview:** Real-time shadow rendering on a customizable box (box color, background color, border radius)
+- **8 presets:** Subtle, Medium, Large, Sharp, Dreamy, Layered, Inset, Neon — with visual preview thumbnails
+- **CSS output:** Copy production-ready `box-shadow` CSS with proper `rgba()` colors
+- Created `src/app/tools/box-shadow/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/box-shadow/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Box Shadow Generator", icon: "SHD", category: "Generate")
+- Updated CLAUDE.md tool list (#36)
+- **Build:** Compiled successfully, 80 static pages
+
+---
+
 ### 2026-03-18 | developer | Add Image Compressor tool (#35)
 
 - Created `src/app/tools/image-compressor/ImageCompressorTool.tsx` — interactive client component for compressing and resizing images

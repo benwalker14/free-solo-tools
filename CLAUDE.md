@@ -79,3 +79,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 33. JSON Path Tester (/tools/json-path)
 34. SVG Optimizer & Viewer (/tools/svg-optimizer)
 35. Image Compressor (/tools/image-compressor)
+36. CSS Box Shadow Generator (/tools/box-shadow)

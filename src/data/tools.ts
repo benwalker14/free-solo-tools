@@ -278,4 +278,12 @@ export const tools: Tool[] = [
     icon: "CMP",
     category: "Convert",
   },
+  {
+    title: "Box Shadow Generator",
+    description:
+      "Design CSS box shadows visually with multiple layers, presets, and live preview",
+    href: "/tools/box-shadow",
+    icon: "SHD",
+    category: "Generate",
+  },
 ];
