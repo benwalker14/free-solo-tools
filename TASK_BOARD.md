@@ -18,12 +18,13 @@ _None - all critical tasks complete_
 - [x] ~~Add JSON Path Tester tool (#33) — complements JSON Formatter~~ → Done
 
 ### P3 - Low
-- [ ] Add SVG Optimizer & Viewer tool
+- [x] ~~Add SVG Optimizer & Viewer tool (#34) — remove metadata, comments, editor data; preview before/after~~ → Done
 - [ ] Add Image Compressor tool
 - [ ] Create API endpoints for Pro users
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add SVG Optimizer & Viewer tool (#34)
 - [x] Add JSON Path Tester tool (#33)
 - [x] Add YAML Validator & Formatter tool (#32)
 - [x] Add HTML ↔ Markdown Converter tool (#31)

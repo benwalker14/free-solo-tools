@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add SVG Optimizer & Viewer tool (#34)
+
+- Created `src/app/tools/svg-optimizer/SvgOptimizerTool.tsx` — interactive client component for optimizing and previewing SVG files
+- **Optimize:** Removes comments, metadata (RDF/Dublin Core), editor data (Inkscape, Illustrator, Sodipodi, Sketch), empty groups, default attribute values, and whitespace
+- **Preview:** Visual SVG rendering with checkerboard transparency background, supports both original and optimized preview
+- **File upload:** Drag-and-drop or click-to-browse SVG file loading (max 5 MB), plus paste-in-textarea input
+- **Options panel:** 7 configurable toggles — remove comments, metadata, editor data, empty groups, default attrs, minify whitespace, remove dimensions (keep viewBox)
+- **Stats:** Shows original vs optimized file size with percentage savings
+- **Output:** Copy to clipboard with "Copied!" feedback, download as .svg file
+- Created `src/app/tools/svg-optimizer/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "SVG Optimizer", icon: "SVG", category: "Format")
+- No external dependencies needed — uses browser-native DOMParser and XMLSerializer
+- Updated TASK_BOARD.md and CLAUDE.md
+- Build verified clean with no errors
+
+---
+
 ### 2026-03-18 | developer | Add JSON Path Tester tool (#33)
 
 - Created `src/app/tools/json-path/JsonPathTool.tsx` — interactive client component for testing JSONPath expressions against JSON data

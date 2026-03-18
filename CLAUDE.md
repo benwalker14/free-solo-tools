@@ -77,3 +77,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 31. HTML ↔ Markdown Converter (/tools/html-markdown)
 32. YAML Validator & Formatter (/tools/yaml-formatter)
 33. JSON Path Tester (/tools/json-path)
+34. SVG Optimizer & Viewer (/tools/svg-optimizer)

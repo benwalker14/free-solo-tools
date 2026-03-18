@@ -262,4 +262,12 @@ export const tools: Tool[] = [
     icon: "$..",
     category: "Inspect",
   },
+  {
+    title: "SVG Optimizer",
+    description:
+      "Optimize SVGs by removing metadata, comments, editor data, and unnecessary attributes",
+    href: "/tools/svg-optimizer",
+    icon: "SVG",
+    category: "Format",
+  },
 ];
