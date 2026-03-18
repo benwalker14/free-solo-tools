@@ -11,7 +11,6 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
-- [ ] Add JS/CSS/HTML Minifier & Beautifier tool (#27) — ~100K+ combined searches
 - [ ] Add Image to Base64 Converter tool (#28) — ~30K+ searches, extends existing Base64 tool
 
 ### P2 - Medium
@@ -28,6 +27,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add JS/CSS/HTML Minifier & Beautifier tool (#27)
 - [x] Add XML Formatter & Validator tool (#26)
 - [x] Rebrand from FreeSolo Tools to DevBolt (devbolt.dev)
 - [x] Add homepage search/filter and consolidate tools data into single source of truth

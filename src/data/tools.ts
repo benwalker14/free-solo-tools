@@ -206,4 +206,12 @@ export const tools: Tool[] = [
     icon: "XML",
     category: "Format",
   },
+  {
+    title: "Code Minifier & Beautifier",
+    description:
+      "Minify and beautify JavaScript, CSS, and HTML code instantly",
+    href: "/tools/code-minifier",
+    icon: "MIN",
+    category: "Format",
+  },
 ];

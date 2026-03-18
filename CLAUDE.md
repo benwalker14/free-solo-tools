@@ -70,3 +70,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 24. QR Code Generator (/tools/qr-code)
 25. SQL Formatter & Beautifier (/tools/sql-formatter)
 26. XML Formatter & Validator (/tools/xml-formatter)
+27. JS/CSS/HTML Minifier & Beautifier (/tools/code-minifier)
