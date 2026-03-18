@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add XML Formatter & Validator tool (#26)
+
+- Created `src/app/tools/xml-formatter/XmlFormatterTool.tsx` — interactive client component for formatting, validating, and minifying XML documents
+- Custom XML tokenizer: handles XML declarations (`<?xml?>`), processing instructions, comments (`<!-- -->`), CDATA sections (`<![CDATA[]]>`), DOCTYPE declarations, open/close/self-closing tags, attributes, and text content
+- Smart formatting: each element on its own line with proper indentation; inline short text content (e.g. `<tag>text</tag>` stays on one line); configurable indentation (2 spaces, 4 spaces, or tabs)
+- Validation: uses browser's built-in DOMParser to check well-formedness — reports first error with descriptive message; green success banner for valid XML
+- Minify mode: strips all unnecessary whitespace between tags and removes comments, producing compact single-line XML
+- "Validate" button: checks XML validity without formatting, shows green/red status banner
+- "Load sample" button pre-fills a realistic book catalog XML with comments, CDATA, and nested elements
+- Copy-to-clipboard button on output; auto-sizing output textarea
+- Collapsible "About XML Formatting" reference section explaining validation, minification, and supported features
+- Created `page.tsx` with full SEO metadata, keywords (XML formatter, XML beautifier, XML validator, format XML online, XML minifier, XML pretty print, XML parser), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `XML`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid (Format category), sitemap.xml (via shared tools data), about page, and CLAUDE.md
+- No new dependencies — uses only built-in DOMParser and string manipulation
+- Build and lint pass cleanly; all 26 tools now listed in production build (67 static pages)
+
+---
+
 ### 2026-03-18 | developer | Rebrand from FreeSolo Tools to DevBolt
 
 - Complete brand rename across the entire codebase: "FreeSolo Tools" → "DevBolt", "FreeSolo Pro" → "DevBolt Pro"

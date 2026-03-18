@@ -198,4 +198,12 @@ export const tools: Tool[] = [
     icon: "SQL",
     category: "Format",
   },
+  {
+    title: "XML Formatter",
+    description:
+      "Format, beautify, validate, and minify XML documents instantly",
+    href: "/tools/xml-formatter",
+    icon: "XML",
+    category: "Format",
+  },
 ];
