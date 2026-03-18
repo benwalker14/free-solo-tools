@@ -4,10 +4,15 @@
 
 $projectDir = "D:\development\free-solo"
 $agentScript = "$projectDir\agents\run-agent.ps1"
+$devLoopScript = "$projectDir\agents\run-dev-loop.ps1"
 
 Write-Host "FreeSolo Tools - Setting up scheduled agents..."
 Write-Host "Project directory: $projectDir"
 Write-Host ""
+
+# Remove old developer tasks if they exist
+Unregister-ScheduledTask -TaskName "FreeSolo-Developer-AM" -Confirm:$false -ErrorAction SilentlyContinue
+Unregister-ScheduledTask -TaskName "FreeSolo-Developer-PM" -Confirm:$false -ErrorAction SilentlyContinue
 
 # Health Check Agent - every 4 hours
 Write-Host "Setting up Health Check agent (every 4 hours)..."
@@ -17,15 +22,13 @@ $healthTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date -RepetitionI
 $healthSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 30)
 Register-ScheduledTask -TaskName "FreeSolo-HealthCheck" -Action $healthAction -Trigger $healthTrigger -Settings $healthSettings -Description "FreeSolo Tools health check agent" -Force
 
-# Developer Agent - twice daily (8 AM and 2 PM)
-Write-Host "Setting up Developer agent (8 AM and 2 PM)..."
+# Developer Loop - daily at 8 AM, runs continuously until backlog is clear (max 10 iterations)
+Write-Host "Setting up Developer loop (daily at 8 AM, continuous until backlog clear)..."
 $devAction = New-ScheduledTaskAction -Execute "powershell.exe" `
-    -Argument "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$agentScript`" -AgentType developer"
-$devTrigger1 = New-ScheduledTaskTrigger -Daily -At "08:00"
-$devTrigger2 = New-ScheduledTaskTrigger -Daily -At "14:00"
-$devSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1)
-Register-ScheduledTask -TaskName "FreeSolo-Developer-AM" -Action $devAction -Trigger $devTrigger1 -Settings $devSettings -Description "FreeSolo Tools developer agent (morning)" -Force
-Register-ScheduledTask -TaskName "FreeSolo-Developer-PM" -Action $devAction -Trigger $devTrigger2 -Settings $devSettings -Description "FreeSolo Tools developer agent (afternoon)" -Force
+    -Argument "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$devLoopScript`" -MaxIterations 10 -CooldownSeconds 120"
+$devTrigger = New-ScheduledTaskTrigger -Daily -At "08:00"
+$devSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 8)
+Register-ScheduledTask -TaskName "FreeSolo-Developer" -Action $devAction -Trigger $devTrigger -Settings $devSettings -Description "FreeSolo Tools developer loop - burns through backlog" -Force
 
 # Strategist Agent - daily at 10 AM
 Write-Host "Setting up Strategist agent (daily at 10 AM)..."
@@ -48,10 +51,13 @@ Write-Host "All scheduled tasks created successfully!"
 Write-Host ""
 Write-Host "Schedule summary:"
 Write-Host "  Health Check:  Every 4 hours"
-Write-Host "  Developer AM:  Daily at 8:00 AM"
-Write-Host "  Developer PM:  Daily at 2:00 PM"
+Write-Host "  Developer:     Daily at 8:00 AM (loops until backlog clear, max 10 tasks)"
 Write-Host "  Strategist:    Daily at 10:00 AM"
 Write-Host "  Reporter:      Daily at 6:00 PM"
+Write-Host ""
+Write-Host "Manual commands:"
+Write-Host "  Start dev loop now:  .\agents\run-dev-loop.ps1"
+Write-Host "  Run single agent:    .\agents\run-agent.ps1 -AgentType developer"
 Write-Host ""
 Write-Host "To view tasks: Get-ScheduledTask | Where-Object {`$_.TaskName -like 'FreeSolo*'}"
 Write-Host "To remove all: Get-ScheduledTask | Where-Object {`$_.TaskName -like 'FreeSolo*'} | Unregister-ScheduledTask"
