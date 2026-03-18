@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { tools } from "@/data/tools";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,34 +13,6 @@ export const metadata: Metadata = {
     url: "https://free-solo-tools.vercel.app/about",
   },
 };
-
-const tools = [
-  { name: "JSON Formatter", href: "/tools/json-formatter" },
-  { name: "Base64 Codec", href: "/tools/base64" },
-  { name: "Hash Generator", href: "/tools/hash-generator" },
-  { name: "UUID Generator", href: "/tools/uuid-generator" },
-  { name: "Color Converter", href: "/tools/color-converter" },
-  { name: "JWT Decoder", href: "/tools/jwt-decoder" },
-  { name: "Regex Tester", href: "/tools/regex-tester" },
-  { name: "URL Parser", href: "/tools/url-parser" },
-  { name: "Markdown Preview", href: "/tools/markdown-preview" },
-  { name: "Diff Checker", href: "/tools/diff-checker" },
-  { name: "Epoch Converter", href: "/tools/epoch-converter" },
-  { name: "Password Generator", href: "/tools/password-generator" },
-  { name: "Lorem Ipsum Generator", href: "/tools/lorem-ipsum" },
-  { name: "Case Converter", href: "/tools/case-converter" },
-  { name: "Number Base Converter", href: "/tools/number-base-converter" },
-  { name: "CSV ↔ JSON Converter", href: "/tools/csv-json" },
-  { name: "Cron Expression Parser", href: "/tools/cron-parser" },
-  { name: "Word & Character Counter", href: "/tools/word-counter" },
-  { name: "URL Encoder & Decoder", href: "/tools/url-encoder" },
-  { name: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
-  { name: "Chmod Calculator", href: "/tools/chmod-calculator" },
-  { name: "HTML Entity Encoder", href: "/tools/html-entities" },
-  { name: "CSS Gradient Generator", href: "/tools/gradient-generator" },
-  { name: "QR Code Generator", href: "/tools/qr-code" },
-  { name: "SQL Formatter", href: "/tools/sql-formatter" },
-];
 
 export default function AboutPage() {
   return (
@@ -153,7 +126,7 @@ export default function AboutPage() {
                 href={tool.href}
                 className="rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-indigo-300 hover:text-indigo-600 dark:border-gray-800 dark:text-gray-300 dark:hover:border-indigo-700 dark:hover:text-indigo-400"
               >
-                {tool.name}
+                {tool.title}
               </Link>
             ))}
           </div>

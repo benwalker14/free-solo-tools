@@ -4,6 +4,20 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add homepage search/filter and consolidate tools data
+
+- Created `src/data/tools.ts` — single source of truth for all 25 tools with title, description, href, icon, and category
+- Four tool categories: Format (JSON Formatter, Markdown Preview, SQL Formatter), Convert (Base64, Color Converter, Case Converter, Number Base Converter, CSV ↔ JSON, JSON ↔ YAML, Epoch Converter, URL Encoder, HTML Entities), Generate (Hash Generator, UUID Generator, Password Generator, Lorem Ipsum, QR Code, CSS Gradient), Inspect (JWT Decoder, Regex Tester, URL Parser, Diff Checker, Cron Parser, Word Counter, Chmod Calculator)
+- Updated `ToolGrid.tsx` — added search input with magnifying glass icon that filters tools by title and description as user types; added category filter pills (Format, Convert, Generate, Inspect) that toggle on click; "Clear filters" button appears when any filter is active; empty state message when no tools match
+- Search and category filters work together (AND logic) and respect the existing favorites feature
+- Updated `src/app/page.tsx` — imports tools from shared `@/data/tools` instead of inline array; removed 150 lines of duplicated tool definitions
+- Updated `src/app/sitemap.ts` — imports tools from shared data instead of 25 manual entries; added missing `/about` and `/privacy` pages to sitemap for SEO completeness
+- Updated `src/app/about/page.tsx` — imports tools from shared data instead of 25 manual entries; changed `tool.name` to `tool.title` to match shared interface
+- Net code reduction: eliminated ~200 lines of triplicated tool data across 3 files, replaced with a single import
+- Build and lint pass cleanly; all 25 tools, search, and category filters working in production build
+
+---
+
 ### 2026-03-18 | developer | Add SQL Formatter & Beautifier tool (#25)
 - Created `src/app/tools/sql-formatter/SqlFormatterTool.tsx` — interactive client component for formatting and minifying SQL queries
 - Full SQL tokenizer: handles single-quoted strings, double-quoted identifiers, backtick identifiers (MySQL), single-line (`--`) and multi-line (`/* */`) comments, numbers, multi-char operators (`<>`, `>=`, `<=`, `!=`, `||`, `::`), and all standard punctuation

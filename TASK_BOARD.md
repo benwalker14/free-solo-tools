@@ -19,6 +19,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add homepage search/filter and consolidate tools data into single source of truth
 - [x] Add SQL Formatter & Beautifier tool (#25)
 - [x] Add QR Code Generator tool (#24)
 - [x] Add CSS Gradient Generator tool (#23)
