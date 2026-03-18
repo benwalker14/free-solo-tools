@@ -60,3 +60,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 14. Case Converter (/tools/case-converter)
 15. Number Base Converter (/tools/number-base-converter)
 16. CSV ↔ JSON Converter (/tools/csv-json)
+17. Cron Expression Parser (/tools/cron-parser)

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback, useMemo, useSyncExternalStore } from "react";
 
 const STORAGE_KEY = "freesolo-favorites";
 
@@ -46,7 +46,10 @@ function getServerSnapshot(): string {
 
 export function useFavorites() {
   const json = useSyncExternalStore(subscribe, getSnapshotStable, getServerSnapshot);
-  const favorites: Set<string> = json === "[]" ? new Set() : cachedSet;
+  const favorites = useMemo(
+    () => (json === "[]" ? new Set<string>() : cachedSet),
+    [json]
+  );
 
   const toggleFavorite = useCallback((href: string) => {
     const current = getSnapshot();

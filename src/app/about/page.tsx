@@ -30,6 +30,7 @@ const tools = [
   { name: "Case Converter", href: "/tools/case-converter" },
   { name: "Number Base Converter", href: "/tools/number-base-converter" },
   { name: "CSV ↔ JSON Converter", href: "/tools/csv-json" },
+  { name: "Cron Expression Parser", href: "/tools/cron-parser" },
 ];
 
 export default function AboutPage() {

@@ -51,6 +51,16 @@ interface ConversionResult {
   dayOfWeek: string;
 }
 
+const DAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 export default function EpochConverterTool() {
   const [mode, setMode] = useState<ConversionMode>("epoch-to-date");
   const [epochInput, setEpochInput] = useState("");
@@ -62,16 +72,6 @@ export default function EpochConverterTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("epoch-converter");
   const { trackAction } = useToolAnalytics("epoch-converter");
-
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
 
   const handleConvert = useCallback(() => {
     if (isLimited) return;
@@ -118,12 +118,12 @@ export default function EpochConverterTool() {
         local: formatDate(date) + ` (${Intl.DateTimeFormat().resolvedOptions().timeZone})`,
         iso8601: date.toISOString(),
         relative: getRelativeTime(date),
-        dayOfWeek: days[date.getDay()],
+        dayOfWeek: DAYS[date.getDay()],
       });
     } catch {
       setError("Failed to parse input. Please check the format.");
     }
-  }, [mode, epochInput, dateInput, timeInput, isLimited, recordUsage, trackAction, days]);
+  }, [mode, epochInput, dateInput, timeInput, isLimited, recordUsage, trackAction]);
 
   useKeyboardShortcut("Enter", handleConvert);
 

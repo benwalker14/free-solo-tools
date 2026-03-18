@@ -99,6 +99,12 @@ const tools = [
     href: "/tools/csv-json",
     icon: "CSV",
   },
+  {
+    title: "Cron Expression Parser",
+    description: "Parse cron schedules into plain English with next run times",
+    href: "/tools/cron-parser",
+    icon: "CRN",
+  },
 ];
 
 const websiteJsonLd = {
