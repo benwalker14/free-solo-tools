@@ -270,4 +270,12 @@ export const tools: Tool[] = [
     icon: "SVG",
     category: "Format",
   },
+  {
+    title: "Image Compressor",
+    description:
+      "Compress and resize images with adjustable quality — JPEG, WebP, and PNG",
+    href: "/tools/image-compressor",
+    icon: "CMP",
+    category: "Convert",
+  },
 ];

@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Image Compressor tool (#35)
+
+- Created `src/app/tools/image-compressor/ImageCompressorTool.tsx` — interactive client component for compressing and resizing images
+- **Compression:** Uses Canvas API to re-encode images at adjustable quality levels (1-100%)
+- **Output formats:** JPEG, WebP, and PNG — toggle between formats with one click
+- **Resize:** Optional max width/height constraints with aspect ratio preservation; never upscales
+- **File upload:** Drag-and-drop or click-to-browse image loading (max 20 MB)
+- **Side-by-side preview:** Original vs compressed image comparison with checkerboard transparency background
+- **Stats:** Shows original vs compressed file size, dimensions, and percentage savings
+- **Download:** Download compressed image with descriptive filename (`{name}-compressed.{ext}`)
+- Created `src/app/tools/image-compressor/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "Image Compressor", icon: "CMP", category: "Convert")
+- Updated CLAUDE.md tool list (#35)
+- **Build:** ✅ Compiled successfully (3.8s, 77 static pages)
+
+---
+
 ### 2026-03-18 | health | Routine health check — ALL CLEAR
 
 - **Build:** ✅ Compiled successfully (4.1s, 76 static pages)

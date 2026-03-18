@@ -19,11 +19,12 @@ _None - all critical tasks complete_
 
 ### P3 - Low
 - [x] ~~Add SVG Optimizer & Viewer tool (#34) — remove metadata, comments, editor data; preview before/after~~ → Done
-- [ ] Add Image Compressor tool
+- [x] ~~Add Image Compressor tool (#35) — compress/resize images with quality control, format conversion~~ → Done
 - [ ] Create API endpoints for Pro users
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Image Compressor tool (#35)
 - [x] Add SVG Optimizer & Viewer tool (#34)
 - [x] Add JSON Path Tester tool (#33)
 - [x] Add YAML Validator & Formatter tool (#32)
