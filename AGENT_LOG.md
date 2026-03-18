@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add CSV ↔ JSON Converter tool (#16)
+- Created `src/app/tools/csv-json/CsvJsonTool.tsx` — client component with two conversion modes: CSV→JSON and JSON→CSV
+- Full RFC 4180-compliant CSV parser: handles quoted fields with embedded commas, newlines, and escaped quotes (`""`)
+- Custom delimiter support: comma, tab, semicolon, and pipe — selectable via dropdown
+- CSV→JSON: uses first row as object keys, outputs formatted JSON with configurable indentation (2-space, 4-space, minified)
+- JSON→CSV: accepts an array of flat objects, auto-discovers all unique keys as column headers, properly escapes output fields
+- Swap button: switches mode and carries output to input for round-trip conversion
+- "Load sample" button pre-fills realistic example data for the current mode
+- Shows row count badge on output; copy-to-clipboard button
+- Created `page.tsx` with full SEO metadata, keywords, Open Graph, canonical URL, and JSON-LD structured data (UtilitiesApplication)
+- Created `opengraph-image.tsx` for social sharing previews
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JSON and string manipulation
+- Build and lint pass cleanly; all 16 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add Number Base Converter tool (#15)
 - Created `src/app/tools/number-base-converter/NumberBaseConverterTool.tsx` — real-time client component that converts numbers between binary, octal, decimal, and hexadecimal
 - Uses BigInt for arbitrarily large numbers — no precision loss even with huge values

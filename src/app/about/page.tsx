@@ -29,6 +29,7 @@ const tools = [
   { name: "Lorem Ipsum Generator", href: "/tools/lorem-ipsum" },
   { name: "Case Converter", href: "/tools/case-converter" },
   { name: "Number Base Converter", href: "/tools/number-base-converter" },
+  { name: "CSV ↔ JSON Converter", href: "/tools/csv-json" },
 ];
 
 export default function AboutPage() {

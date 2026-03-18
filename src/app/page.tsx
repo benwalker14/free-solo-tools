@@ -93,6 +93,12 @@ const tools = [
     href: "/tools/number-base-converter",
     icon: "0x",
   },
+  {
+    title: "CSV ↔ JSON Converter",
+    description: "Convert between CSV and JSON formats with custom delimiters",
+    href: "/tools/csv-json",
+    icon: "CSV",
+  },
 ];
 
 const websiteJsonLd = {
