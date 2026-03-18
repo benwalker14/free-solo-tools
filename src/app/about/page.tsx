@@ -35,6 +35,7 @@ const tools = [
   { name: "URL Encoder & Decoder", href: "/tools/url-encoder" },
   { name: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
   { name: "Chmod Calculator", href: "/tools/chmod-calculator" },
+  { name: "HTML Entity Encoder", href: "/tools/html-entities" },
 ];
 
 export default function AboutPage() {

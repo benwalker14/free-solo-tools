@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add HTML Entity Encoder & Decoder tool (#22)
+- Created `src/app/tools/html-entities/HtmlEntitiesTool.tsx` — client component for encoding and decoding HTML entities
+- Two encoding modes: Minimal (only encodes `& < > " '` — safe for HTML content) and All Characters (also encodes non-ASCII using named or numeric entities for ASCII-only output)
+- Comprehensive decoder: recognizes named entities (`&amp;`), decimal numeric entities (`&#169;`), and hexadecimal entities (`&#xA9;`)
+- Built-in library of 50+ named HTML entities covering symbols, currency, punctuation, arrows, math, and Greek letters
+- Reference table of 18 common HTML entities with character, named form, numeric form, and description
+- Quick reference section explaining the difference between minimal and all-characters modes
+- Copy-to-clipboard button on output; error handling for invalid input
+- Created `page.tsx` with full SEO metadata, keywords (HTML entity encoder, HTML entity decoder, HTML special characters, character entity reference), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `&;`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JavaScript string manipulation and regex
+- Build and lint pass cleanly; all 22 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add Chmod Calculator tool (#21)
 - Created `src/app/tools/chmod-calculator/ChmodCalculatorTool.tsx` — interactive client component for calculating Unix file permissions
 - Permission matrix: toggle read/write/execute checkboxes for owner, group, and others with instant visual feedback

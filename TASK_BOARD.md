@@ -19,6 +19,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add HTML Entity Encoder & Decoder tool (#22)
 - [x] Add Chmod Calculator tool (#21)
 - [x] Add JSON ↔ YAML Converter tool (#20)
 - [x] Add URL Encoder & Decoder tool (#19)

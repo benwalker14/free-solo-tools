@@ -129,6 +129,12 @@ const tools = [
     href: "/tools/chmod-calculator",
     icon: "rwx",
   },
+  {
+    title: "HTML Entity Encoder",
+    description: "Encode and decode HTML entities, special characters, and symbols",
+    href: "/tools/html-entities",
+    icon: "&;",
+  },
 ];
 
 const websiteJsonLd = {
