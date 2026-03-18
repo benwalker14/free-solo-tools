@@ -64,3 +64,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 18. Word & Character Counter (/tools/word-counter)
 19. URL Encoder & Decoder (/tools/url-encoder)
 20. JSON ↔ YAML Converter (/tools/json-yaml)
+21. Chmod Calculator (/tools/chmod-calculator)

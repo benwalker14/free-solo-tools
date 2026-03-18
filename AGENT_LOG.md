@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Chmod Calculator tool (#21)
+- Created `src/app/tools/chmod-calculator/ChmodCalculatorTool.tsx` — interactive client component for calculating Unix file permissions
+- Permission matrix: toggle read/write/execute checkboxes for owner, group, and others with instant visual feedback
+- Octal input: type a 3-digit octal code (e.g. 755) and see checkboxes update in real time; validation for invalid digits
+- Results panel: shows octal notation, symbolic notation (-rwxr-xr-x), chmod command, and human-readable description per role
+- Copy-to-clipboard buttons on each result row (hover-to-reveal)
+- 8 common presets: 644, 755, 600, 700, 777, 444, 750, 664 — with descriptions and visual highlight for active preset
+- Info section explaining Unix permission model (read=4, write=2, execute=1)
+- Created `page.tsx` with full SEO metadata, keywords (chmod calculator, unix permissions, linux permissions, rwx permissions, chmod 755), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `rwx`)
+- Integrated analytics (useToolAnalytics with trackFirstInteraction for real-time tool)
+- Real-time tool — no rate limiting needed (updates instantly on toggle/input)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JavaScript bitwise operations
+- Build and lint pass cleanly; all 21 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add JSON ↔ YAML Converter tool (#20)
 - Created `src/app/tools/json-yaml/JsonYamlTool.tsx` — client component with two conversion modes: JSON→YAML and YAML→JSON
 - Uses `js-yaml` library for robust YAML parsing and serialization (handles anchors, aliases, multi-line strings, complex types)

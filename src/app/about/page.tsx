@@ -34,6 +34,7 @@ const tools = [
   { name: "Word & Character Counter", href: "/tools/word-counter" },
   { name: "URL Encoder & Decoder", href: "/tools/url-encoder" },
   { name: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
+  { name: "Chmod Calculator", href: "/tools/chmod-calculator" },
 ];
 
 export default function AboutPage() {

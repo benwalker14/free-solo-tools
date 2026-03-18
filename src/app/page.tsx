@@ -123,6 +123,12 @@ const tools = [
     href: "/tools/json-yaml",
     icon: "YML",
   },
+  {
+    title: "Chmod Calculator",
+    description: "Calculate Unix file permissions with an interactive permission matrix",
+    href: "/tools/chmod-calculator",
+    icon: "rwx",
+  },
 ];
 
 const websiteJsonLd = {
