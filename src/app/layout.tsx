@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     url: "https://free-solo-tools.vercel.app",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "FreeSolo Tools - Free Online Utilities",
     description:
       "Fast, clean, free online tools for developers. No signup required.",

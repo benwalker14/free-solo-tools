@@ -13,7 +13,6 @@ _None - all critical tasks complete_
 ### P1 - High
 _None_
 ### P2 - Medium
-- [ ] Add Open Graph images for social sharing
 - [ ] Create a /about page explaining the project
 ### P3 - Low
 - [ ] Add tool usage analytics (which tools are most popular)
@@ -23,6 +22,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Open Graph images for social sharing
 - [x] Add keyboard shortcuts for tools (Ctrl+Enter to execute)
 - [x] Add structured data (JSON-LD) for search engines
 - [x] Create pricing page with Stripe Checkout integration

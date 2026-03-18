@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add Open Graph images for social sharing
+- Created shared OG image renderer utility at `src/lib/og.tsx` using Next.js `next/og` ImageResponse API
+- Design: dark gradient background (slate-900), gradient accent bar at top, tool icon badge, title, description, and FreeSolo branding at bottom
+- Added `opengraph-image.tsx` to homepage (1 file), all 10 tool pages (10 files), and pricing page (1 file) — 12 OG images total
+- Each tool's OG image includes its icon, title, and description matching existing metadata
+- Updated root layout Twitter card from `summary` to `summary_large_image` for full-size image previews
+- All images are 1200x630px PNG, statically generated at build time
+- Next.js automatically wires up `og:image` meta tags via the file convention — no manual metadata changes needed
+- Build passes cleanly; all 12 `/opengraph-image` routes visible in build output
+
+---
+
 ### 2026-03-17 | developer | Add keyboard shortcuts for tools (Ctrl+Enter to execute)
 - Created `useKeyboardShortcut` hook: listens for Ctrl+Enter (or Cmd+Enter on Mac) globally within the component
 - Added Ctrl+Enter shortcut to all 5 action-based tools: JSON Formatter (Format), Base64 (Encode), Hash Generator (Generate Hash), UUID Generator (Generate UUID), JWT Decoder (Decode)
