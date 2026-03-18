@@ -57,3 +57,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 11. Epoch Converter (/tools/epoch-converter)
 12. Password Generator (/tools/password-generator)
 13. Lorem Ipsum Generator (/tools/lorem-ipsum)
+14. Case Converter (/tools/case-converter)

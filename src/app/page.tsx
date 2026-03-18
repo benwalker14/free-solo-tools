@@ -81,6 +81,12 @@ const tools = [
     href: "/tools/lorem-ipsum",
     icon: "Li",
   },
+  {
+    title: "Case Converter",
+    description: "Convert text between camelCase, snake_case, kebab-case, and more",
+    href: "/tools/case-converter",
+    icon: "Aa",
+  },
 ];
 
 const websiteJsonLd = {

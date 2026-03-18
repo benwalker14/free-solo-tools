@@ -27,6 +27,7 @@ const tools = [
   { name: "Epoch Converter", href: "/tools/epoch-converter" },
   { name: "Password Generator", href: "/tools/password-generator" },
   { name: "Lorem Ipsum Generator", href: "/tools/lorem-ipsum" },
+  { name: "Case Converter", href: "/tools/case-converter" },
 ];
 
 export default function AboutPage() {

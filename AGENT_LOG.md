@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Text Case Converter tool (#14)
+- Created `src/app/tools/case-converter/CaseConverterTool.tsx` — real-time client component that converts text between 11 case styles
+- Supported formats: camelCase, PascalCase, snake_case, CONSTANT_CASE, kebab-case, dot.case, path/case, Title Case, Sentence case, lowercase, UPPERCASE
+- Smart word detection: splits on whitespace, hyphens, underscores, dots, slashes, and camelCase boundaries (e.g. "XMLParser" → ["xml", "parser"])
+- Copy individual result or copy all conversions at once; hover-to-reveal copy buttons
+- Created `page.tsx` with full SEO metadata, keywords, Open Graph, canonical URL, and JSON-LD structured data (WebApplication)
+- Created `opengraph-image.tsx` for social sharing previews
+- Integrated analytics (useToolAnalytics with trackFirstInteraction for real-time tool)
+- Real-time tool — no rate limiting needed (updates as user types, like Color Converter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- No new dependencies — uses only built-in JavaScript string manipulation
+- Build and lint pass cleanly; all 14 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add Lorem Ipsum Generator tool (#13)
 - Created `src/app/tools/lorem-ipsum/LoremIpsumTool.tsx` — client component with configurable placeholder text generation
 - Features: generate paragraphs, sentences, or words; adjustable count via slider and number input; option to start with classic "Lorem ipsum dolor sit amet..." opening
