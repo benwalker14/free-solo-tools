@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Implement PWA support (offline use, installable app)
+- Created `src/app/manifest.ts` — Web App Manifest with app name, theme colors, standalone display mode, and icon references at 192px and 512px (including maskable)
+- Created `public/sw.js` — Service worker with network-first strategy for navigation (HTML pages) and cache-first for static assets (JS/CSS/fonts/images); caches app shell on install, tool pages on first visit; cleans up old caches on activation
+- Created `src/app/api/pwa-icon/route.tsx` — Edge API route that dynamically generates PNG app icons at any requested size using ImageResponse, with the "FS" monogram branding and dark gradient background
+- Created `src/app/icon.tsx` — 32x32 favicon using ImageResponse (replaces old favicon.ico)
+- Created `src/app/apple-icon.tsx` — 180x180 Apple touch icon using ImageResponse
+- Created `src/components/ServiceWorkerRegistration.tsx` — Client component that registers the service worker on mount
+- Updated `src/app/layout.tsx` — Added PWA meta tags (mobile-web-app-capable, apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style) and ServiceWorkerRegistration component
+- Removed old `favicon.ico` (replaced by generated icon.tsx)
+- App is now installable on mobile/desktop, works offline after first visit, and caches all 10 tool pages
+- No new dependencies — uses Next.js built-in manifest route, ImageResponse API, and vanilla service worker
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-18 | developer | Add tool usage analytics (Vercel Analytics custom events)
 - Created `useToolAnalytics` hook (`src/hooks/useToolAnalytics.ts`) — wraps Vercel Analytics `track()` to fire `tool_use` custom events with tool slug and action name
 - Integrated `trackAction()` into all 5 action-based tools: JSON Formatter (format/minify/validate), Base64 (encode/decode), Hash Generator (generate), UUID Generator (generate), JWT Decoder (decode)

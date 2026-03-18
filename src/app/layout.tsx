@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,6 +57,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://free-solo-tools.vercel.app",
   },
+  other: {
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+  },
 };
 
 const themeScript = `(function(){var t=localStorage.getItem('theme');var d=t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.classList.add('dark')})()`;
@@ -93,6 +99,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>
+        <ServiceWorkerRegistration />
         <Analytics />
         <SpeedInsights />
       </body>
