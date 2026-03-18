@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
               "linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899)",
           }}
         />
-        {/* FS monogram */}
+        {/* DB monogram */}
         <div
           style={{
             display: "flex",
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
             letterSpacing: "-0.02em",
           }}
         >
-          FS
+          DB
         </div>
       </div>
     ),

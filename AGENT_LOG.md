@@ -4,6 +4,17 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Fix broken links, PWA icon, and add 404 page
+
+- **Fixed broken footer/about links:** Created `src/app/privacy/page.tsx` — full Privacy Policy page covering data processing (all client-side), analytics (cookieless Vercel Analytics), localStorage usage, cookies (none), third-party services (Vercel, Stripe), and Pro subscription billing. Proper SEO metadata, Open Graph tags, and canonical URL.
+- **Created Terms of Service:** Created `src/app/terms/page.tsx` — Terms covering acceptance, service description, free/Pro tiers with billing/cancellation policy, acceptable use, IP rights, warranty disclaimer, liability limitation, and change policy. Consistent styling with About and Privacy pages.
+- **Fixed PWA icon branding:** Updated `src/app/api/pwa-icon/route.tsx` — changed monogram from "FS" (old FreeSolo branding) to "DB" (DevBolt) to complete the rebrand
+- **Added custom 404 page:** Created `src/app/not-found.tsx` — clean 404 page with "Browse Tools" and "About DevBolt" navigation links, matching site design language
+- **Updated sitemap:** Added `/terms` entry to `src/app/sitemap.ts` alongside existing `/privacy` entry
+- **Impact:** Eliminates 404 errors from footer and about page links, completes rebrand in PWA icons, improves UX for mistyped URLs
+
+---
+
 ### 2026-03-18 | developer | Add CSS Grid Generator tool (#39)
 
 - Created `src/app/tools/grid-generator/GridGeneratorTool.tsx` — interactive client component for building CSS grid layouts visually

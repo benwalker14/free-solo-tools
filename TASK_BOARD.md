@@ -11,6 +11,8 @@ _None_
 _None - all critical tasks complete_
 
 ### P1 - High
+_None_
+
 ### P2 - Medium
 - [x] ~~Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption~~ → Done
 - [x] ~~Add HTML ↔ Markdown Converter tool (#31) — complements existing Markdown Preview~~ → Done
@@ -24,6 +26,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Fix broken /privacy and /terms links, add custom 404 page, fix PWA icon branding
 - [x] Add CSS Grid Generator tool (#39)
 - [x] Add CSS Flexbox Generator tool (#38)
 - [x] Add Color Contrast Checker tool (#37)
