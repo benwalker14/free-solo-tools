@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JS/CSS/HTML Minifier & Beautifier tool (#27)
+
+- Created `src/app/tools/code-minifier/CodeMinifierTool.tsx` — interactive client component for minifying and beautifying JavaScript, CSS, and HTML code
+- **Three language modes** with tab switcher: JavaScript, CSS, HTML — each with dedicated tokenizer, beautifier, and minifier
+- **JavaScript engine:** Handles string literals (single, double, template), single-line (`//`) and multi-line (`/* */`) comments, regex literals, braces/semicolons for structure; beautifier adds proper indentation and newlines; minifier strips all whitespace and comments while preserving necessary spaces between identifiers
+- **CSS engine:** Handles selectors, declarations, at-rules (@media, @keyframes), comments, and nested rule blocks; beautifier indents declarations inside selectors with blank lines between top-level rules; minifier collapses whitespace around `{};:,` delimiters
+- **HTML engine:** Full tokenizer for open/close/self-closing tags, DOCTYPE, comments, void elements (br, img, input, etc.); beautifier inlines short text content (`<p>text</p>` on one line), preserves raw content in script/style/pre/textarea tags; minifier strips comments and collapses whitespace
+- **Size stats:** Shows input/output byte sizes and percentage savings (green for smaller, amber for larger)
+- Configurable indentation: 2 spaces, 4 spaces, or tabs
+- "Load sample" button with realistic examples per language (Express.js API server, CSS component styles, HTML dashboard page)
+- Copy-to-clipboard button on output; auto-sizing output textarea
+- Collapsible "About Code Minification & Beautification" reference section
+- Created `page.tsx` with full SEO metadata, keywords (JavaScript minifier, CSS minifier, HTML minifier, JS beautifier, code formatter, uglify JavaScript, etc.), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `MIN`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid (Format category), sitemap.xml (via shared tools data), and CLAUDE.md
+- No new dependencies — uses only custom tokenizers and string manipulation
+- Build and lint pass cleanly; all 27 tools now listed in production build (69 static pages)
+
+---
+
 ### 2026-03-18 | developer | Add XML Formatter & Validator tool (#26)
 
 - Created `src/app/tools/xml-formatter/XmlFormatterTool.tsx` — interactive client component for formatting, validating, and minifying XML documents
