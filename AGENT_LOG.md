@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add HTML ↔ Markdown Converter tool (#31)
+
+- Created `src/app/tools/html-markdown/HtmlMarkdownTool.tsx` — interactive client component for bidirectional HTML/Markdown conversion
+- **Two directions:** HTML → Markdown (using Turndown library) and Markdown → HTML (using Marked library)
+- **Configurable HTML→MD options:** heading style (ATX `#` vs Setext underline), bullet markers (`-`, `*`, `+`), code block style (fenced vs indented)
+- **Swap button:** reverses direction and moves output into input for chaining conversions
+- **Full element support:** headings, bold/italic, links, images, code blocks, blockquotes, tables, ordered/unordered lists
+- **Sample data:** pre-loaded samples for both directions demonstrating all supported elements
+- Click-to-copy with "Copied!" feedback
+- Created `src/app/tools/html-markdown/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Added tool to `src/data/tools.ts` registry (title: "HTML ↔ Markdown", icon: "H↔M", category: "Convert")
+- Installed `turndown` and `@types/turndown` npm packages for HTML-to-Markdown conversion
+- Updated TASK_BOARD.md and CLAUDE.md
+- Build verified clean with no errors
+
+---
+
 ### 2026-03-18 | developer | Add JSON to TypeScript Generator tool (#30)
 
 - Created `src/app/tools/json-to-typescript/JsonToTypescriptTool.tsx` — interactive client component for generating TypeScript interfaces and type aliases from JSON data

@@ -74,3 +74,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 28. Image to Base64 Converter (/tools/image-base64)
 29. Color Palette Generator (/tools/color-palette)
 30. JSON to TypeScript Generator (/tools/json-to-typescript)
+31. HTML ↔ Markdown Converter (/tools/html-markdown)

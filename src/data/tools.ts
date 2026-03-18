@@ -238,4 +238,12 @@ export const tools: Tool[] = [
     icon: "TS",
     category: "Convert",
   },
+  {
+    title: "HTML ↔ Markdown",
+    description:
+      "Convert between HTML and Markdown in either direction",
+    href: "/tools/html-markdown",
+    icon: "H↔M",
+    category: "Convert",
+  },
 ];
