@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 interface DecodedJwt {
@@ -60,6 +61,7 @@ export default function JwtDecoderTool() {
   const [error, setError] = useState("");
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("jwt-decoder");
+  const { trackAction } = useToolAnalytics("jwt-decoder");
 
   const handleDecode = useCallback(() => {
     if (isLimited) return;
@@ -67,13 +69,14 @@ export default function JwtDecoderTool() {
     setDecoded(null);
     if (!input.trim()) return;
     recordUsage();
+    trackAction("decode");
 
     try {
       setDecoded(decodeJwt(input));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to decode JWT");
     }
-  }, [input, isLimited, recordUsage]);
+  }, [input, isLimited, recordUsage, trackAction]);
 
   useKeyboardShortcut("Enter", handleDecode);
 

@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { diffLines, diffWords } from "diff";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 
 type DiffMode = "lines" | "words";
 
@@ -10,6 +11,7 @@ export default function DiffCheckerTool() {
   const [original, setOriginal] = useState("");
   const [modified, setModified] = useState("");
   const [mode, setMode] = useState<DiffMode>("lines");
+  const { trackFirstInteraction } = useToolAnalytics("diff-checker");
 
   const diff = useMemo(() => {
     if (!original && !modified) return [];
@@ -86,7 +88,7 @@ export default function DiffCheckerTool() {
           </label>
           <textarea
             value={original}
-            onChange={(e) => setOriginal(e.target.value)}
+            onChange={(e) => { trackFirstInteraction(); setOriginal(e.target.value); }}
             placeholder="Paste original text here..."
             className="h-[300px] w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-600"
           />
@@ -97,7 +99,7 @@ export default function DiffCheckerTool() {
           </label>
           <textarea
             value={modified}
-            onChange={(e) => setModified(e.target.value)}
+            onChange={(e) => { trackFirstInteraction(); setModified(e.target.value); }}
             placeholder="Paste modified text here..."
             className="h-[300px] w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-600"
           />

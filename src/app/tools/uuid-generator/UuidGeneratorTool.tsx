@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function UuidGeneratorTool() {
@@ -11,17 +12,19 @@ export default function UuidGeneratorTool() {
   const [count, setCount] = useState(1);
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("uuid-generator");
+  const { trackAction } = useToolAnalytics("uuid-generator");
 
   const handleGenerate = useCallback(() => {
     if (isLimited) return;
     recordUsage();
+    trackAction("generate");
     const clamped = Math.max(1, Math.min(100, count));
     const generated: string[] = [];
     for (let i = 0; i < clamped; i++) {
       generated.push(crypto.randomUUID());
     }
     setUuids(generated);
-  }, [count, isLimited, recordUsage]);
+  }, [count, isLimited, recordUsage, trackAction]);
 
   useKeyboardShortcut("Enter", handleGenerate);
 

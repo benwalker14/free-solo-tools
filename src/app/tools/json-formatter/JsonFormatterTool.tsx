@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function JsonFormatterTool() {
@@ -12,10 +13,12 @@ export default function JsonFormatterTool() {
   const [error, setError] = useState("");
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("json-formatter");
+  const { trackAction } = useToolAnalytics("json-formatter");
 
   const handleFormat = useCallback(() => {
     if (isLimited) return;
     recordUsage();
+    trackAction("format");
     setError("");
     setOutput("");
     try {
@@ -24,13 +27,14 @@ export default function JsonFormatterTool() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Invalid JSON");
     }
-  }, [input, isLimited, recordUsage]);
+  }, [input, isLimited, recordUsage, trackAction]);
 
   useKeyboardShortcut("Enter", handleFormat);
 
   function handleMinify() {
     if (isLimited) return;
     recordUsage();
+    trackAction("minify");
     setError("");
     setOutput("");
     try {
@@ -44,6 +48,7 @@ export default function JsonFormatterTool() {
   function handleValidate() {
     if (isLimited) return;
     recordUsage();
+    trackAction("validate");
     setError("");
     setOutput("");
     try {

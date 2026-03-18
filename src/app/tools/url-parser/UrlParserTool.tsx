@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 
 interface ParsedUrl {
   protocol: string;
@@ -42,6 +43,7 @@ function handleCopy(text: string) {
 
 export default function UrlParserTool() {
   const [input, setInput] = useState("");
+  const { trackFirstInteraction } = useToolAnalytics("url-parser");
 
   const parsed = useMemo(() => (input.trim() ? parseUrl(input.trim()) : null), [input]);
   const isInvalid = input.trim().length > 0 && parsed === null;
@@ -89,7 +91,7 @@ export default function UrlParserTool() {
           <input
             type="text"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => { trackFirstInteraction(); setInput(e.target.value); }}
             placeholder="https://example.com/path?key=value#section"
             className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-600"
           />

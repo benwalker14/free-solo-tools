@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 
 interface MatchResult {
   fullMatch: string;
@@ -55,6 +56,7 @@ export default function RegexTesterTool() {
   const [pattern, setPattern] = useState("");
   const [flags, setFlags] = useState("g");
   const [testString, setTestString] = useState("");
+  const { trackFirstInteraction } = useToolAnalytics("regex-tester");
 
   const regexError = useMemo(() => getRegexError(pattern, flags), [pattern, flags]);
   const matches = useMemo(
@@ -121,7 +123,7 @@ export default function RegexTesterTool() {
             <input
               type="text"
               value={pattern}
-              onChange={(e) => setPattern(e.target.value)}
+              onChange={(e) => { trackFirstInteraction(); setPattern(e.target.value); }}
               placeholder="Enter regex pattern..."
               className="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-600"
             />
@@ -161,7 +163,7 @@ export default function RegexTesterTool() {
           </label>
           <textarea
             value={testString}
-            onChange={(e) => setTestString(e.target.value)}
+            onChange={(e) => { trackFirstInteraction(); setTestString(e.target.value); }}
             placeholder="Enter text to test against..."
             rows={6}
             className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-600"

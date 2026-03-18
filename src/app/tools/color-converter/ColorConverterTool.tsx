@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 
 interface RGB {
   r: number;
@@ -106,8 +107,10 @@ export default function ColorConverterTool() {
   const [rgb, setRgb] = useState<RGB>({ r: 99, g: 102, b: 241 });
   const [hsl, setHsl] = useState<HSL>({ h: 239, s: 84, l: 67 });
   const [error, setError] = useState("");
+  const { trackFirstInteraction } = useToolAnalytics("color-converter");
 
   function handleHexChange(value: string) {
+    trackFirstInteraction();
     setHexValue(value);
     const parsed = hexToRgb(value);
     if (parsed) {
@@ -120,6 +123,7 @@ export default function ColorConverterTool() {
   }
 
   function handlePickerChange(value: string) {
+    trackFirstInteraction();
     setHexValue(value);
     const parsed = hexToRgb(value);
     if (parsed) {
@@ -130,6 +134,7 @@ export default function ColorConverterTool() {
   }
 
   function handleRgbChange(channel: keyof RGB, value: number) {
+    trackFirstInteraction();
     const clamped = Math.max(0, Math.min(255, isNaN(value) ? 0 : value));
     const newRgb = { ...rgb, [channel]: clamped };
     setRgb(newRgb);
@@ -139,6 +144,7 @@ export default function ColorConverterTool() {
   }
 
   function handleHslChange(channel: keyof HSL, value: number) {
+    trackFirstInteraction();
     const max = channel === "h" ? 360 : 100;
     const clamped = Math.max(0, Math.min(max, isNaN(value) ? 0 : value));
     const newHsl = { ...hsl, [channel]: clamped };

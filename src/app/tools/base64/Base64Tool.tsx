@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function Base64Tool() {
@@ -12,10 +13,12 @@ export default function Base64Tool() {
   const [error, setError] = useState("");
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("base64");
+  const { trackAction } = useToolAnalytics("base64");
 
   const handleEncode = useCallback(() => {
     if (isLimited) return;
     recordUsage();
+    trackAction("encode");
     setError("");
     setOutput("");
     try {
@@ -24,13 +27,14 @@ export default function Base64Tool() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to encode");
     }
-  }, [input, isLimited, recordUsage]);
+  }, [input, isLimited, recordUsage, trackAction]);
 
   useKeyboardShortcut("Enter", handleEncode);
 
   function handleDecode() {
     if (isLimited) return;
     recordUsage();
+    trackAction("decode");
     setError("");
     setOutput("");
     try {

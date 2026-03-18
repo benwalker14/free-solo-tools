@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { marked } from "marked";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 
 const SAMPLE_MARKDOWN = `# Hello, Markdown!
 
@@ -34,6 +35,7 @@ function greet(name) {
 
 export default function MarkdownPreviewTool() {
   const [input, setInput] = useState(SAMPLE_MARKDOWN);
+  const { trackFirstInteraction } = useToolAnalytics("markdown-preview");
 
   const html = useMemo(() => {
     try {
@@ -85,7 +87,7 @@ export default function MarkdownPreviewTool() {
           </label>
           <textarea
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => { trackFirstInteraction(); setInput(e.target.value); }}
             placeholder="Type your Markdown here..."
             className="h-[500px] w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-600"
           />

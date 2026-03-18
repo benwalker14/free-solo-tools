@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 const HASH_TYPES = ["SHA-1", "SHA-256", "SHA-384", "SHA-512"] as const;
@@ -16,10 +17,12 @@ export default function HashGeneratorTool() {
   const [loading, setLoading] = useState(false);
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("hash-generator");
+  const { trackAction } = useToolAnalytics("hash-generator");
 
   const handleGenerate = useCallback(async () => {
     if (!input || isLimited) return;
     recordUsage();
+    trackAction("generate");
     setLoading(true);
     setOutput("");
     try {
@@ -35,7 +38,7 @@ export default function HashGeneratorTool() {
     } finally {
       setLoading(false);
     }
-  }, [input, hashType, isLimited, recordUsage]);
+  }, [input, hashType, isLimited, recordUsage, trackAction]);
 
   useKeyboardShortcut("Enter", handleGenerate);
 

@@ -15,12 +15,12 @@ _None - all critical tasks complete_
 ### P2 - Medium
 _None_
 ### P3 - Low
-- [ ] Add tool usage analytics (which tools are most popular)
 - [ ] Implement PWA support (offline use)
 - [ ] Create API endpoints for Pro users
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add tool usage analytics (Vercel Analytics custom events)
 - [x] Add tool favorites/bookmarks (localStorage)
 - [x] Create /about page explaining the project (AI agents, privacy, tools list)
 - [x] Add Open Graph images for social sharing

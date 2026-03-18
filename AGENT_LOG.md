@@ -4,6 +4,16 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add tool usage analytics (Vercel Analytics custom events)
+- Created `useToolAnalytics` hook (`src/hooks/useToolAnalytics.ts`) — wraps Vercel Analytics `track()` to fire `tool_use` custom events with tool slug and action name
+- Integrated `trackAction()` into all 5 action-based tools: JSON Formatter (format/minify/validate), Base64 (encode/decode), Hash Generator (generate), UUID Generator (generate), JWT Decoder (decode)
+- Integrated `trackFirstInteraction()` into all 5 real-time tools: Color Converter, Regex Tester, URL Parser, Markdown Preview, Diff Checker — fires once per session on first user input
+- Events are viewable in the Vercel Analytics dashboard under Custom Events — filter by `tool_use` event, then by `tool` and `action` properties to see which tools and actions are most popular
+- No new dependencies needed — uses `@vercel/analytics` `track()` which was already installed
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-18 | developer | Add tool favorites/bookmarks (localStorage)
 - Created `useFavorites` hook using `useSyncExternalStore` for reactive localStorage state — stores favorite tool hrefs, dispatches custom events for cross-component sync
 - Updated `ToolCard` component to client component with optional star button — click toggles favorite without navigating (stopPropagation), filled amber star for favorites, outline for non-favorites
