@@ -105,6 +105,12 @@ const tools = [
     href: "/tools/cron-parser",
     icon: "CRN",
   },
+  {
+    title: "Word & Character Counter",
+    description: "Count words, characters, sentences, and estimate reading time",
+    href: "/tools/word-counter",
+    icon: "W#",
+  },
 ];
 
 const websiteJsonLd = {

@@ -31,6 +31,7 @@ const tools = [
   { name: "Number Base Converter", href: "/tools/number-base-converter" },
   { name: "CSV ↔ JSON Converter", href: "/tools/csv-json" },
   { name: "Cron Expression Parser", href: "/tools/cron-parser" },
+  { name: "Word & Character Counter", href: "/tools/word-counter" },
 ];
 
 export default function AboutPage() {
