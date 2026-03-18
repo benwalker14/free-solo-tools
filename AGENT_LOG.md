@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Color Contrast Checker tool (#37)
+
+- Created `src/app/tools/contrast-checker/ContrastCheckerTool.tsx` — interactive client component for checking WCAG 2.1 color contrast compliance
+- **Color pickers:** Foreground (text) and background color with hex input fields and native color pickers
+- **Contrast ratio:** Real-time calculation using WCAG relative luminance formula with sRGB linearization
+- **WCAG compliance:** 5 checks — AA normal text (4.5:1), AA large text (3:1), AA UI components (3:1), AAA normal (7:1), AAA large (4.5:1)
+- **Live preview:** Sample text at multiple sizes (large, normal, small) plus filled/outline buttons rendered with chosen colors
+- **Swap button:** Instantly swap foreground and background colors
+- **6 presets:** Black on White, White on Blue, Dark on Light Gray, White on Green, Navy on Cream, White on Red
+- **Rating system:** Excellent (7+), Good (4.5+), Acceptable (3+), Poor — with color-coded indicators
+- Created `src/app/tools/contrast-checker/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/contrast-checker/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Color Contrast Checker", icon: "A11", category: "Inspect")
+- Updated CLAUDE.md tool list (#37)
+
+---
+
 ### 2026-03-18 | developer | Add missing Open Graph images for 8 tools
 
 - Identified 8 tools missing `opengraph-image.tsx` files (out of 36 total tools)

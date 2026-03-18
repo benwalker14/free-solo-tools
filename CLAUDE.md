@@ -80,3 +80,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 34. SVG Optimizer & Viewer (/tools/svg-optimizer)
 35. Image Compressor (/tools/image-compressor)
 36. CSS Box Shadow Generator (/tools/box-shadow)
+37. Color Contrast Checker (/tools/contrast-checker)

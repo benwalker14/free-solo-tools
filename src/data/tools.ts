@@ -286,4 +286,12 @@ export const tools: Tool[] = [
     icon: "SHD",
     category: "Generate",
   },
+  {
+    title: "Color Contrast Checker",
+    description:
+      "Check WCAG 2.1 color contrast ratios for AA and AAA accessibility compliance",
+    href: "/tools/contrast-checker",
+    icon: "A11",
+    category: "Inspect",
+  },
 ];

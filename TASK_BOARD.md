@@ -24,6 +24,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Color Contrast Checker tool (#37)
 - [x] Add missing Open Graph images for 8 tools
 - [x] Add CSS Box Shadow Generator tool (#36)
 - [x] Add Image Compressor tool (#35)
