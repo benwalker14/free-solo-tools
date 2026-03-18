@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
@@ -11,7 +12,7 @@ export default function Header() {
           FreeSolo
           <span className="text-indigo-600">Tools</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+        <nav className="flex items-center gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">
           <Link
             href="/"
             className="transition-colors hover:text-gray-900 dark:hover:text-white"
@@ -24,6 +25,8 @@ export default function Header() {
           >
             Pricing
           </Link>
+          <div className="h-5 w-px bg-gray-200 dark:bg-gray-700" />
+          <ThemeToggle />
         </nav>
       </div>
     </header>

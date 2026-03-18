@@ -15,7 +15,6 @@ _None - all critical tasks complete_
 - [ ] Create pricing page with Stripe integration
 ### P2 - Medium
 - [ ] Add Open Graph images for social sharing
-- [ ] Implement dark mode toggle (currently uses system preference)
 - [ ] Add keyboard shortcuts for tools (Ctrl+Enter to execute)
 - [ ] Create a /about page explaining the project
 - [ ] Add structured data (JSON-LD) for search engines
@@ -28,6 +27,7 @@ _None - all critical tasks complete_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Implement dark mode toggle with light/dark/system cycling
 - [x] Initialize Next.js project
 - [x] Build 5 initial tools
 - [x] Set up agent system

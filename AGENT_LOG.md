@@ -4,6 +4,16 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add dark mode toggle (light/dark/system)
+- Switched Tailwind CSS from media-query dark mode to class-based using `@custom-variant dark`
+- Created `ThemeProvider` component: reads preference from localStorage via `useSyncExternalStore`, applies `.dark` class to `<html>`, listens for system preference changes when in "system" mode
+- Created `ThemeToggle` component: cycles through system (monitor icon) → light (sun icon) → dark (moon icon), persists choice to localStorage
+- Added inline script in layout.tsx to prevent flash of wrong theme (FOUC) on page load
+- Added toggle to Header with visual separator between nav links and theme button
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-17 | developer | Add free-tier rate limiting (25 uses/tool/day)
 - Created `useRateLimit` hook: tracks daily usage per tool in localStorage, auto-resets each day
 - Created `RateLimitBanner` component: shows remaining count when low, upgrade CTA when exhausted
