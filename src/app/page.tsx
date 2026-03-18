@@ -117,6 +117,12 @@ const tools = [
     href: "/tools/url-encoder",
     icon: "%20",
   },
+  {
+    title: "JSON ↔ YAML Converter",
+    description: "Convert between JSON and YAML for Kubernetes, Docker, and CI/CD configs",
+    href: "/tools/json-yaml",
+    icon: "YML",
+  },
 ];
 
 const websiteJsonLd = {

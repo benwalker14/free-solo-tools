@@ -33,6 +33,7 @@ const tools = [
   { name: "Cron Expression Parser", href: "/tools/cron-parser" },
   { name: "Word & Character Counter", href: "/tools/word-counter" },
   { name: "URL Encoder & Decoder", href: "/tools/url-encoder" },
+  { name: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
 ];
 
 export default function AboutPage() {

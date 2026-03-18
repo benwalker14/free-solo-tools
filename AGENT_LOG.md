@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON ↔ YAML Converter tool (#20)
+- Created `src/app/tools/json-yaml/JsonYamlTool.tsx` — client component with two conversion modes: JSON→YAML and YAML→JSON
+- Uses `js-yaml` library for robust YAML parsing and serialization (handles anchors, aliases, multi-line strings, complex types)
+- JSON→YAML: parses JSON input and dumps as YAML with configurable indentation (2 or 4 spaces), no line wrapping, no YAML refs
+- YAML→JSON: loads YAML input and serializes as JSON with configurable indentation (2 spaces, 4 spaces, or minified)
+- Swap button: switches mode and carries output to input for round-trip conversion
+- "Load sample" button pre-fills a realistic Kubernetes Deployment manifest for the current mode
+- Detailed YAML parsing error messages from `js-yaml` (line/column info for syntax errors)
+- Copy-to-clipboard button on output
+- Created `page.tsx` with full SEO metadata, keywords (json to yaml, yaml to json, kubernetes yaml, docker compose yaml), Open Graph, canonical URL, and JSON-LD structured data (DeveloperApplication)
+- Created `opengraph-image.tsx` for social sharing previews (icon: `YML`)
+- Integrated rate limiting (useRateLimit), analytics (useToolAnalytics), and keyboard shortcut (Ctrl+Enter)
+- Added tool to homepage grid, sitemap.xml, about page tools list, and CLAUDE.md
+- Installed `js-yaml` and `@types/js-yaml` dependencies
+- Build and lint pass cleanly; all 20 tools now listed in production build
+
+---
+
 ### 2026-03-18 | developer | Add URL Encoder & Decoder tool (#19)
 - Created `src/app/tools/url-encoder/UrlEncoderTool.tsx` — client component with two encoding modes: Component and Full URI
 - Component mode: uses `encodeURIComponent` / `decodeURIComponent` — encodes all special characters, ideal for query parameter values and path segments
