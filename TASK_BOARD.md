@@ -26,6 +26,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Markdown Table Generator tool (#43)
 - [x] Add CSS Animation Generator tool (#42)
 - [x] Add CSS Text Shadow Generator tool (#41)
 - [x] Add CSS Border Radius Generator tool (#40)

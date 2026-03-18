@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Markdown Table Generator tool (#43)
+
+- Created `src/app/tools/markdown-table/MarkdownTableTool.tsx` — interactive client component for building Markdown tables visually
+- **Visual table editor:** Editable header and data cells in a spreadsheet-like grid with add/remove rows and columns
+- **Column alignment:** Click-to-cycle alignment controls per column (none/left/center/right) — reflected in generated Markdown separator row
+- **CSV import:** Paste CSV or tab-separated data to populate the table; handles quoted fields and mixed delimiters
+- **4 presets:** Comparison (pricing tiers), API Reference (endpoints), Changelog (versions), Schedule (weekly grid) — each with appropriate alignments
+- **Table limits:** Up to 10 columns and 50 rows
+- **Live preview:** Rendered HTML table showing how the Markdown will look when parsed
+- **Clean output:** Generates properly padded Markdown with aligned columns; one-click copy to clipboard
+- **Quick reference:** Expandable section explaining Markdown table syntax, alignment markers, and tips
+- Created `src/app/tools/markdown-table/page.tsx` — server component with SEO metadata (title, description, 9 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/markdown-table/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Markdown Table Generator", icon: "TBL", category: "Generate")
+- Updated CLAUDE.md tool list (#43)
+- **Complements existing Markdown Preview tool** — users can generate tables here, then preview full documents there
+
+---
+
 ### 2026-03-18 | developer | Add CSS Animation Generator tool (#42)
 
 - Created `src/app/tools/css-animation/CSSAnimationTool.tsx` — interactive client component for building CSS keyframe animations visually

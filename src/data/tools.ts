@@ -334,4 +334,12 @@ export const tools: Tool[] = [
     icon: "ANI",
     category: "Generate",
   },
+  {
+    title: "Markdown Table Generator",
+    description:
+      "Build Markdown tables visually with an interactive editor, CSV import, and alignment controls",
+    href: "/tools/markdown-table",
+    icon: "TBL",
+    category: "Generate",
+  },
 ];
