@@ -8,15 +8,16 @@
 - Owner payout = revenue minus reinvestment amount
 
 ## Current Balance
-**Available:** $500.00
+**Available:** $486.82
 **Total Revenue:** $0.00
-**Total Expenses:** $0.00
+**Total Expenses:** $13.18
 **Owner Payouts:** $0.00
 
 ## Expenses Log
 | Date | Description | Amount | Category | Balance After |
 |------|-------------|--------|----------|---------------|
 | 2026-03-17 | Initial budget allocation | - | seed | $500.00 |
+| 2026-03-18 | Domain: devbolt.dev | $13.18 | infrastructure | $486.82 |
 
 ## Revenue Log
 | Date | Source | Amount | Total Revenue |
@@ -26,4 +27,4 @@
 ## Monthly Summary
 | Month | Revenue | Expenses | Net | Balance |
 |-------|---------|----------|-----|---------|
-| 2026-03 | $0.00 | $0.00 | $0.00 | $500.00 |
+| 2026-03 | $0.00 | $13.18 | -$13.18 | $486.82 |
