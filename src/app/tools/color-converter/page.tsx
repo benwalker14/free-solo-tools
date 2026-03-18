@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Color Converter (HEX, RGB, HSL)",
+  url: "https://free-solo-tools.vercel.app/tools/color-converter",
+  description:
+    "Convert colors between HEX, RGB, and HSL formats instantly. Live color preview included.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function ColorConverterPage() {
-  return <ColorConverterTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ColorConverterTool />
+    </>
+  );
 }

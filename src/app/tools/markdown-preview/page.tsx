@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Markdown Preview",
+  url: "https://free-solo-tools.vercel.app/tools/markdown-preview",
+  description:
+    "Write and preview Markdown in real time. Supports headings, lists, code blocks, tables, links, and more.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function MarkdownPreviewPage() {
-  return <MarkdownPreviewTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <MarkdownPreviewTool />
+    </>
+  );
 }

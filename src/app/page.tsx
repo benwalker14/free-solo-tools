@@ -1,5 +1,7 @@
 import ToolCard from "@/components/ToolCard";
 
+const BASE_URL = "https://free-solo-tools.vercel.app";
+
 const tools = [
   {
     title: "JSON Formatter",
@@ -63,9 +65,44 @@ const tools = [
   },
 ];
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "FreeSolo Tools",
+  url: BASE_URL,
+  description:
+    "Fast, clean, free online tools for developers. No signup required.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${BASE_URL}/?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Free Online Developer Tools",
+  numberOfItems: tools.length,
+  itemListElement: tools.map((tool, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: tool.title,
+    url: `${BASE_URL}${tool.href}`,
+  })),
+};
+
 export default function Home() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <div className="mb-16 text-center">
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
           Free Online Tools That Just Work

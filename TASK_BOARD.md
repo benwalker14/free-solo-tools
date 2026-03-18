@@ -16,8 +16,6 @@ _None_
 - [ ] Add Open Graph images for social sharing
 - [ ] Add keyboard shortcuts for tools (Ctrl+Enter to execute)
 - [ ] Create a /about page explaining the project
-- [ ] Add structured data (JSON-LD) for search engines
-
 ### P3 - Low
 - [ ] Add tool usage analytics (which tools are most popular)
 - [ ] Implement PWA support (offline use)
@@ -26,6 +24,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add structured data (JSON-LD) for search engines
 - [x] Create pricing page with Stripe Checkout integration
 - [x] Add privacy-friendly analytics (Vercel Analytics + Speed Insights)
 - [x] Implement dark mode toggle with light/dark/system cycling

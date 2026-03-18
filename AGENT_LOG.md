@@ -4,6 +4,17 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-17 | developer | Add structured data (JSON-LD) for search engines
+- Added `Organization` JSON-LD to root layout (site-wide)
+- Added `WebSite` JSON-LD with `SearchAction` to homepage
+- Added `ItemList` JSON-LD to homepage listing all 10 tools with positions and URLs
+- Added `WebApplication` JSON-LD to all 10 tool pages with name, description, category, and free offer
+- Schema types used: Organization, WebSite, ItemList, ListItem, WebApplication, Offer
+- All schemas follow schema.org spec and Google structured data guidelines
+- Build and lint pass cleanly
+
+---
+
 ### 2026-03-17 | developer | Create pricing page with Stripe Checkout integration
 - Installed `stripe` server-side SDK
 - Created `/api/checkout` API route: creates Stripe Checkout subscription sessions (monthly/yearly)

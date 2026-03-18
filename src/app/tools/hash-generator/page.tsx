@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Hash Generator (SHA-256, SHA-512)",
+  url: "https://free-solo-tools.vercel.app/tools/hash-generator",
+  description:
+    "Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes online. Uses the Web Crypto API for secure, client-side hashing.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function HashGeneratorPage() {
-  return <HashGeneratorTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HashGeneratorTool />
+    </>
+  );
 }

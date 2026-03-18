@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "UUID Generator",
+  url: "https://free-solo-tools.vercel.app/tools/uuid-generator",
+  description:
+    "Generate random UUID v4 identifiers instantly. Bulk generation supported.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function UuidGeneratorPage() {
-  return <UuidGeneratorTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <UuidGeneratorTool />
+    </>
+  );
 }

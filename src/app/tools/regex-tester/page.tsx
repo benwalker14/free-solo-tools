@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Regex Tester",
+  url: "https://free-solo-tools.vercel.app/tools/regex-tester",
+  description:
+    "Test and debug regular expressions in real time. See matches highlighted, capture groups, and match details.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function RegexTesterPage() {
-  return <RegexTesterTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <RegexTesterTool />
+    </>
+  );
 }

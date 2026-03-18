@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Base64 Encoder & Decoder",
+  url: "https://free-solo-tools.vercel.app/tools/base64",
+  description:
+    "Encode and decode Base64 strings online with full Unicode support. Fast, private, and free.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function Base64Page() {
-  return <Base64Tool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Base64Tool />
+    </>
+  );
 }

@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Diff Checker",
+  url: "https://free-solo-tools.vercel.app/tools/diff-checker",
+  description:
+    "Compare two blocks of text and see the differences highlighted side by side.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function DiffCheckerPage() {
-  return <DiffCheckerTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <DiffCheckerTool />
+    </>
+  );
 }

@@ -23,6 +23,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "JSON Formatter & Validator",
+  url: "https://free-solo-tools.vercel.app/tools/json-formatter",
+  description:
+    "Format, validate, and minify JSON data instantly. Syntax highlighting, error detection, and pretty-printing.",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function JsonFormatterPage() {
-  return <JsonFormatterTool />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <JsonFormatterTool />
+    </>
+  );
 }
