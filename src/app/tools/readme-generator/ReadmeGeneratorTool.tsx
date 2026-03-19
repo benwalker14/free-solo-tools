@@ -1,426 +1,458 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+/* ─── Types ─── */
 
-interface Badge {
-  id: string;
-  label: string;
-  url: string;
+interface ReadmeFields {
+  projectName: string;
+  description: string;
+  repoUrl: string;
+  homepageUrl: string;
+  authorName: string;
+  authorGithub: string;
+  license: string;
+  language: string;
+  packageManager: string;
+  installCmd: string;
+  usageCode: string;
+  features: string;
+  prerequisites: string;
+  contributing: boolean;
+  codeOfConduct: boolean;
+  changelog: boolean;
 }
 
-interface Section {
-  id: string;
-  key: string;
-  label: string;
-  enabled: boolean;
+interface BadgeConfig {
+  license: boolean;
+  buildStatus: boolean;
+  npm: boolean;
+  version: boolean;
+  prWelcome: boolean;
 }
 
-type PackageManager = "npm" | "yarn" | "pnpm" | "pip" | "cargo" | "go" | "composer" | "gem" | "other";
-
-// ─── Badge presets ──────────────────────────────────────────────────────────
-
-interface BadgePreset {
-  label: string;
-  getUrl: (owner: string, repo: string) => string;
-  getLink: (owner: string, repo: string) => string;
+interface SectionConfig {
+  badges: boolean;
+  features: boolean;
+  prerequisites: boolean;
+  installation: boolean;
+  usage: boolean;
+  contributing: boolean;
+  license: boolean;
+  acknowledgments: boolean;
 }
 
-const BADGE_PRESETS: BadgePreset[] = [
-  {
-    label: "License: MIT",
-    getUrl: (o, r) => `https://img.shields.io/github/license/${o}/${r}`,
-    getLink: (o, r) => `https://github.com/${o}/${r}/blob/main/LICENSE`,
-  },
-  {
-    label: "Build Status",
-    getUrl: (o, r) => `https://img.shields.io/github/actions/workflow/status/${o}/${r}/ci.yml?branch=main`,
-    getLink: (o, r) => `https://github.com/${o}/${r}/actions`,
-  },
-  {
-    label: "npm Version",
-    getUrl: (_o, r) => `https://img.shields.io/npm/v/${r}`,
-    getLink: (_o, r) => `https://www.npmjs.com/package/${r}`,
-  },
-  {
-    label: "Stars",
-    getUrl: (o, r) => `https://img.shields.io/github/stars/${o}/${r}`,
-    getLink: (o, r) => `https://github.com/${o}/${r}/stargazers`,
-  },
-  {
-    label: "Issues",
-    getUrl: (o, r) => `https://img.shields.io/github/issues/${o}/${r}`,
-    getLink: (o, r) => `https://github.com/${o}/${r}/issues`,
-  },
-  {
-    label: "PRs Welcome",
-    getUrl: () => `https://img.shields.io/badge/PRs-welcome-brightgreen.svg`,
-    getLink: () => `http://makeapullrequest.com`,
-  },
-  {
-    label: "Contributors",
-    getUrl: (o, r) => `https://img.shields.io/github/contributors/${o}/${r}`,
-    getLink: (o, r) => `https://github.com/${o}/${r}/graphs/contributors`,
-  },
-  {
-    label: "Downloads",
-    getUrl: (_o, r) => `https://img.shields.io/npm/dm/${r}`,
-    getLink: (_o, r) => `https://www.npmjs.com/package/${r}`,
-  },
+/* ─── Constants ─── */
+
+const LICENSES = [
+  "MIT",
+  "Apache-2.0",
+  "GPL-3.0",
+  "BSD-2-Clause",
+  "BSD-3-Clause",
+  "ISC",
+  "MPL-2.0",
+  "Unlicense",
+  "None",
 ];
 
-// ─── Section definitions ────────────────────────────────────────────────────
-
-const DEFAULT_SECTIONS: Omit<Section, "id">[] = [
-  { key: "badges", label: "Badges", enabled: true },
-  { key: "description", label: "Description", enabled: true },
-  { key: "features", label: "Features", enabled: true },
-  { key: "prerequisites", label: "Prerequisites", enabled: false },
-  { key: "installation", label: "Installation", enabled: true },
-  { key: "usage", label: "Usage", enabled: true },
-  { key: "api", label: "API Reference", enabled: false },
-  { key: "configuration", label: "Configuration", enabled: false },
-  { key: "screenshots", label: "Screenshots", enabled: false },
-  { key: "roadmap", label: "Roadmap", enabled: false },
-  { key: "contributing", label: "Contributing", enabled: true },
-  { key: "license", label: "License", enabled: true },
-  { key: "acknowledgments", label: "Acknowledgments", enabled: false },
+const LANGUAGES = [
+  "JavaScript",
+  "TypeScript",
+  "Python",
+  "Go",
+  "Rust",
+  "Java",
+  "C#",
+  "Ruby",
+  "PHP",
+  "Swift",
+  "Kotlin",
+  "C/C++",
+  "Other",
 ];
 
-const INSTALL_COMMANDS: Record<PackageManager, { install: string; dev?: string }> = {
-  npm: { install: "npm install", dev: "npm run dev" },
-  yarn: { install: "yarn add", dev: "yarn dev" },
-  pnpm: { install: "pnpm add", dev: "pnpm dev" },
-  pip: { install: "pip install" },
-  cargo: { install: "cargo add" },
-  go: { install: "go get" },
-  composer: { install: "composer require" },
-  gem: { install: "gem install" },
-  other: { install: "" },
+const PACKAGE_MANAGERS = [
+  "npm",
+  "yarn",
+  "pnpm",
+  "bun",
+  "pip",
+  "cargo",
+  "go",
+  "gem",
+  "composer",
+  "maven",
+  "other",
+];
+
+const PRESETS: Record<string, { label: string; desc: string }> = {
+  minimal: { label: "Minimal", desc: "Title, description, install, license" },
+  standard: {
+    label: "Standard",
+    desc: "Badges, features, install, usage, contributing, license",
+  },
+  comprehensive: {
+    label: "Comprehensive",
+    desc: "Everything — full professional README",
+  },
 };
 
-let sectionIdCounter = 0;
-function nextSectionId(): string {
-  return `sec_${++sectionIdCounter}`;
-}
+const DEFAULT_FIELDS: ReadmeFields = {
+  projectName: "",
+  description: "",
+  repoUrl: "",
+  homepageUrl: "",
+  authorName: "",
+  authorGithub: "",
+  license: "MIT",
+  language: "JavaScript",
+  packageManager: "npm",
+  installCmd: "",
+  usageCode: "",
+  features: "",
+  prerequisites: "",
+  contributing: true,
+  codeOfConduct: false,
+  changelog: false,
+};
 
-let badgeIdCounter = 0;
-function nextBadgeId(): string {
-  return `badge_${++badgeIdCounter}`;
-}
+const DEFAULT_BADGES: BadgeConfig = {
+  license: true,
+  buildStatus: false,
+  npm: false,
+  version: false,
+  prWelcome: false,
+};
 
-// ─── Component ──────────────────────────────────────────────────────────────
+const DEFAULT_SECTIONS: SectionConfig = {
+  badges: true,
+  features: true,
+  prerequisites: false,
+  installation: true,
+  usage: true,
+  contributing: true,
+  license: true,
+  acknowledgments: false,
+};
 
-export default function ReadmeGeneratorTool() {
-  // Project basics
-  const [projectName, setProjectName] = useState("My Awesome Project");
-  const [description, setDescription] = useState("A brief description of what this project does and who it's for.");
-  const [owner, setOwner] = useState("username");
-  const [repo, setRepo] = useState("my-awesome-project");
-  const [license, setLicense] = useState("MIT");
-  const [packageManager, setPackageManager] = useState<PackageManager>("npm");
+/* ─── Generator ─── */
 
-  // Content
-  const [features, setFeatures] = useState("Feature one\nFeature two\nFeature three");
-  const [prerequisites, setPrerequisites] = useState("Node.js >= 18\nnpm >= 9");
-  const [installSteps, setInstallSteps] = useState("");
-  const [usageCode, setUsageCode] = useState("");
-  const [usageLang, setUsageLang] = useState("bash");
-  const [apiContent, setApiContent] = useState("");
-  const [configContent, setConfigContent] = useState("");
-  const [screenshotUrl, setScreenshotUrl] = useState("");
-  const [roadmapItems, setRoadmapItems] = useState("Add more features\nImprove documentation\nAdd tests");
-  const [acknowledgments, setAcknowledgments] = useState("");
-  const [authorName, setAuthorName] = useState("");
+function generateReadme(
+  fields: ReadmeFields,
+  badges: BadgeConfig,
+  sections: SectionConfig
+): string {
+  const lines: string[] = [];
+  const repoPath = extractRepoPath(fields.repoUrl);
 
-  // Badges & sections
-  const [badges, setBadges] = useState<Badge[]>([]);
-  const [sections, setSections] = useState<Section[]>(() =>
-    DEFAULT_SECTIONS.map((s) => ({ ...s, id: nextSectionId() })),
-  );
+  // Title
+  lines.push(`# ${fields.projectName || "Project Name"}`);
+  lines.push("");
 
-  // Output
-  const [copied, setCopied] = useState(false);
-
-  const { trackAction } = useToolAnalytics("readme-generator");
-  const { remaining, dailyLimit, isLimited, recordUsage } =
-    useRateLimit("readme-generator");
-
-  // ─── Badge management ───────────────────────────────────────────────────
-
-  function addPresetBadge(preset: BadgePreset) {
-    const url = preset.getUrl(owner, repo);
-    const link = preset.getLink(owner, repo);
-    setBadges((prev) => [
-      ...prev,
-      { id: nextBadgeId(), label: preset.label, url: `[![${preset.label}](${url})](${link})` },
-    ]);
-  }
-
-  function removeBadge(id: string) {
-    setBadges((prev) => prev.filter((b) => b.id !== id));
-  }
-
-  // ─── Section management ─────────────────────────────────────────────────
-
-  function toggleSection(id: string) {
-    setSections((prev) =>
-      prev.map((s) => (s.id === id ? { ...s, enabled: !s.enabled } : s)),
-    );
-  }
-
-  function moveSection(id: string, direction: -1 | 1) {
-    setSections((prev) => {
-      const idx = prev.findIndex((s) => s.id === id);
-      if (idx < 0) return prev;
-      const newIdx = idx + direction;
-      if (newIdx < 0 || newIdx >= prev.length) return prev;
-      const next = [...prev];
-      [next[idx], next[newIdx]] = [next[newIdx], next[idx]];
-      return next;
-    });
-  }
-
-  // ─── Generate markdown ──────────────────────────────────────────────────
-
-  const output = useMemo(() => {
-    const lines: string[] = [];
-    const enabledKeys = new Set(sections.filter((s) => s.enabled).map((s) => s.key));
-
-    // Title
-    lines.push(`# ${projectName}`);
+  // Description
+  if (fields.description) {
+    lines.push(`> ${fields.description}`);
     lines.push("");
+  }
 
-    // Badges
-    if (enabledKeys.has("badges") && badges.length > 0) {
-      lines.push(badges.map((b) => b.url).join(" "));
+  // Badges
+  if (sections.badges) {
+    const badgeLines: string[] = [];
+    if (badges.license && fields.license !== "None" && repoPath) {
+      badgeLines.push(
+        `[![License: ${fields.license}](https://img.shields.io/badge/License-${encodeURIComponent(fields.license)}-blue.svg)](https://opensource.org/licenses/${fields.license})`
+      );
+    }
+    if (badges.buildStatus && repoPath) {
+      badgeLines.push(
+        `[![Build Status](https://img.shields.io/github/actions/workflow/status/${repoPath}/ci.yml?branch=main)](https://github.com/${repoPath}/actions)`
+      );
+    }
+    if (badges.npm && fields.projectName) {
+      const pkg = fields.projectName.toLowerCase().replace(/\s+/g, "-");
+      badgeLines.push(
+        `[![npm version](https://img.shields.io/npm/v/${pkg}.svg)](https://www.npmjs.com/package/${pkg})`
+      );
+    }
+    if (badges.version && repoPath) {
+      badgeLines.push(
+        `[![GitHub release](https://img.shields.io/github/v/release/${repoPath})](https://github.com/${repoPath}/releases)`
+      );
+    }
+    if (badges.prWelcome) {
+      badgeLines.push(
+        "[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)"
+      );
+    }
+    if (badgeLines.length > 0) {
+      lines.push(badgeLines.join(" "));
       lines.push("");
     }
+  }
 
-    // Description
-    if (enabledKeys.has("description") && description.trim()) {
-      lines.push(description.trim());
-      lines.push("");
+  // Homepage link
+  if (fields.homepageUrl) {
+    lines.push(`**[Live Demo / Homepage](${fields.homepageUrl})**`);
+    lines.push("");
+  }
+
+  // Features
+  if (sections.features && fields.features.trim()) {
+    lines.push("## Features");
+    lines.push("");
+    const featureList = fields.features
+      .split("\n")
+      .map((f) => f.trim())
+      .filter(Boolean);
+    for (const f of featureList) {
+      const line = f.startsWith("-") || f.startsWith("*") ? f : `- ${f}`;
+      lines.push(line);
     }
+    lines.push("");
+  }
 
-    // Table of contents
-    const tocSections = sections.filter(
-      (s) => s.enabled && s.key !== "badges" && s.key !== "description",
-    );
-    if (tocSections.length > 2) {
-      lines.push("## Table of Contents");
-      lines.push("");
-      for (const s of tocSections) {
-        const anchor = s.label.toLowerCase().replace(/\s+/g, "-");
-        lines.push(`- [${s.label}](#${anchor})`);
-      }
-      lines.push("");
+  // Prerequisites
+  if (sections.prerequisites && fields.prerequisites.trim()) {
+    lines.push("## Prerequisites");
+    lines.push("");
+    const prereqs = fields.prerequisites
+      .split("\n")
+      .map((p) => p.trim())
+      .filter(Boolean);
+    for (const p of prereqs) {
+      const line = p.startsWith("-") || p.startsWith("*") ? p : `- ${p}`;
+      lines.push(line);
     }
+    lines.push("");
+  }
 
-    // Features
-    if (enabledKeys.has("features") && features.trim()) {
-      lines.push("## Features");
-      lines.push("");
-      for (const f of features.split("\n").filter(Boolean)) {
-        lines.push(`- ${f.trim()}`);
-      }
-      lines.push("");
-    }
-
-    // Prerequisites
-    if (enabledKeys.has("prerequisites") && prerequisites.trim()) {
-      lines.push("## Prerequisites");
-      lines.push("");
-      for (const p of prerequisites.split("\n").filter(Boolean)) {
-        lines.push(`- ${p.trim()}`);
-      }
-      lines.push("");
-    }
-
-    // Installation
-    if (enabledKeys.has("installation")) {
-      lines.push("## Installation");
-      lines.push("");
-
-      if (installSteps.trim()) {
-        lines.push(installSteps.trim());
-      } else {
-        const pm = INSTALL_COMMANDS[packageManager];
-        lines.push("Clone the repository:");
-        lines.push("");
-        lines.push("```bash");
-        lines.push(`git clone https://github.com/${owner}/${repo}.git`);
-        lines.push(`cd ${repo}`);
-        lines.push("```");
-        lines.push("");
-
-        if (pm.install) {
-          lines.push("Install dependencies:");
-          lines.push("");
-          lines.push("```bash");
-          lines.push(`${pm.install}`);
-          lines.push("```");
-          lines.push("");
-        }
-
-        if (pm.dev) {
-          lines.push("Start the development server:");
-          lines.push("");
-          lines.push("```bash");
-          lines.push(pm.dev);
-          lines.push("```");
-          lines.push("");
-        }
-      }
-    }
-
-    // Usage
-    if (enabledKeys.has("usage")) {
-      lines.push("## Usage");
-      lines.push("");
-      if (usageCode.trim()) {
-        lines.push(`\`\`\`${usageLang}`);
-        lines.push(usageCode.trim());
-        lines.push("```");
-      } else {
-        lines.push(`\`\`\`${usageLang}`);
-        if (packageManager === "npm" || packageManager === "yarn" || packageManager === "pnpm") {
-          lines.push(`${packageManager === "npm" ? "npx" : packageManager} ${repo}`);
-        } else {
-          lines.push(`# Add usage examples here`);
-        }
-        lines.push("```");
-      }
-      lines.push("");
-    }
-
-    // API Reference
-    if (enabledKeys.has("api")) {
-      lines.push("## API Reference");
-      lines.push("");
-      if (apiContent.trim()) {
-        lines.push(apiContent.trim());
-      } else {
-        lines.push("| Method | Endpoint | Description |");
-        lines.push("|--------|----------|-------------|");
-        lines.push("| `GET` | `/api/example` | Get all items |");
-        lines.push("| `POST` | `/api/example` | Create an item |");
-      }
-      lines.push("");
-    }
-
-    // Configuration
-    if (enabledKeys.has("configuration")) {
-      lines.push("## Configuration");
-      lines.push("");
-      if (configContent.trim()) {
-        lines.push(configContent.trim());
-      } else {
-        lines.push("Create a `.env` file in the root directory:");
-        lines.push("");
-        lines.push("```env");
-        lines.push("API_KEY=your_api_key");
-        lines.push("DATABASE_URL=your_database_url");
-        lines.push("```");
-      }
-      lines.push("");
-    }
-
-    // Screenshots
-    if (enabledKeys.has("screenshots")) {
-      lines.push("## Screenshots");
-      lines.push("");
-      if (screenshotUrl.trim()) {
-        lines.push(`![Screenshot](${screenshotUrl.trim()})`);
-      } else {
-        lines.push("![Screenshot](https://via.placeholder.com/800x400?text=Screenshot)");
-      }
-      lines.push("");
-    }
-
-    // Roadmap
-    if (enabledKeys.has("roadmap") && roadmapItems.trim()) {
-      lines.push("## Roadmap");
-      lines.push("");
-      for (const item of roadmapItems.split("\n").filter(Boolean)) {
-        lines.push(`- [ ] ${item.trim()}`);
-      }
-      lines.push("");
-    }
-
-    // Contributing
-    if (enabledKeys.has("contributing")) {
-      lines.push("## Contributing");
-      lines.push("");
-      lines.push("Contributions are welcome! Here's how you can help:");
-      lines.push("");
-      lines.push("1. Fork the repository");
-      lines.push(`2. Create a feature branch (\`git checkout -b feature/amazing-feature\`)`);
-      lines.push(`3. Commit your changes (\`git commit -m 'Add amazing feature'\`)`);
-      lines.push(`4. Push to the branch (\`git push origin feature/amazing-feature\`)`);
-      lines.push("5. Open a Pull Request");
-      lines.push("");
-    }
-
-    // License
-    if (enabledKeys.has("license")) {
-      lines.push("## License");
-      lines.push("");
+  // Installation
+  if (sections.installation) {
+    lines.push("## Installation");
+    lines.push("");
+    const installCmd = fields.installCmd.trim() || guessInstallCmd(fields);
+    if (repoPath) {
+      lines.push("```bash");
+      lines.push(`git clone https://github.com/${repoPath}.git`);
       lines.push(
-        `This project is licensed under the ${license} License — see the [LICENSE](LICENSE) file for details.`,
+        `cd ${repoPath.split("/").pop() || fields.projectName.toLowerCase().replace(/\s+/g, "-")}`
+      );
+      lines.push(installCmd);
+      lines.push("```");
+    } else {
+      lines.push("```bash");
+      lines.push(installCmd);
+      lines.push("```");
+    }
+    lines.push("");
+  }
+
+  // Usage
+  if (sections.usage) {
+    lines.push("## Usage");
+    lines.push("");
+    if (fields.usageCode.trim()) {
+      const lang = guessCodeLang(fields.language);
+      lines.push("```" + lang);
+      lines.push(fields.usageCode.trim());
+      lines.push("```");
+    } else {
+      const lang = guessCodeLang(fields.language);
+      lines.push("```" + lang);
+      lines.push(guessUsageCmd(fields));
+      lines.push("```");
+    }
+    lines.push("");
+  }
+
+  // Contributing
+  if (sections.contributing) {
+    lines.push("## Contributing");
+    lines.push("");
+    lines.push("Contributions are welcome! Please follow these steps:");
+    lines.push("");
+    lines.push("1. Fork the repository");
+    lines.push(
+      "2. Create a feature branch (`git checkout -b feature/amazing-feature`)"
+    );
+    lines.push(
+      "3. Commit your changes (`git commit -m 'Add amazing feature'`)"
+    );
+    lines.push(
+      "4. Push to the branch (`git push origin feature/amazing-feature`)"
+    );
+    lines.push("5. Open a Pull Request");
+    lines.push("");
+    if (fields.codeOfConduct) {
+      lines.push(
+        "Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing."
       );
       lines.push("");
     }
-
-    // Acknowledgments
-    if (enabledKeys.has("acknowledgments") && acknowledgments.trim()) {
-      lines.push("## Acknowledgments");
-      lines.push("");
-      for (const a of acknowledgments.split("\n").filter(Boolean)) {
-        lines.push(`- ${a.trim()}`);
-      }
-      lines.push("");
-    }
-
-    // Footer
-    if (authorName.trim()) {
-      lines.push("---");
-      lines.push("");
-      lines.push(`Made with ❤️ by [${authorName.trim()}](https://github.com/${owner})`);
-      lines.push("");
-    }
-
-    return lines.join("\n");
-  }, [
-    projectName, description, owner, repo, license, packageManager,
-    features, prerequisites, installSteps, usageCode, usageLang,
-    apiContent, configContent, screenshotUrl, roadmapItems,
-    acknowledgments, authorName, badges, sections,
-  ]);
-
-  const handleGenerate = useCallback(() => {
-    if (isLimited) return;
-    recordUsage();
-    trackAction("generate");
-  }, [isLimited, recordUsage, trackAction]);
-
-  useKeyboardShortcut("Enter", handleGenerate);
-
-  function handleCopy() {
-    navigator.clipboard.writeText(output);
-    setCopied(true);
-    trackAction("copy");
-    if (!isLimited) recordUsage();
-    setTimeout(() => setCopied(false), 1500);
   }
 
-  function handleDownload() {
+  // Changelog
+  if (fields.changelog) {
+    lines.push("## Changelog");
+    lines.push("");
+    lines.push("See [CHANGELOG.md](CHANGELOG.md) for a list of changes.");
+    lines.push("");
+  }
+
+  // License
+  if (sections.license && fields.license !== "None") {
+    lines.push("## License");
+    lines.push("");
+    if (fields.license === "MIT") {
+      lines.push(
+        "This project is licensed under the [MIT License](LICENSE) — see the [LICENSE](LICENSE) file for details."
+      );
+    } else {
+      lines.push(
+        `Distributed under the ${fields.license} License. See [LICENSE](LICENSE) for more information.`
+      );
+    }
+    lines.push("");
+    lines.push("---");
+    lines.push("");
+    const heart = "\u2764\uFE0F";
+    lines.push(
+      `Made with ${heart} by [${fields.authorName || "Your Name"}](https://github.com/${fields.authorGithub || "username"})`
+    );
+    lines.push("");
+  }
+
+  // Acknowledgments
+  if (sections.acknowledgments) {
+    lines.push("## Acknowledgments");
+    lines.push("");
+    lines.push(
+      "- List resources, libraries, or people you'd like to thank"
+    );
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+function extractRepoPath(url: string): string {
+  if (!url) return "";
+  const match = url.match(/github\.com[/:]([^/]+\/[^/.]+)/);
+  return match ? match[1] : "";
+}
+
+function guessInstallCmd(fields: ReadmeFields): string {
+  const pm = fields.packageManager;
+  switch (pm) {
+    case "npm":
+      return "npm install";
+    case "yarn":
+      return "yarn install";
+    case "pnpm":
+      return "pnpm install";
+    case "bun":
+      return "bun install";
+    case "pip":
+      return "pip install -r requirements.txt";
+    case "cargo":
+      return "cargo build";
+    case "go":
+      return "go mod download";
+    case "gem":
+      return "bundle install";
+    case "composer":
+      return "composer install";
+    case "maven":
+      return "mvn install";
+    default:
+      return "# install dependencies";
+  }
+}
+
+function guessCodeLang(language: string): string {
+  const map: Record<string, string> = {
+    JavaScript: "javascript",
+    TypeScript: "typescript",
+    Python: "python",
+    Go: "go",
+    Rust: "rust",
+    Java: "java",
+    "C#": "csharp",
+    Ruby: "ruby",
+    PHP: "php",
+    Swift: "swift",
+    Kotlin: "kotlin",
+    "C/C++": "c",
+  };
+  return map[language] || "bash";
+}
+
+function guessUsageCmd(fields: ReadmeFields): string {
+  const pm = fields.packageManager;
+  switch (pm) {
+    case "npm":
+      return "npm start";
+    case "yarn":
+      return "yarn start";
+    case "pnpm":
+      return "pnpm start";
+    case "bun":
+      return "bun start";
+    case "pip":
+      return "python main.py";
+    case "cargo":
+      return "cargo run";
+    case "go":
+      return "go run .";
+    case "gem":
+      return "ruby main.rb";
+    case "composer":
+      return "php artisan serve";
+    case "maven":
+      return "mvn spring-boot:run";
+    default:
+      return "# run the project";
+  }
+}
+
+/* ─── Component ─── */
+
+export default function ReadmeGeneratorTool() {
+  const [fields, setFields] = useState<ReadmeFields>(DEFAULT_FIELDS);
+  const [badges, setBadges] = useState<BadgeConfig>(DEFAULT_BADGES);
+  const [sections, setSections] = useState<SectionConfig>(DEFAULT_SECTIONS);
+  const [copied, setCopied] = useState(false);
+  const [preview, setPreview] = useState<"raw" | "preview">("raw");
+  const { trackAction } = useToolAnalytics("readme-generator");
+  const { isLimited, remaining, dailyLimit, recordUsage } =
+    useRateLimit("readme-generator");
+
+  const output = useMemo(
+    () => generateReadme(fields, badges, sections),
+    [fields, badges, sections]
+  );
+
+  const handleCopy = async () => {
+    if (!output.trim()) return;
+    recordUsage();
+    if (isLimited) return;
+    trackAction("copy");
+    await navigator.clipboard.writeText(output);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownload = () => {
+    if (!output.trim()) return;
+    recordUsage();
+    if (isLimited) return;
+    trackAction("download");
     const blob = new Blob([output], { type: "text/markdown" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -428,427 +460,585 @@ export default function ReadmeGeneratorTool() {
     a.download = "README.md";
     a.click();
     URL.revokeObjectURL(url);
-    trackAction("download");
-    if (!isLimited) recordUsage();
-  }
+  };
 
-  // ─── Render ───────────────────────────────────────────────────────────
+  useKeyboardShortcut("Enter", handleCopy);
 
-  const inputClasses =
-    "w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100";
-  const labelClasses = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
-  const cardClasses =
-    "rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900";
+  const update = <K extends keyof ReadmeFields>(
+    key: K,
+    value: ReadmeFields[K]
+  ) => {
+    setFields((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const toggleBadge = (key: keyof BadgeConfig) => {
+    setBadges((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const toggleSection = (key: keyof SectionConfig) => {
+    setSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const applyPreset = (preset: string) => {
+    switch (preset) {
+      case "minimal":
+        setSections({
+          badges: false,
+          features: false,
+          prerequisites: false,
+          installation: true,
+          usage: false,
+          contributing: false,
+          license: true,
+          acknowledgments: false,
+        });
+        break;
+      case "standard":
+        setSections({
+          badges: true,
+          features: true,
+          prerequisites: false,
+          installation: true,
+          usage: true,
+          contributing: true,
+          license: true,
+          acknowledgments: false,
+        });
+        break;
+      case "comprehensive":
+        setSections({
+          badges: true,
+          features: true,
+          prerequisites: true,
+          installation: true,
+          usage: true,
+          contributing: true,
+          license: true,
+          acknowledgments: true,
+        });
+        break;
+    }
+  };
+
+  const reset = () => {
+    setFields(DEFAULT_FIELDS);
+    setBadges(DEFAULT_BADGES);
+    setSections(DEFAULT_SECTIONS);
+  };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <Link
-        href="/"
-        className="mb-8 block text-sm text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
-      >
-        &larr; Back to tools
-      </Link>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="mb-6">
+        <Link
+          href="/"
+          className="text-blue-400 hover:text-blue-300 text-sm transition-colors"
+        >
+          &larr; Back to Tools
+        </Link>
+      </div>
 
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-        README Generator
-      </h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-8">
-        Generate a professional GitHub README.md for your project. Fill in the
-        details, toggle sections, and copy or download the result.
+      <h1 className="text-3xl font-bold text-white mb-2">README Generator</h1>
+      <p className="text-slate-400 mb-6">
+        Generate professional GitHub README.md files with badges, installation
+        steps, usage examples, and more.
       </p>
 
       <RateLimitBanner
+        isLimited={isLimited}
         remaining={remaining}
         dailyLimit={dailyLimit}
-        isLimited={isLimited}
       />
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Left column: inputs */}
+      {/* Preset buttons */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {Object.entries(PRESETS).map(([key, { label, desc }]) => (
+          <button
+            key={key}
+            onClick={() => applyPreset(key)}
+            title={desc}
+            className="px-3 py-1.5 bg-slate-800 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white text-sm rounded-lg transition-colors"
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left — Form */}
         <div className="space-y-6">
-          {/* Project basics */}
-          <div className={cardClasses}>
-            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-              Project Details
+          {/* Project Info */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Project Info
             </h2>
-            <div className="space-y-3">
-              <div>
-                <label className={labelClasses}>Project Name</label>
-                <input
-                  type="text"
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  className={inputClasses}
-                  placeholder="My Awesome Project"
+            <div className="space-y-4">
+              <Field
+                label="Project Name"
+                value={fields.projectName}
+                onChange={(v) => update("projectName", v)}
+                placeholder="my-awesome-project"
+              />
+              <TextArea
+                label="Description"
+                value={fields.description}
+                onChange={(v) => update("description", v)}
+                placeholder="A brief description of what your project does and why it matters."
+                rows={2}
+              />
+              <Field
+                label="GitHub Repository URL"
+                value={fields.repoUrl}
+                onChange={(v) => update("repoUrl", v)}
+                placeholder="https://github.com/username/repo"
+              />
+              <Field
+                label="Homepage / Demo URL"
+                value={fields.homepageUrl}
+                onChange={(v) => update("homepageUrl", v)}
+                placeholder="https://my-project.dev"
+              />
+              <div className="grid grid-cols-2 gap-4">
+                <Field
+                  label="Author Name"
+                  value={fields.authorName}
+                  onChange={(v) => update("authorName", v)}
+                  placeholder="John Doe"
+                />
+                <Field
+                  label="GitHub Username"
+                  value={fields.authorGithub}
+                  onChange={(v) => update("authorGithub", v)}
+                  placeholder="johndoe"
                 />
               </div>
-              <div>
-                <label className={labelClasses}>Description</label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className={inputClasses + " min-h-[60px]"}
-                  rows={2}
-                  placeholder="A brief description of what this project does..."
+            </div>
+          </div>
+
+          {/* Tech & Build */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Tech Stack
+            </h2>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <SelectField
+                  label="Language"
+                  value={fields.language}
+                  onChange={(v) => update("language", v)}
+                  options={LANGUAGES}
+                />
+                <SelectField
+                  label="Package Manager"
+                  value={fields.packageManager}
+                  onChange={(v) => update("packageManager", v)}
+                  options={PACKAGE_MANAGERS}
                 />
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className={labelClasses}>GitHub Owner</label>
-                  <input
-                    type="text"
-                    value={owner}
-                    onChange={(e) => setOwner(e.target.value)}
-                    className={inputClasses}
-                    placeholder="username"
-                  />
-                </div>
-                <div>
-                  <label className={labelClasses}>Repository Name</label>
-                  <input
-                    type="text"
-                    value={repo}
-                    onChange={(e) => setRepo(e.target.value)}
-                    className={inputClasses}
-                    placeholder="my-awesome-project"
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className={labelClasses}>Package Manager</label>
-                  <select
-                    value={packageManager}
-                    onChange={(e) => setPackageManager(e.target.value as PackageManager)}
-                    className={inputClasses}
+              <SelectField
+                label="License"
+                value={fields.license}
+                onChange={(v) => update("license", v)}
+                options={LICENSES}
+              />
+            </div>
+          </div>
+
+          {/* Sections Toggle */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">Sections</h2>
+            <div className="grid grid-cols-2 gap-3">
+              {(Object.keys(sections) as (keyof SectionConfig)[]).map(
+                (key) => (
+                  <label
+                    key={key}
+                    className="flex items-center gap-2 cursor-pointer text-sm text-slate-300 hover:text-white"
                   >
-                    <option value="npm">npm</option>
-                    <option value="yarn">yarn</option>
-                    <option value="pnpm">pnpm</option>
-                    <option value="pip">pip (Python)</option>
-                    <option value="cargo">cargo (Rust)</option>
-                    <option value="go">go</option>
-                    <option value="composer">composer (PHP)</option>
-                    <option value="gem">gem (Ruby)</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className={labelClasses}>License</label>
-                  <select
-                    value={license}
-                    onChange={(e) => setLicense(e.target.value)}
-                    className={inputClasses}
-                  >
-                    <option value="MIT">MIT</option>
-                    <option value="Apache-2.0">Apache 2.0</option>
-                    <option value="GPL-3.0">GPL 3.0</option>
-                    <option value="BSD-2-Clause">BSD 2-Clause</option>
-                    <option value="BSD-3-Clause">BSD 3-Clause</option>
-                    <option value="ISC">ISC</option>
-                    <option value="MPL-2.0">MPL 2.0</option>
-                    <option value="Unlicense">Unlicense</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className={labelClasses}>Author Name (optional)</label>
-                <input
-                  type="text"
-                  value={authorName}
-                  onChange={(e) => setAuthorName(e.target.value)}
-                  className={inputClasses}
-                  placeholder="Your Name"
-                />
-              </div>
+                    <input
+                      type="checkbox"
+                      checked={sections[key]}
+                      onChange={() => toggleSection(key)}
+                      className="w-4 h-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+                    />
+                    {sectionLabel(key)}
+                  </label>
+                )
+              )}
             </div>
           </div>
 
           {/* Badges */}
-          <div className={cardClasses}>
-            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-              Badges
-            </h2>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {BADGE_PRESETS.map((preset) => (
-                <button
-                  key={preset.label}
-                  onClick={() => addPresetBadge(preset)}
-                  className="rounded border border-gray-300 bg-white px-2.5 py-1 text-xs font-medium text-gray-600 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 transition-colors dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-indigo-950 dark:hover:border-indigo-700 dark:hover:text-indigo-300"
-                >
-                  + {preset.label}
-                </button>
-              ))}
-            </div>
-            {badges.length > 0 && (
-              <div className="space-y-1.5">
-                {badges.map((badge) => (
-                  <div
-                    key={badge.id}
-                    className="flex items-center gap-2 rounded border border-gray-100 bg-gray-50 px-2.5 py-1.5 text-xs dark:border-gray-700 dark:bg-gray-800"
+          {sections.badges && (
+            <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+              <h2 className="text-lg font-semibold text-white mb-4">Badges</h2>
+              <div className="grid grid-cols-2 gap-3">
+                {(Object.keys(badges) as (keyof BadgeConfig)[]).map((key) => (
+                  <label
+                    key={key}
+                    className="flex items-center gap-2 cursor-pointer text-sm text-slate-300 hover:text-white"
                   >
-                    <span className="flex-1 font-medium text-gray-700 dark:text-gray-300 truncate">
-                      {badge.label}
-                    </span>
-                    <button
-                      onClick={() => removeBadge(badge.id)}
-                      className="text-gray-400 hover:text-red-600 dark:text-gray-500 dark:hover:text-red-400"
-                    >
-                      &times;
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-            {badges.length === 0 && (
-              <p className="text-xs text-gray-400 dark:text-gray-600">
-                Click badges above to add them. They use your GitHub owner/repo.
-              </p>
-            )}
-          </div>
-
-          {/* Sections toggle */}
-          <div className={cardClasses}>
-            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-              Sections
-            </h2>
-            <div className="space-y-1.5">
-              {sections.map((section, idx) => (
-                <div
-                  key={section.id}
-                  className="flex items-center gap-2"
-                >
-                  <div className="flex flex-col gap-0.5">
-                    <button
-                      onClick={() => moveSection(section.id, -1)}
-                      disabled={idx === 0}
-                      className="text-[10px] leading-none text-gray-400 hover:text-gray-600 disabled:opacity-30 dark:text-gray-500 dark:hover:text-gray-300"
-                    >
-                      ▲
-                    </button>
-                    <button
-                      onClick={() => moveSection(section.id, 1)}
-                      disabled={idx === sections.length - 1}
-                      className="text-[10px] leading-none text-gray-400 hover:text-gray-600 disabled:opacity-30 dark:text-gray-500 dark:hover:text-gray-300"
-                    >
-                      ▼
-                    </button>
-                  </div>
-                  <label className="flex flex-1 items-center gap-2 cursor-pointer text-sm text-gray-700 dark:text-gray-300">
                     <input
                       type="checkbox"
-                      checked={section.enabled}
-                      onChange={() => toggleSection(section.id)}
-                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-900"
+                      checked={badges[key]}
+                      onChange={() => toggleBadge(key)}
+                      className="w-4 h-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
                     />
-                    {section.label}
+                    {badgeLabel(key)}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Content Sections */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">Content</h2>
+            <div className="space-y-4">
+              {sections.features && (
+                <TextArea
+                  label="Features (one per line)"
+                  value={fields.features}
+                  onChange={(v) => update("features", v)}
+                  placeholder={
+                    "Fast and lightweight\nEasy to configure\nFull TypeScript support"
+                  }
+                  rows={4}
+                />
+              )}
+              {sections.prerequisites && (
+                <TextArea
+                  label="Prerequisites (one per line)"
+                  value={fields.prerequisites}
+                  onChange={(v) => update("prerequisites", v)}
+                  placeholder={"Node.js >= 18\nnpm >= 9"}
+                  rows={2}
+                />
+              )}
+              {sections.installation && (
+                <TextArea
+                  label="Install Command (override)"
+                  value={fields.installCmd}
+                  onChange={(v) => update("installCmd", v)}
+                  placeholder={`Leave blank to auto-generate from package manager (${guessInstallCmd(fields)})`}
+                  rows={2}
+                />
+              )}
+              {sections.usage && (
+                <TextArea
+                  label="Usage Code"
+                  value={fields.usageCode}
+                  onChange={(v) => update("usageCode", v)}
+                  placeholder="Leave blank for default, or paste a code example"
+                  rows={4}
+                />
+              )}
+              {sections.contributing && (
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm text-slate-300 hover:text-white">
+                    <input
+                      type="checkbox"
+                      checked={fields.codeOfConduct}
+                      onChange={() =>
+                        update("codeOfConduct", !fields.codeOfConduct)
+                      }
+                      className="w-4 h-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+                    />
+                    Include Code of Conduct reference
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer text-sm text-slate-300 hover:text-white">
+                    <input
+                      type="checkbox"
+                      checked={fields.changelog}
+                      onChange={() => update("changelog", !fields.changelog)}
+                      className="w-4 h-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+                    />
+                    Include Changelog section
                   </label>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
-          {/* Content sections */}
-          {sections.find((s) => s.key === "features")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Features (one per line)
-              </h2>
-              <textarea
-                value={features}
-                onChange={(e) => setFeatures(e.target.value)}
-                className={inputClasses + " min-h-[80px] font-mono"}
-                rows={4}
-                placeholder={"Feature one\nFeature two\nFeature three"}
-              />
-            </div>
-          )}
+          <button
+            onClick={reset}
+            className="text-sm text-slate-400 hover:text-white transition-colors"
+          >
+            Reset all fields
+          </button>
+        </div>
 
-          {sections.find((s) => s.key === "prerequisites")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Prerequisites (one per line)
-              </h2>
-              <textarea
-                value={prerequisites}
-                onChange={(e) => setPrerequisites(e.target.value)}
-                className={inputClasses + " min-h-[60px] font-mono"}
-                rows={3}
-                placeholder={"Node.js >= 18\nnpm >= 9"}
-              />
-            </div>
-          )}
-
-          {sections.find((s) => s.key === "installation")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Custom Install Steps (optional — leave blank for auto-generated)
-              </h2>
-              <textarea
-                value={installSteps}
-                onChange={(e) => setInstallSteps(e.target.value)}
-                className={inputClasses + " min-h-[80px] font-mono"}
-                rows={4}
-                placeholder="Leave blank to auto-generate from package manager..."
-              />
-            </div>
-          )}
-
-          {sections.find((s) => s.key === "usage")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Usage Example
-              </h2>
-              <div className="mb-2">
-                <label className={labelClasses}>Language</label>
-                <select
-                  value={usageLang}
-                  onChange={(e) => setUsageLang(e.target.value)}
-                  className={inputClasses + " w-32"}
+        {/* Right — Output */}
+        <div className="space-y-6">
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex bg-slate-900 rounded-lg p-0.5">
+                <button
+                  onClick={() => setPreview("raw")}
+                  className={`px-3 py-1 text-sm rounded-md transition-colors ${
+                    preview === "raw"
+                      ? "bg-slate-700 text-white"
+                      : "text-slate-400 hover:text-white"
+                  }`}
                 >
-                  {["bash", "javascript", "typescript", "python", "go", "rust", "java", "ruby", "php", "csharp"].map((l) => (
-                    <option key={l} value={l}>{l}</option>
-                  ))}
-                </select>
+                  Markdown
+                </button>
+                <button
+                  onClick={() => setPreview("preview")}
+                  className={`px-3 py-1 text-sm rounded-md transition-colors ${
+                    preview === "preview"
+                      ? "bg-slate-700 text-white"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Preview
+                </button>
               </div>
-              <textarea
-                value={usageCode}
-                onChange={(e) => setUsageCode(e.target.value)}
-                className={inputClasses + " min-h-[80px] font-mono"}
-                rows={4}
-                placeholder="Add your usage example code here..."
-              />
+              <div className="flex gap-2">
+                <button
+                  onClick={handleDownload}
+                  disabled={isLimited}
+                  className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 disabled:bg-slate-600 disabled:cursor-not-allowed text-white text-sm rounded-lg transition-colors"
+                >
+                  Download .md
+                </button>
+                <button
+                  onClick={handleCopy}
+                  disabled={isLimited}
+                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-600 disabled:cursor-not-allowed text-white text-sm rounded-lg transition-colors"
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
-          )}
 
-          {sections.find((s) => s.key === "api")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                API Reference (markdown)
-              </h2>
-              <textarea
-                value={apiContent}
-                onChange={(e) => setApiContent(e.target.value)}
-                className={inputClasses + " min-h-[80px] font-mono"}
-                rows={4}
-                placeholder="Leave blank for a sample API table..."
-              />
-            </div>
-          )}
-
-          {sections.find((s) => s.key === "configuration")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Configuration (markdown)
-              </h2>
-              <textarea
-                value={configContent}
-                onChange={(e) => setConfigContent(e.target.value)}
-                className={inputClasses + " min-h-[80px] font-mono"}
-                rows={4}
-                placeholder="Leave blank for a sample .env example..."
-              />
-            </div>
-          )}
-
-          {sections.find((s) => s.key === "screenshots")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Screenshot URL
-              </h2>
-              <input
-                type="text"
-                value={screenshotUrl}
-                onChange={(e) => setScreenshotUrl(e.target.value)}
-                className={inputClasses}
-                placeholder="https://example.com/screenshot.png"
-              />
-            </div>
-          )}
-
-          {sections.find((s) => s.key === "roadmap")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Roadmap Items (one per line)
-              </h2>
-              <textarea
-                value={roadmapItems}
-                onChange={(e) => setRoadmapItems(e.target.value)}
-                className={inputClasses + " min-h-[60px] font-mono"}
-                rows={3}
-                placeholder={"Add more features\nImprove documentation"}
-              />
-            </div>
-          )}
-
-          {sections.find((s) => s.key === "acknowledgments")?.enabled && (
-            <div className={cardClasses}>
-              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Acknowledgments (one per line)
-              </h2>
-              <textarea
-                value={acknowledgments}
-                onChange={(e) => setAcknowledgments(e.target.value)}
-                className={inputClasses + " min-h-[60px] font-mono"}
-                rows={3}
-                placeholder={"Inspired by awesome-readme\nBuilt with Next.js"}
-              />
-            </div>
-          )}
-        </div>
-
-        {/* Right column: live preview */}
-        <div className="lg:sticky lg:top-6 lg:self-start">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-              README.md Preview
-            </h2>
-            <div className="flex gap-2">
-              <button
-                onClick={handleDownload}
-                className="rounded border border-gray-300 px-3 py-1 text-xs font-medium text-gray-600 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
-              >
-                Download .md
-              </button>
-              <button
-                onClick={handleCopy}
-                className="rounded border border-gray-300 px-3 py-1 text-xs font-medium text-gray-600 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
-              >
-                {copied ? "Copied!" : "Copy"}
-              </button>
-            </div>
+            {preview === "raw" ? (
+              <pre className="bg-slate-900 border border-slate-600 rounded-lg p-4 text-sm text-slate-300 overflow-x-auto whitespace-pre-wrap break-words font-mono max-h-[700px] overflow-y-auto">
+                {output || "Fill in the fields to generate your README..."}
+              </pre>
+            ) : (
+              <div className="bg-white rounded-lg p-6 max-h-[700px] overflow-y-auto">
+                <MarkdownPreview markdown={output} />
+              </div>
+            )}
+            <p className="text-xs text-slate-500 mt-2">
+              <span className="text-slate-600">Ctrl+Enter to copy</span>
+            </p>
           </div>
-          <pre className="max-h-[80vh] overflow-auto rounded-lg border border-gray-200 bg-white p-4 font-mono text-sm text-gray-900 whitespace-pre-wrap break-words dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
-            {output}
-          </pre>
         </div>
-      </div>
-
-      {/* Info */}
-      <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
-        <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-          About README Generator
-        </h2>
-        <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-          <li>
-            Instantly generate a professional README.md for any GitHub project.
-          </li>
-          <li>
-            Add shields.io badges for license, build status, npm version, stars, and more.
-          </li>
-          <li>
-            Toggle and reorder 13 sections: badges, description, features, prerequisites,
-            installation, usage, API reference, configuration, screenshots, roadmap,
-            contributing, license, and acknowledgments.
-          </li>
-          <li>
-            Auto-generates installation steps for npm, yarn, pnpm, pip, cargo, go, composer, and gem.
-          </li>
-          <li>
-            Download as .md or copy to clipboard — everything runs in your browser.
-          </li>
-        </ul>
       </div>
     </div>
   );
+}
+
+/* ─── Sub-components ─── */
+
+function Field({
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+}) {
+  return (
+    <div>
+      <label className="text-sm font-medium text-slate-300 mb-1 block">
+        {label}
+      </label>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm"
+      />
+    </div>
+  );
+}
+
+function TextArea({
+  label,
+  value,
+  onChange,
+  placeholder,
+  rows = 3,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  rows?: number;
+}) {
+  return (
+    <div>
+      <label className="text-sm font-medium text-slate-300 mb-1 block">
+        {label}
+      </label>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        rows={rows}
+        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm resize-none font-mono"
+      />
+    </div>
+  );
+}
+
+function SelectField({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+}) {
+  return (
+    <div>
+      <label className="text-sm font-medium text-slate-300 mb-1 block">
+        {label}
+      </label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500 text-sm"
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+function MarkdownPreview({ markdown }: { markdown: string }) {
+  const html = useMemo(() => simpleMarkdownToHtml(markdown), [markdown]);
+  return (
+    <div
+      className="prose prose-sm max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-li:text-gray-700 prose-blockquote:border-l-blue-500 prose-blockquote:text-gray-600 prose-hr:border-gray-300 prose-img:max-w-full"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+}
+
+/* ─── Simple Markdown → HTML ─── */
+
+function simpleMarkdownToHtml(md: string): string {
+  let html = escapeHtml(md);
+
+  // Code blocks
+  html = html.replace(
+    /```(\w*)\n([\s\S]*?)```/g,
+    (_m, _lang, code) => `<pre><code>${code.trim()}</code></pre>`
+  );
+
+  // Inline code
+  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  // Headers
+  html = html.replace(/^### (.+)$/gm, "<h3>$1</h3>");
+  html = html.replace(/^## (.+)$/gm, "<h2>$1</h2>");
+  html = html.replace(/^# (.+)$/gm, "<h1>$1</h1>");
+
+  // Bold
+  html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+  // Italic
+  html = html.replace(/\*(.+?)\*/g, "<em>$1</em>");
+
+  // Blockquotes
+  html = html.replace(
+    /^&gt; (.+)$/gm,
+    "<blockquote><p>$1</p></blockquote>"
+  );
+
+  // Badge images with links (must be before plain images and links)
+  html = html.replace(
+    /\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)/g,
+    '<a href="$3"><img src="$2" alt="$1" /></a>'
+  );
+
+  // Images
+  html = html.replace(
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    '<img src="$2" alt="$1" />'
+  );
+
+  // Links
+  html = html.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2">$1</a>'
+  );
+
+  // Horizontal rules
+  html = html.replace(/^---$/gm, "<hr />");
+
+  // Numbered lists
+  html = html.replace(/(^(?:\d+\. .+\n?)+)/gm, (match) => {
+    const items = match
+      .trim()
+      .split("\n")
+      .map((line) => `<li>${line.replace(/^\d+\.\s+/, "")}</li>`)
+      .join("");
+    return `<ol>${items}</ol>`;
+  });
+
+  // Unordered lists
+  html = html.replace(/(^(?:- .+\n?)+)/gm, (match) => {
+    const items = match
+      .trim()
+      .split("\n")
+      .map((line) => `<li>${line.replace(/^- /, "")}</li>`)
+      .join("");
+    return `<ul>${items}</ul>`;
+  });
+
+  // Paragraphs
+  html = html.replace(/^(?!<[a-z/])(.+)$/gm, "<p>$1</p>");
+
+  // Clean up empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/g, "");
+
+  return html;
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/* ─── Helpers ─── */
+
+function sectionLabel(key: keyof SectionConfig): string {
+  const labels: Record<keyof SectionConfig, string> = {
+    badges: "Badges",
+    features: "Features",
+    prerequisites: "Prerequisites",
+    installation: "Installation",
+    usage: "Usage",
+    contributing: "Contributing",
+    license: "License",
+    acknowledgments: "Acknowledgments",
+  };
+  return labels[key];
+}
+
+function badgeLabel(key: keyof BadgeConfig): string {
+  const labels: Record<keyof BadgeConfig, string> = {
+    license: "License",
+    buildStatus: "Build Status (CI)",
+    npm: "npm Version",
+    version: "GitHub Release",
+    prWelcome: "PRs Welcome",
+  };
+  return labels[key];
 }

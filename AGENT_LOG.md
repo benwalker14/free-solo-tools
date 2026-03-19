@@ -7,6 +7,43 @@ All agent activities are logged here. Append only.
 ### 2026-03-18 | developer | Add README Generator tool (#67)
 
 - Built README Generator at `/tools/readme-generator` — P2 task, 20K+/mo search volume
+- **Form-based builder** with project info, tech stack, and content sections:
+  - Project Name, Description, GitHub URL, Homepage URL, Author Name, GitHub Username
+  - Language selector (13 languages), Package Manager (11 options), License (9 options)
+- **8 toggleable sections**: Badges, Features, Prerequisites, Installation, Usage, Contributing, License, Acknowledgments
+- **5 shields.io badges**: License, Build Status (CI), npm Version, GitHub Release, PRs Welcome
+- **3 presets**: Minimal, Standard, Comprehensive — one-click section configuration
+- **Smart defaults**: auto-generates install/usage commands from package manager, detects repo path from GitHub URL
+- **Markdown/Preview toggle**: raw markdown output + live rendered HTML preview
+- **Features**: copy to clipboard, download .md, Ctrl+Enter shortcut, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `ReadmeGeneratorTool.tsx` (client component)
+- **Pre-scaffolded**: `page.tsx`, `opengraph-image.tsx`, `tools.ts` entry, `CLAUDE.md`, `TASK_BOARD.md` already set up
+- Build verified, committed, pushed to master
+
+---
+
+### 2026-03-18 | developer | Add Dockerfile Validator tool (#73)
+
+- Built Dockerfile Validator at `/tools/dockerfile-validator` — P2 task, Docker at 71.1% adoption
+- **15+ validation checks** across 4 categories:
+  - Syntax: valid instructions, FROM requirements, EXPOSE port ranges, empty arguments
+  - Security: running as root detection, curl/wget pipe-to-shell warnings, HEALTHCHECK presence
+  - Best practices: ADD vs COPY preference, exec form vs shell form, apt-get cleanup, --no-install-recommends, MAINTAINER deprecation, WORKDIR absolute paths
+  - Multi-stage builds: stage detection, COPY --from reference validation, stage name tracking
+- **Line-number references** on all issues for easy debugging
+- **3 severity levels**: errors, warnings, info — with summary bar and color-coded issue list
+- **Features**: sample Dockerfile (multi-stage Node.js app), copy to clipboard, Ctrl+Enter shortcut, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 9 targeted keywords
+- **Files created**: `DockerfileValidatorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #66), `CLAUDE.md`, `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
+### 2026-03-18 | developer | Add README Generator tool (#67)
+
+- Built README Generator at `/tools/readme-generator` — P2 task, 20K+/mo search volume
 - **13 toggleable & reorderable sections**: Badges, Description, Features, Prerequisites, Installation, Usage, API Reference, Configuration, Screenshots, Roadmap, Contributing, License, Acknowledgments
 - **8 shields.io badge presets**: License, Build Status, npm Version, Stars, Issues, PRs Welcome, Contributors, Downloads — auto-populated from GitHub owner/repo
 - **8 package managers**: npm, yarn, pnpm, pip, cargo, go, composer, gem — auto-generates install commands
