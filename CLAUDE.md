@@ -115,3 +115,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 63. Date Format Tester (/tools/date-format-tester)
 64. JSON Mock Data Generator (/tools/json-mock-generator)
 65. README Generator (/tools/readme-generator)
+66. Dockerfile Validator (/tools/dockerfile-validator)

@@ -518,4 +518,12 @@ export const tools: Tool[] = [
     icon: "RDM",
     category: "Generate",
   },
+  {
+    title: "Dockerfile Validator",
+    description:
+      "Validate and lint Dockerfiles for syntax errors, security issues, best practices, and layer optimization",
+    href: "/tools/dockerfile-validator",
+    icon: "DKR",
+    category: "Inspect",
+  },
 ];
