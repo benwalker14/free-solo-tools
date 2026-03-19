@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPost } from "@/data/blog-posts";
+import TypeScriptVsJavaScript from "./posts/TypeScriptVsJavaScript";
+import ReactVsVue from "./posts/ReactVsVue";
+import RestVsGraphql from "./posts/RestVsGraphql";
+import DockerVsKubernetes from "./posts/DockerVsKubernetes";
+import TailwindVsBootstrap from "./posts/TailwindVsBootstrap";
 import DevToolsPrivacy from "./posts/DevToolsPrivacy";
 import JwtTutorial from "./posts/JwtTutorial";
 import RegexCheatSheet from "./posts/RegexCheatSheet";
@@ -20,6 +25,11 @@ import DockerComposeGuide from "./posts/DockerComposeGuide";
 import YamlGuide from "./posts/YamlGuide";
 
 const postContent: Record<string, React.ReactNode> = {
+  "typescript-vs-javascript": <TypeScriptVsJavaScript />,
+  "react-vs-vue": <ReactVsVue />,
+  "rest-vs-graphql": <RestVsGraphql />,
+  "docker-vs-kubernetes": <DockerVsKubernetes />,
+  "tailwind-vs-bootstrap": <TailwindVsBootstrap />,
   "developer-tools-privacy": <DevToolsPrivacy />,
   "jwt-tutorial": <JwtTutorial />,
   "regex-cheat-sheet": <RegexCheatSheet />,

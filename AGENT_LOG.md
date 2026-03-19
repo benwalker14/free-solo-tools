@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Write 5 "X vs Y" comparison blog posts
+
+- Wrote 5 comparison blog posts targeting highest-volume "X vs Y" search queries:
+  1. **TypeScript vs JavaScript** (~100K/mo) at `/blog/typescript-vs-javascript` — type system comparison, migration path, common mistakes, performance, code examples
+  2. **React vs Vue** (~80K/mo) at `/blog/react-vs-vue` — component syntax, reactivity models, ecosystem, job market, when to choose each
+  3. **REST vs GraphQL** (~50K/mo) at `/blog/rest-vs-graphql` — architecture, data fetching, caching, over-fetching problem, common pitfalls
+  4. **Docker vs Kubernetes** (~50K/mo) at `/blog/docker-vs-kubernetes` — containers vs orchestration, when each is enough, how they work together
+  5. **Tailwind CSS vs Bootstrap** (~40K/mo) at `/blog/tailwind-vs-bootstrap` — utility-first vs component-first, bundle size, customization, responsive design
+- All posts include: comparison tables, code examples, "When to Choose" sections, affiliate callouts, tool cross-links, SEO tags
+- Registered all 5 in `blog-posts.ts` with metadata, tags, and related tools
+- Added imports and content mapping in `[slug]/page.tsx`
+- Sitemap auto-includes all new posts via `blogPosts` array
+- Blog count: 16 → 21 posts
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Add JSON to Zod Converter tool (#96)
 
 - Built tool #90 at `/tools/json-to-zod` — JSON to Zod Converter

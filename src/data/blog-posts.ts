@@ -10,6 +10,76 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "typescript-vs-javascript",
+    title: "TypeScript vs JavaScript: What's the Difference and Which Should You Use?",
+    description:
+      "A practical comparison of TypeScript and JavaScript — type systems, tooling, migration, performance, and when each is the right choice for your project.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["TypeScript", "JavaScript", "Comparison"],
+    relatedTools: [
+      { title: "JSON to TypeScript Generator", href: "/tools/json-to-typescript" },
+      { title: "JavaScript/TypeScript Playground", href: "/tools/js-playground" },
+      { title: "JSON to Code Generator", href: "/tools/json-to-code" },
+    ],
+  },
+  {
+    slug: "react-vs-vue",
+    title: "React vs Vue: A Developer's Guide to Choosing the Right Framework",
+    description:
+      "Compare React and Vue side-by-side — component syntax, reactivity models, ecosystem, job market, and when each framework shines.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["React", "Vue", "Frontend", "Comparison"],
+    relatedTools: [
+      { title: "HTML to JSX Converter", href: "/tools/html-to-jsx" },
+      { title: "SVG to JSX Converter", href: "/tools/svg-to-jsx" },
+      { title: "Tailwind CSS Generator", href: "/tools/tailwind-generator" },
+    ],
+  },
+  {
+    slug: "rest-vs-graphql",
+    title: "REST vs GraphQL: When to Use Each for Your API",
+    description:
+      "Understand the real trade-offs between REST and GraphQL — data fetching, caching, type safety, and which architecture fits your project.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["API", "Backend", "Comparison"],
+    relatedTools: [
+      { title: "OpenAPI Validator", href: "/tools/openapi-validator" },
+      { title: "OpenAPI to TypeScript Converter", href: "/tools/openapi-to-typescript" },
+      { title: "JSON Formatter", href: "/tools/json-formatter" },
+    ],
+  },
+  {
+    slug: "docker-vs-kubernetes",
+    title: "Docker vs Kubernetes: What Each Does and When You Need Both",
+    description:
+      "Docker builds containers. Kubernetes orchestrates them at scale. Learn what each does, how they work together, and when you actually need Kubernetes.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["Docker", "Kubernetes", "DevOps", "Comparison"],
+    relatedTools: [
+      { title: "Dockerfile Validator", href: "/tools/dockerfile-validator" },
+      { title: "Docker Compose Validator", href: "/tools/docker-compose" },
+      { title: "Kubernetes YAML Validator", href: "/tools/k8s-validator" },
+    ],
+  },
+  {
+    slug: "tailwind-vs-bootstrap",
+    title: "Tailwind CSS vs Bootstrap: Which CSS Framework Should You Use?",
+    description:
+      "Compare Tailwind's utility-first approach with Bootstrap's component library — bundle size, customization, responsive design, and which fits your project.",
+    publishedAt: "2026-03-19",
+    readTime: "9 min read",
+    tags: ["CSS", "Tailwind", "Bootstrap", "Comparison"],
+    relatedTools: [
+      { title: "Tailwind CSS Generator", href: "/tools/tailwind-generator" },
+      { title: "CSS to Tailwind Converter", href: "/tools/css-to-tailwind" },
+      { title: "CSS Flexbox Generator", href: "/tools/flexbox-generator" },
+    ],
+  },
+  {
     slug: "developer-tools-privacy",
     title:
       "Why Your Developer Tools Should Never Touch a Server",
