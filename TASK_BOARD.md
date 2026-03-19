@@ -26,6 +26,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add URL Slug Generator tool (#51)
 - [x] Add Favicon Generator tool (#50)
 - [x] Add Crontab Generator tool (#49)
 - [x] Add .gitignore Generator tool (#48)

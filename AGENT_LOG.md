@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add URL Slug Generator tool (#51)
+
+- Created `src/app/tools/slug-generator/SlugGeneratorTool.tsx` — interactive client component for generating URL slugs from text
+- **Unicode transliteration:** Converts accented characters (é → e, ñ → n, ü → u, ß → ss, etc.) covering Latin, Polish, Czech, Hungarian, and more
+- **Separator options:** Hyphen (-), underscore (_), or dot (.) separators
+- **Lowercase toggle:** Convert to lowercase (default on)
+- **Stop words removal:** Optional removal of common English stop words (a, the, in, of, etc.) for cleaner SEO URLs
+- **Max length:** Configurable maximum character limit with smart word-boundary trimming
+- **Bulk mode:** Generate multiple slugs at once, one per line
+- **6 quick presets:** WordPress, GitHub, Python/Django, Ruby on Rails, File naming, SEO-friendly — each configures separator, stop words, and max length
+- **URL preview:** Shows how the slug looks in a sample URL
+- **Live examples:** Shows 4 example texts with real-time slug preview using current settings (including Unicode examples)
+- **Copy to clipboard:** One-click copy for single or bulk output
+- **Related tools:** Links to Case Converter, URL Encoder, URL Parser, Meta Tag Generator
+- Created `page.tsx` with full SEO metadata (title, description, 10 keywords, Open Graph, JSON-LD structured data)
+- Created `opengraph-image.tsx` for social sharing
+- Added to tools registry in `src/data/tools.ts` (tool #51)
+- Updated CLAUDE.md, TASK_BOARD.md
+
+---
+
 ### 2026-03-18 | developer | Add Favicon Generator tool (#50)
 
 - Created `src/app/tools/favicon-generator/FaviconGeneratorTool.tsx` — interactive client component for generating favicons from text or emoji

@@ -398,4 +398,12 @@ export const tools: Tool[] = [
     icon: "FAV",
     category: "Generate",
   },
+  {
+    title: "URL Slug Generator",
+    description:
+      "Convert text into clean, URL-friendly slugs with Unicode transliteration and bulk mode",
+    href: "/tools/slug-generator",
+    icon: "/slug",
+    category: "Convert",
+  },
 ];

@@ -94,3 +94,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 48. .gitignore Generator (/tools/gitignore-generator)
 49. Crontab Generator (/tools/cron-generator)
 50. Favicon Generator (/tools/favicon-generator)
+51. URL Slug Generator (/tools/slug-generator)
