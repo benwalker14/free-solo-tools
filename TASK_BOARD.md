@@ -92,6 +92,12 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add package.json Generator tool (#99) — foundational Node.js config file builder with framework presets. Simplest build. Good long-tail SEO. **PATH TO 100.**
 - [ ] Add Git Diff Viewer tool (#101) — natural extension of Diff Checker (#10). diff2html library. Syntax highlighting, side-by-side view. **PATH TO 100.**
 - [ ] Add Brotli/Gzip Compression Tester tool (#102) — test text compression ratios client-side. brotli-wasm + native CompressionStream API. Performance optimization niche. **PATH TO 100.**
+- [ ] Add ESLint-to-Biome Config Converter tool (#103) — Biome v2 just launched, adoption wave starting. Convert .eslintrc/.eslintrc.json → biome.json. First-mover window. **TREND-RIDING OPPORTUNITY.**
+- [ ] Add TypeScript 6.0 Migration Checker tool (#104) — TS 6.0 RC dropped March 6. Analyze tsconfig.json for breaking changes (strict default, ES5 removal, outFile removal). Pairs with tsconfig Builder (#97). **TIME-SENSITIVE WINDOW.**
+- [ ] Create llms.txt file — AI crawler guidance listing all tools with descriptions. Only 5-15% of sites have one. Low effort, high AI citation impact.
+- [ ] Add SoftwareApplication/WebApplication schema markup to all tool pages — pages with schema are cited 40% more by LLMs. Template-level change.
+- [ ] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 RC just dropped. Massive search wave.
+- [ ] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave.
 
 ## Done
 - [x] Add package.json Generator tool (#99) — visual package.json builder with 7 presets (Next.js App, React + Vite, Node.js CLI, npm Library, Express API, Monorepo Root, Minimal), form-based editor with basic info (name, version, description, author, license, repository, private, exports), module config (type ESM/CJS, main, module, types, bin, engines.node), scripts editor, dependencies/devDependencies editor, keywords/files tag editor, live JSON output, copy/download, quick stats (scripts, deps, devDeps), Ctrl+Enter shortcut. 3 SEO sub-pages (package-json-exports-guide, npm-scripts-guide, esm-vs-commonjs). All client-side
