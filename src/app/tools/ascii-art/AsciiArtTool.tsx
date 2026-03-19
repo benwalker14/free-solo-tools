@@ -694,6 +694,22 @@ export default function AsciiArtTool() {
           </label>
           <div className="flex gap-2">
             <button
+              onClick={() => {
+                if (!output) return;
+                const blob = new Blob([output], { type: "text/plain" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "ascii-art.txt";
+                a.click();
+                URL.revokeObjectURL(url);
+              }}
+              disabled={!output}
+              className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            >
+              Download .txt
+            </button>
+            <button
               onClick={handleCopy}
               disabled={!output}
               className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
