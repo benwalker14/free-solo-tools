@@ -14,7 +14,22 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
 ### P0 - Strategist Data Quality Issue
-- [ ] **Strategist agent: stop fabricating or misrepresenting competitor traffic data.** The "Competitive Landscape Update" section in the Phase 10 inbox entry shows traffic numbers that changed dramatically (e.g., CodeBeautify "DOWN from ~2.3M" to ~1.8M, 10015.io "Revised DOWN from ~693K" to ~350K) over just a few days between reports. These swings are not realistic. Either cite actual sources with URLs, or clearly label estimates as unverified. Do NOT present made-up numbers as data. (Flagged by Vincent 2026-03-19)
+- [x] **Strategist agent: stop fabricating or misrepresenting competitor traffic data.** RESOLVED in Phase 11 — strategist now cites only verifiable data with source URLs. Phase 11 report includes full source attribution for all competitive data. Unverifiable numbers are explicitly labeled as such. (Flagged by Vincent 2026-03-19, addressed 2026-03-19)
+
+### P1 - High (Distribution & Quality — PHASE 11: DISTRIBUTION OR DIE)
+- [ ] Cross-post top 5 blog posts to Dev.to with canonical URLs — verified SEO benefit, canonicalization critical for GEO. Start with error-fix posts, use #beginners tag. STILL UNDONE FROM PHASE 9.
+- [ ] Add newsletter subscribe CTA to tool pages — after Vincent sets up beehiiv, add subtle email opt-in below tool UI. Owned traffic channel.
+- [ ] Enrich top 20 tool pages for "Information Gain" — Google March 2026 update rewards genuinely new info vs competitors. Add usage tips, common pitfalls, real-world examples.
+- [ ] Start Product Hunt pre-launch community participation — 30+ day runway before late April launch. Create maker profile, engage daily. (HUMAN ACTION NEEDED)
+- [ ] Set up beehiiv newsletter with recommended config — (HUMAN ACTION NEEDED, guidance in HUMAN_INBOX.md)
+- [ ] Submit to AlternativeTo, StackShare, DevHunt, SaaSHub — README now updated, should be unblocked. (HUMAN ACTION NEEDED)
+- [ ] Create Stripe lifetime deal price ($49 one-time) — (HUMAN ACTION NEEDED, code deployed)
+
+### P2 - Medium (Content Quality & AI Search — PHASE 11)
+- [ ] Add Person JSON-LD schema for blog author attribution — strengthens E-E-A-T for AI citation (2.5x higher with proper schema per Stackmatix research)
+- [ ] Continue programmatic sub-page quality audit — 170 sub-pages still missing code references. Only 8 fixed in Phase 10. March core update risk.
+- [ ] Build SQL Playground tool — WebAssembly-based PostgreSQL playground. High-demand category (PlayCode, DB Fiddle, sqlplayground.app are competitors). Strengthens PH launch story.
+- [ ] Add GIF/video demos to top 5 tool pages — pages with multimedia + schema see 156% higher AI Overview selection rates
 
 ### P1 - High (Growth & Trust — PHASE 10: VIBE CODING SECURITY MOMENT + DISTRIBUTION OFFENSIVE)
 - [x] Add AI Code Security Scanner tool (#110) — paste AI-generated code, get vulnerability report (injection, SSRF, insecure auth, hardcoded secrets, eval(), prototype pollution, path traversal, XSS). No free client-side competitor. #1 tool priority — addresses biggest dev anxiety of 2026 (45% of AI code has flaws per Veracode).

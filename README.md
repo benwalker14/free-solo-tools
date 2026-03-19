@@ -36,8 +36,8 @@ Base64 Codec, Color Converter, CSS Unit Converter, CSV/JSON Converter, JSON/YAML
 ### Generate (42 tools)
 Hash Generator, UUID Generator, Password Generator, Lorem Ipsum, QR Code, CSS Gradient Generator, Box Shadow Generator, Flexbox Generator, Grid Generator, CSS Animation Generator, Border Radius Generator, Text Shadow Generator, CSS Clip-path Generator, CSS Filter Generator, Color Palette, Placeholder Image, Favicon Generator, Meta Tag Generator, .gitignore Generator, robots.txt Generator, Crontab Generator, Nginx Config, README Generator, Privacy Policy Generator, JSON Mock Data, Regex Generator, JWT Builder, Security Headers, CSP Builder, AI Prompt Builder, MCP Config Builder, tsconfig Builder, package.json Generator, Code Screenshot, Markdown Table Generator, HTML Table Generator, URL Slug Generator, ASCII Art Text, and more
 
-### Inspect (32 tools)
-JWT Decoder, Regex Tester, URL Parser, Diff Checker, JSON Diff, JSON Path Tester, JSON Schema Validator, JSON Visualizer, SVG Optimizer, Image Compressor, Color Contrast Checker, Word Counter, Chmod Calculator, Cron Parser, Number Base Converter, Case Converter, Subnet/CIDR Toolkit, Open Graph Preview, Date Format Tester, Token Counter, AI Model Comparison, Git Command Builder, File Hash Calculator, .env Validator, Dockerfile Validator, Kubernetes Validator, OpenAPI Validator, GitHub Actions Validator, HTTP Status Codes, Code Complexity Analyzer, AI Code Security Scanner, Aspect Ratio Calculator, and more
+### Inspect (33 tools)
+JWT Decoder, Regex Tester, URL Parser, Diff Checker, JSON Diff, JSON Path Tester, JSON Schema Validator, JSON Visualizer, SVG Optimizer, Image Compressor, Color Contrast Checker, Word Counter, Chmod Calculator, Cron Parser, Number Base Converter, Case Converter, Subnet/CIDR Toolkit, Open Graph Preview, Date Format Tester, Token Counter, AI Model Comparison, Git Command Builder, File Hash Calculator, .env Validator, Dockerfile Validator, Kubernetes Validator, OpenAPI Validator, GitHub Actions Validator, HTTP Status Codes, Code Complexity Analyzer, AI Code Security Scanner, Aspect Ratio Calculator, XPath Tester, and more
 
 ## Tech Stack
 
