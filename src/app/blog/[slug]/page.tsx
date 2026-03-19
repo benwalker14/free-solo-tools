@@ -28,8 +28,20 @@ import UuidGuide from "./posts/UuidGuide";
 import MarkdownCheatSheet from "./posts/MarkdownCheatSheet";
 import DockerComposeGuide from "./posts/DockerComposeGuide";
 import YamlGuide from "./posts/YamlGuide";
+import TypeScript6MigrationGuide from "./posts/TypeScript6MigrationGuide";
+import FixInvalidJson from "./posts/FixInvalidJson";
+import FixJwtErrors from "./posts/FixJwtErrors";
+import FixCorsErrors from "./posts/FixCorsErrors";
+import FixDockerComposeErrors from "./posts/FixDockerComposeErrors";
+import FixRegexErrors from "./posts/FixRegexErrors";
 
 const postContent: Record<string, React.ReactNode> = {
+  "fix-invalid-json": <FixInvalidJson />,
+  "fix-jwt-errors": <FixJwtErrors />,
+  "fix-cors-errors": <FixCorsErrors />,
+  "fix-docker-compose-errors": <FixDockerComposeErrors />,
+  "fix-regex-errors": <FixRegexErrors />,
+  "typescript-6-migration-guide": <TypeScript6MigrationGuide />,
   "flexbox-vs-grid": <FlexboxVsGrid />,
   "json-vs-yaml": <JsonVsYaml />,
   "sha256-vs-md5": <Sha256VsMd5 />,

@@ -10,6 +10,101 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "fix-invalid-json",
+    title: "How to Fix Invalid JSON: The 10 Most Common Errors and Solutions",
+    description:
+      "Invalid JSON errors are caused by strict syntax rules — trailing commas, single quotes, unquoted keys, and more. This guide covers every common JSON parse error with fixes and code examples.",
+    publishedAt: "2026-03-19",
+    readTime: "12 min read",
+    tags: ["JSON", "Debugging", "HowTo"],
+    relatedTools: [
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      { title: "JSON Schema Validator", href: "/tools/json-schema" },
+      { title: "JSON Visualizer", href: "/tools/json-visualizer" },
+      { title: "JSON Path Tester", href: "/tools/json-path" },
+    ],
+  },
+  {
+    slug: "fix-jwt-errors",
+    title: "JWT Errors Explained: How to Fix Expired, Invalid, and Malformed Tokens",
+    description:
+      "JWT errors like TokenExpiredError, invalid signature, and malformed token are common in auth systems. Learn how to decode, diagnose, and fix every JWT error with code examples.",
+    publishedAt: "2026-03-19",
+    readTime: "12 min read",
+    tags: ["JWT", "Authentication", "Debugging", "HowTo"],
+    relatedTools: [
+      { title: "JWT Decoder", href: "/tools/jwt-decoder" },
+      { title: "JWT Builder & Generator", href: "/tools/jwt-builder" },
+      { title: "Base64 Encoder & Decoder", href: "/tools/base64" },
+      { title: "Hash Generator", href: "/tools/hash-generator" },
+    ],
+  },
+  {
+    slug: "fix-cors-errors",
+    title: "How to Fix CORS Errors: A Complete Guide for Every Server Framework",
+    description:
+      "CORS errors are fixed on the server, not the client. Learn what causes 'No Access-Control-Allow-Origin' errors and how to configure CORS for Express, Next.js, Nginx, Go, and more.",
+    publishedAt: "2026-03-19",
+    readTime: "12 min read",
+    tags: ["CORS", "Security", "Backend", "HowTo"],
+    relatedTools: [
+      { title: "CSP Header Builder", href: "/tools/csp-builder" },
+      { title: "Security Headers Generator", href: "/tools/security-headers" },
+      { title: "cURL to Code Converter", href: "/tools/curl-converter" },
+      { title: "HTTP Status Code Reference", href: "/tools/http-status-codes" },
+    ],
+  },
+  {
+    slug: "fix-docker-compose-errors",
+    title: "Docker Compose Errors: The 10 Most Common YAML Mistakes and How to Fix Them",
+    description:
+      "Docker Compose errors are usually YAML syntax issues — indentation, wrong port formats, volume paths, and version conflicts. This guide covers every common Compose error with fixes.",
+    publishedAt: "2026-03-19",
+    readTime: "12 min read",
+    tags: ["Docker", "DevOps", "YAML", "HowTo"],
+    relatedTools: [
+      { title: "Docker Compose Validator", href: "/tools/docker-compose" },
+      { title: "Dockerfile Validator", href: "/tools/dockerfile-validator" },
+      { title: "YAML Validator & Formatter", href: "/tools/yaml-formatter" },
+      { title: ".env File Validator", href: "/tools/env-validator" },
+    ],
+  },
+  {
+    slug: "fix-regex-errors",
+    title: "Regex Errors: Why Your Pattern Isn't Matching and How to Fix It",
+    description:
+      "Regex errors are caused by unescaped characters, greedy matching, missing anchors, and language-specific quirks. Learn how to debug and fix every common regex problem with tested patterns.",
+    publishedAt: "2026-03-19",
+    readTime: "11 min read",
+    tags: ["Regex", "Debugging", "HowTo"],
+    relatedTools: [
+      { title: "Regex Tester", href: "/tools/regex-tester" },
+      { title: "Regex Generator", href: "/tools/regex-generator" },
+      { title: "Word & Character Counter", href: "/tools/word-counter" },
+      { title: "Case Converter", href: "/tools/case-converter" },
+    ],
+  },
+  {
+    slug: "typescript-6-migration-guide",
+    title: "TypeScript 6.0 vs 5.x: Complete Migration Guide",
+    description:
+      "Everything that changed in TypeScript 6.0 — removed ES5 target, strict by default, new moduleResolution, changed defaults — with step-by-step migration instructions and before/after examples.",
+    publishedAt: "2026-03-19",
+    readTime: "11 min read",
+    tags: ["TypeScript", "Migration", "tsconfig", "Guide"],
+    relatedTools: [
+      {
+        title: "TypeScript 6.0 Migration Checker",
+        href: "/tools/ts6-migration",
+      },
+      { title: "tsconfig.json Visual Builder", href: "/tools/tsconfig-builder" },
+      {
+        title: "TypeScript to JavaScript Converter",
+        href: "/tools/typescript-to-js",
+      },
+    ],
+  },
+  {
     slug: "flexbox-vs-grid",
     title: "CSS Flexbox vs Grid: When to Use Each Layout System",
     description:

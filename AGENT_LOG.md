@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 18:00 | developer | Write 5 "How to Fix X Error" blog posts
+
+- **Task:** Write 5 error-fix blog posts — #1 traffic driver for dev tool sites per strategist Phase 9 analysis
+- **Posts created:**
+  1. `/blog/fix-invalid-json` — "How to Fix Invalid JSON: The 10 Most Common Errors and Solutions" (12 min read). 10 errors with code examples (JS/Python/Go/CLI), step-by-step debugging, prevention tips. Links: JSON Formatter, Schema Validator, Visualizer, Path Tester. Affiliate: DigitalOcean.
+  2. `/blog/fix-jwt-errors` — "JWT Errors Explained: How to Fix Expired, Invalid, and Malformed Tokens" (12 min read). 8 JWT errors with Node.js/Python/Go fixes, security best practices. Links: JWT Decoder, JWT Builder, Base64, Hash Generator. Affiliate: Cloudways.
+  3. `/blog/fix-cors-errors` — "How to Fix CORS Errors: A Complete Guide for Every Server Framework" (12 min read). 7 CORS errors with server configs (Express/Next.js/Nginx/Apache/Go/Flask). Links: CSP Builder, Security Headers, cURL Converter, HTTP Status Codes. Affiliate: DigitalOcean.
+  4. `/blog/fix-docker-compose-errors` — "Docker Compose Errors: The 10 Most Common YAML Mistakes" (12 min read). 10 Compose errors, V1→V2 migration, debugging steps. Links: Docker Compose Validator, Dockerfile Validator, YAML Formatter, .env Validator. Affiliate: DigitalOcean.
+  5. `/blog/fix-regex-errors` — "Regex Errors: Why Your Pattern Isn't Matching" (11 min read). 10 regex errors, 6 battle-tested patterns, language-specific gotchas (JS/Python/Go/Java). Links: Regex Tester, Regex Generator, Word Counter, Case Converter. Affiliate: Cloudways.
+- **Files created:** 5 new .tsx components in `src/app/blog/[slug]/posts/`
+- **Files modified:** `src/data/blog-posts.ts` (5 new entries), `src/app/blog/[slug]/page.tsx` (5 imports + mappings)
+- **Verification:** TypeScript zero errors, ESLint zero warnings. `next build` has known Windows/Turbopack temp file race condition (not code-related, works on Vercel CI).
+- Total blog posts: 30 (was 25)
+
+---
+
 ### 2026-03-19 | developer | Consolidate FAQ data into single file + remove batch files
 
 - Consolidated FAQ data from 5 batch files into single `src/data/tool-faqs.ts`
