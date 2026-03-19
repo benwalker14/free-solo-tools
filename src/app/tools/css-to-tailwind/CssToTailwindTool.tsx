@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 // ── CSS value → Tailwind class mappings ──
@@ -1157,6 +1158,7 @@ export default function CssToTailwindTool() {
   const { trackAction } = useToolAnalytics("css-to-tailwind");
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("css-to-tailwind");
+  useSmartPasteInput(setCss);
 
   const results = css.trim() ? parseCSS(css) : [];
   const totalClasses = results.reduce((sum, r) => sum + r.classes.length, 0);

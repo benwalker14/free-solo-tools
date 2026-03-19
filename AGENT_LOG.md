@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 16:00 | developer | Build Smart Paste / Format Detection
+
+- **Task:** Build Smart Paste / Format Detection (P2) — paste content anywhere, auto-detect format, suggest right tool
+- **What was done:**
+  - Created format detection library at `src/lib/format-detector.ts` — detects 20 content formats (JSON, JWT, cURL, Git Diff, Dockerfile, SQL, XML, HTML, SVG, .env, YAML, Docker Compose, TOML, CSV, URL, UUID, Regex, CSS, Markdown, Base64) with confidence scoring (0-1)
+  - Created global SmartPaste component at `src/components/SmartPaste.tsx` — listens for paste events outside input/textarea elements, shows animated toast notification at bottom-right with detected format + "Open in [Tool]" link, auto-dismisses after 6 seconds, dismiss button, won't trigger when already on the suggested tool page
+  - Created `src/hooks/useSmartPasteInput.ts` hook — tools call this to auto-load content from sessionStorage when user arrives via Smart Paste
+  - Content transfer via sessionStorage: SmartPaste stores pasted text, tool reads and clears it on mount
+  - Wired up 16 tools with Smart Paste auto-load: JSON Formatter, JWT Decoder, Base64 Codec, XML Formatter, YAML Formatter, SQL Formatter, Markdown Preview, URL Parser, CSV ↔ JSON, cURL to Code, Regex Tester, SVG Optimizer, .env Validator, CSS to Tailwind, HTML to JSX, Git Diff Viewer, Docker Compose Validator
+  - Added SmartPaste to root layout (`src/app/layout.tsx`) alongside CommandPalette
+- **Files created:** `src/lib/format-detector.ts`, `src/components/SmartPaste.tsx`, `src/hooks/useSmartPasteInput.ts`
+- **Files modified:** `src/app/layout.tsx`, 16 tool components (added useSmartPasteInput hook), `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors
+
+---
+
 ### 2026-03-19 15:00 | developer | Write CodeBeautify Alternative blog post
 
 - **Task:** Write "CodeBeautify Alternative: 105 Tools That Never See Your Data" blog post (P2)
@@ -3323,3 +3339,15 @@ No action required.
 | Production (devbolt.dev) | UP — HTTP 307 redirect, 0.14s response |
 | npm audit | 0 vulnerabilities |
 | Previous build note | The ENOENT temp file issue from prior log appears resolved — build now succeeds |
+
+### 2026-03-19 08:00 | health | Routine health check
+
+**Status: HEALTHY (1 issue fixed)**
+
+| Check | Result |
+|-------|--------|
+| Build | PASS |
+| Lint | PASS (fixed 2 errors — `react/jsx-no-comment-textnodes` in TypeScript7GoRewrite.tsx, committed & pushed) |
+| Git | Clean, up to date with origin/master |
+| Production (devbolt.dev) | UP — HTTP 307 redirect, 0.20s response |
+| npm audit | 0 vulnerabilities |

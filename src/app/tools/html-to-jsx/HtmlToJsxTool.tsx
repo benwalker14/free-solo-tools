@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 
 // ---------------------------------------------------------------------------
 // HTML attribute → JSX attribute mapping
@@ -382,6 +383,7 @@ export default function HtmlToJsxTool() {
   useToolAnalytics("html-to-jsx");
 
   const [html, setHtml] = useState(SAMPLES[0].html);
+  useSmartPasteInput(setHtml);
   const [createComponent, setCreateComponent] = useState(false);
   const [componentName, setComponentName] = useState("MyComponent");
   const [useFragment, setUseFragment] = useState(true);

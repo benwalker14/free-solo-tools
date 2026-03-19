@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 interface DecodedJwt {
@@ -62,6 +63,7 @@ export default function JwtDecoderTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("jwt-decoder");
   const { trackAction } = useToolAnalytics("jwt-decoder");
+  useSmartPasteInput(setInput);
 
   const handleDecode = useCallback(() => {
     if (isLimited) return;

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function JsonFormatterTool() {
@@ -14,6 +15,7 @@ export default function JsonFormatterTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("json-formatter");
   const { trackAction } = useToolAnalytics("json-formatter");
+  useSmartPasteInput(setInput);
 
   const handleFormat = useCallback(() => {
     if (isLimited) return;

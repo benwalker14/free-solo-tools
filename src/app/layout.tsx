@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import CommandPalette from "@/components/CommandPalette";
+import SmartPaste from "@/components/SmartPaste";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -105,6 +106,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <CommandPalette />
+          <SmartPaste />
           <main className="flex-1">{children}</main>
           <Footer />
         </ThemeProvider>

@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -848,6 +849,7 @@ export default function CurlConverterTool() {
   const [copied, setCopied] = useState(false);
   const [copiedCurl, setCopiedCurl] = useState(false);
   const { trackFirstInteraction } = useToolAnalytics("curl-converter");
+  useSmartPasteInput(setInput);
 
   const parsed = useMemo(() => {
     if (!input.trim()) return null;

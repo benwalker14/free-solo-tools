@@ -4,6 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
@@ -275,6 +276,7 @@ export default function GitDiffViewerTool() {
   const [copied, setCopied] = useState(false);
   const { trackAction, trackFirstInteraction } = useToolAnalytics("git-diff-viewer");
   const { remaining, dailyLimit, isLimited, recordUsage } = useRateLimit("git-diff-viewer");
+  useSmartPasteInput(setInput);
 
   const files = useMemo(() => {
     if (!input.trim()) return [];

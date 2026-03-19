@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 export default function Base64Tool() {
@@ -14,6 +15,7 @@ export default function Base64Tool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("base64");
   const { trackAction } = useToolAnalytics("base64");
+  useSmartPasteInput(setInput);
 
   const handleEncode = useCallback(() => {
     if (isLimited) return;

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 function formatBytes(bytes: number): string {
@@ -316,6 +317,7 @@ export default function SvgOptimizerTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("svg-optimizer");
   const { trackAction } = useToolAnalytics("svg-optimizer");
+  useSmartPasteInput(setInput);
 
   const inputSize = new Blob([input]).size;
   const outputSize = output ? new Blob([output]).size : 0;

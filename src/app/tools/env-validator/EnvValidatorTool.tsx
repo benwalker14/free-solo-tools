@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 // --- Types ---
@@ -348,6 +349,7 @@ export default function EnvValidatorTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("env-validator");
   const { trackAction } = useToolAnalytics("env-validator");
+  useSmartPasteInput(setInput);
 
   const handleValidate = useCallback(() => {
     if (isLimited) return;

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 // SQL keywords grouped by formatting behavior
@@ -568,6 +569,7 @@ export default function SqlFormatterTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("sql-formatter");
   const { trackAction } = useToolAnalytics("sql-formatter");
+  useSmartPasteInput(setInput);
 
   const getIndent = () => {
     if (indentSize === "tab") return "\t";

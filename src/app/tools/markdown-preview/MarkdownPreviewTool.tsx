@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { marked } from "marked";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 
 const SAMPLE_MARKDOWN = `# Hello, Markdown!
 
@@ -36,6 +37,7 @@ function greet(name) {
 export default function MarkdownPreviewTool() {
   const [input, setInput] = useState(SAMPLE_MARKDOWN);
   const { trackFirstInteraction } = useToolAnalytics("markdown-preview");
+  useSmartPasteInput(setInput);
 
   const html = useMemo(() => {
     try {

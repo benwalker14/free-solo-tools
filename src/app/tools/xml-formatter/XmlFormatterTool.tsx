@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 interface XmlToken {
@@ -302,6 +303,7 @@ export default function XmlFormatterTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("xml-formatter");
   const { trackAction } = useToolAnalytics("xml-formatter");
+  useSmartPasteInput(setInput);
 
   const getIndent = () => {
     if (indentSize === "tab") return "\t";

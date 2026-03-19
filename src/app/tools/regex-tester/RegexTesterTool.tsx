@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 
 interface MatchResult {
   fullMatch: string;
@@ -57,6 +58,7 @@ export default function RegexTesterTool() {
   const [flags, setFlags] = useState("g");
   const [testString, setTestString] = useState("");
   const { trackFirstInteraction } = useToolAnalytics("regex-tester");
+  useSmartPasteInput(setPattern);
 
   const regexError = useMemo(() => getRegexError(pattern, flags), [pattern, flags]);
   const matches = useMemo(

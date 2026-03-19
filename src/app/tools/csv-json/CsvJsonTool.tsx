@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
@@ -153,6 +154,7 @@ export default function CsvJsonTool() {
   const { trackAction } = useToolAnalytics("csv-json");
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("csv-json");
+  useSmartPasteInput(setInput);
 
   const handleConvert = useCallback(() => {
     setError("");

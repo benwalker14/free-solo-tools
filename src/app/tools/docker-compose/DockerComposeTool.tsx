@@ -6,6 +6,7 @@ import yaml from "js-yaml";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 const SAMPLE_COMPOSE = `services:
@@ -439,6 +440,7 @@ export default function DockerComposeTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("docker-compose");
   const { trackAction } = useToolAnalytics("docker-compose");
+  useSmartPasteInput(setInput);
 
   const handleValidate = useCallback(() => {
     if (isLimited) return;

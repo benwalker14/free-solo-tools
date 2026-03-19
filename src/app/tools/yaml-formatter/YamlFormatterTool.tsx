@@ -6,6 +6,7 @@ import yaml from "js-yaml";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 import RateLimitBanner from "@/components/RateLimitBanner";
 
 const SAMPLE_YAML = `# Kubernetes Deployment
@@ -115,6 +116,7 @@ export default function YamlFormatterTool() {
   const { remaining, dailyLimit, isLimited, recordUsage } =
     useRateLimit("yaml-formatter");
   const { trackAction } = useToolAnalytics("yaml-formatter");
+  useSmartPasteInput(setInput);
 
   const handleFormat = useCallback(() => {
     if (isLimited) return;

@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useSmartPasteInput } from "@/hooks/useSmartPasteInput";
 
 interface ParsedUrl {
   protocol: string;
@@ -44,6 +45,7 @@ function handleCopy(text: string) {
 export default function UrlParserTool() {
   const [input, setInput] = useState("");
   const { trackFirstInteraction } = useToolAnalytics("url-parser");
+  useSmartPasteInput(setInput);
 
   const parsed = useMemo(() => (input.trim() ? parseUrl(input.trim()) : null), [input]);
   const isInvalid = input.trim().length > 0 && parsed === null;
