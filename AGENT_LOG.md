@@ -4,6 +4,35 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Nginx Config Generator tool (#72)
+
+- Built Nginx Config Generator at `/tools/nginx-config` — P3 task, growing query, no clean free tool exists
+- **Form-based visual builder** — configure all aspects of nginx server blocks through an interactive UI
+- **7 presets** for common setups:
+  - Static Site — serve HTML/CSS/JS with cache headers
+  - Reverse Proxy — proxy to backend application
+  - SPA (React/Vue/Angular) — client-side routing with try_files fallback to index.html, API proxy
+  - Node.js App — reverse proxy with WebSocket support
+  - PHP / Laravel — PHP-FPM with fastcgi_pass, dotfile protection
+  - Load Balancer — upstream block with multiple backends
+  - HTTPS + SSL — SSL termination with HTTP→HTTPS redirect
+- **SSL/TLS configuration**: certificate paths, TLS 1.2/1.3, modern cipher suites, HSTS with preload, session cache
+- **HTTP → HTTPS redirect**: separate server block for port 80 redirect
+- **Gzip compression**: configurable types, compression level 6
+- **Security headers**: X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy
+- **Rate limiting**: configurable zone, rate (r/s), and burst with nodelay
+- **Load balancing (upstream)**: round-robin, least_conn, ip_hash, server weights, backup servers
+- **Location blocks**: tabbed editor with 6 types — static files, reverse proxy, try_files, redirect, deny all, custom directives
+- **Proxy settings**: WebSocket upgrade headers, X-Real-IP, X-Forwarded-For, X-Forwarded-Proto, configurable timeouts
+- **Logging**: access_log and error_log paths
+- **Live preview**: generated config updates in real-time as you change settings
+- **Output**: syntax-highlighted nginx config with copy and download (nginx.conf)
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `NginxConfigTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #72), `CLAUDE.md`, `TASK_BOARD.md`
+
+---
+
 ### 2026-03-18 | developer | Add Placeholder Image Generator tool (#68)
 
 - Built Placeholder Image Generator at `/tools/placeholder-image` — P3 task, generate placeholder images client-side for wireframes, mockups, and prototyping

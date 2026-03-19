@@ -121,3 +121,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 69. OpenAPI / Swagger Validator (/tools/openapi-validator)
 70. Zod Schema Generator (/tools/zod-schema)
 71. Placeholder Image Generator (/tools/placeholder-image)
+72. Nginx Config Generator (/tools/nginx-config)

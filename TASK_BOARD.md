@@ -45,13 +45,14 @@ _None_
 - [x] Add robots.txt Generator (#69) — complements Meta Tag Generator
 - [ ] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
 - [ ] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
-- [ ] Add Nginx Config Generator (#72) — growing query, no clean free tool
+- [x] Add Nginx Config Generator (#72) — growing query, no clean free tool
 - [x] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
 - [x] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
 - [ ] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Nginx Config Generator tool (#72) — form-based builder with 7 presets (Static, Reverse Proxy, SPA, Node.js, PHP/Laravel, Load Balancer, HTTPS+SSL), SSL/TLS with HSTS, gzip, security headers, rate limiting, upstream/load balancing with 3 methods, location blocks (static/proxy/try_files/redirect/deny/custom), WebSocket support, copy/download
 - [x] Add Placeholder Image Generator tool (#68) — canvas-based generator with 16 presets (social, devices, ads), custom dimensions/colors/text, auto font sizing, auto contrast text, download as PNG/JPEG/WebP/SVG, copy data URL, copy HTML tag
 - [x] Add Zod Schema Generator tool (#76) — generates Zod schemas from JSON with format inference (email, URL, UUID, datetime), integer detection, nested objects, .optional(), .strict(), coerce mode, .describe(), z.infer type alias, copy output
 - [x] Add OpenAPI/Swagger Validator tool (#75) — validates OpenAPI 3.x and Swagger 2.0 specs for structure, paths, operations, parameters, schemas, security, $ref resolution, and best practices. Supports JSON and YAML input, spec summary, issue filtering
