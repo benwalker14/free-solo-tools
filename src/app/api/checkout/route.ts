@@ -14,8 +14,10 @@ export async function POST(request: NextRequest) {
 
   const { plan } = await request.json();
 
-  const priceId =
-    plan === "yearly"
+  const isLifetime = plan === "lifetime";
+  const priceId = isLifetime
+    ? process.env.STRIPE_PRICE_ID_LIFETIME
+    : plan === "yearly"
       ? process.env.STRIPE_PRICE_ID_YEARLY
       : process.env.STRIPE_PRICE_ID_MONTHLY;
 
@@ -29,10 +31,15 @@ export async function POST(request: NextRequest) {
   const origin = request.headers.get("origin") || "https://devbolt.dev";
 
   const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
+    mode: isLifetime ? "payment" : "subscription",
     line_items: [{ price: priceId, quantity: 1 }],
     success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/checkout/cancel`,
+    ...(isLifetime && {
+      payment_intent_data: {
+        metadata: { plan_type: "lifetime" },
+      },
+    }),
   });
 
   return NextResponse.json({ url: session.url });

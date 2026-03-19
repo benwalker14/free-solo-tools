@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:45 | developer | Add lifetime deal option ($49 one-time payment)
+
+- **Task:** Add lifetime deal pricing tier ($49 one-time) alongside existing Pro subscription plans
+- **What was done:**
+  - **Checkout API** (`src/app/api/checkout/route.ts`): Added `plan: "lifetime"` handling with Stripe `mode: "payment"` (one-time charge) instead of `mode: "subscription"`. Passes `plan_type: "lifetime"` in payment_intent_data metadata.
+  - **Webhook** (`src/app/api/webhook/route.ts`): On `checkout.session.completed`, detects one-time payments (`session.mode === "payment"`) and stores `plan_type: "lifetime"` in customer metadata alongside the API key. Protects lifetime customers from API key revocation on `customer.subscription.deleted` events.
+  - **API Auth** (`src/lib/api-auth.ts`): Lifetime customers bypass subscription check — if `metadata.plan_type === "lifetime"`, access is granted without requiring an active subscription.
+  - **Pricing page** (`src/app/pricing/PricingPage.tsx`): Redesigned from 2-column to 3-column grid (Free / Pro / Lifetime). Lifetime tier has amber accent color, "Best Value" badge, $49 one-time pricing, "Pay once, use forever" tagline, 5 feature bullets. Pro badge changed to "Most Popular". Loading state tracks which button was clicked. Added 2 new FAQs (lifetime features, switching from Pro to Lifetime).
+  - **Keys API** (`src/app/api/keys/route.ts`): Now returns `plan_type` field so success page can differentiate.
+  - **Checkout success** (`src/app/checkout/success/CheckoutSuccessContent.tsx`): Shows "Welcome to Pro — Forever!" heading and lifetime-specific messaging for one-time purchases.
+  - **Env config** (`.env.example`): Added `STRIPE_PRICE_ID_LIFETIME=price_...` with comment.
+- **Files modified:** `src/app/api/checkout/route.ts`, `src/app/api/webhook/route.ts`, `src/lib/api-auth.ts`, `src/app/pricing/PricingPage.tsx`, `src/app/api/keys/route.ts`, `src/app/checkout/success/CheckoutSuccessContent.tsx`, `.env.example`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Human action needed:** Create a one-time $49 price in Stripe Dashboard and set `STRIPE_PRICE_ID_LIFETIME` in Vercel environment variables.
+- **Verification:** `npm run build` passes with no errors. `npm run lint` passes with 0 warnings.
+
+---
+
 ### 2026-03-19 23:30 | developer | Update GitHub README + task board cleanup
 
 - **Task:** Replace default create-next-app README with proper DevBolt README for directory submissions (AlternativeTo, StackShare, etc.)

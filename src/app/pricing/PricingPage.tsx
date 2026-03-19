@@ -5,26 +5,26 @@ import Link from "next/link";
 
 export default function PricingPage() {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<string | null>(null);
 
-  async function handleCheckout() {
-    setLoading(true);
+  async function handleCheckout(plan: "monthly" | "yearly" | "lifetime") {
+    setLoading(plan);
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan: billing }),
+        body: JSON.stringify({ plan }),
       });
       const data = await res.json();
       if (data.url) {
         window.location.href = data.url;
       } else {
         alert(data.error || "Something went wrong. Please try again.");
-        setLoading(false);
+        setLoading(null);
       }
     } catch {
       alert("Something went wrong. Please try again.");
-      setLoading(false);
+      setLoading(null);
     }
   }
 
@@ -33,7 +33,7 @@ export default function PricingPage() {
   const savings = billing === "yearly" ? "Save 33%" : null;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
       <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
           Simple, Transparent Pricing
@@ -87,7 +87,7 @@ export default function PricingPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {/* Free Tier */}
         <div className="rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-900">
           <h2 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
@@ -127,7 +127,7 @@ export default function PricingPage() {
         {/* Pro Tier */}
         <div className="relative rounded-2xl border-2 border-indigo-600 bg-white p-8 dark:bg-gray-900">
           <div className="absolute -top-3 right-6 rounded-full bg-indigo-600 px-3 py-0.5 text-xs font-medium text-white">
-            Best Value
+            Most Popular
           </div>
           <h2 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
             Pro
@@ -169,11 +169,62 @@ export default function PricingPage() {
             </li>
           </ul>
           <button
-            onClick={handleCheckout}
-            disabled={loading}
+            onClick={() => handleCheckout(billing)}
+            disabled={loading !== null}
             className="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-indigo-700 disabled:opacity-50"
           >
-            {loading ? "Redirecting..." : "Get Pro"}
+            {loading === billing ? "Redirecting..." : "Get Pro"}
+          </button>
+        </div>
+
+        {/* Lifetime Tier */}
+        <div className="relative rounded-2xl border-2 border-amber-500 bg-white p-8 dark:bg-gray-900">
+          <div className="absolute -top-3 right-6 rounded-full bg-amber-500 px-3 py-0.5 text-xs font-medium text-white">
+            Best Value
+          </div>
+          <h2 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
+            Lifetime
+          </h2>
+          <p className="mb-6 text-gray-600 dark:text-gray-400">
+            Pay once, use forever
+          </p>
+          <div className="mb-2">
+            <span className="text-4xl font-bold text-gray-900 dark:text-white">
+              $49
+            </span>
+            <span className="text-gray-500 dark:text-gray-400"> one-time</span>
+          </div>
+          <p className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+            No recurring charges, ever
+          </p>
+          <ul className="mb-8 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+            <li className="flex items-start gap-2">
+              <CheckIcon className="text-amber-500" />
+              Everything in Pro
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckIcon className="text-amber-500" />
+              Unlimited operations forever
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckIcon className="text-amber-500" />
+              API access forever
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckIcon className="text-amber-500" />
+              All future tools included
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckIcon className="text-amber-500" />
+              No subscription to manage
+            </li>
+          </ul>
+          <button
+            onClick={() => handleCheckout("lifetime")}
+            disabled={loading !== null}
+            className="w-full rounded-lg bg-amber-500 px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-amber-600 disabled:opacity-50"
+          >
+            {loading === "lifetime" ? "Redirecting..." : "Get Lifetime Access"}
           </button>
         </div>
       </div>
@@ -186,7 +237,7 @@ export default function PricingPage() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <FaqItem
             question="Can I cancel anytime?"
-            answer="Yes. Cancel your Pro subscription at any time from your Stripe billing portal. You'll keep access until the end of your billing period."
+            answer="Yes. Cancel your Pro subscription at any time from your Stripe billing portal. You'll keep access until the end of your billing period. Lifetime deals don't need cancellation — you own it forever."
           />
           <FaqItem
             question="What payment methods do you accept?"
@@ -199,6 +250,14 @@ export default function PricingPage() {
           <FaqItem
             question="What counts as an operation?"
             answer="Each time you click a tool's action button (format, encode, generate, etc.) counts as one operation. Real-time tools like Color Converter and Regex Tester don't count."
+          />
+          <FaqItem
+            question="What's included in the Lifetime deal?"
+            answer="Everything in Pro — unlimited operations, no ads, batch processing, API access, and priority new tools. You pay once and get access forever, including all future tools and updates."
+          />
+          <FaqItem
+            question="Can I switch from Pro to Lifetime?"
+            answer="Yes! Purchase the Lifetime deal and then cancel your Pro subscription from the Stripe billing portal. Your Lifetime access will continue indefinitely."
           />
         </div>
       </div>

@@ -55,9 +55,14 @@ export async function POST(request: NextRequest) {
           !customer.metadata?.api_key
         ) {
           const apiKey = generateApiKey();
-          await stripe.customers.update(customerId, {
-            metadata: { api_key: apiKey },
-          });
+          const metadata: Record<string, string> = { api_key: apiKey };
+
+          // Mark lifetime purchases so auth can recognize them without a subscription
+          if (session.mode === "payment") {
+            metadata.plan_type = "lifetime";
+          }
+
+          await stripe.customers.update(customerId, { metadata });
         }
       }
       break;
@@ -69,6 +74,12 @@ export async function POST(request: NextRequest) {
         typeof subscription.customer === "string"
           ? subscription.customer
           : subscription.customer.id;
+
+      // Don't revoke API key for lifetime customers
+      const customer = await stripe.customers.retrieve(customerId);
+      if (!customer.deleted && customer.metadata?.plan_type === "lifetime") {
+        break;
+      }
 
       // Remove API key when subscription is canceled
       await stripe.customers.update(customerId, {

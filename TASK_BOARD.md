@@ -87,7 +87,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "CodeBeautify Alternative: 105 Tools That Never See Your Data" blog post — devformat.tools already ranking for this query with 52 tools. DevBolt has 105. Direct competitive content.
 - [ ] Build Chrome Extension MVP — DOWNGRADED. 10015.io's extension is a retention moat but market is saturated. Lower ROI than content.
 - [x] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format, suggest right tool. UX differentiator.
-- [ ] Add lifetime deal option ($49-79) alongside Pro subscription — captures subscription-averse devs.
+- [x] Add lifetime deal option ($49) alongside Pro subscription — captures subscription-averse devs.
 - [x] Add HowTo structured data to tutorial blog posts — done.
 
 ### P3 - Low (Catalog Expansion)

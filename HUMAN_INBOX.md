@@ -4,6 +4,30 @@ Messages from Claude agents for Vincent. Check this file periodically.
 
 ---
 
+## 2026-03-19 - ACTION NEEDED: Set up Lifetime Deal in Stripe
+
+**From:** Developer Agent
+**Priority:** MEDIUM (code is deployed, needs Stripe config to go live)
+
+### What I Did
+Added a **$49 lifetime deal** tier to the pricing page alongside the existing Free and Pro subscription plans. The code is complete and builds cleanly.
+
+### What You Need To Do
+1. **Create a one-time price in Stripe Dashboard:**
+   - Go to https://dashboard.stripe.com/products
+   - Either create a new product "DevBolt Lifetime" or add a price to the existing Pro product
+   - Set it as a **one-time** payment of **$49.00**
+   - Copy the price ID (starts with `price_`)
+
+2. **Add the environment variable in Vercel:**
+   - Go to Vercel project settings → Environment Variables
+   - Add `STRIPE_PRICE_ID_LIFETIME` = the price ID from step 1
+   - Redeploy for changes to take effect
+
+The lifetime deal will appear as the third option on the pricing page with an amber "Best Value" badge. Lifetime customers get all Pro features permanently — no subscription check needed.
+
+---
+
 ## 2026-03-19 - Phase 10 Strategy: The Vibe Coding Security Moment + Distribution Offensive
 
 **From:** Strategist Agent
@@ -23,10 +47,32 @@ Phase 9's content strategy executed well — the developer agent shipped 5 error
 
 | # | Action | Time Needed | Impact |
 |---|--------|-------------|--------|
-| 1 | **Configure Stripe env vars in Vercel** | 10 min | Unblocks ALL revenue (day 3+!) |
-| 2 | **Submit to AlternativeTo** as "CodeBeautify alternative" | 15 min | Free backlink + referral traffic |
+| 1 | **Configure Stripe env vars in Vercel** | 10 min | Unblocks ALL revenue (day 3+!) | human response: This was done yesterday.
+| 2 | **Submit to AlternativeTo** as "CodeBeautify alternative" | 15 min | Free backlink + referral traffic | human response: I went to submit this and it suggests referencing the github so it can autofill some things. I think maybe we need to update the github so it uses the right name and has a good readme.
 | 3 | **Submit to StackShare, DevHunt, SaaSHub, WebCurate, OpenHunts** | 30 min batch | 5+ backlinks + discovery |
-| 4 | **Set up beehiiv newsletter** + email opt-in on tool pages | 30 min | Owned direct traffic channel |
+| 4 | **Set up beehiiv newsletter** + email opt-in on tool pages | 30 min | Owned direct traffic channel | human response:
+newsletter questions:
+Let’s create your publication.
+By the way, my name's Bea 👋
+I'm part of the beehiiv team, here to help you get up and running on the platform.
+
+Newsletter name
+*
+Benjamin's Newsletter
+This name will be displayed on your landing page.
+Website URL
+*
+benjamins-newsletter-d9e05f
+.beehiiv.com
+What's your newsletter about?
+
+Search and select up to 3 content tags
+Add tags to help your newsletter get discovered by potential partners and sponsors.
+
+How often do you plan to publish?
+
+Select an Option
+Select one option
 | 5 | **Seed Reddit answers** in r/webdev, r/devops, r/typescript mentioning DevBolt | Ongoing | Perplexity citation pipeline (46.7% of Perplexity citations come from Reddit) |
 
 ---
@@ -56,6 +102,7 @@ This is the defining developer narrative of Q1 2026:
 **What this means for DevBolt:** "Runs in your browser, nothing installed, nothing phoned home" is exactly what anxious developers want to hear right now. The /safe-tools page and privacy blog post are already live — a new GlassWorm-angle blog post would be timely.
 
 #### C. Competitive Landscape Update (Significant Changes)
+human response: This is nonsense. The time between data gathering here is a couple of days at most. The data has not changed to this degree. Not sure which pull is more correct, or if they're both just made up entirely
 
 | Competitor | Monthly Traffic | Change Since Phase 9 | Notes |
 |-----------|----------------|---------------------|-------|

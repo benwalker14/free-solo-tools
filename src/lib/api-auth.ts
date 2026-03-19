@@ -68,6 +68,16 @@ export async function authenticateApiKey(
 
     const customer = result.data[0];
 
+    // Lifetime customers have permanent access without a subscription
+    if (customer.metadata?.plan_type === "lifetime") {
+      return {
+        user: {
+          customerId: customer.id,
+          email: customer.email,
+        },
+      };
+    }
+
     // Check customer has an active subscription
     const subscriptions = await stripe.subscriptions.list({
       customer: customer.id,

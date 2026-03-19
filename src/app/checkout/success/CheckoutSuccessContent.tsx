@@ -8,6 +8,7 @@ export default function CheckoutSuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [apiKey, setApiKey] = useState<string | null>(null);
+  const [planType, setPlanType] = useState<string>("subscription");
   const [loading, setLoading] = useState(!!sessionId);
   const [copied, setCopied] = useState(false);
 
@@ -20,6 +21,7 @@ export default function CheckoutSuccessContent() {
         .then((r) => r.json())
         .then((data) => {
           if (data.api_key) setApiKey(data.api_key);
+          if (data.plan_type) setPlanType(data.plan_type);
         })
         .catch(() => {})
         .finally(() => setLoading(false));
@@ -34,6 +36,8 @@ export default function CheckoutSuccessContent() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const isLifetime = planType === "lifetime";
 
   return (
     <div className="mx-auto max-w-xl px-4 py-24 text-center sm:px-6">
@@ -53,11 +57,12 @@ export default function CheckoutSuccessContent() {
         </svg>
       </div>
       <h1 className="mb-3 text-3xl font-bold text-gray-900 dark:text-white">
-        Welcome to Pro!
+        {isLifetime ? "Welcome to Pro — Forever!" : "Welcome to Pro!"}
       </h1>
       <p className="mb-8 text-gray-600 dark:text-gray-400">
-        Your subscription is active. Enjoy unlimited operations, no ads, and all
-        Pro features.
+        {isLifetime
+          ? "Your lifetime access is active. Enjoy unlimited operations, no ads, and all Pro features — forever."
+          : "Your subscription is active. Enjoy unlimited operations, no ads, and all Pro features."}
       </p>
 
       {/* API Key Section */}

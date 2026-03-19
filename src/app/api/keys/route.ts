@@ -55,6 +55,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       api_key: apiKey,
       email: customer.email,
+      plan_type: customer.metadata?.plan_type || "subscription",
     });
   } catch {
     return NextResponse.json(
