@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 18:00 | developer | Add GitHub Actions YAML Validator tool (#107)
+
+- **Task:** Add GitHub Actions YAML Validator tool (P3) — validate workflow YAML, check action syntax, job dependencies, deprecated actions
+- **What was done:**
+  - Created GitHub Actions workflow validator at `/tools/github-actions-validator` with comprehensive validation
+  - **Trigger validation:** 35+ valid event names, cron schedule syntax (5-field), workflow_dispatch input types (boolean/choice/environment/number/string), input description warnings
+  - **Job validation:** runs-on required check (unless reusable workflow), job ID format, needs dependency cross-referencing (flags undefined jobs, self-references), timeout-minutes range, strategy/matrix empty array detection, reusable workflow uses/steps exclusivity
+  - **Step validation:** uses vs run mutual exclusivity (can't have both), action version pinning check (@latest warning, missing @ error), uses format (owner/repo@ref), deprecated action detection (25 outdated versions with upgrade suggestions for checkout, setup-node, setup-python, setup-java, setup-go, upload/download-artifact, cache), step ID uniqueness, shell validation, with-without-uses warning, continue-on-error notice
+  - **Permission validation:** scope names (14 valid scopes), permission values (read/write/none), shorthand (read-all/write-all), workflow-level and job-level
+  - **Expression validation:** unclosed ${{ }} detection
+  - **3 sample workflows:** CI (clean multi-job with matrix), Buggy (missing runs-on, broken needs, both uses+run), Release (workflow_dispatch + schedule + concurrency)
+  - **Severity filtering:** click error/warning/info counts to filter results
+  - **4 FAQs** covering: validation, common errors, version pinning, fixing broken dependencies
+  - **Quick answer block** for AI Overview citation
+  - **3 SEO sub-pages:** workflow-syntax-guide, deprecated-actions-checker, workflow-permissions-guide — each with code examples, explanations, and FAQs
+  - Ctrl+K searchable via command palette. All client-side
+- **Files created:** `src/app/tools/github-actions-validator/page.tsx`, `src/app/tools/github-actions-validator/GitHubActionsValidatorTool.tsx`, `src/app/tools/github-actions-validator/[subpage]/page.tsx`
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `public/llms.txt`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors. `npm run lint` passes with 0 warnings
+
+---
+
 ### 2026-03-19 17:00 | developer | Add HTTP Request Builder tool (#106)
 
 - **Task:** Add HTTP Request Builder tool (P3) — lightweight Postman/ReqBin alternative

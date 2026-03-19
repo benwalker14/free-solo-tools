@@ -1074,4 +1074,147 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "HTTP Request Builder",
     },
   ],
+
+  "github-actions-validator": [
+    {
+      slug: "workflow-syntax-guide",
+      title: "GitHub Actions Workflow Syntax Guide",
+      metaTitle: "GitHub Actions Workflow Syntax Guide — YAML Reference & Validator",
+      metaDescription:
+        "Complete GitHub Actions workflow YAML syntax reference. Validate triggers, jobs, steps, expressions, and permissions. Free online validator.",
+      h1: "GitHub Actions Workflow Syntax Guide",
+      intro:
+        "Learn the complete syntax for GitHub Actions workflow YAML files. Use the validator above to check your workflows for errors, then reference this guide to fix them. All processing runs in your browser.",
+      content: [
+        {
+          heading: "Workflow file structure",
+          body: "Every GitHub Actions workflow requires a YAML file in .github/workflows/ with at minimum two fields: 'on' (trigger events) and 'jobs' (the work to execute). Optional top-level fields include 'name' (display name in the UI), 'permissions' (GITHUB_TOKEN scopes), 'env' (global environment variables), 'concurrency' (prevents duplicate runs), and 'defaults' (shared step settings like shell and working-directory).",
+          codeExample: "name: CI\n\non:\n  push:\n    branches: [main]\n  pull_request:\n\npermissions:\n  contents: read\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npm ci && npm test",
+        },
+        {
+          heading: "Trigger events and filters",
+          body: "The 'on' field accepts a single event string, an array, or a mapping with filters. Common triggers: push and pull_request with branch/path filters, schedule with cron syntax, workflow_dispatch for manual triggers with inputs, and workflow_call for reusable workflows. Filter examples: branches, branches-ignore, paths, paths-ignore, tags, and types (opened, synchronize, closed for pull_request).",
+          codeExample: "on:\n  push:\n    branches: [main, 'release/**']\n    paths:\n      - 'src/**'\n      - '!src/**/*.test.ts'\n  pull_request:\n    types: [opened, synchronize]\n  schedule:\n    - cron: '0 9 * * 1'  # Every Monday at 9 AM\n  workflow_dispatch:\n    inputs:\n      environment:\n        type: choice\n        options: [staging, production]",
+        },
+        {
+          heading: "Jobs and steps",
+          body: "Each job runs on a fresh runner VM specified by runs-on. Jobs run in parallel by default — use 'needs' to create dependencies. Each job contains steps that run sequentially. Steps use either 'uses' (to call an action) or 'run' (to execute shell commands). Steps can have 'id' for referencing outputs, 'if' for conditional execution, 'with' for action inputs, and 'env' for environment variables.",
+          codeExample: "jobs:\n  test:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        node: [18, 20, 22]\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: ${{ matrix.node }}\n      - run: npm ci\n      - run: npm test\n\n  deploy:\n    needs: test\n    runs-on: ubuntu-latest\n    if: github.ref == 'refs/heads/main'\n    steps:\n      - run: echo 'Deploying...'",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the minimum required structure for a GitHub Actions workflow?",
+          answer:
+            "A valid workflow needs 'on' (at least one trigger event) and 'jobs' (at least one job with runs-on and steps). The 'name' field is optional but recommended. Each step needs either 'uses' or 'run'.",
+        },
+        {
+          question: "How do I run jobs in sequence instead of parallel?",
+          answer:
+            "Add 'needs: job-id' to dependent jobs. For example, 'deploy' with 'needs: [build, test]' waits for both to complete. Without 'needs', all jobs start simultaneously.",
+        },
+        {
+          question: "What runners are available for GitHub Actions?",
+          answer:
+            "GitHub-hosted runners include ubuntu-latest, ubuntu-24.04, ubuntu-22.04, windows-latest, windows-2022, macos-latest, macos-15, macos-14, and macos-13. You can also use self-hosted runners for custom environments.",
+        },
+      ],
+      keywords: [
+        "github actions workflow syntax",
+        "github actions yaml reference",
+        "github actions workflow structure",
+        "github actions on trigger",
+        "github actions jobs steps",
+        "github actions yaml guide",
+      ],
+      parentToolSlug: "github-actions-validator",
+      parentToolName: "GitHub Actions Validator",
+    },
+    {
+      slug: "deprecated-actions-checker",
+      title: "GitHub Actions Deprecated Actions Checker",
+      metaTitle: "Deprecated GitHub Actions Checker — Find Outdated Action Versions",
+      metaDescription:
+        "Check your GitHub Actions workflow for deprecated and outdated action versions. Get upgrade recommendations for checkout, setup-node, upload-artifact, and more.",
+      h1: "Deprecated GitHub Actions Checker",
+      intro:
+        "Check your workflow for outdated action versions. The validator above flags deprecated actions and suggests the latest stable versions. Pin to current versions for security and reliability.",
+      content: [
+        {
+          heading: "Why pinning action versions matters",
+          body: "Unpinned or outdated action versions create security and reliability risks. Action maintainers can push breaking changes to mutable tags. Older versions may have known vulnerabilities or miss performance improvements. GitHub recommends pinning to a specific major version tag (v4) or full commit SHA for maximum security. DevBolt's validator checks against a database of known deprecated versions and suggests current alternatives.",
+          codeExample: "# Bad — unpinned or outdated\n- uses: actions/checkout@v2     # Outdated\n- uses: actions/checkout@main   # Mutable, can break\n- uses: actions/checkout@latest  # Not recommended\n\n# Good — pinned to current major\n- uses: actions/checkout@v4\n- uses: actions/setup-node@v4\n- uses: actions/upload-artifact@v4\n\n# Best — pinned to commit SHA\n- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11",
+        },
+        {
+          heading: "Common outdated actions and their replacements",
+          body: "actions/checkout: v1/v2/v3 → v4 (faster sparse checkout, improved performance). actions/setup-node: v1/v2/v3 → v4 (corepack support, better caching). actions/upload-artifact and download-artifact: v1/v2/v3 → v4 (major rewrite with faster transfers and compression). actions/cache: v1/v2/v3 → v4 (improved restore and save speeds). actions/setup-python: v1-v4 → v5. actions/setup-go: v1-v4 → v5. actions/setup-java: v1-v3 → v4.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What happens if I use an outdated action version?",
+          answer:
+            "Outdated versions may have security vulnerabilities, miss bug fixes, and lack new features. GitHub will eventually deprecate Node 16-based actions (v3 and earlier for many). Your workflows will continue to run but may show deprecation warnings and eventually fail.",
+        },
+        {
+          question: "Should I pin to a commit SHA or a version tag?",
+          answer:
+            "For maximum security, pin to a full commit SHA (40 characters). Tags are mutable — a compromised maintainer could change what v4 points to. SHA pinning is recommended by GitHub's security hardening guide. Use Dependabot or Renovate to keep SHA pins updated.",
+        },
+      ],
+      keywords: [
+        "deprecated github actions",
+        "outdated github actions",
+        "github actions version checker",
+        "github actions upgrade",
+        "actions checkout latest version",
+        "github actions security pinning",
+      ],
+      parentToolSlug: "github-actions-validator",
+      parentToolName: "GitHub Actions Validator",
+    },
+    {
+      slug: "workflow-permissions-guide",
+      title: "GitHub Actions Permissions Guide",
+      metaTitle: "GitHub Actions Permissions Guide — GITHUB_TOKEN Scopes Explained",
+      metaDescription:
+        "Understand GitHub Actions permissions and GITHUB_TOKEN scopes. Configure least-privilege access for workflows with read, write, and none values.",
+      h1: "GitHub Actions Permissions Guide",
+      intro:
+        "Configure GITHUB_TOKEN permissions for your GitHub Actions workflows. Use least-privilege access to minimize security risk. The validator above checks your permission configuration for errors.",
+      content: [
+        {
+          heading: "Understanding GITHUB_TOKEN permissions",
+          body: "Every workflow run gets an automatic GITHUB_TOKEN with configurable permissions. Since 2023, new repositories default to read-only permissions. You can set permissions at the workflow level (applies to all jobs) or per-job for fine-grained control. Available scopes include contents, issues, pull-requests, packages, deployments, actions, checks, id-token, pages, and more. Each scope accepts read, write, or none.",
+          codeExample: "# Workflow-level — applies to all jobs\npermissions:\n  contents: read\n  pull-requests: write\n\njobs:\n  deploy:\n    # Job-level — overrides workflow permissions\n    permissions:\n      contents: write\n      packages: write\n      id-token: write  # For OIDC\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4",
+        },
+        {
+          heading: "Least-privilege best practices",
+          body: "Always specify permissions explicitly rather than relying on defaults. Start with the minimum: contents: read for most CI jobs. Add write permissions only where needed: pull-requests: write for PR comments, packages: write for publishing, pages: write for deploying to GitHub Pages, and id-token: write for OIDC authentication. Avoid permissions: write-all which grants full access to all scopes.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What are the default GITHUB_TOKEN permissions?",
+          answer:
+            "For repositories created after February 2023, the default is read-only for contents and metadata. Older repositories may default to read-write. You can change the default in repository Settings > Actions > General > Workflow permissions.",
+        },
+        {
+          question: "What is id-token: write used for?",
+          answer:
+            "The id-token permission allows workflows to request an OpenID Connect (OIDC) token for keyless authentication with cloud providers (AWS, Azure, GCP). This eliminates the need to store long-lived cloud credentials as repository secrets.",
+        },
+      ],
+      keywords: [
+        "github actions permissions",
+        "github token permissions",
+        "github actions GITHUB_TOKEN",
+        "github actions least privilege",
+        "workflow permissions yaml",
+        "github actions security permissions",
+      ],
+      parentToolSlug: "github-actions-validator",
+      parentToolName: "GitHub Actions Validator",
+    },
+  ],
 };

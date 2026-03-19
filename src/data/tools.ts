@@ -846,4 +846,12 @@ export const tools: Tool[] = [
     icon: "HTTP",
     category: "Generate",
   },
+  {
+    title: "GitHub Actions Validator",
+    description:
+      "Validate GitHub Actions workflow YAML files for syntax, triggers, job structure, step config, needs dependencies, and deprecated actions",
+    href: "/tools/github-actions-validator",
+    icon: "GHA",
+    category: "Inspect",
+  },
 ];

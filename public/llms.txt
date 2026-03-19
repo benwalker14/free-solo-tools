@@ -1,6 +1,6 @@
 # DevBolt
 
-> 104 free online developer tools. 100% client-side — your data never leaves your browser.
+> 107 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -110,6 +110,7 @@
 - [AI Code Security Scanner](https://devbolt.dev/tools/code-security-scanner): Scan JavaScript and TypeScript code for vulnerabilities — hardcoded secrets, injection, XSS, SSRF, prototype pollution, and 20+ security checks
 - [Code Complexity Analyzer](https://devbolt.dev/tools/code-complexity-analyzer): Analyze JavaScript and TypeScript code for cyclomatic complexity, cognitive complexity, nesting depth, and maintainability index with per-function metrics
 - [HTTP Request Builder](https://devbolt.dev/tools/http-request-builder): Build HTTP requests visually and generate code in cURL, JavaScript, Python, Go, Rust, and PHP — lightweight Postman/ReqBin alternative
+- [GitHub Actions Validator](https://devbolt.dev/tools/github-actions-validator): Validate GitHub Actions workflow YAML for syntax, triggers, jobs, steps, dependencies, deprecated actions, and permissions
 
 ## Cheat Sheets
 

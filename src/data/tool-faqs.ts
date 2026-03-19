@@ -1914,6 +1914,29 @@ export const toolFaqs: Record<string, FAQ[]> = {
     },
   ],
 
+  "github-actions-validator": [
+    {
+      question: "How do I validate a GitHub Actions workflow YAML file online?",
+      answer:
+        "Paste your workflow YAML into the editor and click Validate. The tool checks for syntax errors, missing required fields (on, jobs, runs-on, steps), broken job dependencies (needs referencing undefined jobs), deprecated action versions with upgrade suggestions, invalid trigger events, permission scope errors, and common misconfigurations. Results are categorized as errors, warnings, and info. Everything runs client-side — your workflow files never leave your browser.",
+    },
+    {
+      question: "What are the most common GitHub Actions workflow errors?",
+      answer:
+        "Frequent errors include missing runs-on (every job needs a runner), steps with both uses and run (only one allowed per step), action references without version pinning (@v4), broken needs dependencies referencing non-existent jobs, invalid trigger event names, incorrect permission values, and YAML indentation mistakes. Security issues include using outdated action versions with known vulnerabilities and missing timeout-minutes allowing runaway jobs.",
+    },
+    {
+      question: "How do I pin GitHub Action versions for reproducible builds?",
+      answer:
+        "Always reference actions with a version tag like actions/checkout@v4 or a commit SHA for maximum security. Avoid @latest or @main which can change unexpectedly. DevBolt's validator flags unpinned actions and outdated versions, suggesting the latest stable release. For critical workflows, pin to a full commit SHA (actions/checkout@abc123) to prevent supply chain attacks through tag mutation.",
+    },
+    {
+      question: "How do I fix broken job dependencies in GitHub Actions?",
+      answer:
+        "The needs field references other job IDs that must complete before the current job starts. If needs references a job ID that does not exist in the workflow, GitHub will reject it. Check that job IDs match exactly (case-sensitive). DevBolt's validator cross-references all needs values against defined job IDs and flags any missing references, self-references, and circular dependencies.",
+    },
+  ],
+
   "http-request-builder": [
     {
       question: "How do I build an HTTP request without code?",

@@ -156,3 +156,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 104. AI Code Security Scanner (/tools/code-security-scanner)
 105. Code Complexity Analyzer (/tools/code-complexity-analyzer)
 106. HTTP Request Builder (/tools/http-request-builder)
+107. GitHub Actions Validator (/tools/github-actions-validator)

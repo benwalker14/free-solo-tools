@@ -114,4 +114,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Select the HTTP method, enter a URL, then configure headers, query parameters, authorization, and body using the visual builder. The tool instantly generates working code in cURL, JavaScript, Python, Go, Rust, and PHP. Copy the generated snippet into your project. Everything runs in your browser — your data never leaves your device.",
   },
+  "github-actions-validator": {
+    question: "How do I validate a GitHub Actions workflow YAML online?",
+    answer:
+      "Paste your workflow YAML and click Validate to check for syntax errors, missing required fields, broken job dependencies, deprecated action versions, and common misconfigurations. The validator flags errors, warnings, and best-practice suggestions with specific fix guidance. Everything runs in your browser — your workflow files never leave your device.",
+  },
 };
