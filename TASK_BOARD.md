@@ -84,7 +84,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "MCP Context Window: How to Optimize Your AI Agent Setup" blog post — Perplexity CTO controversy driving searches. Links to MCP Config Builder.
 - [x] Add ItemList JSON-LD to /free-tools, /cheatsheets, category pages — machine-readable list format for AI Overview citations.
 - [x] Audit 126 programmatic sub-pages for thin content — March 2026 core update risk. Each needs 100+ words + code example + FAQ block. Audit complete: 236 pages, 170 missing code refs, 8 under 150 words. SubpageLayout updated with codeExample support. 8 thinnest pages fixed with code examples.
-- [ ] Write "CodeBeautify Alternative: 103 Tools That Never See Your Data" blog post — devformat.tools already ranking for this query with 52 tools. DevBolt has 103. Direct competitive content.
+- [x] Write "CodeBeautify Alternative: 105 Tools That Never See Your Data" blog post — devformat.tools already ranking for this query with 52 tools. DevBolt has 105. Direct competitive content.
 - [ ] Build Chrome Extension MVP — DOWNGRADED. 10015.io's extension is a retention moat but market is saturated. Lower ROI than content.
 - [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format, suggest right tool. UX differentiator.
 - [ ] Add lifetime deal option ($49-79) alongside Pro subscription — captures subscription-averse devs.

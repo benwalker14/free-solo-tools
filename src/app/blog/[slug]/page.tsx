@@ -39,6 +39,7 @@ import VibeCodingSecurity from "./posts/VibeCodingSecurity";
 import TypeScript7GoRewrite from "./posts/TypeScript7GoRewrite";
 import BrowserToolsVsVscodeExtensions from "./posts/BrowserToolsVsVscodeExtensions";
 import McpContextWindow from "./posts/McpContextWindow";
+import CodeBeautifyAlternative from "./posts/CodeBeautifyAlternative";
 
 const postContent: Record<string, React.ReactNode> = {
   "fix-invalid-json": <FixInvalidJson />,
@@ -77,6 +78,7 @@ const postContent: Record<string, React.ReactNode> = {
   "typescript-7-go-rewrite": <TypeScript7GoRewrite />,
   "browser-tools-vs-vscode-extensions": <BrowserToolsVsVscodeExtensions />,
   "vibe-coding-security": <VibeCodingSecurity />,
+  "codebeautify-alternative": <CodeBeautifyAlternative />,
   "mcp-context-window-optimization": <McpContextWindow />,
 };
 

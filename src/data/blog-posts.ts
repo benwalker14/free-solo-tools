@@ -618,6 +618,22 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "codebeautify-alternative",
+    title:
+      "CodeBeautify Alternative: 105 Tools That Never See Your Data",
+    description:
+      "CodeBeautify stores your data on their servers. DevBolt offers 105 free developer tools that run 100% client-side — your JSON, JWTs, code, and credentials never leave your browser.",
+    publishedAt: "2026-03-19",
+    readTime: "11 min read",
+    tags: ["Security", "Privacy", "Tools", "Alternative"],
+    relatedTools: [
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      { title: "Base64 Encoder & Decoder", href: "/tools/base64" },
+      { title: "JWT Decoder", href: "/tools/jwt-decoder" },
+      { title: "AI Code Security Scanner", href: "/tools/code-security-scanner" },
+    ],
+  },
+  {
     slug: "mcp-context-window-optimization",
     title: "MCP Context Window: How to Optimize Your AI Agent Setup",
     description:
