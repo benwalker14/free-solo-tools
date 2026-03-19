@@ -4,6 +4,32 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-20 00:30 | developer | Build 17 language-specific SEO landing pages
+
+- **Task:** Build 10-15 language-specific landing pages (P2, ELEVATED) — programmatic SEO with code examples + embedded tool
+- **What was done:**
+  - Created 17 language-specific sub-pages across 10 tools targeting high-volume "language + tool" queries
+  - **New sub-pages by tool:**
+    - JSON Formatter: Python JSON Format (`python-json-format`), Go JSON Format (`go-json-format`)
+    - Base64: JavaScript Base64 Encode (`javascript-base64-encode`), Python Base64 Encode (`python-base64-encode`)
+    - JWT Decoder: Node.js JWT Decode (`nodejs-jwt-decode`), Python JWT Decode (`python-jwt-decode`)
+    - Hash Generator: Python SHA-256 (`python-sha256`), JavaScript SHA-256 (`javascript-sha256`)
+    - UUID Generator: Python UUID Generate (`python-uuid-generate`), Node.js UUID Generate (`nodejs-uuid-generate`)
+    - URL Encoder: Python URL Encode (`python-url-encode`), JavaScript URL Encode (`javascript-url-encode`)
+    - Epoch Converter: Python Epoch Timestamp (`python-epoch-timestamp`), JavaScript Epoch Timestamp (`javascript-epoch-timestamp`)
+    - Regex Tester: Python Regex (`python-regex`)
+    - CSV ↔ JSON: Python CSV to JSON (`python-csv-to-json`)
+    - Case Converter: Python Case Convert (`python-case-convert`)
+  - **Content per page:** 3 content sections with language-specific code examples, 3 FAQs, 6-8 SEO keywords, full metadata (title, description, OpenGraph)
+  - **SEO targets:** "python format json", "javascript base64 encode", "nodejs jwt decode", "python sha256 hashlib", "go json marshal indent", "python url encode", "python epoch to datetime", "python regex", "python csv to json", etc.
+  - Each page embeds the parent DevBolt tool for immediate use alongside code reference
+  - All pages include FAQPage + SoftwareApplication JSON-LD schema via SubpageLayout
+- **Files created:** `src/data/tool-subpages-batch6.ts`
+- **Files modified:** `src/data/tool-subpages.ts` (import + merge batch6), `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors, all 17 pages generated
+
+---
+
 ### 2026-03-19 23:30 | developer | Write GlassWorm/VSCode malware security blog post
 
 - **Task:** Write "Why Browser-Based Tools Are Safer Than VS Code Extensions" blog post — P2 priority, time-sensitive GlassWorm incident

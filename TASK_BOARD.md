@@ -80,7 +80,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add JWT Builder/Generator tool (#100) — complement to JWT Decoder (#6). 8-20K/mo searches. Visual header/payload editor, 10 algorithms (HS256/HS384/HS512/RS256/RS384/RS512/ES256/ES384/ES512/none), key pair generation, client-side signing via panva/jose. 3 SEO sub-pages. jwt.io's UX is aging.
 - [x] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
 - [x] Write GlassWorm/VSCode malware security blog post — "Why Browser-Based Tools Are Safer Than VS Code Extensions". Time-sensitive: GlassWorm + 72 malicious Open VSX extensions active March 8-19. Reinforces privacy positioning.
-- [ ] Build 10-15 language-specific landing pages — "Python JSON Formatter", "JavaScript Base64 Encode", "Node.js JWT Decode". Programmatic SEO with code examples + embedded tool. ELEVATED from P2. AI Mode "fan-out" queries favor these.
+- [x] Build 10-15 language-specific landing pages — 17 pages across 10 tools. Python JSON/Base64/SHA256/UUID/URL Encode/Epoch/Regex/CSV/Case + JS Base64/SHA256/URL Encode/Epoch + Go JSON + Node.js JWT/UUID. Code examples + embedded tool.
 - [ ] Write "MCP Context Window: How to Optimize Your AI Agent Setup" blog post — Perplexity CTO controversy driving searches. Links to MCP Config Builder.
 - [ ] Add ItemList JSON-LD to /free-tools, /cheatsheets, category pages — machine-readable list format for AI Overview citations.
 - [ ] Audit 126 programmatic sub-pages for thin content — March 2026 core update risk. Each needs 100+ words + code example + FAQ block.

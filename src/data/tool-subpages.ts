@@ -27,6 +27,7 @@ import { batch2Subpages } from "./tool-subpages-batch2";
 import { batch3Subpages } from "./tool-subpages-batch3";
 import { batch4Subpages } from "./tool-subpages-batch4";
 import { batch5Subpages } from "./tool-subpages-batch5";
+import { batch6Subpages } from "./tool-subpages-batch6";
 
 const coreSubpages: Record<string, ToolSubpage[]> = {
   "hash-generator": [
@@ -1149,6 +1150,7 @@ export const toolSubpages: Record<string, ToolSubpage[]> = mergeBatches(
   batch3Subpages,
   batch4Subpages,
   batch5Subpages,
+  batch6Subpages,
 );
 
 /** Get all sub-page slugs for sitemap generation */
