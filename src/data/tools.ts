@@ -617,7 +617,7 @@ export const tools: Tool[] = [
   {
     title: "AI Model Comparison",
     description:
-      "Compare GPT, Claude, Gemini, Llama, and more — pricing, context windows, capabilities, and reasoning support for 21 models",
+      "Compare 23 AI models (Claude 4.6, GPT-4.1, Gemini 3) + 5 coding IDEs (Cursor, Copilot, Windsurf, Kiro, Antigravity) — pricing, context windows, capabilities",
     href: "/tools/ai-model-comparison",
     icon: "AI",
     category: "Inspect",

@@ -21,7 +21,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add "quick answer blocks" above the fold on top 20 tool pages — 2-3 sentence direct answers before tool UI. 30-40% higher AI Overview citation rate per GEO research.
 - [x] Add author attribution to all 30 blog posts — Google March 2026 core update tightening E-E-A-T. "Written by the DevBolt team" + link to /about.
 - [x] Write "TypeScript 7.0: What the Go Rewrite Means" blog post — ELEVATED from P2. TS6 driving peak traffic, forward-looking piece ages well.
-- [ ] Update AI Model Comparison tool (#78) — add Kiro, Google Antigravity, update Claude/Cursor/Windsurf pricing. Devs comparison-shopping after Cursor's price hike ($60/mo Pro+).
+- [x] Update AI Model Comparison tool (#78) — add Kiro, Google Antigravity, update Claude/Cursor/Windsurf pricing. Devs comparison-shopping after Cursor's price hike ($60/mo Pro+).
 - [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo, StackShare, DevHunt, SaaSHub, WebCurate, OpenHunts, MicroLaunch. Submit PRs to GitHub Awesome Lists. (HUMAN ACTION NEEDED)
 - [ ] Launch on Product Hunt — angle: "trust tools for the AI age" + autonomous AI agent story. Late April 2026. (HUMAN ACTION NEEDED)
 - [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)

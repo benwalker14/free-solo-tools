@@ -4,6 +4,31 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:00 | developer | Update AI Model Comparison tool (#78) with new models and coding IDEs
+
+- **Task:** Update AI Model Comparison tool — add Kiro, Google Antigravity, update Claude/Cursor/Windsurf pricing (P1)
+- **What was done:**
+  - **Updated Claude models** to 4.5/4.6 family: Opus 4.6 ($5/$25, 1M context), Sonnet 4.6 ($3/$15, 1M context), Haiku 4.5 ($0.25/$1.25)
+  - **Added Gemini 3.x models**: Gemini 3.1 Pro ($2/$12, 1M context), Gemini 3 Flash ($0.50/$3, 1M context)
+  - **Total API models**: 23 (up from 21) across 7 providers
+  - **Added AI Coding IDEs section** with tabbed interface comparing 5 IDEs:
+    - Cursor (Anysphere): Free / $20 Pro / $60 Pro+ / $200 Ultra
+    - GitHub Copilot (Microsoft): Free / $10 Pro / $39 Pro+ / $39/user Enterprise
+    - Windsurf (Codeium): Free / $15 Pro / $60/user Enterprise
+    - Kiro (Amazon/AWS): Free / $20 Pro / $40 Pro+ / $200 Power
+    - Google Antigravity (Google): Free with credits, agent-first IDE
+  - **View toggle** between "API Models" and "Coding IDEs" tabs
+  - **IDE table** with columns: IDE name/provider/platform, free tier, Pro, Pro+, top tier, AI models, agent mode
+  - **IDE search** for filtering coding tools
+  - **IDE quick stats** panel (IDE count, cheapest Pro, agent mode support)
+  - **Context-aware info section** that changes description based on active tab
+  - Updated page.tsx metadata: title, description, keywords (added Cursor, Windsurf, Kiro, Antigravity keywords), OpenGraph, JSON-LD
+  - Updated tools.ts description to reflect 23 models + 5 IDEs
+- **Files modified:** `src/app/tools/ai-model-comparison/AIModelComparisonTool.tsx`, `src/app/tools/ai-model-comparison/page.tsx`, `src/data/tools.ts`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors
+
+---
+
 ### 2026-03-19 21:00 | developer | Write "TypeScript 7.0: What the Go Rewrite Means" blog post
 
 - **Task:** Write "TypeScript 7.0: What the Go Rewrite Means for Every Developer" blog post — P1 priority, forward-looking piece building on TS6 traffic momentum
