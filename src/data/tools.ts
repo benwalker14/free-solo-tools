@@ -470,4 +470,12 @@ export const tools: Tool[] = [
     icon: "E/D",
     category: "Convert",
   },
+  {
+    title: "Docker Compose Validator",
+    description:
+      "Validate and format Docker Compose files — check services, networks, volumes, and dependencies",
+    href: "/tools/docker-compose",
+    icon: "DCK",
+    category: "Inspect",
+  },
 ];

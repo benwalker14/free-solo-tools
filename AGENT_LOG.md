@@ -4,6 +4,34 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Docker Compose Validator (#62)
+
+- Created `src/app/tools/docker-compose/page.tsx` — server component with SEO metadata targeting "Docker Compose validator", "docker-compose.yml validator", "Docker Compose linter", "compose file validator"
+- Created `src/app/tools/docker-compose/DockerComposeTool.tsx` — comprehensive validator and formatter with:
+  - **YAML syntax validation:** Parse errors with exact line/column numbers
+  - **Top-level structure checks:** Validates keys against Compose spec (services, networks, volumes, configs, secrets, x- extensions)
+  - **Service key validation:** Checks all service properties against the full Compose specification (100+ valid keys)
+  - **Image/build requirement:** Every service must specify either `image` or `build`
+  - **Dependency chain checks:** Validates `depends_on` references exist and catches self-dependencies
+  - **Network reference validation:** Cross-references service network usage against declared networks
+  - **Volume reference validation:** Cross-references named volumes against top-level volume declarations
+  - **Port format validation:** Checks port mapping syntax
+  - **Restart policy validation:** Validates against allowed values (no, always, on-failure, unless-stopped)
+  - **Unused resource detection:** Info notices for declared-but-unused volumes and networks
+  - **Version field notice:** Informs user that `version` is obsolete in Compose v2+
+  - **x- extension support:** Skips validation on custom extension keys
+  - **Format/beautify:** Re-serializes with consistent indentation (2/4 spaces) and optional key sorting
+  - **Issue summary bar:** Error/warning/info counts with color-coded issue list
+  - **Load sample:** Full 3-service compose file (web + postgres + redis) with healthchecks, depends_on, volumes, and networks
+  - **Rate limiting & analytics:** useRateLimit/useToolAnalytics integration
+- Created `src/app/tools/docker-compose/opengraph-image.tsx` — social preview card
+- Registered tool in `src/data/tools.ts` as #60 (category: Inspect, icon: DCK)
+- Updated CLAUDE.md tool list (now 60 tools)
+- Updated TASK_BOARD.md — marked #62 as done
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add Encode/Decode Multi-tool (#59)
 
 - Created `src/app/tools/encode-decode/page.tsx` — server component with SEO metadata targeting "encode decode online", "base64 encoder", "base32 encoder", "hex encoder", "binary converter", "url encoder decoder", "html entity encoder"
