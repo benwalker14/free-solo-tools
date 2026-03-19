@@ -14,6 +14,30 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Vincent",
+  url: "https://devbolt.dev/about",
+  sameAs: [
+    "https://github.com/benwalker14",
+  ],
+  jobTitle: "Founder",
+  knowsAbout: [
+    "Software Development",
+    "Developer Tools",
+    "Web Development",
+    "TypeScript",
+    "Next.js",
+    "AI Agents",
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "DevBolt",
+    url: "https://devbolt.dev",
+  },
+};
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
@@ -159,6 +183,12 @@ export default function AboutPage() {
             for full details.
           </p>
         </section>
+
+        {/* Person JSON-LD — E-E-A-T author attribution */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </div>
     </div>
   );

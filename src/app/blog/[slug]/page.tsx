@@ -131,12 +131,17 @@ export default async function BlogPostPage({
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: {
-      "@type": "Organization",
-      name: "DevBolt",
+      "@type": "Person",
+      name: "Vincent",
       url: "https://devbolt.dev/about",
       sameAs: [
-        "https://github.com/benwalker14/free-solo-tools",
+        "https://github.com/benwalker14",
       ],
+      worksFor: {
+        "@type": "Organization",
+        name: "DevBolt",
+        url: "https://devbolt.dev",
+      },
     },
     publisher: {
       "@type": "Organization",

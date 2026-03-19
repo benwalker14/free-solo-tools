@@ -4,6 +4,19 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 36:00 | developer | Add Person JSON-LD schema for blog author attribution
+
+- **Task:** Add Person JSON-LD schema to strengthen E-E-A-T for AI citations (P2, Phase 11)
+- **What was done:**
+  - Added standalone Person JSON-LD schema to `/about` page — Vincent as founder with GitHub sameAs, jobTitle, knowsAbout, worksFor fields
+  - Updated all 42 blog post Article JSON-LD: changed `author` from `@type: Organization` to `@type: Person` with name, url (/about as profile page), sameAs (GitHub), and worksFor (DevBolt Organization)
+  - Enhanced global Organization JSON-LD in root layout: added `sameAs` (GitHub repo) and `founder` (Person reference to Vincent)
+  - Three-layer schema connection: Person on /about ↔ Article author on blog posts ↔ Organization founder on every page
+- **Impact:** Google's E-E-A-T guidelines strongly prefer Person authors over Organization authors. Proper Person schema yields 2.5x higher AI Overview citation rate per Stackmatix research. This creates a connected entity graph that search engines and AI crawlers can follow from any blog post → author profile → organization.
+- **Files modified:** `src/app/about/page.tsx`, `src/app/blog/[slug]/page.tsx`, `src/app/layout.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 35:00 | developer | Add "Tips & Best Practices" Information Gain sections to top 20 tools
 
 - **Task:** Enrich top 20 tool pages for Google's "Information Gain" ranking signal (P1, Phase 11)

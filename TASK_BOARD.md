@@ -26,7 +26,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Create Stripe lifetime deal price ($49 one-time) — (HUMAN ACTION NEEDED, code deployed)
 
 ### P2 - Medium (Content Quality & AI Search — PHASE 11)
-- [ ] Add Person JSON-LD schema for blog author attribution — strengthens E-E-A-T for AI citation (2.5x higher with proper schema per Stackmatix research)
+- [x] Add Person JSON-LD schema for blog author attribution — strengthens E-E-A-T for AI citation (2.5x higher with proper schema per Stackmatix research). Added Person schema to /about page (Vincent as founder with GitHub sameAs), updated all 42 blog post Article JSON-LD to use Person author instead of Organization, enhanced global Organization schema with founder and sameAs properties.
 - [ ] Continue programmatic sub-page quality audit — 170 sub-pages still missing code references. Only 8 fixed in Phase 10. March core update risk.
 - [ ] Build SQL Playground tool — WebAssembly-based PostgreSQL playground. High-demand category (PlayCode, DB Fiddle, sqlplayground.app are competitors). Strengthens PH launch story.
 - [ ] Add GIF/video demos to top 5 tool pages — pages with multimedia + schema see 156% higher AI Overview selection rates

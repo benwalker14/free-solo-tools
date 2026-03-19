@@ -82,6 +82,17 @@ const organizationJsonLd = {
   url: "https://devbolt.dev",
   description:
     "Fast, clean, free online tools for developers. No signup required.",
+  sameAs: [
+    "https://github.com/benwalker14/free-solo-tools",
+  ],
+  founder: {
+    "@type": "Person",
+    name: "Vincent",
+    url: "https://devbolt.dev/about",
+    sameAs: [
+      "https://github.com/benwalker14",
+    ],
+  },
 };
 
 export default function RootLayout({
