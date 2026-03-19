@@ -159,4 +159,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Use the sliders to adjust 10 CSS filter functions — blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, and drop-shadow. The live preview updates in real time so you can see exactly how your filters look. Choose from 12 presets like Vintage, B&W, Warm, Cool, and Dramatic for quick starting points, then fine-tune individual values. Copy the production-ready CSS with one click. Everything runs in your browser — no signup required.",
   },
+  "xpath-tester": {
+    question: "How do I test XPath expressions against XML online?",
+    answer:
+      "Paste your XML into the editor, type an XPath expression like //book[@category='programming']/title, and click Evaluate to see matching nodes instantly. The tool supports element selection, attribute filtering, axes (ancestor, descendant, sibling), and XPath functions (count, contains, starts-with). Click any example query button to try common patterns. Everything runs in your browser using the native XPath 1.0 engine — no data is sent to a server.",
+  },
 };

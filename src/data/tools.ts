@@ -918,4 +918,12 @@ export const tools: Tool[] = [
     icon: "FX",
     category: "Generate",
   },
+  {
+    title: "XPath Tester",
+    description:
+      "Test XPath expressions against XML data with real-time evaluation — select elements, filter by attributes, navigate axes, and use XPath functions",
+    href: "/tools/xpath-tester",
+    icon: "X/",
+    category: "Inspect",
+  },
 ];

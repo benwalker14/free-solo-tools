@@ -2141,4 +2141,26 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "Yes. CSS filter works on any HTML element including <img>, <video>, <canvas>, and inline SVG. For images, common uses include grayscale on hover (filter: grayscale(100%) → grayscale(0) on :hover), brightness adjustments, and color tinting with sepia + hue-rotate. Note that filter applies to the entire element — for per-channel control on SVG, use SVG filter primitives (feColorMatrix, feGaussianBlur) via the url() function instead.",
     },
   ],
+  "xpath-tester": [
+    {
+      question: "What is XPath and how does it work?",
+      answer:
+        "XPath (XML Path Language) is a query language for selecting nodes from XML documents. It uses path expressions — similar to file system paths — to navigate through the hierarchical tree structure of an XML document. XPath 1.0 is built into every modern browser and supports selecting elements, attributes, text nodes, and computing values with built-in functions like count(), contains(), and string-length(). XPath is used in XSLT transformations, XQuery, web scraping tools (Selenium, Puppeteer), and XML configuration parsing.",
+    },
+    {
+      question: "What is the difference between XPath and JSONPath?",
+      answer:
+        "XPath queries XML documents while JSONPath queries JSON data. XPath is a W3C standard with a formal specification, supports axes (ancestor, descendant, sibling), has built-in functions (count, sum, contains, string-length), and can select attributes with @. JSONPath is loosely modeled after XPath but has no formal standard — it uses $ for root (vs / in XPath), .. for recursive descent (vs // in XPath), and [?(@.field)] for filters (vs [@attr] in XPath). XPath is more powerful but only works with XML; JSONPath is simpler but limited to JSON structures.",
+    },
+    {
+      question: "How do I select elements by attribute value in XPath?",
+      answer:
+        "Use square bracket predicates with the @ symbol: //element[@attribute='value'] selects all elements with that attribute value. You can also use functions: //element[contains(@class, 'active')] for partial matches, //element[starts-with(@id, 'item-')] for prefix matches, and //element[@count > 5] for numeric comparisons. Multiple predicates can be chained: //book[@category='fiction'][@lang='en']. To select the attribute itself rather than the element, use //element/@attribute.",
+    },
+    {
+      question: "Is it safe to paste XML data into this tool?",
+      answer:
+        "Yes. This XPath tester runs entirely in your browser using the built-in DOMParser and document.evaluate() APIs. Your XML data is never sent to any server — all parsing and XPath evaluation happens client-side in JavaScript. You can verify this by opening your browser's Network tab and confirming no requests are made when you evaluate expressions. This makes it safe for testing XPath queries against XML that contains API responses, configuration files, or other sensitive data.",
+    },
+  ],
 };

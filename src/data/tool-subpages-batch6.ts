@@ -2470,4 +2470,174 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "CSS Filter Generator",
     },
   ],
+  "xpath-tester": [
+    {
+      slug: "xpath-syntax-guide",
+      title: "XPath Syntax — Complete Guide with Examples",
+      metaTitle:
+        "XPath Syntax Guide — Expressions, Axes & Functions | DevBolt",
+      metaDescription:
+        "Learn XPath syntax: path expressions, axes (ancestor, descendant, sibling), predicates, functions (contains, count, sum), and operators. Examples for every concept.",
+      h1: "XPath Syntax — Complete Guide with Examples",
+      intro:
+        "XPath uses path expressions to select nodes in XML documents. This guide covers every part of XPath 1.0 syntax: location paths, axes, node tests, predicates, and built-in functions.",
+      content: [
+        {
+          heading: "Location paths and steps",
+          body: "An XPath location path is a sequence of steps separated by /. Each step has three parts: an axis (direction to navigate), a node test (what to match), and zero or more predicates (filters). For example, /bookstore/book[1]/title is three steps: select the root bookstore, then its book children filtered to the first one, then the title child. A double slash // is shorthand for the descendant-or-self axis — //title selects all title elements at any depth.",
+          codeExample: "// Absolute path from root\n/bookstore/book/title\n\n// Relative path — all titles anywhere\n//title\n\n// Current context\n./author\n\n// Parent\n../price",
+          codeLanguage: "xpath",
+        },
+        {
+          heading: "Axes for navigation",
+          body: "XPath defines 13 axes for navigating the document tree. The most common are child:: (default, direct children), parent:: (parent node), ancestor:: (all ancestors up to root), descendant:: (all descendants), following-sibling:: and preceding-sibling:: (siblings), self:: (current node), and attribute:: (abbreviated as @). For example, //book/following-sibling::book selects all book elements that come after another book.",
+          codeExample: "// All ancestors of a node\n//title/ancestor::*\n\n// Following siblings\n//book[1]/following-sibling::book\n\n// Attribute axis (@ shorthand)\n//book/@category\n\n// Descendant-or-self\n//bookstore/descendant-or-self::title",
+          codeLanguage: "xpath",
+        },
+        {
+          heading: "Predicates and functions",
+          body: "Predicates filter node sets using conditions in square brackets. They can test position ([1], [last()], [position()<3]), attribute values ([@lang='en']), element values ([price>50]), and use 27+ built-in functions. String functions: contains(), starts-with(), string-length(), substring(), normalize-space(), translate(), concat(). Number functions: count(), sum(), floor(), ceiling(), round(). Boolean functions: not(), true(), false(). Node functions: name(), local-name(), namespace-uri().",
+          codeExample: "// Position predicates\n//book[1]\n//book[last()]\n//book[position() <= 2]\n\n// Attribute predicates\n//book[@category='programming']\n\n// String functions\n//book[contains(title, 'Code')]\n//book[starts-with(author, 'Robert')]\n\n// Numeric functions\ncount(//book)\nsum(//book/price)",
+          codeLanguage: "xpath",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between / and // in XPath?",
+          answer:
+            "A single slash / selects from the root or direct children of the current context node. A double slash // is shorthand for /descendant-or-self::node()/ — it selects matching nodes at any depth in the document. For example, /bookstore/book only matches book elements that are direct children of the root bookstore, while //book matches book elements anywhere in the document tree.",
+        },
+        {
+          question: "How do I select the nth element in XPath?",
+          answer:
+            "Use a position predicate in square brackets: //book[1] selects the first book, //book[2] the second, and //book[last()] the last. XPath positions are 1-indexed (not 0-indexed like most programming languages). You can also use ranges: //book[position() >= 2 and position() <= 4] selects books 2 through 4.",
+        },
+        {
+          question: "Does XPath support regular expressions?",
+          answer:
+            "XPath 1.0 does not support regular expressions. For pattern matching, use contains(), starts-with(), and substring(). XPath 2.0 adds the matches() function for regex, but browser built-in evaluators only support XPath 1.0. For regex needs, consider extracting nodes with XPath and then filtering with JavaScript regex.",
+        },
+      ],
+      keywords: [
+        "xpath syntax",
+        "xpath expressions",
+        "xpath axes",
+        "xpath functions",
+        "xpath predicates",
+        "xpath examples",
+        "xpath tutorial",
+      ],
+      parentToolSlug: "xpath-tester",
+      parentToolName: "XPath Tester",
+    },
+    {
+      slug: "xpath-vs-css-selectors",
+      title: "XPath vs CSS Selectors — When to Use Each",
+      metaTitle:
+        "XPath vs CSS Selectors — Differences & When to Use Each | DevBolt",
+      metaDescription:
+        "Compare XPath and CSS selectors: syntax differences, strengths, limitations, and when to use each for web scraping, testing, and XML processing.",
+      h1: "XPath vs CSS Selectors — When to Use Each",
+      intro:
+        "Both XPath and CSS selectors find elements in documents, but they have different strengths. Understanding when to use each helps you write more efficient queries for web scraping, automated testing, and data extraction.",
+      content: [
+        {
+          heading: "Syntax comparison",
+          body: "CSS selectors use familiar web styling syntax: div.class, #id, [attr=val], div > p. XPath uses path-based syntax: //div[@class='name'], //*[@id='main'], //div/p. CSS selectors are generally shorter and more readable for simple selections. XPath becomes advantageous for complex queries that CSS cannot express — selecting by text content, navigating upward to parents, or computing values.",
+          codeExample: "/* CSS Selector equivalents */\ndiv.active        → //div[@class='active']\n#main             → //*[@id='main']\ndiv > p           → //div/p\ndiv p             → //div//p\na[href^='https']  → //a[starts-with(@href,'https')]\n\n/* XPath-only capabilities */\n//div[contains(text(), 'Hello')]  /* select by text */\n//span/parent::div                /* traverse upward */\n//p[preceding-sibling::h2]        /* sibling axes */\ncount(//li)                       /* functions */",
+          codeLanguage: "text",
+        },
+        {
+          heading: "What XPath can do that CSS cannot",
+          body: "XPath has several capabilities with no CSS equivalent: (1) text content selection — //p[contains(., 'error')] finds paragraphs containing 'error', (2) upward navigation — //span/parent::div or //td/ancestor::table traverses up the tree, (3) sibling position — //h2/following-sibling::p selects paragraphs after an h2, (4) functions — count(), sum(), string-length(), concat() compute values from node sets, (5) union — //h1 | //h2 | //h3 combines multiple selections.",
+        },
+        {
+          heading: "When to use each",
+          body: "Use CSS selectors when: you are styling web pages, writing simple element/class/ID selectors, using querySelector/querySelectorAll in JavaScript, or working in tools that only support CSS (most browser DevTools). Use XPath when: you need to select by text content, navigate to parent/ancestor elements, use positional logic (first, last, nth from end), work with XML (not HTML), or need built-in functions. In web scraping (Selenium, Puppeteer, Scrapy), both are available — CSS is faster for simple queries, XPath is necessary for complex ones.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is XPath faster or slower than CSS selectors?",
+          answer:
+            "In browsers, CSS selectors are generally faster because they use optimized native matching engines designed for style computation. XPath evaluation is typically 2-10x slower for equivalent queries. However, the difference is negligible for most practical uses (microseconds). Choose based on capability needs, not speed — if CSS can express your query, use CSS; if you need text matching or upward navigation, use XPath.",
+        },
+        {
+          question: "Can I use XPath in JavaScript?",
+          answer:
+            "Yes. Use document.evaluate(xpath, contextNode, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null) to evaluate XPath expressions against the DOM. The result object provides methods like snapshotItem(i) and snapshotLength to iterate over matches. For XML documents parsed with DOMParser, the same API works. Note that browsers only support XPath 1.0.",
+        },
+        {
+          question: "Do web scraping tools support both XPath and CSS?",
+          answer:
+            "Most web scraping frameworks support both. Selenium has find_element(By.XPATH, ...) and find_element(By.CSS_SELECTOR, ...). Puppeteer has page.$x(xpath) and page.$(css). Scrapy has response.xpath() and response.css(). Beautiful Soup uses CSS selectors natively and supports XPath through the lxml parser. Playwright supports both via locator strategies.",
+        },
+      ],
+      keywords: [
+        "xpath vs css selectors",
+        "xpath or css",
+        "css selector xpath equivalent",
+        "web scraping xpath css",
+        "xpath text selection",
+        "xpath parent selector",
+      ],
+      parentToolSlug: "xpath-tester",
+      parentToolName: "XPath Tester",
+    },
+    {
+      slug: "xpath-web-scraping",
+      title: "XPath for Web Scraping — Practical Guide",
+      metaTitle:
+        "XPath for Web Scraping — Selenium, Puppeteer & Scrapy Examples | DevBolt",
+      metaDescription:
+        "Learn how to use XPath for web scraping with Selenium, Puppeteer, and Scrapy. Practical patterns for extracting data from HTML pages and XML feeds.",
+      h1: "XPath for Web Scraping — Practical Guide",
+      intro:
+        "XPath is one of the most powerful tools for web scraping because it can select elements by text content, navigate up and down the DOM tree, and handle complex page structures that CSS selectors cannot express.",
+      content: [
+        {
+          heading: "Common XPath patterns for scraping",
+          body: "The most useful XPath patterns for web scraping: //a[contains(@href, '/product/')] matches product links by URL pattern. //div[contains(@class, 'price')]/text() extracts price text. //table//tr[position()>1]/td scrapes table rows skipping the header. //img/@src gets all image URLs. //h2/following-sibling::p[1] gets the first paragraph after each heading. //*[contains(text(), 'Add to Cart')]/ancestor::div[@class] finds the container around an 'Add to Cart' button.",
+          codeExample: "# Selenium (Python)\nfrom selenium.webdriver.common.by import By\n\ndriver.find_elements(By.XPATH, \"//div[@class='product']\")\ndriver.find_element(By.XPATH, \"//button[text()='Submit']\")\n\n# Puppeteer (JavaScript)\nconst elements = await page.$x(\"//a[contains(@href, '/item/')]\")\nconst texts = await page.$x(\"//span[@class='price']/text()\")\n\n# Scrapy (Python)\nresponse.xpath(\"//h1/text()\").get()\nresponse.xpath(\"//ul[@class='nav']//a/@href\").getall()",
+          codeLanguage: "python",
+        },
+        {
+          heading: "Handling dynamic and complex pages",
+          body: "Modern web pages often use dynamic class names (e.g., css-1a2b3c) that change between builds. XPath handles this with partial matching: //*[contains(@class, 'product')] matches any element whose class contains 'product'. For pages with multiple similar sections, use positional predicates: (//div[@class='card'])[3] selects the third card. For shadow DOM or iframe content, you need to switch context first in your scraping tool before applying XPath.",
+        },
+        {
+          heading: "Testing XPath before scraping",
+          body: "Always test your XPath expressions before writing scraping code. You can use this tool by pasting the page's HTML source, or test directly in browser DevTools: open the Console and run document.evaluate(\"//your/xpath\", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null). In Chrome DevTools Elements panel, press Ctrl+F and type your XPath expression to highlight matching elements on the page.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I find the XPath of an element in Chrome DevTools?",
+          answer:
+            "Right-click the element on the page, select Inspect, then right-click the highlighted element in the Elements panel and choose Copy → Copy XPath (for an absolute path) or Copy → Copy full XPath. You can also press Ctrl+F in the Elements panel and type an XPath expression to search — Chrome highlights matching elements and shows the count. This is the fastest way to test and refine XPath queries.",
+        },
+        {
+          question: "How do I handle namespaces in XPath?",
+          answer:
+            "XML namespaces can break XPath queries because //element won't match <ns:element>. Solutions: (1) use local-name(): //*[local-name()='element'] ignores the namespace prefix, (2) in code, register a namespace resolver that maps prefixes to URIs, (3) strip namespaces from the XML before querying if you control the input. Most web scraping scenarios use HTML (not XML), so namespaces are rarely an issue.",
+        },
+        {
+          question: "What is the best XPath strategy for stable scraping?",
+          answer:
+            "For resilient scrapers: (1) prefer semantic attributes over generated ones — @id, @name, @role, data-* attributes are more stable than CSS class names, (2) use text content as anchors — //label[text()='Email']/following::input[1] survives layout changes, (3) avoid deep absolute paths like /html/body/div[3]/div[2] because they break when the page structure changes, (4) combine contains() with class fragments for partial matching, (5) test with multiple pages to ensure your XPath works across variations.",
+        },
+      ],
+      keywords: [
+        "xpath web scraping",
+        "xpath selenium",
+        "xpath puppeteer",
+        "xpath scrapy",
+        "xpath find element",
+        "xpath chrome devtools",
+        "xpath extract data",
+      ],
+      parentToolSlug: "xpath-tester",
+      parentToolName: "XPath Tester",
+    },
+  ],
 };
