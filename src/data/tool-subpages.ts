@@ -22,7 +22,12 @@ export interface ToolSubpage {
   parentToolName: string;
 }
 
-export const toolSubpages: Record<string, ToolSubpage[]> = {
+import { batch1Subpages } from "./tool-subpages-batch1";
+import { batch2Subpages } from "./tool-subpages-batch2";
+import { batch3Subpages } from "./tool-subpages-batch3";
+import { batch4Subpages } from "./tool-subpages-batch4";
+
+const coreSubpages: Record<string, ToolSubpage[]> = {
   "hash-generator": [
     {
       slug: "sha256",
@@ -1122,6 +1127,14 @@ export const toolSubpages: Record<string, ToolSubpage[]> = {
       parentToolName: "URL Encoder & Decoder",
     },
   ],
+};
+
+export const toolSubpages: Record<string, ToolSubpage[]> = {
+  ...coreSubpages,
+  ...batch1Subpages,
+  ...batch2Subpages,
+  ...batch3Subpages,
+  ...batch4Subpages,
 };
 
 /** Get all sub-page slugs for sitemap generation */
