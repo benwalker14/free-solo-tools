@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add tsconfig.json Visual Builder tool (#97)
+
+- Built tsconfig.json Visual Builder — no good online tsconfig builder exists, TypeScript is #1 on GitHub
+- 6 framework presets: Next.js App Router, React SPA (Vite), Node.js ESM, Node.js CommonJS, npm Library, Strict Maximum
+- 35+ compiler options across 8 collapsible sections: Target & Module, Strictness, Emit, Interop, Type Checking, JSX, Module Resolution, Include/Exclude
+- Every option has a description tooltip explaining what it does
+- Strict mode toggle correctly handles individual strict flags (only emits them when strict is off)
+- Path aliases editor, extends field, include/exclude array editor
+- Live JSON output, copy to clipboard, download as tsconfig.json
+- Quick stats panel: options set count, strict mode status, file size
+- Keyboard shortcut: Ctrl+Enter to copy
+- 3 SEO sub-pages: tsconfig-strict-mode, tsconfig-nextjs, module-resolution-guide
+- OG image, JSON-LD schema, full metadata
+- Removed stale turbopack config that was causing build failures
+- Tool count: 92
+- Build: passes, 0 errors, 0 lint warnings
+
+---
+
 ### 2026-03-19 | developer | Add JWT Builder & Generator tool (#100)
 
 - Built JWT Builder/Generator tool — complement to existing JWT Decoder (#6)

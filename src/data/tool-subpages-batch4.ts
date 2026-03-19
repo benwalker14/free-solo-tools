@@ -3269,4 +3269,175 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JWT Builder",
     },
   ],
+
+  "tsconfig-builder": [
+    {
+      slug: "tsconfig-strict-mode",
+      title: "TypeScript Strict Mode Guide",
+      metaTitle:
+        "TypeScript Strict Mode Guide — What strict Enables & Why You Should Use It",
+      metaDescription:
+        "Learn what TypeScript strict mode enables — noImplicitAny, strictNullChecks, and 6 more flags. Understand each flag with code examples and migration tips.",
+      h1: "TypeScript Strict Mode Guide",
+      intro:
+        "TypeScript's strict flag enables 8 type-checking options at once. Use the builder above to toggle individual strict flags and see exactly how they affect your tsconfig.json output.",
+      content: [
+        {
+          heading: "What does strict: true enable?",
+          body: "Setting \"strict\": true in tsconfig.json enables 8 flags: noImplicitAny, strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, alwaysStrict, and useUnknownInCatchVariables. Each flag catches a different category of bugs. New projects should always start with strict: true.",
+        },
+        {
+          heading: "noImplicitAny vs strictNullChecks",
+          body: "noImplicitAny prevents variables from silently receiving the 'any' type when TypeScript cannot infer a more specific type. strictNullChecks makes null and undefined their own types, preventing you from assigning null to a string variable. Together, these two flags catch the majority of type-related bugs in real-world codebases.",
+        },
+        {
+          heading: "Migrating to strict mode",
+          body: "To migrate an existing project: first set strict: false and enable individual flags one at a time, starting with noImplicitAny and strictNullChecks. Fix errors for each flag before enabling the next. Alternatively, enable strict: true and use // @ts-expect-error or 'as any' annotations to suppress errors temporarily, then fix them incrementally.",
+        },
+        {
+          heading: "Beyond strict: extra strictness flags",
+          body: "Two popular flags are NOT included in strict: noUncheckedIndexedAccess adds undefined to index signature results (obj['key'] becomes string | undefined), and exactOptionalPropertyTypes distinguishes between optional properties and properties explicitly set to undefined. Both are recommended for maximum type safety.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I always use strict: true?",
+          answer:
+            "Yes. Every new TypeScript project should start with strict: true. It catches more bugs at compile time and makes your code more maintainable. The TypeScript team recommends it as the baseline for all projects.",
+        },
+        {
+          question:
+            "What is the difference between strict and individual strict flags?",
+          answer:
+            "strict: true is a shorthand that enables 8 individual flags at once. Setting strict: true and then setting one flag to false (e.g., strictNullChecks: false) is valid — the individual flag overrides. This lets you opt out of specific checks while keeping the rest.",
+        },
+        {
+          question: "Does strict mode make TypeScript slower?",
+          answer:
+            "Strict mode has minimal impact on compilation speed. The additional type checks run during the same pass as non-strict checks. The slight increase in compile time is vastly outweighed by the bugs caught before runtime.",
+        },
+      ],
+      keywords: [
+        "typescript strict mode",
+        "tsconfig strict",
+        "strict true typescript",
+        "noImplicitAny",
+        "strictNullChecks",
+        "typescript strict flags",
+        "enable strict mode typescript",
+      ],
+      parentToolSlug: "tsconfig-builder",
+      parentToolName: "tsconfig.json Visual Builder",
+    },
+    {
+      slug: "tsconfig-nextjs",
+      title: "tsconfig.json for Next.js",
+      metaTitle:
+        "tsconfig.json for Next.js — Recommended TypeScript Configuration",
+      metaDescription:
+        "The recommended tsconfig.json for Next.js projects with App Router. Learn why each compiler option is set and how to customize it for your Next.js app.",
+      h1: "tsconfig.json for Next.js Projects",
+      intro:
+        "Next.js has specific TypeScript requirements. Use the Next.js preset in the builder above to generate the recommended tsconfig.json, then customize it for your project.",
+      content: [
+        {
+          heading: "Why Next.js uses specific tsconfig settings",
+          body: "Next.js uses 'jsx': 'preserve' because it handles JSX transformation internally via SWC. 'moduleResolution': 'Bundler' matches how Next.js resolves imports. 'noEmit': true prevents tsc from outputting files since Next.js builds with its own compiler. 'incremental': true enables faster type-checking by caching build information.",
+        },
+        {
+          heading: "Next.js path aliases",
+          body: "Next.js supports path aliases via the paths option. The most common pattern is '@/*': ['./src/*'] which lets you import from '@/components/Header' instead of '../../../components/Header'. Next.js automatically configures its bundler to resolve these aliases — no additional Webpack or Turbopack configuration is needed.",
+        },
+        {
+          heading: "The next-env.d.ts file",
+          body: "Next.js generates a next-env.d.ts file that includes type declarations for Next.js-specific features like next/image, next/link, and environment variables. This file should be included in your tsconfig's include array and added to .gitignore. Never edit it manually — Next.js regenerates it on every build.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What target should I use for Next.js?",
+          answer:
+            "Next.js recommends 'target': 'ES2017'. This is the minimum target that supports async/await without downlevel transformation. Since Next.js transpiles your code with SWC, the target mainly affects type-checking behavior, not the actual output.",
+        },
+        {
+          question: "Should I use isolatedModules with Next.js?",
+          answer:
+            "Yes. Next.js uses SWC which transpiles files individually (not as a whole program). isolatedModules: true ensures your code is compatible with single-file transpilation by flagging patterns that require full program analysis, like const enums across files.",
+        },
+        {
+          question: "How do I add custom type declarations in Next.js?",
+          answer:
+            "Create a declarations.d.ts (or any .d.ts file) in your project root and make sure it is covered by the include array. For example, declare module '*.svg' { const content: string; export default content; } lets you import SVG files as strings.",
+        },
+      ],
+      keywords: [
+        "tsconfig next.js",
+        "next.js tsconfig.json",
+        "next.js typescript config",
+        "tsconfig for next.js",
+        "next.js typescript setup",
+        "next.js compiler options",
+      ],
+      parentToolSlug: "tsconfig-builder",
+      parentToolName: "tsconfig.json Visual Builder",
+    },
+    {
+      slug: "module-resolution-guide",
+      title: "TypeScript Module Resolution Guide",
+      metaTitle:
+        "TypeScript Module Resolution Guide — Node vs Bundler vs Node16",
+      metaDescription:
+        "Understand TypeScript module resolution strategies: Node, Node16, NodeNext, and Bundler. Learn which one to use for your project with practical examples.",
+      h1: "TypeScript Module Resolution Guide",
+      intro:
+        "TypeScript's moduleResolution setting controls how import statements are resolved to files. Use the builder above to switch between strategies and see how it changes your tsconfig.json.",
+      content: [
+        {
+          heading: "Module resolution strategies explained",
+          body: "TypeScript offers 5 module resolution strategies: 'Node' (legacy, mimics Node.js require()), 'Node16'/'NodeNext' (modern Node.js with package.json exports support), 'Bundler' (for Webpack/Vite/esbuild/Turbopack), and 'Classic' (TypeScript 1.x legacy, avoid). Most new projects should use 'Bundler' for frontend or 'Node16'/'NodeNext' for backend.",
+        },
+        {
+          heading: "When to use Bundler resolution",
+          body: "Use 'Bundler' when your code is processed by a bundler (Webpack, Vite, esbuild, Turbopack, Rollup). Bundler resolution allows extensionless imports (import './utils' resolves to utils.ts), respects package.json 'exports' field, and supports conditional exports. This is the right choice for React, Next.js, Vue, and most frontend projects.",
+        },
+        {
+          heading: "When to use Node16 / NodeNext",
+          body: "Use 'Node16' or 'NodeNext' for pure Node.js projects that run without a bundler. These strategies enforce Node.js ESM rules: imports must include file extensions (import './utils.js'), package.json must have '\"type\": \"module\"' for ESM, and both require() and import can coexist based on file extension (.mjs/.cjs). Use 'NodeNext' to always track the latest Node.js behavior.",
+        },
+        {
+          heading: "Module and moduleResolution pairing",
+          body: "Common pairings: ESNext + Bundler (frontend/bundled projects), Node16 + Node16 (Node.js ESM), CommonJS + Node (legacy Node.js). Mismatched pairs cause confusing errors. TypeScript 5.2+ recommends setting both module and moduleResolution explicitly rather than relying on defaults.",
+        },
+      ],
+      faqs: [
+        {
+          question:
+            "What is the difference between Node and Node16 module resolution?",
+          answer:
+            "Node (legacy) mimics classic Node.js require() resolution — it checks node_modules, index.js, and JSON files. Node16 adds support for package.json 'exports' field, ESM/CJS dual packages, and requires file extensions in ESM imports. Use Node16 for any Node.js project using modern packages.",
+        },
+        {
+          question:
+            "Why do I get 'Cannot find module' errors after changing moduleResolution?",
+          answer:
+            "Each strategy resolves imports differently. Switching from 'Node' to 'Node16' may require adding file extensions to imports. Switching to 'Bundler' may fix extensionless imports that 'Node16' rejected. Check that your module and moduleResolution are a compatible pair.",
+        },
+        {
+          question: "Should I use ESNext or ES2022 for the module setting?",
+          answer:
+            "Use ESNext for frontend/bundled projects — it always targets the latest ECMAScript module features. Use ES2022 or Node16 for Node.js when you want predictable, stable behavior that matches a specific Node.js version's module semantics.",
+        },
+      ],
+      keywords: [
+        "typescript module resolution",
+        "tsconfig moduleResolution",
+        "node vs bundler resolution",
+        "node16 module resolution",
+        "typescript import resolution",
+        "module resolution typescript",
+      ],
+      parentToolSlug: "tsconfig-builder",
+      parentToolName: "tsconfig.json Visual Builder",
+    },
+  ],
 };

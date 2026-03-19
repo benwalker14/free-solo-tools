@@ -726,4 +726,12 @@ export const tools: Tool[] = [
     icon: "JWT",
     category: "Generate",
   },
+  {
+    title: "tsconfig.json Builder",
+    description:
+      "Build TypeScript tsconfig.json visually with framework presets, explanations for every option, and one-click download",
+    href: "/tools/tsconfig-builder",
+    icon: "TS",
+    category: "Generate",
+  },
 ];

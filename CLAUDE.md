@@ -141,3 +141,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 89. OpenAPI to TypeScript Converter (/tools/openapi-to-typescript)
 90. JSON to Zod Converter (/tools/json-to-zod)
 91. JWT Builder & Generator (/tools/jwt-builder)
+92. tsconfig.json Visual Builder (/tools/tsconfig-builder)
