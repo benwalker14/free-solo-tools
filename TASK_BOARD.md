@@ -26,6 +26,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add cURL to Code Converter tool (#52)
 - [x] Add URL Slug Generator tool (#51)
 - [x] Add Favicon Generator tool (#50)
 - [x] Add Crontab Generator tool (#49)

@@ -95,3 +95,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 49. Crontab Generator (/tools/cron-generator)
 50. Favicon Generator (/tools/favicon-generator)
 51. URL Slug Generator (/tools/slug-generator)
+52. cURL to Code Converter (/tools/curl-converter)

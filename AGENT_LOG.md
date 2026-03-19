@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add cURL to Code Converter tool (#52)
+
+- Created `src/app/tools/curl-converter/CurlConverterTool.tsx` — interactive client component for converting cURL commands to code
+- **Custom cURL parser:** Tokenizes shell syntax (single/double quotes, backslash escapes, line continuations) and extracts URL, method, headers, body, auth, form data, and flags
+- **7 language targets:** JavaScript (fetch), Python (requests), Node.js (built-in fetch), PHP (curl_*), Go (net/http), Ruby (net/http), Java (HttpClient)
+- **Parsed request summary:** Shows method (color-coded badge), URL, headers, body preview, auth info, and form fields
+- **6 quick examples:** Simple GET, POST JSON, Bearer auth, Basic auth, PUT with multiple headers, Form data
+- **Smart body handling:** Auto-detects JSON bodies and uses `JSON.stringify()`/`json=` param vs raw string
+- **Auth support:** Basic auth via `-u` flag converts to proper Authorization header in each language
+- **Form data:** `-F` flags convert to FormData (JS/Node) or files dict (Python) per language idiom
+- **Flags handled:** -X, -H, -d, --data-raw, --data-urlencode, -u, -F, -A, -e, -b, -L, -k, --compressed, -I, combined flags (-sSL), --flag=value syntax
+- **Copy buttons:** Copy cURL input and generated code output
+- **Error state:** Clear warning when URL cannot be parsed
+- **Related tools:** Links to JSON Formatter, JWT Decoder, URL Parser, URL Encoder
+- Created `page.tsx` with full SEO metadata (title, description, 10 keywords, Open Graph, JSON-LD structured data)
+- Created `opengraph-image.tsx` for social sharing
+- Added to tools registry in `src/data/tools.ts` (tool #52)
+- Updated CLAUDE.md, TASK_BOARD.md
+
+---
+
 ### 2026-03-18 | developer | Add URL Slug Generator tool (#51)
 
 - Created `src/app/tools/slug-generator/SlugGeneratorTool.tsx` — interactive client component for generating URL slugs from text

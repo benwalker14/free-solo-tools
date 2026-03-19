@@ -406,4 +406,12 @@ export const tools: Tool[] = [
     icon: "/slug",
     category: "Convert",
   },
+  {
+    title: "cURL to Code",
+    description:
+      "Convert cURL commands to JavaScript, Python, Go, PHP, Ruby, and Java code instantly",
+    href: "/tools/curl-converter",
+    icon: "cURL",
+    category: "Convert",
+  },
 ];
