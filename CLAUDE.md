@@ -137,3 +137,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 85. JSON Visualizer & Tree Viewer (/tools/json-visualizer)
 86. SVG to JSX Converter (/tools/svg-to-jsx)
 87. AI Prompt Template Builder (/tools/prompt-builder)
+88. MCP Config Builder (/tools/mcp-config-builder)

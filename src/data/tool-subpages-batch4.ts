@@ -2652,4 +2652,156 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "AI Prompt Template Builder",
     },
   ],
+  "mcp-config-builder": [
+    {
+      slug: "mcp-setup-guide",
+      title: "MCP Setup Guide for AI Coding Assistants",
+      metaTitle: "MCP Setup Guide — Configure Model Context Protocol for Any Client | DevBolt",
+      metaDescription:
+        "Step-by-step guide to setting up MCP (Model Context Protocol) servers for Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, and Zed. Config file locations, formats, and troubleshooting.",
+      h1: "MCP Setup Guide for AI Coding Assistants",
+      intro:
+        "Learn how to configure MCP (Model Context Protocol) servers for your AI coding assistant. This guide covers config file locations, JSON formats, and setup for all major clients.",
+      content: [
+        {
+          heading: "What is MCP?",
+          body: "The Model Context Protocol (MCP) is an open standard created by Anthropic that lets AI assistants connect to external tools and data sources. Instead of being limited to what the AI knows, MCP servers give your assistant the ability to read files, query databases, search the web, manage GitHub repos, and much more. MCP has been adopted by Claude Desktop, Claude Code, Cursor, VS Code (via Copilot), Windsurf, and Zed.",
+        },
+        {
+          heading: "Config file locations by client",
+          body: "Each AI client stores its MCP configuration in a different file and location. Claude Desktop uses claude_desktop_config.json in the app data directory. Claude Code uses .mcp.json in the project root. Cursor uses .cursor/mcp.json. VS Code uses .vscode/mcp.json. Windsurf uses mcp_config.json in ~/.codeium/windsurf/. Zed embeds MCP config in its settings.json. The JSON structure is similar across clients but the root key and some fields differ.",
+        },
+        {
+          heading: "Common setup issues",
+          body: "The most common MCP setup issues include: forgetting to restart the client after editing config, incorrect file paths in args, missing API keys in the env object, and using the wrong root key (VS Code uses 'servers' while most others use 'mcpServers', and Zed uses 'context_servers'). If a server fails to connect, check the client's MCP logs for specific error messages. Also ensure npx is in your PATH and Node.js is installed for npm-based servers.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Where do I put my MCP config file?",
+          answer:
+            "It depends on your AI client. Claude Desktop: ~/Library/Application Support/Claude/claude_desktop_config.json (macOS) or %APPDATA%\\Claude\\ (Windows). Cursor: .cursor/mcp.json in your project root. VS Code: .vscode/mcp.json. Always restart your client after saving changes.",
+        },
+        {
+          question: "Do I need Node.js installed for MCP servers?",
+          answer:
+            "Most MCP servers are distributed as npm packages and launched via npx, so yes — you need Node.js (v18+) and npm installed. Some servers are available as Python packages (via uvx/pip) or Docker containers. Check the server's documentation for requirements.",
+        },
+        {
+          question: "Can I use the same MCP config across different clients?",
+          answer:
+            "The server configurations (command, args, env) are the same, but the JSON wrapper differs between clients. Most clients use mcpServers as the root key, but VS Code uses 'servers' and Zed uses 'context_servers'. Use a config builder to generate the correct format for each client.",
+        },
+      ],
+      keywords: [
+        "mcp setup guide",
+        "model context protocol setup",
+        "claude desktop mcp config",
+        "cursor mcp setup",
+        "mcp server configuration",
+      ],
+      parentToolSlug: "mcp-config-builder",
+      parentToolName: "MCP Config Builder",
+    },
+    {
+      slug: "popular-mcp-servers",
+      title: "Popular MCP Servers — Top 20 for AI Assistants",
+      metaTitle: "Top 20 MCP Servers for AI Coding Assistants | DevBolt",
+      metaDescription:
+        "Curated list of the most popular MCP servers for AI assistants: Filesystem, GitHub, PostgreSQL, Memory, Brave Search, Playwright, Supabase, Sentry, and more. With setup instructions.",
+      h1: "Top 20 MCP Servers for AI Assistants",
+      intro:
+        "A curated catalog of the most popular and useful MCP servers, organized by category. Each entry includes what it does, the npm package name, and required configuration.",
+      content: [
+        {
+          heading: "Official MCP servers",
+          body: "Anthropic maintains a set of official reference servers under the @modelcontextprotocol npm scope. The most popular are: Filesystem (secure file access with directory sandboxing), GitHub (repo management, PRs, issues), PostgreSQL (database queries), Memory (persistent knowledge graph), Fetch (web content retrieval), Git (repository operations), Sequential Thinking (structured reasoning), Brave Search (web search), Puppeteer (browser automation), SQLite (local database), and Time (timezone utilities). These are well-maintained and guaranteed to follow the MCP specification.",
+        },
+        {
+          heading: "Third-party and vendor servers",
+          body: "Major platforms have released their own MCP servers: Playwright by Microsoft for browser testing, Supabase for database/auth, Sentry for error tracking, Linear for issue management, Notion for workspace access, Slack for messaging, Cloudflare for Workers/KV/R2, and Docker for container management. Context7 provides up-to-date library documentation. These vendor servers are typically maintained by the platform teams and offer deep integration with their services.",
+        },
+        {
+          heading: "Choosing the right servers",
+          body: "Start with 2-3 servers that match your daily workflow. For most developers, Filesystem + GitHub + one database server covers the essentials. Add specialized servers as needed — Playwright for testing, Sentry for debugging production issues, or Slack/Linear for team communication. Each server adds startup time, so avoid installing servers you won't use regularly. You can always add more later without affecting existing configurations.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How many MCP servers can I run at once?",
+          answer:
+            "There's no hard limit, but each server is a separate process that consumes memory. Most developers run 3-5 servers. If you notice slowdowns, reduce the number of active servers. Claude Desktop and Cursor handle 10+ servers without issues on modern hardware.",
+        },
+        {
+          question: "Are MCP servers safe to use?",
+          answer:
+            "Official @modelcontextprotocol servers are maintained by Anthropic and follow security best practices. Third-party servers vary — check the source code, npm download counts, and GitHub stars before installing. Servers run with your local permissions, so a filesystem server has access to any directory you configure. Always scope access to specific directories rather than giving root access.",
+        },
+        {
+          question: "Can I build my own MCP server?",
+          answer:
+            "Yes. The MCP SDK is available for TypeScript (@modelcontextprotocol/sdk) and Python (mcp). A basic server that exposes tools, resources, or prompts can be built in under 100 lines of code. See the official MCP documentation and examples repository for starter templates.",
+        },
+      ],
+      keywords: [
+        "popular mcp servers",
+        "best mcp servers",
+        "mcp server list",
+        "model context protocol servers",
+        "mcp github server",
+      ],
+      parentToolSlug: "mcp-config-builder",
+      parentToolName: "MCP Config Builder",
+    },
+    {
+      slug: "mcp-client-comparison",
+      title: "MCP Client Config Comparison — Claude vs Cursor vs VS Code",
+      metaTitle: "MCP Config Comparison: Claude Desktop vs Cursor vs VS Code vs Windsurf | DevBolt",
+      metaDescription:
+        "Compare MCP configuration formats across Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, and Zed. Side-by-side JSON structure, root keys, file locations, and unique features.",
+      h1: "MCP Config Comparison: Claude Desktop vs Cursor vs VS Code",
+      intro:
+        "Each AI client uses a slightly different MCP configuration format. This comparison helps you understand the differences so you can set up MCP correctly — or migrate configs between clients.",
+      content: [
+        {
+          heading: "JSON structure differences",
+          body: "Most clients (Claude Desktop, Claude Code, Cursor, Windsurf) use 'mcpServers' as the root key. VS Code breaks the pattern by using 'servers' instead, and also adds support for an 'inputs' array that prompts users for secrets. Zed is the most different — it uses 'context_servers' as the root key and nests the command under a 'command' object with a 'path' field instead of a top-level 'command' string. The server entries themselves (command, args, env) are consistent across all clients.",
+        },
+        {
+          heading: "Remote server support",
+          body: "VS Code has the best native HTTP support — you just set type to 'http' and provide a url. Windsurf supports remote servers via a 'serverUrl' field. Claude Desktop, Claude Code, Cursor, and Zed don't have native HTTP transport — you use the mcp-remote npm package as a bridge (npx -y mcp-remote https://your-server-url). This difference matters if you're connecting to cloud-hosted MCP servers rather than running them locally.",
+        },
+        {
+          heading: "Unique features by client",
+          body: "Claude Code supports ${VAR} environment variable expansion and CLI management (claude mcp add/remove). VS Code supports ${input:id} variables that prompt users for secrets, plus ${workspaceFolder} for paths. Windsurf supports env var interpolation in all fields including serverUrl and headers. Zed's nested command structure allows for cleaner separation of the executable path from its arguments. Cursor offers both project-level (.cursor/mcp.json) and global (~/.cursor/mcp.json) config scopes.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I share MCP configs between Claude Desktop and Cursor?",
+          answer:
+            "Yes — both use the same 'mcpServers' root key and identical server entry format (command, args, env). You can copy the mcpServers object between claude_desktop_config.json and .cursor/mcp.json without changes. For VS Code, you'll need to rename the root key to 'servers'.",
+        },
+        {
+          question: "Why does VS Code use a different root key?",
+          answer:
+            "VS Code's MCP support was built by the GitHub Copilot team and uses 'servers' as the root key. It also adds features like the 'inputs' array for secret prompts and ${workspaceFolder} variables. While the root key differs, the individual server configurations are compatible with other clients.",
+        },
+        {
+          question: "Which client has the best MCP support?",
+          answer:
+            "Claude Desktop and Claude Code have the most mature MCP support since Anthropic created the protocol. Cursor has excellent MCP integration with both project and global scopes. VS Code's MCP support is newer but adds unique features like secret prompts. The best choice depends on your primary development workflow.",
+        },
+      ],
+      keywords: [
+        "mcp config comparison",
+        "claude desktop vs cursor mcp",
+        "vs code mcp config format",
+        "mcp client differences",
+        "mcp json format comparison",
+      ],
+      parentToolSlug: "mcp-config-builder",
+      parentToolName: "MCP Config Builder",
+    },
+  ],
 };

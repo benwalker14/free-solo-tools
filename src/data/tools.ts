@@ -694,4 +694,12 @@ export const tools: Tool[] = [
     icon: "AI",
     category: "Generate",
   },
+  {
+    title: "MCP Config Builder",
+    description:
+      "Build MCP configuration files visually for Claude Desktop, Cursor, VS Code, Windsurf, and Claude Code with 16 server templates",
+    href: "/tools/mcp-config-builder",
+    icon: "MCP",
+    category: "Generate",
+  },
 ];
