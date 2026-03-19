@@ -1934,4 +1934,163 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JSON to Code Generator",
     },
   ],
+
+  "code-screenshot": [
+    {
+      slug: "code-screenshot-themes",
+      title: "Code Screenshot Themes",
+      metaTitle: "Code Screenshot Themes — Dracula, Monokai, Nord & More",
+      metaDescription:
+        "Browse 8 beautiful code screenshot themes including Dracula, Monokai, GitHub Dark, One Dark, Nord, Solarized, and Night Owl. Preview and compare themes for your code images.",
+      h1: "Code Screenshot Themes — Compare & Preview",
+      intro:
+        "Explore all 8 code screenshot themes available in DevBolt. Each theme provides carefully tuned syntax highlighting colors for keywords, strings, comments, numbers, and more. Try them all in the generator above.",
+      content: [
+        {
+          heading: "Dark Themes for Code",
+          body: "Dark themes like Dracula, Monokai, and One Dark are the most popular choices for code screenshots. They provide high contrast text on dark backgrounds, reduce eye strain, and look professional when shared on social media or in documentation. Dracula uses distinctive purple and pink tones, while Monokai is known for its warm yellow-green palette.",
+        },
+        {
+          heading: "Theme Color Palettes",
+          body: "Each theme defines colors for 8 syntax token types: keywords (control flow, declarations), strings (quoted text), comments (annotations), numbers (literals), functions (calls), operators (symbols), types (class names), and plain text. The combination creates distinct visual identities that make code both readable and aesthetically pleasing.",
+        },
+        {
+          heading: "Choosing the Right Theme",
+          body: "For social media sharing, high-contrast themes like Dracula and Night Owl stand out. For documentation, GitHub Dark or GitHub Light match platform aesthetics. For presentations, One Dark and Nord provide clean, professional looks. Solarized Dark is popular among developers who prefer muted, eye-friendly colors.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Which theme is best for code screenshots?",
+          answer:
+            "Dracula and Monokai are the most popular for social media sharing due to their vibrant colors and high contrast. GitHub Dark is ideal for documentation. Choose based on your audience and context.",
+        },
+        {
+          question: "Can I use a light theme for code screenshots?",
+          answer:
+            "Yes. GitHub Light provides a clean, readable light theme. Light themes work well for printed documentation, light-mode blog posts, and situations where dark screenshots would clash with the surrounding design.",
+        },
+        {
+          question: "Are these the same themes as VS Code?",
+          answer:
+            "The color palettes are inspired by the same popular themes (Dracula, Monokai, etc.) but simplified for screenshot rendering. The token colors closely match the VS Code theme experience.",
+        },
+      ],
+      keywords: [
+        "code screenshot themes",
+        "code image themes",
+        "dracula code screenshot",
+        "monokai code image",
+        "dark theme code screenshot",
+        "code screenshot colors",
+        "best code screenshot theme",
+      ],
+      parentToolSlug: "code-screenshot",
+      parentToolName: "Code Screenshot Generator",
+    },
+    {
+      slug: "carbon-alternative",
+      title: "Free Carbon Alternative",
+      metaTitle: "Free Carbon Alternative — Code Screenshot Generator | DevBolt",
+      metaDescription:
+        "Create beautiful code screenshots without Carbon.sh limitations. DevBolt's code screenshot generator runs entirely in your browser — no data uploads, no API limits, fully private.",
+      h1: "Free Carbon Alternative for Code Screenshots",
+      intro:
+        "Looking for a Carbon.sh alternative that respects your privacy? DevBolt's code screenshot generator runs 100% in your browser — your code never leaves your device. No accounts, no rate limits, no tracking.",
+      content: [
+        {
+          heading: "Why Use DevBolt Instead of Carbon?",
+          body: "Carbon.sh requires sending your code to a server for rendering. DevBolt generates screenshots entirely client-side using HTML Canvas, meaning your code never leaves your browser. This is crucial for proprietary code, API keys, or any sensitive content. Plus, there are no rate limits or account requirements.",
+        },
+        {
+          heading: "Feature Comparison",
+          body: "Both tools support multiple themes, syntax highlighting, window chrome, and PNG/JPEG export. DevBolt adds clipboard copy, transparent backgrounds, adjustable font sizes, and line number toggling. Carbon has a slightly larger theme library but requires server-side rendering.",
+        },
+        {
+          heading: "Privacy-First Code Screenshots",
+          body: "When you paste code into an online tool, you trust that tool with your data. DevBolt processes everything locally using the Canvas API — no network requests, no server logs, no data retention. Verify this yourself by checking the Network tab in your browser's DevTools.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is DevBolt's code screenshot generator really free?",
+          answer:
+            "Yes, completely free with no signup required. The tool runs in your browser with no server costs, so there's no reason to charge or limit usage.",
+        },
+        {
+          question: "Does Carbon.sh send my code to a server?",
+          answer:
+            "Yes. Carbon uses Puppeteer on the server to render screenshots. Your code is sent to their servers for processing. DevBolt renders everything locally in your browser using Canvas.",
+        },
+        {
+          question: "Can I use this for work or commercial projects?",
+          answer:
+            "Yes. The generated screenshots are yours to use however you like — blog posts, documentation, social media, presentations, or any other purpose.",
+        },
+      ],
+      keywords: [
+        "carbon alternative",
+        "carbon.sh alternative",
+        "free code screenshot tool",
+        "private code screenshot",
+        "code screenshot no upload",
+        "code image generator free",
+        "carbon sh replacement",
+      ],
+      parentToolSlug: "code-screenshot",
+      parentToolName: "Code Screenshot Generator",
+    },
+    {
+      slug: "share-code-as-image",
+      title: "Share Code as Image",
+      metaTitle: "Share Code as Image — Code to PNG/JPEG for Social Media",
+      metaDescription:
+        "Convert code snippets to shareable images for Twitter, LinkedIn, blogs, and documentation. Beautiful syntax highlighting with customizable themes and backgrounds.",
+      h1: "Share Code as Image — For Social Media & Blogs",
+      intro:
+        "Turn your code into beautiful, shareable images perfect for Twitter, LinkedIn, blog posts, and documentation. Choose from 8 themes and 9 backgrounds to make your code stand out.",
+      content: [
+        {
+          heading: "Code Images for Social Media",
+          body: "Code snippets shared as text get poor engagement on social platforms. Images with syntax highlighting, clean backgrounds, and window chrome attract 3-5x more engagement. They are visually striking in feeds and communicate technical concepts at a glance — perfect for sharing tips, tricks, and solutions.",
+        },
+        {
+          heading: "Best Practices for Code Screenshots",
+          body: "Keep snippets short (under 20 lines) for social sharing. Use a 14-16px font size for readability on mobile. Choose high-contrast themes like Dracula or Night Owl. Add a descriptive filename in the title bar. Use gradient backgrounds for social media posts and solid/transparent for documentation.",
+        },
+        {
+          heading: "Supported Export Formats",
+          body: "Download as PNG (lossless, supports transparency) for documentation and blogs. Use JPEG (smaller file size) for social media where transparency is not needed. Copy to clipboard for quick pasting into Slack, Discord, or design tools. All exports are 2x resolution for sharp display on Retina screens.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What resolution are the exported images?",
+          answer:
+            "Images are rendered at 2x resolution for crisp display on high-DPI (Retina) screens. A 14px font renders at 28px internally, ensuring sharp text even when scaled down.",
+        },
+        {
+          question: "Can I share code screenshots on Twitter/X?",
+          answer:
+            "Yes. Download as PNG or JPEG and upload directly to Twitter, LinkedIn, or any social platform. Gradient backgrounds and window chrome make code images visually appealing in feeds.",
+        },
+        {
+          question: "Is there a size limit for code?",
+          answer:
+            "No hard limit, but shorter snippets (5-25 lines) work best for sharing. Very long code will produce tall images that may be cropped on social platforms. The canvas scales automatically to fit your code.",
+        },
+      ],
+      keywords: [
+        "share code as image",
+        "code to image",
+        "code snippet image",
+        "code to png",
+        "code screenshot for twitter",
+        "code image for blog",
+        "share code on social media",
+      ],
+      parentToolSlug: "code-screenshot",
+      parentToolName: "Code Screenshot Generator",
+    },
+  ],
 };

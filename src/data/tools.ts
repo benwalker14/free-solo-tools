@@ -654,4 +654,12 @@ export const tools: Tool[] = [
     icon: "< >",
     category: "Convert",
   },
+  {
+    title: "Code Screenshot Generator",
+    description:
+      "Create beautiful code screenshots with 8 themes, syntax highlighting, customizable backgrounds, and window chrome — free Carbon/Ray.so alternative",
+    href: "/tools/code-screenshot",
+    icon: "CAM",
+    category: "Generate",
+  },
 ];

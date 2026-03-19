@@ -4,6 +4,30 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Fix JSON to Code Generator (#86) + Add Code Screenshot Generator (#87)
+
+- Fixed TypeScript error in JsonToCodeTool.tsx: `trackAction("generate", { language })` → `trackAction("generate")` (trackAction only takes 1 argument)
+- JSON to Code Generator (#86) was already fully built but had the TS error and wasn't marked done on TASK_BOARD
+- Marked #86 as complete on TASK_BOARD with Done summary
+
+- Built tool #87 at `/tools/code-screenshot` — Code Screenshot Generator (Carbon/Ray.so alternative)
+  - 8 themes: Dracula, Monokai, GitHub Dark, One Dark, Nord, Solarized Dark, Night Owl, GitHub Light
+  - 13 languages with syntax tokenization: JS, TS, Python, Go, Rust, Java, C#, HTML, CSS, JSON, Bash, SQL, plain text
+  - 9 background styles: 6 gradients (purple, blue, green, orange, pink, dark), solid dark, solid white, transparent
+  - Customizable padding (16/32/48/64/80px), font size (12/14/16/18/20px)
+  - Window chrome with macOS-style traffic lights + editable title bar
+  - Line numbers toggle
+  - 2x Retina-quality canvas rendering
+  - Export: download PNG, download JPEG, copy to clipboard
+  - Live preview updates as settings change
+  - 3 SEO sub-pages: code-screenshot-themes, carbon-alternative, share-code-as-image
+  - Registered in tools.ts, OG image, JSON-LD schema
+- Updated tool counts from 80+ → 83+ in free-tools page, OG image, and blog post
+- CLAUDE.md updated to 83 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: Windows Turbopack ENOENT issue (not code-related, compiles successfully)
+
+---
+
 ### 2026-03-19 | developer | Add JSON to Code Generator tool (#86)
 
 - Built tool #86 at `/tools/json-to-code` — JSON to Code Generator (Multi-Language)
