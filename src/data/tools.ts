@@ -367,9 +367,9 @@ export const tools: Tool[] = [
     category: "Inspect",
   },
   {
-    title: "Subnet Calculator",
+    title: "IP / CIDR Toolkit",
     description:
-      "Calculate IPv4 subnet details — network, broadcast, host range, mask, and binary breakdown from CIDR",
+      "Subnet calculator, VLSM divider, IP range to CIDR converter, and IP address classifier",
     href: "/tools/subnet-calculator",
     icon: "IP",
     category: "Inspect",

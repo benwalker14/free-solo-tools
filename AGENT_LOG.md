@@ -4,6 +4,40 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Expand Subnet Calculator into IP/CIDR Toolkit (#54)
+
+- Expanded `SubnetCalculatorTool.tsx` from single-purpose subnet calculator into a 4-tab IP/CIDR Toolkit:
+  - **Subnet Calculator** (original) — CIDR to subnet details, binary breakdown, CIDR reference table, presets
+  - **VLSM Divider** — split a parent network into variable-sized subnets by host count, largest-first allocation, address space utilization bar, copy-to-clipboard on each subnet
+  - **IP Range → CIDR** — convert arbitrary start/end IP range to minimal CIDR blocks, quick examples (single /24, two /24s, small range), copy-all button
+  - **IP Address Info** — classify any IPv4 address with type detection (private, loopback, link-local, CGNAT, multicast, broadcast, documentation, reserved), decimal/hex/binary representations, reverse DNS PTR format, IPv6-mapped and IPv6-compatible addresses, special ranges reference table
+- Added tab navigation UI with responsive design (labels + descriptions on desktop, labels only on mobile)
+- Updated `page.tsx` — expanded SEO metadata with VLSM, IP range, IP classifier keywords
+- Updated `opengraph-image.tsx` — new title and description for the toolkit
+- Updated `src/data/tools.ts` — renamed from "Subnet Calculator" to "IP / CIDR Toolkit" with expanded description
+- Updated `CLAUDE.md` — tool #47 renamed to "IP / CIDR Toolkit"
+- Updated TASK_BOARD.md — marked #54 as done
+- Build verified, committed, pushed to master
+
+---
+
+### 2026-03-18 | strategist | Phase 2 Strategy: From 60 Tools to First Revenue
+
+- **Critical SEO bug found:** Blog posts (3 articles) are not included in `sitemap.xml` — Google can't efficiently discover our content pages
+- **Strategic shift recommended:** Move from 100% tool-building to 80% growth / 20% tools. At 60 tools, we've reached diminishing returns on catalog expansion.
+- **SEO expansion plan:** Expand programmatic sub-pages from 25 → 125+ across 40+ tools (currently only 10 tools have sub-pages)
+- **Content strategy:** Proposed 12 new blog posts targeting 325K+ combined monthly search volume, each funneling to an existing tool
+- **Next tool wave (#63-#72):** 10 selective, high-volume tools prioritized by search volume. Headliners:
+  - Privacy Policy Generator (#65) — 100K+/mo searches, biggest traffic opportunity
+  - Timestamp/Date Format Tester (#63) — 50K+/mo
+  - HTTP Status Code Reference (#66) — 40K+/mo evergreen page
+- **Revenue acceleration:** Reminded on Stripe setup (still blocking), recommended applying to Carbon Ads or EthicalAds, identified affiliate opportunities
+- **Brand positioning:** Recommended leaning harder into privacy-first messaging ("60+ tools, zero tracking, 100% client-side")
+- Updated TASK_BOARD.md with new priorities (P0 sitemap fix, P1 SEO expansion, P1 blog content, P2 new tools)
+- Wrote detailed strategy analysis to HUMAN_INBOX.md
+
+---
+
 ### 2026-03-18 | developer | Add /blog section with initial guides
 
 - Created `src/data/blog-posts.ts` — blog post metadata (slug, title, description, date, readTime, tags, relatedTools)

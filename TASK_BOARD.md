@@ -8,28 +8,45 @@ _None_
 ## To Do
 
 ### P0 - Critical
+- [ ] Fix sitemap bug: add blog posts to `sitemap.xml` — 3 blog posts not discoverable by Google
 - [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this (HUMAN ACTION NEEDED)
 
-### P1 - High (Growth)
+### P1 - High (Growth & SEO)
 - [x] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
-- [ ] Apply to Carbon Ads for developer-focused ad monetization (HUMAN ACTION NEEDED)
+- [ ] Expand programmatic SEO sub-pages to 40+ tools — from 25 → 125+ indexed pages
+- [ ] Write 12 new blog posts targeting high-volume informational queries (see HUMAN_INBOX.md for full list)
+- [ ] Apply to Carbon Ads or EthicalAds for developer-focused ad monetization (HUMAN ACTION NEEDED)
+- [ ] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
+- [ ] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
+- [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages
+- [ ] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
+- [ ] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
+- [ ] Add README Generator tool (#67) — 20K+/mo, GitHub README builder
 - [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
+- [ ] Update homepage tagline to emphasize privacy-first positioning
+- [ ] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
 - [x] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
 - [x] Add Docker Compose Validator (#62) — growing with container adoption
-- [ ] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
+- [ ] Add Placeholder Image Generator (#68) — generate placeholder images client-side
+- [ ] Add robots.txt Generator (#69) — complements Meta Tag Generator
+- [ ] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
+- [ ] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
+- [ ] Add Nginx Config Generator (#72) — growing query, no clean free tool
+- [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54) — 4-tab toolkit: subnet calculator, VLSM divider, IP range to CIDR, IP address info
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [x] Add Docker Compose Validator (#62) — validate/format compose files with service, network, volume, dependency checks
 - [x] Add Encode/Decode Multi-tool (#59) — Base64, Base32, Hex, Binary, URL, HTML all-in-one with format switcher

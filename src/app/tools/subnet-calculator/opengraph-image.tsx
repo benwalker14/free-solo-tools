@@ -5,8 +5,8 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return generateOgImage(
-    "Subnet Calculator",
-    "Calculate IPv4 subnet details from CIDR notation instantly.",
+    "IP / CIDR Toolkit",
+    "Subnet calculator, VLSM divider, IP range to CIDR, and IP classifier.",
     "IP",
   );
 }

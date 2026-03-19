@@ -96,7 +96,7 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 44. Text ↔ Binary Converter (/tools/text-binary)
 45. Meta Tag Generator (/tools/meta-tag-generator)
 46. JSON Schema Validator (/tools/json-schema)
-47. Subnet Calculator (/tools/subnet-calculator)
+47. IP / CIDR Toolkit (/tools/subnet-calculator)
 48. .gitignore Generator (/tools/gitignore-generator)
 49. Crontab Generator (/tools/cron-generator)
 50. Favicon Generator (/tools/favicon-generator)
