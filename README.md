@@ -1,6 +1,6 @@
 # DevBolt
 
-**111 free, privacy-first developer tools that run entirely in your browser.**
+**112 free, privacy-first developer tools that run entirely in your browser.**
 
 No signup. No tracking. Your data never leaves your device.
 
@@ -16,7 +16,7 @@ Built as an experiment in autonomous software: the site is designed, coded, depl
 
 ## Features
 
-- **111 tools** across 4 categories: Format, Convert, Generate, and Inspect
+- **112 tools** across 4 categories: Format, Convert, Generate, and Inspect
 - **100% client-side** — your data never leaves your browser
 - **No signup required** — open any tool and start using it immediately
 - **Dark mode** — light, dark, and system themes
@@ -33,8 +33,8 @@ JSON Formatter, SQL Formatter, XML Formatter, YAML Formatter, Markdown Preview, 
 ### Convert (34 tools)
 Base64 Codec, Color Converter, CSS Unit Converter, CSV/JSON Converter, JSON/YAML Converter, JSON/XML Converter, HTML/Markdown Converter, JSON to TypeScript, Epoch Converter, URL Encoder, HTML Entities, TOML Converter, Encode/Decode Multi-Tool, CSS to Tailwind, Tailwind to CSS, JSON to Code (8 languages), SVG to JSX, HTML to JSX, TypeScript to JavaScript, JSON to SQL, JSON to GraphQL, JSON to Zod, JSON to CSV, OpenAPI to TypeScript, GraphQL to TypeScript, SQL to TypeScript/Prisma/Drizzle, ESLint to Biome, cURL to Code, Text/Binary Converter, .env to Docker/K8s, and more
 
-### Generate (39 tools)
-Hash Generator, UUID Generator, Password Generator, Lorem Ipsum, QR Code, CSS Gradient Generator, Box Shadow Generator, Flexbox Generator, Grid Generator, CSS Animation Generator, Border Radius Generator, Text Shadow Generator, Color Palette, Placeholder Image, Favicon Generator, Meta Tag Generator, .gitignore Generator, robots.txt Generator, Crontab Generator, Nginx Config, README Generator, Privacy Policy Generator, JSON Mock Data, Regex Generator, JWT Builder, Security Headers, CSP Builder, AI Prompt Builder, MCP Config Builder, tsconfig Builder, package.json Generator, Code Screenshot, Markdown Table Generator, URL Slug Generator, ASCII Art Text, and more
+### Generate (40 tools)
+Hash Generator, UUID Generator, Password Generator, Lorem Ipsum, QR Code, CSS Gradient Generator, Box Shadow Generator, Flexbox Generator, Grid Generator, CSS Animation Generator, Border Radius Generator, Text Shadow Generator, Color Palette, Placeholder Image, Favicon Generator, Meta Tag Generator, .gitignore Generator, robots.txt Generator, Crontab Generator, Nginx Config, README Generator, Privacy Policy Generator, JSON Mock Data, Regex Generator, JWT Builder, Security Headers, CSP Builder, AI Prompt Builder, MCP Config Builder, tsconfig Builder, package.json Generator, Code Screenshot, Markdown Table Generator, HTML Table Generator, URL Slug Generator, ASCII Art Text, and more
 
 ### Inspect (31 tools)
 JWT Decoder, Regex Tester, URL Parser, Diff Checker, JSON Diff, JSON Path Tester, JSON Schema Validator, JSON Visualizer, SVG Optimizer, Image Compressor, Color Contrast Checker, Word Counter, Chmod Calculator, Cron Parser, Number Base Converter, Case Converter, Subnet/CIDR Toolkit, Open Graph Preview, Date Format Tester, Token Counter, AI Model Comparison, Git Command Builder, File Hash Calculator, .env Validator, Dockerfile Validator, Kubernetes Validator, OpenAPI Validator, GitHub Actions Validator, HTTP Status Codes, Code Complexity Analyzer, AI Code Security Scanner, and more

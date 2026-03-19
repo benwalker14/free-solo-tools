@@ -2051,4 +2051,27 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "Yes. Click the 'Swap & convert back' button to carry the output into the input and switch direction. Note that JSON ↔ XML is not a lossless round-trip — XML attributes, mixed content, and processing instructions have no direct JSON equivalent, so some structural information may change between conversions.",
     },
   ],
+
+  "html-table-generator": [
+    {
+      question: "How do I create an HTML table online?",
+      answer:
+        "Use DevBolt's HTML Table Generator to build tables visually. Add rows and columns, type cell content directly, toggle header rows, and choose a table style (minimal, bordered, striped, or modern). When you're done, click Generate to get clean HTML code you can copy into your project. You can also import CSV data, add a caption for accessibility, and export as plain HTML, inline CSS, or Tailwind CSS classes.",
+    },
+    {
+      question: "What output formats does the HTML Table Generator support?",
+      answer:
+        "The generator supports three output formats. Plain HTML outputs semantic table markup with no styling — ideal when you add your own CSS separately. Inline CSS embeds style attributes directly on each element, which is useful for HTML emails where external stylesheets are unreliable. Tailwind CSS outputs utility classes, ready to drop into any Tailwind project. All three formats include proper thead/tbody structure and escape HTML entities in your content.",
+    },
+    {
+      question: "Can I import CSV data into the table generator?",
+      answer:
+        "Yes. Click Import CSV and paste comma-separated or tab-separated data. The first row is used as column headers and remaining rows become data cells. The parser handles quoted fields and escaped commas. Maximum 10 columns are supported. After importing, you can edit any cell directly in the visual editor before generating your HTML.",
+    },
+    {
+      question: "Is the generated HTML table accessible?",
+      answer:
+        "The generated HTML uses semantic elements: thead for header groups, th for header cells, tbody for data rows, and td for data cells. You can add an optional caption element that describes the table's purpose — screen readers announce captions to help visually impaired users understand the table before navigating its cells. For maximum accessibility, add scope='col' or scope='row' attributes to th elements in your final code.",
+    },
+  ],
 };

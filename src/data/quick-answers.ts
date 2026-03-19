@@ -139,4 +139,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Enter a value, select the source and target units (px, rem, em, pt, vw, vh, %), and get the result instantly. Set your root font size (default 16px) for accurate rem/em calculations. Use the batch converter to paste CSS and replace all px values with rem (or any other unit) at once. A reference table shows common px-to-rem conversions. Everything runs in your browser — your code never leaves your device.",
   },
+  "html-table-generator": {
+    question: "How do I generate an HTML table online?",
+    answer:
+      "Add rows and columns, type your content, and choose a style (minimal, bordered, striped, or modern). Click Generate to get clean HTML code with proper thead/tbody structure. Export as plain HTML, inline CSS (for emails), or Tailwind CSS classes. You can also import CSV data. Everything runs in your browser — your data never leaves your device.",
+  },
 };

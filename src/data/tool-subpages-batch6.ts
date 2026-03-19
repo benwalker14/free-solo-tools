@@ -1829,4 +1829,170 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "CSS Unit Converter",
     },
   ],
+
+  "html-table-generator": [
+    {
+      slug: "html-table-css-styling",
+      title: "HTML Table CSS Styling Guide",
+      metaTitle:
+        "HTML Table CSS Styling Guide — Borders, Stripes, Hover Effects | DevBolt",
+      metaDescription:
+        "Learn how to style HTML tables with CSS — borders, striped rows, hover effects, responsive scrolling, and modern design patterns. Generate styled tables instantly.",
+      h1: "HTML Table CSS Styling Guide",
+      intro:
+        "Learn how to transform plain HTML tables into polished, readable components with CSS. This guide covers borders, striped rows, hover effects, responsive patterns, and dark mode — with a visual builder to generate the code for you.",
+      content: [
+        {
+          heading: "Essential CSS for HTML tables",
+          body: "Start with border-collapse: collapse on the table element to merge cell borders into clean lines. Add padding to th and td cells (8-12px is standard) for readable spacing. Use border-bottom on rows instead of full borders for a lighter, modern look. Set width: 100% on the table for responsive behavior. For striped rows, use tr:nth-child(even) { background: #f9f9f9 }. Add tr:hover { background: #f0f4ff } for interactive row highlighting.",
+        },
+        {
+          heading: "Responsive table patterns",
+          body: "Tables can overflow on mobile screens. The simplest fix is wrapping the table in a div with overflow-x: auto to enable horizontal scrolling. For a more advanced approach, use CSS Grid or Flexbox to stack cells vertically on small screens with display: block on tr and td elements combined with data attributes for labels. Another option: hide less-important columns on mobile with media queries and display: none.",
+        },
+        {
+          heading: "HTML tables in emails",
+          body: "Email clients strip external CSS, so HTML email tables must use inline styles. Set style attributes directly on table, th, td, and tr elements. Use table attributes like cellpadding and cellspacing for maximum compatibility. Avoid CSS Grid, Flexbox, nth-child selectors, and CSS variables — Outlook and Gmail ignore them. DevBolt's 'Inline CSS' output format generates email-safe table code.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I add borders to an HTML table?",
+          answer:
+            "Add border-collapse: collapse to the table element, then border: 1px solid #ddd to th and td cells. Border-collapse merges adjacent cell borders into a single line instead of doubling them. For a minimal look, use border-bottom only on tr elements instead of full cell borders.",
+        },
+        {
+          question: "How do I make an HTML table responsive?",
+          answer:
+            "Wrap the table in a container div with overflow-x: auto and max-width: 100%. This enables horizontal scrolling on small screens. For a mobile-first approach, use media queries to stack cells vertically or hide non-essential columns on narrow viewports.",
+        },
+        {
+          question: "How do I style an HTML table for dark mode?",
+          answer:
+            "Use a prefers-color-scheme: dark media query to swap background and text colors. Set the table background to a dark gray (#1f2937), text color to light gray (#e5e7eb), and border colors to a mid-gray (#374151). For hover states, use a slightly lighter background (#374151).",
+        },
+      ],
+      keywords: [
+        "html table css",
+        "style html table",
+        "html table design",
+        "css table borders",
+        "striped table css",
+        "responsive html table",
+        "html table hover effect",
+        "html email table",
+      ],
+      parentToolSlug: "html-table-generator",
+      parentToolName: "HTML Table Generator",
+    },
+    {
+      slug: "html-table-accessibility",
+      title: "Accessible HTML Tables Guide",
+      metaTitle:
+        "Accessible HTML Tables — WCAG Best Practices & Screen Reader Support | DevBolt",
+      metaDescription:
+        "Build accessible HTML tables with proper headers, captions, scope attributes, and ARIA roles. Follow WCAG guidelines for screen reader support.",
+      h1: "Accessible HTML Tables — WCAG Best Practices",
+      intro:
+        "HTML tables need proper structure for screen readers and assistive technology. This guide covers semantic markup, scope attributes, captions, and WCAG compliance — so your tables are usable by everyone.",
+      content: [
+        {
+          heading: "Semantic table structure",
+          body: "Use thead, tbody, and optionally tfoot to group rows by purpose. Use th for header cells and td for data cells — never style td elements to look like headers. Screen readers announce th cells as column or row headers, helping users navigate large tables. Add a caption element as the first child of the table to describe its purpose — assistive technology announces this before reading cell data.",
+        },
+        {
+          heading: "The scope attribute",
+          body: "Add scope='col' to column headers and scope='row' to row headers. This tells screen readers how to associate data cells with their headers. For simple tables with a single header row, most screen readers infer scope automatically, but explicit scope is essential for complex tables with multi-level headers. For tables spanning multiple header rows or columns, use headers and id attributes to create explicit cell-to-header associations.",
+        },
+        {
+          heading: "Common accessibility mistakes",
+          body: "Using tables for page layout instead of tabular data confuses screen readers. Empty th cells waste time — if a column needs no header, consider whether the data belongs in a table. Merged cells (colspan/rowspan) break navigation in screen readers unless headers are explicitly linked with the headers attribute. Missing caption or summary means users have no context before entering the table. Color-only distinctions (red vs green rows) exclude colorblind users — always pair color with text or icons.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Do HTML tables need a caption element?",
+          answer:
+            "A caption is not strictly required for validity, but WCAG 2.1 Success Criterion 1.3.1 recommends it. Screen readers announce the caption before entering the table, giving users context. If you cannot add a caption, use aria-label or aria-describedby on the table element as an alternative.",
+        },
+        {
+          question: "When should I use scope vs headers attribute?",
+          answer:
+            "Use scope='col' or scope='row' on th elements for simple tables with a single row or column of headers. Use the headers attribute (referencing th id values) for complex tables with multiple header levels, merged cells, or irregular structure. Most tables only need scope.",
+        },
+        {
+          question: "Is it accessible to use div elements instead of table elements?",
+          answer:
+            "Using divs with CSS Grid to create table-like layouts loses the built-in accessibility of native table elements. Screen readers understand table, tr, th, and td natively and provide keyboard navigation. If you must use divs, add ARIA roles (role='table', role='row', role='columnheader', role='cell') — but native table elements are always preferred.",
+        },
+      ],
+      keywords: [
+        "accessible html table",
+        "html table accessibility",
+        "table wcag",
+        "screen reader table",
+        "html table scope",
+        "table caption",
+        "aria table",
+        "accessible data table",
+      ],
+      parentToolSlug: "html-table-generator",
+      parentToolName: "HTML Table Generator",
+    },
+    {
+      slug: "csv-to-html-table",
+      title: "CSV to HTML Table Converter",
+      metaTitle:
+        "CSV to HTML Table Converter Online — Free Tool | DevBolt",
+      metaDescription:
+        "Convert CSV data to a styled HTML table instantly. Import comma-separated or tab-separated data, choose a style, and export as HTML with inline CSS or Tailwind classes.",
+      h1: "CSV to HTML Table Converter",
+      intro:
+        "Paste your CSV or tab-separated data and convert it to a styled HTML table in seconds. The first row becomes the header. Choose minimal, bordered, striped, or modern styling and export as plain HTML, inline CSS, or Tailwind classes.",
+      content: [
+        {
+          heading: "How to convert CSV to HTML table",
+          body: "Click 'Import CSV' in the tool above, paste your comma-separated or tab-separated data, and click Import. The first line is used as table headers (th elements inside thead) and the remaining lines become data rows (td elements inside tbody). After importing, you can edit any cell directly, add or remove rows and columns, toggle headers, and choose a visual style before generating the final HTML code.",
+        },
+        {
+          heading: "Handling edge cases in CSV data",
+          body: "The parser handles quoted fields ('\"Portland, OR\"' stays as one cell), escaped quotes ('\"\"' becomes '\"'), and mixed delimiters (commas and tabs). Empty fields are preserved as empty cells. Rows with fewer columns than the header are padded with empty cells. Rows with more columns are truncated to match. Maximum 10 columns are supported to keep tables readable.",
+        },
+        {
+          heading: "Converting CSV to HTML with code",
+          body: "In JavaScript: split the CSV by newlines, split each line by commas, map the first row to th elements wrapped in thead/tr, and map remaining rows to td elements wrapped in tbody/tr. In Python, use the csv module with csv.reader() and build the HTML string with string formatting or an HTML template library like Jinja2. For one-off conversions, this visual tool is faster than writing code.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does the CSV parser handle quoted fields?",
+          answer:
+            "Yes. Fields wrapped in double quotes are treated as a single cell even if they contain commas. Escaped quotes (two double-quote characters) are converted to a single double-quote in the output. Tab-separated data is also supported.",
+        },
+        {
+          question: "Can I style the generated HTML table for emails?",
+          answer:
+            "Yes. Select the 'Inline CSS' output format to embed styles directly on each HTML element. This is the recommended approach for HTML emails because most email clients strip external and head-level CSS. The inline output includes padding, borders, and background colors compatible with Outlook, Gmail, and Apple Mail.",
+        },
+        {
+          question:
+            "What if my CSV has more columns than the table supports?",
+          answer:
+            "The tool supports up to 10 columns. If your CSV has more, only the first 10 columns are imported. For wider datasets, consider splitting the data across multiple tables or transposing rows and columns.",
+        },
+      ],
+      keywords: [
+        "csv to html table",
+        "csv to html converter",
+        "csv to html online",
+        "convert csv to table",
+        "csv to html table generator",
+        "tab to html table",
+        "tsv to html",
+        "paste csv html",
+      ],
+      parentToolSlug: "html-table-generator",
+      parentToolName: "HTML Table Generator",
+    },
+  ],
 };

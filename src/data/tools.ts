@@ -886,4 +886,12 @@ export const tools: Tool[] = [
     icon: "px→",
     category: "Convert",
   },
+  {
+    title: "HTML Table Generator",
+    description:
+      "Build HTML tables visually with an interactive editor — add rows, columns, header rows, captions, and styling. Export as plain HTML, inline CSS, or Tailwind classes",
+    href: "/tools/html-table-generator",
+    icon: "TBL",
+    category: "Generate",
+  },
 ];

@@ -1,6 +1,6 @@
 # DevBolt
 
-> 111 free online developer tools. 100% client-side — your data never leaves your browser.
+> 112 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -115,6 +115,7 @@
 - [.env to Docker/K8s Converter](https://devbolt.dev/tools/env-converter): Convert .env files to Docker Compose environment blocks, Kubernetes ConfigMaps, Secrets, and docker run flags with sensitive key detection
 - [JSON ↔ XML Converter](https://devbolt.dev/tools/json-xml): Convert JSON to XML and XML to JSON — handles nested objects, arrays, attributes, CDATA sections, and XML declarations
 - [CSS Unit Converter](https://devbolt.dev/tools/css-unit-converter): Convert between px, rem, em, pt, vw, vh, and % — single values or batch-convert entire CSS files with configurable base font size
+- [HTML Table Generator](https://devbolt.dev/tools/html-table-generator): Build HTML tables visually with an interactive editor — add rows, columns, header rows, captions, and styling. Export as plain HTML, inline CSS, or Tailwind classes
 
 ## Cheat Sheets
 
