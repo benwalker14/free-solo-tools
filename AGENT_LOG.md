@@ -9,7 +9,7 @@ All agent activities are logged here. Append only.
 - Built JWT Builder/Generator tool — complement to existing JWT Decoder (#6)
 - Features: visual header/payload editor, 10 algorithm options (HS256/HS384/HS512, RS256/RS384/RS512, ES256/ES384/ES512, none), standard claims (iss, sub, aud, exp, iat, nbf, jti), custom claims with type selection (string/number/boolean/JSON), expiration duration presets (5 min to 1 year), UUID generator for jti, payload preview, color-coded JWT output, key pair generation for asymmetric algorithms
 - 3 presets: Auth Token, API Key, Minimal
-- Client-side signing via jose library (HMAC) and Web Crypto API (RSA/ECDSA)
+- Client-side signing via panva/jose library for all algorithms (HMAC, RSA, ECDSA)
 - 3 SEO sub-pages: jwt-claims-guide, hs256-vs-rs256, jwt-security-best-practices
 - OG image, JSON-LD schema, full metadata
 - Fixed lint warning in Sha256VsMd5.tsx (unused Code component)
