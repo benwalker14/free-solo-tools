@@ -4,6 +4,49 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:45 | developer | Add 12 privacy-targeted SEO sub-pages
+
+- **Task:** Create privacy-focused sub-pages for the 12 most data-sensitive tools, targeting "safe [tool]", "private [tool]", and "[tool] no upload" long-tail keywords
+- **Sub-pages created** (all at `/tools/[tool-slug]/safe`):
+  1. **Safe JSON Formatter** — targets "safe json formatter", "codebeautify alternative", "json formatter no upload"
+  2. **Safe Base64 Encoder & Decoder** — targets "safe base64 encoder", "private base64 decoder"
+  3. **Safe JWT Decoder** — targets "safe jwt decoder", "decode jwt privately"
+  4. **Safe Password Generator** — targets "safe password generator", "password generator no tracking"
+  5. **Safe Hash Generator** — targets "safe hash generator", "private sha256 generator"
+  6. **Safe Diff Checker** — targets "private diff checker", "safe code comparison"
+  7. **Safe JSON Viewer** — targets "safe json viewer", "private json explorer"
+  8. **Safe SQL Formatter** — targets "safe sql formatter", "format sql privately"
+  9. **Safe CSV to JSON Converter** — targets "safe csv to json", "csv converter privacy"
+  10. **Safe Regex Tester** — targets "safe regex tester", "regex tester privacy"
+  11. **Safe cURL Converter** — targets "safe curl converter", "curl converter no upload"
+  12. **Safe YAML Formatter** — targets "safe yaml formatter", "yaml formatter privacy"
+- **Content per page:** 500+ words, 3-4 content sections (why privacy matters for this tool, what data is at risk, how DevBolt is different, how to verify), 3-4 FAQs with privacy focus, 6-8 SEO keywords
+- **Architecture:** Created `tool-subpages-batch5.ts` with all 12 entries. Updated `tool-subpages.ts` with `mergeBatches()` function to properly concatenate sub-page arrays for tools that already had sub-pages in earlier batches (previously used spread operator which would overwrite).
+- **Files created:** `src/data/tool-subpages-batch5.ts`
+- **Files modified:** `src/data/tool-subpages.ts` (added batch5 import + mergeBatches function)
+- **Verification:** `npm run build` passes, all 12 `/tools/*/safe` sub-pages generate as static HTML. Sitemap auto-includes via `getAllSubpages()`. FAQPage + SoftwareApplication JSON-LD schema on each sub-page via SubpageLayout.
+
+---
+
+### 2026-03-19 23:30 | strategist | Phase 10 Strategy — The Vibe Coding Security Moment + Distribution Offensive
+
+- **Strategic direction: Exploit the vibe coding security crisis + launch distribution offensive**
+- **Ran 3 parallel research agents** covering: developer trends & tool opportunities, competitor analysis, content distribution & AI citation strategies
+- **Major finding #1: Vibe coding security crisis is the #1 developer anxiety in March 2026.** Veracode: 45% of AI-generated code has security flaws. Carnegie Mellon: only 10.5% of AI-generated code is secure. 69 vulnerabilities found across 5 major AI coding tools building identical test apps. Anthropic itself launched a Claude Code security review tool March 9. No free client-side code security scanner exists online — massive gap.
+- **Major finding #2: GlassWorm supply chain attacks + 72 malicious Open VSX extensions (March 8-19).** Active malware campaign injecting into GitHub repos and VS Code extensions. Directly validates DevBolt's "client-side, nothing installed" privacy positioning. Time-sensitive content opportunity.
+- **Major finding #3: Google March 2026 core update rolling out NOW.** E-E-A-T requirements tightened. Author attribution and "real experience" signals weighted higher. AI-generated content under scrutiny. DevBolt blog posts need author bylines. Programmatic sub-pages need content audit for thin-page risk.
+- **Major finding #4: llms.txt has NO measurable citation impact.** 300K domain study found no statistically significant difference. Only 10.13% adoption. DevBolt's existing llms.txt is fine to keep but not worth optimizing further.
+- **Major finding #5: AI Overviews only cite pages already in top 10 organic results.** 99.5% of cited sources are already top-10 ranked. "Quick answer blocks" above the fold = 30-40% higher AI visibility. Top priority: add these to all tool pages.
+- **Competitor update:** CodeBeautify down to ~1.8M/mo (was ~2.3M in Phase 9 — accelerating decline). jsonformatter.org up to ~3M/mo (single-tool SEO dominance). 10015.io at ~350K/mo with Chrome extension as retention moat. devformat.tools has 52+ tools now and actively ranking for CodeBeautify alternative searches. transform.tools effectively dead.
+- **Phase 9 execution audit: 8/12 P1 items completed by developer agent.** Error-fix blog posts (5), cheat sheets (3), bidirectional landing pages (6), /safe-tools page, TS6+Biome blog posts, HowTo schema — all done. Still pending: Dev.to cross-posting, directory submissions (HUMAN), privacy SEO sub-pages, language-specific landing pages.
+- **New tool recommendations:** (1) AI-Generated Code Security Scanner — addresses #1 dev anxiety, no free client-side competitor exists, HIGH differentiator. (2) Code Complexity Analyzer (#107) — elevated to P1, directly serves vibe coding quality concerns. (3) GitHub Actions YAML Validator (#109) — CI/CD tooling gap.
+- **Content priorities:** (1) "Vibe Coding Security: How to Review AI-Generated Code" blog post — highest growth topic. (2) "TypeScript 7.0: The Go Rewrite" — forward-looking, TS6 driving traffic now. (3) GlassWorm/VSCode malware angle post — time-sensitive news hook. (4) Language-specific landing pages (10-15 pages) — "Python JSON Formatter", "JavaScript Base64 Encode" etc.
+- **Distribution offensive:** (1) Cross-post top 5 blog posts to Dev.to NOW — still undone, 300-500% reach. (2) Add quick answer blocks to top 20 tool pages for AI Overview citation. (3) Add author attribution to all blog posts (March core update E-E-A-T). (4) Submit to DevHunt before Product Hunt launch. (5) Reddit seeding strategy for Perplexity citation pipeline.
+- **Key SEO shift: Generative Engine Optimization (GEO) is now mandatory.** ChatGPT favors Wikipedia-style sources. Perplexity favors Reddit (46.7% of citations). Google AI Mode does "fan-out" sub-queries favoring specific sub-pages over generic pages. DevBolt's sub-page strategy is well-positioned for this.
+- Wrote full strategic briefing to HUMAN_INBOX.md with priority matrix and action items
+
+---
+
 ### 2026-03-19 22:15 | developer | Create 6 bidirectional landing pages for converter tools
 
 - **Task:** Create top-level URLs for each conversion direction with unique SEO content (500+ words each)

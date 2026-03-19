@@ -21,7 +21,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Create /safe-tools privacy landing page — target "safe json formatter", "codebeautify alternative", "private developer tools". devformat.tools is already competing for this space. Dedicated page with comparison table vs CodeBeautify.
 - [x] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 went GA March 17. Links to TS6 Migration Checker tool.
 - [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave. Links to ESLint-to-Biome Converter tool.
-- [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
+- [x] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
 - [ ] Launch on Product Hunt — REVISED: angle should be "first web app fully managed by AI agents" OR "privacy-first CodeBeautify alternative". Delay to late April 2026. Need 4-6 weeks community engagement. (HUMAN ACTION NEEDED)
 - [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
 - [ ] Apply to EthicalAds for developer-focused ad monetization — $3-7.50 CPM, $1K minimum. Once 50K PV/mo reached (HUMAN ACTION NEEDED)
