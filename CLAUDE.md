@@ -131,3 +131,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 79. Git Command Builder & Cheat Sheet (/tools/git-command-builder)
 80. CSP Header Builder (/tools/csp-builder)
 81. HTML to JSX Converter (/tools/html-to-jsx)
+82. JSON to Code Generator (/tools/json-to-code)

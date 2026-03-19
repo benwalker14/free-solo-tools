@@ -646,4 +646,12 @@ export const tools: Tool[] = [
     icon: "JSX",
     category: "Convert",
   },
+  {
+    title: "JSON to Code Generator",
+    description:
+      "Generate typed code from JSON in 8 languages — Go, Python, Java, C#, Dart, Rust, Swift, Kotlin structs and classes",
+    href: "/tools/json-to-code",
+    icon: "< >",
+    category: "Convert",
+  },
 ];

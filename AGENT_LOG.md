@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add JSON to Code Generator tool (#86)
+
+- Built tool #86 at `/tools/json-to-code` — JSON to Code Generator (Multi-Language)
+- 8 target languages: Go, Python, Java, C#, Dart, Rust, Swift, Kotlin
+- **Go**: Structs with `json:"..."` tags, PascalCase field names, int64/float64 detection
+- **Python**: @dataclass with type hints, snake_case fields, Optional for nulls, imports included
+- **Java**: Classes with private fields, getters/setters, boxed types for generics (List<Long>)
+- **C#**: Classes with `[JsonPropertyName]` attributes, PascalCase properties, System.Text.Json
+- **Dart**: Classes with final fields, named constructor, `fromJson`/`toJson` factory methods
+- **Rust**: Structs with `#[derive(Serialize, Deserialize)]`, `#[serde(rename)]`, snake_case, pub fields
+- **Swift**: Codable structs with `CodingKeys` enum when field names differ from JSON keys
+- **Kotlin**: `@Serializable` data classes with `@SerialName` for renamed fields, kotlinx.serialization
+- All languages: nested object → separate named types, array element inference, integer vs float detection, null → language-specific nullable/optional
+- 3 SEO sub-pages: json-to-go-struct, json-to-python-dataclass, json-to-rust-struct
+- Supported languages reference table with output type and serialization library for each
+- OG metadata, JSON-LD schema, registered in tools.ts as tool #82
+- CLAUDE.md updated to 82 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Add CSP Header Builder tool (#80) + HTML to JSX Converter tool (#85)
 
 - Built tool #80 at `/tools/csp-builder` — CSP Header Builder

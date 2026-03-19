@@ -1772,4 +1772,166 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "HTML to JSX Converter",
     },
   ],
+
+  "json-to-code": [
+    {
+      slug: "json-to-go-struct",
+      title: "JSON to Go Struct Generator",
+      metaTitle:
+        "JSON to Go Struct Generator Online — Free Tool | DevBolt",
+      metaDescription:
+        "Convert JSON to Go structs instantly with proper json tags, nested struct generation, and idiomatic naming. Free online tool — no signup required.",
+      h1: "JSON to Go Struct Generator",
+      intro:
+        "Paste your JSON and instantly get Go structs with json tags, proper naming conventions, and nested type definitions. Everything runs in your browser — no data leaves your device.",
+      content: [
+        {
+          heading: "Why Use Go Structs for JSON?",
+          body: "Go's encoding/json package uses struct tags to map JSON fields to Go fields. Writing these structs by hand is tedious and error-prone, especially for deeply nested JSON. This generator infers the correct Go types (string, int64, float64, bool) and creates properly tagged structs automatically.",
+        },
+        {
+          heading: "How Go JSON Tags Work",
+          body: 'Each struct field gets a `json:"fieldName"` tag that tells encoding/json how to marshal and unmarshal. Field names are converted to PascalCase (Go convention for exported fields), while the tag preserves the original JSON key. Nested objects become separate named structs.',
+        },
+        {
+          heading: "Integer vs Float Detection",
+          body: "The generator distinguishes between int64 and float64 by checking if a number has a decimal part. Whole numbers like 42 become int64, while 3.14 becomes float64. Arrays infer their element type from the first item.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does this handle nested JSON objects?",
+          answer:
+            "Yes. Each nested object becomes a separate Go struct with a descriptive name based on the parent struct and field name. For example, a 'address' field inside 'User' generates a 'UserAddress' struct.",
+        },
+        {
+          question: "What about null values in JSON?",
+          answer:
+            "Null values are mapped to interface{} in Go, since the actual type cannot be determined from null alone. You may want to change these to pointers (*string, *int64) in your code.",
+        },
+        {
+          question: "Can I use this with JSON arrays?",
+          answer:
+            "Yes. If your root JSON is an array of objects, the generator merges all objects to produce the most complete struct definition.",
+        },
+      ],
+      keywords: [
+        "json to go struct",
+        "go struct generator",
+        "json to golang",
+        "go json tags",
+        "convert json to go",
+        "golang struct from json",
+        "json2go",
+      ],
+      parentToolSlug: "json-to-code",
+      parentToolName: "JSON to Code Generator",
+    },
+    {
+      slug: "json-to-python-dataclass",
+      title: "JSON to Python Dataclass Generator",
+      metaTitle:
+        "JSON to Python Dataclass Generator Online — Free Tool | DevBolt",
+      metaDescription:
+        "Convert JSON to Python dataclasses with type hints instantly. Handles nested objects, lists, Optional types. Free online tool — no signup required.",
+      h1: "JSON to Python Dataclass Generator",
+      intro:
+        "Generate Python dataclasses with full type annotations from any JSON structure. Nested objects become separate dataclasses, arrays get proper list[T] hints, and null values become Optional.",
+      content: [
+        {
+          heading: "Why Dataclasses Over Dicts?",
+          body: "Python dataclasses provide type safety, IDE autocompletion, and self-documenting code compared to raw dictionaries. They also support default values, comparison, and hashing out of the box. This generator creates ready-to-use dataclasses from your JSON.",
+        },
+        {
+          heading: "Type Hint Inference",
+          body: "The generator maps JSON types to Python types: strings to str, booleans to bool, integers to int, floats to float, nulls to Optional[Any], and arrays to list[T]. Nested objects become separate dataclass definitions.",
+        },
+        {
+          heading: "Snake Case Naming",
+          body: "Python convention uses snake_case for variable names. The generator automatically converts camelCase JSON keys to snake_case field names, following PEP 8 naming conventions.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does this generate Pydantic models?",
+          answer:
+            "This tool generates standard library dataclasses. You can easily convert the output to Pydantic models by replacing @dataclass with BaseModel inheritance and adjusting the syntax.",
+        },
+        {
+          question: "How are nested objects handled?",
+          answer:
+            "Each nested JSON object becomes a separate @dataclass with a name derived from the parent class and field name. Dependencies are ordered so child classes are defined before parents.",
+        },
+        {
+          question: "What imports are included?",
+          answer:
+            "The generated code includes imports for dataclass from dataclasses and Any, Optional from typing. You only need to add these to your project's standard library.",
+        },
+      ],
+      keywords: [
+        "json to python dataclass",
+        "json to python class",
+        "python type hints from json",
+        "json to dataclass",
+        "convert json to python",
+        "python dataclass generator",
+        "json2python",
+      ],
+      parentToolSlug: "json-to-code",
+      parentToolName: "JSON to Code Generator",
+    },
+    {
+      slug: "json-to-rust-struct",
+      title: "JSON to Rust Struct Generator",
+      metaTitle:
+        "JSON to Rust Struct Generator Online — Free Tool | DevBolt",
+      metaDescription:
+        "Convert JSON to Rust structs with serde derive macros, proper snake_case naming, and serde(rename) attributes. Free online tool — no signup required.",
+      h1: "JSON to Rust Struct Generator",
+      intro:
+        "Generate Rust structs from JSON with #[derive(Serialize, Deserialize)] and proper serde attributes. Fields use snake_case with automatic rename annotations when the JSON key differs.",
+      content: [
+        {
+          heading: "Serde Integration",
+          body: "The generated structs use serde's Serialize and Deserialize derive macros, the standard way to handle JSON in Rust. Fields that need renaming (e.g., camelCase JSON keys to snake_case Rust fields) get #[serde(rename = \"...\")] attributes automatically.",
+        },
+        {
+          heading: "Rust Type Mapping",
+          body: "JSON strings map to String, booleans to bool, integers to i64, floats to f64, arrays to Vec<T>, and null values to Option<serde_json::Value>. Nested objects become separate pub structs.",
+        },
+        {
+          heading: "Ownership and Public Fields",
+          body: "All fields are generated as pub for easy access. String types use owned String rather than &str since JSON deserialization typically produces owned data. You can adjust visibility and lifetimes as needed.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What crate dependencies do I need?",
+          answer:
+            "You need serde with the derive feature and serde_json in your Cargo.toml: serde = { version = \"1\", features = [\"derive\"] } and serde_json = \"1\".",
+        },
+        {
+          question: "Does this handle optional fields?",
+          answer:
+            "Null JSON values become Option<serde_json::Value>. For more specific optional typing, you may want to manually adjust to Option<String> or Option<i64> based on your schema.",
+        },
+        {
+          question: "Can I use this with nested JSON?",
+          answer:
+            "Yes. Each nested object becomes a separate named struct. The generator handles arbitrary nesting depth and creates properly ordered type definitions.",
+        },
+      ],
+      keywords: [
+        "json to rust struct",
+        "rust struct generator",
+        "json to rust",
+        "serde json to struct",
+        "convert json to rust",
+        "rust serde derive",
+        "json2rust",
+      ],
+      parentToolSlug: "json-to-code",
+      parentToolName: "JSON to Code Generator",
+    },
+  ],
 };
