@@ -322,6 +322,24 @@ curl -b cookies.txt https://example.com/dashboard`}
 done`}
       </CodeBlock>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Building the API you&apos;re testing?
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          <a
+            href="https://www.digitalocean.com/products/app-platform"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            DigitalOcean App Platform
+          </a>{" "}
+          deploys your API directly from a Git repo with auto-scaling, free SSL,
+          and built-in monitoring. Test locally with cURL, push to deploy.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         cURL to Code
       </h2>

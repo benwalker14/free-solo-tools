@@ -347,6 +347,25 @@ git check-ignore -v path/to/file
 # .gitignore:3:*.log    path/to/debug.log`}
       </CodeBlock>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Ready to deploy your clean repo?
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          <a
+            href="https://www.netlify.com/"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            Netlify
+          </a>{" "}
+          deploys directly from Git with automatic CI/CD, preview deploys for
+          every PR, and a generous free tier. A proper{" "}
+          <Code>.gitignore</Code> keeps your repo clean and your deploys fast.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         Generate Your .gitignore
       </h2>

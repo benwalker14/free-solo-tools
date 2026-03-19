@@ -403,6 +403,25 @@ graph LR
         </li>
       </ul>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Building a docs site or blog with Markdown?
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          <a
+            href="https://www.netlify.com/"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            Netlify
+          </a>{" "}
+          deploys static sites from Git with free SSL, global CDN, and instant
+          rollbacks. Works great with Docusaurus, Jekyll, Hugo, and any
+          Markdown-based static site generator.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         Try It Yourself
       </h2>
