@@ -41,7 +41,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add OpenAPI to TypeScript Converter tool (#95) — 2.14M weekly npm downloads for CLI tool, no dominant online converter. transform.tools is only competitor. Pairs with OpenAPI Validator (#75).
 - [x] Write 10 "X vs Y" comparison blog posts — TypeScript vs JavaScript, React vs Vue, REST vs GraphQL, Docker vs K8s, Tailwind vs Bootstrap, Flexbox vs Grid, JSON vs YAML, SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding (10/10 done)
 - [x] Optimize top 20 tool pages for AI Overview citation — FAQ sections (3-4 questions each) with FAQPage JSON-LD schema, direct answers in first 60 words, 134-167 word paragraphs. Data-driven via `src/data/tool-faqs.ts`. 70+ FAQs across 20 tools.
-- [x] Expand FAQ sections to all 103 tools — 313 FAQ questions total across 5 batch files. Native `<details>` accordion for SEO crawlability. FAQPage JSON-LD schema on every tool page.
+- [x] Expand FAQ sections to all 103 tools — 313 FAQ questions across all tools in single `src/data/tool-faqs.ts`. Native `<details>` accordion for SEO crawlability. FAQPage JSON-LD schema on every tool page.
 
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide

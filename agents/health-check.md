@@ -9,7 +9,7 @@ You are the DevBolt HEALTH CHECK agent. Your job is to verify the application is
 6. Check for any security vulnerabilities: `npm audit`
 
 ## Reporting
-- If everything is healthy: append a brief "all clear" entry to AGENT_LOG.md
+- If everything is healthy: append a brief "all clear" entry to AGENT_LOG.md using datetime format: `### YYYY-MM-DD HH:MM | health | description`
 - If there are issues:
   - Log details to AGENT_LOG.md
   - If critical (build fails, site down): write to HUMAN_INBOX.md with priority "Urgent"

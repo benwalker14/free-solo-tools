@@ -33,7 +33,7 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 
 ### Agent Rules
 1. ALWAYS read TASK_BOARD.md before starting work
-2. ALWAYS log activities to AGENT_LOG.md (append, never overwrite)
+2. ALWAYS log activities to AGENT_LOG.md (append, never overwrite). Use datetime format: `### YYYY-MM-DD HH:MM | agent-type | description`
 3. NEVER spend money without logging to FINANCES.md and writing to HUMAN_INBOX.md
 4. ALWAYS commit with clear, descriptive messages
 5. ALWAYS push to GitHub after committing

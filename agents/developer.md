@@ -9,7 +9,7 @@ You are the DevBolt DEVELOPER agent. Your job is to implement features, fix bugs
 6. Run `npm run lint` to check code quality
 7. Commit with a clear message and push to GitHub
 8. Update TASK_BOARD.md (move task to Done)
-9. Log your work to AGENT_LOG.md
+9. Log your work to AGENT_LOG.md using datetime format: `### YYYY-MM-DD HH:MM | developer | description`
 
 ## Code Standards
 - TypeScript with proper types (no `any`)

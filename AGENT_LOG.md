@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Consolidate FAQ data into single file + remove batch files
+
+- Consolidated FAQ data from 5 batch files into single `src/data/tool-faqs.ts`
+- 313 FAQ questions across all 103 tools (3 per tool, 4 for top tools)
+- Removed batch file imports and spread merge pattern — simpler single-file architecture
+- Deleted `tool-faqs-batch{2-5}.ts` files (data now lives in main file)
+- All 83 new tool FAQ entries written with SEO-optimized content:
+  - Direct answers in first 60 words (AI Overview optimization)
+  - 134-167 word answer paragraphs
+  - Developer-focused questions targeting real search queries
+  - Privacy/client-side angle where relevant
+- FAQPage JSON-LD schema on every tool page via ToolFAQ component
+- TypeScript and ESLint pass with zero errors
+- Build has transient Windows temp file issue (not code-related)
+
+---
+
 ### 2026-03-19 | strategist | Phase 9 Strategy — The Traffic Conversion Pivot
 
 - **Strategic direction change: Stop building tools, start growing traffic**

@@ -1,14 +1,9 @@
-import { toolFaqsBatch2 } from "./tool-faqs-batch2";
-import { toolFaqsBatch3 } from "./tool-faqs-batch3";
-import { toolFaqsBatch4 } from "./tool-faqs-batch4";
-import { toolFaqsBatch5 } from "./tool-faqs-batch5";
-
 export interface FAQ {
   question: string;
   answer: string;
 }
 
-const batch1: Record<string, FAQ[]> = {
+export const toolFaqs: Record<string, FAQ[]> = {
   "json-formatter": [
     {
       question: "How do I format JSON online?",
@@ -761,12 +756,1120 @@ const batch1: Record<string, FAQ[]> = {
         "Biome combines linting and formatting in a single Rust-based tool that runs 10-100x faster than ESLint plus Prettier. This speeds up CI pipelines and editor feedback dramatically. Biome eliminates the configuration complexity of coordinating ESLint and Prettier. It provides consistent formatting without occasional conflicts between ESLint autofixes and Prettier. Biome requires a single biome.json instead of separate configs. The tradeoff is that Biome's rule library is smaller than ESLint's plugin ecosystem, so teams using niche plugins may need to keep ESLint for those specific rules.",
     },
   ],
-};
 
-export const toolFaqs: Record<string, FAQ[]> = {
-  ...batch1,
-  ...toolFaqsBatch2,
-  ...toolFaqsBatch3,
-  ...toolFaqsBatch4,
-  ...toolFaqsBatch5,
+  "favicon-generator": [
+    {
+      question: "How do I generate a favicon from text or emoji?",
+      answer:
+        "Type a letter, number, or paste an emoji into the input field and the tool renders it as a favicon in multiple sizes instantly. DevBolt's Favicon Generator draws the character onto an HTML canvas, applies your chosen background color and font styling, then exports the result as downloadable PNG files in standard favicon dimensions (16x16, 32x32, 48x48, 180x180, 192x192, 512x512). You also get an ICO file for legacy browser support and the HTML link tags to paste into your page head. The entire process runs in your browser.",
+    },
+    {
+      question: "What favicon sizes and formats does a modern website need?",
+      answer:
+        "A modern website needs: a 32x32 favicon.ico for legacy browsers, a 180x180 PNG apple-touch-icon for iOS home screens, 192x192 and 512x512 PNGs in a web app manifest for Android and PWAs, and optionally an SVG favicon for crisp scaling on any display. SVG favicons support dark mode through embedded CSS media queries. Include the correct link tags in your HTML head: rel icon for the main favicon, rel apple-touch-icon for iOS, and a manifest.json entry. Placing favicon.ico at the domain root is recommended since browsers check that path automatically.",
+    },
+    {
+      question: "Can I use an emoji as a favicon for my website?",
+      answer:
+        "Yes, emoji favicons are popular for developer tools, personal sites, and documentation portals because they are instantly recognizable and require no design work. DevBolt renders the emoji onto a canvas at each required size and exports crisp PNG files. Keep in mind that emoji rendering varies slightly between platforms. Choose universally recognizable emoji and test on multiple devices. For maximum compatibility, export as PNG rather than relying on SVG text elements, since emoji font support in SVGs can be inconsistent across browsers.",
+    },
+  ],
+
+  "file-hash": [
+    {
+      question: "How do I verify a file's checksum using a hash?",
+      answer:
+        "Drag and drop your file into DevBolt's File Hash Calculator and it generates MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes instantly. To verify integrity, compare the generated hash against the checksum provided by the source. The tool includes a verify mode where you paste the expected hash and it highlights whether the comparison passes or fails. All hashing runs client-side using the Web Crypto API, so your files never leave your device. This workflow is essential for verifying software downloads, firmware images, and ISO files.",
+    },
+    {
+      question: "What is the difference between MD5, SHA-1, and SHA-256 for file hashing?",
+      answer:
+        "MD5 produces a 128-bit (32-character hex) hash and is fast but cryptographically broken. SHA-1 produces a 160-bit (40-character) hash and is also insecure after demonstrated collision attacks in 2017. SHA-256 produces a 256-bit (64-character) hash and remains cryptographically secure, making it the standard choice for file integrity verification. For simple corruption detection where deliberate tampering is not a concern, MD5 is sufficient and faster. For anything involving security or trust verification, use SHA-256 or SHA-512.",
+    },
+    {
+      question: "Is it safe to hash sensitive files in a browser-based tool?",
+      answer:
+        "Yes, when the tool processes files entirely client-side. DevBolt's File Hash Calculator reads your file using the browser's FileReader API and computes hashes locally with the Web Crypto API. No file data is uploaded to any server. You can verify this by monitoring the Network tab during hashing. The file contents exist only in your browser's memory and are released when you close the page. This makes it safe for hashing confidential documents, proprietary builds, and any files containing sensitive data.",
+    },
+  ],
+
+  "flexbox-generator": [
+    {
+      question: "How do I center an element vertically and horizontally with Flexbox?",
+      answer:
+        "Apply display: flex to the parent container, then set justify-content: center and align-items: center. This centers child elements both horizontally and vertically. If you need full-viewport centering, add height: 100vh to the parent. This is the most reliable centering technique in modern CSS, replacing older hacks involving position absolute with transforms or table-cell display. DevBolt's Flexbox Generator lets you toggle these properties visually and see the layout update in real time, then copy the generated CSS directly.",
+    },
+    {
+      question: "What is the difference between flex-wrap and flex-shrink?",
+      answer:
+        "flex-wrap controls whether flex items are forced onto a single line or allowed to wrap onto multiple lines. The default nowrap keeps all items on one line. Setting flex-wrap: wrap allows items to flow to the next row when they exceed container width. flex-shrink controls how much an individual item shrinks relative to others when the container is too small. The default value of 1 means items shrink equally. Setting flex-shrink: 0 prevents an item from shrinking. Use flex-wrap for responsive layouts and flex-shrink to control which items compress first.",
+    },
+    {
+      question: "When should I use Flexbox instead of CSS Grid?",
+      answer:
+        "Use Flexbox for one-dimensional layouts where content flows in a single row or column. Flexbox excels at navigation bars, button groups, card rows, and form input layouts. Use CSS Grid when you need two-dimensional control over both rows and columns simultaneously, such as full-page layouts, dashboards, or image galleries. A practical rule: if your layout is a line of items, use Flexbox. If it is a grid of cells, use Grid. Many real-world layouts combine both. DevBolt offers visual builders for both approaches.",
+    },
+  ],
+
+  "git-command-builder": [
+    {
+      question: "What are the most commonly used git commands?",
+      answer:
+        "The essential git commands are: git status to check working tree state, git add to stage changes, git commit to save snapshots, git push to upload to remote, git pull to fetch and merge, git branch to manage branches, git checkout or git switch to change branches, git merge to combine branches, git log to view history, and git diff to compare changes. Beyond these, git stash temporarily shelves changes, git rebase rewrites history, and git cherry-pick applies specific commits. DevBolt's Git Command Builder covers 22 commands with interactive option selection.",
+    },
+    {
+      question: "How do I undo the last git commit without losing changes?",
+      answer:
+        "Use git reset --soft HEAD~1 to undo the last commit while keeping all changes staged. Use git reset --mixed HEAD~1 to also unstage the changes. If you have already pushed the commit to a remote branch, use git revert HEAD instead, which creates a new commit that undoes the changes without rewriting history. Never use git reset on pushed shared-branch commits, as it rewrites history and causes conflicts for other contributors. DevBolt's Git Command Builder helps you select the right reset mode.",
+    },
+    {
+      question: "What is the difference between git merge and git rebase?",
+      answer:
+        "git merge combines two branches by creating a new merge commit that has both branches as parents, preserving the complete branching history. git rebase moves your branch's commits to the tip of another branch, rewriting history to create a linear sequence. Merge is safer for shared branches because it does not alter existing commits. Rebase produces cleaner, linear history. The common workflow is to rebase your feature branch onto main before merging. Never rebase commits that have been pushed to shared branches, as this rewrites history others depend on.",
+    },
+  ],
+
+  "git-diff-viewer": [
+    {
+      question: "How do I read git diff output?",
+      answer:
+        "Git diff output shows changes using unified diff format. Lines starting with --- indicate the original file and +++ the modified file. @@ markers show line number ranges. Lines prefixed with - (red) were removed, + (green) were added, and no prefix are unchanged context. DevBolt's Git Diff Viewer parses this raw output and renders it with syntax highlighting. You can toggle between inline mode (changes shown sequentially) and side-by-side mode (old and new versions in parallel columns) for easier comparison.",
+    },
+    {
+      question: "What is the difference between inline and side-by-side diff views?",
+      answer:
+        "Inline diff shows changes sequentially in a single column — removed lines in red followed by added lines in green. This is compact and matches the standard unified diff format. Side-by-side view displays the old version on the left and new version on the right with corresponding lines aligned. Side-by-side is easier for reviewing modifications to individual lines. Inline is better for insertions, deletions, and narrow viewports. Most code review tools like GitHub default to side-by-side but let you toggle.",
+    },
+    {
+      question: "How do I generate a git diff to paste into the viewer?",
+      answer:
+        "Run git diff for unstaged changes, git diff --staged for staged changes, or git diff HEAD~1 to compare against the previous commit. To compare branches, use git diff main..feature-branch. Copy the output from your terminal or redirect it to a file with git diff > changes.patch. Paste the raw unified diff output into DevBolt's viewer to see it rendered with syntax highlighting and color-coded changes, which is much easier to read than raw terminal output.",
+    },
+  ],
+
+  "gitignore-generator": [
+    {
+      question: "What files should a .gitignore include for a Node.js project?",
+      answer:
+        "A Node.js .gitignore should exclude node_modules/ (dependencies), dist/ or build/ (compiled output), .env and .env.local (secrets), coverage/ (test reports), *.log files, .DS_Store and Thumbs.db (OS files), and .cache/ directories. Keep package-lock.json committed for reproducible installs. For TypeScript, also exclude *.tsbuildinfo. DevBolt's .gitignore Generator provides curated templates for Node.js, TypeScript, React, Next.js, and other frameworks with a single click.",
+    },
+    {
+      question: "How does .gitignore pattern matching work?",
+      answer:
+        "Gitignore uses glob-style patterns. A bare pattern like *.log matches files anywhere in the repo. A leading slash /build/ anchors to the root. A trailing slash logs/ matches only directories. The wildcard * matches anything except path separators, while ** matches across directories. Negation with ! re-includes a previously excluded pattern. Patterns are evaluated top to bottom with later rules overriding earlier ones. Understanding these rules prevents common mistakes like ignoring files you intended to keep.",
+    },
+    {
+      question: "Why does .gitignore not work for already-committed files?",
+      answer:
+        "Gitignore only affects untracked files — it has no effect on files already tracked by Git. If you committed a file before adding it to .gitignore, Git continues tracking it. To fix this, remove the file from tracking without deleting it from disk using git rm --cached filename. Then commit this removal. The .gitignore rule will now prevent re-adding. DevBolt generates .gitignore files upfront so you can add rules before your first commit.",
+    },
+  ],
+
+  "gradient-generator": [
+    {
+      question: "How do I create a CSS linear gradient with a specific angle?",
+      answer:
+        "Set the gradient type to linear and adjust the angle. The angle controls the direction: 0deg flows bottom to top, 90deg left to right, 180deg top to bottom, 270deg right to left. You can also use keyword directions like to right or to bottom left. The generated CSS uses syntax like background: linear-gradient(135deg, #color1 0%, #color2 100%). DevBolt's Gradient Generator updates the preview in real time as you adjust angle, colors, and stop positions.",
+    },
+    {
+      question: "How do I create a radial CSS gradient?",
+      answer:
+        "Switch to radial gradient mode and configure the shape (circle or ellipse), size, and center position. A radial gradient transitions colors outward from a center point. You can control the origin using percentage positions and size keywords like closest-side or farthest-corner. Radial gradients work well for spotlight effects, glowing buttons, circular backgrounds, and vignette overlays. Add multiple color stops for more complex transitions.",
+    },
+    {
+      question: "Can I use CSS gradients as backgrounds for text?",
+      answer:
+        "Yes, apply gradients to text using background-clip and text-fill-color. Set the gradient as the element's background, then add -webkit-background-clip: text and background-clip: text to clip it to the text shape. Set -webkit-text-fill-color: transparent and color: transparent to make the text invisible so the gradient shows through. This technique works in all modern browsers and creates eye-catching gradient text effects for headings and hero sections. Include both -webkit- prefixed and unprefixed versions.",
+    },
+  ],
+
+  "graphql-to-typescript": [
+    {
+      question: "How do I convert a GraphQL schema to TypeScript types?",
+      answer:
+        "Paste your GraphQL SDL into DevBolt's converter and it generates corresponding TypeScript interfaces and types. Object types become interfaces, scalar types map to TypeScript equivalents (String to string, Int/Float to number, Boolean to boolean, ID to string), enums become TypeScript enums or unions, and nullable fields are typed with null unions. The converter handles nested types, arrays, and non-null fields. The output is ready to use in your TypeScript codebase for type-safe API consumption.",
+    },
+    {
+      question: "How does the converter handle GraphQL unions and interfaces?",
+      answer:
+        "GraphQL union types become TypeScript discriminated union types using the | operator. GraphQL interfaces become TypeScript interfaces that implementing types extend. The __typename field is included as a string literal type on each union member, enabling TypeScript's discriminated union pattern for exhaustive switch statements. This preserves the GraphQL type system's relationships in TypeScript's type system accurately.",
+    },
+    {
+      question: "What is the difference between GraphQL code generation and manual TypeScript types?",
+      answer:
+        "Code generation automatically derives TypeScript types from your GraphQL schema, ensuring types always match the API contract. Manual typing requires maintaining interfaces by hand, risking drift when the schema changes. Generated types update instantly while manual types need human intervention. Code generation also handles complex nested structures and circular references that are error-prone to type manually. For production projects, tools like GraphQL Code Generator run during builds. For quick conversions, DevBolt provides instant browser-based results.",
+    },
+  ],
+
+  "grid-generator": [
+    {
+      question: "How do I create a responsive CSS Grid layout without media queries?",
+      answer:
+        "Use repeat() with auto-fill or auto-fit and minmax(). The pattern grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) creates columns that are at least 250px wide, automatically wrapping on smaller screens. auto-fill creates invisible empty tracks when extra space exists, while auto-fit collapses empty tracks so items stretch to fill the row. This single line of CSS replaces multiple media query breakpoints. DevBolt's Grid Generator lets you configure this visually.",
+    },
+    {
+      question: "What does the fr unit mean in CSS Grid?",
+      answer:
+        "The fr (fraction) unit represents a share of the remaining available space after fixed-size tracks and gaps are calculated. Unlike percentages, which are based on total container width and do not account for gaps, fr units distribute only leftover space. This prevents content overflow issues that percentages can cause when combined with gaps. The fr unit is the preferred unit for flexible grid tracks in virtually all use cases.",
+    },
+    {
+      question: "How do I make grid items span multiple rows or columns?",
+      answer:
+        "Use grid-column and grid-row properties on child elements. The syntax grid-column: 1 / 3 spans two columns. The shorthand grid-column: span 2 achieves the same result. Combine both: grid-column: span 2; grid-row: span 2 creates a 2x2 block. Named grid areas offer another approach using grid-template-areas with string patterns on the container and grid-area on children. DevBolt's Grid Generator supports both methods with a visual interface.",
+    },
+  ],
+
+  "html-markdown": [
+    {
+      question: "How do I convert HTML to clean Markdown?",
+      answer:
+        "Paste your HTML into the input panel and DevBolt converts it to Markdown instantly. The converter maps HTML tags to Markdown equivalents: h1-h6 become # through ######, strong becomes **, em becomes *, links become [text](url), images become ![alt](src), and lists convert to bullet or numbered syntax. Tables become pipe-delimited Markdown tables. Code blocks become fenced blocks with triple backticks. Elements without Markdown equivalents are stripped, preserving only text content. All processing runs client-side.",
+    },
+    {
+      question: "Can I convert Markdown back to HTML?",
+      answer:
+        "Yes, DevBolt's converter works bidirectionally. It processes all standard Markdown syntax including GitHub Flavored Markdown extensions like task lists, strikethrough, fenced code blocks with language identifiers, and pipe-delimited tables. The generated HTML uses semantic tags. This is useful for content management systems that store Markdown but serve HTML, email templates from Markdown drafts, and static site generators where you preview rendered output.",
+    },
+    {
+      question: "What HTML elements have no Markdown equivalent?",
+      answer:
+        "Several HTML elements cannot be represented in standard Markdown: layout elements (div, section, article), form elements (input, select, textarea), media elements beyond images (video, audio, canvas, iframe), interactive elements (details, summary, dialog), and styling elements (span with classes). When converting, these elements are typically stripped with text content preserved, or passed through as raw HTML since most Markdown renderers allow inline HTML.",
+    },
+  ],
+
+  "html-to-jsx": [
+    {
+      question: "How do I convert HTML to JSX for React?",
+      answer:
+        "Paste your HTML into DevBolt's converter and it transforms the markup into valid JSX. The converter handles all required attribute transformations: class becomes className, for becomes htmlFor, tabindex becomes tabIndex, and event handlers convert to camelCase. Inline style strings are converted to JavaScript objects with camelCase property names. Self-closing tags receive the required closing slash. The output is ready to paste directly into a React component.",
+    },
+    {
+      question: "What are the key differences between HTML and JSX syntax?",
+      answer:
+        "JSX uses camelCase attributes instead of lowercase: className instead of class, htmlFor instead of for, onClick instead of onclick. The style attribute takes a JavaScript object instead of a CSS string. All tags must be explicitly closed, including void elements like br and img. JSX uses curly braces for JavaScript expressions. Comments use {/* */} instead of HTML comments. Adjacent elements must be wrapped in a parent element or Fragment.",
+    },
+    {
+      question: "Does the converter handle inline styles and SVG attributes?",
+      answer:
+        "Yes. Inline CSS style strings are parsed and converted to JavaScript object syntax with camelCase property names. SVG attributes follow JSX conventions: stroke-width becomes strokeWidth, fill-opacity becomes fillOpacity. SVG-specific attributes like viewBox already use camelCase and remain unchanged. The converter processes all standard HTML and SVG attributes, ensuring the JSX output renders identically to the original HTML in a React application.",
+    },
+  ],
+
+  "http-status-codes": [
+    {
+      question: "What is the difference between 301 and 302 HTTP redirects?",
+      answer:
+        "HTTP 301 Moved Permanently indicates the resource has been permanently relocated. Search engines transfer link equity to the new URL and update their index. Browsers cache 301 redirects aggressively. HTTP 302 Found indicates a temporary redirect. Search engines keep the original URL indexed. Use 301 for domain migrations and permanently moved pages. Use 302 for maintenance pages, A/B testing, and geo-based redirects. Using the wrong type negatively impacts SEO rankings.",
+    },
+    {
+      question: "When should I return 404 vs 410 HTTP status codes?",
+      answer:
+        "HTTP 404 Not Found means the resource does not exist but may appear in the future. Search engines retry periodically. HTTP 410 Gone means the resource was intentionally and permanently removed. Search engines remove 410 pages from their index faster. Use 404 for mistyped URLs and broken links. Use 410 for discontinued products and deleted blog posts. For SEO cleanup, 410 more effectively tells search engines to stop crawling specific URLs.",
+    },
+    {
+      question: "What does HTTP 429 Too Many Requests mean?",
+      answer:
+        "HTTP 429 means the client has been rate-limited. The response typically includes a Retry-After header. As a consumer, implement exponential backoff: wait the specified period, then retry with increasing delays. As a provider, return 429 with clear Retry-After headers and document your rate limits. Always respect 429 responses rather than retrying immediately, as aggressive retrying can lead to longer bans or IP blocking.",
+    },
+  ],
+
+  "image-base64": [
+    {
+      question: "How do I embed a Base64 image in HTML or CSS?",
+      answer:
+        "For HTML, use the data URI as the src attribute: <img src=\"data:image/png;base64,...\">. For CSS, use it as background-image: url('data:image/png;base64,...'). DevBolt's Image to Base64 Converter generates the complete data URI string ready to copy. This eliminates an HTTP request, improving performance for small assets. The encoding runs entirely in your browser, so images stay private.",
+    },
+    {
+      question: "What is the maximum recommended size for Base64 images?",
+      answer:
+        "Keep Base64-encoded images under 10KB original file size. Base64 increases data size by approximately 33%, so a 10KB image becomes roughly 13.3KB of text. Larger Base64 images increase page weight, block rendering, cannot be cached independently, and inflate your CSS or HTML file size. For images over 10KB, serving them as separate files with proper cache headers is more efficient. Base64 is best for tiny icons, simple UI graphics, and tracking pixels.",
+    },
+    {
+      question: "Which image format should I convert to Base64?",
+      answer:
+        "Choose the smallest format for your image type. PNG works best for simple graphics, icons, and images with transparency. SVG is even better for vector graphics since it is already text-based. JPEG works for tiny photographic thumbnails. WebP offers the best compression for both photographic and graphic content. Avoid Base64-encoding GIF animations as they are typically large. Before encoding, optimize the source image to minimize the Base64 string length.",
+    },
+  ],
+
+  "image-compressor": [
+    {
+      question: "What quality setting should I use for web image compression?",
+      answer:
+        "For JPEG and WebP images, a quality of 80-85% provides the best balance between file size and visual quality. At 80%, files are typically 50-70% smaller with differences virtually imperceptible. Below 70%, artifacts become noticeable. For hero images use 85-90%. For thumbnails, 60-75% is acceptable. PNG compression is lossless with no quality slider. DevBolt's compressor shows a side-by-side preview so you can fine-tune the setting.",
+    },
+    {
+      question: "Should I use WebP instead of JPEG or PNG?",
+      answer:
+        "WebP is the recommended format for most web images in 2026 with over 97% browser support. WebP lossy produces files 25-35% smaller than equivalent JPEG, and WebP lossless is 26% smaller than PNG. WebP also supports transparency and animation in a single format. Use WebP as the primary format with JPEG or PNG fallbacks via the HTML picture element. The only drawbacks are slightly slower encoding and limited support in some email clients.",
+    },
+    {
+      question: "How does client-side image compression work in the browser?",
+      answer:
+        "Browser-based compression uses the HTML Canvas API. The image is loaded onto a canvas, optionally resized, then exported using canvas.toBlob() with a specified format and quality parameter. Some tools use Web Workers to run compression in a background thread without blocking the UI. This entire pipeline runs locally — no images are uploaded to any server, making client-side compression both fast and private.",
+    },
+  ],
+
+  "js-playground": [
+    {
+      question: "Can I run TypeScript in a browser-based JavaScript playground?",
+      answer:
+        "Yes, DevBolt's JavaScript Playground supports TypeScript by transpiling it to JavaScript before execution. Type annotations, interfaces, enums, generics, and other TypeScript features are processed and stripped during transpilation. Type errors are reported in the output panel. This is useful for testing TypeScript snippets, experimenting with type patterns, and prototyping without setting up a local project. The playground captures console.log output and handles async/await.",
+    },
+    {
+      question: "Is code executed in a browser playground safe and sandboxed?",
+      answer:
+        "Browser-based playgrounds run code in a sandboxed environment preventing access to the file system, other tabs, and system resources. DevBolt's playground runs code in an isolated context where console methods are intercepted to display output. Avoid running untrusted code as it could still make network requests or consume CPU. The playground includes execution timeout protection to prevent runaway scripts from freezing your browser tab.",
+    },
+    {
+      question: "What is the difference between running JavaScript in a playground vs Node.js?",
+      answer:
+        "A browser playground provides Web APIs (DOM, fetch, localStorage, Canvas) while Node.js provides server-side APIs (fs, http, path, child_process). Module systems differ: browsers use ES modules natively while Node.js supports both CommonJS and ES modules. Browser playgrounds cannot access the file system or spawn processes. Both environments share the same ECMAScript core. For testing pure logic and algorithms, a browser playground works perfectly. For file I/O and server code, you need Node.js.",
+    },
+  ],
+
+  "json-diff": [
+    {
+      question: "How does JSON diff differ from a regular text diff?",
+      answer:
+        "A JSON diff compares the semantic structure and values of two documents, while a text diff compares raw lines. JSON diff understands that objects with reordered keys are identical. It reports differences as specific operations on key paths: added, removed, or changed at $.path.to.field. It handles nested objects and arrays intelligently, showing exactly which property changed rather than marking entire blocks as different.",
+    },
+    {
+      question: "How does the tool handle array comparisons?",
+      answer:
+        "Array comparison uses index-based matching — element [0] in the first document is compared to element [0] in the second. This works well for ordered arrays where position matters. DevBolt's JSON Diff provides clear output showing which array elements were added, removed, or modified at each index. For complex comparisons, consider structuring your data so arrays contain objects with ID fields for easier tracking of additions and removals.",
+    },
+    {
+      question: "Can I compare minified JSON with formatted JSON?",
+      answer:
+        "Yes, JSON diff compares parsed data structures, not raw text. A minified single-line string and a beautifully formatted version produce identical parse trees, so the diff correctly shows zero differences. This is a key advantage over text-based diffing, which would flag every line as changed. Only actual data differences — changed values, added keys, or removed keys — appear in the results.",
+    },
+  ],
+
+  "json-mock-generator": [
+    {
+      question: "How do I generate realistic fake JSON data for API testing?",
+      answer:
+        "Define your schema using DevBolt's Mock Data Generator, selecting from over 30 field types including names, emails, addresses, phone numbers, UUIDs, dates, URLs, and IP addresses. Specify how many records to generate and the tool produces a JSON array instantly. The generated data follows real-world patterns. This is ideal for populating development databases, testing API endpoints, creating demo data, and load testing. All generation happens client-side.",
+    },
+    {
+      question: "What field types are available for mock data generation?",
+      answer:
+        "DevBolt supports over 30 field types: person fields (name, email, phone, username), address fields (street, city, state, zip, country, lat/long), internet fields (URL, IP, MAC, domain, user agent), commerce fields (product name, price, company), date/time fields (past, future, recent, ISO timestamps), identifiers (UUID, auto-increment), and primitives (integer, float, boolean, lorem ipsum text). You can nest objects and create arrays of any field type.",
+    },
+    {
+      question: "Can I generate mock data that matches my existing API schema?",
+      answer:
+        "Yes, configure field names and types to match your API's response structure. Create nested objects and arrays that mirror your real data model. The output is a valid JSON array usable as mock API responses, imported into development databases, or served from a local mock server for frontend development without waiting for the real backend.",
+    },
+  ],
+
+  "json-path": [
+    {
+      question: "What is JSONPath and how do I use it?",
+      answer:
+        "JSONPath is a query language for extracting values from JSON documents, similar to XPath for XML. The root element is $, dot notation traverses objects ($.store.book), brackets access arrays ($[0]), wildcards select all children ($.store.*), and recursive descent (..) searches all levels. Filter expressions like $..book[?(@.price<10)] select elements matching conditions. DevBolt's JSONPath Tester lets you paste JSON, write expressions, and see results highlighted in real time.",
+    },
+    {
+      question: "What is the difference between dot notation and bracket notation in JSONPath?",
+      answer:
+        "Dot notation uses periods to traverse: $.store.book.title. It is concise but only works with valid JavaScript identifiers. Bracket notation uses quoted strings: $['store']['book']['title']. It supports any property name including spaces and special characters. Bracket notation is required for array index access ($[0]) and filter expressions. Most developers use dot notation for simple paths and brackets when property names require it.",
+    },
+    {
+      question: "How do I filter JSON arrays using JSONPath?",
+      answer:
+        "Filter expressions use [?(@.condition)] syntax. The @ symbol refers to the current element. Operators include comparison (==, !=, <, >), existence checks (@.property), and logical operators (&& for AND, || for OR). Examples: $..book[?(@.price<10)] selects cheap books, $..product[?(@.inStock && @.price<50)] selects affordable in-stock products. Test expressions in DevBolt's tester to verify matches before using them in production code.",
+    },
+  ],
+
+  "json-schema": [
+    {
+      question: "What is JSON Schema and why use it for API validation?",
+      answer:
+        "JSON Schema is a declarative vocabulary for defining the structure, types, and constraints of JSON data. It specifies required fields, data types, string patterns, numeric ranges, array constraints, enum values, and nested structures. JSON Schema catches invalid request payloads before your business logic runs, generating precise error messages. It also serves as machine-readable API documentation. Most API frameworks support JSON Schema validation natively or through middleware. DevBolt's validator lets you test schemas against sample data instantly.",
+    },
+    {
+      question: "How do I define optional vs required fields in JSON Schema?",
+      answer:
+        "All properties are optional by default. Required fields are listed in the required array at the object level. Define properties with types and constraints, then add required field names to the required array. A field present with null satisfies required unless you restrict the type to exclude null. For nested objects, each level has its own independent required array.",
+    },
+    {
+      question: "What is the difference between JSON Schema Draft-07 and Draft 2020-12?",
+      answer:
+        "Draft 2020-12 added $dynamicRef for extensible recursive schemas, prefixItems for clearer tuple validation, $vocabulary for feature declarations, and unevaluatedProperties for better additional content control. Despite improvements, Draft-07 remains the most widely supported version. For new projects, Draft 2020-12 offers better expressiveness, but verify your validator library supports it before adopting.",
+    },
+  ],
+
+  "json-to-code": [
+    {
+      question: "How do I generate typed code from JSON in Go, Python, or Rust?",
+      answer:
+        "Paste JSON into DevBolt's converter and select your target language. The tool generates: Go structs with json tags, Python dataclasses, Java classes with getters/setters, C# classes with JsonProperty attributes, Dart classes with fromJson/toJson, Rust structs with serde derives, Swift Codable structs, and Kotlin data classes. Nested objects create separate named types. Arrays infer element types. Null values generate nullable types. The output includes serialization boilerplate for each language's ecosystem.",
+    },
+    {
+      question: "How does the converter handle nested objects and mixed-type arrays?",
+      answer:
+        "Nested objects are extracted into separate named types based on the parent property name. Mixed-type arrays are handled per language: Go uses any, Python uses Union or Any, Rust uses serde_json::Value, Java uses Object, and TypeScript uses a union type. Arrays of objects with inconsistent keys generate types with optional fields covering all possible properties.",
+    },
+    {
+      question: "Which programming languages are supported?",
+      answer:
+        "DevBolt supports 8 languages: Go (structs with json tags), Python (dataclasses), Java (POJO with Jackson), C# (System.Text.Json attributes), Dart (fromJson factory constructors), Rust (serde Serialize/Deserialize), Swift (Codable structs), and Kotlin (data classes with kotlinx.serialization). Each output follows idiomatic conventions including proper naming (camelCase for Java, snake_case for Python/Rust, PascalCase for C#/Go).",
+    },
+  ],
+
+  "json-to-csv": [
+    {
+      question: "How do I convert a JSON array to a CSV file?",
+      answer:
+        "Paste your JSON array of objects and the converter extracts all unique keys as column headers, mapping each object's values to corresponding columns. Missing values become empty cells. The output can be downloaded as a .csv file that opens in Excel, Google Sheets, or Numbers. The conversion runs entirely in your browser for privacy. This is ideal for exporting API responses, database results, and log data into spreadsheet formats.",
+    },
+    {
+      question: "How does the converter handle nested JSON objects?",
+      answer:
+        "Nested objects are flattened using dot notation for column names. A record like {user: {name: 'Alice', address: {city: 'NYC'}}} produces columns user.name and user.address.city. Arrays within records can be joined into a single cell with a delimiter. DevBolt uses dot-notation flattening by default to produce a single row per JSON object with readable column names.",
+    },
+    {
+      question: "What encoding issues should I watch for in JSON to CSV conversion?",
+      answer:
+        "Fields containing commas must be wrapped in double quotes per RFC 4180. Fields with double quotes need those quotes escaped by doubling them. Fields with newlines must be quoted. Unicode characters require UTF-8 encoding, and you may need a BOM prefix for Excel to detect UTF-8 correctly. Numeric strings like zip codes may lose leading zeros in spreadsheet applications.",
+    },
+  ],
+
+  "json-to-graphql": [
+    {
+      question: "How do I generate a GraphQL schema from JSON data?",
+      answer:
+        "Paste your JSON data into DevBolt's converter and it automatically infers GraphQL type definitions from the structure. Object keys become fields, nested objects become separate GraphQL types, and arrays infer element types. The tool generates complete SDL output including type definitions, Query type with get-by-ID and list operations, and optional Mutation type with create/update/delete operations. Custom scalars like DateTime and Date are detected from ISO string patterns. All generation runs in your browser.",
+    },
+    {
+      question: "What GraphQL types are inferred from JSON values?",
+      answer:
+        "String values become String, integers become Int, floating-point numbers become Float, booleans become Boolean, and fields named id or containing UUID patterns become ID. ISO date strings become DateTime or Date custom scalars. Nested objects become separate named GraphQL types. Arrays of primitives become lists like [String]. Arrays of objects are merged to capture all possible fields. Null values make the field nullable by omitting the ! non-null modifier.",
+    },
+    {
+      question: "How does the converter handle nested objects and arrays?",
+      answer:
+        "Nested objects are extracted into separate named GraphQL types based on the parent field name. For example, a user field containing an address object generates both a User type and an Address type with the user field typed as Address. Arrays of objects merge all array elements to build a complete field set, handling cases where different objects have different keys. Deeply nested structures produce a type hierarchy that mirrors the JSON structure faithfully.",
+    },
+  ],
+
+  "json-to-sql": [
+    {
+      question: "How do I convert JSON to SQL INSERT statements?",
+      answer:
+        "Paste a JSON array of objects and DevBolt generates SQL CREATE TABLE and INSERT statements automatically. The tool infers column types from values: strings become VARCHAR or TEXT, integers become INTEGER or BIGINT, floats become DOUBLE PRECISION or REAL, booleans become BOOLEAN, dates become TIMESTAMP, and UUIDs become UUID (PostgreSQL) or CHAR(36). You can choose between PostgreSQL, MySQL, and SQLite dialects. Options include batch INSERT, DROP TABLE IF EXISTS, and nullable columns. Download the generated .sql file or copy it directly.",
+    },
+    {
+      question: "What SQL dialects are supported?",
+      answer:
+        "DevBolt supports PostgreSQL (JSONB, UUID, TIMESTAMP, DOUBLE PRECISION, dollar-quoting), MySQL (backtick quoting, JSON type, DATETIME, AUTO_INCREMENT), and SQLite (INTEGER/REAL/TEXT type affinities, boolean as 0/1). Each dialect uses its native syntax for quoting identifiers, data types, and auto-increment columns. The tool generates dialect-specific SQL that runs without modification on the target database.",
+    },
+    {
+      question: "How are JSON data types mapped to SQL column types?",
+      answer:
+        "The converter maps types based on value analysis: strings become VARCHAR or TEXT, integers become INTEGER (or BIGINT for large values), floating-point numbers become DOUBLE PRECISION or REAL, booleans become BOOLEAN (or INTEGER 0/1 for SQLite), ISO date strings become TIMESTAMP or DATETIME, UUID strings become UUID (PostgreSQL) or CHAR(36), and nested objects become JSON or JSONB columns. Null values make columns nullable. The type mapping adapts per dialect to use native types.",
+    },
+  ],
+
+  "json-to-zod": [
+    {
+      question: "How do I convert JSON to a Zod validation schema?",
+      answer:
+        "Paste JSON data or a JSON Schema document into DevBolt's converter. For JSON data, the tool infers Zod types from values: strings become z.string(), numbers become z.number(), booleans become z.boolean(), arrays become z.array(), and nested objects become z.object(). Common string formats like emails, URLs, and UUIDs are detected and add appropriate Zod refinements. For JSON Schema input, constraints like minLength, pattern, minimum, and enum map directly to Zod validation methods for precise conversion.",
+    },
+    {
+      question: "What is the difference between converting JSON data vs JSON Schema to Zod?",
+      answer:
+        "Converting from JSON data infers types from actual values, which is quick but may miss constraints. A string 'hello' becomes z.string() but you would not know it should be an email. Converting from JSON Schema provides precise types with all constraints: format, pattern, minLength, maxLength, minimum, maximum, required fields, and enum values all map to specific Zod methods. Use JSON data conversion for rapid prototyping and JSON Schema conversion for production-grade validation schemas.",
+    },
+    {
+      question: "How does the converter handle nullable and optional fields?",
+      answer:
+        "Null values in JSON data produce z.nullable() types. Fields present in some array objects but missing in others become .optional(). In JSON Schema, nullable: true maps to .nullable() and fields not listed in the required array become .optional(). You can enable both behaviors simultaneously for fields that can be null, undefined, or present. Toggle options control whether to add .optional(), .strict(), coerce mode, .describe(), and .default() to the generated schema.",
+    },
+  ],
+
+  "json-visualizer": [
+    {
+      question: "How do I visualize JSON data as an interactive tree?",
+      answer:
+        "Paste your JSON into DevBolt's JSON Visualizer and it renders an interactive tree with collapsible and expandable nodes. Each object and array becomes a node you can click to expand or collapse. Values are color-coded by type: strings, numbers, booleans, and nulls each have distinct colors. The tree auto-expands the first two levels on parse. Use the depth controls (L2, L3, L5, All) to expand to a specific level. Hover over any node to see and copy its JSON path.",
+    },
+    {
+      question: "What is the difference between a JSON tree viewer and a JSON formatter?",
+      answer:
+        "A JSON formatter outputs indented text with syntax highlighting — the result is still a text document you read linearly. A tree viewer like DevBolt's JSON Visualizer creates an interactive hierarchical display where you can collapse and expand sections, search for specific keys or values, copy individual paths, and navigate large documents without scrolling through thousands of lines. Tree viewers are better for exploring large, deeply nested JSON structures like API responses and configuration files.",
+    },
+    {
+      question: "How do I search and navigate large JSON documents?",
+      answer:
+        "Use the search bar (Ctrl+F) to find keys or values within the tree. Matching nodes are highlighted and the tree automatically expands to reveal matches. Use depth controls to collapse everything to a manageable level, then expand only the sections you need. Hover over any node to see its full JSON path (e.g., $.data.users[0].name), which you can copy for use in code or JSONPath queries. Statistics show total keys, depth, and type counts for quick document overview.",
+    },
+  ],
+
+  "jwt-builder": [
+    {
+      question: "How do I create and sign a JWT token?",
+      answer:
+        "Select an algorithm (HS256, RS256, ES256, or others), configure the header and payload claims using the visual editor, and provide a signing key. DevBolt's JWT Builder supports 10 algorithms: HMAC (HS256/384/512), RSA (RS256/384/512), ECDSA (ES256/384/512), and unsigned (none). For HMAC, enter a shared secret. For RSA and ECDSA, generate a key pair directly in the browser or paste your own. Standard claims like iss, sub, aud, exp, iat, nbf, and jti have dedicated fields with auto-populate. All signing runs client-side via the panva/jose library.",
+    },
+    {
+      question: "What is the difference between HS256 and RS256 for JWT signing?",
+      answer:
+        "HS256 uses a single shared secret for both signing and verification — simpler but requires distributing the secret to every verifying service. RS256 uses asymmetric cryptography: a private key signs and a public key verifies. RS256 is preferred for distributed systems because only the auth server needs the private key while any service can verify using the public key. HS256 is faster and suitable for single-service applications. Most auth providers default to RS256.",
+    },
+    {
+      question: "What standard claims should I include in a JWT?",
+      answer:
+        "Essential claims include: iss (issuer — who created the token), sub (subject — the user or entity), aud (audience — intended recipient service), exp (expiration — Unix timestamp when the token expires), iat (issued at — creation time), and jti (JWT ID — unique identifier to prevent replay attacks). Optional claims include nbf (not before — earliest valid time). Always set exp to limit token lifetime. DevBolt auto-populates iat with the current time and generates UUID values for jti.",
+    },
+  ],
+
+  "k8s-validator": [
+    {
+      question: "How do I validate a Kubernetes YAML manifest online?",
+      answer:
+        "Paste your Kubernetes YAML into the input panel and the validator instantly checks for syntax errors, missing required fields, and best practice violations. It supports over 20 resource types including Deployment, Service, ConfigMap, Secret, Ingress, StatefulSet, DaemonSet, Job, CronJob, and PersistentVolumeClaim. The validator checks apiVersion, kind, metadata, spec structure, label selectors, container image formats, and port definitions. Results are categorized by severity. Everything runs client-side so your manifests stay private.",
+    },
+    {
+      question: "What are the most common Kubernetes YAML errors?",
+      answer:
+        "Frequent errors include indentation mistakes (YAML uses spaces not tabs), mismatched label selectors between Deployments and Services, missing required fields like apiVersion or metadata.name, incorrect apiVersion for a resource type, invalid container port numbers, and duplicate keys. Security issues include running containers as root, missing securityContext, and not setting readOnlyRootFilesystem. The validator flags all of these with line numbers and fix suggestions.",
+    },
+    {
+      question: "How do I check Kubernetes best practices in my manifests?",
+      answer:
+        "DevBolt's validator checks manifests against production best practices beyond basic syntax. It verifies resource requests and limits for CPU and memory, checks for readiness and liveness probes essential for rolling deployments, flags containers running as root or in privileged mode, validates that image tags avoid latest for reproducibility, and checks Pod disruption budgets for high availability. These checks catch deployment issues before they reach your cluster.",
+    },
+  ],
+
+  "lorem-ipsum": [
+    {
+      question: "What is Lorem Ipsum and why do developers use it?",
+      answer:
+        "Lorem Ipsum is placeholder text derived from a scrambled passage of Cicero's De Finibus Bonorum et Malorum (45 BC). Developers and designers use it to fill layouts with realistic-looking text during development, before final content is written. It has a natural distribution of letter frequencies and word lengths that approximates real English prose, making it more realistic than repeated phrases. Using placeholder text lets teams evaluate typography, spacing, and layout without waiting for actual content.",
+    },
+    {
+      question: "How do I generate placeholder text for mockups?",
+      answer:
+        "Select the output type (paragraphs, sentences, or words), specify the quantity, and DevBolt generates Lorem Ipsum text instantly. Paragraph mode produces blocks of text suitable for article layouts and card descriptions. Sentence mode gives individual sentences for shorter UI elements. Word mode outputs a specific word count for precise content fitting. Copy the generated text with one click and paste it into your design mockup, HTML template, or development prototype.",
+    },
+    {
+      question: "What are alternatives to Lorem Ipsum for placeholder text?",
+      answer:
+        "Alternatives include Hipster Ipsum (trendy vocabulary), Bacon Ipsum (meat-themed), Cupcake Ipsum (dessert-themed), and Pirate Ipsum (pirate speak). For professional contexts, real content samples from your domain are often better because they test realistic word lengths and formatting patterns. Some designers use Blind Text Generator which produces text in multiple languages. The key consideration is that placeholder text should approximate the length and structure of final content to catch layout issues early.",
+    },
+  ],
+
+  "markdown-preview": [
+    {
+      question: "How do I preview Markdown rendering in real time?",
+      answer:
+        "Type or paste Markdown in the editor panel and DevBolt shows the rendered HTML output instantly in the preview panel. Changes update in real time as you type, providing immediate visual feedback. The preview supports all standard Markdown elements plus GitHub Flavored Markdown extensions including fenced code blocks, task lists, tables, strikethrough, and autolinks. This is useful for writing README files, documentation, blog posts, and any content that will be rendered as Markdown.",
+    },
+    {
+      question: "What Markdown syntax is supported in the preview?",
+      answer:
+        "DevBolt's preview supports headings (# through ######), bold (**text**), italic (*text*), links ([text](url)), images (![alt](src)), unordered and ordered lists, blockquotes, inline code, fenced code blocks with language identifiers, horizontal rules, tables with alignment, task lists (- [x] done), strikethrough (~~text~~), and HTML passthrough. This covers GitHub Flavored Markdown which is the most common Markdown variant used in developer documentation.",
+    },
+    {
+      question: "How do I add code blocks with syntax highlighting in Markdown?",
+      answer:
+        "Use fenced code blocks with triple backticks and a language identifier. Start with ``` followed by the language name (js, python, go, rust, etc.) on the same line, write your code, then close with ```. The preview renders syntax-highlighted code blocks. Inline code uses single backticks for short snippets within text. For code that itself contains backticks, use double backticks as delimiters. Fenced blocks preserve whitespace and formatting exactly as written.",
+    },
+  ],
+
+  "markdown-table": [
+    {
+      question: "How do I create a Markdown table?",
+      answer:
+        "Use DevBolt's visual table builder to add rows and columns, enter cell values, and generate properly formatted Markdown table syntax. Markdown tables use pipes (|) to separate columns and hyphens (-) for the header separator row. The header row is required and defines column names. Data rows follow below. The tool handles alignment of pipes and proper spacing so the raw Markdown is readable in source form. Copy the generated table directly into your README, documentation, or blog post.",
+    },
+    {
+      question: "How do I align columns in a Markdown table?",
+      answer:
+        "Column alignment is controlled by colons in the separator row: left-aligned (:---), right-aligned (---:), or center-aligned (:---:). Default alignment (no colons or left colon only) is left-aligned. Right alignment is useful for numeric columns like prices or counts. Center alignment works well for status indicators and short labels. DevBolt's table builder provides alignment toggles for each column so you do not need to remember the colon syntax.",
+    },
+    {
+      question: "What are the limitations of Markdown tables?",
+      answer:
+        "Markdown tables do not support cell merging (colspan/rowspan), nested tables, multi-line cell content, or complex formatting within cells. Cells are limited to inline formatting like bold, italic, code, and links. For complex tables with merged cells or rich content, use HTML table markup instead, which most Markdown renderers pass through directly. Markdown tables also require a header row — you cannot have a headerless data-only table in standard Markdown syntax.",
+    },
+  ],
+
+  "mcp-config-builder": [
+    {
+      question: "What is MCP and what is mcp.json?",
+      answer:
+        "MCP (Model Context Protocol) is an open standard that lets AI assistants like Claude connect to external tools and data sources. The mcp.json configuration file defines which MCP servers an AI client should connect to, their transport settings, and environment variables. Different clients use different config file paths: Claude Desktop uses claude_desktop_config.json, Cursor uses .cursor/mcp.json, and VS Code uses settings.json. DevBolt's MCP Config Builder generates the correct format for your chosen client.",
+    },
+    {
+      question: "How do I configure MCP servers for Claude Desktop?",
+      answer:
+        "Select Claude Desktop as your target client, then add MCP servers from the template library or configure custom ones. Each server needs a command (like npx or node), arguments (the server package name and options), and optionally environment variables for API keys. DevBolt provides 16 pre-configured server templates for popular services. The generated configuration goes into your Claude Desktop config file. The builder handles the correct JSON structure for each client format.",
+    },
+    {
+      question: "What MCP server templates are available?",
+      answer:
+        "DevBolt includes 16 MCP server templates covering popular integrations: filesystem access, GitHub, PostgreSQL, SQLite, Brave Search, Google Maps, Slack, memory/knowledge graph, Puppeteer for web automation, and more. Each template includes the correct command, arguments, and required environment variable placeholders. You can customize any template and add multiple servers to a single configuration. The builder supports 5 client formats: Claude Desktop, Cursor, VS Code, Windsurf, and Claude Code.",
+    },
+  ],
+
+  "meta-tag-generator": [
+    {
+      question: "What meta tags should every web page include for SEO?",
+      answer:
+        "Every page should include: title (50-60 characters), meta description (150-160 characters summarizing content), viewport meta for mobile responsiveness, charset declaration (UTF-8), and canonical URL to prevent duplicate content issues. For social sharing, add Open Graph tags (og:title, og:description, og:image, og:url) and Twitter Card tags (twitter:card, twitter:title, twitter:description, twitter:image). DevBolt's generator creates all of these from a simple form and outputs ready-to-paste HTML.",
+    },
+    {
+      question: "How do I generate Open Graph meta tags for social sharing?",
+      answer:
+        "Fill in the title, description, image URL, and page URL fields. DevBolt generates the complete set of Open Graph meta tags: og:title, og:description, og:image, og:url, og:type, og:site_name, and the corresponding Twitter Card tags. The image should be at least 1200x630 pixels for optimal display on Facebook and LinkedIn. Test your tags using DevBolt's OG Preview tool to see how your page will appear when shared on social media platforms.",
+    },
+    {
+      question: "What is the difference between meta description and og:description?",
+      answer:
+        "The meta description appears in search engine results pages (SERPs) below the page title. It should be 150-160 characters and optimized for click-through rate from search results. The og:description appears when the page is shared on social media platforms like Facebook, LinkedIn, and Twitter. It can be different from the meta description to suit the social context. If og:description is not set, social platforms often fall back to the meta description. Setting both allows you to optimize for each context separately.",
+    },
+  ],
+
+  "nginx-config": [
+    {
+      question: "How do I generate an Nginx configuration file?",
+      answer:
+        "Select a preset template (Static Site, Reverse Proxy, SPA, Load Balancer, or PHP) and customize settings using the visual builder. Configure server name, listen port, root directory, SSL paths, proxy upstream addresses, and additional directives. The generator produces a complete nginx.conf server block. For reverse proxy setups, it includes proxy_pass, proxy_set_header, WebSocket support, and timeouts. For static sites, it adds gzip compression, cache headers, and try_files. Download or copy the configuration directly. All generation happens in your browser.",
+    },
+    {
+      question: "How do I configure Nginx as a reverse proxy?",
+      answer:
+        "The essential directives are: listen 80 or 443 for SSL, server_name to match the domain, and a location block with proxy_pass pointing to the backend like http://localhost:3000. Important headers include proxy_set_header Host $host, X-Real-IP, X-Forwarded-For, and X-Forwarded-Proto. For WebSocket support, add proxy_http_version 1.1, proxy_set_header Upgrade $http_upgrade, and Connection upgrade. DevBolt's generator includes all these settings in the reverse proxy preset.",
+    },
+    {
+      question: "How do I enable SSL/TLS in Nginx?",
+      answer:
+        "Add an SSL server block on port 443 with ssl_certificate and ssl_certificate_key directives pointing to your cert files. Set ssl_protocols to TLSv1.2 and TLSv1.3 only, use strong ciphers, and add HSTS. Create a separate port 80 block that redirects HTTP to HTTPS. Use Let's Encrypt with Certbot for free automated SSL certificates. DevBolt's generator produces all SSL settings correctly configured and ready for deployment.",
+    },
+  ],
+
+  "number-base-converter": [
+    {
+      question: "How do I convert between decimal, binary, octal, and hexadecimal?",
+      answer:
+        "Enter a number in any base and DevBolt instantly shows the equivalent value in all four bases: decimal (base 10), binary (base 2), octal (base 8), and hexadecimal (base 16). The tool handles both integers and large numbers. This is essential for low-level programming, bitwise operations, memory address analysis, and understanding how computers store data. Each base serves different purposes: decimal for human-readable values, binary for bit manipulation, hex for memory addresses and color codes, and octal for Unix file permissions.",
+    },
+    {
+      question: "Why do programmers use hexadecimal instead of binary?",
+      answer:
+        "Hexadecimal is a compact representation of binary data. Each hex digit represents exactly 4 binary bits, so a byte (8 bits) is always exactly 2 hex digits. Binary 11111111 becomes hex FF — much easier to read and type. Memory addresses, color codes, MAC addresses, and hash values use hex because it maintains a direct relationship to the underlying binary while being human-readable. Decimal does not map cleanly to binary boundaries, making it harder to reason about bit patterns.",
+    },
+    {
+      question: "How do I convert a negative number to binary?",
+      answer:
+        "Negative integers in computers use two's complement representation. To convert -N to binary: write the positive N in binary, flip all bits (ones' complement), then add 1. For example, -5 in 8-bit binary: 5 is 00000101, flipped is 11111010, plus 1 is 11111011. The most significant bit indicates the sign: 0 for positive, 1 for negative. Two's complement is used by virtually all modern processors because it allows the same addition circuitry to handle both positive and negative numbers.",
+    },
+  ],
+
+  "og-preview": [
+    {
+      question: "How do I preview my Open Graph tags before sharing?",
+      answer:
+        "Enter your page URL or paste the HTML head section into DevBolt's OG Preview tool. It extracts all Open Graph and Twitter Card meta tags and shows how your page will appear when shared on Facebook, Twitter, LinkedIn, and other platforms. The preview displays the title, description, image, and URL exactly as social media crawlers will render them. This lets you catch issues like truncated titles, missing images, or incorrect descriptions before sharing publicly.",
+    },
+    {
+      question: "Why does my shared link show the wrong image on social media?",
+      answer:
+        "Common causes include: the og:image URL is relative instead of absolute (must start with https://), the image is too small (minimum 200x200 for most platforms, recommended 1200x630), the image URL returns a 404 or redirect that the crawler cannot follow, the server blocks social media crawlers via robots.txt, or the platform has cached an old version of your tags. Use DevBolt's OG Preview to verify your tags, then use Facebook's Sharing Debugger or Twitter's Card Validator to clear their cache and re-scrape your page.",
+    },
+    {
+      question: "What are the recommended Open Graph image dimensions?",
+      answer:
+        "The recommended og:image size is 1200x630 pixels (1.91:1 aspect ratio) for optimal display across all major social platforms. Facebook recommends at least 600x315 pixels. Twitter summary_large_image cards use the same 1.91:1 ratio. LinkedIn displays images at a similar aspect ratio. For Twitter summary cards (smaller thumbnails), use 144x144 to 4096x4096 square images. Always include the og:image:width and og:image:height tags to help platforms render images without downloading them first. Keep file size under 5MB.",
+    },
+  ],
+
+  "openapi-to-typescript": [
+    {
+      question: "How do I generate TypeScript types from an OpenAPI specification?",
+      answer:
+        "Paste your OpenAPI 3.x or Swagger 2.0 specification in JSON or YAML format into DevBolt's converter. It parses all schema definitions, path parameters, request bodies, and response types, generating corresponding TypeScript interfaces. Each schema component becomes a named interface. Nested objects create referenced types. Enum values become TypeScript union types or enums. The output is ready to use in your frontend or API client code for type-safe HTTP requests. Everything runs client-side.",
+    },
+    {
+      question: "What parts of an OpenAPI spec are converted to TypeScript?",
+      answer:
+        "The converter generates types from: component schemas (the main data models), path operation parameters (query, path, header), request body schemas, response body schemas for each status code, enum definitions, and allOf/oneOf/anyOf compositions. allOf produces intersection types, oneOf/anyOf produce union types. Nullable fields become optional or null union types. Required fields are non-optional in the generated interfaces. The $ref references are resolved to produce clean, self-contained type definitions.",
+    },
+    {
+      question: "How are OpenAPI request and response schemas mapped to TypeScript?",
+      answer:
+        "Request body schemas become input interfaces with the request content type's schema properties. Response schemas are generated per status code, so a 200 response and a 400 error response produce different types. Path parameters become function argument types. Query parameters produce an options interface with optional fields for non-required params. Common patterns like pagination, error responses, and list/detail endpoints generate reusable generic types. The converter preserves descriptions as JSDoc comments when enabled.",
+    },
+  ],
+
+  "openapi-validator": [
+    {
+      question: "How do I validate an OpenAPI specification?",
+      answer:
+        "Paste your OpenAPI 3.x or Swagger 2.0 spec in JSON or YAML format. The validator parses it and checks against the official specification, reporting structural errors, missing required fields, invalid references, and schema issues. It verifies paths, operations, parameters, request bodies, responses, and security definitions. Broken $ref references are flagged immediately. Results include the exact path of each issue. All validation runs client-side in your browser.",
+    },
+    {
+      question: "What is the difference between OpenAPI 3.0 and Swagger 2.0?",
+      answer:
+        "Swagger 2.0 uses swagger: 2.0, puts schemas under definitions, and uses in-body parameters. OpenAPI 3.0 uses openapi: 3.0.x, moves schemas to components/schemas, introduces a dedicated requestBody object, and adds support for multiple server URLs replacing host/basePath/schemes. OpenAPI 3.0 also adds content/mediaType patterns, callbacks, links, and cookie parameters. The validator auto-detects the version and applies appropriate rules.",
+    },
+    {
+      question: "What common OpenAPI errors does the validator catch?",
+      answer:
+        "The validator catches missing required fields (info, paths, openapi version), invalid path parameter syntax, path parameters declared but not defined, $ref pointers to non-existent schemas, type errors, invalid HTTP methods, and missing response descriptions. Best practice violations include missing operationId, unused schema definitions, and security schemes referenced but not defined. For Swagger 2.0, it also validates consumes/produces media types.",
+    },
+  ],
+
+  "package-json-generator": [
+    {
+      question: "How do I create a package.json for a new Node.js project?",
+      answer:
+        "Select a framework preset (Next.js, React+Vite, Node.js CLI, npm Library, Express API, or Monorepo Root) to start with recommended defaults, then customize fields using the visual editor. Configure name, version, description, author, license, scripts, dependencies, and module settings. DevBolt generates a complete package.json that updates in real time. The output includes proper exports configuration, engine requirements, and all fields formatted correctly. Download the file or copy it directly.",
+    },
+    {
+      question: "What is the difference between dependencies and devDependencies?",
+      answer:
+        "dependencies are packages required at runtime when your application runs in production — frameworks like React or Express, utility libraries, and database drivers. devDependencies are packages needed only during development — build tools like webpack or Vite, test frameworks like Jest, linters like ESLint, and TypeScript itself. When users install your npm package, only dependencies are installed. devDependencies are skipped. For applications (not libraries), the distinction matters less but helps document which packages serve which purpose.",
+    },
+    {
+      question: "Should I use ESM or CommonJS for my Node.js package?",
+      answer:
+        "Use ESM (type: module) for new projects. ESM is the JavaScript standard module system with import/export syntax, supports top-level await, enables better tree-shaking, and is the direction Node.js is moving. CommonJS (type: commonjs or no type field) uses require/module.exports and is the legacy default. For libraries published to npm, consider dual publishing with both ESM and CJS using the exports field in package.json to support all consumers. DevBolt's generator handles the exports configuration for both formats.",
+    },
+  ],
+
+  "placeholder-image": [
+    {
+      question: "How do I generate a placeholder image for my website?",
+      answer:
+        "Set width and height in pixels, choose background and text colors, optionally enter custom overlay text, and select the output format (PNG, JPEG, WebP, or SVG). The image generates instantly in your browser. Download the file or copy the data URI to embed directly in HTML. Placeholder images are used during development to reserve layout space before final assets are ready. DevBolt generates everything client-side with no external service dependency.",
+    },
+    {
+      question: "What format should I use for placeholder images?",
+      answer:
+        "PNG is the most versatile and works everywhere. SVG produces the smallest file and scales perfectly, ideal for responsive layouts. JPEG works best for simulating photograph placeholders. WebP offers smaller sizes than PNG with broad browser support. For wireframes, PNG or SVG are preferred for crisp rendering. For load testing, match the format and approximate size of your production images.",
+    },
+    {
+      question: "How are these different from services like placehold.co?",
+      answer:
+        "External services generate images via URL parameters requiring internet and depending on third-party availability. DevBolt creates images entirely in your browser using the Canvas API with no external dependencies. Generated images work offline as downloaded files or data URIs. The advantage of external services is inline URL usage without downloading. The advantage of local generation is no network dependency, faster development loading, and no privacy concerns with request logging.",
+    },
+  ],
+
+  "privacy-policy": [
+    {
+      question: "How do I generate a privacy policy for my website?",
+      answer:
+        "Fill in your organization details, select which data you collect (personal info, cookies, analytics, payment data), choose applicable regulations (GDPR, CCPA, COPPA), and configure data retention and third-party service disclosures. DevBolt generates a comprehensive privacy policy document covering all required sections. The generator covers data collection, usage purposes, sharing practices, user rights, cookie policies, and contact information. Download as formatted text or copy the Markdown output.",
+    },
+    {
+      question: "What is the difference between GDPR and CCPA compliance?",
+      answer:
+        "GDPR (EU) requires explicit consent before collecting personal data, gives users rights to access, correct, delete, and port their data, requires a Data Protection Officer for large-scale processing, mandates 72-hour breach notification, and applies to any business processing EU resident data regardless of location. CCPA (California) gives consumers the right to know what data is collected, opt out of data sales, request deletion, and receive equal service regardless of privacy choices. CCPA applies to businesses exceeding revenue or data volume thresholds. Both require clear privacy policy disclosures.",
+    },
+    {
+      question: "Do I need a privacy policy if my site does not collect personal data?",
+      answer:
+        "Yes, you likely still need one. If you use any analytics (including privacy-friendly ones like Plausible), advertising, embedded content (YouTube, Twitter), web fonts (Google Fonts), or CDNs, data is being collected or transmitted to third parties. Even server access logs contain IP addresses, which are personal data under GDPR. A privacy policy builds user trust, satisfies app store requirements, and protects you legally. DevBolt's generator helps create appropriate policies even for minimal-data sites.",
+    },
+  ],
+
+  "prompt-builder": [
+    {
+      question: "How do I write effective prompts for AI coding assistants?",
+      answer:
+        "Structure your prompts with clear context, specific instructions, and expected output format. DevBolt's Prompt Builder provides 8 developer-focused templates covering code review, unit test generation, API documentation, data analysis, commit messages, SQL queries, refactoring, and code explanation. Each template uses reusable {{variables}} for customization. Effective prompts include the programming language, framework context, input/output examples, and constraints. The builder generates prompts in multiple API formats ready for use.",
+    },
+    {
+      question: "What is the difference between system prompts and user prompts?",
+      answer:
+        "System prompts set the AI assistant's behavior, role, and constraints for the entire conversation. They define what the model should do and how it should respond. User prompts are the individual messages or questions within that context. System prompts persist across turns while user prompts change with each request. For API usage, the system message is sent once and user messages are sent per request. DevBolt's builder generates both components with proper formatting for each provider's API format.",
+    },
+    {
+      question: "How do I format prompts for different AI APIs?",
+      answer:
+        "Each AI provider uses a different message format. OpenAI uses {role: 'system'/'user', content: '...'} in a messages array. Anthropic uses a system parameter plus {role: 'user'/'assistant', content: '...'} messages. Google Gemini uses {role: 'user'/'model', parts: [{text: '...'}]}. DevBolt's builder generates the correct JSON structure for each provider, including proper role labels, content formatting, and API-specific fields, so you can copy the output directly into your API calls.",
+    },
+  ],
+
+  "readme-generator": [
+    {
+      question: "How do I create a professional README for my GitHub project?",
+      answer:
+        "Fill in project details using the form: name, description, installation commands, usage examples, and contribution guidelines. Select which sections to include such as badges, table of contents, screenshots, license, and acknowledgments. DevBolt generates a well-structured README.md with proper Markdown formatting and heading hierarchy. A live preview shows exactly how it will render on GitHub. Download the file or copy the Markdown directly. No account required.",
+    },
+    {
+      question: "What sections should a good README include?",
+      answer:
+        "A comprehensive README should include: project title with brief description, badges for build status and version, longer description of purpose, installation instructions with copy-pasteable commands, usage examples with code blocks, configuration options, API reference for libraries, contributing guide, license section, and acknowledgments. For larger projects, add a table of contents, screenshots, roadmap, and documentation links. Prioritize installation and usage since most visitors need those first.",
+    },
+    {
+      question: "How do I add badges to my GitHub README?",
+      answer:
+        "Badges use Markdown image syntax: ![label](url). The most popular service is shields.io which generates badges for npm version, build status, license, downloads, and code coverage. CI services like GitHub Actions provide their own badge URLs. DevBolt's README Generator includes a badge builder that generates the correct Markdown for popular badge types without manually constructing shield.io URLs.",
+    },
+  ],
+
+  "regex-generator": [
+    {
+      question: "How do I generate a regex pattern from a text description?",
+      answer:
+        "Describe what you want to match in plain English and the tool suggests a corresponding regular expression. DevBolt's Regex Generator includes 60+ curated patterns for common use cases like email validation, phone numbers, IP addresses, dates, URLs, and postal codes. Select a category to browse pre-built patterns or use the visual composer to build custom expressions by combining character classes, quantifiers, groups, and anchors. Each generated pattern includes a human-readable explanation of what it matches. The tool uses JavaScript regex syntax compatible with Node.js and browsers.",
+    },
+    {
+      question: "What are the most commonly used regex patterns for developers?",
+      answer:
+        "The most frequently needed patterns include email validation, URL matching, IPv4 addresses, ISO dates, phone numbers with optional country codes, hex color codes, and semantic version strings. DevBolt's library organizes these into categories so you can find and customize them quickly rather than writing patterns from scratch. Each pattern includes edge case notes and test examples.",
+    },
+    {
+      question: "How do I convert a regex from one programming language to another?",
+      answer:
+        "Most regex syntax is shared across languages, but key differences exist. JavaScript uses /pattern/flags, Python uses raw strings with re.compile(), and Go uses backtick strings with regexp.MustCompile(). Lookbehind support varies between engines. Named groups use (?P<name>) in Python but (?<name>) in JavaScript. DevBolt generates JavaScript-compatible patterns by default. When porting, verify flag equivalents and escape character differences in your target language's string handling.",
+    },
+  ],
+
+  "robots-generator": [
+    {
+      question: "How do I create a robots.txt file for my website?",
+      answer:
+        "Select which bots to allow or block, specify directory rules, and add your sitemap URL. DevBolt generates a properly formatted file ready to upload to your site's root directory. The syntax uses User-agent to specify crawlers, Disallow to block paths, Allow to override blocks for sub-paths, and Sitemap to point to your XML sitemap. Common configurations include blocking admin pages, API endpoints, and staging content while allowing all public content to be indexed.",
+    },
+    {
+      question: "Should I block AI crawlers in robots.txt?",
+      answer:
+        "It depends on your content strategy. AI training crawlers like GPTBot (OpenAI), Google-Extended (Gemini training), CCBot (Common Crawl), and ClaudeBot (Anthropic) can be blocked individually. Blocking prevents your content from being used in AI training while keeping regular search indexing by Googlebot and Bingbot. Many publishers block AI crawlers to protect original content. DevBolt's generator includes presets for common AI crawler configurations.",
+    },
+    {
+      question: "Does robots.txt block pages from appearing in Google search results?",
+      answer:
+        "No, robots.txt only prevents crawling, not indexing. Google can still list a URL if other sites link to it, showing the URL without a snippet. To truly prevent search appearance, use a noindex meta tag or X-Robots-Tag HTTP header. Ironically, robots.txt Disallow prevents Googlebot from seeing the noindex tag, so blocked pages cannot be de-indexed. For pages you want hidden from search, use noindex and allow crawling.",
+    },
+  ],
+
+  "security-headers": [
+    {
+      question: "What HTTP security headers should every website have?",
+      answer:
+        "Every website should set: Content-Security-Policy (CSP) to control allowed resources and prevent XSS, Strict-Transport-Security (HSTS) to force HTTPS, X-Content-Type-Options: nosniff to prevent MIME sniffing, X-Frame-Options: DENY or SAMEORIGIN to prevent clickjacking, Referrer-Policy to control URL information sent to other sites, and Permissions-Policy to disable unused browser features. These add defense-in-depth layers that protect users even if application code has vulnerabilities. DevBolt generates correctly formatted configurations for your platform.",
+    },
+    {
+      question: "How do I configure Content-Security-Policy headers?",
+      answer:
+        "CSP whitelists allowed content sources per resource type. Start with default-src 'self' allowing only your domain. Add script-src for JavaScript, style-src for CSS, img-src for images, connect-src for APIs, and font-src for fonts. Use report-uri or report-to to receive violation reports during rollout. DevBolt builds the policy from your selected directives and outputs server-specific configuration for Nginx, Apache, Vercel, Netlify, or Cloudflare.",
+    },
+    {
+      question: "What is the difference between security header configs for Nginx, Apache, and Vercel?",
+      answer:
+        "Nginx uses add_header directives in server blocks. Apache uses Header set directives in .htaccess requiring mod_headers. Vercel uses a headers array in vercel.json. Cloudflare uses Transform Rules or a _headers file. The actual header names and values are identical — only the configuration syntax differs. DevBolt outputs the exact format for your chosen platform so you can copy it directly.",
+    },
+  ],
+
+  "slug-generator": [
+    {
+      question: "What is a URL slug and why does it matter for SEO?",
+      answer:
+        "A URL slug is the human-readable portion of a URL identifying a specific page, like 'how-to-use-git' in example.com/blog/how-to-use-git. Slugs matter for SEO because search engines use them to understand page content. A descriptive slug with relevant keywords helps rankings. Best practices: use lowercase, separate words with hyphens, keep it to 3-5 words, remove stop words, and avoid special characters. Clean slugs also improve link sharing and user trust.",
+    },
+    {
+      question: "How do I handle Unicode and special characters in URL slugs?",
+      answer:
+        "Unicode characters are typically transliterated to ASCII equivalents. Accented characters like e-acute become 'e', German umlauts like u-umlaut become 'ue'. CJK characters can use romanization systems. DevBolt handles transliteration automatically for common character sets. ASCII-only slugs ensure maximum compatibility across all systems, email clients, and social media platforms where URLs might be shared or truncated.",
+    },
+    {
+      question: "Should I use hyphens or underscores in URL slugs?",
+      answer:
+        "Use hyphens (-). Google treats hyphens as word separators, so 'web-development' is indexed as two separate words. Underscores are treated as joiners, so 'web_development' is indexed as one compound word, reducing search relevance. This distinction was confirmed by Google and remains the standard recommendation. Most CMS platforms and URL slug libraries default to hyphens for this reason.",
+    },
+  ],
+
+  "sql-to-typescript": [
+    {
+      question: "How do I convert SQL CREATE TABLE to TypeScript interfaces?",
+      answer:
+        "Paste SQL CREATE TABLE statements into the converter. It parses column names, data types, nullability, and defaults to generate TypeScript interfaces. SQL types map to TypeScript: VARCHAR/TEXT become string, INTEGER/BIGINT become number, BOOLEAN becomes boolean, TIMESTAMP/DATE become Date or string, and NUMERIC/DECIMAL become number or string for precision. NOT NULL columns are required, nullable columns get optional or null union types. DevBolt generates one interface per table with proper PascalCase naming.",
+    },
+    {
+      question: "What is the difference between Prisma schema and Drizzle ORM output?",
+      answer:
+        "Prisma uses its own declarative schema language with models, field types, and attributes like @id, @default, @unique. It generates a type-safe client with findMany, create, and update methods. Drizzle uses plain TypeScript with functions like pgTable, varchar, integer, exporting table objects. Drizzle supports raw SQL more naturally. The converter outputs either Prisma's .prisma format or Drizzle's TypeScript definitions with your chosen database dialect. Foreign keys are preserved in both formats.",
+    },
+    {
+      question: "How are SQL foreign keys converted to TypeScript or ORM schemas?",
+      answer:
+        "For TypeScript interfaces, foreign key columns become number or string properties with JSDoc comments noting the relationship. For Prisma, relationships become @relation attributes connecting the foreign key to the referenced model. For Drizzle, relationships use the relations() helper with one() and many() definitions. Primary keys, unique constraints, and indexes are preserved as corresponding decorators or method calls.",
+    },
+  ],
+
+  "subnet-calculator": [
+    {
+      question: "How do I calculate the number of usable hosts in a subnet?",
+      answer:
+        "The formula is 2^(32-prefix) - 2, subtracting the network address and broadcast address. A /24 has 2^8 - 2 = 254 usable hosts. A /30 has 2 usable hosts, ideal for point-to-point links. A /31 is a special case (RFC 3021) with 2 usable addresses and no broadcast. DevBolt's subnet calculator shows host count, network address, broadcast address, and usable range instantly for any CIDR input.",
+    },
+    {
+      question: "What is CIDR notation and how does it relate to subnet masks?",
+      answer:
+        "CIDR notation expresses an IP and subnet mask as 192.168.1.0/24. The number after the slash indicates how many bits are the network portion. /24 = 255.255.255.0, /16 = 255.255.0.0, /8 = 255.0.0.0. CIDR replaced classful addressing (Class A/B/C) for more flexible allocation and smaller routing tables. DevBolt converts between CIDR and dotted-decimal mask notation.",
+    },
+    {
+      question: "What is VLSM and when should I use it?",
+      answer:
+        "VLSM (Variable Length Subnet Masking) divides a network into subnets of different sizes, each with a different prefix. Unlike fixed-length subnetting, VLSM matches subnet sizes to actual host requirements: a department with 100 hosts gets /25 while a point-to-point link gets /30. Sort requirements largest-first, allocate the largest subnet first, then subdivide remaining space. DevBolt's VLSM divider automates this calculation from a list of host count requirements.",
+    },
+  ],
+
+  "svg-optimizer": [
+    {
+      question: "How does SVG optimization reduce file size?",
+      answer:
+        "SVG optimization removes unnecessary metadata, comments, editor-specific data, hidden elements, and redundant attributes. Design tools embed extra information browsers do not need. The optimizer also rounds numeric precision, merges paths, removes empty groups, and collapses transforms. These operations typically reduce size by 20-60% without visual change. DevBolt processes everything client-side so SVGs containing proprietary designs are never uploaded.",
+    },
+    {
+      question: "Will optimizing my SVG change how it renders?",
+      answer:
+        "No, properly optimized SVGs render identically. The optimizer only removes data that does not affect visual output: editor metadata, unused namespaces, comments, and hidden elements. Numeric precision is reduced to a level below the visible threshold. DevBolt shows a before-and-after preview so you can visually verify the output matches the original before downloading.",
+    },
+    {
+      question: "What causes SVG files from design tools to be unnecessarily large?",
+      answer:
+        "Design tools add proprietary metadata, generator comments, excessive decimal precision in coordinates, inline styles that could be shorter as attributes, unoptimized path data, embedded fonts or base64 raster images, unused gradient definitions, and empty group elements from deleted layers. Complex illustrations may contain hidden layers or elements outside the viewBox. DevBolt's optimizer addresses all of these in a single pass.",
+    },
+  ],
+
+  "svg-to-jsx": [
+    {
+      question: "How do I convert SVG to JSX for React components?",
+      answer:
+        "Paste SVG markup and the converter transforms it into valid JSX: class becomes className, hyphenated attributes become camelCase (stroke-width to strokeWidth, fill-opacity to fillOpacity), inline styles become JavaScript objects, and xmlns is removed. DevBolt optionally wraps output in a named React component with forwardRef support, React.memo for performance, and TypeScript SVGProps typing.",
+    },
+    {
+      question: "What attributes change when converting SVG to JSX?",
+      answer:
+        "SVG attributes like stroke-width, fill-rule, clip-path, and class become strokeWidth, fillRule, clipPath, and className in JSX. The style attribute changes from a CSS string to a JavaScript object. Event handlers become camelCase. The xmlns namespace is removed. Data attributes remain unchanged. These differences cause React warnings or rendering failures if you paste raw SVG into JSX without conversion. DevBolt handles all transformations automatically.",
+    },
+    {
+      question: "How do I create a reusable React icon component from SVG?",
+      answer:
+        "Enable component output and the converter generates a named function component accepting standard SVG props like width, height, fill, and className. Enable forwardRef for ref access and memo for render optimization. The component spreads incoming props onto the root SVG element. For icon libraries, set fill to currentColor so icons inherit parent text color via CSS, working with Tailwind classes like text-blue-500.",
+    },
+  ],
+
+  "tailwind-generator": [
+    {
+      question: "How do I build responsive layouts with Tailwind CSS?",
+      answer:
+        "Tailwind uses mobile-first responsive prefixes: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px). Write base styles for mobile, then add prefixed utilities for larger screens. For example, w-full md:w-1/2 lg:w-1/3 makes an element full-width on mobile, half on tablets, one-third on desktops. DevBolt's visual generator lets you compose classes interactively with a live preview showing how the layout responds at each breakpoint.",
+    },
+    {
+      question: "What is the difference between Tailwind CSS and traditional CSS?",
+      answer:
+        "Tailwind is utility-first: you compose styles by applying pre-built classes in HTML. Traditional CSS uses custom stylesheets with semantic class names. Tailwind eliminates context-switching between files, reduces CSS size through tree-shaking, and prevents specificity conflicts. Traditional CSS offers more semantic markup and easier global changes. Many teams use Tailwind with component frameworks where class repetition is managed through component abstraction.",
+    },
+    {
+      question: "How do I use custom values in Tailwind CSS?",
+      answer:
+        "Use arbitrary value syntax with square brackets: w-[37px], bg-[#1da1f2], or p-[13px]. DevBolt's generator includes presets for common UI patterns. The live preview updates as you add or remove classes. For frequently used custom values, define them in tailwind.config.js under theme.extend for reuse as proper named utilities across your project.",
+    },
+  ],
+
+  "text-binary": [
+    {
+      question: "How do I convert text to binary representation?",
+      answer:
+        "Type or paste text and each character is instantly converted to its binary equivalent. For ASCII text, each character maps to an 8-bit binary number. The letter A is 01000001 (decimal 65). UTF-8 characters may require 1 to 4 bytes, producing longer binary sequences for non-ASCII characters. DevBolt handles full Unicode including emoji and CJK characters. This conversion is useful for understanding computer data storage, debugging encoding issues, and educational purposes.",
+    },
+    {
+      question: "What is the difference between ASCII and UTF-8 binary encoding?",
+      answer:
+        "ASCII uses fixed 7-bit encoding (stored as 8 bits) for 128 characters: English letters, digits, punctuation, and control characters. Every ASCII character is one byte. UTF-8 is variable-length and backward-compatible with ASCII. Characters beyond ASCII use 2-4 bytes: European accented characters use 2, CJK use 3, emoji use 4. UTF-8 is used by over 98% of websites. When converting text to binary, the encoding determines how many bits each character produces.",
+    },
+    {
+      question: "How do I decode binary back to readable text?",
+      answer:
+        "Split the binary string into 8-bit groups, convert each to its decimal value, then map to the corresponding character. 01001000 01101001 converts to decimal 72 and 105, producing 'Hi'. For UTF-8, some characters span multiple bytes. DevBolt handles both directions instantly. Paste binary digits separated by spaces or as a continuous string and the tool reconstructs the original text.",
+    },
+  ],
+
+  "text-shadow": [
+    {
+      question: "How do I create a CSS text-shadow effect?",
+      answer:
+        "Use the text-shadow property with horizontal offset, vertical offset, blur radius, and color. Unlike box-shadow, text-shadow does not support spread radius or inset. The shadow follows the exact shape of text characters. DevBolt's visual generator lets you adjust all values with sliders and color pickers, showing the result on sample text in real time. Customize preview text, font size, and background to match your design context.",
+    },
+    {
+      question: "How do I create a neon glow or text outline effect with CSS?",
+      answer:
+        "Layer multiple text-shadow values separated by commas. For neon glow, use shadows with zero offset and increasing blur. For text outline, place shadows in all four directions with zero blur. DevBolt's generator supports adding multiple shadow layers visually, letting you build complex effects like fire text, retro 3D lettering, embossed looks, and letterpress indentations without writing CSS manually.",
+    },
+    {
+      question: "What is the difference between text-shadow and box-shadow?",
+      answer:
+        "text-shadow follows the exact glyph shapes of text characters. box-shadow applies to the rectangular bounding box of an element. text-shadow accepts three lengths (offset-x, offset-y, blur) plus color. box-shadow additionally supports spread radius and the inset keyword. Both accept multiple comma-separated values and all CSS color formats. Use text-shadow for typographic effects on headings. Use box-shadow for element depth and card elevation.",
+    },
+  ],
+
+  "token-counter": [
+    {
+      question: "How do LLM token counters calculate tokens from text?",
+      answer:
+        "Token counters use tokenization algorithms (BPE or SentencePiece) that split text into subword units. Common words like 'the' are single tokens while uncommon words are split into fragments. On average, one token is approximately 4 characters or 0.75 English words. DevBolt supports 19 models across 6 providers, each using their own tokenizer, so token counts vary between models for the same input.",
+    },
+    {
+      question: "How do I estimate API costs for LLM calls?",
+      answer:
+        "Paste your prompt and select the target model. DevBolt counts input tokens and calculates cost based on per-token pricing. Input and output tokens are priced differently. Estimate output token count based on expected response length. Total cost = (input tokens x input price) + (output tokens x output price). For batch processing, these per-request costs add up quickly, making accurate estimation essential for budget planning.",
+    },
+    {
+      question: "Why do different AI models produce different token counts for the same text?",
+      answer:
+        "Different models use different tokenizers trained on different datasets, producing different vocabulary sizes. A larger vocabulary generally means fewer tokens per text because more words are single tokens. Code-heavy text tokenizes very differently since some tokenizers have more programming language training data. The practical impact: the same prompt costs different amounts across providers, and context window limits hold different amounts of text.",
+    },
+  ],
+
+  "toml-converter": [
+    {
+      question: "What is TOML and how does it differ from JSON and YAML?",
+      answer:
+        "TOML is a configuration format designed for clarity with unambiguous semantics. Unlike JSON, TOML supports comments, has native date/time types, and does not require quotes around most keys. Unlike YAML, TOML avoids indentation-based nesting, eliminating parsing errors. TOML uses [section] headers and dot-separated keys. It is standard for Rust's Cargo.toml, Python's pyproject.toml, and Hugo's config.toml. DevBolt converts bidirectionally between TOML, JSON, and YAML.",
+    },
+    {
+      question: "How do I convert between TOML, JSON, and YAML?",
+      answer:
+        "Paste content in any of the three formats and select the target. The converter maps data types appropriately across formats. TOML datetime values become ISO 8601 strings in JSON. Inline tables expand into standard objects. Comments are lost when converting to JSON since JSON has no comment syntax. All conversion runs in your browser for privacy.",
+    },
+    {
+      question: "When should I use TOML instead of YAML?",
+      answer:
+        "Use TOML when config is relatively flat, you want unambiguous parsing without type coercion surprises, and your ecosystem expects it (Rust, Python packaging, Hugo). TOML's explicit syntax means '123' is always a number and 'true' is always a boolean, unlike YAML where country codes and yes/no values can be misinterpreted. Use YAML for deeply nested structures, anchors/aliases, or when tools require it (Kubernetes, Docker Compose, GitHub Actions).",
+    },
+  ],
+
+  "ts6-migration": [
+    {
+      question: "What are the breaking changes in TypeScript 6.0?",
+      answer:
+        "TypeScript 6.0 introduces stricter defaults: strict mode enabled by default, isolatedDeclarations enforced for libraries, verbatimModuleSyntax replacing deprecated flags, and module resolution defaults changing to node16/nodenext. Some deprecated compiler options are fully removed. DevBolt's checker analyzes your tsconfig.json against these changes and reports which affect your project, providing a readiness grade and specific migration guidance.",
+    },
+    {
+      question: "How do I check if my TypeScript project is ready for TS 6.0?",
+      answer:
+        "Paste your tsconfig.json into DevBolt's analyzer. It examines compiler options against all known breaking changes and generates a readiness report with a letter grade (A through F). Each flagged item includes the breaking change description, your current setting, the recommended new setting, and step-by-step instructions. Issues are categorized by severity: critical (build failures), warnings (deprecated), and informational notes. Address critical issues first.",
+    },
+    {
+      question: "What is isolatedDeclarations and how does it affect TypeScript code?",
+      answer:
+        "isolatedDeclarations requires explicit type annotations on all exported functions, classes, and variables so declaration files can be generated without full type inference. This means adding return type annotations to all exported functions. The benefit is dramatically faster declaration file generation since tools can process files in parallel. Library authors publishing to npm are the primary audience. Build tools like tsgo leverage it for performance.",
+    },
+  ],
+
+  "tsconfig-builder": [
+    {
+      question: "How do I create a tsconfig.json for my project?",
+      answer:
+        "Select a framework preset (React, Next.js, Node.js, library, or vanilla TypeScript), then customize options using the visual editor. DevBolt organizes 35+ options into categories: strict type checking, module resolution, output settings, path aliases, and file inclusion. Each option shows a description of what it does and when to enable it. The generated tsconfig.json updates in real time and can be copied or downloaded.",
+    },
+    {
+      question: "What does enabling strict mode do in tsconfig.json?",
+      answer:
+        "The strict flag enables a collection of stricter type-checking options: strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitAny, noImplicitThis, useUnknownInCatchVariables, and alwaysStrict. Enabling strict is recommended for all new projects. It catches common bugs at compile time and forces explicit type handling rather than relying on unsafe implicit any types.",
+    },
+    {
+      question: "What is the difference between module and moduleResolution in tsconfig?",
+      answer:
+        "module controls the JavaScript module format TypeScript emits: commonjs emits require/module.exports, esnext emits import/export, nodenext emits Node.js native ESM. moduleResolution controls how TypeScript finds imported files: node (classic CommonJS resolution), node16/nodenext (ESM with package.json exports support), or bundler (modern bundler resolution). These are independent: you can emit ESM while using bundler resolution.",
+    },
+  ],
+
+  "typescript-to-js": [
+    {
+      question: "How does TypeScript to JavaScript conversion work?",
+      answer:
+        "The converter strips all TypeScript-specific syntax: type annotations, interfaces, type aliases, generics, access modifiers (public/private/protected), type assertions (as keyword), non-null assertions, and declare statements. Enum declarations are converted to equivalent JavaScript objects. Optional chaining and nullish coalescing are preserved as valid modern JavaScript. The output runs directly in any JavaScript runtime.",
+    },
+    {
+      question: "What happens to TypeScript enums when converted to JavaScript?",
+      answer:
+        "Numeric enums become immediately invoked functions creating bidirectional mapping objects. String enums become simpler one-directional objects. Const enums are inlined at every usage site and produce no runtime object. DevBolt's converter reproduces the same JavaScript output as the TypeScript compiler, ensuring identical runtime behavior.",
+    },
+    {
+      question: "What is the difference between type stripping and full transpilation?",
+      answer:
+        "Type stripping removes only TypeScript-specific syntax while preserving all JavaScript code as-is. Full transpilation also transforms modern JavaScript for older targets: converting async/await to promises, optional chaining to ternaries, etc. DevBolt performs type stripping by default, sufficient when your target supports modern JavaScript. Node.js 22+ includes native type stripping, running TypeScript files directly.",
+    },
+  ],
+
+  "word-counter": [
+    {
+      question: "How does the word counter estimate reading time?",
+      answer:
+        "Reading time is calculated by dividing word count by 200-250 words per minute, the average for adult English non-fiction reading. A 1,000-word article takes approximately 4-5 minutes. Speaking time uses 130-150 words per minute. DevBolt provides both reading and speaking time estimates for planning blog posts, documentation, presentations, and video scripts. The tool also counts characters, sentences, and paragraphs.",
+    },
+    {
+      question: "Does the character count include spaces and punctuation?",
+      answer:
+        "DevBolt provides both: characters with spaces and characters without spaces. The with-spaces count includes everything. The without-spaces count excludes whitespace. Twitter and most social platforms count all characters including spaces. Some academic standards specify counts without spaces. The tool also counts sentences by detecting ending punctuation and paragraphs based on line breaks.",
+    },
+    {
+      question: "Is my text data private when using an online word counter?",
+      answer:
+        "Yes, DevBolt processes all text entirely in your browser using client-side JavaScript. No text is transmitted to any server. You can verify by disconnecting from the internet — the tool still works. When you close the tab, all text data is cleared from memory. This makes it safe for confidential documents, unpublished manuscripts, legal contracts, and any sensitive content.",
+    },
+  ],
+
+  "xml-formatter": [
+    {
+      question: "How do I format and beautify XML documents online?",
+      answer:
+        "Paste unformatted or minified XML and the tool formats it with proper indentation, line breaks, and syntax highlighting. You can customize indentation style and choose whether to preserve or collapse empty elements. The formatter validates structure, highlighting syntax errors with line numbers. DevBolt processes everything client-side so XML data containing API responses, configuration files, or SOAP messages never leaves your browser.",
+    },
+    {
+      question: "What is the difference between well-formed XML and valid XML?",
+      answer:
+        "Well-formed XML follows basic syntax rules: single root element, properly opened and closed tags, correct nesting, and quoted attributes. Valid XML is well-formed and additionally conforms to a schema (DTD, XSD, or RelaxNG) specifying allowed elements, types, and structure. All valid XML is well-formed, but not all well-formed XML is valid. DevBolt checks for well-formedness, catching syntax errors like unclosed tags and duplicate attributes.",
+    },
+    {
+      question: "How do I minify XML to reduce payload size?",
+      answer:
+        "Switch to minify mode to remove whitespace, line breaks, comments, and indentation while preserving structure and content. This reduces size by 10-30%. For greater reduction, enable Gzip or Brotli compression on your server, which compresses XML significantly more than whitespace removal alone. Most web servers support automatic content compression for XML MIME types.",
+    },
+  ],
+
+  "yaml-formatter": [
+    {
+      question: "How do I validate YAML syntax online?",
+      answer:
+        "Paste your YAML document and the tool parses it instantly, highlighting syntax errors with line numbers. Common errors include incorrect indentation (YAML requires spaces not tabs), missing colons after keys, unquoted special characters, and inconsistent list formatting. Valid YAML is reformatted with consistent indentation. DevBolt processes everything in your browser, safe for validating Kubernetes manifests, Docker Compose files, and configs with sensitive values.",
+    },
+    {
+      question: "What are the most common YAML syntax errors?",
+      answer:
+        "Most YAML errors involve indentation: using tabs instead of spaces causes parse failures. Other mistakes include forgetting the space after colons (name:value instead of name: value), unquoted strings with special characters, duplicate keys, and confusion between block scalar indicators (| for literal, > for folded). The 'Norway problem' where yes, no, on, off are parsed as booleans instead of strings is a persistent source of subtle bugs. Always quote ambiguous values.",
+    },
+    {
+      question: "When should I use YAML instead of JSON for configuration?",
+      answer:
+        "Use YAML for configuration where readability, comments, and editability matter. YAML's indentation syntax is cleaner for nested structures and comment support is essential for documenting complex configs. Kubernetes, Docker Compose, GitHub Actions, GitLab CI, and Ansible use YAML. Use JSON for strict machine parsing and API data interchange. YAML is a superset of JSON, so valid JSON files are also valid YAML.",
+    },
+  ],
+
+  "zod-schema": [
+    {
+      question: "How do I generate a Zod schema from JSON data?",
+      answer:
+        "Paste a JSON object or array and DevBolt infers the Zod schema from the structure: strings become z.string(), numbers z.number(), booleans z.boolean(), arrays z.array(), and nested objects z.object(). The generator detects common formats like emails, URLs, UUIDs, and dates, adding refinements like .email() or .url() automatically. You can also input JSON Schema for more precise conversion since constraints map directly to Zod methods.",
+    },
+    {
+      question: "What is Zod and why use it for runtime validation in TypeScript?",
+      answer:
+        "Zod is a TypeScript-first schema validation library that checks data at runtime. Unlike TypeScript types that only exist at compile time, Zod validates when your application runs — critical for API responses, form inputs, environment variables, and external data. Zod schemas infer TypeScript types via z.infer, defining validation and types from a single source of truth. It integrates with React Hook Form, tRPC, Astro, Next.js server actions, and many frameworks.",
+    },
+    {
+      question: "How do I add custom validation rules to a generated Zod schema?",
+      answer:
+        "Chain Zod's validation methods onto the generated schema: .min()/.max() for constraints, .email()/.url()/.uuid() for formats, .optional()/.nullable()/.default() for optionality, .nonempty() for arrays, and .refine()/.superRefine() for custom logic like password confirmation matching. Transform data during parsing with .transform() to coerce types or normalize formats. If you input JSON Schema with constraints, these methods are generated automatically.",
+    },
+  ],
 };
