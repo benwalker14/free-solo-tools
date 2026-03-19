@@ -742,4 +742,12 @@ export const tools: Tool[] = [
     icon: "GQL",
     category: "Convert",
   },
+  {
+    title: "package.json Generator",
+    description:
+      "Generate package.json visually with framework presets, dependency editor, scripts, and module config",
+    href: "/tools/package-json-generator",
+    icon: "npm",
+    category: "Generate",
+  },
 ];

@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add package.json Generator tool (#99)
+
+- Built package.json Generator — visual builder for Node.js package.json files
+- 7 framework presets: Next.js App, React + Vite, Node.js CLI, npm Library, Express API, Monorepo Root, Minimal
+- Form-based editor: basic info (name, version, description, author, license, repository), private/exports toggles
+- Module config: type (ESM/CJS), main, module, types, bin, engines.node
+- Scripts editor: add/remove named scripts with commands
+- Dependencies + devDependencies editor: add/remove with version specifiers
+- Keywords and files tag editors
+- Live JSON output, copy to clipboard, download as package.json
+- Quick stats panel: scripts count, deps count, devDeps count
+- Ctrl+Enter keyboard shortcut to copy
+- Related tools links: tsconfig.json Builder, JSON Formatter, .gitignore Generator
+- 3 SEO sub-pages: package-json-exports-guide, npm-scripts-guide, esm-vs-commonjs
+- OG image, JSON-LD schema, full metadata
+- Fixed build errors: useRateLimit missing argument, useKeyboardShortcut wrong prop name, RateLimitBanner missing props
+- Tool count: 94
+- Build: passes, 0 errors, 0 lint warnings
+
+---
+
 ### 2026-03-19 | developer | Add GraphQL to TypeScript Converter tool (#98)
 
 - Built GraphQL to TypeScript Converter — 4.6M weekly @graphql-codegen downloads, transform.tools is main competitor

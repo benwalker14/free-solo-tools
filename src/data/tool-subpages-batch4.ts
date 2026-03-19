@@ -3612,4 +3612,175 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "GraphQL to TypeScript Converter",
     },
   ],
+
+  "package-json-generator": [
+    {
+      slug: "package-json-exports-guide",
+      title: "package.json exports Field Guide",
+      metaTitle:
+        "package.json exports Field Guide — Dual CJS/ESM Packages Explained",
+      metaDescription:
+        "Learn how to configure the exports field in package.json for dual CJS/ESM packages. Conditional exports, subpath exports, and TypeScript types resolution.",
+      h1: "package.json exports Field Guide",
+      intro:
+        "The exports field is how modern npm packages support both CommonJS and ESM consumers. Use the generator above with the 'exports field' option to see how it works.",
+      content: [
+        {
+          heading: "Why exports matters",
+          body: "The exports field replaces main/module/types as the primary entry point mechanism. It provides encapsulation (consumers can only import exported paths), conditional resolution (different code for import vs require), and subpath exports (import 'pkg/utils'). Node.js 12.7+ and all modern bundlers support it.",
+        },
+        {
+          heading: "Conditional exports for dual packages",
+          body: "A dual CJS/ESM package uses conditional exports to serve different files. 'import' condition serves ESM (.mjs or .js with type:module), 'require' serves CJS (.cjs or .js with type:commonjs), and 'types' serves TypeScript declarations. Build tools like tsup generate both formats automatically.",
+        },
+        {
+          heading: "Common patterns",
+          body: "Single entry: { \".\": { \"types\": \"./dist/index.d.ts\", \"import\": \"./dist/index.mjs\", \"require\": \"./dist/index.cjs\" } }. Subpath exports: { \"./utils\": { \"import\": \"./dist/utils.mjs\" } }. Wildcard: { \"./*\": \"./dist/*.js\" }. Always list 'types' first — TypeScript resolves top-to-bottom.",
+        },
+        {
+          heading: "Migration from main/module",
+          body: "Keep main and module alongside exports for backwards compatibility with older Node.js versions and bundlers. exports takes priority when supported. Set types at the top level too for older TypeScript versions. Once you drop Node.js <12.7 support, exports alone is sufficient.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Do I need both main and exports?",
+          answer:
+            "For maximum compatibility, yes. exports is used by Node.js 12.7+ and modern bundlers, while main is the fallback for older environments. If you only target modern Node.js (16+), exports alone is fine.",
+        },
+        {
+          question: "What order should conditions be in?",
+          answer:
+            "TypeScript types should come first, then import, then require, then default. Node.js resolves conditions top-to-bottom and uses the first match. Putting types first ensures TypeScript picks up declarations before runtime conditions.",
+        },
+        {
+          question: "Can I use exports to hide internal files?",
+          answer:
+            "Yes. Once you add an exports field, only the explicitly exported paths are accessible to consumers. Trying to import an unexported path throws ERR_PACKAGE_PATH_NOT_EXPORTED. This is a key advantage over main/module which exposes the entire package.",
+        },
+      ],
+      keywords: [
+        "package.json exports",
+        "npm exports field",
+        "dual cjs esm package",
+        "conditional exports",
+        "subpath exports",
+        "package.json module",
+      ],
+      parentToolSlug: "package-json-generator",
+      parentToolName: "package.json Generator",
+    },
+    {
+      slug: "npm-scripts-guide",
+      title: "npm Scripts Guide",
+      metaTitle:
+        "npm Scripts Guide — Lifecycle Hooks, Custom Scripts & Best Practices",
+      metaDescription:
+        "Master npm scripts: lifecycle hooks (pre/post), custom scripts, cross-platform commands, and script composition. Replace Gulp/Grunt with npm scripts.",
+      h1: "npm Scripts Guide",
+      intro:
+        "npm scripts are the standard way to run tasks in Node.js projects. Use the generator above to quickly set up scripts for your project, then customize them here.",
+      content: [
+        {
+          heading: "Built-in lifecycle scripts",
+          body: "npm has special script names that run automatically: 'preinstall' and 'postinstall' run before/after npm install, 'prepublishOnly' runs before npm publish (ideal for building), 'prepare' runs after install and before publish. These hooks automate common workflows without manual intervention.",
+        },
+        {
+          heading: "Pre and post hooks",
+          body: "Any script can have pre/post hooks. 'prebuild' runs before 'build', 'postbuild' runs after. This lets you chain tasks: prelint → lint → postlint. Common pattern: 'prebuild' cleans the dist folder, 'build' compiles, 'postbuild' runs tests. Pre/post hooks run automatically — you just run 'npm run build'.",
+        },
+        {
+          heading: "Script composition patterns",
+          body: "Run scripts in sequence with '&&': \"build\": \"tsc && esbuild ...\". Run in parallel with packages like concurrently or npm-run-all: \"dev\": \"concurrently \\\"tsc -w\\\" \\\"node server.js\\\"\". Reference other scripts: \"ci\": \"npm run lint && npm run test && npm run build\".",
+        },
+        {
+          heading: "Cross-platform compatibility",
+          body: "Avoid bash-specific syntax in scripts — Windows users can't run 'rm -rf dist'. Use cross-env for environment variables, rimraf for deletion, and cpy-cli for copying. Or use Node.js scripts directly: \"clean\": \"node -e \\\"require('fs').rmSync('dist',{recursive:true,force:true})\\\"\".",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between npm run and npx?",
+          answer:
+            "'npm run <script>' executes a script defined in package.json. 'npx <command>' runs a package's binary directly, downloading it temporarily if not installed. Use npm scripts for repeatable project tasks, npx for one-off commands.",
+        },
+        {
+          question: "Can I pass arguments to npm scripts?",
+          answer:
+            "Yes, use -- to separate npm's arguments from the script's arguments: 'npm run test -- --watch' passes --watch to the test command. In npm 7+, you can also use 'npm test -- --watch' for built-in scripts.",
+        },
+        {
+          question: "Should I use npm scripts or a task runner like Gulp?",
+          answer:
+            "npm scripts are sufficient for most projects and add no extra dependencies. Task runners like Gulp add complexity but offer streaming pipelines and plugin ecosystems. For new projects, start with npm scripts and only add a task runner if you hit limitations.",
+        },
+      ],
+      keywords: [
+        "npm scripts",
+        "npm run",
+        "package.json scripts",
+        "npm lifecycle hooks",
+        "npm prebuild postbuild",
+        "npm script guide",
+      ],
+      parentToolSlug: "package-json-generator",
+      parentToolName: "package.json Generator",
+    },
+    {
+      slug: "esm-vs-commonjs",
+      title: "ESM vs CommonJS in package.json",
+      metaTitle:
+        "ESM vs CommonJS — type: module vs type: commonjs in package.json",
+      metaDescription:
+        "Understand the difference between ESM and CommonJS in package.json. When to use type: module, how imports change, and how to support both formats.",
+      h1: "ESM vs CommonJS in package.json",
+      intro:
+        "The type field in package.json determines how Node.js treats .js files. Use the generator above to switch between module (ESM) and commonjs (CJS) and see how the output changes.",
+      content: [
+        {
+          heading: "What type: module does",
+          body: "Setting \"type\": \"module\" tells Node.js to treat .js files as ES modules. This enables import/export syntax, top-level await, and import.meta. Without it, Node.js treats .js as CommonJS (require/module.exports). You can override per-file with .mjs (always ESM) and .cjs (always CJS).",
+        },
+        {
+          heading: "Key differences in practice",
+          body: "ESM: import/export, top-level await, import.meta.url instead of __filename, no require(). CJS: require/module.exports, __filename/__dirname, synchronous loading, JSON import via require(). ESM is strict by default, CJS is sloppy mode. ESM imports are live bindings, CJS exports are value copies.",
+        },
+        {
+          heading: "Migrating from CJS to ESM",
+          body: "Steps: 1) Set \"type\": \"module\" in package.json. 2) Rename .js to .mjs for gradual migration, or convert all at once. 3) Replace require() with import. 4) Replace module.exports with export. 5) Replace __dirname with path.dirname(fileURLToPath(import.meta.url)). 6) Add file extensions to relative imports.",
+        },
+        {
+          heading: "Publishing dual-format packages",
+          body: "Dual packages support both CJS and ESM consumers. Use the exports field with conditional exports: 'import' points to ESM, 'require' points to CJS. Build tools like tsup, unbuild, or pkgroll generate both formats from the same TypeScript source. Test both entry points before publishing.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should new projects use ESM or CommonJS?",
+          answer:
+            "New projects should use ESM (\"type\": \"module\"). ESM is the JavaScript standard, supported by all modern browsers and Node.js 14+. CJS is legacy. The ecosystem is rapidly moving to ESM-only — major packages like chalk, got, and execa are ESM-only.",
+        },
+        {
+          question: "Can I use require() in an ESM project?",
+          answer:
+            "Not directly in .js files when type is module. You can use createRequire from the 'module' built-in, or use dynamic import() which works in both ESM and CJS. For JSON files, use import with the assert syntax or createRequire.",
+        },
+        {
+          question: "What if my dependency is CJS-only?",
+          answer:
+            "ESM can import CJS modules using default import syntax: 'import pkg from \"cjs-package\"'. Named exports may not work — use default import and destructure. This is a Node.js interop feature that makes migration smoother.",
+        },
+      ],
+      keywords: [
+        "esm vs commonjs",
+        "type module",
+        "package.json type",
+        "es modules node",
+        "commonjs to esm",
+        "node esm",
+      ],
+      parentToolSlug: "package-json-generator",
+      parentToolName: "package.json Generator",
+    },
+  ],
 };
