@@ -111,4 +111,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 59. Encode / Decode Multi-Tool (/tools/encode-decode)
 60. Docker Compose Validator (/tools/docker-compose)
 61. Privacy Policy Generator (/tools/privacy-policy)
-62. HTTP Status Code Reference (/tools/http-status)
+62. HTTP Status Code Reference (/tools/http-status-codes)
