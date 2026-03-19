@@ -382,4 +382,12 @@ export const tools: Tool[] = [
     icon: ".gi",
     category: "Generate",
   },
+  {
+    title: "Crontab Generator",
+    description:
+      "Build cron expressions visually — select frequency, time, and days to generate cron schedules",
+    href: "/tools/cron-generator",
+    icon: "⏰",
+    category: "Generate",
+  },
 ];

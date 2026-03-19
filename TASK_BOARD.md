@@ -26,6 +26,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Crontab Generator tool (#49)
 - [x] Add .gitignore Generator tool (#48)
 - [x] Add Subnet Calculator tool (#47)
 - [x] Add JSON Schema Validator tool (#46)

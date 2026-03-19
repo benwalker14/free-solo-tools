@@ -464,6 +464,16 @@ export default function CronParserTool() {
             Month names (JAN-DEC) and day names (SUN-SAT) are supported.
           </li>
           <li>
+            Use the{" "}
+            <Link
+              href="/tools/cron-generator"
+              className="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 underline"
+            >
+              Crontab Generator
+            </Link>{" "}
+            to build expressions visually.
+          </li>
+          <li>
             Everything runs in your browser — no data is sent over the network.
           </li>
         </ul>
