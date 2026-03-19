@@ -158,3 +158,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 106. HTTP Request Builder (/tools/http-request-builder)
 107. GitHub Actions Validator (/tools/github-actions-validator)
 108. Tailwind CSS to CSS Converter (/tools/tailwind-to-css)
+109. .env to Docker/K8s Converter (/tools/env-converter)

@@ -862,4 +862,12 @@ export const tools: Tool[] = [
     icon: "CSS",
     category: "Convert",
   },
+  {
+    title: ".env to Docker/K8s Converter",
+    description:
+      "Convert .env files to Docker Compose environment blocks, Kubernetes ConfigMaps, Secrets, and docker run flags with sensitive key detection",
+    href: "/tools/env-converter",
+    icon: "ENV",
+    category: "Convert",
+  },
 ];

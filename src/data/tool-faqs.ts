@@ -1982,4 +1982,27 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "While technically possible, sending a body with GET is discouraged by HTTP specifications and many servers ignore it. The builder allows it for flexibility (some APIs like Elasticsearch accept GET with body), but best practice is to use POST, PUT, or PATCH for requests with a body. The builder does not restrict method-body combinations so you can match your API's requirements.",
     },
   ],
+
+  "env-converter": [
+    {
+      question: "How do I convert a .env file to a Kubernetes ConfigMap?",
+      answer:
+        "Paste your .env file, select 'Kubernetes ConfigMap' as the output format, set the resource name and optional namespace, then click Convert. The tool parses all KEY=VALUE pairs and generates a valid ConfigMap YAML with apiVersion, kind, metadata, and data fields. Sensitive keys (passwords, secrets, tokens) are flagged with a comment suggesting you use a Kubernetes Secret instead.",
+    },
+    {
+      question: "What is the difference between Kubernetes Secret data and stringData?",
+      answer:
+        "The 'data' field requires values to be base64-encoded (the format Kubernetes stores internally). The 'stringData' field accepts plain text values that Kubernetes automatically base64-encodes when the manifest is applied. Both are equivalent at runtime. Use stringData for readability during development and data for CI/CD pipelines that pre-encode values. Note that base64 is encoding, not encryption — always enable encryption at rest for production Secrets.",
+    },
+    {
+      question: "Does the tool detect sensitive environment variables?",
+      answer:
+        "Yes. The converter scans key names against 20+ patterns including PASSWORD, SECRET, TOKEN, API_KEY, PRIVATE_KEY, DATABASE_URL, JWT_SECRET, STRIPE_KEY, and AWS_SECRET. When you use the ConfigMap format, detected sensitive keys are flagged in a comment block suggesting migration to a Secret. A count of sensitive keys appears in the stats bar after conversion.",
+    },
+    {
+      question: "Can I use the output directly in my Docker Compose or Kubernetes project?",
+      answer:
+        "Yes. The generated YAML and shell commands are valid and ready to paste into your project files. Docker Compose output includes the services: block structure. Kubernetes output includes apiVersion, kind, and metadata fields. The docker run output generates a complete command with -e flags. You may need to adjust the service name, resource name, namespace, or image name to match your project.",
+    },
+  ],
 };

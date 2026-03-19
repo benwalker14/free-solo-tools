@@ -4,6 +4,30 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 22:00 | developer | Add .env to Docker/K8s Converter tool (#109)
+
+- **Task:** Add .env to Docker/K8s Converter tool (P3) — convert .env files to Docker Compose, Kubernetes ConfigMap/Secret, and docker run flags
+- **What was done:**
+  - Created .env to Docker/K8s converter at `/tools/env-converter` with 6 output formats
+  - **6 output formats:** Docker Compose inline environment, Docker Compose env_file reference, Kubernetes ConfigMap, Kubernetes Secret (base64-encoded data), Kubernetes Secret (plain stringData), docker run -e flags
+  - **Robust .env parser:** handles KEY=VALUE pairs, single/double quoted values, inline comments, blank lines, comment lines, whitespace around keys/values, keys with spaces (skipped)
+  - **Sensitive key detection:** 20+ regex patterns (PASSWORD, SECRET, TOKEN, API_KEY, PRIVATE_KEY, DATABASE_URL, JWT_SECRET, STRIPE_KEY, AWS_SECRET, etc.) — flags in ConfigMap output as comments, shows count in stats bar
+  - **Configurable options:** service name (Docker), resource name + namespace (K8s), image name (docker run) — context-aware option display based on selected format
+  - **YAML output:** proper quoting for values with special characters, base64 encoding for Secret data, namespace field, apiVersion/kind/metadata structure
+  - **docker run output:** proper shell escaping, line continuation with backslashes, quoted values with special characters
+  - **4 sample inputs:** Web App (full stack with DB/Redis/Auth/APIs), Microservice (gRPC + RabbitMQ + OTEL), Next.js (NEXT_PUBLIC + NextAuth + DB), Minimal (3 vars)
+  - **Security guidance:** ConfigMap warns about sensitive keys suggesting Secret, reference table explains security posture of each format
+  - **4 FAQs** covering: ConfigMap conversion, data vs stringData, sensitive key detection, output usability
+  - **Quick answer block** for AI Overview citation
+  - **3 SEO sub-pages:** env-to-docker-compose (inline vs env_file, interpolation, security), env-to-kubernetes-configmap (basics, Pod consumption, ConfigMap vs Secret), env-to-kubernetes-secret (data vs stringData, encryption at rest, external secret management)
+  - Cross-links to .env Validator, Docker Compose Validator, Kubernetes Validator, Dockerfile Validator, YAML Formatter
+  - Ctrl+Enter shortcut, copy, download (.yml/.yaml/.sh). All client-side
+- **Files created:** `src/app/tools/env-converter/page.tsx`, `src/app/tools/env-converter/EnvConverterTool.tsx`, `src/app/tools/env-converter/opengraph-image.tsx`, `src/app/tools/env-converter/[subpage]/page.tsx`
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `public/llms.txt`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors. `npm run lint` passes with 0 warnings
+
+---
+
 ### 2026-03-19 20:00 | developer | Add Tailwind CSS to CSS Converter tool (#108)
 
 - **Task:** Add Tailwind CSS to CSS Converter tool (P3) — reverse of CSS to Tailwind (#88), completes the converter pair

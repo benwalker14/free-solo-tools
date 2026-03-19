@@ -124,4 +124,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your Tailwind utility classes (or a full class=\"...\" attribute) and the tool instantly generates the equivalent standard CSS properties. It supports 500+ classes including spacing, layout, typography, borders, transforms, filters, and arbitrary bracket values like w-[300px]. Customize the CSS selector name in the output. Everything runs in your browser — your code never leaves your device.",
   },
+  "env-converter": {
+    question: "How do I convert a .env file to Docker Compose or Kubernetes YAML?",
+    answer:
+      "Paste your .env file and select an output format: Docker Compose inline environment, Docker Compose env_file reference, Kubernetes ConfigMap, Kubernetes Secret (base64 or stringData), or docker run -e flags. The tool parses KEY=VALUE pairs, strips quotes, detects sensitive keys (passwords, tokens, API keys), and generates valid YAML or shell commands. Everything runs in your browser — your secrets never leave your device.",
+  },
 };

@@ -119,7 +119,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave.
 - [x] Build privacy-focused landing page at /safe-tools — done
 - [x] Add HTTP Request Builder tool (#106) — lightweight ReqBin/Postman alternative. Visual builder → cURL/Python/JS/Go/Rust/PHP code. HN demand validated. Reverses cURL to Code (#52).
-- [ ] Add .env to Docker/K8s Converter tool (#106) — convert .env files → docker-compose env, Kubernetes ConfigMap/Secret YAML. Complements .env Validator (#77). Container DevOps niche.
+- [x] Add .env to Docker/K8s Converter tool (#109) — convert .env files → docker-compose env, Kubernetes ConfigMap/Secret YAML. Complements .env Validator (#77). Container DevOps niche.
 - [x] Add Tailwind CSS to CSS Converter tool (#108) — reverse of CSS to Tailwind (#88). Completes the pair. 10-20K/mo searches.
 - [x] Add GitHub Actions YAML Validator tool (#109) — validate workflow YAML, check action syntax, job dependencies, expression validation. CI/CD tooling gap.
 - [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)

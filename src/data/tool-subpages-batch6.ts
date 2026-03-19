@@ -1368,4 +1368,155 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "GitHub Actions Validator",
     },
   ],
+
+  "env-converter": [
+    {
+      slug: "env-to-docker-compose",
+      title: ".env to Docker Compose Guide",
+      metaTitle: ".env to Docker Compose — Convert Environment Variables to YAML",
+      metaDescription:
+        "Convert .env files to Docker Compose environment blocks or env_file references. Learn inline env vs env_file, variable interpolation, and best practices.",
+      h1: ".env to Docker Compose Converter",
+      intro:
+        "Convert your .env file to Docker Compose format. Choose between inline environment variables or an env_file reference. Use the converter above, then follow this guide for production best practices.",
+      content: [
+        {
+          heading: "Inline environment vs env_file",
+          body: "Docker Compose supports two ways to pass environment variables. The 'environment' key lists variables directly in docker-compose.yml as KEY: VALUE pairs. The 'env_file' key references an external .env file. Inline is convenient for non-sensitive config that should be version-controlled. env_file is better for secrets because you can .gitignore the file. You can use both together — inline values override env_file values for the same key.",
+          codeExample: "# Inline environment\nservices:\n  app:\n    image: node:20\n    environment:\n      NODE_ENV: production\n      PORT: 3000\n\n# env_file reference\nservices:\n  app:\n    image: node:20\n    env_file:\n      - .env\n      - .env.local",
+          codeLanguage: "yaml",
+        },
+        {
+          heading: "Variable interpolation in Compose",
+          body: "Docker Compose supports variable substitution using ${VARIABLE} syntax in the YAML file itself. Variables are resolved from the shell environment or a .env file in the project root (not the env_file directive). You can set defaults with ${VARIABLE:-default} and require values with ${VARIABLE:?error message}. This is useful for per-environment configuration without changing the compose file.",
+          codeExample: "services:\n  db:\n    image: postgres:${POSTGRES_VERSION:-16}\n    environment:\n      POSTGRES_DB: ${DB_NAME}\n      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}",
+          codeLanguage: "yaml",
+        },
+        {
+          heading: "Security best practices",
+          body: "Never commit secrets to docker-compose.yml. Use env_file with .gitignore for local development. For production, use Docker Swarm secrets, external secret managers (Vault, AWS Secrets Manager), or build-time --secret mounts. The converter detects sensitive keys like passwords, tokens, and API keys and flags them in the output.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I use environment or env_file in Docker Compose?",
+          answer:
+            "Use 'environment' for non-sensitive config you want visible in the compose file (NODE_ENV, PORT). Use 'env_file' for secrets (passwords, API keys) so they stay out of version control. You can combine both — inline values take precedence over env_file for duplicate keys.",
+        },
+        {
+          question: "Does Docker Compose automatically read .env files?",
+          answer:
+            "Yes. Docker Compose reads a .env file in the project root for variable substitution in the YAML file (${VAR} syntax). This is separate from the env_file directive, which passes variables to the container. The root .env is for compose-time interpolation; env_file is for container runtime environment.",
+        },
+      ],
+      keywords: [
+        "env to docker compose",
+        "docker compose environment variables",
+        "docker compose env file",
+        "docker compose env_file vs environment",
+        "convert env to docker compose yaml",
+        "docker compose secrets",
+      ],
+      parentToolSlug: "env-converter",
+      parentToolName: ".env to Docker/K8s Converter",
+    },
+    {
+      slug: "env-to-kubernetes-configmap",
+      title: ".env to Kubernetes ConfigMap Guide",
+      metaTitle: ".env to Kubernetes ConfigMap — Convert Environment Variables to K8s YAML",
+      metaDescription:
+        "Convert .env files to Kubernetes ConfigMap YAML manifests. Learn when to use ConfigMap vs Secret, how to mount as env vars or volumes, and namespace scoping.",
+      h1: ".env to Kubernetes ConfigMap Converter",
+      intro:
+        "Convert your .env file to a Kubernetes ConfigMap manifest. Use the converter above to generate the YAML, then follow this guide to apply it correctly in your cluster.",
+      content: [
+        {
+          heading: "ConfigMap basics",
+          body: "A Kubernetes ConfigMap stores non-confidential configuration data as key-value pairs. Pods consume ConfigMaps as environment variables (envFrom or env with valueFrom), command-line arguments, or mounted config files in a volume. ConfigMaps are namespace-scoped and limited to 1 MiB of data. They are not encrypted — use Secrets for sensitive values.",
+          codeExample: "apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: app-config\n  namespace: production\ndata:\n  NODE_ENV: \"production\"\n  PORT: \"3000\"\n  LOG_LEVEL: \"info\"",
+          codeLanguage: "yaml",
+        },
+        {
+          heading: "Consuming ConfigMaps in Pods",
+          body: "Use envFrom to inject all ConfigMap keys as environment variables, or env with valueFrom.configMapKeyRef for individual keys. For file-based config, mount as a volume. envFrom is the fastest way to convert a .env workflow to Kubernetes — one line replaces dozens of individual env entries.",
+          codeExample: "spec:\n  containers:\n    - name: app\n      image: myapp:latest\n      # Inject all keys as env vars\n      envFrom:\n        - configMapRef:\n            name: app-config\n      # Or pick individual keys\n      env:\n        - name: DATABASE_HOST\n          valueFrom:\n            configMapKeyRef:\n              name: app-config\n              key: DB_HOST",
+          codeLanguage: "yaml",
+        },
+        {
+          heading: "ConfigMap vs Secret",
+          body: "Use ConfigMap for non-sensitive data: feature flags, log levels, service URLs, port numbers. Use Secret for passwords, tokens, certificates, and API keys. The converter auto-detects sensitive key names and flags them. In practice, many teams start with a ConfigMap for everything and gradually split sensitive values into Secrets as they harden their deployment.",
+        },
+      ],
+      faqs: [
+        {
+          question: "When should I use a ConfigMap instead of a Secret?",
+          answer:
+            "Use ConfigMap for non-sensitive configuration: ports, URLs, feature flags, log levels. Use Secret for passwords, API keys, tokens, and certificates. ConfigMap data is stored in plain text in etcd, while Secret data is base64-encoded (and can be encrypted at rest with EncryptionConfiguration).",
+        },
+        {
+          question: "How do I update a ConfigMap without restarting pods?",
+          answer:
+            "If the ConfigMap is mounted as a volume, Kubernetes automatically updates the files (with a delay of up to the kubelet sync period, typically 60s). For environment variables, pods must be restarted — use 'kubectl rollout restart deployment/myapp'. Tools like Reloader or stakater/Reloader can automate restarts on ConfigMap changes.",
+        },
+      ],
+      keywords: [
+        "env to kubernetes configmap",
+        "convert env to configmap",
+        "kubernetes configmap from env file",
+        "k8s configmap yaml",
+        "configmap vs secret kubernetes",
+        "kubernetes environment variables",
+      ],
+      parentToolSlug: "env-converter",
+      parentToolName: ".env to Docker/K8s Converter",
+    },
+    {
+      slug: "env-to-kubernetes-secret",
+      title: ".env to Kubernetes Secret Guide",
+      metaTitle: ".env to Kubernetes Secret — Convert Environment Variables to Encrypted K8s YAML",
+      metaDescription:
+        "Convert .env files to Kubernetes Secret YAML with base64 or stringData format. Learn Secret types, encryption at rest, and how to mount secrets in pods.",
+      h1: ".env to Kubernetes Secret Converter",
+      intro:
+        "Convert your .env file to a Kubernetes Secret manifest. Choose base64-encoded data or plain stringData format. Use the converter above, then follow this guide for production-grade secret management.",
+      content: [
+        {
+          heading: "Secret data vs stringData",
+          body: "Kubernetes Secrets support two data fields. 'data' requires base64-encoded values — what Kubernetes stores internally. 'stringData' accepts plain text that Kubernetes auto-encodes on apply. Both produce identical Secrets at runtime. Use stringData during development for readability. Use data in CI/CD pipelines where values are pre-encoded. You can mix both in the same manifest — stringData values override data values for the same key.",
+          codeExample: "# base64-encoded data\napiVersion: v1\nkind: Secret\nmetadata:\n  name: app-secrets\ntype: Opaque\ndata:\n  DB_PASSWORD: c3VwZXItc2VjcmV0  # echo -n 'super-secret' | base64\n\n# Plain stringData (auto-encoded on apply)\napiVersion: v1\nkind: Secret\nmetadata:\n  name: app-secrets\ntype: Opaque\nstringData:\n  DB_PASSWORD: \"super-secret\"",
+          codeLanguage: "yaml",
+        },
+        {
+          heading: "Encryption at rest",
+          body: "By default, Kubernetes stores Secrets as base64 in etcd — this is encoding, not encryption. Anyone with etcd access can read them. Enable encryption at rest with an EncryptionConfiguration that uses aescbc, aesgcm, or a KMS provider (AWS KMS, GCP KMS, Azure Key Vault). Managed Kubernetes services (EKS, GKE, AKS) offer envelope encryption by default or with a checkbox.",
+        },
+        {
+          heading: "External secret management",
+          body: "For production, consider external secret operators: External Secrets Operator (syncs from AWS SM, Vault, GCP SM, Azure KV), Sealed Secrets (encrypts secrets for Git storage), and SOPS (encrypts YAML files). These let you store encrypted secret manifests in Git while the operator decrypts them in-cluster. The converter output is a starting point — move to external management as you scale.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is base64 encoding in Kubernetes Secrets secure?",
+          answer:
+            "No. Base64 is encoding, not encryption — anyone can decode it. Kubernetes Secrets are only as secure as your etcd encryption and RBAC policies. Enable encryption at rest (EncryptionConfiguration or managed K8s encryption), restrict Secret access with RBAC, and avoid committing Secret manifests to Git.",
+        },
+        {
+          question: "Should I use data or stringData in Kubernetes Secrets?",
+          answer:
+            "Use stringData for human-written manifests (easier to read and edit). Use data for machine-generated manifests in CI/CD where values are already base64-encoded. Both produce identical Secrets when applied. stringData is a write-only convenience — kubectl get secret always shows base64-encoded data.",
+        },
+      ],
+      keywords: [
+        "env to kubernetes secret",
+        "convert env to k8s secret",
+        "kubernetes secret base64",
+        "kubernetes stringdata vs data",
+        "kubernetes secret yaml",
+        "kubernetes secret encryption",
+      ],
+      parentToolSlug: "env-converter",
+      parentToolName: ".env to Docker/K8s Converter",
+    },
+  ],
 };
