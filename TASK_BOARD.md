@@ -14,7 +14,7 @@ _None_
 - [ ] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
 - [ ] Apply to Carbon Ads for developer-focused ad monetization (HUMAN ACTION NEEDED)
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
-- [ ] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
+- [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 
 ### P2 - Medium (Content & Tools)
 - [ ] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
@@ -32,6 +32,7 @@ _None_
 
 ## Done
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
+- [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, visual builder with presets
 - [x] Add batch processing mode for Pro API — /api/v1/batch endpoint, up to 50 ops/request
 - [x] Create Pro REST API — 8 tool endpoints, Stripe webhook, API key auth, docs page
 - [x] Add cURL to Code Converter tool (#52)

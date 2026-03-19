@@ -422,4 +422,12 @@ export const tools: Tool[] = [
     icon: "J→C",
     category: "Convert",
   },
+  {
+    title: "Tailwind CSS Generator",
+    description:
+      "Build Tailwind CSS utility classes visually with live preview and component presets",
+    href: "/tools/tailwind-generator",
+    icon: "TW",
+    category: "Generate",
+  },
 ];
