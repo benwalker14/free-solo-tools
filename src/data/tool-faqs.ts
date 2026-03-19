@@ -1890,4 +1890,27 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "No — this tool uses regex-based pattern matching to catch common vulnerabilities quickly, but it does not perform full abstract syntax tree (AST) analysis, data flow tracking, or taint analysis like Semgrep, CodeQL, or Snyk Code. It is best used as a quick first-pass review, especially for AI-generated code that may contain obvious security antipatterns. For production security audits, combine this with a proper SAST tool in your CI/CD pipeline.",
     },
   ],
+
+  "code-complexity-analyzer": [
+    {
+      question: "What is cyclomatic complexity and why does it matter?",
+      answer:
+        "Cyclomatic complexity (CC) measures the number of independent paths through a function — essentially how many decision points (if, else if, case, loops, ternary, logical operators) exist. A CC of 1-5 means the function is simple and easy to test. 6-10 is moderate and may benefit from refactoring. Above 10 is complex and hard to test thoroughly — each path needs at least one test case. Above 20 is very high risk and should be split into smaller functions. This is especially important for AI-generated code, which often produces long functions with many branches.",
+    },
+    {
+      question: "What is cognitive complexity and how is it different from cyclomatic?",
+      answer:
+        "Cognitive complexity measures how hard code is for a human to understand, as defined by SonarSource. Unlike cyclomatic complexity which counts all paths equally, cognitive complexity adds nesting penalties — an if inside a for inside another if scores much higher than three sequential if statements. This better reflects the mental effort needed to follow the code. A function with CC=10 might have cognitive complexity of 5 (flat structure) or 25 (deeply nested). DevBolt shows both metrics so you can identify functions that are both hard to test and hard to read.",
+    },
+    {
+      question: "What is the maintainability index and how is the grade calculated?",
+      answer:
+        "The maintainability index (MI) is a composite metric originally developed at Carnegie Mellon and adopted by Microsoft Visual Studio. It combines cyclomatic complexity, lines of code, and Halstead volume (a measure of code vocabulary) into a single 0-100 score. Higher is better: 80-100 is grade A (highly maintainable), 60-79 is grade B, 40-59 is grade C, 20-39 is grade D, and below 20 is grade F. DevBolt uses a simplified version of this formula optimized for JavaScript and TypeScript functions.",
+    },
+    {
+      question: "Is this tool accurate enough for production use?",
+      answer:
+        "DevBolt's Code Complexity Analyzer uses pattern-based static analysis to identify functions and calculate metrics. It handles standard JavaScript and TypeScript function declarations, arrow functions, class methods, and common patterns. The metrics are approximations — for precise results in CI/CD pipelines, use ESLint's complexity rule, SonarQube, or CodeClimate. This tool is ideal for quick code reviews, evaluating AI-generated code quality, and learning about complexity metrics without installing anything.",
+    },
+  ],
 };

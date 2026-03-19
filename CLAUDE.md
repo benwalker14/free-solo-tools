@@ -154,3 +154,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 102. TypeScript 6.0 Migration Checker (/tools/ts6-migration)
 103. ESLint to Biome Converter (/tools/eslint-to-biome)
 104. AI Code Security Scanner (/tools/code-security-scanner)
+105. Code Complexity Analyzer (/tools/code-complexity-analyzer)

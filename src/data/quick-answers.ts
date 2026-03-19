@@ -104,4 +104,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your JavaScript or TypeScript code and click Scan to detect hardcoded secrets, SQL injection, XSS, command injection, SSRF, prototype pollution, and 20+ other vulnerability patterns. Each finding includes severity, CWE reference, and fix guidance. All analysis runs in your browser — your code is never uploaded.",
   },
+  "code-complexity-analyzer": {
+    question: "How do I measure code complexity online?",
+    answer:
+      "Paste your JavaScript or TypeScript code and click Analyze to see cyclomatic complexity, cognitive complexity, nesting depth, and maintainability index for every function. Each function gets a risk rating with actionable refactoring recommendations. All analysis runs in your browser — your code never leaves your device.",
+  },
 };

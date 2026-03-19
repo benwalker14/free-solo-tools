@@ -843,4 +843,165 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "AI Code Security Scanner",
     },
   ],
+
+  "code-complexity-analyzer": [
+    {
+      slug: "cyclomatic-complexity-guide",
+      title: "Cyclomatic Complexity Guide",
+      metaTitle:
+        "Cyclomatic Complexity Explained — McCabe Metric Guide for Developers",
+      metaDescription:
+        "Learn what cyclomatic complexity is, how it's calculated, and why it matters for code quality. Thresholds, examples, and how to reduce complexity in JavaScript and TypeScript.",
+      h1: "Cyclomatic Complexity — What It Is and How to Reduce It",
+      intro:
+        "Cyclomatic complexity (CC) measures how many independent execution paths exist through a function. Higher CC means more test cases needed and more places for bugs to hide. This guide explains the metric and shows how to keep it low.",
+      content: [
+        {
+          heading: "How cyclomatic complexity is calculated",
+          body: "Cyclomatic complexity was introduced by Thomas McCabe in 1976. It counts the number of linearly independent paths through a program's control flow graph. In practice, CC = 1 + the number of decision points: each if, else if, case, for, while, do, catch, ternary (?:), logical AND (&&), logical OR (||), and nullish coalescing (??) adds 1 to the count. A function with no branches has CC=1.",
+        },
+        {
+          heading: "Industry thresholds",
+          body: "Most static analysis tools use these thresholds: 1-5 is simple and low risk, 6-10 is moderate and should be reviewed, 11-20 is complex and hard to test thoroughly, and above 20 is very high risk — the function should be refactored. ESLint's complexity rule defaults to a maximum of 20. SonarQube recommends keeping CC under 15. The key insight is that each branch doubles the number of test cases needed for full coverage.",
+        },
+        {
+          heading: "How to reduce cyclomatic complexity",
+          body: "Extract conditional logic into named helper functions. Replace if-else chains with early returns (guard clauses). Use lookup objects or Maps instead of switch statements. Replace complex boolean expressions with well-named variables. Apply the strategy pattern for behavior that varies by type. Each refactoring should make individual functions simpler and more testable without adding overall complexity.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is a good cyclomatic complexity score?",
+          answer:
+            "Under 10 per function is generally considered good. 1-5 is simple and easy to test. 6-10 is moderate. Above 10 indicates the function is complex and should be refactored into smaller pieces. ESLint defaults to flagging functions with CC > 20.",
+        },
+        {
+          question:
+            "Does cyclomatic complexity apply to all programming languages?",
+          answer:
+            "Yes. Cyclomatic complexity is language-agnostic — it measures control flow, not syntax. Every language has if statements, loops, and logical operators. The thresholds (under 10 = good) apply universally. This tool analyzes JavaScript and TypeScript specifically.",
+        },
+        {
+          question: "How is cyclomatic complexity related to test coverage?",
+          answer:
+            "A function with CC=N requires at minimum N test cases to achieve full branch coverage. A function with CC=15 needs at least 15 tests to cover every path. This is why high-complexity functions are expensive to test thoroughly and prone to undertested edge cases.",
+        },
+      ],
+      keywords: [
+        "cyclomatic complexity",
+        "mccabe complexity",
+        "code complexity metric",
+        "cyclomatic complexity explained",
+        "reduce cyclomatic complexity",
+        "code complexity guide",
+      ],
+      parentToolSlug: "code-complexity-analyzer",
+      parentToolName: "Code Complexity Analyzer",
+    },
+    {
+      slug: "cognitive-complexity-guide",
+      title: "Cognitive Complexity Guide",
+      metaTitle:
+        "Cognitive Complexity Explained — SonarSource Metric for Code Readability",
+      metaDescription:
+        "Learn about cognitive complexity, the SonarSource metric that measures how hard code is to understand. Nesting penalties, thresholds, and refactoring tips.",
+      h1: "Cognitive Complexity — Measuring Code Understandability",
+      intro:
+        "Cognitive complexity measures how difficult code is for a human to understand. Unlike cyclomatic complexity, it penalizes deeply nested structures more heavily — reflecting the real mental effort needed to follow complex code.",
+      content: [
+        {
+          heading: "How cognitive complexity differs from cyclomatic",
+          body: "Cyclomatic complexity treats all decision points equally — an if at the top level counts the same as an if nested 5 levels deep. Cognitive complexity adds nesting penalties: a nested if contributes more to the score than a flat one because it is genuinely harder to understand. Additionally, else if does not increment nesting (it continues a chain), while else does increment (it adds a new mental branch). This makes cognitive complexity a better proxy for human readability.",
+        },
+        {
+          heading: "Scoring rules",
+          body: "Cognitive complexity increments for breaks in linear flow: if, else if, else, for, while, do, switch, catch, ternary, and logical operators (&&, ||). For nesting structures (if, for, while, do, switch, catch), a nesting penalty equal to the current nesting depth is added on top of the base increment. So a deeply nested if might add 1 (base) + 4 (nesting) = 5 to the total, while a top-level if adds just 1.",
+        },
+        {
+          heading: "Reducing cognitive complexity",
+          body: "Use guard clauses (early returns) to eliminate nesting. Extract nested blocks into well-named helper functions — the function call adds 0 cognitive complexity while the nested block it replaces may have added 5+. Replace complex boolean conditions with named boolean variables. Avoid deep callback nesting with async/await. The goal is flat, linear code that reads top-to-bottom without requiring the reader to maintain a mental stack.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is a good cognitive complexity score?",
+          answer:
+            "SonarSource recommends keeping cognitive complexity under 15 per function. Under 8 is easy to understand. 9-15 needs attention. Above 15 is difficult to follow and should be refactored. Above 25 is extremely hard to understand and maintain.",
+        },
+        {
+          question: "Why does nesting increase cognitive complexity more?",
+          answer:
+            "Each level of nesting requires the reader to hold more context in their mental working memory. Understanding code at nesting depth 5 means simultaneously tracking 5 conditional states. This cognitive load grows non-linearly, which the nesting penalty reflects.",
+        },
+        {
+          question: "Is cognitive complexity better than cyclomatic complexity?",
+          answer:
+            "They measure different things. Cyclomatic complexity tells you how many test cases you need (testability). Cognitive complexity tells you how hard the code is to understand (readability). Both are useful — DevBolt shows both metrics so you can identify functions that are hard to test AND hard to read.",
+        },
+      ],
+      keywords: [
+        "cognitive complexity",
+        "sonarsource cognitive complexity",
+        "code readability metric",
+        "cognitive complexity explained",
+        "nesting complexity",
+        "code understandability",
+      ],
+      parentToolSlug: "code-complexity-analyzer",
+      parentToolName: "Code Complexity Analyzer",
+    },
+    {
+      slug: "ai-code-quality",
+      title: "AI-Generated Code Quality Checker",
+      metaTitle:
+        "AI-Generated Code Quality — Check Vibe Coding Output for Complexity Issues",
+      metaDescription:
+        "Check AI-generated code (ChatGPT, Copilot, Claude, Cursor) for complexity issues. Detect deeply nested logic, long functions, and maintainability problems in vibe-coded projects.",
+      h1: "AI-Generated Code Quality Checker — Is Your Vibe Code Maintainable?",
+      intro:
+        "AI coding tools generate code fast, but fast does not mean maintainable. Paste AI-generated code here to check for excessive complexity, deep nesting, and functions that will be hard to test and debug.",
+      content: [
+        {
+          heading: "Why AI-generated code tends to be complex",
+          body: "AI code generators optimize for correctness in a single generation, not for long-term maintainability. Studies show 45% of AI-generated code contains quality issues (Veracode 2025). Common patterns: overly long functions that handle multiple responsibilities, deeply nested if-else chains instead of guard clauses, switch statements that should be lookup tables, and copy-pasted logic instead of shared helpers. The code works, but accumulates technical debt quickly.",
+        },
+        {
+          heading: "What to check in AI-generated code",
+          body: "Run any AI-generated function through this analyzer and look for: cyclomatic complexity above 10 (too many branches to test easily), cognitive complexity above 15 (too hard to read during code review), nesting depth above 3 (flatten with early returns), and functions longer than 30 lines (split into focused helpers). AI tools excel at generating boilerplate but struggle with architectural decisions — that is where human review adds the most value.",
+        },
+        {
+          heading: "Refactoring AI code for maintainability",
+          body: "After generating code with ChatGPT, Copilot, Claude, or Cursor, run it through this analyzer before committing. For high-complexity functions: ask the AI to refactor using guard clauses, extract validation logic into separate functions, replace nested conditionals with early returns, and split large functions into smaller units. Then analyze the refactored version to verify complexity decreased. This analyze-refactor-verify loop catches quality issues before they become tech debt.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is AI-generated code usually complex?",
+          answer:
+            "It varies, but AI tools tend to produce longer functions with more nesting than experienced developers would write. A 2025 Veracode study found 45% of AI-generated code has quality issues. The code often works correctly but is harder to maintain, test, and debug.",
+        },
+        {
+          question: "How do I improve code quality from ChatGPT or Copilot?",
+          answer:
+            "Paste the generated code into this analyzer, identify high-complexity functions, then ask the AI to refactor those specific functions. Prompt it to use guard clauses, extract helpers, and reduce nesting. Re-analyze after refactoring to verify improvement. The analyze-refactor-verify loop is key.",
+        },
+        {
+          question: "What complexity score is acceptable for production code?",
+          answer:
+            "Aim for cyclomatic complexity under 10 and cognitive complexity under 15 per function. Nesting should not exceed 3-4 levels. A maintainability grade of A or B (index 60+) indicates the code is production-ready from a complexity standpoint.",
+        },
+      ],
+      keywords: [
+        "ai generated code quality",
+        "vibe coding quality check",
+        "chatgpt code quality",
+        "copilot code review",
+        "ai code complexity",
+        "ai code maintainability",
+        "vibe coding security",
+      ],
+      parentToolSlug: "code-complexity-analyzer",
+      parentToolName: "Code Complexity Analyzer",
+    },
+  ],
 };

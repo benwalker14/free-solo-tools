@@ -119,6 +119,11 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: "DevBolt",
+      url: "https://devbolt.dev/about",
+    },
     publisher: {
       "@type": "Organization",
       name: "DevBolt",
@@ -163,6 +168,16 @@ export default async function BlogPostPage({
         {/* Header */}
         <header className="mb-12">
           <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+            <span>
+              By{" "}
+              <Link
+                href="/about"
+                className="font-medium text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400"
+              >
+                The DevBolt Team
+              </Link>
+            </span>
+            <span className="text-gray-300 dark:text-gray-600">·</span>
             <time dateTime={post.publishedAt}>
               {new Date(post.publishedAt).toLocaleDateString("en-US", {
                 year: "numeric",

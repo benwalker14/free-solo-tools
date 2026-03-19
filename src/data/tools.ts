@@ -830,4 +830,12 @@ export const tools: Tool[] = [
     icon: "SEC",
     category: "Inspect",
   },
+  {
+    title: "Code Complexity Analyzer",
+    description:
+      "Analyze JavaScript and TypeScript code for cyclomatic complexity, cognitive complexity, nesting depth, and maintainability index with per-function metrics",
+    href: "/tools/code-complexity-analyzer",
+    icon: "CCX",
+    category: "Inspect",
+  },
 ];
