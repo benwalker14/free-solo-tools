@@ -558,4 +558,20 @@ export const tools: Tool[] = [
     icon: "ZOD",
     category: "Generate",
   },
+  {
+    title: "Placeholder Image Generator",
+    description:
+      "Generate custom placeholder images for wireframes, mockups, and prototyping with custom dimensions and colors",
+    href: "/tools/placeholder-image",
+    icon: "PH",
+    category: "Generate",
+  },
+  {
+    title: "Nginx Config Generator",
+    description:
+      "Generate nginx configuration files — server blocks, SSL, reverse proxy, gzip, load balancing, and security headers",
+    href: "/tools/nginx-config",
+    icon: "NGX",
+    category: "Generate",
+  },
 ];

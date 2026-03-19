@@ -41,7 +41,7 @@ _None_
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
 - [x] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
 - [x] Add Docker Compose Validator (#62) — growing with container adoption
-- [ ] Add Placeholder Image Generator (#68) — generate placeholder images client-side
+- [x] Add Placeholder Image Generator (#68) — generate placeholder images client-side
 - [x] Add robots.txt Generator (#69) — complements Meta Tag Generator
 - [ ] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
 - [ ] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Placeholder Image Generator tool (#68) — canvas-based generator with 16 presets (social, devices, ads), custom dimensions/colors/text, auto font sizing, auto contrast text, download as PNG/JPEG/WebP/SVG, copy data URL, copy HTML tag
 - [x] Add Zod Schema Generator tool (#76) — generates Zod schemas from JSON with format inference (email, URL, UUID, datetime), integer detection, nested objects, .optional(), .strict(), coerce mode, .describe(), z.infer type alias, copy output
 - [x] Add OpenAPI/Swagger Validator tool (#75) — validates OpenAPI 3.x and Swagger 2.0 specs for structure, paths, operations, parameters, schemas, security, $ref resolution, and best practices. Supports JSON and YAML input, spec summary, issue filtering
 - [x] Add robots.txt Generator tool (#69) — form-based builder with 6 presets, 18 common bots (including AI bots), quick-add paths, multi-rule support, sitemap directives, crawl-delay, copy/download

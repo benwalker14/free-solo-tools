@@ -120,3 +120,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 68. robots.txt Generator (/tools/robots-generator)
 69. OpenAPI / Swagger Validator (/tools/openapi-validator)
 70. Zod Schema Generator (/tools/zod-schema)
+71. Placeholder Image Generator (/tools/placeholder-image)
