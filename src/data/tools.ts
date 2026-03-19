@@ -438,4 +438,12 @@ export const tools: Tool[] = [
     icon: "OG",
     category: "Inspect",
   },
+  {
+    title: "JS/TS Playground",
+    description:
+      "Run JavaScript and TypeScript code in your browser with instant console output",
+    href: "/tools/js-playground",
+    icon: "JS",
+    category: "Inspect",
+  },
 ];
