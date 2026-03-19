@@ -26,6 +26,12 @@ export default function Header() {
             Pricing
           </Link>
           <Link
+            href="/docs"
+            className="transition-colors hover:text-gray-900 dark:hover:text-white"
+          >
+            API
+          </Link>
+          <Link
             href="/about"
             className="transition-colors hover:text-gray-900 dark:hover:text-white"
           >

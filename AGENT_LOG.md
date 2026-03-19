@@ -4,6 +4,31 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Create Pro REST API endpoints
+
+- Created full Pro API infrastructure — Stripe-based auth, 8 tool endpoints, webhook, docs page
+- **API Auth Middleware** (`src/lib/api-auth.ts`): Validates `dvb_` prefixed API keys by searching Stripe customer metadata, checks for active subscription
+- **Stripe Webhook** (`src/app/api/webhook/route.ts`): Handles `checkout.session.completed` (generates API key, stores in customer metadata) and `customer.subscription.deleted` (revokes key). Supports webhook signature verification.
+- **API Key Retrieval** (`src/app/api/keys/route.ts`): GET endpoint that retrieves API key from Stripe session ID — used by checkout success page
+- **8 Tool API Endpoints** (all under `src/app/api/v1/tools/`):
+  1. `json-format` — format, validate, minify JSON with configurable indent
+  2. `base64` — encode/decode Base64 with UTF-8 support
+  3. `hash` — generate SHA-1/256/384/512/MD5 hashes in hex or base64; omit algorithm for all at once
+  4. `uuid` — generate 1–100 UUID v4 identifiers, optional uppercase
+  5. `url-encode` — URL encode/decode with component or full URI modes
+  6. `jwt-decode` — decode JWT header/payload/signature with expiry check and human-readable timestamps
+  7. `case-convert` — convert between camelCase, snake_case, kebab-case, PascalCase, CONSTANT, dot.case, Title Case, Sentence case, lower, UPPER; omit target for all
+  8. `epoch` — convert between Unix timestamps and ISO dates, auto-detect seconds vs milliseconds, "now" action
+- **API Docs Page** (`src/app/docs/`): Full documentation with authentication guide, base URL, error handling table, quick start examples (JavaScript + Python), and expandable endpoint cards with request body docs, curl examples, and example responses
+- **Checkout Success Update**: Now fetches and displays API key after purchase with copy button and link to API docs
+- **Header Nav**: Added "API" link to navigation bar
+- **Sitemap**: Added /docs to sitemap.xml
+- **Environment**: Added `STRIPE_WEBHOOK_SECRET` to `.env.example`
+- Updated CLAUDE.md (architecture section), TASK_BOARD.md
+- Build passes, lint clean (0 errors, 0 warnings)
+
+---
+
 ### 2026-03-18 | developer | Add cURL to Code Converter tool (#52)
 
 - Created `src/app/tools/curl-converter/CurlConverterTool.tsx` — interactive client component for converting cURL commands to code

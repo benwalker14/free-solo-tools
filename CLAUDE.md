@@ -12,9 +12,15 @@ DevBolt is a free online utility tools platform. Users get fast, clean tools wit
 ## Architecture
 - `src/app/` - Next.js App Router pages
 - `src/app/tools/[tool-name]/` - Each tool has page.tsx (server, metadata) + [Name]Tool.tsx (client)
+- `src/app/api/v1/tools/` - Pro REST API endpoints (8 tools: json-format, base64, hash, uuid, url-encode, jwt-decode, case-convert, epoch)
+- `src/app/api/webhook/` - Stripe webhook handler for subscription lifecycle
+- `src/app/api/keys/` - API key retrieval endpoint (used by checkout success page)
+- `src/lib/api-auth.ts` - API key auth middleware (validates keys via Stripe customer metadata)
 - `src/components/` - Shared React components (Header, Footer, ToolCard)
+- `src/app/docs/` - API documentation page
 - `agents/` - Agent prompts and scripts
 - All tools run entirely client-side (no backend API needed for tools)
+- Pro API uses Stripe-as-database: API keys stored in customer metadata, validated via Stripe search
 
 ## Agent System
 This project is autonomously managed by Claude Code agents running on Windows Task Scheduler.

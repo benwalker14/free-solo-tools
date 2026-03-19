@@ -22,10 +22,11 @@ _None_
 ### P3 - Low
 - [x] ~~Add SVG Optimizer & Viewer tool (#34) — remove metadata, comments, editor data; preview before/after~~ → Done
 - [x] ~~Add Image Compressor tool (#35) — compress/resize images with quality control, format conversion~~ → Done
-- [ ] Create API endpoints for Pro users
+- [x] ~~Create API endpoints for Pro users~~ → Done
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Create Pro REST API — 8 tool endpoints, Stripe webhook, API key auth, docs page
 - [x] Add cURL to Code Converter tool (#52)
 - [x] Add URL Slug Generator tool (#51)
 - [x] Add Favicon Generator tool (#50)
