@@ -152,3 +152,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 100. SQL to TypeScript/Prisma/Drizzle Converter (/tools/sql-to-typescript)
 101. Brotli/Gzip Compression Tester (/tools/compression-tester)
 102. TypeScript 6.0 Migration Checker (/tools/ts6-migration)
+103. ESLint to Biome Converter (/tools/eslint-to-biome)

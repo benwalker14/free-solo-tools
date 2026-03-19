@@ -814,4 +814,12 @@ export const tools: Tool[] = [
     icon: "TS6",
     category: "Inspect",
   },
+  {
+    title: "ESLint to Biome Converter",
+    description:
+      "Convert your ESLint config to Biome — maps 100+ rules from core, TypeScript, React, JSX-A11y, and import plugins to biome.json",
+    href: "/tools/eslint-to-biome",
+    icon: "BIO",
+    category: "Convert",
+  },
 ];

@@ -4961,4 +4961,183 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "TypeScript 6.0 Migration Checker",
     },
   ],
+  "eslint-to-biome": [
+    {
+      slug: "biome-migration-guide",
+      title: "Biome Migration Guide",
+      metaTitle: "Biome Migration Guide — Complete ESLint to Biome Walkthrough | DevBolt",
+      metaDescription:
+        "Step-by-step guide to migrate from ESLint and Prettier to Biome. Covers config conversion, CI/CD updates, editor setup, and team rollout strategy.",
+      h1: "Complete ESLint to Biome Migration Guide",
+      intro:
+        "Biome replaces both ESLint and Prettier with a single, fast tool. This guide walks through every step of migration — from converting your config to updating CI pipelines and editor extensions.",
+      content: [
+        {
+          heading: "Why migrate to Biome?",
+          body: "Biome is 20-100x faster than ESLint because it is written in Rust and processes files in parallel. It combines linting, formatting, and import sorting in a single tool, eliminating the need for Prettier, eslint-config-prettier, and eslint-plugin-import. A single biome.json replaces .eslintrc, .prettierrc, and .editorconfig. Biome v2 added type-aware linting, closing the last major gap with TypeScript-ESLint.",
+        },
+        {
+          heading: "Step 1: Generate biome.json",
+          body: "Use the converter above to paste your .eslintrc.json and generate a biome.json. Review the warnings tab for rules that have no Biome equivalent — you may need to accept slightly different behavior or add Biome-specific rules. Save the output as biome.json in your project root.",
+        },
+        {
+          heading: "Step 2: Install and run Biome",
+          body: "Install Biome as a dev dependency: npm install --save-dev --save-exact @biomejs/biome. Run npx biome check --write . to lint and format your entire codebase. Review the changes, then commit. The --write flag auto-fixes all fixable issues.",
+        },
+        {
+          heading: "Step 3: Remove ESLint and Prettier",
+          body: "Uninstall ESLint, Prettier, and all related plugins: npm uninstall eslint prettier eslint-config-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-import. Delete .eslintrc.*, .prettierrc, .prettierignore, and .eslintignore. Update package.json scripts to use biome check instead of eslint and prettier.",
+        },
+        {
+          heading: "Step 4: Update CI/CD and editors",
+          body: "Replace ESLint and Prettier steps in your CI pipeline with npx biome ci . (the ci command fails on any issue, unlike check). Install the Biome VS Code extension (biomejs.biome) and disable the ESLint and Prettier extensions. Configure format-on-save to use Biome. For JetBrains IDEs, install the Biome plugin from the marketplace.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does Biome support all ESLint rules?",
+          answer:
+            "No. Biome implements 200+ rules that cover the most common ESLint, TypeScript-ESLint, React, JSX-A11y, and import rules. Some niche rules (no-restricted-syntax, no-magic-numbers) have no equivalent. Check the Biome docs for the full rule list.",
+        },
+        {
+          question: "Can I use Biome alongside ESLint?",
+          answer:
+            "Yes, but it is not recommended long-term. You can run both during a gradual migration by disabling overlapping rules in ESLint. Once you have verified Biome catches everything you need, remove ESLint entirely for maximum speed.",
+        },
+        {
+          question: "Is Biome stable for production use?",
+          answer:
+            "Yes. Biome v2 is production-ready and used by major projects. It follows semantic versioning and has a stable rule set. The formatter produces output nearly identical to Prettier.",
+        },
+      ],
+      keywords: [
+        "biome migration guide",
+        "eslint to biome migration",
+        "migrate eslint to biome",
+        "biome setup guide",
+        "replace eslint with biome",
+        "biome v2 migration",
+      ],
+      parentToolSlug: "eslint-to-biome",
+      parentToolName: "ESLint to Biome Converter",
+    },
+    {
+      slug: "biome-vs-eslint",
+      title: "Biome vs ESLint Comparison",
+      metaTitle: "Biome vs ESLint 2026 — Performance, Features, and Rule Coverage | DevBolt",
+      metaDescription:
+        "Compare Biome and ESLint: performance benchmarks, rule coverage, formatting, TypeScript support, and ecosystem. Which linter should you choose in 2026?",
+      h1: "Biome vs ESLint: Complete Comparison",
+      intro:
+        "Biome and ESLint take fundamentally different approaches to JavaScript/TypeScript linting. This comparison covers performance, rule coverage, formatting, ecosystem, and when to choose each tool.",
+      content: [
+        {
+          heading: "Performance",
+          body: "Biome is written in Rust and processes files in parallel, making it 20-100x faster than ESLint on large codebases. A project with 10,000 TypeScript files that takes ESLint 45 seconds to lint finishes in under 1 second with Biome. This difference is transformative for CI pipelines and developer experience. ESLint 9 improved performance with flat config, but the architecture limits further gains.",
+        },
+        {
+          heading: "Rule coverage",
+          body: "ESLint has the largest rule ecosystem through plugins — thousands of rules across hundreds of plugins. Biome implements 200+ built-in rules covering core ESLint, TypeScript-ESLint, React, React Hooks, JSX-A11y, import, and Unicorn rules. Biome v2 added type-aware rules (previously only available in TypeScript-ESLint). For most projects, Biome covers 85-95% of the rules actually enabled.",
+        },
+        {
+          heading: "Formatting",
+          body: "Biome includes a built-in formatter that is 97% compatible with Prettier output. This eliminates the need for Prettier, eslint-config-prettier, and the conflicts between linting and formatting. ESLint deprecated its built-in formatting rules and recommends using Prettier separately, adding configuration complexity.",
+        },
+        {
+          heading: "Configuration",
+          body: "Biome uses a single biome.json file for linting, formatting, and import sorting. ESLint requires .eslintrc.* for linting, .prettierrc for formatting, and plugin configs for import sorting. ESLint 9 introduced flat config (eslint.config.js), which is simpler than the legacy format but still requires separate Prettier config.",
+        },
+        {
+          heading: "Ecosystem and plugins",
+          body: "ESLint wins on ecosystem breadth — plugins exist for nearly every framework and pattern. Biome has no plugin system yet, but its built-in rules cover the most widely-used plugins. If you depend on niche ESLint plugins (eslint-plugin-testing-library, eslint-plugin-tailwindcss), you may need to keep ESLint for those specific rules.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I switch from ESLint to Biome in 2026?",
+          answer:
+            "If you use a standard stack (TypeScript, React, Next.js), Biome covers most of your rules and is dramatically faster. If you rely on niche ESLint plugins with no Biome equivalent, you may want to wait or run both tools.",
+        },
+        {
+          question: "Does Biome support ESLint flat config?",
+          answer:
+            "Biome does not read eslint.config.js directly. You need to convert your config to biome.json format. This converter tool handles legacy .eslintrc configs — flat config support requires manual conversion of the rule objects.",
+        },
+        {
+          question: "Is Biome compatible with Prettier?",
+          answer:
+            "Biome's formatter is designed to produce output nearly identical to Prettier. You can use Biome as a drop-in Prettier replacement. There are minor formatting differences in edge cases, but they are rare.",
+        },
+      ],
+      keywords: [
+        "biome vs eslint",
+        "biome vs eslint comparison",
+        "biome or eslint",
+        "eslint alternative",
+        "biome linter review",
+        "biome vs eslint 2026",
+      ],
+      parentToolSlug: "eslint-to-biome",
+      parentToolName: "ESLint to Biome Converter",
+    },
+    {
+      slug: "biome-rule-mapping",
+      title: "ESLint to Biome Rule Mapping Reference",
+      metaTitle: "ESLint to Biome Rule Mapping — Complete Reference Table | DevBolt",
+      metaDescription:
+        "Complete mapping of ESLint rules to Biome equivalents. Covers core ESLint, TypeScript-ESLint, React, JSX-A11y, and import plugin rules with Biome group and name.",
+      h1: "ESLint to Biome Rule Mapping Reference",
+      intro:
+        "A complete reference of which ESLint rules map to which Biome rules. Use this table to manually verify your migration or to find the Biome equivalent of a specific ESLint rule.",
+      content: [
+        {
+          heading: "How Biome organizes rules",
+          body: "Biome groups rules into categories: correctness (bugs and errors), suspicious (likely mistakes), style (code style preferences), complexity (unnecessary complexity), performance (performance issues), security (security vulnerabilities), a11y (accessibility), and nursery (experimental rules). Each ESLint rule maps to one Biome group and rule name.",
+        },
+        {
+          heading: "Core ESLint rules",
+          body: "Most core ESLint recommended rules have Biome equivalents: no-unused-vars maps to correctness/noUnusedVariables, no-debugger to suspicious/noDebugger, prefer-const to style/useConst, no-eval to security/noGlobalEval. Formatting rules (indent, semi, quotes) are handled by Biome's formatter instead of linter rules.",
+        },
+        {
+          heading: "TypeScript-ESLint rules",
+          body: "Biome covers the most important TypeScript-ESLint rules: no-explicit-any (suspicious/noExplicitAny), no-unused-vars (correctness/noUnusedVariables), consistent-type-imports (style/useImportType), ban-types (complexity/noBannedTypes), no-non-null-assertion (style/noNonNullAssertion). Biome v2 added type-aware rules for deeper TypeScript analysis.",
+        },
+        {
+          heading: "React and JSX-A11y rules",
+          body: "Biome implements React Hooks rules (rules-of-hooks, exhaustive-deps), JSX rules (jsx-key, no-duplicate-props), and most JSX-A11y rules (alt-text, anchor-is-valid, aria-props, click-events-have-key-events). The react-hooks rules map to correctness/useHookAtTopLevel and correctness/useExhaustiveDependencies.",
+        },
+        {
+          heading: "Rules without Biome equivalents",
+          body: "Some popular ESLint rules have no Biome equivalent: no-console (use a custom ignore pattern), no-restricted-syntax (no equivalent), no-param-reassign (not implemented), eqeqeq (not implemented as a rule), and most eslint-plugin-testing-library rules. These gaps are typically filled by Biome's recommended rules catching the underlying issues differently.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How many ESLint rules does Biome support?",
+          answer:
+            "Biome implements 200+ rules that map to ESLint core, TypeScript-ESLint, React, JSX-A11y, import, and Unicorn rules. This converter maps 100+ of the most commonly enabled rules.",
+        },
+        {
+          question: "What happens to rules that have no Biome equivalent?",
+          answer:
+            "Rules without a Biome equivalent are listed in the warnings tab. You can either accept the gap, find a Biome-native alternative, or keep ESLint running alongside Biome for those specific rules during a gradual migration.",
+        },
+        {
+          question: "Does Biome have rules that ESLint does not?",
+          answer:
+            "Yes. Biome includes rules not found in standard ESLint, such as noAccumulatingSpread (performance), useOptionalChain (complexity), and noConstEnum (style). Running Biome recommended rules may catch issues that your ESLint config did not.",
+        },
+      ],
+      keywords: [
+        "eslint biome rule mapping",
+        "eslint to biome rules",
+        "biome rule reference",
+        "biome rule equivalent",
+        "eslint biome comparison table",
+        "biome rule list",
+      ],
+      parentToolSlug: "eslint-to-biome",
+      parentToolName: "ESLint to Biome Converter",
+    },
+  ],
 };
