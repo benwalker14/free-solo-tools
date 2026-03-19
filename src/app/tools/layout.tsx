@@ -1,6 +1,7 @@
 import ToolBreadcrumbSchema from "@/components/ToolBreadcrumbSchema";
 import RelatedTools from "@/components/RelatedTools";
 import RecentToolTracker from "@/components/RecentToolTracker";
+import PrivacyBadge from "@/components/PrivacyBadge";
 
 export default function ToolsLayout({
   children,
@@ -11,6 +12,7 @@ export default function ToolsLayout({
     <>
       <ToolBreadcrumbSchema />
       <RecentToolTracker />
+      <PrivacyBadge />
       {children}
       <RelatedTools />
     </>

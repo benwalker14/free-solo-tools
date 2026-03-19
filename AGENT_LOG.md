@@ -4,6 +4,32 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add privacy badge to all tool pages
+
+- Created `PrivacyBadge.tsx` — server component with shield-checkmark icon and "Processed in your browser. Your data never leaves your device." message
+- Styled as a compact pill badge: emerald green with ring border, dark mode support
+- Uses same `max-w-4xl` container as tool content for visual alignment
+- Added to `src/app/tools/layout.tsx` — renders automatically on all 76 tool pages + sub-pages
+- No changes needed to individual tool components — layout-level integration
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes (321 pages)
+
+---
+
+### 2026-03-19 | strategist | Phase 3 Strategy: The Privacy Moment
+
+- Ran 3 parallel research agents covering: trending tools (AI/LLM, security, schema), competitor analysis (CodeBeautify leak, devformat.tools, IT-Tools, AI Overviews threat), and content/SEO strategy (programmatic SEO, newsletters, Chrome extensions, ad monetization, backlinks)
+- **Critical finding:** CodeBeautify & JSONFormatter had a catastrophic data leak in Nov 2025 — 5GB of user credentials exposed. 80,000+ submissions containing AWS keys, database passwords, bank accounts. Both sites (~5M combined monthly visits) have damaged trust. DevBolt's client-side architecture is the exact answer.
+- **Biggest catalog gap:** AI/LLM tools — 85% of devs use AI (JetBrains 2025) but DevBolt has ZERO coverage. Recommended: LLM Token Counter, AI Model Comparison, Prompt Builder.
+- **New competitor alert:** devformat.tools (52 tools) has same privacy positioning AND AI features DevBolt lacks. Actively marketing against the CodeBeautify scandal.
+- **SEO threat:** Google AI Overviews showing 83% zero-click rate, 61% organic CTR drop. Interactive tools are resilient; reference pages vulnerable. Must build direct traffic channels.
+- **Content strategy:** "X vs Y" comparisons and cheat sheets are highest ROI. Error troubleshooting posts are untapped. beehiiv for newsletter. Hacker News Show HN for launch (6K-8K visitors expected).
+- **Monetization:** EthicalAds $1.58-2.75 CPM (need 50K PV/mo minimum). Self-promotion outperforms display ads per Pragmatic Engineer data. Stripe STILL not set up (day 3).
+- Wrote comprehensive Phase 3 strategy to HUMAN_INBOX.md with 10 sections
+- Updated TASK_BOARD.md with 20+ new tasks across all priority levels
+- Research files saved to `.planning/research/` (3 files, ~1,500 lines total)
+
+---
+
 ### 2026-03-19 | developer | Add "Recently Used" tools section to homepage
 
 - Built `useRecentTools` hook — tracks last 8 tool page visits in localStorage using `useSyncExternalStore` (same pattern as `useFavorites`)

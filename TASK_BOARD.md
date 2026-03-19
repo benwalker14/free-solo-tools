@@ -5,30 +5,37 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 ## In Progress
 
 
-
-
-
 ## To Do
 
 ### P0 - Critical
 - [x] Fix sitemap bug: add blog posts to `sitemap.xml` — 3 blog posts not discoverable by Google
-- [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this (HUMAN ACTION NEEDED)
+- [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this, day 3 (HUMAN ACTION NEEDED)
+- [ ] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
+- [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
 ### P1 - High (Growth & SEO)
 - [x] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
 - [x] Expand programmatic SEO sub-pages to 45 tools — from 26 → 126 indexed sub-pages
 - [x] Write 8 more blog posts targeting high-volume queries (12/12 done)
-- [ ] Apply to Carbon Ads or EthicalAds for developer-focused ad monetization (HUMAN ACTION NEEDED)
+- [ ] Apply to EthicalAds for developer-focused ad monetization — once 50K PV/mo reached (HUMAN ACTION NEEDED)
 - [x] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
 - [x] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
+- [ ] Add LLM Token Counter & Cost Calculator tool (#77) — biggest catalog gap, 85% of devs use AI. Client-side via gpt-tokenizer/js-tiktoken. Very high SEO potential.
+- [ ] Add AI Model Comparison Card tool (#78) — interactive table of AI models (pricing, context window, capabilities). Captures "GPT vs Claude" searches. Low effort.
+- [ ] Add Git Command Builder & Cheat Sheet tool (#79) — ZERO git coverage currently. Interactive command builder + visual cheat sheet. High long-tail SEO.
+- [ ] Write 10 "X vs Y" comparison blog posts — JSON vs YAML, Flexbox vs Grid, SHA-256 vs SHA-512, etc. Highest ROI content format.
+- [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
+- [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
+- [ ] Submit DevBolt to 10-15 high-DA directories — Product Hunt, AlternativeTo, StackShare, DevHunt, Awesome Lists, SaaSHub (HUMAN ACTION NEEDED)
+- [ ] Post Show HN launch — after privacy post + badges are live. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
 
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [x] Add global command palette (Ctrl+K / Cmd+K) — instant tool search from any page, keyboard navigation, 76 tools searchable
 - [x] Add "Recently Used" tools section to homepage — auto-tracks tool visits via localStorage, shows last 8 tools above favorites, clear button, excludes favorited tools to avoid duplication
-- [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages
+- [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages (HUMAN ACTION NEEDED)
 - [x] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
 - [x] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
 - [x] Add README Generator tool (#67) — 20K+/mo, GitHub README builder
@@ -36,12 +43,19 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
 - [x] Add "Related Tools" section to all tool pages — auto-generated cross-links by category, improves internal linking and tool discovery
-- [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 - [x] Update homepage tagline to emphasize privacy-first positioning
 - [x] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
 - [x] Add "Free Developer Tools" landing page — optimize for "free developer tools online" head term
 - [x] Add Dockerfile Validator tool (#73) — Docker at 71.1% adoption, huge jump in 2025
 - [x] Add Kubernetes YAML Validator tool (#74) — K8s at 28.5%, growing
+- [ ] Add CSP Header Builder tool (#80) — visual Content Security Policy builder with framework presets. #1 recommended security header, notoriously hard to write.
+- [ ] Add AI Prompt Template Builder tool (#81) — structured prompt builder with multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
+- [ ] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
+- [ ] Create 5 standalone cheat sheet pages — /cheatsheets/regex, git, docker, css-selectors, markdown. Evergreen bookmarkable references.
+- [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format (JSON/Base64/JWT/CSV/YAML), suggest right tool. UX differentiator no web competitor has.
+- [ ] Expand programmatic SEO — converter direction pages, comparison pages, error pages. Target 300+ total indexed sub-pages.
+- [ ] Set up content syndication — cross-post blog to Dev.to and Hashnode with canonical URLs (300-500% reach increase)
+- [ ] Write 5 error troubleshooting posts — "How to Fix Invalid JSON Error", "How to Fix CORS Error", etc. Natural funnel to tools.
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
@@ -56,8 +70,11 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
 - [x] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
+- [ ] Add HTTP Request Builder tool (#83) — lightweight Postman alternative. Visual builder → cURL/Python/JS/Go/Rust code. Reverse of cURL to Code (#52).
+- [ ] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Zod types. TypeScript is #1 on GitHub.
 
 ## Done
+- [x] Add privacy badge/indicator to all tool pages — emerald shield badge with "Processed in your browser. Your data never leaves your device." text, wired via tools layout so it appears on every tool page automatically. Pill-style design with dark mode support.
 - [x] Fix branding, security headers, viewport, cleanup — favicon FS→DB, security headers in next.config.ts (X-Content-Type-Options, Referrer-Policy, Permissions-Policy), /tools→/ redirect, viewport export, removed 5 unused scaffolding SVGs
 - [x] Add "Related Tools" section to all 76 tool pages — auto-generated cross-links showing 4 tools from the same category (Format/Convert/Generate/Inspect), deterministic selection based on slug hash, compact card design with icons and descriptions, wired via tools layout so it appears on every tool page and subpage automatically. Also committed BreadcrumbList JSON-LD schema for all tool pages
 - [x] Add global command palette (Ctrl+K / Cmd+K) — modal search overlay available on every page, searches all 76 tools by title/description/category, keyboard navigation (arrow keys + Enter), accessible ARIA roles, category badges, ESC to close, search button in header with platform-aware shortcut hint
