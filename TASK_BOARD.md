@@ -27,7 +27,7 @@ _None_
 - [x] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
 - [x] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
 - [x] Add README Generator tool (#67) — 20K+/mo, GitHub README builder
-- [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
+- [x] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Regex Generator tool (#57) — 60+ curated patterns searchable by English description, visual regex composer with building blocks, live tester with match highlighting, pattern breakdown/explanation, flags toggle, 10 categories (Email, URLs, IP/Network, Dates, Numbers, Text, Code, Validation, Files, Data Formats)
 - [x] Add "Free Developer Tools" landing page at /free-tools — SEO landing page targeting "free developer tools online" head term, 75+ tools by category, FAQ with schema, value props, OG image, sitemap entry
 - [x] Update homepage tagline to privacy-first positioning — "75+ Developer Tools. Zero Tracking." with client-side/no-cookies messaging
 - [x] Add ASCII Art Text Generator (#70) — 7 font styles (Banner, Block, Shadow, Slim, Star, Dot, Lines), comment wrapping (C/JS, Python/Shell, HTML, Box), font preview grid, copy output, 30-char input, all client-side

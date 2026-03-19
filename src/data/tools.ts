@@ -598,4 +598,12 @@ export const tools: Tool[] = [
     icon: "Aa",
     category: "Generate",
   },
+  {
+    title: "Regex Generator",
+    description:
+      "Generate regex patterns by describing what you need — 60+ curated patterns, visual composer, live tester, and pattern explanations",
+    href: "/tools/regex-generator",
+    icon: "R.*",
+    category: "Generate",
+  },
 ];

@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Regex Generator tool (#57)
+
+- Built Regex Generator at `/tools/regex-generator` — P2 task, described as "strong differentiator"
+- **Three modes of use** via tabbed interface:
+  - **Search Patterns** — type what you need in plain English (e.g., "email address", "ip address"), fuzzy keyword matching returns ranked results from curated library. Popular search quick-picks for common queries
+  - **Pattern Library** — browse 60+ patterns across 10 categories (expandable accordions): Email & Contact, URLs & Web, IP & Network, Dates & Times, Numbers & Currency, Strings & Text, Code & Dev, Validation, Files & Paths, Data Formats
+  - **Regex Composer** — click-to-append building blocks organized by type: Characters, Quantifiers, Anchors & Boundaries, Groups & Lookaround, Escapes
+- **Pattern editor** with regex input field, flag toggles (g, i, m, s)
+- **Live tester** with match highlighting (yellow marks), match count, match details with capture groups and indices
+- **Pattern Breakdown** — auto-explains each token in the regex (e.g., `\d` → Digit, `+` → 1 or more)
+- **60+ curated patterns** including: email (basic + strict), US/international phone, URLs, domains, slugs, query params, IPv4/IPv6, MAC, CIDR, ports, dates (ISO/US/EU), times (12h/24h), ISO datetime, integers, decimals, currencies (USD/EUR), percentages, hex numbers, quoted strings, duplicate words, HTML tags/comments, hex colors, CSS selectors, JS variables, imports, TODO comments, semver, UUID, JSON keys, env vars, usernames, strong passwords, credit cards, SSN, ZIP/postal codes, file paths (Unix/Windows), image files, JWT, base64, YAML, markdown links/headings, CSV fields
+- Registered in tools.ts as category "Generate" with icon "R.*"
+- Complements existing Regex Tester — tester is for testing known patterns, generator is for finding/building patterns
+- Updated CLAUDE.md (tool #76), TASK_BOARD.md (marked done)
+- Build passes, all pages render correctly
+
+---
+
 ### 2026-03-18 | developer | Add "Free Developer Tools" landing page + update homepage tagline
 
 - **Built SEO landing page** at `/free-tools` targeting "free developer tools online" head term
