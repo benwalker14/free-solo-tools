@@ -4,6 +4,29 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON Mock Data Generator tool (#64)
+
+- Built JSON Mock Data Generator at `/tools/json-mock-generator` — P2 task, 25K+/mo search volume
+- **30+ field types** across 8 categories:
+  - Person: First Name, Last Name, Full Name, Email, Phone, Username, Avatar, Company, Job Title
+  - Location: Street, City, State, Zip, Country, Latitude, Longitude
+  - ID: UUID, ObjectId (Mongo), Auto Increment
+  - Number: Integer, Float, Price, Boolean
+  - Date/Time: Date, DateTime (ISO), Unix Timestamp
+  - Network: IPv4, IPv6, URL, Domain
+  - Text: Color, Hex Color, Paragraph, Sentence, Word, Slug
+  - Other: Custom List (user-defined enums), Null
+- **6 preset templates**: Users, Products, Orders, Blog Posts, Todos, Addresses
+- **Schema builder UI**: add/remove/reorder fields, set field names and types, custom list values
+- **Options**: 1–500 rows, compact/pretty output, array or object root with custom key
+- **Features**: copy to clipboard, download .json, Ctrl+Enter shortcut, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `JsonMockGeneratorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #64), `CLAUDE.md`, `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add Date Format Tester tool (#63)
 
 - Built Date Format Tester at `/tools/date-format-tester` — P2 task, 50K+/mo search volume

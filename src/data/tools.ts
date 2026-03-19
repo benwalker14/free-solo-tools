@@ -502,4 +502,12 @@ export const tools: Tool[] = [
     icon: "DT",
     category: "Inspect",
   },
+  {
+    title: "JSON Mock Data Generator",
+    description:
+      "Generate realistic fake JSON data for API testing with 30+ field types, preset templates, and schema builder",
+    href: "/tools/json-mock-generator",
+    icon: "MCK",
+    category: "Generate",
+  },
 ];
