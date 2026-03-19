@@ -17,7 +17,7 @@ _None_
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 
 ### P2 - Medium (Content & Tools)
-- [ ] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
+- [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
@@ -30,6 +30,7 @@ _None_
 - [ ] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [x] Add Docker Compose Validator (#62) — validate/format compose files with service, network, volume, dependency checks
 - [x] Add Encode/Decode Multi-tool (#59) — Base64, Base32, Hex, Binary, URL, HTML all-in-one with format switcher
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — 4-way conversion between TOML, JSON, and YAML with sample data

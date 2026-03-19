@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add /blog section with initial guides
+
+- Created `src/data/blog-posts.ts` — blog post metadata (slug, title, description, date, readTime, tags, relatedTools)
+- Created `src/app/blog/page.tsx` — blog index page with SEO metadata, card layout for posts with date, read time, tags
+- Created `src/app/blog/[slug]/page.tsx` — dynamic blog post page with:
+  - `generateStaticParams()` for static generation of all posts
+  - `generateMetadata()` for per-post SEO (Open Graph, canonical URLs)
+  - Article JSON-LD structured data for search engines
+  - Breadcrumb navigation, related tools section, back-to-blog link
+- Created 3 initial blog posts as React components:
+  - **JWT Tutorial** (`JwtTutorial.tsx`) — JWT structure, standard claims, auth flow, security pitfalls (localStorage, alg:none, no-expiry, sensitive payload), use cases, links to JWT Decoder/Base64/Hash tools
+  - **Regex Cheat Sheet** (`RegexCheatSheet.tsx`) — metacharacters, character classes, quantifiers, anchors, groups/backreferences, lookahead/lookbehind, flags, 7 common patterns (email, URL, IPv4, date, hex color, password, HTML tags), tips, links to Regex Tester tool
+  - **cURL Guide** (`CurlGuide.tsx`) — essential flags table, GET/POST/PUT/DELETE examples, auth patterns (bearer, basic, API key), file upload/download, debugging recipes (verbose, status code, timing), useful recipes (cookies, retries), links to cURL Converter/JSON Formatter/URL Parser tools
+- Added "Blog" link to Header navigation (between API and About)
+- Added "Blog" link to Footer navigation
+- Updated TASK_BOARD.md — marked blog task as done
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add Docker Compose Validator (#62)
 
 - Created `src/app/tools/docker-compose/page.tsx` — server component with SEO metadata targeting "Docker Compose validator", "docker-compose.yml validator", "Docker Compose linter", "compose file validator"

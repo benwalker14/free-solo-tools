@@ -32,6 +32,12 @@ export default function Header() {
             API
           </Link>
           <Link
+            href="/blog"
+            className="transition-colors hover:text-gray-900 dark:hover:text-white"
+          >
+            Blog
+          </Link>
+          <Link
             href="/about"
             className="transition-colors hover:text-gray-900 dark:hover:text-white"
           >

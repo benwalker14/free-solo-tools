@@ -16,6 +16,12 @@ export default function Footer() {
               About
             </Link>
             <Link
+              href="/blog"
+              className="transition-colors hover:text-gray-700 dark:hover:text-gray-300"
+            >
+              Blog
+            </Link>
+            <Link
               href="/privacy"
               className="transition-colors hover:text-gray-700 dark:hover:text-gray-300"
             >
