@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   name: "TypeScript 6.0 Migration Checker",
   url: "https://devbolt.dev/tools/ts6-migration",
   description:
@@ -38,6 +38,9 @@ const jsonLd = {
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Any",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  isAccessibleForFree: true,
+  browserRequirements: "Any modern web browser",
+  creator: { "@type": "Organization", name: "DevBolt", url: "https://devbolt.dev" },
 };
 
 export default function TS6MigrationCheckerPage() {

@@ -27,15 +27,18 @@ export default function SubpageLayout({ data, children }: SubpageLayoutProps) {
 
   const webAppJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: data.title,
     url: `https://devbolt.dev/tools/${data.parentToolSlug}/${data.slug}`,
     description: data.metaDescription,
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Any",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    isAccessibleForFree: true,
+    browserRequirements: "Any modern web browser",
+    creator: { "@type": "Organization", name: "DevBolt", url: "https://devbolt.dev" },
     isPartOf: {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       name: data.parentToolName,
       url: `https://devbolt.dev/tools/${data.parentToolSlug}`,
     },

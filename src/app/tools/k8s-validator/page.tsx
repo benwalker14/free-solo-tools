@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   name: "Kubernetes YAML Validator",
   url: "https://devbolt.dev/tools/k8s-validator",
   description:
@@ -37,6 +37,9 @@ const jsonLd = {
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Any",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  isAccessibleForFree: true,
+  browserRequirements: "Any modern web browser",
+  creator: { "@type": "Organization", name: "DevBolt", url: "https://devbolt.dev" },
 };
 
 export default function KubernetesValidatorPage() {

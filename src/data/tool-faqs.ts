@@ -1,9 +1,14 @@
+import { toolFaqsBatch2 } from "./tool-faqs-batch2";
+import { toolFaqsBatch3 } from "./tool-faqs-batch3";
+import { toolFaqsBatch4 } from "./tool-faqs-batch4";
+import { toolFaqsBatch5 } from "./tool-faqs-batch5";
+
 export interface FAQ {
   question: string;
   answer: string;
 }
 
-export const toolFaqs: Record<string, FAQ[]> = {
+const batch1: Record<string, FAQ[]> = {
   "json-formatter": [
     {
       question: "How do I format JSON online?",
@@ -378,4 +383,12 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "chmod 644 (rw-r--r--) allows the owner to read and write, while group and others can only read. This is the standard permission for regular files like HTML pages, images, configuration files, and documents. chmod 755 (rwxr-xr-x) adds execute permission for all users, making it suitable for executable scripts, programs, and directories. Directories require execute permission for users to list their contents and traverse into them. A common Linux setup uses 755 for directories and 644 for files. Web servers typically need 755 on document root directories and 644 on static files.",
     },
   ],
+};
+
+export const toolFaqs: Record<string, FAQ[]> = {
+  ...batch1,
+  ...toolFaqsBatch2,
+  ...toolFaqsBatch3,
+  ...toolFaqsBatch4,
+  ...toolFaqsBatch5,
 };

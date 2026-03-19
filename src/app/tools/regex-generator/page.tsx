@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   name: "Regex Generator",
   url: "https://devbolt.dev/tools/regex-generator",
   description:

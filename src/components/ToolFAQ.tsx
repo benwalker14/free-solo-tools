@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { toolFaqs } from "@/data/tool-faqs";
 
 export default function ToolFAQ() {
   const pathname = usePathname();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (!pathname || !pathname.startsWith("/tools/")) return null;
 
@@ -42,17 +40,11 @@ export default function ToolFAQ() {
       </h2>
       <div className="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-900">
         {faqs.map((faq, i) => (
-          <div key={i}>
-            <button
-              onClick={() => setOpenIndex(openIndex === i ? null : i)}
-              className="flex w-full items-center justify-between px-5 py-4 text-left text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-white dark:hover:bg-gray-800/50"
-              aria-expanded={openIndex === i}
-            >
+          <details key={i} className="group" open={i === 0}>
+            <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-left text-sm font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-white dark:hover:bg-gray-800/50 [&::-webkit-details-marker]:hidden list-none">
               <span>{faq.question}</span>
               <svg
-                className={`ml-3 h-4 w-4 shrink-0 text-gray-400 transition-transform duration-200 ${
-                  openIndex === i ? "rotate-180" : ""
-                }`}
+                className="ml-3 h-4 w-4 shrink-0 text-gray-400 transition-transform duration-200 group-open:rotate-180"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -64,13 +56,11 @@ export default function ToolFAQ() {
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
-            </button>
-            {openIndex === i && (
-              <div className="px-5 pb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                {faq.answer}
-              </div>
-            )}
-          </div>
+            </summary>
+            <div className="px-5 pb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              {faq.answer}
+            </div>
+          </details>
         ))}
       </div>
     </section>

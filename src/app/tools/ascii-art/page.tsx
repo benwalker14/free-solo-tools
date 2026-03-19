@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   name: "ASCII Art Text Generator",
   url: "https://devbolt.dev/tools/ascii-art",
   description:

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   name: "File Hash Calculator",
   url: "https://devbolt.dev/tools/file-hash",
   description:

@@ -4,6 +4,30 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Expand FAQ sections to all 103 tools + SoftwareApplication schema upgrade
+
+- **FAQ expansion: 20 → 103 tools (313 total questions)**
+  - Added FAQ data for remaining 83 tools in 4 new batch files (tool-faqs-batch2 through batch5)
+  - Each tool has 3 FAQs optimized for Google AI Overview citation
+  - Answers start with direct answer, 100-160 words, factual and technical
+  - Restructured tool-faqs.ts to import and merge all 5 batches
+- **ToolFAQ component SEO improvement**
+  - Rewrote from React useState accordion to native HTML `<details>/<summary>` elements
+  - FAQ answers now always in DOM even when collapsed → fully crawlable by search engines
+  - Removed unused `useState` import, kept `usePathname` for slug detection
+  - First FAQ auto-expanded via `open` attribute
+- **SoftwareApplication schema upgrade (all 103 tool pages)**
+  - Changed `"@type": "WebApplication"` → `"@type": "SoftwareApplication"` on all 103 page.tsx files
+  - Added `isAccessibleForFree: true` for rich snippet eligibility
+  - Added `browserRequirements: "Any modern web browser"`
+  - Added `creator: { "@type": "Organization", name: "DevBolt", url: "https://devbolt.dev" }`
+  - Updated SubpageLayout.tsx schema to match (SoftwareApplication + new fields)
+- **Schema coverage now: FAQPage + SoftwareApplication + BreadcrumbList on every tool page**
+- Build passes, lint passes, zero errors
+- Addresses P1 "Optimize tool pages for AI Overview citation" and P3 "SoftwareApplication schema" tasks
+
+---
+
 ### 2026-03-19 | developer | Add FAQ sections with FAQPage schema to top 20 tools
 
 - Built data-driven FAQ infrastructure for AI Overview citation optimization
