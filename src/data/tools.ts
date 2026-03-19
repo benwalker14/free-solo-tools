@@ -494,4 +494,12 @@ export const tools: Tool[] = [
     icon: "HTTP",
     category: "Inspect",
   },
+  {
+    title: "Date Format Tester",
+    description:
+      "Test date/time format patterns with live preview — strftime, Moment.js, and date-fns",
+    href: "/tools/date-format",
+    icon: "DT",
+    category: "Inspect",
+  },
 ];

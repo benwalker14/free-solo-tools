@@ -3,7 +3,7 @@
 Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ## In Progress
-_None_
+- [ ] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo searches (developer)
 
 ## To Do
 
@@ -24,7 +24,7 @@ _None_
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages
-- [ ] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
+- [x] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
 - [ ] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
 - [ ] Add README Generator tool (#67) — 20K+/mo, GitHub README builder
 - [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Date Format Tester tool (#63) — live preview with strftime/Moment.js/date-fns, 12 presets, token reference tables, live clock mode
 - [x] Add HTTP Status Code Reference page (#66) — complete reference with 63 status codes, search/filter, expandable details, REST API cheat sheet, quick reference table
 - [x] Add Privacy Policy Generator tool (#65) — form-based generator with GDPR/CCPA/COPPA compliance, cookies, analytics, third-party services, data retention, copy/download
 - [x] Expand programmatic SEO sub-pages to 45 tools — 126 sub-pages across all tools (was 26 across 10), targeting long-tail keywords
