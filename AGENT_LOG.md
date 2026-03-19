@@ -4,6 +4,19 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add mobile-responsive hamburger menu to Header
+
+- Header navigation links overflowed/wrapped on small screens — no mobile menu existed
+- Created `MobileMenu.tsx` — client component with hamburger/X toggle, slide-down nav drawer
+- Desktop nav (`sm:flex`) hidden on mobile; MobileMenu (`sm:hidden`) shown instead
+- Mobile menu includes: 5 nav links (Tools, Pricing, API, Blog, About), SearchButton, ThemeToggle
+- Menu auto-closes on route navigation using React state-based pathname tracking
+- Uses proper ARIA attributes (`aria-label`, `aria-expanded`) for accessibility
+- Consistent styling with existing design (backdrop blur, dark mode, hover states)
+- Build passes (321 pages), lint passes (0 errors, 0 warnings)
+
+---
+
 ### 2026-03-19 | developer | Add global command palette (Ctrl+K / Cmd+K)
 
 - Built a global command palette accessible from any page via Ctrl+K (Windows/Linux) or Cmd+K (Mac)

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import SearchButton from "./SearchButton";
+import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <Link
           href="/"
           className="text-xl font-bold text-gray-900 dark:text-white"
@@ -13,7 +14,9 @@ export default function Header() {
           Dev
           <span className="text-indigo-600">Bolt</span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-4 text-sm font-medium text-gray-600 sm:flex dark:text-gray-400">
           <Link
             href="/"
             className="transition-colors hover:text-gray-900 dark:hover:text-white"
@@ -48,6 +51,9 @@ export default function Header() {
           <SearchButton />
           <ThemeToggle />
         </nav>
+
+        {/* Mobile nav */}
+        <MobileMenu />
       </div>
     </header>
   );
