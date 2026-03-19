@@ -4639,4 +4639,164 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "SQL to TypeScript/Prisma/Drizzle",
     },
   ],
+  "compression-tester": [
+    {
+      slug: "brotli-vs-gzip",
+      title: "Brotli vs Gzip: Compression Comparison",
+      metaTitle:
+        "Brotli vs Gzip Compression — Performance & Ratio Comparison",
+      metaDescription:
+        "Compare Brotli and Gzip compression algorithms side by side. See compression ratios, speed benchmarks, and browser support for web performance optimization.",
+      h1: "Brotli vs Gzip: Which Compression Algorithm Is Better?",
+      intro:
+        "Brotli and Gzip are the two dominant HTTP compression algorithms used to reduce web asset sizes. Brotli, developed by Google, typically achieves 15-25% better compression than Gzip for text-based content like HTML, CSS, and JavaScript, though at the cost of slower compression speed. This page lets you test both algorithms on your own content.",
+      content: [
+        {
+          heading: "Key Differences Between Brotli and Gzip",
+          body: "Brotli uses a combination of LZ77, Huffman coding, and a predefined dictionary of common web content patterns, giving it an edge on HTML, CSS, and JavaScript. Gzip (based on DEFLATE) is faster to compress but produces larger output. For static assets served from CDNs, Brotli's superior ratio wins. For dynamic content compressed on-the-fly, Gzip's speed advantage may matter more.",
+        },
+        {
+          heading: "Browser and Server Support",
+          body: "All modern browsers support both Brotli (Content-Encoding: br) and Gzip (Content-Encoding: gzip). Brotli requires HTTPS. Major CDNs like Cloudflare, AWS CloudFront, and Vercel support Brotli. Nginx, Apache, and Caddy all offer Brotli modules. The Accept-Encoding header lets servers choose the best algorithm for each client.",
+        },
+        {
+          heading: "When to Use Each Algorithm",
+          body: "Use Brotli for static assets (pre-compressed at build time) where compression speed doesn't matter but file size does. Use Gzip for dynamic responses where compression must happen in real-time. Many servers use Brotli at lower quality levels (1-4) for dynamic content to balance ratio and speed. For maximum performance, serve Brotli to supporting browsers and fall back to Gzip.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is Brotli always better than Gzip?",
+          answer:
+            "Not always. Brotli achieves better compression ratios (15-25% smaller) but is slower to compress, especially at higher quality levels. For dynamic content that must be compressed per-request, Gzip or low-quality Brotli may be more practical. For pre-compressed static assets, Brotli is almost always the better choice.",
+        },
+        {
+          question: "Does Brotli work over HTTP (not HTTPS)?",
+          answer:
+            "No. Browsers only support Brotli over HTTPS connections. This is by design — the Brotli Content-Encoding header was introduced after HTTPS became widespread, and requiring HTTPS avoids compatibility issues with older proxies that might corrupt unknown encodings.",
+        },
+        {
+          question:
+            "How much bandwidth can Brotli save compared to Gzip?",
+          answer:
+            "For typical web assets, Brotli saves 15-25% more bandwidth than Gzip. For HTML, the savings can be even higher (20-30%) due to Brotli's built-in dictionary of common HTML/CSS/JS patterns. For already-compressed content like images or videos, neither algorithm provides significant savings.",
+        },
+      ],
+      keywords: [
+        "brotli vs gzip",
+        "brotli gzip comparison",
+        "brotli compression ratio",
+        "gzip vs brotli performance",
+        "web compression comparison",
+        "brotli browser support",
+      ],
+      parentToolSlug: "compression-tester",
+      parentToolName: "Compression Tester",
+    },
+    {
+      slug: "compression-ratio-guide",
+      title: "Understanding Compression Ratios",
+      metaTitle:
+        "Compression Ratio Guide — How to Measure & Optimize",
+      metaDescription:
+        "Learn how compression ratios work, what affects them, and how to optimize text compression for web performance. Covers Brotli, Gzip, and Deflate.",
+      h1: "Compression Ratio Guide: Measuring & Optimizing",
+      intro:
+        "A compression ratio measures how much an algorithm reduces data size. A ratio of 0.30 means the compressed output is 30% of the original size (70% savings). Understanding compression ratios helps you make informed decisions about web server configuration, CDN settings, and asset optimization.",
+      content: [
+        {
+          heading: "How Compression Ratios Are Calculated",
+          body: "Compression ratio = compressed size / original size. A ratio of 0.25 means the data was compressed to 25% of its original size. Savings percentage = (1 - ratio) x 100, so a 0.25 ratio means 75% savings. Lower ratios indicate better compression. The theoretical minimum depends on the data's entropy — truly random data cannot be compressed below its entropy.",
+        },
+        {
+          heading: "What Affects Compression Ratios",
+          body: "Content type has the biggest impact: structured text (JSON, HTML, XML) compresses extremely well (70-90% savings) due to repeated patterns and keywords. Minified code compresses less well than formatted code. Already-compressed data (images, videos, ZIP files) sees near-zero improvement. Content length matters too — very short strings (under 100 bytes) may actually grow after adding compression headers.",
+        },
+        {
+          heading: "Optimizing for Better Compression",
+          body: "For web assets: enable both Brotli and Gzip on your server, pre-compress static assets at maximum quality, and use lower quality levels for dynamic content. Consider the compression-speed tradeoff: Brotli quality 11 is best for pre-compression, while quality 1-4 suits real-time compression. For APIs returning JSON, consider minifying JSON output (removing whitespace) before compression.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is a good compression ratio for web content?",
+          answer:
+            "For text-based web content (HTML, CSS, JS, JSON), a good compression ratio is 0.15-0.35 (65-85% savings). Highly repetitive content like log files can achieve ratios below 0.10 (90%+ savings). If your ratio is above 0.50, the content may already be compressed or contain little redundancy.",
+        },
+        {
+          question: "Can compression make files larger?",
+          answer:
+            "Yes. Very small files (under ~150 bytes) or already-compressed content can actually grow after compression because the compression format adds headers and metadata. Most web servers have a minimum size threshold (often 1KB) below which they skip compression.",
+        },
+        {
+          question: "Does minification affect compression ratios?",
+          answer:
+            "Minification reduces the absolute file size, but compressed minified files are only slightly smaller than compressed unminified files. This is because compression algorithms already eliminate the redundancy that whitespace and long variable names create. Still, minification helps because it reduces the pre-compression size that the server must process.",
+        },
+      ],
+      keywords: [
+        "compression ratio",
+        "compression ratio calculator",
+        "gzip compression ratio",
+        "text compression ratio",
+        "web compression optimization",
+        "compression ratio explained",
+      ],
+      parentToolSlug: "compression-tester",
+      parentToolName: "Compression Tester",
+    },
+    {
+      slug: "web-performance-compression",
+      title: "Web Performance: HTTP Compression Guide",
+      metaTitle:
+        "HTTP Compression for Web Performance — Brotli & Gzip Setup",
+      metaDescription:
+        "Complete guide to HTTP compression for web performance. Configure Brotli and Gzip on Nginx, Apache, Vercel, and Cloudflare for faster page loads.",
+      h1: "HTTP Compression for Web Performance",
+      intro:
+        "HTTP compression is one of the most impactful web performance optimizations. Enabling Brotli and Gzip on your web server typically reduces transfer sizes by 60-85%, directly improving load times, Core Web Vitals scores, and bandwidth costs. This guide covers setup for all major platforms.",
+      content: [
+        {
+          heading: "Impact on Core Web Vitals",
+          body: "Compression directly affects Largest Contentful Paint (LCP) by reducing the time to download HTML, CSS, and JavaScript. Smaller transfers also improve Time to First Byte (TTFB) since the server sends less data. For a typical 100KB HTML page, Brotli compression reduces the transfer to ~15-25KB, saving 100-300ms on 3G connections and 10-30ms on broadband.",
+        },
+        {
+          heading: "Server Configuration",
+          body: "Nginx: use ngx_brotli module with brotli_comp_level 6 for dynamic content. Apache: enable mod_brotli and mod_deflate. Vercel and Netlify: compression is enabled by default. Cloudflare: enable Brotli in the Speed settings. For static assets, pre-compress files at build time with maximum quality (brotli -q 11) and serve the .br files directly.",
+        },
+        {
+          heading: "Content-Type Best Practices",
+          body: "Compress text-based MIME types: text/html, text/css, text/javascript, application/json, application/xml, image/svg+xml, and application/wasm. Never compress already-compressed formats: JPEG, PNG, WebP, WOFF2, MP4, ZIP. Set a minimum size threshold (typically 256 bytes to 1KB) to avoid overhead on tiny responses. Use Vary: Accept-Encoding header for proper CDN caching.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How much does compression improve page load time?",
+          answer:
+            "For a typical web page, enabling compression reduces HTML/CSS/JS transfer sizes by 60-85%, which can improve load times by 200ms-2s depending on connection speed. On mobile networks (3G/4G), the improvement is most dramatic. Google's research shows that a 100ms improvement in LCP can increase conversion rates by up to 8%.",
+        },
+        {
+          question: "Should I use Brotli or Gzip for my web server?",
+          answer:
+            "Use both. Configure your server to prefer Brotli (Content-Encoding: br) when the client supports it, and fall back to Gzip. The Accept-Encoding request header tells you what the client supports. All major web servers support this dual configuration. Brotli gives 15-25% better compression but requires HTTPS.",
+        },
+        {
+          question:
+            "Does Vercel/Netlify/Cloudflare automatically compress responses?",
+          answer:
+            "Yes. Vercel, Netlify, and Cloudflare all automatically apply Brotli and Gzip compression to eligible responses. You don't need to configure anything. However, for static assets, you can still benefit from pre-compressing at maximum quality during your build step, as CDN on-the-fly compression typically uses lower quality levels for speed.",
+        },
+      ],
+      keywords: [
+        "http compression",
+        "web performance compression",
+        "gzip nginx",
+        "brotli web server",
+        "compression web performance",
+        "core web vitals compression",
+      ],
+      parentToolSlug: "compression-tester",
+      parentToolName: "Compression Tester",
+    },
+  ],
 };

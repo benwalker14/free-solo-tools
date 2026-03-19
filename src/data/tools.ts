@@ -798,4 +798,12 @@ export const tools: Tool[] = [
     icon: "SQL",
     category: "Convert",
   },
+  {
+    title: "Compression Tester",
+    description:
+      "Test and compare Brotli, Gzip, and Deflate compression ratios for text content — sizes, savings, and speed",
+    href: "/tools/compression-tester",
+    icon: "ZIP",
+    category: "Inspect",
+  },
 ];

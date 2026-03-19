@@ -17,6 +17,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
+    "brotli-wasm": "^3.0.1",
     "diff": "^8.0.3",
     "gpt-tokenizer": "^3.4.0",
     "jose": "^6.2.2",
