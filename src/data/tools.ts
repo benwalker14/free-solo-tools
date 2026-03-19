@@ -454,4 +454,12 @@ export const tools: Tool[] = [
     icon: "J±",
     category: "Inspect",
   },
+  {
+    title: "TOML ↔ JSON/YAML",
+    description:
+      "Convert between TOML, JSON, and YAML — perfect for Cargo.toml and pyproject.toml",
+    href: "/tools/toml-converter",
+    icon: "TML",
+    category: "Convert",
+  },
 ];

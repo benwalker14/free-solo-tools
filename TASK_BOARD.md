@@ -24,12 +24,13 @@ _None_
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 
 ### P3 - Low (Catalog Expansion)
-- [ ] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
+- [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
 - [ ] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
 - [ ] Add Docker Compose Validator (#62) — growing with container adoption
 - [ ] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add TOML ↔ JSON/YAML Converter (#58) — 4-way conversion between TOML, JSON, and YAML with sample data
 - [x] Add JSON Diff tool (#55) — deep structural comparison with tree/raw views, path highlighting, expand/collapse
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS/TS in-browser with sandboxed execution, console capture, 7 examples
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator, URL fetch + HTML paste, 4 social platform previews, validation
