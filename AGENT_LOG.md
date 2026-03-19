@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add TOML ↔ JSON/YAML Converter tool (#58)
+
+- Created `src/app/tools/toml-converter/page.tsx` — server component with SEO metadata targeting "toml to json", "json to toml", "toml to yaml", "toml converter", "cargo toml", "pyproject toml"
+- Created `src/app/tools/toml-converter/TomlConverterTool.tsx` — 4-way format converter with:
+  - **4 conversion modes:** TOML → JSON, JSON → TOML, TOML → YAML, YAML → TOML
+  - **Mode toggle bar:** 4-button segmented control, clears input/output on mode switch
+  - **Indent control:** 2/4 spaces (plus minified for JSON output), shown only for JSON/YAML output modes
+  - **Sample data:** Cargo.toml / Rust project config — realistic use case with dependencies, dev-dependencies, bin targets, and profile settings
+  - **TOML root validation:** Clear error messages when input would produce invalid TOML (arrays/primitives at root)
+  - **Load sample / Copy / Ctrl+Enter:** Standard DevBolt UX patterns
+  - **Rate limiting & analytics:** useRateLimit/useToolAnalytics integration
+- Created `src/app/tools/toml-converter/opengraph-image.tsx` — social preview card
+- Added `smol-toml` dependency (lightweight, browser-compatible TOML parser/stringifier)
+- Registered tool in `src/data/tools.ts` as #58 (category: Convert, icon: TML)
+- Updated CLAUDE.md tool list (now 58 tools)
+- Updated TASK_BOARD.md — marked #58 as done
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add JSON Diff tool (#55)
 
 - Created `src/app/tools/json-diff/page.tsx` — server component with SEO metadata targeting "json diff", "json compare", "compare json objects" (high search volume, searched separately from text diff)
