@@ -614,4 +614,12 @@ export const tools: Tool[] = [
     icon: "LLM",
     category: "Inspect",
   },
+  {
+    title: "AI Model Comparison",
+    description:
+      "Compare GPT, Claude, Gemini, Llama, and more — pricing, context windows, capabilities, and reasoning support for 21 models",
+    href: "/tools/ai-model-comparison",
+    icon: "AI",
+    category: "Inspect",
+  },
 ];

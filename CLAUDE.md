@@ -127,3 +127,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 75. ASCII Art Text Generator (/tools/ascii-art)
 76. Regex Generator (/tools/regex-generator)
 77. LLM Token Counter & Cost Calculator (/tools/token-counter)
+78. AI Model Comparison (/tools/ai-model-comparison)
