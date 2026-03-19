@@ -1452,4 +1452,324 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Git Command Builder",
     },
   ],
+
+  "csp-builder": [
+    {
+      slug: "csp-directives-guide",
+      title: "CSP Directives Guide",
+      metaTitle: "CSP Directives Guide — All Content Security Policy Directives Explained",
+      metaDescription:
+        "Complete guide to all Content Security Policy directives — default-src, script-src, style-src, img-src, and more. Learn what each directive controls with examples.",
+      h1: "CSP Directives Guide",
+      intro:
+        "A comprehensive reference for every Content Security Policy directive. Understand what each directive controls, see practical examples, and learn which directives you need for your site.",
+      content: [
+        {
+          heading: "What are CSP directives?",
+          body: "CSP directives are rules that tell the browser which resources are allowed to load and execute on your page. Each directive controls a specific resource type: script-src controls JavaScript, style-src controls CSS, img-src controls images, and so on. The default-src directive acts as a fallback for any directive you don't explicitly set.",
+        },
+        {
+          heading: "Fetch directives vs document directives",
+          body: "Fetch directives (script-src, style-src, img-src, connect-src, font-src, media-src, object-src, frame-src, worker-src, manifest-src) control where resources can be loaded from. Document directives (base-uri, sandbox) control properties of the document itself. Navigation directives (form-action, frame-ancestors, navigate-to) control where the document can navigate or be embedded.",
+        },
+        {
+          heading: "Source values explained",
+          body: "'self' allows resources from the same origin. 'none' blocks all resources. 'unsafe-inline' allows inline scripts and styles (weakens CSP significantly). 'unsafe-eval' allows eval() and similar dynamic code execution. 'strict-dynamic' trusts scripts loaded by already-trusted scripts — used with nonces for modern CSP. Specific domains like https://cdn.example.com whitelist individual origins.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the most important CSP directive?",
+          answer:
+            "script-src is the most important for security — it controls which JavaScript can execute, directly preventing XSS attacks. Always set default-src as a fallback, then override with specific directives like script-src, style-src, and img-src.",
+        },
+        {
+          question: "Do I need to set every directive?",
+          answer:
+            "No. Any directive not explicitly set falls back to default-src. Set default-src to 'self', then only override directives where you need different rules (e.g., img-src for CDN images, connect-src for API endpoints).",
+        },
+        {
+          question: "What does 'strict-dynamic' do?",
+          answer:
+            "'strict-dynamic' tells the browser to trust scripts loaded by already-trusted scripts (those matching a nonce or hash). It ignores host-based allowlists, making your CSP resilient to bypass techniques. It's the recommended approach for modern SPAs.",
+        },
+      ],
+      keywords: [
+        "csp directives",
+        "content security policy directives",
+        "csp directive list",
+        "csp reference",
+        "csp script-src",
+        "csp default-src",
+      ],
+      parentToolSlug: "csp-builder",
+      parentToolName: "CSP Header Builder",
+    },
+    {
+      slug: "csp-framework-examples",
+      title: "CSP Framework Examples",
+      metaTitle: "CSP Examples for Next.js, React, WordPress, Express & Nginx",
+      metaDescription:
+        "Ready-to-use Content Security Policy examples for popular frameworks — Next.js, React, WordPress, Express, Nginx, Apache, Vercel, and Netlify. Copy-paste CSP configs.",
+      h1: "CSP Framework Examples",
+      intro:
+        "Copy-paste Content Security Policy configurations for popular frameworks and platforms. Each example is a tested starting point — customize it for your specific third-party services.",
+      content: [
+        {
+          heading: "Next.js CSP configuration",
+          body: "In Next.js, set CSP headers in next.config.js using the headers() function, or in middleware.ts for dynamic nonce-based CSP. Next.js requires 'unsafe-eval' for development hot reload and 'unsafe-inline' for styled-jsx. For production, use nonces with 'strict-dynamic' for the strongest policy.",
+        },
+        {
+          heading: "Nginx and Apache CSP headers",
+          body: "In Nginx, use: add_header Content-Security-Policy \"default-src 'self'; script-src 'self'\" always; — the 'always' flag ensures the header is sent on error pages too. In Apache, use: Header always set Content-Security-Policy \"default-src 'self'; script-src 'self'\". Place these in your server block or .htaccess respectively.",
+        },
+        {
+          heading: "Vercel and Netlify CSP headers",
+          body: "On Vercel, add headers in vercel.json under the headers array with a source pattern. On Netlify, use the [[headers]] section in netlify.toml or a _headers file. Both platforms support wildcards for applying CSP across all routes.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Why does my Next.js app break with a strict CSP?",
+          answer:
+            "Next.js uses inline scripts for hydration and CSS-in-JS libraries often inject inline styles. You need 'unsafe-inline' for style-src and either nonces or 'unsafe-eval' for script-src. Use the Next.js CSP preset in the builder as a starting point.",
+        },
+        {
+          question: "How do I add CSP to Nginx?",
+          answer:
+            "Add this to your server block: add_header Content-Security-Policy \"your-policy-here\" always; The 'always' keyword ensures the header is sent even on error responses (404, 500). Test with Content-Security-Policy-Report-Only first.",
+        },
+        {
+          question: "Can I use CSP with a CDN like Cloudflare?",
+          answer:
+            "Yes. Set CSP at your origin server. CDNs pass through response headers by default. Some CDNs (Cloudflare Workers, Vercel Edge) also let you add or modify headers at the edge. Make sure your CSP allows your CDN's domain in the relevant directives.",
+        },
+      ],
+      keywords: [
+        "csp next.js",
+        "csp react",
+        "csp nginx",
+        "csp wordpress",
+        "csp vercel",
+        "content security policy examples",
+        "csp express",
+      ],
+      parentToolSlug: "csp-builder",
+      parentToolName: "CSP Header Builder",
+    },
+    {
+      slug: "csp-common-issues",
+      title: "Common CSP Issues",
+      metaTitle: "Common CSP Issues & How to Fix Them — Troubleshooting Guide",
+      metaDescription:
+        "Fix common Content Security Policy errors: inline script blocked, refused to load, eval not allowed. Troubleshooting guide with solutions for every CSP error.",
+      h1: "Common CSP Issues & Troubleshooting",
+      intro:
+        "Content Security Policy errors can break your site if misconfigured. This guide covers the most common CSP issues, explains what causes them, and shows you how to fix each one.",
+      content: [
+        {
+          heading: "Refused to execute inline script",
+          body: "This error means your CSP blocks inline <script> tags and on* event handlers. Fix options: (1) Move inline scripts to external files (best), (2) Add a nonce to each script tag and include 'nonce-{value}' in script-src, (3) Add 'unsafe-inline' to script-src (weakens security). Using nonces with 'strict-dynamic' is the recommended modern approach.",
+        },
+        {
+          heading: "Refused to load the stylesheet",
+          body: "Your CSP is blocking a CSS file or inline style. Check style-src — does it include the stylesheet's origin? For CSS-in-JS libraries (styled-components, Emotion), you need 'unsafe-inline' in style-src. For external stylesheets (Google Fonts), add the CDN domain: style-src 'self' https://fonts.googleapis.com.",
+        },
+        {
+          heading: "Refused to connect",
+          body: "Your fetch(), XHR, or WebSocket call is blocked. The connect-src directive controls these. Add your API endpoint domain: connect-src 'self' https://api.example.com. Don't forget WebSocket URLs (wss://), analytics endpoints, and any third-party APIs your app calls.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I debug CSP errors?",
+          answer:
+            "Open your browser's Developer Tools Console — CSP violations appear as errors with the blocked resource URL and the directive that blocked it. Use Content-Security-Policy-Report-Only header to test without breaking your site. You can also set up report-uri to collect violations server-side.",
+        },
+        {
+          question: "What is Content-Security-Policy-Report-Only?",
+          answer:
+            "Report-Only mode logs CSP violations to the console (and optionally to a report-uri endpoint) without actually blocking anything. Use it to test a new CSP before enforcing it. Once you see no unexpected violations, switch to the enforcing Content-Security-Policy header.",
+        },
+        {
+          question: "Why does my CSP work locally but break in production?",
+          answer:
+            "Common causes: (1) Third-party scripts loaded in production but not locally (analytics, chat widgets, ads), (2) CDN domains not in your allowlist, (3) Inline scripts added by your hosting platform, (4) Different URL schemes (http vs https). Always test with Report-Only in production first.",
+        },
+      ],
+      keywords: [
+        "csp errors",
+        "csp troubleshooting",
+        "refused to execute inline script",
+        "csp refused to load",
+        "content security policy error",
+        "fix csp",
+        "csp debug",
+      ],
+      parentToolSlug: "csp-builder",
+      parentToolName: "CSP Header Builder",
+    },
+  ],
+
+  "html-to-jsx": [
+    {
+      slug: "html-vs-jsx-differences",
+      title: "HTML vs JSX Differences",
+      metaTitle: "HTML vs JSX — Every Difference Explained with Examples",
+      metaDescription:
+        "Complete guide to every difference between HTML and JSX. Learn about className, htmlFor, self-closing tags, style objects, event handlers, and more with side-by-side examples.",
+      h1: "HTML vs JSX — Every Difference Explained",
+      intro:
+        "JSX looks like HTML but has key differences that trip up developers. This guide covers every difference between HTML and JSX with side-by-side examples so you can convert confidently.",
+      content: [
+        {
+          heading: "Reserved words: class and for",
+          body: "The biggest gotcha: HTML's class attribute becomes className in JSX because 'class' is a reserved keyword in JavaScript. Similarly, the for attribute on <label> elements becomes htmlFor because 'for' is used for loops in JavaScript. These are the two most common conversion mistakes.",
+        },
+        {
+          heading: "Inline styles are objects, not strings",
+          body: "In HTML you write style=\"color: red; font-size: 16px\". In JSX, the style attribute takes a JavaScript object: style={{ color: 'red', fontSize: '16px' }}. CSS property names use camelCase (background-color becomes backgroundColor) and values are strings or numbers.",
+        },
+        {
+          heading: "All tags must close",
+          body: "HTML allows void elements like <br>, <img>, <input>, and <hr> without closing. JSX requires every element to either have a closing tag or self-close: <br />, <img />, <input />, <hr />. Forgetting to self-close void elements is the most common JSX syntax error.",
+        },
+        {
+          heading: "Comments use JavaScript syntax",
+          body: "HTML comments <!-- like this --> don't work in JSX. Instead, use JavaScript comments wrapped in curly braces: {/* like this */}. Multi-line comments work the same way. Comments outside of JSX expressions use standard // or /* */ JavaScript syntax.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Why does JSX use className instead of class?",
+          answer: "'class' is a reserved keyword in JavaScript (used for class declarations). Since JSX compiles to JavaScript function calls, using 'class' would conflict with the language syntax. React chose 'className' to match the DOM API's element.className property.",
+        },
+        {
+          question: "Can I use HTML directly in React without converting to JSX?",
+          answer: "No — JSX is required in React components. While it looks like HTML, JSX compiles to React.createElement() calls. You must convert HTML attributes to their JSX equivalents (className, htmlFor, style objects, etc.) for the code to compile.",
+        },
+        {
+          question: "What happens if I use class instead of className in JSX?",
+          answer: "React will show a console warning: 'Invalid DOM property class. Did you mean className?' The attribute will still work in most browsers, but it's incorrect JSX and can cause issues with some React features.",
+        },
+      ],
+      keywords: [
+        "html vs jsx",
+        "jsx vs html",
+        "html jsx differences",
+        "jsx differences",
+        "class vs classname",
+        "why classname in react",
+        "jsx syntax",
+      ],
+      parentToolSlug: "html-to-jsx",
+      parentToolName: "HTML to JSX Converter",
+    },
+    {
+      slug: "react-jsx-cheatsheet",
+      title: "React JSX Cheatsheet",
+      metaTitle: "React JSX Cheatsheet — Attribute Mapping, Syntax, and Gotchas",
+      metaDescription:
+        "Quick-reference cheatsheet for React JSX syntax — attribute mappings, style objects, event handlers, conditional rendering, and common conversion patterns.",
+      h1: "React JSX Cheatsheet",
+      intro:
+        "A quick-reference guide for JSX syntax covering attribute names, style objects, event handlers, and common patterns. Bookmark this page for fast lookups when converting HTML to React components.",
+      content: [
+        {
+          heading: "Attribute name mappings",
+          body: "The most common attribute renames: class → className, for → htmlFor, tabindex → tabIndex, readonly → readOnly, maxlength → maxLength, colspan → colSpan, rowspan → rowSpan, cellpadding → cellPadding, crossorigin → crossOrigin, autocomplete → autoComplete, autofocus → autoFocus, enctype → encType, datetime → dateTime.",
+        },
+        {
+          heading: "SVG attribute names in JSX",
+          body: "SVG attributes with hyphens become camelCase: stroke-width → strokeWidth, fill-opacity → fillOpacity, stroke-linecap → strokeLinecap, clip-path → clipPath, font-size → fontSize, text-anchor → textAnchor, dominant-baseline → dominantBaseline. The viewBox attribute is already camelCase and stays unchanged.",
+        },
+        {
+          heading: "Event handler patterns",
+          body: "HTML event attributes are lowercase (onclick, onchange, onsubmit). In JSX they're camelCase: onClick, onChange, onSubmit. Instead of inline JavaScript strings, pass function references: onClick={handleClick} or arrow functions: onClick={() => doSomething()}. The event object is a React SyntheticEvent.",
+        },
+        {
+          heading: "Conditional rendering patterns",
+          body: "JSX doesn't support if/else in expressions. Use ternary operators: {isLoggedIn ? <Dashboard /> : <Login />}. For show/hide, use logical AND: {showModal && <Modal />}. For multiple conditions, extract the logic into a variable or function before the return statement.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Do all HTML attributes change in JSX?",
+          answer: "No — most attributes stay the same. Only about 20 common HTML attributes change names (class, for, tabindex, etc.) plus SVG attributes with hyphens. Standard attributes like id, href, src, alt, type, and value all work unchanged in JSX.",
+        },
+        {
+          question: "How do I handle data- and aria- attributes in JSX?",
+          answer: "data-* and aria-* attributes work exactly the same in JSX as in HTML. They're the exception to the camelCase rule — keep the hyphens: data-testid, aria-label, aria-hidden. React passes these through unchanged to the DOM.",
+        },
+        {
+          question: "Is JSX the same as TSX?",
+          answer: "TSX is JSX with TypeScript. The syntax is identical — the only difference is that .tsx files support TypeScript type annotations, generics, and interfaces. All JSX conversion rules (className, style objects, etc.) apply equally to TSX.",
+        },
+      ],
+      keywords: [
+        "jsx cheatsheet",
+        "react jsx reference",
+        "jsx attributes",
+        "jsx syntax guide",
+        "react attribute names",
+        "jsx event handlers",
+        "jsx quick reference",
+      ],
+      parentToolSlug: "html-to-jsx",
+      parentToolName: "HTML to JSX Converter",
+    },
+    {
+      slug: "jsx-style-objects",
+      title: "JSX Style Objects Guide",
+      metaTitle: "JSX Style Objects — Convert CSS to React Inline Styles",
+      metaDescription:
+        "Learn how to convert CSS inline styles to JSX style objects. Covers camelCase properties, numeric values, vendor prefixes, and common pitfalls.",
+      h1: "JSX Style Objects — Converting CSS to React Inline Styles",
+      intro:
+        "In JSX, the style attribute takes a JavaScript object instead of a CSS string. This guide explains how to convert CSS properties to JSX style objects, handle units, vendor prefixes, and avoid common mistakes.",
+      content: [
+        {
+          heading: "CSS to JSX style conversion rules",
+          body: "Every CSS property with a hyphen becomes camelCase: background-color → backgroundColor, font-size → fontSize, border-radius → borderRadius, z-index → zIndex, box-shadow → boxShadow. Properties without hyphens stay the same: color, margin, padding, display, opacity.",
+        },
+        {
+          heading: "Values and units",
+          body: "String values need quotes: fontSize: '16px', display: 'flex'. Numeric pixel values can omit 'px': fontSize: 16 is equivalent to fontSize: '16px' for most properties. However, unitless properties like lineHeight, opacity, flex, and zIndex should always be numbers: lineHeight: 1.5, opacity: 0.8, zIndex: 100.",
+        },
+        {
+          heading: "Vendor prefixes",
+          body: "Vendor-prefixed properties capitalize the prefix: -webkit-transform → WebkitTransform, -moz-appearance → MozAppearance, -ms-overflow-style → msOverflowStyle. Note that ms- is lowercase (ms) while -webkit- and -moz- are uppercase (Webkit, Moz). React auto-prefixes many properties via style reconciliation.",
+        },
+        {
+          heading: "Common pitfalls",
+          body: "Don't use shorthand strings for multi-value properties in objects. margin: '10px 20px' works as a string, but you can also use individual properties: marginTop: 10, marginRight: 20. Watch out for content property in pseudo-elements — inline styles can't target pseudo-elements; use CSS classes or CSS-in-JS instead.",
+        },
+      ],
+      faqs: [
+        {
+          question: "When should I use inline styles vs className in React?",
+          answer: "Use className for static styles and inline style objects for truly dynamic values (animation positions, user-chosen colors, calculated dimensions). Avoid inline styles for hover, focus, or media query states — these require CSS classes or a CSS-in-JS library.",
+        },
+        {
+          question: "Can I use CSS variables in JSX style objects?",
+          answer: "Yes — set CSS custom properties with the object syntax: style={{ '--my-color': 'blue' }}. Read them in CSS with var(--my-color). This is a powerful pattern for passing dynamic values from React to CSS.",
+        },
+        {
+          question: "Why does React use style objects instead of strings?",
+          answer: "Style objects let React diff and update individual CSS properties efficiently. With strings, React would need to parse the entire style string to detect changes. Objects also provide better TypeScript support and prevent XSS via style injection.",
+        },
+      ],
+      keywords: [
+        "jsx style objects",
+        "react inline styles",
+        "css to jsx",
+        "react style attribute",
+        "jsx camelcase css",
+        "react style object",
+        "convert css to react",
+      ],
+      parentToolSlug: "html-to-jsx",
+      parentToolName: "HTML to JSX Converter",
+    },
+  ],
 };

@@ -4,6 +4,35 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add CSP Header Builder tool (#80) + HTML to JSX Converter tool (#85)
+
+- Built tool #80 at `/tools/csp-builder` — CSP Header Builder
+- 17 directives across 4 categories: Fetch (default-src, script-src, style-src, img-src, font-src, connect-src, media-src, object-src, frame-src, child-src, worker-src, manifest-src, prefetch-src), Document (base-uri), Navigation (form-action, frame-ancestors, navigate-to)
+- 13 source value options ('self', 'none', 'unsafe-inline', 'unsafe-eval', 'strict-dynamic', 'unsafe-hashes', 'wasm-unsafe-eval', data:, blob:, mediastream:, https:, http:, *) with 'none' exclusivity logic
+- 7 framework presets: Strict (Recommended), Moderate, Next.js, React/Vite SPA, WordPress, API-Only/Headless, Google Fonts + Analytics
+- 6 output formats: HTTP Header, `<meta>` tag, Nginx, Apache, Vercel (vercel.json), Netlify (netlify.toml)
+- Real-time security analysis: detects wildcard usage, unsafe-inline/eval warnings, missing critical directives, http: protocol risks
+- Policy stats dashboard: directive count, character length, warning count
+- Searchable CSP directive reference with 19 entries across 4 categories
+- 3 SEO sub-pages: csp-directives-guide, csp-framework-examples, csp-common-issues
+- OG image, JSON-LD schema, registered in tools.ts
+
+- Also built tool #85 at `/tools/html-to-jsx` — HTML to JSX Converter (was scaffolded but component was missing/broken)
+- 50+ attribute mappings including SVG attributes, event handlers, vendor-prefixed properties
+- Inline style string → style object conversion with camelCase property names
+- Void element self-closing, HTML comment → JSX comment conversion
+- Component wrapping with optional Fragment for multiple roots
+- 7 sample inputs (Basic div, Form, Inline styles, Images, SVG, Table, Comments)
+- Live change tracking showing what was transformed and how many instances
+- Quick reference table with 10 common conversions and explanations
+- 3 SEO sub-pages: html-vs-jsx-differences, react-jsx-cheatsheet, jsx-style-objects
+
+- Updated tool counts from 78+ → 80+ in free-tools page, OG image, and blog post
+- CLAUDE.md updated to 81 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes (intermittent Turbopack ENOENT on Windows — not code-related)
+
+---
+
 ### 2026-03-19 | strategist | Comprehensive Market Research & Strategic Analysis
 
 **Analysis Type:** Full competitive research + new tool research + SEO strategy + monetization analysis

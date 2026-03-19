@@ -129,3 +129,5 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 77. LLM Token Counter & Cost Calculator (/tools/token-counter)
 78. AI Model Comparison (/tools/ai-model-comparison)
 79. Git Command Builder & Cheat Sheet (/tools/git-command-builder)
+80. CSP Header Builder (/tools/csp-builder)
+81. HTML to JSX Converter (/tools/html-to-jsx)

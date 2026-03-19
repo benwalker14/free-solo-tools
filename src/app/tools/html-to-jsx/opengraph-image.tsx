@@ -5,7 +5,8 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return generateOgImage(
-    "80+ Free Developer Tools Online",
-    "No signup, no tracking, 100% client-side. JSON formatter, Base64 encoder, hash generator, UUID generator, regex tester, and more.",
+    "HTML to JSX Converter",
+    "Convert HTML to JSX instantly — class to className, inline styles to objects, self-closing tags, and more.",
+    "Convert",
   );
 }

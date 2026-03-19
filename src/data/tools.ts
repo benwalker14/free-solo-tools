@@ -630,4 +630,20 @@ export const tools: Tool[] = [
     icon: "GIT",
     category: "Generate",
   },
+  {
+    title: "CSP Header Builder",
+    description:
+      "Build Content Security Policy headers visually with framework presets, security analysis, and multi-format output for Nginx, Apache, Vercel, Netlify",
+    href: "/tools/csp-builder",
+    icon: "CSP",
+    category: "Generate",
+  },
+  {
+    title: "HTML to JSX Converter",
+    description:
+      "Convert HTML to JSX instantly — class to className, inline styles to objects, self-closing tags, SVG attributes, event handlers, and more",
+    href: "/tools/html-to-jsx",
+    icon: "JSX",
+    category: "Convert",
+  },
 ];

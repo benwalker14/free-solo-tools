@@ -24,7 +24,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 - [x] Add AI Model Comparison Card tool (#78) — interactive table of AI models (pricing, context window, capabilities). Captures "GPT vs Claude" searches. Low effort.
 - [x] Add Git Command Builder & Cheat Sheet tool (#79) — ZERO git coverage currently. Interactive command builder + visual cheat sheet. High long-tail SEO.
-- [ ] Add HTML to JSX Converter tool (#85) — 40-60K/mo searches. React has 44.7% dev share. transform.tools gets massive traffic from this. Low effort, huge ROI.
+- [x] Add HTML to JSX Converter tool (#85) — 40-60K/mo searches. React has 44.7% dev share. transform.tools gets massive traffic from this. Low effort, huge ROI.
 - [ ] Add JSON to Code Generator - Multi-Language (#86) — Go, Python, Java, C#, Dart, Rust, Swift, Kotlin. quicktype.io gets 762K/mo visitors from this alone. 80-120K aggregate searches. DevBolt only has JSON-to-TypeScript.
 - [ ] Add Code Screenshot Generator tool (#87) — Carbon/Ray.so alternative. 30-50K/mo. Highly viral — every shared screenshot = free backlink/marketing. Canvas-based, fully client-side.
 - [ ] Write 10 "X vs Y" comparison blog posts — JSON vs YAML, Flexbox vs Grid, SHA-256 vs MD5, REST vs GraphQL, TypeScript vs JavaScript, Docker vs K8s, React vs Vue, Tailwind vs Bootstrap, Next.js vs Nuxt, Base64 vs URL Encoding. Highest ROI content format.
@@ -55,7 +55,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add CSS to Tailwind Converter tool (#88) — 30-50K/mo searches. Tailwind adoption exploding. Complements existing Tailwind Generator. Dedicated sites already exist (tailwindconverter.app).
 - [ ] Add JSON Visualizer / Interactive Tree Viewer tool (#89) — "json viewer" has 230K/mo searches. JSON Crack built a standalone business on this. Graph/tree layout with collapsible nodes, search, zoom.
 - [ ] Add SVG to JSX/React Component Converter tool (#90) — 15-25K/mo. Pairs naturally with existing SVG Optimizer. Every React dev working with icons needs this.
-- [ ] Add CSP Header Builder tool (#80) — visual Content Security Policy builder with framework presets. #1 recommended security header, notoriously hard to write.
+- [x] Add CSP Header Builder tool (#80) — visual Content Security Policy builder with framework presets. #1 recommended security header, notoriously hard to write.
 - [ ] Add AI Prompt Template Builder tool (#81) — structured prompt builder with multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
 - [ ] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
 - [ ] Create 5 standalone cheat sheet pages — /cheatsheets/regex, git, docker, css-selectors, markdown. Evergreen bookmarkable references.
@@ -86,6 +86,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add JSON to GraphQL Schema Generator (#93) — 10-15K/mo. GraphQL adoption growing. Most competitor sites lack this.
 
 ## Done
+- [x] Add CSP Header Builder tool (#80) — visual Content Security Policy builder with 17 directives across 4 categories (fetch, document, navigation, reporting), 13 source value options with 'none' exclusivity logic, 7 framework presets (Strict, Moderate, Next.js, React SPA, WordPress, API-Only, Google Fonts + Analytics), 6 output formats (HTTP header, meta tag, Nginx, Apache, Vercel, Netlify), real-time security analysis with errors/warnings/info, policy stats. 3 SEO sub-pages (csp-directives-guide, csp-framework-examples, csp-common-issues). All client-side
+- [x] Add HTML to JSX Converter tool (#85) — converts HTML to valid JSX with 50+ attribute mappings (class→className, for→htmlFor, SVG attributes, event handlers), inline style string→object conversion, void element self-closing, comment conversion, component wrapping with Fragment support, 7 sample inputs, live change tracking. 3 SEO sub-pages (html-vs-jsx-differences, react-jsx-cheatsheet, jsx-style-objects). All client-side
 - [x] Add Git Command Builder & Cheat Sheet tool (#79) — interactive command builder with 22 commands across 8 categories (Setup, Staging, Branching, Merging, Remote, Inspection, Undo, Tags), parameter forms with dropdowns, generated command output with copy, danger warnings for destructive commands, and searchable cheat sheet with 80+ entries across 11 sections. 3 SEO sub-pages (merge-vs-rebase, reset-vs-revert, stash-guide). All client-side
 - [x] Add AI Model Comparison tool (#78) — interactive comparison table of 21 models from 7 providers (OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek, xAI). Search, filter by provider/tier/reasoning/open-source, sortable columns, side-by-side compare (up to 4 models), capability badges, tier badges, quick stats. All client-side
 - [x] Add LLM Token Counter & Cost Calculator tool (#77) — 19 models across 6 providers (OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek), BPE tokenization via gpt-tokenizer, cost breakdown, bulk estimates, model comparison table, context window visualization, output:input ratio selector. All client-side
