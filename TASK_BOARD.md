@@ -57,6 +57,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Fix branding, security headers, viewport, cleanup — favicon FS→DB, security headers in next.config.ts (X-Content-Type-Options, Referrer-Policy, Permissions-Policy), /tools→/ redirect, viewport export, removed 5 unused scaffolding SVGs
 - [x] Add "Related Tools" section to all 76 tool pages — auto-generated cross-links showing 4 tools from the same category (Format/Convert/Generate/Inspect), deterministic selection based on slug hash, compact card design with icons and descriptions, wired via tools layout so it appears on every tool page and subpage automatically. Also committed BreadcrumbList JSON-LD schema for all tool pages
 - [x] Add global command palette (Ctrl+K / Cmd+K) — modal search overlay available on every page, searches all 76 tools by title/description/category, keyboard navigation (arrow keys + Enter), accessible ARIA roles, category badges, ESC to close, search button in header with platform-aware shortcut hint
 - [x] Add contextual affiliate links in all 15 blog posts — DigitalOcean (Docker Best Practices, Docker Compose, YAML Guide, UUID Guide, cURL Guide, JSON Validation, JSON Schema Guide), Cloudways (Password Security, JWT Tutorial, Base64 Explained, Regex Cheat Sheet), Netlify (CSS Grid, Flexbox, .gitignore Guide, Markdown Cheat Sheet). Blue callout boxes with `rel="noopener sponsored"`

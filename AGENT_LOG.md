@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Fix branding, add security headers, viewport, and cleanup
+
+- **Favicon branding fix:** icon.tsx and apple-icon.tsx still showed "FS" (FreeSolo) — updated to "DB" (DevBolt)
+- **Security headers:** Added X-Content-Type-Options (nosniff), Referrer-Policy (strict-origin-when-cross-origin), Permissions-Policy (camera/mic/geo disabled), X-DNS-Prefetch-Control (on) to next.config.ts
+- **Service worker headers:** Added Cache-Control (no-cache) and Service-Worker-Allowed for sw.js
+- **/tools redirect:** Added permanent 301 redirect from /tools → / to prevent 404 (homepage already lists all tools)
+- **Viewport metadata:** Added explicit viewport export to root layout (device-width, initialScale, colorScheme light/dark)
+- **Scaffolding cleanup:** Removed 5 unused Next.js starter SVGs from public/ (file.svg, globe.svg, next.svg, vercel.svg, window.svg) — confirmed not referenced anywhere in codebase
+- Build passes, lint passes (0 errors, 0 warnings)
+
+---
+
 ### 2026-03-19 | developer | Add "Related Tools" section to all tool pages
 
 - No cross-linking existed between tool pages — users had to go back to homepage to find related tools
