@@ -6,6 +6,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 
 
+
 ## To Do
 
 ### P0 - Critical
@@ -33,7 +34,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 - [x] Update homepage tagline to emphasize privacy-first positioning
-- [ ] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
+- [x] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
 - [x] Add "Free Developer Tools" landing page — optimize for "free developer tools online" head term
 - [x] Add Dockerfile Validator tool (#73) — Docker at 71.1% adoption, huge jump in 2025
 - [x] Add Kubernetes YAML Validator tool (#74) — K8s at 28.5%, growing

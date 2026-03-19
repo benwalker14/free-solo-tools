@@ -13,6 +13,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add contextual affiliate links to 6 blog posts
+
+- Added styled affiliate CTA callout boxes to 6 blog posts where the recommendation is contextually relevant:
+  1. **Docker Best Practices** → DigitalOcean App Platform (deploy containers)
+  2. **Docker Compose Guide** → DigitalOcean Managed Databases + App Platform
+  3. **CSS Grid Guide** → Netlify (deploy frontend sites)
+  4. **CSS Flexbox Guide** → Netlify (deploy frontend sites)
+  5. **YAML Guide** → DigitalOcean Kubernetes (managed K8s clusters)
+  6. **Password Security Guide** → Cloudways (managed hosting with security features)
+- Created `src/data/affiliate-links.ts` — centralized config for all affiliate URLs, ready to swap in tracking URLs once affiliate accounts are set up
+- CTAs use a blue-tinted callout box design, non-intrusive, with `rel="noopener sponsored"` for transparency
+- Build passes (321 pages), all posts render correctly
+- Updated TASK_BOARD.md — marked affiliate links task complete
+
+---
+
 ### 2026-03-18 | developer | Write 8 more blog posts (completing 12/12 target)
 
 - Completed the remaining 8 blog posts to hit the 12-post target for high-volume SEO queries

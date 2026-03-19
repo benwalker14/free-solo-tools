@@ -467,6 +467,26 @@ spec:
         </li>
       </ul>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Running YAML in production?
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          If you&apos;re deploying Kubernetes manifests,{" "}
+          <a
+            href="https://www.digitalocean.com/products/kubernetes"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            DigitalOcean Kubernetes
+          </a>{" "}
+          offers managed clusters with free control plane, automatic upgrades,
+          and simple pricing. Great for teams that want K8s without the
+          infrastructure overhead.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         Try It Yourself
       </h2>

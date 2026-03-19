@@ -380,6 +380,26 @@ place-items: center;      /* shorthand for align-items + justify-items */`}
         </table>
       </div>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Ship your CSS Grid layouts
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          Built a responsive layout and ready to deploy?{" "}
+          <a
+            href="https://www.netlify.com/"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            Netlify
+          </a>{" "}
+          deploys frontend sites from Git with automatic CI/CD, preview
+          deploys, and a generous free tier. Push your code and your Grid
+          layout is live in seconds.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         Build Grid Layouts Visually
       </h2>

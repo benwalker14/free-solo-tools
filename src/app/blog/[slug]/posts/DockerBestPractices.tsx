@@ -289,6 +289,26 @@ RUN apt-get update && \\
         </table>
       </div>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Ready to deploy?
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          Once your images are optimized,{" "}
+          <a
+            href="https://www.digitalocean.com/products/app-platform"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            DigitalOcean App Platform
+          </a>{" "}
+          can deploy your containers directly from a Dockerfile or Docker Hub
+          image &mdash; no Kubernetes or server config needed. Free tier
+          available.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         Validate Your Dockerfiles
       </h2>

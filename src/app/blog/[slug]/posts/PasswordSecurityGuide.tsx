@@ -347,6 +347,25 @@ err := bcrypt.CompareHashAndPassword(hash, []byte(password))
         </li>
       </ul>
 
+      <div className="my-12 rounded-xl border border-blue-200 bg-blue-50/50 p-6 dark:border-blue-900 dark:bg-blue-950/30">
+        <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+          Secure hosting matters too
+        </p>
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-400">
+          <a
+            href="https://www.cloudways.com/"
+            target="_blank"
+            rel="noopener sponsored"
+            className="font-medium underline hover:no-underline"
+          >
+            Cloudways
+          </a>{" "}
+          provides managed hosting with built-in SSL, automated backups,
+          OS-level firewalls, and two-factor authentication. Deploy on
+          DigitalOcean, AWS, or GCP without managing servers yourself.
+        </p>
+      </div>
+
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
         Generate Strong Passwords
       </h2>
