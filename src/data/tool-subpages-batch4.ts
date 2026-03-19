@@ -3440,4 +3440,176 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "tsconfig.json Visual Builder",
     },
   ],
+
+  "graphql-to-typescript": [
+    {
+      slug: "graphql-codegen-guide",
+      title: "GraphQL Code Generation Guide",
+      metaTitle:
+        "GraphQL Code Generation Guide — From Schema to TypeScript Types",
+      metaDescription:
+        "Learn how to generate TypeScript types from GraphQL schemas. Compare online tools, CLI codegen, and IDE plugins for type-safe GraphQL development.",
+      h1: "GraphQL Code Generation Guide",
+      intro:
+        "GraphQL's type system maps naturally to TypeScript. Use the converter above to paste any GraphQL SDL schema and get TypeScript interfaces instantly — no CLI setup required.",
+      content: [
+        {
+          heading: "Why generate TypeScript from GraphQL?",
+          body: "GraphQL schemas define types, fields, and relationships. Manually writing matching TypeScript interfaces is error-prone and quickly becomes stale as the schema evolves. Automated code generation ensures your frontend types always match your API contract, catching mismatches at compile time instead of runtime.",
+        },
+        {
+          heading: "Schema-first vs code-first",
+          body: "Schema-first development writes the .graphql SDL file first, then generates types and resolvers. Code-first uses libraries like Nexus or TypeGraphQL to define the schema in TypeScript, which generates the SDL. Both approaches benefit from codegen: schema-first generates client types, code-first generates the SDL for documentation and client sharing.",
+        },
+        {
+          heading: "What gets generated?",
+          body: "A typical GraphQL-to-TypeScript pipeline produces: interfaces for object types and input types, TypeScript enums or const objects for GraphQL enums, union types for GraphQL unions, and argument types for query/mutation fields. Advanced tools also generate typed hooks (useQuery, useMutation) for React, Vue, or Angular.",
+        },
+        {
+          heading: "Online tool vs CLI codegen",
+          body: "CLI tools like @graphql-codegen/cli integrate into your build pipeline and watch for schema changes. Online tools like this converter are ideal for quick one-off conversions, exploring unfamiliar APIs, or when you don't want to install dependencies. Both produce the same TypeScript output from the same SDL input.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I convert a GraphQL introspection result to TypeScript?",
+          answer:
+            "This tool accepts GraphQL SDL (Schema Definition Language). If you have an introspection JSON result, you can convert it to SDL first using tools like graphql-js's buildClientSchema and printSchema functions, then paste the SDL here.",
+        },
+        {
+          question: "Does this tool support GraphQL fragments?",
+          answer:
+            "This tool focuses on schema types (type, input, enum, union, interface, scalar). Fragment definitions are query-level constructs and are handled by query-aware codegen tools like @graphql-codegen/typescript-operations.",
+        },
+        {
+          question: "How are custom scalars handled?",
+          answer:
+            "Common scalars like DateTime, JSON, UUID, and BigInt are mapped to appropriate TypeScript types automatically. Unknown scalars default to 'unknown'. You can customize these mappings in advanced codegen configurations.",
+        },
+      ],
+      keywords: [
+        "graphql codegen",
+        "graphql code generation",
+        "graphql typescript codegen",
+        "generate types from graphql",
+        "graphql-codegen typescript",
+        "graphql schema types",
+      ],
+      parentToolSlug: "graphql-to-typescript",
+      parentToolName: "GraphQL to TypeScript Converter",
+    },
+    {
+      slug: "graphql-types-explained",
+      title: "GraphQL Type System Explained",
+      metaTitle:
+        "GraphQL Type System Explained — Types, Inputs, Enums, Unions & Interfaces",
+      metaDescription:
+        "Understand every GraphQL type kind: object types, input types, enums, unions, interfaces, and scalars. Learn how each maps to TypeScript with examples.",
+      h1: "GraphQL Type System Explained",
+      intro:
+        "GraphQL has a rich type system that maps cleanly to TypeScript. Use the converter above to see how each GraphQL type translates to TypeScript interfaces, enums, and type aliases.",
+      content: [
+        {
+          heading: "Object types",
+          body: "Object types are the most common. 'type User { id: ID!, name: String! }' becomes a TypeScript interface with the same fields. Non-null fields (!) become required properties, nullable fields become optional or have '| null'. Arrays like '[Post!]!' become 'Post[]'.",
+        },
+        {
+          heading: "Input types",
+          body: "Input types define the shape of mutation arguments. 'input CreateUserInput { name: String!, email: String! }' generates a separate TypeScript interface. Inputs often have more optional fields than output types since you typically only send the fields you want to update.",
+        },
+        {
+          heading: "Enums and unions",
+          body: "GraphQL enums like 'enum Status { ACTIVE, INACTIVE }' can become TypeScript enums or const objects (preferred for tree-shaking). Unions like 'union SearchResult = User | Post' become TypeScript union types: 'type SearchResult = User | Post'. Both preserve the type safety of the original schema.",
+        },
+        {
+          heading: "Interfaces and scalars",
+          body: "GraphQL interfaces like 'interface Node { id: ID! }' become TypeScript interfaces that other types can extend. Custom scalars like 'scalar DateTime' need explicit TypeScript type mappings — DateTime typically maps to 'string', JSON to 'Record<string, unknown>', and Upload to 'File'.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between type and input in GraphQL?",
+          answer:
+            "'type' defines output shapes returned by queries/mutations. 'input' defines argument shapes sent by the client. They generate identical TypeScript interfaces but serve different purposes: types describe what the API returns, inputs describe what the client sends.",
+        },
+        {
+          question: "Should I use TypeScript enums or const objects for GraphQL enums?",
+          answer:
+            "Const objects (as const) are generally preferred because they tree-shake better, work with string comparisons, and don't generate runtime JavaScript enum objects. TypeScript enums are fine for smaller projects where tree-shaking isn't critical.",
+        },
+        {
+          question: "How do nullable and non-null types map to TypeScript?",
+          answer:
+            "In GraphQL, fields are nullable by default. 'name: String' means the value can be null. 'name: String!' means it's guaranteed non-null. In TypeScript, nullable fields can be represented as optional properties (name?: string) or explicit union types (name: string | null).",
+        },
+      ],
+      keywords: [
+        "graphql types",
+        "graphql type system",
+        "graphql enum typescript",
+        "graphql union type",
+        "graphql interface",
+        "graphql input type",
+        "graphql scalar",
+      ],
+      parentToolSlug: "graphql-to-typescript",
+      parentToolName: "GraphQL to TypeScript Converter",
+    },
+    {
+      slug: "graphql-vs-rest-types",
+      title: "GraphQL vs REST: Type Safety Compared",
+      metaTitle:
+        "GraphQL vs REST Type Safety — How Each Approach Handles TypeScript Types",
+      metaDescription:
+        "Compare type generation from GraphQL schemas vs OpenAPI/Swagger REST specs. Learn which approach gives better TypeScript type safety and developer experience.",
+      h1: "GraphQL vs REST: Type Safety Compared",
+      intro:
+        "Both GraphQL and REST APIs can generate TypeScript types. Use the converter above for GraphQL schemas, or try the OpenAPI to TypeScript tool for REST APIs.",
+      content: [
+        {
+          heading: "GraphQL: types built into the protocol",
+          body: "GraphQL schemas are inherently typed. Every field has a declared type, nullability is explicit, and the schema is the single source of truth. This makes codegen straightforward: parse the SDL, map types to TypeScript, done. The schema guarantees that generated types match the API response shape exactly.",
+        },
+        {
+          heading: "REST + OpenAPI: types as documentation",
+          body: "REST APIs don't have built-in types. OpenAPI/Swagger specs add type information as a separate documentation layer. This means types can drift from the actual API behavior. Generated TypeScript types are only as accurate as the OpenAPI spec. Well-maintained specs give comparable type safety to GraphQL.",
+        },
+        {
+          heading: "Developer experience comparison",
+          body: "GraphQL codegen tools like @graphql-codegen generate typed hooks (useQuery<GetUserQuery>) that provide end-to-end type safety from schema to component. REST codegen with openapi-typescript generates type-safe fetch wrappers but requires more manual wiring. GraphQL's query-level types mean you only get types for the fields you actually request.",
+        },
+        {
+          heading: "When to use which",
+          body: "GraphQL excels when: you have multiple clients needing different data shapes, your API has deeply nested relationships, or you want the strongest possible type safety. REST excels when: your API is simple CRUD, you need HTTP caching, or your team is more familiar with REST patterns. Both can achieve excellent TypeScript type safety with the right tooling.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is GraphQL type safety better than REST?",
+          answer:
+            "GraphQL has inherent type safety because the schema IS the type system. REST APIs achieve comparable type safety through OpenAPI specs, but the spec is separate from the implementation and can drift. GraphQL's advantage is that types are guaranteed to match the API contract.",
+        },
+        {
+          question: "Can I use both GraphQL and REST codegen in one project?",
+          answer:
+            "Yes. Many projects use GraphQL for complex data-fetching needs and REST for simple endpoints. You can generate TypeScript types from both your GraphQL schema and OpenAPI spec, using them side by side in the same codebase.",
+        },
+        {
+          question: "Which codegen tool should I use for GraphQL?",
+          answer:
+            "For quick one-off conversions, use this online tool. For build-pipeline integration, @graphql-codegen/cli is the most popular choice with 4.6M+ weekly downloads. It supports plugins for React hooks, Vue composables, and more.",
+        },
+      ],
+      keywords: [
+        "graphql vs rest typescript",
+        "graphql type safety",
+        "rest api typescript",
+        "graphql codegen vs openapi",
+        "graphql rest comparison",
+        "type safe api",
+      ],
+      parentToolSlug: "graphql-to-typescript",
+      parentToolName: "GraphQL to TypeScript Converter",
+    },
+  ],
 };

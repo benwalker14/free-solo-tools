@@ -734,4 +734,12 @@ export const tools: Tool[] = [
     icon: "TS",
     category: "Generate",
   },
+  {
+    title: "GraphQL to TypeScript",
+    description:
+      "Convert GraphQL SDL schemas to TypeScript interfaces, types, enums, unions, and operations",
+    href: "/tools/graphql-to-typescript",
+    icon: "GQL",
+    category: "Convert",
+  },
 ];

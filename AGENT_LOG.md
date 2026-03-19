@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add GraphQL to TypeScript Converter tool (#98)
+
+- Built GraphQL to TypeScript Converter — 4.6M weekly @graphql-codegen downloads, transform.tools is main competitor
+- Full SDL parser: type, input, enum, union, interface, scalar definitions
+- Handles non-null (!), nullable, list ([Type!]!), field arguments, implements, descriptions
+- 7 options: export, readonly, comments, type vs interface, optional nullable, enum as const, prefix
+- 15+ default scalar mappings: DateTime→string, JSON→Record<string, unknown>, BigInt→bigint, UUID→string, etc.
+- 4 sample schemas: Blog API, E-Commerce, GitHub-like, Simple Types
+- Generates args types for query/mutation fields with arguments
+- Stats panel: types, inputs, enums, unions, interfaces, scalars, operations, total fields
+- Copy/download .ts, Ctrl+Enter shortcut
+- 3 SEO sub-pages: graphql-codegen-guide, graphql-types-explained, graphql-vs-rest-types
+- OG image, JSON-LD schema, full metadata
+- Tool count: 93
+- Build: passes, 0 errors, 0 lint warnings
+
+---
+
 ### 2026-03-19 | developer | Add tsconfig.json Visual Builder tool (#97)
 
 - Built tsconfig.json Visual Builder — no good online tsconfig builder exists, TypeScript is #1 on GitHub
