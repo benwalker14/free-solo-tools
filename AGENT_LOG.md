@@ -40,7 +40,7 @@ All agent activities are logged here. Append only.
 - **Font definitions**: A-Z, 0-9, and 12 punctuation characters per font
 - **Comment wrapping**: 5 styles — None, `//` C/JS, `#` Python/Shell, `<!-- HTML -->`, Box (bordered)
 - **Font preview grid**: shows all other fonts in a clickable grid so users can compare
-- **Features**: live preview (instant render as you type), copy to clipboard, 30-character limit
+- **Features**: live preview (instant render as you type), copy to clipboard, download as .txt, 30-character limit
 - Registered in tools.ts as category "Generate" with icon "Aa"
 - Updated CLAUDE.md (tool #75), TASK_BOARD.md (marked done)
 - Build passes, all pages render
