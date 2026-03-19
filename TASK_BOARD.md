@@ -9,7 +9,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ### P0 - Critical
 - [x] Fix sitemap bug: add blog posts to `sitemap.xml` — 3 blog posts not discoverable by Google
-- [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this, day 3 (HUMAN ACTION NEEDED)
+- [x] Set up Stripe environment variables in Vercel — done (confirmed by Vincent 2026-03-19)
 - [x] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
 - [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
@@ -103,7 +103,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
 - [x] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
-- [ ] Add HTTP Request Builder tool (#83) — lightweight Postman alternative. Visual builder → cURL/Python/JS/Go/Rust code. Reverse of cURL to Code (#52). Hoppscotch (71K stars) dominates; lower priority.
+- [x] Add HTTP Request Builder tool (#83) — done as tool #106
 - [x] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Drizzle ORM definitions. NO competitor does all 3 targets. Unique differentiator. **TOOL #100.**
 - [x] Add TypeScript to JavaScript Converter tool (#91) — 10-30K/mo. Saturated but massive traffic. Custom type-stripping transpiler. Worth it for SEO alone. **PATH TO 100.**
 - [x] Add JSON to SQL Converter tool (#92) — 5-12K/mo. Parse JSON → CREATE TABLE + INSERT. Multi-dialect (MySQL, PostgreSQL, SQLite). Very fast to build. **PATH TO 100.**
@@ -125,6 +125,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)
 
 ## Done
+- [x] Update GitHub README.md — replaced default create-next-app boilerplate with proper DevBolt README (109 tools, feature list, tool catalog, tech stack, AI agent story, privacy section). Unblocks directory submissions (AlternativeTo, StackShare, etc.)
 - [x] Add author attribution to all 30 blog posts — author bio box with "Written by the DevBolt Team" + /about link on every blog post. Enriched Article JSON-LD with dateModified, sameAs (GitHub), Organization details. Updated blog index "Written by" phrasing. E-E-A-T compliance for Google March 2026 core update.
 - [x] Add Code Complexity Analyzer tool (#105) — paste JS/TS code, analyze per-function cyclomatic complexity (McCabe), cognitive complexity (SonarSource), nesting depth, maintainability index. Risk levels (low/moderate/high/very-high) per function with actionable recommendations (reduce nesting, extract helpers, guard clauses). Overall maintainability grade (A-F). Sort by complexity/nesting. 4 sample inputs (Clean Code, Complex Handler, Deeply Nested, AI-Generated CRUD). Metrics reference table with industry thresholds. 4 FAQs. Quick answer block. 3 SEO sub-pages (cyclomatic-complexity-guide, cognitive-complexity-guide, ai-code-quality). Ctrl+Enter shortcut. All client-side. **TOOL #105.**
 - [x] Add AI Code Security Scanner tool (#104) — paste AI-generated code, get vulnerability report. 25 security rules across 10 categories (Secrets, Injection, XSS, SSRF, Path Traversal, Cryptography, Session, Configuration, Authentication, Code Quality, Information Exposure, Redirect). 4 severity levels (critical, high, medium, low) with CWE references. Detects hardcoded secrets/AWS keys, SQL/NoSQL/command injection, eval()/Function(), innerHTML/dangerouslySetInnerHTML XSS, SSRF via fetch/axios, path traversal in fs operations, prototype pollution, insecure randomness (Math.random), weak hashing (MD5/SHA-1), JWT decode without verify, CORS wildcards, open redirects, missing rate limiting, insecure cookies, HTTP URLs, security TODOs, disabled lint rules, sensitive console.log. Security grade (A-F), severity/category filters, expandable findings with description + fix + code snippet, CWE reference links to MITRE. 4 sample inputs (Vulnerable API Handler, Insecure React Component, Clean Secure Code, AI-Generated CRUD). False positive filtering. 3 SEO sub-pages (ai-code-review, javascript-security, hardcoded-secrets-scanner). Ctrl+Enter shortcut. All client-side. **TOOL #104.**

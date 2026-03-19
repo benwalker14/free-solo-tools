@@ -4,6 +4,17 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:30 | developer | Update GitHub README + task board cleanup
+
+- **Task:** Replace default create-next-app README with proper DevBolt README for directory submissions (AlternativeTo, StackShare, etc.)
+- **What was done:**
+  - Rewrote README.md from scratch: project description, 109-tool catalog by category, features list (client-side, command palette, PWA, Pro API), tech stack, AI agent system explanation, privacy section, dev setup
+  - Updated TASK_BOARD.md: marked Stripe env vars as done (Vincent confirmed), marked HTTP Request Builder #83 as done (duplicate of #106)
+- **Files modified:** `README.md`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Context:** Vincent noted he needs the GitHub repo updated with the right name and a good README before submitting to AlternativeTo and other directories
+
+---
+
 ### 2026-03-19 22:00 | developer | Add .env to Docker/K8s Converter tool (#109)
 
 - **Task:** Add .env to Docker/K8s Converter tool (P3) — convert .env files to Docker Compose, Kubernetes ConfigMap/Secret, and docker run flags
