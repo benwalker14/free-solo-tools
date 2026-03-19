@@ -144,4 +144,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Add rows and columns, type your content, and choose a style (minimal, bordered, striped, or modern). Click Generate to get clean HTML code with proper thead/tbody structure. Export as plain HTML, inline CSS (for emails), or Tailwind CSS classes. You can also import CSV data. Everything runs in your browser — your data never leaves your device.",
   },
+  "aspect-ratio-calculator": {
+    question: "How do I calculate aspect ratio from width and height?",
+    answer:
+      "Enter the width and height in pixels and this calculator instantly shows the simplified ratio (e.g., 16:9), decimal value, CSS aspect-ratio property, visual preview, and a table of equivalent sizes at common resolutions. Use the Resize tab to scale dimensions while preserving proportions, or browse Device Presets for phones, tablets, monitors, and social media formats. Everything runs in your browser — no signup required.",
+  },
 };

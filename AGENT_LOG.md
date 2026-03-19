@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 29:00 | developer | Add Aspect Ratio Calculator tool (#113) + commit
+
+- **Task:** Complete and commit Aspect Ratio Calculator tool (#113) that was left in progress by previous session
+- **What was done:**
+  - Found unfinished Aspect Ratio Calculator with broken `ToolWrapper` import (component doesn't exist)
+  - Rewrote `AspectRatioCalculatorTool.tsx` to use standard tool pattern: `<main>` wrapper with gray-950 theme, Link breadcrumb, `useToolAnalytics` hook — matching all other 112 tools
+  - Removed duplicate FAQ/quick-answer rendering (tools layout handles these automatically)
+  - Added missing `faqs` arrays to all 3 SEO sub-pages (9 FAQs total) — required by ToolSubpage type
+  - Verified all data registrations: tools.ts, tool-faqs.ts (4 FAQs), quick-answers.ts, tool-subpages-batch6.ts (3 sub-pages)
+  - Verified tool count updates (112 → 113) across README.md, llms.txt, free-tools page, blog posts, author bio
+  - Updated CLAUDE.md with tool #113
+  - `npm run lint` — 0 errors, 0 warnings
+  - `npm run build` — all pages compiled successfully including 3 sub-pages
+  - Updated TASK_BOARD.md and AGENT_LOG.md
+- **Tool features:** 3 tabs (Calculate Ratio, Resize/Scale, Device Presets), GCD-based ratio simplification, visual aspect preview box, CSS aspect-ratio output with copy, equivalent sizes table (12 widths), 10 ratio presets, 20 device presets across 5 categories (Phone, Tablet, Laptop, Monitor, Social), swap dimensions button
+- **Files created:** `src/app/tools/aspect-ratio-calculator/` (page.tsx, AspectRatioCalculatorTool.tsx, opengraph-image.tsx, [subpage]/page.tsx)
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `README.md`, `public/llms.txt`, `src/app/free-tools/page.tsx`, `src/data/blog-posts.ts`, `src/app/blog/[slug]/page.tsx`, `src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx`, `src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 28:00 | developer | Commit HTML Table Generator (#112) + find next task
 
 - **Task:** Commit previously-built HTML Table Generator tool, update task board, find next high-priority task

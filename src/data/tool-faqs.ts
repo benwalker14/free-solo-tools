@@ -2074,4 +2074,27 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "The generated HTML uses semantic elements: thead for header groups, th for header cells, tbody for data rows, and td for data cells. You can add an optional caption element that describes the table's purpose — screen readers announce captions to help visually impaired users understand the table before navigating its cells. For maximum accessibility, add scope='col' or scope='row' attributes to th elements in your final code.",
     },
   ],
+
+  "aspect-ratio-calculator": [
+    {
+      question: "How do I calculate the aspect ratio of an image?",
+      answer:
+        "Divide the width by the height to get the decimal ratio (e.g., 1920 ÷ 1080 = 1.7778). To express it as a simplified ratio, find the greatest common divisor (GCD) of both dimensions and divide — 1920:1080 simplifies to 16:9. This calculator does it automatically: enter any width and height to see the simplified ratio, decimal value, equivalent sizes, and the CSS aspect-ratio property.",
+    },
+    {
+      question: "What is the most common aspect ratio for video?",
+      answer:
+        "16:9 is the standard for HD video (720p, 1080p, 4K). Other common video ratios include 4:3 (classic TV/presentations), 21:9 (ultrawide/cinema), 9:16 (vertical video for TikTok/Reels/Shorts), and 1:1 (square, popular on Instagram). The Resize tab lets you scale any of these to a specific pixel width while preserving the ratio.",
+    },
+    {
+      question: "How do I resize an image without stretching it?",
+      answer:
+        "To maintain proportions, you need to keep the same aspect ratio. Enter your original width and height in the Resize tab, then set either the target width or height — the calculator computes the other dimension automatically. This ensures the image scales uniformly with no distortion. In CSS, the 'aspect-ratio' property and 'object-fit: contain' also help maintain ratios responsively.",
+    },
+    {
+      question: "What does the CSS aspect-ratio property do?",
+      answer:
+        "The CSS aspect-ratio property (e.g., aspect-ratio: 16 / 9) tells the browser to maintain a specific width-to-height proportion for an element. It replaced the old padding-top hack for responsive containers. Supported in all modern browsers since 2021. Combined with width: 100% and object-fit: cover, it is the cleanest way to create responsive images and video embeds that never distort.",
+    },
+  ],
 };

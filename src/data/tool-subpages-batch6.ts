@@ -1995,4 +1995,163 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "HTML Table Generator",
     },
   ],
+
+  "aspect-ratio-calculator": [
+    {
+      slug: "16-9-aspect-ratio",
+      title: "16:9 Aspect Ratio — Sizes, Uses & Calculator",
+      metaTitle:
+        "16:9 Aspect Ratio — Sizes, Uses & Resolution Calculator | DevBolt",
+      metaDescription:
+        "Everything about the 16:9 aspect ratio — standard resolutions (720p, 1080p, 4K), where it is used, how to calculate equivalent sizes, and CSS implementation.",
+      h1: "16:9 Aspect Ratio Guide",
+      intro:
+        "16:9 is the most common widescreen aspect ratio, used for HD video, YouTube, computer monitors, and modern TVs. This guide covers its standard resolutions, use cases, and how to work with it in web development.",
+      content: [
+        {
+          heading: "Standard 16:9 resolutions",
+          body: "The 16:9 ratio produces these standard resolutions: 640×360 (nHD), 1280×720 (720p / HD), 1920×1080 (1080p / Full HD), 2560×1440 (1440p / 2K QHD), 3840×2160 (2160p / 4K UHD), and 7680×4320 (8K). These are used across YouTube, streaming services, gaming, and broadcast television. The ratio means for every 16 units of width, there are 9 units of height — a decimal ratio of approximately 1.7778.",
+        },
+        {
+          heading: "Using 16:9 in CSS",
+          body: "Use the CSS aspect-ratio property: aspect-ratio: 16 / 9. For responsive video embeds, combine with width: 100% and overflow: hidden on a container. The old padding-top hack (padding-top: 56.25%) still works for legacy browser support, since 9 ÷ 16 = 0.5625 = 56.25%. For images, add object-fit: cover to fill the container without distortion.",
+        },
+        {
+          heading: "When to use 16:9 vs other ratios",
+          body: "Use 16:9 for: YouTube videos, website hero sections, desktop wallpapers, presentations, and any widescreen content. Consider 4:3 for classic presentations or iPad displays, 1:1 for social media posts, 9:16 for vertical mobile video (Stories, Reels, Shorts), and 21:9 for cinematic or ultrawide content.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What resolution is 16:9 at 1080p?",
+          answer:
+            "1080p in 16:9 is 1920×1080 pixels, also known as Full HD. The 'p' stands for progressive scan lines — 1080 lines of vertical resolution at a 16:9 width-to-height ratio.",
+        },
+        {
+          question: "Is 2560×1440 a 16:9 ratio?",
+          answer:
+            "Yes. 2560÷1440 = 1.7778, which equals 16÷9. This resolution is called 1440p or QHD (Quad HD) and is exactly four times the pixel count of 720p.",
+        },
+        {
+          question: "How do I make a 16:9 container in CSS?",
+          answer:
+            "Use the aspect-ratio property: .container { aspect-ratio: 16 / 9; width: 100%; }. For older browsers, use the padding-top hack: .container { padding-top: 56.25%; position: relative; } with the content positioned absolutely inside.",
+        },
+      ],
+      keywords: [
+        "16:9 aspect ratio",
+        "16:9 resolution",
+        "16:9 calculator",
+        "1920x1080 aspect ratio",
+        "widescreen aspect ratio",
+        "16:9 sizes",
+      ],
+      parentToolSlug: "aspect-ratio-calculator",
+      parentToolName: "Aspect Ratio Calculator",
+    },
+    {
+      slug: "image-resize-ratio",
+      title: "How to Resize Images While Keeping Aspect Ratio",
+      metaTitle:
+        "Resize Images Without Stretching — Keep Aspect Ratio | DevBolt",
+      metaDescription:
+        "Learn how to resize images while preserving their aspect ratio. Calculate the correct dimensions for any target width or height without distortion.",
+      h1: "Resize Images Without Stretching",
+      intro:
+        "Resizing images without distortion means maintaining the original aspect ratio. If you change the width, the height must scale proportionally — and vice versa. This guide shows the math and practical techniques.",
+      content: [
+        {
+          heading: "The resize formula",
+          body: "To resize proportionally: new_height = original_height × (new_width ÷ original_width). For example, to resize a 1920×1080 image to 1280px wide: 1080 × (1280 ÷ 1920) = 720. The result is 1280×720 — same 16:9 ratio, no stretching. To calculate from a target height instead: new_width = original_width × (new_height ÷ original_height).",
+        },
+        {
+          heading: "CSS techniques for responsive images",
+          body: "Use width: 100% with height: auto on img elements for fluid scaling. The aspect-ratio CSS property reserves space before the image loads, preventing layout shift. For cropping to a specific ratio, use object-fit: cover on the img inside a container with a fixed aspect-ratio. For background images, use background-size: contain (show all) or background-size: cover (fill, may crop).",
+        },
+        {
+          heading: "Common mistakes when resizing",
+          body: "Never set both width and height to fixed pixel values unless they match the original ratio — this causes stretching. Upscaling beyond the original resolution creates blurry images; prefer downscaling. When batch-resizing for thumbnails, always calculate one dimension from the other rather than using a fixed box size. Use the calculator above to find the correct dimensions for any target size.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I calculate the new height when resizing?",
+          answer:
+            "Multiply the new width by the original height, then divide by the original width: new_height = new_width × (original_height ÷ original_width). For example, resizing 1920×1080 to 800px wide: 800 × (1080 ÷ 1920) = 450. Result: 800×450.",
+        },
+        {
+          question: "Why does my resized image look blurry?",
+          answer:
+            "Upscaling (making an image larger than its original resolution) creates blur because the browser or editor must invent pixels that did not exist. Always resize downward when possible. If you must upscale, use AI-based upscalers that can infer detail.",
+        },
+        {
+          question: "How do I resize in CSS without distortion?",
+          answer:
+            "Set only one dimension (width or height) and let the other be auto: img { width: 100%; height: auto; }. Or use object-fit: contain to fit inside a box while preserving the ratio, or object-fit: cover to fill the box and crop overflow.",
+        },
+      ],
+      keywords: [
+        "resize image keep ratio",
+        "resize without stretching",
+        "maintain aspect ratio resize",
+        "image resize calculator",
+        "proportional resize",
+        "scale image proportionally",
+      ],
+      parentToolSlug: "aspect-ratio-calculator",
+      parentToolName: "Aspect Ratio Calculator",
+    },
+    {
+      slug: "css-aspect-ratio-property",
+      title: "CSS aspect-ratio Property — Syntax, Examples & Browser Support",
+      metaTitle:
+        "CSS aspect-ratio Property Guide — Syntax, Examples & Tips | DevBolt",
+      metaDescription:
+        "Complete guide to the CSS aspect-ratio property — syntax, responsive video embeds, image containers, browser support, and the padding-top fallback.",
+      h1: "CSS aspect-ratio Property Guide",
+      intro:
+        "The CSS aspect-ratio property defines the preferred width-to-height ratio of an element. It replaced the padding-top hack for responsive containers and is now supported in all modern browsers.",
+      content: [
+        {
+          heading: "Syntax and basic usage",
+          body: "The property accepts a ratio: aspect-ratio: 16 / 9. The element will try to maintain this ratio as its size changes. Set width: 100% and the height adjusts automatically. For square elements: aspect-ratio: 1 / 1 (or just aspect-ratio: 1). You can also use decimal values: aspect-ratio: 1.7778. The auto keyword (aspect-ratio: auto) uses the element's intrinsic ratio — useful for images that should keep their natural proportions with auto as a fallback: aspect-ratio: auto 16 / 9.",
+        },
+        {
+          heading: "Common patterns",
+          body: "Responsive video container: .video-container { aspect-ratio: 16 / 9; width: 100%; } with the iframe or video filling it via position: absolute and inset: 0. Image card grid: set aspect-ratio: 3 / 2 on the img element with object-fit: cover to create uniform image grids. Hero section: aspect-ratio: 21 / 9 for a cinematic banner that scales with viewport width. Avatar circle: aspect-ratio: 1 with border-radius: 50%.",
+        },
+        {
+          heading: "Browser support and fallbacks",
+          body: "aspect-ratio is supported in Chrome 88+, Firefox 89+, Safari 15+, and Edge 88+ (since early 2021). For older browsers, use the padding-top fallback: .container { position: relative; padding-top: 56.25%; } .container > * { position: absolute; inset: 0; }. The 56.25% comes from 9/16 × 100. Use @supports (aspect-ratio: 1) { ... } to progressively enhance. For images, setting width and height HTML attributes gives the browser the intrinsic ratio for layout calculation even before CSS loads.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I use aspect-ratio on images?",
+          answer:
+            "Yes. Setting aspect-ratio on an img element reserves the correct space in the layout before the image loads, preventing Cumulative Layout Shift (CLS). Combine with object-fit: cover or contain to control how the image fills the box. Setting width and height HTML attributes achieves the same layout reservation.",
+        },
+        {
+          question: "What is the padding-top aspect ratio hack?",
+          answer:
+            "Before the aspect-ratio CSS property existed, developers used padding-top as a percentage of the width to create ratio-locked containers. For 16:9: padding-top: 56.25% (9 ÷ 16 × 100). Content inside uses position: absolute. This hack is no longer needed in modern browsers but still works as a fallback.",
+        },
+        {
+          question: "Does aspect-ratio work with flexbox and grid?",
+          answer:
+            "Yes. The aspect-ratio property works in flex items and grid items. In flex layouts, set flex-shrink: 0 if you want the item to maintain its ratio without being squished. In grid, use min-height: 0 on the item to allow the ratio to take effect when the grid cell has an implicit size.",
+        },
+      ],
+      keywords: [
+        "css aspect-ratio",
+        "aspect-ratio property",
+        "css aspect ratio responsive",
+        "aspect-ratio css",
+        "responsive aspect ratio css",
+        "padding-top aspect ratio",
+      ],
+      parentToolSlug: "aspect-ratio-calculator",
+      parentToolName: "Aspect Ratio Calculator",
+    },
+  ],
 };

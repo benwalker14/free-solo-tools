@@ -894,4 +894,12 @@ export const tools: Tool[] = [
     icon: "TBL",
     category: "Generate",
   },
+  {
+    title: "Aspect Ratio Calculator",
+    description:
+      "Calculate aspect ratios from any dimensions, resize while preserving proportions, and find equivalent sizes. Device presets for phones, tablets, monitors, and social media",
+    href: "/tools/aspect-ratio-calculator",
+    icon: "⊞",
+    category: "Inspect",
+  },
 ];

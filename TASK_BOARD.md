@@ -127,6 +127,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)
 
 ## Done
+- [x] Add Aspect Ratio Calculator tool (#113) — calculate aspect ratios from any dimensions, resize/scale while preserving proportions, visual preview, CSS aspect-ratio output, common sizes table, 10 ratio presets (16:9, 4:3, 1:1, etc.), 20 device presets (phones, tablets, laptops, monitors, social media). 4 FAQs. Quick answer block. 3 SEO sub-pages (16-9-aspect-ratio, image-resize-ratio, css-aspect-ratio-property). All client-side. **TOOL #113.**
+- [x] Update stale tool counts across codebase (112 → 113)
 - [x] Add HTML Table Generator tool (#112) — visual table editor with interactive row/column editing, header rows, captions, styling. Export as plain HTML, inline CSS, or Tailwind. 3 SEO sub-pages
 - [x] Update stale tool counts across codebase (111 → 112)
 - [x] Add CSS Unit Converter tool (#111) — convert px/rem/em/pt/vw/vh/%, batch CSS conversion, configurable base size, reference table, 3 SEO sub-pages

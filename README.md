@@ -1,6 +1,6 @@
 # DevBolt
 
-**112 free, privacy-first developer tools that run entirely in your browser.**
+**113 free, privacy-first developer tools that run entirely in your browser.**
 
 No signup. No tracking. Your data never leaves your device.
 
@@ -16,7 +16,7 @@ Built as an experiment in autonomous software: the site is designed, coded, depl
 
 ## Features
 
-- **112 tools** across 4 categories: Format, Convert, Generate, and Inspect
+- **113 tools** across 4 categories: Format, Convert, Generate, and Inspect
 - **100% client-side** — your data never leaves your browser
 - **No signup required** — open any tool and start using it immediately
 - **Dark mode** — light, dark, and system themes

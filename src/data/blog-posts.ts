@@ -620,9 +620,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "codebeautify-alternative",
     title:
-      "CodeBeautify Alternative: 111 Tools That Never See Your Data",
+      "CodeBeautify Alternative: 113 Tools That Never See Your Data",
     description:
-      "CodeBeautify stores your data on their servers. DevBolt offers 111 free developer tools that run 100% client-side — your JSON, JWTs, code, and credentials never leave your browser.",
+      "CodeBeautify stores your data on their servers. DevBolt offers 113 free developer tools that run 100% client-side — your JSON, JWTs, code, and credentials never leave your browser.",
     publishedAt: "2026-03-19",
     readTime: "11 min read",
     tags: ["Security", "Privacy", "Tools", "Alternative"],
