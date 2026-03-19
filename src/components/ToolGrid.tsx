@@ -2,12 +2,14 @@
 
 import { useState, useMemo } from "react";
 import { useFavorites } from "@/hooks/useFavorites";
+import { useRecentTools } from "@/hooks/useRecentTools";
 import type { Tool, ToolCategory } from "@/data/tools";
 import { TOOL_CATEGORIES } from "@/data/tools";
 import ToolCard from "./ToolCard";
 
 export default function ToolGrid({ tools }: { tools: Tool[] }) {
   const { isFavorite, toggleFavorite } = useFavorites();
+  const { recentHrefs, clearRecent } = useRecentTools();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<ToolCategory | null>(
     null,
@@ -30,7 +32,19 @@ export default function ToolGrid({ tools }: { tools: Tool[] }) {
   }, [tools, query, activeCategory]);
 
   const favoriteTools = filtered.filter((t) => isFavorite(t.href));
-  const otherTools = filtered.filter((t) => !isFavorite(t.href));
+  const recentTools = useMemo(() => {
+    const filteredSet = new Set(filtered.map((t) => t.href));
+    return recentHrefs
+      .filter((href) => filteredSet.has(href) && !isFavorite(href))
+      .map((href) => filtered.find((t) => t.href === href)!)
+      .filter(Boolean);
+  }, [filtered, recentHrefs, isFavorite]);
+  const pinnedHrefs = useMemo(() => {
+    const s = new Set(favoriteTools.map((t) => t.href));
+    recentTools.forEach((t) => s.add(t.href));
+    return s;
+  }, [favoriteTools, recentTools]);
+  const otherTools = filtered.filter((t) => !pinnedHrefs.has(t.href));
   const isFiltering = query.trim() !== "" || activeCategory !== null;
 
   return (
@@ -123,8 +137,46 @@ export default function ToolGrid({ tools }: { tools: Tool[] }) {
               </div>
             </div>
           )}
+          {recentTools.length > 0 && (
+            <div className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="h-5 w-5 text-indigo-500 dark:text-indigo-400"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Recently Used
+                </h2>
+                <button
+                  type="button"
+                  onClick={clearRecent}
+                  className="text-xs text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
+                >
+                  Clear
+                </button>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {recentTools.map((tool) => (
+                  <ToolCard
+                    key={tool.href}
+                    {...tool}
+                    isFavorite={false}
+                    onToggleFavorite={toggleFavorite}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
           <div>
-            {favoriteTools.length > 0 && (
+            {(favoriteTools.length > 0 || recentTools.length > 0) && (
               <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                 All Tools
               </h2>

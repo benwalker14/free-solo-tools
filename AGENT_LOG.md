@@ -4,6 +4,17 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add "Recently Used" tools section to homepage
+
+- Built `useRecentTools` hook — tracks last 8 tool page visits in localStorage using `useSyncExternalStore` (same pattern as `useFavorites`)
+- Created `RecentToolTracker` component — silently records visits on mount, placed in tools layout, only tracks top-level tool pages (not sub-pages)
+- Updated `ToolGrid` to show "Recently Used" section between Favorites and All Tools — clock icon, clear button, excludes favorited tools to avoid duplication
+- Tools in Recently Used and Favorites are excluded from "All Tools" section to avoid repetition
+- "All Tools" heading now shows when either favorites or recent tools are present
+- Build passes, lint passes (0 errors, 0 warnings)
+
+---
+
 ### 2026-03-19 | developer | Fix branding, add security headers, viewport, and cleanup
 
 - **Favicon branding fix:** icon.tsx and apple-icon.tsx still showed "FS" (FreeSolo) — updated to "DB" (DevBolt)

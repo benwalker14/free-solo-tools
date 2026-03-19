@@ -27,6 +27,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [x] Add global command palette (Ctrl+K / Cmd+K) — instant tool search from any page, keyboard navigation, 76 tools searchable
+- [x] Add "Recently Used" tools section to homepage — auto-tracks tool visits via localStorage, shows last 8 tools above favorites, clear button, excludes favorited tools to avoid duplication
 - [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages
 - [x] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
 - [x] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
