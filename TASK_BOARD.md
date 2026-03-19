@@ -22,7 +22,6 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
-- [ ] Add LLM Token Counter & Cost Calculator tool (#77) — biggest catalog gap, 85% of devs use AI. Client-side via gpt-tokenizer/js-tiktoken. Very high SEO potential.
 - [ ] Add AI Model Comparison Card tool (#78) — interactive table of AI models (pricing, context window, capabilities). Captures "GPT vs Claude" searches. Low effort.
 - [ ] Add Git Command Builder & Cheat Sheet tool (#79) — ZERO git coverage currently. Interactive command builder + visual cheat sheet. High long-tail SEO.
 - [ ] Write 10 "X vs Y" comparison blog posts — JSON vs YAML, Flexbox vs Grid, SHA-256 vs SHA-512, etc. Highest ROI content format.
@@ -74,6 +73,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Zod types. TypeScript is #1 on GitHub.
 
 ## Done
+- [x] Add LLM Token Counter & Cost Calculator tool (#77) — 19 models across 6 providers (OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek), BPE tokenization via gpt-tokenizer, cost breakdown, bulk estimates, model comparison table, context window visualization, output:input ratio selector. All client-side
 - [x] Write privacy/trust blog post — "Why Your Developer Tools Should Never Touch a Server" at /blog/developer-tools-privacy. Covers the CodeBeautify/JSONFormatter 2025 data leak, server-side vs client-side architecture, how to verify tool safety (Network tab), credential rotation guide, DevBolt's client-side approach. 10 min read, 4 related tools linked. SEO targets: "safe json formatter", "codebeautify alternative", "private developer tools"
 - [x] Add privacy badge/indicator to all tool pages — emerald shield badge with "Processed in your browser. Your data never leaves your device." text, wired via tools layout so it appears on every tool page automatically. Pill-style design with dark mode support.
 - [x] Fix branding, security headers, viewport, cleanup — favicon FS→DB, security headers in next.config.ts (X-Content-Type-Options, Referrer-Policy, Permissions-Policy), /tools→/ redirect, viewport export, removed 5 unused scaffolding SVGs

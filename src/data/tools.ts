@@ -606,4 +606,12 @@ export const tools: Tool[] = [
     icon: "R.*",
     category: "Generate",
   },
+  {
+    title: "LLM Token Counter",
+    description:
+      "Count tokens and estimate API costs for GPT-4o, Claude, Gemini, and other LLMs with BPE tokenization",
+    href: "/tools/token-counter",
+    icon: "LLM",
+    category: "Inspect",
+  },
 ];

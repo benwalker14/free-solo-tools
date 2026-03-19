@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add LLM Token Counter & Cost Calculator tool (#77)
+
+- Built tool #77 at `/tools/token-counter` — LLM Token Counter & Cost Calculator
+- 19 models across 6 providers: OpenAI (GPT-4.1, GPT-4o, o3, o4-mini), Anthropic (Claude Opus 4, Sonnet 4, Haiku 3.5), Google (Gemini 2.5 Pro/Flash, 2.0 Flash), Meta (Llama 4 Maverick/Scout), Mistral Large, DeepSeek (V3, R1)
+- BPE tokenization via `gpt-tokenizer` (cl100k_base encoding) — accurate for OpenAI models, ~5-15% approximation for others
+- Features: token counting, cost breakdown (input/output), context window usage bar, bulk estimates (10-10K requests), full model pricing comparison table with provider filter
+- Output:Input ratio selector (0x–5x) for estimating response costs
+- Text stats: characters, words, lines alongside token count
+- Sample prompt included for quick demo
+- Registered in `tools.ts` as tool #77 (category: Inspect)
+- Updated tool counts: `free-tools` page and OG image from 75+ → 77+, blog post from 76+ → 77+
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Write privacy/trust blog post
 
 - Wrote "Why Your Developer Tools Should Never Touch a Server" at `/blog/developer-tools-privacy`
