@@ -54,6 +54,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add contextual affiliate links in 6 blog posts — DigitalOcean App Platform (Docker Best Practices), DigitalOcean Managed Databases (Docker Compose), DigitalOcean Kubernetes (YAML Guide), Netlify (CSS Grid, Flexbox), Cloudways (Password Security). Blue callout boxes with `rel="noopener sponsored"`, centralized URL config in `src/data/affiliate-links.ts`
+- [x] Fix 3 lint warnings — missing useCallback dependency in FileHashTool, unused variables in K8s/OpenAPI validators. Added `argsIgnorePattern: "^_"` to ESLint config. 0 errors, 0 warnings
 - [x] Write 4 new blog posts: CSS Flexbox guide (/blog/css-flexbox-guide), JSON validation guide (/blog/json-validation-guide), .gitignore guide (/blog/gitignore-guide), Base64 explained (/blog/base64-encoding-explained) — all registered, sitemap auto-includes, build passes
 - [x] Add Regex Generator tool (#57) — 60+ curated patterns searchable by English description, visual regex composer with building blocks, live tester with match highlighting, pattern breakdown/explanation, flags toggle, 10 categories (Email, URLs, IP/Network, Dates, Numbers, Text, Code, Validation, Files, Data Formats)
 - [x] Add "Free Developer Tools" landing page at /free-tools — SEO landing page targeting "free developer tools online" head term, 75+ tools by category, FAQ with schema, value props, OG image, sitemap entry

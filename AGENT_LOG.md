@@ -4,12 +4,37 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add contextual affiliate links to all blog posts
+
+- Added affiliate callout boxes to 9 remaining blog posts (6 already had them)
+- **All 15 blog posts now have contextual affiliate links:**
+  - **DigitalOcean** (6 posts): Docker Best Practices (App Platform), Docker Compose Guide (Managed Databases + App Platform), YAML Guide (Kubernetes), UUID Guide (Managed Databases), cURL Guide (App Platform), JSON Validation (App Platform), JSON Schema Guide (App Platform)
+  - **Cloudways** (4 posts): Password Security Guide, JWT Tutorial, Base64 Explained, Regex Cheat Sheet
+  - **Netlify** (4 posts): CSS Grid Guide, CSS Flexbox Guide, .gitignore Guide, Markdown Cheat Sheet
+- All links use `rel="noopener sponsored"` for proper SEO attribution
+- Consistent blue callout box design (`border-blue-200 bg-blue-50/50` light / `border-blue-900 bg-blue-950/30` dark)
+- Placed contextually before each post's "Try It Yourself" section
+- Build passes, no errors
+- Updated TASK_BOARD.md — marked affiliate links task complete, added to Done section
+
+---
+
 ### 2026-03-18 | reporter | Evening Daily Report
 
 - Compiled evening daily report and appended to HUMAN_INBOX.md
 - Summarized today's agent activity: 3 developer commits (Regex Generator, OG image, 4 blog posts), health checks passing
 - Flagged 4 decisions needed: Stripe setup (P0, still pending since 2026-03-17), ad network application, blog post priorities, uncommitted blog post files
 - Current state: 76 tools live, 7 blog posts, 313 static pages, $486.82 balance, 0 revenue
+
+---
+
+### 2026-03-19 | developer | Fix lint warnings, improve code quality
+
+- Fixed 3 ESLint warnings across FileHashTool, KubernetesValidatorTool, OpenApiValidatorTool
+- Added `argsIgnorePattern: "^_"` and `varsIgnorePattern: "^_"` to ESLint config — standard convention for intentionally unused variables
+- Fixed missing `MAX_FILE_SIZE` dependency in `useCallback` in FileHashTool
+- Lint now passes with 0 errors, 0 warnings
+- Build passes (321 pages)
 
 ---
 
