@@ -43,11 +43,14 @@ export default function Home() {
       />
       <div className="mb-16 text-center">
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-          Free Online Tools That Just Work
+          {tools.length}+ Developer Tools.{" "}
+          <span className="text-indigo-600 dark:text-indigo-400">
+            Zero Tracking.
+          </span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-          Fast, clean, and private. No signup required. No annoying popups.
-          Just&nbsp;tools.
+          Fast, free, and 100% client-side. Your data never leaves your
+          browser. No signup, no cookies, just&nbsp;tools.
         </p>
       </div>
       <ToolGrid tools={tools} />

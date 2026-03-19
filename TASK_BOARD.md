@@ -31,9 +31,9 @@ _None_
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
-- [ ] Update homepage tagline to emphasize privacy-first positioning
+- [x] Update homepage tagline to emphasize privacy-first positioning
 - [ ] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
-- [ ] Add "Free Developer Tools" landing page — optimize for "free developer tools online" head term
+- [x] Add "Free Developer Tools" landing page — optimize for "free developer tools online" head term
 - [x] Add Dockerfile Validator tool (#73) — Docker at 71.1% adoption, huge jump in 2025
 - [x] Add Kubernetes YAML Validator tool (#74) — K8s at 28.5%, growing
 
@@ -52,6 +52,8 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add "Free Developer Tools" landing page at /free-tools — SEO landing page targeting "free developer tools online" head term, 75+ tools by category, FAQ with schema, value props, OG image, sitemap entry
+- [x] Update homepage tagline to privacy-first positioning — "75+ Developer Tools. Zero Tracking." with client-side/no-cookies messaging
 - [x] Add ASCII Art Text Generator (#70) — 7 font styles (Banner, Block, Shadow, Slim, Star, Dot, Lines), comment wrapping (C/JS, Python/Shell, HTML, Box), font preview grid, copy output, 30-char input, all client-side
 - [x] Add File Hash Calculator tool (#74) — drag-and-drop file hashing with MD5, SHA-1, SHA-256, SHA-384, SHA-512. Verify mode compares against expected hash. All client-side using Web Crypto API + pure JS MD5
 - [x] Add .env File Validator tool (#77) — validates syntax, security (exposed secrets, placeholders), duplicate keys, naming conventions, quoting issues. Compare mode diffs .env vs .env.example for missing/extra keys. Sample data included

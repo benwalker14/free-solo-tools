@@ -10,6 +10,12 @@ export default function Footer() {
           </p>
           <div className="flex gap-6 text-sm text-gray-500 dark:text-gray-400">
             <Link
+              href="/free-tools"
+              className="transition-colors hover:text-gray-700 dark:hover:text-gray-300"
+            >
+              Free Tools
+            </Link>
+            <Link
               href="/about"
               className="transition-colors hover:text-gray-700 dark:hover:text-gray-300"
             >
