@@ -26,7 +26,7 @@ export default function AppleIcon() {
             letterSpacing: "-0.02em",
           }}
         >
-          FS
+          DB
         </div>
       </div>
     ),
