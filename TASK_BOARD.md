@@ -8,22 +8,27 @@ _None_
 ## To Do
 
 ### P0 - Critical
-_None - all critical tasks complete_
+- [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this (HUMAN ACTION NEEDED)
 
-### P1 - High
-_None_
+### P1 - High (Growth)
+- [ ] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
+- [ ] Apply to Carbon Ads for developer-focused ad monetization (HUMAN ACTION NEEDED)
+- [ ] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
+- [ ] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 
-### P2 - Medium
-- [x] ~~Add JSON to TypeScript Generator tool (#30) — growing fast with TS adoption~~ → Done
-- [x] ~~Add HTML ↔ Markdown Converter tool (#31) — complements existing Markdown Preview~~ → Done
-- [x] ~~Add YAML Validator & Formatter tool (#32) — growing with K8s/Docker adoption~~ → Done
-- [x] ~~Add JSON Path Tester tool (#33) — complements JSON Formatter~~ → Done
+### P2 - Medium (Content & Tools)
+- [ ] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
+- [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
+- [ ] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
+- [ ] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
+- [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 
-### P3 - Low
-- [x] ~~Add SVG Optimizer & Viewer tool (#34) — remove metadata, comments, editor data; preview before/after~~ → Done
-- [x] ~~Add Image Compressor tool (#35) — compress/resize images with quality control, format conversion~~ → Done
-- [x] ~~Create API endpoints for Pro users~~ → Done
-- [x] ~~Add batch processing mode for Pro users~~ → Done
+### P3 - Low (Catalog Expansion)
+- [ ] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
+- [ ] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
+- [ ] Add Docker Compose Validator (#62) — growing with container adoption
+- [ ] Add JSON Diff tool (#55) — JSON diff searched separately from text diff
+- [ ] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
 - [x] Add batch processing mode for Pro API — /api/v1/batch endpoint, up to 50 ops/request
