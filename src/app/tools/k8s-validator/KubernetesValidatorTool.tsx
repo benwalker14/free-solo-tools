@@ -197,7 +197,7 @@ function splitFlow(s: string): string[] {
   return parts;
 }
 
-function parseBlock(lines: string[], startLine: number, minIndent: number): ParseResult {
+function parseBlock(lines: string[], startLine: number, _minIndent: number): ParseResult {
   // Skip blank/comment lines
   let i = startLine;
   while (i < lines.length) {

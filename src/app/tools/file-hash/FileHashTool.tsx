@@ -170,7 +170,7 @@ export default function FileHashTool() {
         setLoading(false);
       }
     },
-    [selectedAlgos, isLimited, recordUsage, trackAction],
+    [selectedAlgos, isLimited, recordUsage, trackAction, MAX_FILE_SIZE],
   );
 
   const handleDrop = useCallback(

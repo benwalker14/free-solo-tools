@@ -248,7 +248,7 @@ function parseYaml(input: string): YamlValue {
     return items;
   }
 
-  function parseValue(indent: number): YamlValue {
+  function parseValue(_indent: number): YamlValue {
     skipEmpty();
     if (pos >= lines.length) return null;
 
