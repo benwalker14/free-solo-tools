@@ -4,6 +4,31 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add FAQ sections with FAQPage schema to top 20 tools
+
+- Built data-driven FAQ infrastructure for AI Overview citation optimization
+- Created `src/data/tool-faqs.ts` with FAQ data for 20 high-traffic tools:
+  - JSON Formatter, Base64, Hash Generator, UUID Generator, JWT Decoder
+  - Regex Tester, URL Parser, Diff Checker, Epoch Converter, Password Generator
+  - Case Converter, CSV-JSON, URL Encoder, JSON-YAML, HTML Entities
+  - QR Code Generator, SQL Formatter, JSON to TypeScript, Code Minifier, Chmod Calculator
+- Each tool has 3-4 SEO-optimized FAQ entries:
+  - Direct answers in first 60 words (AI Overview optimization)
+  - 134-167 word answer paragraphs
+  - Developer-focused questions targeting real search queries
+- Created `src/components/ToolFAQ.tsx` — reusable accordion component:
+  - FAQPage JSON-LD structured data for Google rich results
+  - Accordion UI with chevron animation, dark mode support
+  - Auto-detects current tool from URL pathname
+  - Only renders on main tool pages (not subpages)
+- Wired into `src/app/tools/layout.tsx` — appears on all tool pages between content and Related Tools
+- 70+ total FAQ entries across 20 tools
+- Zero-touch expansion: add FAQ data for any tool slug to `tool-faqs.ts` and it appears automatically
+- "Pages with FAQPage schema are cited 40% more by LLMs" — targets AI Overview CTR recovery
+- Build passes, no errors
+
+---
+
 ### 2026-03-19 | developer | Add ESLint to Biome Config Converter tool (#103)
 
 - Built ESLint-to-Biome converter — FIRST-MOVER opportunity, Biome v2 adoption wave ongoing

@@ -29,7 +29,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add MCP Config Builder tool (#94) — visual mcp.json builder for Claude Desktop/Cursor/VS Code/Windsurf/Claude Code. 16 server templates, 5 client formats, env var management. 3 SEO sub-pages.
 - [x] Add OpenAPI to TypeScript Converter tool (#95) — 2.14M weekly npm downloads for CLI tool, no dominant online converter. transform.tools is only competitor. Pairs with OpenAPI Validator (#75).
 - [x] Write 10 "X vs Y" comparison blog posts — TypeScript vs JavaScript, React vs Vue, REST vs GraphQL, Docker vs K8s, Tailwind vs Bootstrap, Flexbox vs Grid, JSON vs YAML, SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding (10/10 done)
-- [ ] Optimize all tool pages for AI Overview citation — add FAQ sections (3-5 questions each), direct answers in first 60 words, 134-167 word answer paragraphs, tables over prose. AI Overviews caused 61% CTR drop; cited pages get 35% MORE clicks.
+- [x] Optimize top 20 tool pages for AI Overview citation — FAQ sections (3-4 questions each) with FAQPage JSON-LD schema, direct answers in first 60 words, 134-167 word paragraphs. Data-driven via `src/data/tool-faqs.ts`. 70+ FAQs across 20 tools.
+- [ ] Expand FAQ sections to remaining 83 tools — add FAQ data to `src/data/tool-faqs.ts` for all tools. Infrastructure is in place, just needs content.
 - [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
 - [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
 - [ ] Launch on Product Hunt — Tuesday or Wednesday launch (research shows higher dev traffic). "100+ free dev tools. No signup. No tracking." Need 4-6 weeks of PH community engagement FIRST. Target 400+ followers before launch. Maker first comment = 166% more upvotes. Target: 100 upvotes by 4 AM PT. (HUMAN ACTION NEEDED — START COMMUNITY ENGAGEMENT NOW)
@@ -95,7 +96,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add ESLint-to-Biome Config Converter tool (#103) — Biome v2 adoption wave. Convert .eslintrc/.eslintrc.json → biome.json. 100+ rule mappings, formatter extraction, migration guide. 3 SEO sub-pages.
 - [x] Add TypeScript 6.0 Migration Checker tool (#104) — TS 6.0 RC dropped March 6. Analyze tsconfig.json for breaking changes (strict default, ES5 removal, outFile removal). Pairs with tsconfig Builder (#97). **TIME-SENSITIVE WINDOW.**
 - [x] Create llms.txt file — AI crawler guidance listing all tools with descriptions. Only 5-15% of sites have one. Low effort, high AI citation impact.
-- [ ] Add SoftwareApplication/WebApplication schema markup to all tool pages — pages with schema are cited 40% more by LLMs. Template-level change.
+- [x] Add SoftwareApplication/WebApplication schema markup to all tool pages — already present on all 103 tool pages (WebApplication JSON-LD with applicationCategory, offers). Plus FAQPage schema on top 20 tools.
 - [ ] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 RC just dropped. Massive search wave.
 - [ ] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave.
 - [ ] Build privacy-focused landing page at /safe-tools — target "safe json formatter", "codebeautify alternative", "private developer tools". Capture displaced CodeBeautify users after Nov 2025 data leak.
