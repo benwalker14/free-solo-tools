@@ -4799,4 +4799,166 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Compression Tester",
     },
   ],
+  "ts6-migration": [
+    {
+      slug: "typescript-6-breaking-changes",
+      title: "TypeScript 6.0 Breaking Changes",
+      metaTitle:
+        "TypeScript 6.0 Breaking Changes — Complete List | DevBolt",
+      metaDescription:
+        "Complete list of every breaking change in TypeScript 6.0: removed options, deprecated syntax, new defaults, and behavioral changes with migration fixes.",
+      h1: "TypeScript 6.0 Breaking Changes — Complete Reference",
+      intro:
+        "TypeScript 6.0 is the last JavaScript-based major release before the TS 7.0 Go rewrite. It removes legacy module systems, changes compiler defaults, and deprecates options that will be hard-removed in 7.0. Here is every breaking change you need to know.",
+      content: [
+        {
+          heading: "Removed compiler options",
+          body: 'TypeScript 6.0 removes several long-standing options. "target": "es3" and "target": "es5" are no longer valid — the lowest supported target is now "es2015". The "outFile" option is completely removed; use a bundler like Webpack, Rollup, or esbuild instead. The module systems "amd", "umd", and "systemjs" are removed as well. If your project uses any of these, you must update before upgrading to TS 6.0.',
+        },
+        {
+          heading: "Changed default values",
+          body: 'Nine compiler option defaults have changed. "strict" now defaults to true (was false), "target" defaults to "es2025" (was "es5"), "module" defaults to "esnext" (was "commonjs"), "moduleResolution" defaults to "bundler" (was "node10"), "rootDir" defaults to the tsconfig.json directory (was inferred), and "types" defaults to an empty array (was all @types). Projects without explicit settings will behave differently after upgrading.',
+        },
+        {
+          heading: "The escape hatch",
+          body: 'All deprecations in TS 6.0 can be temporarily silenced by adding "ignoreDeprecations": "6.0" to your tsconfig.json compilerOptions. This buys time for migration but will NOT work in TypeScript 7.0, so plan to address every issue before the next major release.',
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the biggest breaking change in TypeScript 6.0?",
+          answer:
+            'The biggest impact for most projects is the "strict": true default. Projects that never explicitly set strict will suddenly see many new type errors. The "types": [] default is also impactful — global type declarations like Buffer, process, and Jest matchers will be missing unless explicitly listed.',
+        },
+        {
+          question: "Can I still target ES5 in TypeScript 6.0?",
+          answer:
+            'No. TypeScript 6.0 removes ES3 and ES5 targets. The lowest supported target is "es2015". For ES5 output, use an external tool like esbuild, SWC, or Babel as a post-compilation step.',
+        },
+        {
+          question: "Is there a migration tool for TypeScript 6.0?",
+          answer:
+            "Yes. The ts5to6 CLI tool handles baseUrl removal and rootDir inference fixes automatically. DevBolt's TypeScript 6.0 Migration Checker analyzes your tsconfig.json and shows every issue with step-by-step fixes.",
+        },
+      ],
+      keywords: [
+        "typescript 6 breaking changes",
+        "ts 6.0 breaking changes",
+        "typescript 6 migration",
+        "typescript 6 removed options",
+        "typescript 6 upgrade",
+      ],
+      parentToolSlug: "ts6-migration",
+      parentToolName: "TypeScript 6.0 Migration Checker",
+    },
+    {
+      slug: "tsconfig-migration-guide",
+      title: "tsconfig.json Migration Guide for TS 6.0",
+      metaTitle:
+        "tsconfig.json Migration Guide for TypeScript 6.0 | DevBolt",
+      metaDescription:
+        "Step-by-step guide to migrate your tsconfig.json from TypeScript 5.x to 6.0. Fix deprecated options, update defaults, and ensure compatibility.",
+      h1: "tsconfig.json Migration Guide — TypeScript 5.x to 6.0",
+      intro:
+        "This guide walks through every tsconfig.json change needed to upgrade from TypeScript 5.x to 6.0. Follow the priority order to handle the most impactful changes first.",
+      content: [
+        {
+          heading: "Priority 1: Add explicit types",
+          body: 'The most commonly missed change is the "types" default shifting to an empty array. Add "types": ["node"] (and other needed packages like "jest", "vitest", etc.) to your compilerOptions. Without this, global type declarations like Buffer, process, and test matchers will be missing. To restore old behavior, use "types": ["*"].',
+        },
+        {
+          heading: "Priority 2: Set rootDir explicitly",
+          body: 'Previously, TypeScript inferred rootDir from input files. Now it defaults to the tsconfig.json directory. Projects with a "src/" structure will see output at dist/src/index.js instead of dist/index.js unless you add "rootDir": "./src" (or your source root) explicitly.',
+        },
+        {
+          heading: "Priority 3: Handle strict mode",
+          body: 'If your project wasn\'t using strict mode, you\'ll see many new type errors after upgrading. Either add "strict": false to preserve old behavior, or fix the type errors to adopt strict mode. The strict flag enables strictNullChecks, noImplicitAny, strictFunctionTypes, and several other checks.',
+        },
+        {
+          heading: "Priority 4: Update module and target",
+          body: 'Set explicit "module" and "target" values if you need specific output. "module" now defaults to "esnext" (was "commonjs") — add "module": "commonjs" if you need require() output. "target" now defaults to "es2025" — add an explicit target if you support older runtimes.',
+        },
+      ],
+      faqs: [
+        {
+          question: "Do I need to change my tsconfig.json for TypeScript 6.0?",
+          answer:
+            "Almost certainly yes. Even if you have explicit settings for most options, the types default change and rootDir inference removal affect nearly every project. Use the DevBolt Migration Checker to see exactly what needs updating.",
+        },
+        {
+          question:
+            'What does "ignoreDeprecations": "6.0" do?',
+          answer:
+            "It silences all deprecation errors in TypeScript 6.0, letting you upgrade immediately while planning fixes. It's a temporary escape hatch — it will NOT work in TypeScript 7.0.",
+        },
+        {
+          question: "How do I fix baseUrl deprecation?",
+          answer:
+            'Remove "baseUrl" and inline the base path into your "paths" entries. For example, change "baseUrl": "./src" with "@app/*": ["app/*"] to just "@app/*": ["./src/app/*"]. The ts5to6 CLI tool automates this.',
+        },
+      ],
+      keywords: [
+        "tsconfig migration typescript 6",
+        "tsconfig.json upgrade guide",
+        "typescript 6 tsconfig changes",
+        "migrate tsconfig to ts 6",
+        "typescript 6 configuration",
+      ],
+      parentToolSlug: "ts6-migration",
+      parentToolName: "TypeScript 6.0 Migration Checker",
+    },
+    {
+      slug: "typescript-7-preparation",
+      title: "Preparing for TypeScript 7.0 — The Go Rewrite",
+      metaTitle:
+        "Preparing for TypeScript 7.0 Go Rewrite | DevBolt",
+      metaDescription:
+        "TypeScript 7.0 rewrites the compiler in Go for 7-10x speed. Learn what TS 6.0 deprecations become hard errors in 7.0 and how to prepare now.",
+      h1: "Preparing for TypeScript 7.0 — What TS 6.0 Deprecations Mean",
+      intro:
+        "TypeScript 6.0 is the final JavaScript-based release. TypeScript 7.0 will rewrite the compiler in Go for 7-10x compilation speed. Every option deprecated in 6.0 will be hard-removed in 7.0 — there is no escape hatch. Here's how to prepare.",
+      content: [
+        {
+          heading: "Why TypeScript is moving to Go",
+          body: "The TypeScript team announced a native Go rewrite to achieve 7-10x faster compilation, dramatically reducing build times for large codebases. The Go compiler (codenamed 'Corsa') will be a full rewrite, not a port. TypeScript 6.0 serves as the transition release, deprecating everything that won't carry forward.",
+        },
+        {
+          heading: "What gets hard-removed in 7.0",
+          body: 'Every option deprecated in TS 6.0 becomes a hard error in 7.0 with no escape hatch. This includes: target es3/es5, outFile, downlevelIteration, moduleResolution node/classic, module amd/umd/system/none, baseUrl as resolution root, esModuleInterop: false, allowSyntheticDefaultImports: false, alwaysStrict: false, module Foo {} namespace syntax, and import assertions (assert keyword).',
+        },
+        {
+          heading: "How to prepare today",
+          body: 'Run your tsconfig.json through the Migration Checker to identify all issues. Fix errors first (these are already broken in 6.0), then warnings (deprecated but escapable), then info items (no-ops to clean up). Use the "ignoreDeprecations": "6.0" escape hatch only as a temporary measure while you migrate.',
+        },
+      ],
+      faqs: [
+        {
+          question: "When will TypeScript 7.0 be released?",
+          answer:
+            "TypeScript 7.0 is expected in late 2026 or early 2027. The Go rewrite is already in progress. TypeScript 6.0 was explicitly positioned as the transition release.",
+        },
+        {
+          question:
+            'Will "ignoreDeprecations" work in TypeScript 7.0?',
+          answer:
+            "No. The ignoreDeprecations escape hatch only works in TypeScript 6.0. In 7.0, all deprecated options become hard errors with no workaround.",
+        },
+        {
+          question: "Will TypeScript 7.0 be backwards compatible?",
+          answer:
+            "TypeScript 7.0 aims for language compatibility — valid TS 6.0 code should work. However, all deprecated compiler options and syntax from 6.0 will be removed. The Go rewrite also changes the compiler API, affecting tools that use the TypeScript compiler programmatically.",
+        },
+      ],
+      keywords: [
+        "typescript 7 go rewrite",
+        "typescript 7.0 preparation",
+        "typescript corsa",
+        "typescript 6 deprecations",
+        "typescript 7 breaking changes",
+        "typescript go compiler",
+      ],
+      parentToolSlug: "ts6-migration",
+      parentToolName: "TypeScript 6.0 Migration Checker",
+    },
+  ],
 };

@@ -806,4 +806,12 @@ export const tools: Tool[] = [
     icon: "ZIP",
     category: "Inspect",
   },
+  {
+    title: "TypeScript 6.0 Migration Checker",
+    description:
+      "Analyze your tsconfig.json for TS 6.0 breaking changes, deprecated options, new defaults, and get a readiness grade with fixes",
+    href: "/tools/ts6-migration",
+    icon: "TS6",
+    category: "Inspect",
+  },
 ];

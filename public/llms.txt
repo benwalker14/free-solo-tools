@@ -1,6 +1,6 @@
 # DevBolt
 
-> 101 free online developer tools. 100% client-side — your data never leaves your browser.
+> 102 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -105,3 +105,4 @@
 - [Git Diff Viewer](https://devbolt.dev/tools/git-diff-viewer): Paste unified diff output from git diff and view it with syntax highlighting, line numbers, and side-by-side or inline display
 - [SQL to TypeScript/Prisma/Drizzle](https://devbolt.dev/tools/sql-to-typescript): Convert SQL CREATE TABLE statements to TypeScript interfaces, Prisma schema, and Drizzle ORM definitions for PostgreSQL, MySQL, and SQLite
 - [Compression Tester](https://devbolt.dev/tools/compression-tester): Test and compare Brotli, Gzip, and Deflate compression ratios for text content with side-by-side results
+- [TypeScript 6.0 Migration Checker](https://devbolt.dev/tools/ts6-migration): Analyze tsconfig.json for TS 6.0 breaking changes, deprecated options, new defaults, and get a readiness grade with fixes
