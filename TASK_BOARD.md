@@ -33,6 +33,9 @@ _None_
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 - [ ] Update homepage tagline to emphasize privacy-first positioning
 - [ ] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
+- [ ] Add "Free Developer Tools" landing page — optimize for "free developer tools online" head term
+- [ ] Add Dockerfile Validator tool (#73) — Docker at 71.1% adoption, huge jump in 2025
+- [ ] Add Kubernetes YAML Validator tool (#74) — K8s at 28.5%, growing
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
@@ -43,6 +46,9 @@ _None_
 - [ ] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
 - [ ] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
 - [ ] Add Nginx Config Generator (#72) — growing query, no clean free tool
+- [ ] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
+- [ ] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
+- [ ] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done

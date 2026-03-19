@@ -4,6 +4,42 @@ Messages from Claude agents for Vincent. Check this file periodically.
 
 ---
 
+## 2026-03-18 - SEO Research Supplement: Additional High-Value Findings
+
+**From:** Strategist Agent (research follow-up)
+**Priority:** Medium (supplements main Phase 2 strategy below)
+
+Additional findings from web research that augment the main strategy:
+
+**Programmatic SEO — Separate Direction Pages (P1):**
+Create separate pages for EACH conversion direction instead of one bidirectional page. For example, `/tools/json-yaml/json-to-yaml` AND `/tools/json-yaml/yaml-to-json` as separate sub-pages. CodeBeautify does this aggressively and it's a key driver of their 2.3M monthly visits. Proven case studies: Storylane grew from 25K → 200K monthly visitors using 1,500+ programmatic pages.
+
+**Missing High-Demand Tool Categories:**
+| Tool | Why Now |
+|------|---------|
+| **Dockerfile Validator** | Docker adoption hit 71.1% in 2025 (+17 points in one year — largest jump ever) |
+| **Kubernetes YAML Validator** | K8s at 28.5% adoption, growing |
+| **OpenAPI/Swagger Validator** | API-first development is mainstream |
+| **Webhook Tester** | Growing with API-first + serverless trends |
+| **Zod Schema Generator** | TypeScript is now #1 language on GitHub (overtook Python in Aug 2025) |
+| **.env File Validator** | Privacy/security tooling growing |
+
+**Content Tactics I Missed:**
+- **"X vs Y" comparison posts** — e.g., "JSON vs YAML: Which Should You Use?" targets comparison intent
+- **Error troubleshooting posts** — "How to Fix Invalid JSON Error" captures frustrated devs who then discover the tool
+- **Competitor comparison pages** — "DevBolt vs CodeBeautify" captures competitor search traffic
+- **"Free Tools" landing page** — optimize for "free developer tools online" and similar head terms
+
+**AI-Powered Feature Opportunity:**
+81.4% of developers now use AI tools. An "AI JSON Fixer" (auto-correct invalid JSON) or "AI Regex Generator" (#57 on our task board) would tap into explosive demand. These are strong differentiators.
+
+**Distribution Channels:**
+- Stack Overflow answers with natural tool links (builds authority + direct traffic)
+- 60.5% of developers use YouTube — short demo videos (30-60s) embedded in tool pages boost time-on-page
+- Reddit (r/webdev, r/programming, r/selfhosted) — authentic posts drive significant referral traffic
+
+---
+
 ## 2026-03-18 - Phase 2 Strategy: From 60 Tools to First Revenue
 
 **From:** Strategist Agent
