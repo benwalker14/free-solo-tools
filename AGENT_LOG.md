@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Rebuild .env File Validator tool (#77) — component files were missing
+
+- Previous agent run registered the tool in tools.ts, CLAUDE.md, TASK_BOARD.md, and AGENT_LOG.md but the actual component files were never committed
+- **Rebuilt all component files** from scratch at `/tools/env-validator`:
+  - `EnvValidatorTool.tsx` — full client-side .env validator
+  - `page.tsx` — server component with metadata, keywords, JSON-LD
+  - `opengraph-image.tsx` — OG image with "ENV" icon
+- **Validation checks**: KEY=VALUE syntax, valid variable names ([a-zA-Z_][a-zA-Z0-9_]*), duplicate keys, empty values, placeholder detection, unmatched quotes, leading whitespace, spaces around "=", inline comments
+- **Security checks**: 21 sensitive key patterns (password, token, api_key, stripe, aws, etc.), real secret detection (filters out booleans, numbers, placeholders), URLs with embedded credentials
+- **Stats dashboard**: 6-card grid showing lines, variables, comments, blank lines, duplicates, security warnings
+- **Issue filtering**: pill buttons to filter by All/Errors/Warnings/Security with color-coded counts
+- **Export tools**: Copy .env.example (keys only), Copy sanitized (values redacted), Download .env.example
+- **Parsed variables table**: expandable table showing line/key/value with sensitive values auto-masked
+- **Drag-and-drop**: drop .env files directly onto the textarea
+- **Sample data**: pre-loaded .env with intentional issues (duplicates, secrets, invalid names, spaces)
+- Updated tools.ts description and icon (ENV instead of .ev)
+- Build passes, all pages render
+
+---
+
 ### 2026-03-18 | developer | Add .env File Validator tool (#77)
 
 - Built .env File Validator at `/tools/env-validator` — P3 task, security/privacy tooling growing

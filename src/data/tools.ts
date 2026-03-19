@@ -577,9 +577,9 @@ export const tools: Tool[] = [
   {
     title: ".env File Validator",
     description:
-      "Validate .env files for syntax errors, security issues, duplicate keys, and best practices — compare against .env.example",
+      "Validate .env files for syntax errors, duplicate keys, security risks, and best practices — export .env.example templates",
     href: "/tools/env-validator",
-    icon: ".ev",
+    icon: "ENV",
     category: "Inspect",
   },
 ];
