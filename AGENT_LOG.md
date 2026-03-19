@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add README Generator tool (#67)
+
+- Built README Generator at `/tools/readme-generator` — P2 task, 20K+/mo search volume
+- **13 toggleable & reorderable sections**: Badges, Description, Features, Prerequisites, Installation, Usage, API Reference, Configuration, Screenshots, Roadmap, Contributing, License, Acknowledgments
+- **8 shields.io badge presets**: License, Build Status, npm Version, Stars, Issues, PRs Welcome, Contributors, Downloads — auto-populated from GitHub owner/repo
+- **8 package managers**: npm, yarn, pnpm, pip, cargo, go, composer, gem — auto-generates install commands
+- **Live preview**: real-time markdown output updates as you type, side-by-side layout on desktop
+- **Features**: section reordering with up/down arrows, custom usage code with language selector, auto-generated table of contents, download .md, copy to clipboard, Ctrl+Enter shortcut, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `ReadmeGeneratorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #65), `CLAUDE.md`, `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add JSON Mock Data Generator tool (#64)
 
 - Built JSON Mock Data Generator at `/tools/json-mock-generator` — P2 task, 25K+/mo search volume

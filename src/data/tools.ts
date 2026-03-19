@@ -510,4 +510,12 @@ export const tools: Tool[] = [
     icon: "MCK",
     category: "Generate",
   },
+  {
+    title: "README Generator",
+    description:
+      "Generate professional GitHub README.md files with badges, installation steps, usage examples, and more",
+    href: "/tools/readme-generator",
+    icon: "RDM",
+    category: "Generate",
+  },
 ];

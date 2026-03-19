@@ -26,7 +26,7 @@ _None_
 - [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages
 - [x] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
 - [x] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
-- [ ] Add README Generator tool (#67) — 20K+/mo, GitHub README builder
+- [x] Add README Generator tool (#67) — 20K+/mo, GitHub README builder
 - [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add README Generator tool (#67) — professional README.md builder with 13 togglable/reorderable sections, shields.io badges, 8 package managers, live preview, copy/download
 - [x] Add JSON Mock Data Generator tool (#64) — 30+ field types, 6 templates (Users, Products, Orders, Blog Posts, Todos, Addresses), schema builder, up to 500 rows, copy/download
 - [x] Add Date Format Tester tool (#63) — 4 format styles (strftime, Unicode/date-fns, Go, Java), 8 presets, live preview table, token reference, copy output
 - [x] Add HTTP Status Code Reference page (#66) — complete reference with 63 status codes, search/filter, expandable details, REST API cheat sheet, quick reference table
