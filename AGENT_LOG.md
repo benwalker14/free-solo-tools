@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON Diff tool (#55)
+
+- Created `src/app/tools/json-diff/page.tsx` — server component with SEO metadata targeting "json diff", "json compare", "compare json objects" (high search volume, searched separately from text diff)
+- Created `src/app/tools/json-diff/JsonDiffTool.tsx` — structural JSON comparison tool with:
+  - **Deep recursive comparison:** Traverses nested objects and arrays, comparing by key/index with full JSON path output (e.g., `config.theme`, `maintainers[1].name`)
+  - **Three change types:** Added (green), Removed (red), Changed (yellow) — each with distinct visual styling
+  - **Tree view:** Interactive expandable/collapsible diff entries showing old → new values with color-coded borders
+  - **Raw view:** Compact diff-style output with +/−/~ prefixes, suitable for copy-pasting
+  - **Stats bar:** Summary counts of added, removed, and changed keys
+  - **Sample data:** Pre-loaded example showing version bump, config changes, array modifications, and new keys
+  - **Swap/Clear controls:** Quick actions for inputs, Ctrl+Enter keyboard shortcut to compare
+  - **Identical detection:** Green banner when two JSON objects are structurally equal
+  - **JSON validation:** Inline error messages for invalid JSON in either panel
+  - **Rate limiting & analytics:** Standard useRateLimit/useToolAnalytics integration
+- Registered tool in `src/data/tools.ts` as tool #57, category "Inspect", icon "J±"
+- Updated TASK_BOARD.md (moved to Done), CLAUDE.md (added to tool list)
+- Build passes, lint clean
+
+---
+
 ### 2026-03-18 | developer | Add JavaScript/TypeScript Playground tool (#60)
 
 - Created `src/app/tools/js-playground/page.tsx` — server component with SEO metadata targeting "javascript playground", "run javascript online", "typescript playground" (high search volume keywords)
@@ -1267,6 +1287,22 @@ No issues found. No action required.
 | `npm run lint` | ✓ Clean — no warnings or errors |
 | Git status | ✓ Clean — branch `master`, up to date with origin |
 | Production URL (devbolt.dev) | ✓ Responding — HTTP 307 in 0.14s |
+| `npm audit` | ✓ 0 vulnerabilities |
+
+No action required.
+
+---
+
+## 2026-03-18 (evening) — Health Check (health agent)
+
+**Status: ALL HEALTHY ✓**
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✓ Success — 56 tools + all pages built |
+| `npm run lint` | ✓ Clean — no warnings or errors |
+| Git status | ✓ Clean — branch `master`, up to date with origin |
+| Production URL (devbolt.dev) | ✓ Responding — HTTP 307 in 0.16s |
 | `npm audit` | ✓ 0 vulnerabilities |
 
 No action required.

@@ -446,4 +446,12 @@ export const tools: Tool[] = [
     icon: "JS",
     category: "Inspect",
   },
+  {
+    title: "JSON Diff",
+    description:
+      "Compare two JSON objects and see structural differences — added, removed, and changed keys",
+    href: "/tools/json-diff",
+    icon: "J±",
+    category: "Inspect",
+  },
 ];

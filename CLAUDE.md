@@ -106,3 +106,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 54. Tailwind CSS Generator (/tools/tailwind-generator)
 55. Open Graph Preview & Debugger (/tools/og-preview)
 56. JavaScript/TypeScript Playground (/tools/js-playground)
+57. JSON Diff (/tools/json-diff)
