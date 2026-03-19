@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 20:30 | developer | Enhance bidirectional converter landing pages to 500+ words
+
+- **Task:** Expand content on 6 directional converter subpages from ~200 words to 500+ words each
+- **Pages enhanced:**
+  1. `/tools/json-yaml/json-to-yaml` — Added 3 new sections: JSON vs YAML syntax comparison, how conversion works, common YAML tools. +1 FAQ. ~600 words total.
+  2. `/tools/json-yaml/yaml-to-json` — Added 3 new sections: what gets lost in conversion, programmatic conversion in Python/Node/Go/Ruby, JSON vs YAML performance. +1 FAQ (anchors/aliases). ~620 words total.
+  3. `/tools/html-markdown/html-to-markdown` — Added 3 new sections: HTML elements to Markdown mapping, limitations/edge cases, why Markdown is better for docs. +1 FAQ (full page vs fragments). ~640 words total.
+  4. `/tools/html-markdown/markdown-to-html` — Added 3 new sections: syntax to HTML mapping, Markdown flavors compared, security considerations. +1 FAQ (custom CSS classes). ~610 words total.
+  5. `/tools/toml-converter/toml-to-json` — Added 3 new sections: TOML vs JSON syntax, tools using TOML, TOML features not in JSON. +1 FAQ (arrays of tables). ~630 words total.
+  6. `/tools/toml-converter/json-to-toml` — Added 3 new sections: JSON features not in TOML, TOML structure/formatting, adding TOML to workflows. +1 FAQ (language support). ~600 words total.
+- **Files modified:** `src/data/tool-subpages-batch1.ts`
+- **Verification:** TypeScript zero errors.
+
+---
+
 ### 2026-03-19 20:00 | developer | Build 3 interactive cheat sheets + commit pending work
 
 - **Task:** Build 3 interactive cheat sheets (Regex, Git, Docker) + commit all pending uncommitted work from previous session
