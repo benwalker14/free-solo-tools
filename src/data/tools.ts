@@ -774,4 +774,12 @@ export const tools: Tool[] = [
     icon: "SQL",
     category: "Convert",
   },
+  {
+    title: "JSON to GraphQL Schema",
+    description:
+      "Generate GraphQL schema definitions from JSON data with automatic type inference, Query/Mutation generation, and .graphql download",
+    href: "/tools/json-to-graphql",
+    icon: "GQL",
+    category: "Generate",
+  },
 ];

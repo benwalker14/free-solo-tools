@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add JSON to GraphQL Schema Generator (#98)
+
+- Built JSON to GraphQL Schema Generator — generate GraphQL SDL schemas from JSON data
+- Automatic type inference: String, Int, Float, Boolean, ID (UUID detection, ID-like field names)
+- Custom scalars: DateTime (ISO timestamps), Date (YYYY-MM-DD dates)
+- Nested objects → separate GraphQL types; arrays of objects merged for complete field coverage
+- 5 options: root type name, non-null (!), add descriptions, generate Query, generate Mutations
+- Query type: get by ID + list all; Mutation type: create/update/delete with auto-generated input type
+- 3 sample datasets: User (nested address + posts), E-Commerce (products/reviews/images), API Response (GitHub-like)
+- Stats panel: type count, field count, custom scalars used
+- Copy to clipboard, download as .graphql, Ctrl+Enter shortcut
+- 3 SEO sub-pages: graphql-schema-from-api, graphql-type-generator, graphql-schema-design
+- JSON-LD schema, full metadata, OG image support
+- Fixed lint warning: removed unused rootFieldName variable in mutations block
+- Updated free-tools page count from 97+ to 98+
+- Tool count: 98
+- Lint: 0 errors, 0 warnings
+
+---
+
 ### 2026-03-19 | developer | Add JSON to SQL Converter tool (#92)
 
 - Built JSON to SQL Converter — parse JSON arrays → CREATE TABLE + INSERT statements

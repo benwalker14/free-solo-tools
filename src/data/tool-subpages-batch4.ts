@@ -4220,4 +4220,139 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JSON to SQL Converter",
     },
   ],
+  "json-to-graphql": [
+    {
+      slug: "graphql-schema-from-api",
+      title: "Generate GraphQL Schema from API Response",
+      metaTitle:
+        "Generate GraphQL Schema from API Response — Free Online Tool | DevBolt",
+      metaDescription:
+        "Paste a REST API JSON response and generate a complete GraphQL schema with types, queries, and mutations. Free, client-side tool.",
+      h1: "Generate GraphQL Schema from API Response",
+      intro:
+        "Convert any REST API JSON response into a complete GraphQL schema definition. The tool infers types, detects IDs and timestamps, and generates Query and Mutation operations — all in your browser.",
+      content: [
+        {
+          heading: "Why convert JSON to GraphQL?",
+          body: "When migrating from REST to GraphQL or wrapping existing REST APIs with a GraphQL layer, you need schema definitions that match your existing data shapes. Manually writing type definitions for complex nested JSON responses is tedious and error-prone. This tool automates the process by analyzing your JSON structure and generating accurate GraphQL types with proper scalar assignments.",
+        },
+        {
+          heading: "How type inference works",
+          body: "The generator analyzes each JSON value to determine its GraphQL scalar type: strings become String, integers become Int, floats become Float, booleans become Boolean. Fields named 'id' or ending in '_id' are mapped to the ID scalar. ISO date strings are detected and mapped to custom DateTime or Date scalars. Nested objects become separate GraphQL types, and arrays become list types.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does this tool handle nested JSON objects?",
+          answer:
+            "Yes. Each nested object in your JSON becomes a separate named GraphQL type. Arrays of objects are merged across all elements to produce a complete type with all possible fields.",
+        },
+        {
+          question: "Can I generate Query and Mutation types?",
+          answer:
+            "Yes. Enable the 'Generate Query' option to add getById and list queries, or 'Generate Mutations' for create, update, and delete operations with automatically generated input types.",
+        },
+      ],
+      keywords: [
+        "json to graphql schema",
+        "generate graphql from api",
+        "rest to graphql converter",
+        "json to graphql types",
+        "graphql schema from json",
+        "api response to graphql",
+      ],
+      parentToolSlug: "json-to-graphql",
+      parentToolName: "JSON to GraphQL Schema Generator",
+    },
+    {
+      slug: "graphql-type-generator",
+      title: "GraphQL Type Generator from JSON",
+      metaTitle:
+        "GraphQL Type Generator from JSON — Free Online Tool | DevBolt",
+      metaDescription:
+        "Generate GraphQL type definitions from JSON data. Infers scalars, detects IDs, dates, and nested structures. Download as .graphql file.",
+      h1: "GraphQL Type Generator from JSON",
+      intro:
+        "Paste JSON data and get properly structured GraphQL type definitions with inferred scalars, custom scalar declarations, and nested type extraction. Download the schema as a .graphql file.",
+      content: [
+        {
+          heading: "GraphQL scalar types",
+          body: "GraphQL has five built-in scalar types: String, Int, Float, Boolean, and ID. The ID type represents a unique identifier and is serialized as a string. For dates and timestamps, GraphQL uses custom scalars like DateTime and Date that must be declared in your schema and implemented in your server's resolver layer.",
+        },
+        {
+          heading: "Non-null types and lists",
+          body: "In GraphQL, types are nullable by default. Adding ! makes a field non-null (e.g., name: String!). List types use brackets (e.g., tags: [String!]!). This tool can automatically add non-null markers to fields that have values in every JSON record, helping you build a stricter, more reliable schema.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between type and input in GraphQL?",
+          answer:
+            "A 'type' defines the shape of data returned by queries. An 'input' defines the shape of data sent to mutations. They look similar but serve different purposes — inputs cannot have fields that return other types, only scalars and other inputs.",
+        },
+        {
+          question: "How do I add custom scalars like DateTime?",
+          answer:
+            "This tool automatically detects ISO date strings in your JSON and declares custom DateTime and Date scalars in the schema output. On your server, you'll need to provide resolver implementations for these scalars using libraries like graphql-scalars.",
+        },
+      ],
+      keywords: [
+        "graphql type generator",
+        "generate graphql types",
+        "graphql type from json",
+        "graphql scalar types",
+        "graphql type definition",
+        "json to graphql type",
+      ],
+      parentToolSlug: "json-to-graphql",
+      parentToolName: "JSON to GraphQL Schema Generator",
+    },
+    {
+      slug: "graphql-schema-design",
+      title: "GraphQL Schema Design Guide",
+      metaTitle:
+        "GraphQL Schema Design Guide — Best Practices | DevBolt",
+      metaDescription:
+        "Learn GraphQL schema design best practices: naming conventions, type relationships, nullability, pagination, and error handling patterns.",
+      h1: "GraphQL Schema Design Guide",
+      intro:
+        "Design effective GraphQL schemas with best practices for naming conventions, type relationships, nullability decisions, and common patterns. Use the schema generator above to prototype your types from real data.",
+      content: [
+        {
+          heading: "Naming conventions",
+          body: "GraphQL types use PascalCase (User, BlogPost). Fields use camelCase (firstName, createdAt). Enum values use SCREAMING_SNAKE_CASE (PUBLISHED, DRAFT). Input types are conventionally suffixed with 'Input' (CreateUserInput). These conventions are not enforced by the spec but are widely adopted across the ecosystem.",
+        },
+        {
+          heading: "Designing for relationships",
+          body: "Unlike REST, GraphQL schemas explicitly model relationships between types. A User type might have a posts: [Post!]! field, and a Post type might have an author: User! field. This bidirectional relationship lets clients query in either direction. Use connection types (edges/nodes pattern) for paginated lists following the Relay specification.",
+        },
+        {
+          heading: "Nullability decisions",
+          body: "Making fields non-null (!) is a contract with your clients — you guarantee the field will always have a value. Be conservative: start with nullable fields and only add ! when you are certain the field will never be null. Non-null fields that return null cause the entire parent object to be nullified, which can cascade up the query tree.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I use interfaces or unions in GraphQL?",
+          answer:
+            "Use interfaces when types share common fields (e.g., Node interface with an id field). Use unions when types are completely different but can appear in the same list (e.g., SearchResult = User | Post | Comment). Interfaces require implementing types to include all interface fields.",
+        },
+        {
+          question: "How should I handle errors in GraphQL schemas?",
+          answer:
+            "Two common patterns: (1) Use the top-level errors array for unexpected failures. (2) Model expected errors as union types in your schema (e.g., CreateUserResult = User | ValidationError | DuplicateEmailError). The union approach gives clients type-safe error handling.",
+        },
+      ],
+      keywords: [
+        "graphql schema design",
+        "graphql best practices",
+        "graphql naming conventions",
+        "graphql schema patterns",
+        "graphql type design",
+        "graphql nullability",
+      ],
+      parentToolSlug: "json-to-graphql",
+      parentToolName: "JSON to GraphQL Schema Generator",
+    },
+  ],
 };
