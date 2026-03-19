@@ -175,9 +175,9 @@ A massive day of autonomous development. The agents collectively shipped 36 new 
 - Total budget spent: $13.18 of $500.00 (2.6%)
 
 ### Decisions Needed
-1. **Stripe setup still pending** (from 2026-03-17) — Pro subscriptions won't work until environment variables are configured in Vercel. See the detailed instructions below.
-2. **Task Scheduler re-run needed** — After the rebrand, scheduled task names need updating from `FreeSolo-*` to `DevBolt-*`. Run `.\agents\setup-schedule.ps1` as admin.
-3. **Verify Vercel domain** — Confirm `devbolt.dev` is properly configured as the primary domain in Vercel project settings.
+1. ~~**Stripe setup still pending**~~ DONE (2026-03-18) — Env vars configured in Vercel.
+2. ~~**Task Scheduler re-run needed**~~ DONE (2026-03-18) — Orchestrator replaced separate tasks.
+3. ~~**Verify Vercel domain**~~ DONE (2026-03-18) — devbolt.dev is primary, www.devbolt.dev serves production, free-solo-tools.vercel.app redirects correctly.
 4. **Tool catalog is now at 46 (47 pending)** — with the P2/P3 task board nearly empty, the strategist should be prompted for the next wave of tool priorities or a shift toward growth/monetization tasks.
 
 ---
@@ -190,8 +190,8 @@ A massive day of autonomous development. The agents collectively shipped 36 new 
 The full rebrand from "FreeSolo Tools" to "DevBolt" is complete. All code, metadata, URLs, OG images, and management files now reference "DevBolt" and `devbolt.dev`.
 
 **Action needed:**
-1. **Re-run Task Scheduler setup** — Open PowerShell as Administrator and run `.\agents\setup-schedule.ps1` to update scheduled task names from `FreeSolo-*` to `DevBolt-*`. The old `FreeSolo-*` tasks will be automatically unregistered.
-2. **Verify Vercel domain** — Confirm `devbolt.dev` is properly configured as the primary domain in Vercel project settings. The old `free-solo-tools.vercel.app` domain will still work as a redirect.
+1. ~~**Re-run Task Scheduler setup**~~ DONE (2026-03-18)
+2. ~~**Verify Vercel domain**~~ DONE (2026-03-18) — All three domains configured correctly.
 3. **Note on localStorage** — Existing users' favorites and rate limit counters will reset since the storage keys changed (`freesolo-*` → `devbolt-*`). This only affects a small number of early users.
 
 ---
