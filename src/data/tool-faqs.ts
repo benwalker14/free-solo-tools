@@ -2006,6 +2006,29 @@ export const toolFaqs: Record<string, FAQ[]> = {
     },
   ],
 
+  "css-unit-converter": [
+    {
+      question: "How do I convert px to rem?",
+      answer:
+        "Divide the pixel value by your root font size (usually 16px). For example, 24px ÷ 16 = 1.5rem. DevBolt's CSS Unit Converter does this math automatically — enter the pixel value, select px as the source and rem as the target, and the result updates instantly. You can change the base font size in the settings panel to match your project (e.g., 10px if you use the 62.5% root font-size trick). The batch converter replaces all px values in pasted CSS with rem values at once.",
+    },
+    {
+      question: "What is the difference between rem, em, and px in CSS?",
+      answer:
+        "px (pixels) is an absolute unit — 16px is always 16px regardless of context. rem (root em) is relative to the root element's (html) font size — with the default 16px root, 1rem = 16px, 2rem = 32px. em is relative to the parent element's font size and compounds with nesting — 1.5em inside a 1.5em parent renders at 2.25× the grandparent's size. Use rem for consistent, accessible sizing. Use em only when you want size to scale with the parent (e.g., button padding). Use px for borders and box-shadows.",
+    },
+    {
+      question: "Should I use rem or px for responsive web design?",
+      answer:
+        "Use rem for typography, spacing, and media query breakpoints. rem units respect the user's browser font size setting, which is an accessibility requirement under WCAG 2.1. Users with low vision who increase their default font size will see your layout scale accordingly. Use px for fine details like borders, box-shadows, and outlines where exact control matters and scaling isn't needed. Most modern CSS frameworks including Tailwind CSS use rem internally.",
+    },
+    {
+      question: "How do vw and vh units work in CSS?",
+      answer:
+        "vw (viewport width) and vh (viewport height) are relative to the browser viewport size. 1vw = 1% of the viewport width, 1vh = 1% of the viewport height. They are useful for full-screen sections (min-height: 100vh), fluid typography (font-size: clamp(1rem, 3vw, 2rem)), and responsive spacing. Caveat: 100vw includes the scrollbar width, which can cause horizontal overflow — use width: 100% on body/containers instead. On mobile, 100vh may not account for the browser chrome; use dvh (dynamic viewport height) for mobile-aware layouts.",
+    },
+  ],
+
   "json-xml": [
     {
       question: "How does JSON to XML conversion handle arrays?",

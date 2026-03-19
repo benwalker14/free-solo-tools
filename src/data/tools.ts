@@ -878,4 +878,12 @@ export const tools: Tool[] = [
     icon: "XML",
     category: "Convert",
   },
+  {
+    title: "CSS Unit Converter",
+    description:
+      "Convert between px, rem, em, pt, vw, vh, and % — single values or batch-convert entire CSS files with configurable base font size",
+    href: "/tools/css-unit-converter",
+    icon: "px→",
+    category: "Convert",
+  },
 ];

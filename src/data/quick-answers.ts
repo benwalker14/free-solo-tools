@@ -134,4 +134,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your JSON or XML, select the conversion direction, and click Convert. JSON objects become XML elements, arrays wrap items in configurable tags, and primitives become text content. XML attributes are preserved with a configurable prefix (default: '@'). Options include XML declaration, CDATA sections, root element name, and indentation. Download as .xml or .json. Everything runs in your browser — your data never leaves your device.",
   },
+  "css-unit-converter": {
+    question: "How do I convert px to rem or other CSS units online?",
+    answer:
+      "Enter a value, select the source and target units (px, rem, em, pt, vw, vh, %), and get the result instantly. Set your root font size (default 16px) for accurate rem/em calculations. Use the batch converter to paste CSS and replace all px values with rem (or any other unit) at once. A reference table shows common px-to-rem conversions. Everything runs in your browser — your code never leaves your device.",
+  },
 };
