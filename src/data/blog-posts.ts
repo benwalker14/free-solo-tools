@@ -51,6 +51,62 @@ export const blogPosts: BlogPost[] = [
       { title: "URL Parser", href: "/tools/url-parser" },
     ],
   },
+  {
+    slug: "css-flexbox-guide",
+    title: "CSS Flexbox: A Visual Guide to Every Property",
+    description:
+      "Learn CSS Flexbox with practical examples for centering, navbars, card grids, and responsive layouts. Includes a quick reference table and common patterns.",
+    publishedAt: "2026-03-18",
+    readTime: "10 min read",
+    tags: ["CSS", "Layout", "Frontend"],
+    relatedTools: [
+      { title: "CSS Flexbox Generator", href: "/tools/flexbox-generator" },
+      { title: "CSS Grid Generator", href: "/tools/grid-generator" },
+      { title: "Tailwind CSS Generator", href: "/tools/tailwind-generator" },
+    ],
+  },
+  {
+    slug: "json-validation-guide",
+    title: "How to Validate JSON: The 7 Most Common Errors and How to Fix Them",
+    description:
+      "A practical guide to JSON syntax rules, the most common validation errors, and how to debug malformed JSON fast.",
+    publishedAt: "2026-03-18",
+    readTime: "8 min read",
+    tags: ["JSON", "Debugging", "Web Development"],
+    relatedTools: [
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      { title: "JSON Schema Validator", href: "/tools/json-schema" },
+      { title: "JSON Path Tester", href: "/tools/json-path" },
+    ],
+  },
+  {
+    slug: "gitignore-guide",
+    title: "How to Write a .gitignore File: Patterns, Templates, and Common Mistakes",
+    description:
+      "Learn .gitignore syntax, wildcard patterns, and ready-to-use templates for Node.js, Python, Go, and Rust. Avoid accidentally committing secrets and build artifacts.",
+    publishedAt: "2026-03-18",
+    readTime: "9 min read",
+    tags: ["Git", "DevOps", "Security"],
+    relatedTools: [
+      { title: ".gitignore Generator", href: "/tools/gitignore-generator" },
+      { title: ".env File Validator", href: "/tools/env-validator" },
+      { title: "File Hash Calculator", href: "/tools/file-hash" },
+    ],
+  },
+  {
+    slug: "base64-encoding-explained",
+    title: "Base64 Encoding Explained: How It Works and When to Use It",
+    description:
+      "Understand how Base64 encoding works, where it's used (JWTs, data URIs, APIs), and code examples in JavaScript, Python, Go, and the command line.",
+    publishedAt: "2026-03-18",
+    readTime: "9 min read",
+    tags: ["Encoding", "Web Development", "Fundamentals"],
+    relatedTools: [
+      { title: "Base64 Encoder & Decoder", href: "/tools/base64" },
+      { title: "Image to Base64 Converter", href: "/tools/image-base64" },
+      { title: "Encode/Decode Multi-Tool", href: "/tools/encode-decode" },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {

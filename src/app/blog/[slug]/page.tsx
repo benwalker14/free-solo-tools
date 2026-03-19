@@ -5,11 +5,19 @@ import { blogPosts, getBlogPost } from "@/data/blog-posts";
 import JwtTutorial from "./posts/JwtTutorial";
 import RegexCheatSheet from "./posts/RegexCheatSheet";
 import CurlGuide from "./posts/CurlGuide";
+import FlexboxGuide from "./posts/FlexboxGuide";
+import JsonValidation from "./posts/JsonValidation";
+import GitignoreGuide from "./posts/GitignoreGuide";
+import Base64Explained from "./posts/Base64Explained";
 
 const postContent: Record<string, React.ReactNode> = {
   "jwt-tutorial": <JwtTutorial />,
   "regex-cheat-sheet": <RegexCheatSheet />,
   "curl-guide": <CurlGuide />,
+  "css-flexbox-guide": <FlexboxGuide />,
+  "json-validation-guide": <JsonValidation />,
+  "gitignore-guide": <GitignoreGuide />,
+  "base64-encoding-explained": <Base64Explained />,
 };
 
 export function generateStaticParams() {

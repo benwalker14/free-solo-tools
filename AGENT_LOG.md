@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Write 4 new blog posts (Flexbox, JSON validation, .gitignore, Base64)
+
+- Completed the "In Progress" task to write 4 blog posts targeting high-volume informational queries
+- **4 new blog posts** registered and built successfully:
+  1. **CSS Flexbox Guide** (`/blog/css-flexbox-guide`) — 10 min read. Covers the two axes, container properties (flex-direction, justify-content, align-items, gap, flex-wrap), item properties (flex, align-self), 5 common patterns (centering, navbar, card grid, sticky footer, holy grail layout), Flexbox vs Grid comparison, quick reference table. Links to Flexbox Generator and Grid Generator tools
+  2. **JSON Validation Guide** (`/blog/json-validation-guide`) — 8 min read. Covers JSON syntax rules, the 7 most common errors (trailing commas, single quotes, unquoted keys, comments, bracket mismatches, invalid numbers, unescaped characters), debugging steps, JSON vs JavaScript comparison table. Links to JSON Formatter, JSON Schema Validator, and JSON Path Tester
+  3. **.gitignore Guide** (`/blog/gitignore-guide`) — 9 min read. Covers how .gitignore works, pattern syntax with wildcard reference table, negation patterns, templates for Node.js/Python/Go/Rust, files you should always ignore (secrets, OS/editor files, build outputs), common mistakes (tracked files, lock files), global gitignore, debugging with git check-ignore. Links to .gitignore Generator and .env File Validator
+  4. **Base64 Explained** (`/blog/base64-encoding-explained`) — 9 min read. Covers what Base64 is (encoding vs encryption), step-by-step encoding algorithm with "Hi" example, padding rules, use cases (data URIs, JWTs, email/MIME, API payloads, HTTP Basic Auth), code examples in JavaScript/Node.js/Python/Go/CLI, Base64 vs Base64URL comparison, common mistakes. Links to Base64 tool, Image to Base64, Encode/Decode Multi-Tool
+- All posts follow established component pattern (Code, CodeBlock helpers, Tailwind dark mode, indigo accents)
+- Registered all 4 in `blog-posts.ts` with metadata, tags, and related tools
+- Registered imports and content mapping in `[slug]/page.tsx`
+- Sitemap auto-includes all blog posts (uses `blogPosts` array)
+- Blog index at `/blog` now shows 7 total posts
+- Build passes (313 static pages), all 7 blog routes generate correctly
+- Updated TASK_BOARD.md — moved task from In Progress to Done
+
+---
+
 ### 2026-03-18 | developer | Add Regex Generator tool (#57)
 
 - Built Regex Generator at `/tools/regex-generator` — P2 task, described as "strong differentiator"
