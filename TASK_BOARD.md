@@ -89,6 +89,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format, suggest right tool. UX differentiator.
 - [x] Add lifetime deal option ($49) alongside Pro subscription — captures subscription-averse devs.
 - [x] Add HowTo structured data to tutorial blog posts — done.
+- [x] Add "Made with DevBolt" watermark to Code Screenshot Generator — subtle branding on exported screenshots for viral growth. Togglable (on by default).
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml

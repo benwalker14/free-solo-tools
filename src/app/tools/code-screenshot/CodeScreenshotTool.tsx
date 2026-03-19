@@ -514,6 +514,7 @@ function renderToCanvas(
   showLineNumbers: boolean,
   showWindowChrome: boolean,
   title: string,
+  showWatermark: boolean = true,
   scale: number = 2,
 ): void {
   const ctx = canvas.getContext("2d")!;
@@ -681,6 +682,25 @@ function renderToCanvas(
       x += ctx.measureText(token.text).width;
     }
   }
+
+  // Watermark
+  if (showWatermark) {
+    const wmFontSize = 11 * scale;
+    ctx.font = `${wmFontSize}px ${fontFamily}`;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "bottom";
+    ctx.fillStyle =
+      background === "solid-white" || background === "gradient-pink"
+        ? "rgba(0, 0, 0, 0.25)"
+        : "rgba(255, 255, 255, 0.25)";
+    ctx.fillText(
+      "devbolt.dev",
+      canvasWidth - 10 * scale,
+      canvasHeight - 8 * scale,
+    );
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+  }
 }
 
 // ── Component ──
@@ -696,6 +716,7 @@ export default function CodeScreenshotTool() {
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [showWindowChrome, setShowWindowChrome] = useState(true);
   const [title, setTitle] = useState("untitled.js");
+  const [showWatermark, setShowWatermark] = useState(true);
   const [copied, setCopied] = useState(false);
 
   const { trackAction } = useToolAnalytics("code-screenshot");
@@ -720,6 +741,7 @@ export default function CodeScreenshotTool() {
       showLineNumbers,
       showWindowChrome,
       title,
+      showWatermark,
     );
   }, [
     code,
@@ -731,6 +753,7 @@ export default function CodeScreenshotTool() {
     showLineNumbers,
     showWindowChrome,
     title,
+    showWatermark,
   ]);
 
   const handleDownload = useCallback(
@@ -1023,6 +1046,18 @@ export default function CodeScreenshotTool() {
                 className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
               />
               Show window chrome
+            </label>
+            <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showWatermark}
+                onChange={(e) => setShowWatermark(e.target.checked)}
+                className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              Show watermark
+              <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                devbolt.dev
+              </span>
             </label>
           </div>
         </div>

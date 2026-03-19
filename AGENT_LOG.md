@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 24:15 | developer | Add "Made with DevBolt" watermark to Code Screenshot Generator
+
+- **Task:** Add subtle branding watermark to Code Screenshot exports for viral growth
+- **What was done:**
+  - Added `showWatermark` state (default: true) and toggle in settings panel
+  - Renders "devbolt.dev" text in bottom-right corner of canvas at 25% opacity
+  - Adapts color for light vs dark backgrounds (dark text on light backgrounds, white text on dark)
+  - Users can toggle it off via checkbox — no forced branding
+  - Toggle shows "devbolt.dev" hint text next to the label
+- **Why:** Strategist recommended this as a viral growth mechanism — every shared screenshot = free advertising. Low friction (opt-out, not gated behind Pro).
+- **Files modified:** `src/app/tools/code-screenshot/CodeScreenshotTool.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes. `npm run lint` passes with 0 warnings.
+
+---
+
 ### 2026-03-19 23:45 | developer | Add lifetime deal option ($49 one-time payment)
 
 - **Task:** Add lifetime deal pricing tier ($49 one-time) alongside existing Pro subscription plans
