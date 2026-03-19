@@ -25,11 +25,12 @@ _None_
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
-- [ ] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
+- [x] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
 - [ ] Add Docker Compose Validator (#62) — growing with container adoption
 - [ ] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Encode/Decode Multi-tool (#59) — Base64, Base32, Hex, Binary, URL, HTML all-in-one with format switcher
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — 4-way conversion between TOML, JSON, and YAML with sample data
 - [x] Add JSON Diff tool (#55) — deep structural comparison with tree/raw views, path highlighting, expand/collapse
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS/TS in-browser with sandboxed execution, console capture, 7 examples

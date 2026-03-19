@@ -108,3 +108,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 56. JavaScript/TypeScript Playground (/tools/js-playground)
 57. JSON Diff (/tools/json-diff)
 58. TOML ↔ JSON/YAML Converter (/tools/toml-converter)
+59. Encode / Decode Multi-Tool (/tools/encode-decode)

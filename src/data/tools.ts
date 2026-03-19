@@ -462,4 +462,12 @@ export const tools: Tool[] = [
     icon: "TML",
     category: "Convert",
   },
+  {
+    title: "Encode / Decode Multi-Tool",
+    description:
+      "Base64, Base32, Hex, Binary, URL, and HTML encoding & decoding all in one tool",
+    href: "/tools/encode-decode",
+    icon: "E/D",
+    category: "Convert",
+  },
 ];

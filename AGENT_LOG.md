@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Encode/Decode Multi-tool (#59)
+
+- Created `src/app/tools/encode-decode/page.tsx` — server component with SEO metadata targeting "encode decode online", "base64 encoder", "base32 encoder", "hex encoder", "binary converter", "url encoder decoder", "html entity encoder"
+- Created `src/app/tools/encode-decode/EncodeDecodeTool.tsx` — all-in-one encoding/decoding tool with:
+  - **6 encoding formats:** Base64, Base32, Hex, Binary, URL (percent-encoding), HTML entities
+  - **Format toggle bar:** 6-button segmented control with description tooltip per format
+  - **Encode / Decode buttons:** Works in both directions for all 6 formats
+  - **Base32 implementation:** Full RFC 4648 encode/decode with A-Z, 2-7 alphabet and padding
+  - **Hex/Binary:** Space-separated byte output for readability, flexible input parsing
+  - **HTML entities:** Named + numeric entity support, full non-ASCII encoding
+  - **UTF-8 support:** All byte-level formats (Base32, Hex, Binary) use proper UTF-8 encoding
+  - **Swap button:** Move output to input for chaining conversions
+  - **Load sample / Copy / Ctrl+Enter:** Standard DevBolt UX patterns
+  - **Rate limiting & analytics:** useRateLimit/useToolAnalytics integration
+- Created `src/app/tools/encode-decode/opengraph-image.tsx` — social preview card
+- Registered tool in `src/data/tools.ts` as #59 (category: Convert, icon: E/D)
+- Updated CLAUDE.md tool list (now 59 tools)
+- Updated TASK_BOARD.md — marked #59 as done
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add TOML ↔ JSON/YAML Converter tool (#58)
 
 - Created `src/app/tools/toml-converter/page.tsx` — server component with SEO metadata targeting "toml to json", "json to toml", "toml to yaml", "toml converter", "cargo toml", "pyproject toml"
