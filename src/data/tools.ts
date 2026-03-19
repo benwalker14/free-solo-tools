@@ -534,4 +534,20 @@ export const tools: Tool[] = [
     icon: "K8s",
     category: "Inspect",
   },
+  {
+    title: "robots.txt Generator",
+    description:
+      "Generate robots.txt files with crawl rules for Googlebot, Bingbot, AI bots, and more — presets included",
+    href: "/tools/robots-generator",
+    icon: "R.T",
+    category: "Generate",
+  },
+  {
+    title: "OpenAPI / Swagger Validator",
+    description:
+      "Validate OpenAPI 3.x and Swagger 2.0 specs for structure, paths, schemas, security, and best practices",
+    href: "/tools/openapi-validator",
+    icon: "API",
+    category: "Inspect",
+  },
 ];

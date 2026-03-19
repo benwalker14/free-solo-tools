@@ -42,16 +42,18 @@ _None_
 - [x] Add Encode/Decode Multi-tool (#59) — Base32, Hex, Binary, URL, HTML all-in-one
 - [x] Add Docker Compose Validator (#62) — growing with container adoption
 - [ ] Add Placeholder Image Generator (#68) — generate placeholder images client-side
-- [ ] Add robots.txt Generator (#69) — complements Meta Tag Generator
+- [x] Add robots.txt Generator (#69) — complements Meta Tag Generator
 - [ ] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
 - [ ] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
 - [ ] Add Nginx Config Generator (#72) — growing query, no clean free tool
-- [ ] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
+- [x] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
 - [ ] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
 - [ ] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add OpenAPI/Swagger Validator tool (#75) — validates OpenAPI 3.x and Swagger 2.0 specs for structure, paths, operations, parameters, schemas, security, $ref resolution, and best practices. Supports JSON and YAML input, spec summary, issue filtering
+- [x] Add robots.txt Generator tool (#69) — form-based builder with 6 presets, 18 common bots (including AI bots), quick-add paths, multi-rule support, sitemap directives, crawl-delay, copy/download
 - [x] Add Kubernetes YAML Validator tool (#74) — validates 20+ resource types, selector/label matching, container best practices (image tags, resources, probes), security context, Service/Ingress/CronJob checks, multi-document YAML
 - [x] Add Dockerfile Validator tool (#73) — validates syntax, security, best practices, multi-stage builds, layer optimization, 15+ checks, line-number references
 - [x] Add README Generator tool (#67) — professional README.md builder with 13 togglable/reorderable sections, shields.io badges, 8 package managers, live preview, copy/download

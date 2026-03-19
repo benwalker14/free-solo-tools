@@ -4,6 +4,46 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add OpenAPI/Swagger Validator tool (#75)
+
+- Built OpenAPI/Swagger Validator at `/tools/openapi-validator` — P3 task, API-first development is mainstream
+- **Supports OpenAPI 3.x and Swagger 2.0** — auto-detects version from `openapi` or `swagger` field
+- **Accepts JSON and YAML** — parses JSON natively, includes built-in YAML parser for YAML specs
+- **Structural validation**: version field, info object (title, version, description, contact, license), servers/host
+- **Path & operation checks**: valid path format (/prefix), valid HTTP methods, operationId uniqueness, responses required, success response present, summary/description
+- **Parameter validation**: path parameter consistency (template vs declared), required fields (name, in), path params must be required, schema/type definitions
+- **Schema validation**: valid types, array items required, required properties exist in definitions, recursive property checks
+- **$ref resolution**: validates all `$ref` pointers resolve to existing targets in the spec
+- **Security checks**: security scheme type field, requirement references match defined schemes
+- **Best practices**: descriptions, tags consistency (used vs defined), contact info, license name
+- **Spec summary card**: version, title, path count, operation count, schema count, HTTP method breakdown
+- **Issue filtering**: filter by All/Errors/Warnings/Info with counts
+- **Features**: sample OpenAPI 3.0.3 Pet Store spec, Ctrl+Enter shortcut, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `OpenApiValidatorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #69), `CLAUDE.md`, `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
+### 2026-03-18 | developer | Add robots.txt Generator tool (#69)
+
+- Built robots.txt Generator at `/tools/robots-generator` — P3 task, complements Meta Tag Generator
+- **Form-based builder** with multi-rule support (one rule per User-agent):
+  - User-Agent selector with 18 common bots: Googlebot, Bingbot, Slurp, DuckDuckBot, Baiduspider, YandexBot, facebot, Twitterbot, Applebot, AhrefsBot, SemrushBot, GPTBot, ChatGPT-User, ClaudeBot, Google-Extended, CCBot, and wildcard (*)
+  - Custom bot name input for unlisted crawlers
+- **Disallow/Allow path management**: add paths via input or quick-add buttons, 16 common paths pre-configured
+- **Crawl-delay** support (seconds between requests)
+- **Sitemap directives**: add multiple sitemap URLs
+- **6 presets**: Allow All, Block All, Standard Website, WordPress, E-Commerce, Block AI Bots
+- **Block AI Bots preset** blocks GPTBot, ChatGPT-User, Google-Extended, CCBot, and ClaudeBot — timely with AI crawler concerns
+- **Features**: copy to clipboard, download robots.txt, live preview, tabbed multi-rule editing
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `RobotsGeneratorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #68), `CLAUDE.md`, `TASK_BOARD.md`
+
+---
+
 ### 2026-03-18 | developer | Add Kubernetes YAML Validator tool (#74)
 
 - Built Kubernetes YAML Validator at `/tools/k8s-validator` — P2 task, K8s at 28.5% adoption and growing

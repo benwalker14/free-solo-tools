@@ -117,3 +117,5 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 65. README Generator (/tools/readme-generator)
 66. Dockerfile Validator (/tools/dockerfile-validator)
 67. Kubernetes YAML Validator (/tools/k8s-validator)
+68. robots.txt Generator (/tools/robots-generator)
+69. OpenAPI / Swagger Validator (/tools/openapi-validator)
