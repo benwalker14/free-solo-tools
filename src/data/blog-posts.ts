@@ -545,6 +545,30 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "typescript-7-go-rewrite",
+    title: "TypeScript 7.0: What the Go Rewrite Means for Every Developer",
+    description:
+      "TypeScript 7.0 rewrites the compiler in Go for 10x faster type-checking, 8x faster project loads, and instant IntelliSense. Here's what changes, what stays the same, and how to prepare your codebase.",
+    publishedAt: "2026-03-19",
+    readTime: "12 min read",
+    tags: ["TypeScript", "Go", "Tooling", "Performance"],
+    relatedTools: [
+      { title: "tsconfig.json Visual Builder", href: "/tools/tsconfig-builder" },
+      {
+        title: "TypeScript 6.0 Migration Checker",
+        href: "/tools/ts6-migration",
+      },
+      {
+        title: "JSON to TypeScript Generator",
+        href: "/tools/json-to-typescript",
+      },
+      {
+        title: "TypeScript to JavaScript Converter",
+        href: "/tools/typescript-to-js",
+      },
+    ],
+  },
+  {
     slug: "vibe-coding-security",
     title: "Vibe Coding Security: How to Review AI-Generated Code for Vulnerabilities",
     description:

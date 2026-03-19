@@ -36,6 +36,7 @@ import FixCorsErrors from "./posts/FixCorsErrors";
 import FixDockerComposeErrors from "./posts/FixDockerComposeErrors";
 import FixRegexErrors from "./posts/FixRegexErrors";
 import VibeCodingSecurity from "./posts/VibeCodingSecurity";
+import TypeScript7GoRewrite from "./posts/TypeScript7GoRewrite";
 
 const postContent: Record<string, React.ReactNode> = {
   "fix-invalid-json": <FixInvalidJson />,
@@ -71,6 +72,7 @@ const postContent: Record<string, React.ReactNode> = {
   "markdown-cheat-sheet": <MarkdownCheatSheet />,
   "docker-compose-guide": <DockerComposeGuide />,
   "yaml-guide": <YamlGuide />,
+  "typescript-7-go-rewrite": <TypeScript7GoRewrite />,
   "vibe-coding-security": <VibeCodingSecurity />,
 };
 
