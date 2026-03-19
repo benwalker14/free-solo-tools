@@ -27,11 +27,13 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add HTML to JSX Converter tool (#85) — 40-60K/mo searches. React has 44.7% dev share. transform.tools gets massive traffic from this. Low effort, huge ROI.
 - [x] Add JSON to Code Generator - Multi-Language (#86) — Go, Python, Java, C#, Dart, Rust, Swift, Kotlin. quicktype.io gets 762K/mo visitors from this alone. 80-120K aggregate searches. DevBolt only has JSON-to-TypeScript.
 - [x] Add Code Screenshot Generator tool (#87) — Carbon/Ray.so alternative. 30-50K/mo. Highly viral — every shared screenshot = free backlink/marketing. Canvas-based, fully client-side.
-- [ ] Write 10 "X vs Y" comparison blog posts — JSON vs YAML, Flexbox vs Grid, SHA-256 vs MD5, REST vs GraphQL, TypeScript vs JavaScript, Docker vs K8s, React vs Vue, Tailwind vs Bootstrap, Next.js vs Nuxt, Base64 vs URL Encoding. Highest ROI content format.
+- [ ] Add MCP Config Builder tool (#94) — visual mcp.json builder for Claude Desktop/Cursor/VS Code/Windsurf. 531+ MCP clients, 200+ servers, near-zero web-based tooling. First-mover window.
+- [ ] Add OpenAPI to TypeScript Converter tool (#95) — 2.14M weekly npm downloads for CLI tool, no dominant online converter. transform.tools is only competitor. Pairs with OpenAPI Validator (#75).
+- [ ] Write 10 "X vs Y" comparison blog posts — TypeScript vs JavaScript (~100K/mo), React vs Vue (~80K/mo), REST vs GraphQL (~50K/mo), Docker vs K8s (~50K/mo), Tailwind vs Bootstrap (~40K/mo), Flexbox vs Grid (~30K/mo), JSON vs YAML (~20K/mo), SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding. Write in volume order.
 - [ ] Optimize all tool pages for AI Overview citation — add FAQ sections (3-5 questions each), direct answers in first 60 words, 134-167 word answer paragraphs, tables over prose. AI Overviews caused 61% CTR drop; cited pages get 35% MORE clicks.
 - [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
 - [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
-- [ ] Launch on Product Hunt — weekend launch (Saturday/Sunday for max dev eyeballs). "78+ Developer Tools. Zero Data Collection. 100% Free." Pre-build PH community 2-4 weeks before. Plan repeat launches at milestones (100 tools, Chrome ext). (HUMAN ACTION NEEDED)
+- [ ] Launch on Product Hunt — weekend launch (Saturday/Sunday for max dev eyeballs). "85+ Developer Tools. Zero Data Collection. 100% Free." Pre-build PH community 2-4 weeks before. Plan repeat launches at 100 tools milestone. (HUMAN ACTION NEEDED)
 - [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo, StackShare, DevHunt, Awesome Lists, SaaSHub (HUMAN ACTION NEEDED)
 - [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
 
@@ -56,13 +58,16 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add JSON Visualizer / Interactive Tree Viewer tool (#89) — "json viewer" has 230K/mo searches. JSON Crack built a standalone business on this. Graph/tree layout with collapsible nodes, search, zoom.
 - [x] Add SVG to JSX/React Component Converter tool (#90) — 15-25K/mo. Pairs naturally with existing SVG Optimizer. Every React dev working with icons needs this.
 - [x] Add CSP Header Builder tool (#80) — visual Content Security Policy builder with framework presets. #1 recommended security header, notoriously hard to write.
-- [ ] Add AI Prompt Template Builder tool (#81) — structured prompt builder with multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
+- [ ] Add JSON to Zod Converter tool (#96) — Zod has 90M+ weekly npm downloads. Fragmented online tool landscape. transform.tools is main competitor. Expand or complement existing Zod Schema Generator (#76).
+- [ ] Add tsconfig.json Visual Builder tool (#97) — TypeScript is #1 on GitHub, no good online tsconfig builder exists. Visual form → tsconfig.json with explanations for each option.
+- [ ] Add GraphQL to TypeScript Converter tool (#98) — 4.6M weekly @graphql-codegen downloads. transform.tools is main competitor.
+- [ ] Add AI Prompt Template Builder tool (#81) — structured prompt builder targeting developers (code review, API docs, testing prompts). Multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
 - [ ] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
-- [ ] Create 5 standalone cheat sheet pages — /cheatsheets/regex, git, docker, css-selectors, markdown. Evergreen bookmarkable references.
+- [ ] Create 5 interactive cheat sheet pages — /cheatsheets/regex (~200K/mo), git (~100K/mo), docker (~50K/mo), css-selectors (~30K/mo), markdown (~40K/mo). Interactive, not static — click patterns to test live in linked tools. 420K+ combined monthly searches.
 - [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format (JSON/Base64/JWT/CSV/YAML), suggest right tool. UX differentiator no web competitor has.
 - [ ] Expand programmatic SEO — converter direction pages, comparison pages, error pages. Target 300+ total indexed sub-pages.
 - [ ] Set up content syndication — cross-post blog to Dev.to and Hashnode with canonical URLs (300-500% reach increase)
-- [ ] Write 5 error troubleshooting posts — "How to Fix Invalid JSON Error", "How to Fix CORS Error", etc. Natural funnel to tools.
+- [ ] Write 5 error troubleshooting posts — "How to Fix Invalid JSON Error" (codebeautify.org/json-fixer drives huge traffic from this), "How to Fix CORS Error", "How to Fix Invalid Regex", "Docker Compose Validation Error", "Base64 Decode Error". Natural funnel to tools.
 - [ ] Add lifetime deal option ($49-79) alongside Pro subscription — DevUtils charges $19.99 one-time and has 10K+ users. Captures subscription-averse devs.
 - [ ] Format all content for AI citation — direct answers in first 60 words, 134-167 word answer paragraphs, tables over prose, numbered lists for procedures. Increases AI citation rate by 40%.
 
@@ -84,6 +89,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add TypeScript to JavaScript Converter tool (#91) — 10-20K/mo. Strip types for compatibility/debugging. Runs in browser using TS compiler API.
 - [ ] Add JSON to SQL Converter tool (#92) — 15-25K/mo. Growing as devs move data between APIs and databases. No DevBolt coverage.
 - [ ] Add JSON to GraphQL Schema Generator (#93) — 10-15K/mo. GraphQL adoption growing. Most competitor sites lack this.
+- [ ] Add package.json Generator tool (#99) — foundational Node.js config file builder with framework presets. No dominant online tool.
 
 ## Done
 - [x] Add SVG to JSX/React Component Converter tool (#90) — converts SVG markup to JSX or full React/TypeScript components. 80+ attribute mappings (stroke-width → strokeWidth, fill-opacity → fillOpacity, clip-path → clipPath, etc.), inline style string → object conversion, XML/comment/DOCTYPE cleanup, xmlns stripping. Output modes: JSX only, React Component (JS), React Component (TS). Options: custom component name, props spread with title support, forwardRef, memo, export default/named. 5 sample inputs (Simple Icon, Logo, Arrow, With Styles, Complex), SVG preview, download as .jsx/.tsx file, change log showing all transformations. 3 SEO sub-pages (svg-to-react-component, svg-attribute-conversion, svg-icon-library). All client-side

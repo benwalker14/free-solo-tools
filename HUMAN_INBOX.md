@@ -4,6 +4,204 @@ Messages from Claude agents for Vincent. Check this file periodically.
 
 ---
 
+## 2026-03-19 - Phase 5 Strategy: MCP Opportunity, New Competitors, and the Conversion Tool Arms Race
+
+**From:** Strategist Agent
+**Priority:** High (P1 — new market intelligence, emerging opportunity window)
+
+### TL;DR
+
+Three major shifts since Phase 4:
+
+1. **MCP (Model Context Protocol) is the biggest untapped opportunity.** 531+ MCP clients, 200+ servers, fastest-growing dev ecosystem category — and almost no web-based tooling exists. A visual MCP Config Builder would have near-zero competition.
+
+2. **Two new direct competitors emerged: Folioify (66 tools, WebAssembly) and DataFormatHub (100% client-side).** Combined with devformat.tools (52 tools + AI features), the "privacy-first dev tools" space is getting crowded. DevBolt's 85-tool lead is significant but narrowing.
+
+3. **The TypeScript ecosystem tooling gap is massive.** OpenAPI-to-TypeScript has 2.14M weekly npm downloads (CLI only — no dominant online tool). Zod has 90-100M+ weekly downloads. These are the hottest conversion targets and DevBolt has no coverage.
+
+---
+
+### I. THE MCP OPPORTUNITY (Act Fast — First-Mover Window)
+
+The Model Context Protocol ecosystem exploded in early 2026. Every AI IDE (Claude Desktop, Cursor, VS Code + Copilot, Windsurf) now supports MCP servers. Developers need to configure `mcp.json` files — and the tooling is primitive.
+
+**Current web-based MCP tools (very few):**
+- mcpserverspot.com — basic config generator
+- scriptbyai.com — MCP server playground/debugger
+- maslybs — early-stage
+
+**No one has built a comprehensive, DevBolt-style MCP Config Builder:**
+- Visual drag-and-drop server configuration
+- Presets for popular MCP servers (GitHub, Slack, PostgreSQL, filesystem, Brave Search)
+- Output formats: Claude Desktop, Cursor, VS Code, Windsurf
+- Config validation and syntax checking
+- Server directory with search
+
+**Why this matters:** MCP is to 2026 what Docker was to 2016. Every developer using AI tools will need this. The search demand is nascent but growing exponentially. First-mover advantage is real here.
+
+**Recommendation:** Build **MCP Config Builder (#94)** as P1. Low complexity (JSON config generation), high differentiation, first-mover window.
+
+---
+
+### II. COMPETITIVE LANDSCAPE UPDATE (March 2026)
+
+| Competitor | Monthly Visits | Tools | AI Features | Threat Level |
+|-----------|---------------|-------|-------------|-------------|
+| jsonformatter.org | **3.49M** (+18.86% MoM) | 20+ | No | Low (JSON-only) |
+| codebeautify.org | **2.33M** | 1000+ | No | Medium (scale, but trust damaged) |
+| 10015.io | **692K** | 60+ | No | Medium (growing, 25K registered users) |
+| transform.tools | Unknown (high) | 50+ | No | **High** (dominates code conversion) |
+| devformat.tools | Unknown | 52 | **Yes** (commit gen, code explain, regex) | **High** (closest positioning) |
+| Folioify | Unknown | 66+ | No | Medium (**NEW** — WebAssembly, 11 categories) |
+| devutils.lol | Unknown | 40+ | No | Medium (WebAssembly + offline PWA) |
+| IT-Tools | N/A (self-hosted) | 100+ | No | Low (37.7K GitHub stars, no hosted version) |
+| **DevBolt** | Growing | **85** | Partial (Token Counter, Model Comparison) | — |
+
+**Key insight: transform.tools is the real threat in the conversion space.** They have JSON-to-Zod, GraphQL-to-TypeScript, SVG-to-JSX, CSS-to-Tailwind — 50+ conversions. DevBolt needs to match their top converters.
+
+**Key insight: devformat.tools' AI tools are a differentiator.** They have: AI Commit Message Generator, AI Code Explainer, AI CSS Generator, AI SQL Generator. DevBolt has Token Counter and Model Comparison — useful but passive. We need active AI tools.
+
+---
+
+### III. NEW HIGH-IMPACT TOOLS (Research-Backed)
+
+#### Tier 1 — Build Now (Highest ROI)
+
+| # | Tool | Demand Signal | Competition |
+|---|------|--------------|-------------|
+| 94 | **MCP Config Builder** | 531+ clients, 200+ servers, every AI IDE | Near-zero web tools |
+| 95 | **OpenAPI to TypeScript Converter** | 2.14M weekly npm downloads (CLI) | transform.tools only |
+| 96 | **JSON to Zod Converter** | Zod: 90M+ weekly downloads | transform.tools, fragmented |
+| 97 | **tsconfig.json Visual Builder** | TypeScript is #1 on GitHub | No good online tool exists |
+
+#### Tier 2 — Build Soon
+
+| # | Tool | Demand Signal | Competition |
+|---|------|--------------|-------------|
+| 98 | **GraphQL to TypeScript Converter** | 4.6M weekly codegen downloads | transform.tools |
+| 99 | **package.json Generator** | Foundational Node.js config | Basic competitors only |
+
+**Tools NOT recommended:**
+- LLM Playground (requires API keys/costs, well-served by freellmplayground.com)
+- Webhook Tester (requires backend, conflicts with client-side architecture)
+- API Documentation Generator (too complex, Redocly/Swagger dominate)
+- Bun/Deno-specific tools (built-in tooling reduces need)
+
+---
+
+### IV. CONTENT STRATEGY UPDATE: INTERACTIVE CHEAT SHEETS
+
+The 5 standalone cheat sheet pages from Phase 3 should be **interactive**, not static. This is the differentiator:
+
+| Page | Target Query Volume | Differentiator |
+|------|-------------------|----------------|
+| /cheatsheets/regex | "regex cheat sheet" ~200K+/mo | Click any pattern → test it live in Regex Tester (#7) |
+| /cheatsheets/git | "git cheat sheet" ~100K+/mo | Click any command → build it in Git Command Builder (#79) |
+| /cheatsheets/docker | "docker cheat sheet" ~50K+/mo | Links to Dockerfile Validator (#66) + Docker Compose (#60) |
+| /cheatsheets/css-selectors | "css selectors cheat sheet" ~30K+/mo | Live CSS selector playground |
+| /cheatsheets/markdown | "markdown cheat sheet" ~40K+/mo | Live preview with Markdown Preview (#9) |
+
+**Why interactive matters:** Atlassian's Git Cheat Sheet is #1 for "git cheat sheet" but it's a static PDF. An interactive version that lets you *build* the command would be genuinely better. Same for regex — rexegg.com ranks #1 but has zero interactivity.
+
+**Combined search volume: ~420K+/month.** Even 1% capture = 4,200 monthly visits.
+
+---
+
+### V. "X vs Y" COMPARISON POSTS — PRIORITIZED BY VOLUME
+
+Updated search volume estimates from research:
+
+| Post | Est. Monthly Searches | DevBolt Tools Linked |
+|------|----------------------|---------------------|
+| TypeScript vs JavaScript | ~100K+ | JS Playground (#56) |
+| React vs Vue | ~80-100K | (authority content) |
+| REST vs GraphQL | ~40-60K | (authority content) |
+| Docker vs Kubernetes | ~40-60K | Dockerfile Validator (#66), K8s Validator (#67) |
+| Tailwind vs Bootstrap | ~30-50K | Tailwind Generator (#54), CSS-to-Tailwind (#88) |
+| Flexbox vs Grid | ~20-40K | Flexbox Generator (#38), Grid Generator (#39) |
+| JSON vs YAML | ~15-30K | JSON-YAML Converter (#20) |
+
+**Write order: TypeScript vs JavaScript first** (highest volume, plus we have a JS Playground). Then Tailwind vs Bootstrap (links to 2 existing tools). Then Flexbox vs Grid (same).
+
+---
+
+### VI. EMERGING FRAMEWORK COVERAGE
+
+**HTMX is surging** — 40+ online courses, articles declaring it "dominating the modern web." No one has built an HTMX cheat sheet or reference tool. A simple `/cheatsheets/htmx` page could capture early search traffic as the ecosystem grows.
+
+**Effect-ts** is too niche to target now. Monitor for 2026 Q3.
+
+**Playwright "won the browser testing wars"** — a Playwright config generator could capture growing demand, but it's niche.
+
+---
+
+### VII. TRANSFORM.TOOLS STRATEGY
+
+transform.tools is the biggest threat in the code conversion space. They have 50+ conversions including many DevBolt doesn't:
+
+**Conversions we should match (highest demand):**
+1. JSON to Zod (NEW — #96)
+2. OpenAPI to TypeScript (NEW — #95)
+3. GraphQL to TypeScript (NEW — #98)
+4. JSON to Rust Serde (COVERED by #86)
+5. JSON to Go Struct (COVERED by #86)
+6. SVG to JSX (COVERED by #90)
+7. CSS to Tailwind (COVERED by #88)
+
+DevBolt already covers 4/7 of their top converters. Adding #95, #96, and #98 would close the gap.
+
+---
+
+### VIII. ACTION ITEMS SUMMARY
+
+**DEVELOPER AGENT PRIORITY (Next 30 Days):**
+
+1. **[P1] MCP Config Builder (#94)** — first-mover window, near-zero competition
+2. **[P1] OpenAPI to TypeScript Converter (#95)** — 2.14M weekly npm downloads, massive demand
+3. **[P1] Write "TypeScript vs JavaScript" comparison post** — ~100K/mo, highest-volume comparison
+4. **[P1] Write "Tailwind vs Bootstrap" comparison post** — links to 2 existing tools
+5. **[P2] JSON to Zod Converter (#96)** — 90M+ weekly Zod downloads
+6. **[P2] tsconfig.json Visual Builder (#97)** — no good online tool exists
+7. **[P2] Build 5 interactive cheat sheet pages** — 420K+ combined monthly searches
+8. **[P2] GraphQL to TypeScript Converter (#98)** — 4.6M weekly codegen downloads
+9. **[P3] package.json Generator (#99)** — foundational config tool
+
+**HUMAN ACTIONS (Vincent) — Still Pending:**
+
+1. **[15 min] Set up Stripe in Vercel** — P0, day 3+ of being blocked
+2. **[2-3 hours] Submit to directories** — Product Hunt, AlternativeTo, StackShare, DevHunt
+3. **[30 min] Post Show HN** — after privacy post + badges are live
+4. **[10 min] Apply to EthicalAds** — once traffic reaches 50K PV/month
+5. **[1 hour] Set up beehiiv newsletter** — free tier, custom domain
+
+---
+
+### IX. STRATEGIC POSITIONING SHIFT
+
+DevBolt should evolve its identity from **"85 developer tools"** to **"the developer's workbench"** — emphasizing:
+
+1. **Conversion hub** — match transform.tools' conversion coverage
+2. **AI-era tooling** — MCP config, prompt templates, token counting
+3. **Interactive references** — cheat sheets that link to live tools
+4. **Privacy guarantee** — still the core differentiator, but now table stakes
+
+The next milestone should be **100 tools** — a psychological threshold for Product Hunt launch credibility and marketing copy ("100+ Developer Tools. Zero Tracking.").
+
+**Tools needed to reach 100:** 15 more. With the 6 new tools proposed (#94-#99) plus existing backlog (#81, #82, #83, #84, #91, #92, #93), we have 13 candidates. Build the highest-ROI ones first.
+
+---
+
+### Sources
+
+- **Competitors:** Similarweb (jsonformatter.org 3.49M/mo, codebeautify.org 2.33M/mo), AlternativeTo, direct site analysis of devformat.tools, folioify.com, devutils.lol, transform.tools
+- **npm data:** openapi-typescript (2.14M weekly), zod (90M+ weekly), @graphql-codegen/typescript (230K weekly)
+- **Developer surveys:** Stack Overflow 2025 (49K+ responses), JetBrains 2025 (24.5K devs), GitHub Octoverse 2025
+- **MCP ecosystem:** pulsemcp.com (531+ clients tracked), fastmcp.me, Model Context Protocol blog
+- **SEO:** Google Trends comparison data, Stack Overflow all-time top questions (Git undo = 7M+ views)
+- **Chrome extensions:** Builder.io, Usersnap extension roundups, ExtensionPay revenue benchmarks
+
+---
+
 ## 2026-03-19 - Phase 4 Strategy: Closing the Biggest Gaps & Surviving AI Search
 
 **From:** Strategist Agent
