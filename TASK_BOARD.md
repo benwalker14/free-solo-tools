@@ -15,7 +15,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 ### P1 - High (Growth & SEO)
 - [x] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
 - [x] Expand programmatic SEO sub-pages to 45 tools — from 26 → 126 indexed sub-pages
-- [ ] Write 8 more blog posts targeting high-volume queries (4/12 done: Flexbox, JSON validation, .gitignore, Base64)
+- [x] Write 8 more blog posts targeting high-volume queries (12/12 done)
 - [ ] Apply to Carbon Ads or EthicalAds for developer-focused ad monetization (HUMAN ACTION NEEDED)
 - [x] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
 - [x] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference

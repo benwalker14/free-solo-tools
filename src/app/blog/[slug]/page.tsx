@@ -9,6 +9,14 @@ import FlexboxGuide from "./posts/FlexboxGuide";
 import JsonValidation from "./posts/JsonValidation";
 import GitignoreGuide from "./posts/GitignoreGuide";
 import Base64Explained from "./posts/Base64Explained";
+import CssGridGuide from "./posts/CssGridGuide";
+import DockerBestPractices from "./posts/DockerBestPractices";
+import JsonSchemaGuide from "./posts/JsonSchemaGuide";
+import PasswordSecurityGuide from "./posts/PasswordSecurityGuide";
+import UuidGuide from "./posts/UuidGuide";
+import MarkdownCheatSheet from "./posts/MarkdownCheatSheet";
+import DockerComposeGuide from "./posts/DockerComposeGuide";
+import YamlGuide from "./posts/YamlGuide";
 
 const postContent: Record<string, React.ReactNode> = {
   "jwt-tutorial": <JwtTutorial />,
@@ -18,6 +26,14 @@ const postContent: Record<string, React.ReactNode> = {
   "json-validation-guide": <JsonValidation />,
   "gitignore-guide": <GitignoreGuide />,
   "base64-encoding-explained": <Base64Explained />,
+  "css-grid-guide": <CssGridGuide />,
+  "docker-best-practices": <DockerBestPractices />,
+  "json-schema-guide": <JsonSchemaGuide />,
+  "password-security-guide": <PasswordSecurityGuide />,
+  "uuid-guide": <UuidGuide />,
+  "markdown-cheat-sheet": <MarkdownCheatSheet />,
+  "docker-compose-guide": <DockerComposeGuide />,
+  "yaml-guide": <YamlGuide />,
 };
 
 export function generateStaticParams() {

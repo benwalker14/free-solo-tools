@@ -107,6 +107,118 @@ export const blogPosts: BlogPost[] = [
       { title: "Encode/Decode Multi-Tool", href: "/tools/encode-decode" },
     ],
   },
+  {
+    slug: "css-grid-guide",
+    title: "CSS Grid Layout: The Complete Guide with Examples",
+    description:
+      "Learn CSS Grid with practical examples for responsive card grids, dashboard layouts, photo galleries, and named areas. Includes a quick reference table and common patterns.",
+    publishedAt: "2026-03-18",
+    readTime: "10 min read",
+    tags: ["CSS", "Layout", "Frontend"],
+    relatedTools: [
+      { title: "CSS Grid Generator", href: "/tools/grid-generator" },
+      { title: "CSS Flexbox Generator", href: "/tools/flexbox-generator" },
+      { title: "Tailwind CSS Generator", href: "/tools/tailwind-generator" },
+    ],
+  },
+  {
+    slug: "docker-best-practices",
+    title: "Dockerfile Best Practices: Smaller, Faster, More Secure Images",
+    description:
+      "Learn multi-stage builds, layer caching, security hardening, and the common Dockerfile mistakes that silently bloat your containers.",
+    publishedAt: "2026-03-18",
+    readTime: "9 min read",
+    tags: ["Docker", "DevOps", "Security"],
+    relatedTools: [
+      { title: "Dockerfile Validator", href: "/tools/dockerfile-validator" },
+      { title: "Docker Compose Validator", href: "/tools/docker-compose" },
+      { title: "Nginx Config Generator", href: "/tools/nginx-config" },
+    ],
+  },
+  {
+    slug: "json-schema-guide",
+    title: "JSON Schema: A Practical Guide to Validating JSON Data",
+    description:
+      "Learn JSON Schema from scratch — types, required fields, nested objects, arrays, $ref, composition, and conditional validation with real-world examples.",
+    publishedAt: "2026-03-18",
+    readTime: "9 min read",
+    tags: ["JSON", "Validation", "API"],
+    relatedTools: [
+      { title: "JSON Schema Validator", href: "/tools/json-schema" },
+      { title: "Zod Schema Generator", href: "/tools/zod-schema" },
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+    ],
+  },
+  {
+    slug: "password-security-guide",
+    title: "Password Security: What Developers and Users Need to Know",
+    description:
+      "Understand password entropy, how attacks work, hashing vs encryption, and implementation best practices with code examples in Node.js, Python, and Go.",
+    publishedAt: "2026-03-18",
+    readTime: "9 min read",
+    tags: ["Security", "Authentication", "Best Practices"],
+    relatedTools: [
+      { title: "Password Generator", href: "/tools/password-generator" },
+      { title: "Hash Generator", href: "/tools/hash-generator" },
+      { title: ".env File Validator", href: "/tools/env-validator" },
+    ],
+  },
+  {
+    slug: "uuid-guide",
+    title: "Understanding UUIDs: Versions, Formats, and When to Use Each",
+    description:
+      "Learn how UUIDs work, the differences between v1, v4, v5, and v7, and when to use each version. Includes code examples and database performance tips.",
+    publishedAt: "2026-03-18",
+    readTime: "10 min read",
+    tags: ["Fundamentals", "Databases", "Web Development"],
+    relatedTools: [
+      { title: "UUID Generator", href: "/tools/uuid-generator" },
+      { title: "Hash Generator", href: "/tools/hash-generator" },
+      { title: "JSON Formatter", href: "/tools/json-formatter" },
+    ],
+  },
+  {
+    slug: "markdown-cheat-sheet",
+    title: "Markdown Syntax Cheat Sheet: Every Feature You Need to Know",
+    description:
+      "A complete Markdown reference covering headings, formatting, links, code blocks, tables, task lists, GitHub-flavored features, and common mistakes.",
+    publishedAt: "2026-03-18",
+    readTime: "9 min read",
+    tags: ["Markdown", "Reference", "Productivity"],
+    relatedTools: [
+      { title: "Markdown Preview", href: "/tools/markdown-preview" },
+      { title: "Markdown Table Generator", href: "/tools/markdown-table" },
+      { title: "HTML ↔ Markdown Converter", href: "/tools/html-markdown" },
+    ],
+  },
+  {
+    slug: "docker-compose-guide",
+    title: "Docker Compose: A Practical Guide to Multi-Container Apps",
+    description:
+      "Learn Docker Compose with real-world examples for Node.js, PostgreSQL, Redis, and WordPress stacks. Covers services, volumes, networks, health checks, and common mistakes.",
+    publishedAt: "2026-03-18",
+    readTime: "11 min read",
+    tags: ["Docker", "DevOps", "Containers"],
+    relatedTools: [
+      { title: "Docker Compose Validator", href: "/tools/docker-compose" },
+      { title: "Dockerfile Validator", href: "/tools/dockerfile-validator" },
+      { title: ".env File Validator", href: "/tools/env-validator" },
+    ],
+  },
+  {
+    slug: "yaml-guide",
+    title: "YAML Syntax Guide: From Basics to Gotchas",
+    description:
+      "Learn YAML syntax, data types, multiline strings, anchors, and the notorious Norway problem. Includes real-world examples for Kubernetes, GitHub Actions, and Docker Compose.",
+    publishedAt: "2026-03-18",
+    readTime: "10 min read",
+    tags: ["YAML", "DevOps", "Reference"],
+    relatedTools: [
+      { title: "YAML Validator & Formatter", href: "/tools/yaml-formatter" },
+      { title: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
+      { title: "Kubernetes YAML Validator", href: "/tools/k8s-validator" },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
