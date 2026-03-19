@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add JSON to SQL Converter tool (#92)
+
+- Built JSON to SQL Converter — parse JSON arrays → CREATE TABLE + INSERT statements
+- Multi-dialect support: PostgreSQL, MySQL, SQLite with dialect-specific syntax
+- PostgreSQL: double-quote identifiers, JSONB for nested objects, UUID, TIMESTAMP, DOUBLE PRECISION, BOOLEAN, CASCADE on DROP
+- MySQL: backtick identifiers, JSON type, DATETIME, DOUBLE, VARCHAR(n)
+- SQLite: double-quote identifiers, INTEGER/REAL/TEXT affinities, boolean as 0/1
+- Automatic type inference: integers, bigints, floats, booleans, dates, timestamps, UUIDs, JSON/text for objects
+- 6 options: CREATE TABLE, INSERT DATA, DROP TABLE IF EXISTS, IF NOT EXISTS, batch INSERT, nullable columns
+- 4 sample datasets: Users, Products, Events (with nested metadata), Projects (with UUIDs & arrays)
+- Stats panel: column count, row count, dialect badge
+- Copy to clipboard, download as .sql, Ctrl+Enter shortcut
+- 3 SEO sub-pages: json-to-postgresql, json-to-mysql, json-to-sqlite
+- JSON-LD schema, full metadata, OG image support
+- Updated free-tools page count from 95+ to 97+
+- Tool count: 97
+- Lint: 0 errors, 0 warnings. TypeScript: compiles cleanly
+
+---
+
 ### 2026-03-19 | developer | Add TypeScript to JavaScript Converter tool (#95)
 
 - Built TypeScript to JavaScript Converter — strip types, interfaces, enums, generics to get clean JS

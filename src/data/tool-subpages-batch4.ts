@@ -4088,4 +4088,136 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "TypeScript to JavaScript",
     },
   ],
+  "json-to-sql": [
+    {
+      slug: "json-to-postgresql",
+      title: "JSON to PostgreSQL Converter",
+      metaTitle:
+        "JSON to PostgreSQL Converter — Generate CREATE TABLE & INSERT | DevBolt",
+      metaDescription:
+        "Convert JSON arrays to PostgreSQL CREATE TABLE and INSERT statements with automatic type inference for JSONB, UUID, TIMESTAMP, and more. Free online tool.",
+      h1: "JSON to PostgreSQL Converter",
+      intro:
+        "Generate PostgreSQL-compatible SQL from JSON data. This tool automatically infers PostgreSQL-specific types like JSONB, UUID, TIMESTAMP, and DOUBLE PRECISION from your JSON values.",
+      content: [
+        {
+          heading: "Why convert JSON to PostgreSQL?",
+          body: "PostgreSQL is the most popular open-source relational database, and developers frequently need to seed tables from JSON API responses, configuration files, or test fixtures. Manually writing CREATE TABLE and INSERT statements is tedious and error-prone. This tool automates the process with proper PostgreSQL syntax, quoting, and type mapping — including advanced types like JSONB for nested objects and UUID for identifier strings.",
+        },
+        {
+          heading: "PostgreSQL type inference",
+          body: "The converter detects PostgreSQL-specific types automatically: integers and bigints for numeric values, DOUBLE PRECISION for floats, BOOLEAN for true/false, DATE and TIMESTAMP for date strings, UUID for RFC 4122 identifiers, JSONB for nested objects and arrays, and VARCHAR(n) or TEXT for strings based on length. NULL values are handled with proper nullable column definitions.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does the tool generate JSONB columns for nested objects?",
+          answer:
+            "Yes. When a JSON field contains an object or array value, the tool infers the JSONB type for PostgreSQL. The nested data is serialized as a JSON string in the INSERT statement.",
+        },
+        {
+          question: "Can I use the output directly in psql or pgAdmin?",
+          answer:
+            "Yes. The generated SQL uses standard PostgreSQL syntax with double-quoted identifiers and proper type names. You can copy it directly into psql, pgAdmin, DBeaver, or any PostgreSQL client.",
+        },
+      ],
+      keywords: [
+        "json to postgresql",
+        "json to postgres",
+        "convert json to postgresql",
+        "json to postgres insert",
+        "json to postgres create table",
+        "postgresql import json",
+      ],
+      parentToolSlug: "json-to-sql",
+      parentToolName: "JSON to SQL Converter",
+    },
+    {
+      slug: "json-to-mysql",
+      title: "JSON to MySQL Converter",
+      metaTitle:
+        "JSON to MySQL Converter — Generate CREATE TABLE & INSERT | DevBolt",
+      metaDescription:
+        "Convert JSON arrays to MySQL CREATE TABLE and INSERT statements with automatic type inference. Backtick quoting, proper escaping, and .sql download. Free online tool.",
+      h1: "JSON to MySQL Converter",
+      intro:
+        "Generate MySQL-compatible SQL from JSON data. This tool automatically infers MySQL types and uses backtick quoting, proper string escaping, and MySQL-specific syntax.",
+      content: [
+        {
+          heading: "Why convert JSON to MySQL?",
+          body: "MySQL powers a huge share of web applications, and importing JSON data into MySQL tables is a common task for seeding databases, migrating data, and creating test fixtures. This tool generates MySQL-specific SQL with backtick-quoted identifiers, VARCHAR/TEXT types with appropriate lengths, and MySQL-compatible boolean handling. It handles the escaping and formatting so you can focus on your data.",
+        },
+        {
+          heading: "MySQL type mapping",
+          body: "The converter maps JSON types to MySQL equivalents: INTEGER and BIGINT for numbers, DOUBLE for decimals, BOOLEAN for true/false, DATE and DATETIME for date strings, JSON for nested objects (MySQL 5.7+), and VARCHAR(n) for short strings. String lengths are rounded up to practical sizes to accommodate slight variations in data.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does the tool use backtick quoting for MySQL?",
+          answer:
+            "Yes. All table and column names are wrapped in backticks (`) as is standard MySQL practice. This ensures reserved words and special characters in column names are handled correctly.",
+        },
+        {
+          question: "Is the output compatible with MySQL 5.7 and 8.x?",
+          answer:
+            "Yes. The generated SQL uses standard MySQL syntax compatible with both MySQL 5.7 and 8.x. JSON column types require MySQL 5.7.8 or later.",
+        },
+      ],
+      keywords: [
+        "json to mysql",
+        "convert json to mysql",
+        "json to mysql insert",
+        "json to mysql create table",
+        "mysql import json",
+        "json to mysql online",
+      ],
+      parentToolSlug: "json-to-sql",
+      parentToolName: "JSON to SQL Converter",
+    },
+    {
+      slug: "json-to-sqlite",
+      title: "JSON to SQLite Converter",
+      metaTitle:
+        "JSON to SQLite Converter — Generate CREATE TABLE & INSERT | DevBolt",
+      metaDescription:
+        "Convert JSON arrays to SQLite CREATE TABLE and INSERT statements. Lightweight SQL generation with SQLite-compatible types. Free online tool — no signup required.",
+      h1: "JSON to SQLite Converter",
+      intro:
+        "Generate SQLite-compatible SQL from JSON data. This tool produces lightweight CREATE TABLE and INSERT statements using SQLite's flexible type system.",
+      content: [
+        {
+          heading: "Why convert JSON to SQLite?",
+          body: "SQLite is the world's most deployed database engine, embedded in mobile apps, desktop software, IoT devices, and development environments. Developers often need to populate SQLite databases from JSON exports, API responses, or configuration data. This tool generates SQLite-compatible SQL with the correct type affinities (TEXT, INTEGER, REAL) and proper quoting.",
+        },
+        {
+          heading: "SQLite type affinities",
+          body: "SQLite uses a dynamic type system with five storage classes: NULL, INTEGER, REAL, TEXT, and BLOB. This converter maps JSON booleans to INTEGER (0/1), numbers to INTEGER or REAL, strings to TEXT, and nested objects to TEXT (serialized JSON). Date strings are stored as TEXT since SQLite has no native date type but supports date functions on ISO 8601 strings.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How does SQLite handle boolean values?",
+          answer:
+            "SQLite has no native BOOLEAN type. This tool converts JSON booleans to INTEGER values: 1 for true and 0 for false, which is the standard SQLite convention.",
+        },
+        {
+          question:
+            "Can I import the generated SQL into an existing SQLite database?",
+          answer:
+            "Yes. Use the 'IF NOT EXISTS' option to safely create tables without conflicting with existing ones. You can run the SQL file directly with the sqlite3 CLI: sqlite3 mydb.db < output.sql",
+        },
+      ],
+      keywords: [
+        "json to sqlite",
+        "convert json to sqlite",
+        "json to sqlite insert",
+        "json to sqlite create table",
+        "sqlite import json",
+        "json to sqlite online",
+      ],
+      parentToolSlug: "json-to-sql",
+      parentToolName: "JSON to SQL Converter",
+    },
+  ],
 };

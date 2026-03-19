@@ -766,4 +766,12 @@ export const tools: Tool[] = [
     icon: "TS",
     category: "Convert",
   },
+  {
+    title: "JSON to SQL Converter",
+    description:
+      "Convert JSON arrays to SQL CREATE TABLE and INSERT statements for PostgreSQL, MySQL, and SQLite with automatic type inference",
+    href: "/tools/json-to-sql",
+    icon: "SQL",
+    category: "Convert",
+  },
 ];
