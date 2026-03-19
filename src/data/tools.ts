@@ -854,4 +854,12 @@ export const tools: Tool[] = [
     icon: "GHA",
     category: "Inspect",
   },
+  {
+    title: "Tailwind to CSS Converter",
+    description:
+      "Convert Tailwind CSS utility classes to standard CSS — supports 500+ classes including spacing, layout, typography, transforms, and arbitrary values",
+    href: "/tools/tailwind-to-css",
+    icon: "CSS",
+    category: "Convert",
+  },
 ];

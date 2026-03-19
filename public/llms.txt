@@ -111,6 +111,7 @@
 - [Code Complexity Analyzer](https://devbolt.dev/tools/code-complexity-analyzer): Analyze JavaScript and TypeScript code for cyclomatic complexity, cognitive complexity, nesting depth, and maintainability index with per-function metrics
 - [HTTP Request Builder](https://devbolt.dev/tools/http-request-builder): Build HTTP requests visually and generate code in cURL, JavaScript, Python, Go, Rust, and PHP — lightweight Postman/ReqBin alternative
 - [GitHub Actions Validator](https://devbolt.dev/tools/github-actions-validator): Validate GitHub Actions workflow YAML for syntax, triggers, jobs, steps, dependencies, deprecated actions, and permissions
+- [Tailwind to CSS Converter](https://devbolt.dev/tools/tailwind-to-css): Convert Tailwind CSS utility classes to standard CSS — supports 500+ classes including spacing, layout, typography, transforms, and arbitrary values
 
 ## Cheat Sheets
 

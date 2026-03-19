@@ -157,3 +157,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 105. Code Complexity Analyzer (/tools/code-complexity-analyzer)
 106. HTTP Request Builder (/tools/http-request-builder)
 107. GitHub Actions Validator (/tools/github-actions-validator)
+108. Tailwind CSS to CSS Converter (/tools/tailwind-to-css)

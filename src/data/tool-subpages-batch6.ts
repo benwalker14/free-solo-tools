@@ -1075,6 +1075,157 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
     },
   ],
 
+  "tailwind-to-css": [
+    {
+      slug: "tailwind-spacing-to-css",
+      title: "Tailwind Spacing to CSS Guide",
+      metaTitle: "Tailwind Spacing to CSS — Complete Padding, Margin & Gap Reference",
+      metaDescription:
+        "Convert Tailwind spacing utilities (p-4, mx-auto, gap-6) to CSS. Full reference for padding, margin, gap, width, and height classes with pixel/rem values.",
+      h1: "Tailwind Spacing Classes to CSS Reference",
+      intro:
+        "Tailwind's spacing scale uses a consistent numbering system where each unit equals 0.25rem (4px). This guide maps every spacing utility — padding, margin, gap, width, and height — to its CSS equivalent.",
+      content: [
+        {
+          heading: "Understanding the Spacing Scale",
+          body: "Tailwind uses a numeric scale where 1 = 0.25rem (4px), 2 = 0.5rem (8px), 4 = 1rem (16px), and so on. The scale covers values from 0 to 96 (24rem). Special values include 'px' (1px), 'auto', 'full' (100%), 'screen' (100vw/vh), and fractional values like '1/2' (50%).",
+          codeExample: `/* p-4 */\npadding: 1rem; /* 16px */\n\n/* mx-auto */\nmargin-left: auto;\nmargin-right: auto;\n\n/* gap-6 */\ngap: 1.5rem; /* 24px */\n\n/* w-1/2 */\nwidth: 50%;\n\n/* h-screen */\nheight: 100vh;`,
+          codeLanguage: "css",
+        },
+        {
+          heading: "Directional Spacing",
+          body: "Tailwind provides axis-specific shortcuts: px/py for horizontal/vertical padding, mx/my for margins, and individual sides (pt, pr, pb, pl, mt, mr, mb, ml). The space-x and space-y utilities add margin between child elements using the > * + * selector.",
+          codeExample: `/* px-4 py-2 */\npadding-left: 1rem;\npadding-right: 1rem;\npadding-top: 0.5rem;\npadding-bottom: 0.5rem;\n\n/* space-y-4 → applies to > * + * */\nmargin-top: 1rem;`,
+          codeLanguage: "css",
+        },
+        {
+          heading: "Arbitrary Spacing Values",
+          body: "When the default scale doesn't fit, use bracket notation: p-[13px], m-[2.5rem], gap-[clamp(1rem,3vw,2rem)]. The converter handles arbitrary values and outputs them as-is in the CSS.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What does p-4 equal in CSS?",
+          answer: "p-4 equals padding: 1rem (16px). Each unit in Tailwind's spacing scale is 0.25rem, so 4 × 0.25rem = 1rem.",
+        },
+        {
+          question: "How do I center an element with Tailwind?",
+          answer: "Use mx-auto for horizontal centering (margin-left: auto; margin-right: auto;). For flexbox centering, combine flex items-center justify-center.",
+        },
+      ],
+      keywords: [
+        "tailwind spacing to css",
+        "tailwind p-4 css",
+        "tailwind margin to css",
+        "tailwind padding css equivalent",
+        "tailwind gap to css",
+        "tailwind spacing scale",
+      ],
+      parentToolSlug: "tailwind-to-css",
+      parentToolName: "Tailwind to CSS Converter",
+    },
+    {
+      slug: "tailwind-flexbox-to-css",
+      title: "Tailwind Flexbox to CSS Guide",
+      metaTitle: "Tailwind Flexbox to CSS — Flex, Justify, Align Class Reference",
+      metaDescription:
+        "Convert Tailwind flexbox utilities to CSS. Complete reference for flex, flex-col, items-center, justify-between, gap, grow, shrink, and order classes.",
+      h1: "Tailwind Flexbox Classes to CSS Reference",
+      intro:
+        "Tailwind's flexbox utilities let you build layouts with classes like flex, flex-col, items-center, and justify-between. This guide shows the CSS each class generates.",
+      content: [
+        {
+          heading: "Flex Container Properties",
+          body: "The flex class sets display: flex, while inline-flex sets display: inline-flex. Direction is controlled by flex-row (default) and flex-col. Wrapping uses flex-wrap, flex-nowrap, and flex-wrap-reverse.",
+          codeExample: `/* flex flex-col flex-wrap */\ndisplay: flex;\nflex-direction: column;\nflex-wrap: wrap;\n\n/* inline-flex flex-row-reverse */\ndisplay: inline-flex;\nflex-direction: row-reverse;`,
+          codeLanguage: "css",
+        },
+        {
+          heading: "Alignment and Justification",
+          body: "justify-* controls the main axis (justify-content), items-* controls the cross axis (align-items), and self-* overrides alignment for individual items (align-self). content-* controls multi-line alignment (align-content).",
+          codeExample: `/* items-center justify-between */\nalign-items: center;\njustify-content: space-between;\n\n/* self-end */\nalign-self: flex-end;`,
+          codeLanguage: "css",
+        },
+        {
+          heading: "Flex Item Properties",
+          body: "flex-1 (flex: 1 1 0%), flex-auto (flex: 1 1 auto), flex-initial (flex: 0 1 auto), and flex-none (flex: none) control how items grow and shrink. grow/grow-0 and shrink/shrink-0 provide fine control.",
+          codeExample: `/* flex-1 */\nflex: 1 1 0%;\n\n/* grow-0 shrink */\nflex-grow: 0;\nflex-shrink: 1;`,
+          codeLanguage: "css",
+        },
+      ],
+      faqs: [
+        {
+          question: "What CSS does 'flex items-center justify-center' produce?",
+          answer: "It produces: display: flex; align-items: center; justify-content: center; — the classic centering pattern.",
+        },
+        {
+          question: "What is the difference between flex-1 and flex-auto?",
+          answer: "flex-1 sets flex: 1 1 0% (items share space equally regardless of content size), while flex-auto sets flex: 1 1 auto (items grow but respect their content size as a starting point).",
+        },
+      ],
+      keywords: [
+        "tailwind flex to css",
+        "tailwind items-center css",
+        "tailwind justify-between css",
+        "tailwind flexbox css equivalent",
+        "flex-col css",
+        "tailwind flex classes",
+      ],
+      parentToolSlug: "tailwind-to-css",
+      parentToolName: "Tailwind to CSS Converter",
+    },
+    {
+      slug: "tailwind-typography-to-css",
+      title: "Tailwind Typography to CSS Guide",
+      metaTitle: "Tailwind Typography to CSS — Font Size, Weight & Text Classes",
+      metaDescription:
+        "Convert Tailwind typography utilities to CSS. Reference for text-lg, font-bold, leading-tight, tracking-wide, uppercase, truncate, and more.",
+      h1: "Tailwind Typography Classes to CSS Reference",
+      intro:
+        "Tailwind's typography utilities control font size, weight, family, line height, letter spacing, text alignment, decoration, and more. This guide maps each class to its CSS output.",
+      content: [
+        {
+          heading: "Font Size and Line Height",
+          body: "Tailwind's text-* classes set both font-size and a default line-height. For example, text-sm sets font-size: 0.875rem with line-height: 1.25rem. Override the line height with leading-* classes.",
+          codeExample: `/* text-xl */\nfont-size: 1.25rem;\nline-height: 1.75rem;\n\n/* text-4xl leading-tight */\nfont-size: 2.25rem;\nline-height: 2.5rem;\nline-height: 1.25; /* leading-tight overrides */`,
+          codeLanguage: "css",
+        },
+        {
+          heading: "Font Weight and Style",
+          body: "font-thin (100) through font-black (900) map to numeric font-weight values. font-normal is 400, font-semibold is 600, font-bold is 700. italic sets font-style: italic.",
+          codeExample: `/* font-bold italic */\nfont-weight: 700;\nfont-style: italic;\n\n/* font-semibold */\nfont-weight: 600;`,
+          codeLanguage: "css",
+        },
+        {
+          heading: "Text Transform, Decoration, and Overflow",
+          body: "uppercase, lowercase, and capitalize map directly. underline, line-through, and no-underline control text-decoration-line. truncate is a shorthand that sets overflow: hidden, text-overflow: ellipsis, and white-space: nowrap.",
+          codeExample: `/* uppercase underline */\ntext-transform: uppercase;\ntext-decoration-line: underline;\n\n/* truncate */\noverflow: hidden;\ntext-overflow: ellipsis;\nwhite-space: nowrap;`,
+          codeLanguage: "css",
+        },
+      ],
+      faqs: [
+        {
+          question: "What CSS does text-lg produce?",
+          answer: "text-lg sets font-size: 1.125rem (18px) and line-height: 1.75rem (28px).",
+        },
+        {
+          question: "How do I set a custom font size in Tailwind?",
+          answer: "Use arbitrary values with bracket notation: text-[22px] or text-[1.375rem]. The converter outputs these as font-size with the exact value specified.",
+        },
+      ],
+      keywords: [
+        "tailwind font size to css",
+        "tailwind text-lg css",
+        "tailwind font-bold css",
+        "tailwind typography css",
+        "tailwind truncate css",
+        "tailwind text classes reference",
+      ],
+      parentToolSlug: "tailwind-to-css",
+      parentToolName: "Tailwind to CSS Converter",
+    },
+  ],
+
   "github-actions-validator": [
     {
       slug: "workflow-syntax-guide",

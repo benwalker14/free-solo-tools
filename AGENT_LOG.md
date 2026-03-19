@@ -4,6 +4,32 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 20:00 | developer | Add Tailwind CSS to CSS Converter tool (#108)
+
+- **Task:** Add Tailwind CSS to CSS Converter tool (P3) — reverse of CSS to Tailwind (#88), completes the converter pair
+- **What was done:**
+  - Created Tailwind-to-CSS converter at `/tools/tailwind-to-css` with comprehensive class-to-CSS mapping
+  - **500+ utility class mappings:** display, position, visibility, flexbox (direction, wrap, grow, shrink, justify, align, self, place), grid (cols, rows, span, start, end, auto-cols/rows, flow), spacing (padding, margin, gap, inset, top/right/bottom/left with full scale 0-96 + fractions + auto), sizing (width, height, min/max with named values), typography (font-size with line-height, weight, style, family, text-align/decoration/transform, line-height, letter-spacing, whitespace, word-break, truncate, vertical-align, list-style), borders (width per-side, style, radius per-corner), overflow, opacity (0-100), z-index, box-shadow (sm through 2xl + inner + none), cursor (12 values), pointer-events, user-select, resize, appearance, object-fit/position, aspect-ratio, box-sizing, outline, table layout, scroll-behavior, isolation, mix-blend-mode, will-change, content, accent-color
+  - **Transitions & animations:** transition (all/colors/opacity/shadow/transform), duration (75-1000ms), timing functions, delay
+  - **Transforms:** scale (0-200), rotate (0-360deg), translate-x/y, skew-x/y, transform-origin, transform-none/gpu
+  - **Filters:** blur (sm-3xl), grayscale, invert, sepia, backdrop-blur
+  - **Colors:** text/bg/border/ring/accent/fill/stroke/outline/decoration/caret with transparent/current/black/white/inherit + arbitrary values
+  - **Ring utilities:** ring-0 through ring-8, ring-inset
+  - **Arbitrary value support:** bracket notation like w-[300px], bg-[#1a2b3c], text-[22px], gap-[clamp(1rem,3vw,2rem)]
+  - **Responsive/state prefix handling:** strips sm:/md:/lg:/xl:/2xl:/hover:/focus:/active:/disabled:/dark: etc. and adds CSS comments
+  - **Input flexibility:** accepts raw classes, class="...", or className="..." attributes — auto-strips attribute syntax
+  - **Custom selector:** configurable CSS selector name (default .element)
+  - **7 sample inputs:** Card, Button, Grid Layout, Nav Header, Typography, Overlay, Responsive
+  - **4 FAQs** covering: conversion basics, responsive prefixes, supported classes, unrecognized class handling
+  - **Quick answer block** for AI Overview citation
+  - **3 SEO sub-pages:** tailwind-spacing-to-css, tailwind-flexbox-to-css, tailwind-typography-to-css — each with code examples, explanations, and FAQs
+  - Ctrl+K searchable via command palette. All client-side
+- **Files created:** `src/app/tools/tailwind-to-css/page.tsx`, `src/app/tools/tailwind-to-css/TailwindToCssTool.tsx`, `src/app/tools/tailwind-to-css/[subpage]/page.tsx`
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `public/llms.txt`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors. `npm run lint` passes with 0 warnings
+
+---
+
 ### 2026-03-19 18:00 | developer | Add GitHub Actions YAML Validator tool (#107)
 
 - **Task:** Add GitHub Actions YAML Validator tool (P3) — validate workflow YAML, check action syntax, job dependencies, deprecated actions

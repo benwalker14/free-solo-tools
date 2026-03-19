@@ -631,6 +631,29 @@ export const toolFaqs: Record<string, FAQ[]> = {
     },
   ],
 
+  "tailwind-to-css": [
+    {
+      question: "How do I convert Tailwind utility classes to standard CSS?",
+      answer:
+        "Paste your Tailwind classes into the input field and the tool instantly generates the equivalent CSS properties. You can paste raw classes like 'flex items-center p-4', or a full class=\"...\" or className=\"...\" attribute — the tool strips the attribute syntax automatically. Each Tailwind class maps to one or more CSS declarations. You can customize the selector name (default is .element) to match your project's naming convention.",
+    },
+    {
+      question: "Does the converter handle responsive and state prefixes like sm: and hover:?",
+      answer:
+        "Yes. Responsive prefixes (sm:, md:, lg:, xl:, 2xl:) and state prefixes (hover:, focus:, active:, dark:, disabled:, etc.) are recognized and stripped during conversion. The base class is converted to CSS normally and the prefix is noted as a comment so you know which classes need media queries or pseudo-selectors in your final CSS. Nested prefixes like sm:hover:bg-white are also handled.",
+    },
+    {
+      question: "What Tailwind classes are supported?",
+      answer:
+        "The converter supports 500+ Tailwind utility classes covering: display, position, visibility, flexbox, grid, spacing (padding, margin, gap), sizing (width, height, min/max), typography (font size, weight, family, line height, letter spacing, text align/decoration/transform), borders (width, style, radius), effects (opacity, shadow), transforms (scale, rotate, translate, skew), transitions, filters (blur, grayscale), colors (black, white, transparent, current, arbitrary hex/rgb), and arbitrary bracket values like w-[300px] or bg-[#1a2b3c].",
+    },
+    {
+      question: "How are unrecognized classes handled?",
+      answer:
+        "Classes that cannot be mapped to standard CSS — such as Tailwind color palette classes (bg-red-500, text-blue-300), plugin utilities, or custom classes — are listed separately as 'unrecognized'. This lets you see exactly which classes need manual conversion or a Tailwind config lookup. The tool converts everything it can and clearly flags the rest.",
+    },
+  ],
+
   "curl-converter": [
     {
       question: "How do I convert a cURL command to JavaScript fetch?",

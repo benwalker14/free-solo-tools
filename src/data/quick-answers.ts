@@ -119,4 +119,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your workflow YAML and click Validate to check for syntax errors, missing required fields, broken job dependencies, deprecated action versions, and common misconfigurations. The validator flags errors, warnings, and best-practice suggestions with specific fix guidance. Everything runs in your browser — your workflow files never leave your device.",
   },
+  "tailwind-to-css": {
+    question: "How do I convert Tailwind CSS classes to standard CSS?",
+    answer:
+      "Paste your Tailwind utility classes (or a full class=\"...\" attribute) and the tool instantly generates the equivalent standard CSS properties. It supports 500+ classes including spacing, layout, typography, borders, transforms, filters, and arbitrary bracket values like w-[300px]. Customize the CSS selector name in the output. Everything runs in your browser — your code never leaves your device.",
+  },
 };
