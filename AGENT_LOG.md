@@ -4,6 +4,30 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:30 | developer | Write GlassWorm/VSCode malware security blog post
+
+- **Task:** Write "Why Browser-Based Tools Are Safer Than VS Code Extensions" blog post — P2 priority, time-sensitive GlassWorm incident
+- **What was done:**
+  - Created comprehensive blog post at /blog/browser-tools-vs-vscode-extensions (11 min read)
+  - **GlassWorm timeline**: November 2025 initial discovery → January 2026 72 malicious Open VSX extensions → March 2026 mass compromise (433 components, 151+ GitHub repos)
+  - **Attack analysis**: invisible Unicode payloads, extensionDependencies abuse, self-propagating via stolen tokens, Solana blockchain C2 infrastructure
+  - **VS Code security model breakdown**: no sandbox, no permissions, full file system/network/process access, 8.5% of 27,261 extensions expose sensitive data
+  - **Browser sandbox comparison table**: 7 capabilities compared (file access, shell commands, credentials, process spawning, auto-update, persistence, network)
+  - **Client-side vs server-side distinction**: contrasts CodeBeautify leak (server-side) with client-side tools, two-column comparison card
+  - **Verification guide**: step-by-step DevTools Network tab verification (30 seconds)
+  - **5-step action plan**: audit extensions, disable auto-update, rotate credentials, use browser tools for sensitive data, scan code for hidden payloads
+  - **Bigger picture section**: timeline of 2025-2026 developer tool security incidents
+  - **5 FAQ questions** covering: am I affected, browser extensions vs VS Code extensions, sandbox escapes, VS Code permission system history, DevBolt safety model
+  - **HowTo structured data**: 6 steps for SEO rich snippets
+  - DigitalOcean affiliate callout box
+  - Internal links to: AI Code Security Scanner, Code Complexity Analyzer, JSON Formatter, .env File Validator
+  - Tags: Security, VS Code, Privacy, Supply Chain
+- **Files created:** `src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx`
+- **Files modified:** `src/data/blog-posts.ts` (new entry), `src/app/blog/[slug]/page.tsx` (import + content mapping), `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors
+
+---
+
 ### 2026-03-19 23:00 | developer | Update AI Model Comparison tool (#78) with new models and coding IDEs
 
 - **Task:** Update AI Model Comparison tool — add Kiro, Google Antigravity, update Claude/Cursor/Windsurf pricing (P1)

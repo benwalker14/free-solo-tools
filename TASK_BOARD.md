@@ -79,7 +79,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder targeting developers (code review, API docs, testing prompts). Multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
 - [x] Add JWT Builder/Generator tool (#100) — complement to JWT Decoder (#6). 8-20K/mo searches. Visual header/payload editor, 10 algorithms (HS256/HS384/HS512/RS256/RS384/RS512/ES256/ES384/ES512/none), key pair generation, client-side signing via panva/jose. 3 SEO sub-pages. jwt.io's UX is aging.
 - [x] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
-- [ ] Write GlassWorm/VSCode malware security blog post — "Why Browser-Based Tools Are Safer Than VS Code Extensions". Time-sensitive: GlassWorm + 72 malicious Open VSX extensions active March 8-19. Reinforces privacy positioning.
+- [x] Write GlassWorm/VSCode malware security blog post — "Why Browser-Based Tools Are Safer Than VS Code Extensions". Time-sensitive: GlassWorm + 72 malicious Open VSX extensions active March 8-19. Reinforces privacy positioning.
 - [ ] Build 10-15 language-specific landing pages — "Python JSON Formatter", "JavaScript Base64 Encode", "Node.js JWT Decode". Programmatic SEO with code examples + embedded tool. ELEVATED from P2. AI Mode "fan-out" queries favor these.
 - [ ] Write "MCP Context Window: How to Optimize Your AI Agent Setup" blog post — Perplexity CTO controversy driving searches. Links to MCP Config Builder.
 - [ ] Add ItemList JSON-LD to /free-tools, /cheatsheets, category pages — machine-readable list format for AI Overview citations.

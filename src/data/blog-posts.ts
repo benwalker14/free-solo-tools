@@ -569,6 +569,30 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "browser-tools-vs-vscode-extensions",
+    title:
+      "Why Browser-Based Tools Are Safer Than VS Code Extensions",
+    description:
+      "The GlassWorm worm compromised 433 VS Code extensions, npm packages, and GitHub repos in March 2026. Here's why browser-based developer tools are architecturally immune to supply chain attacks — and how to verify any tool is safe.",
+    publishedAt: "2026-03-19",
+    readTime: "11 min read",
+    tags: ["Security", "VS Code", "Privacy", "Supply Chain"],
+    relatedTools: [
+      { title: "AI Code Security Scanner", href: "/tools/code-security-scanner" },
+      { title: "Code Complexity Analyzer", href: "/tools/code-complexity-analyzer" },
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      { title: ".env File Validator", href: "/tools/env-validator" },
+    ],
+    howToSteps: [
+      { name: "Audit your installed VS Code extensions", text: "Run 'code --list-extensions' in your terminal to list every installed extension. For each one, check the publisher, last update date, and whether you actively use it. Remove any extension you don't need — every extension is attack surface." },
+      { name: "Disable auto-update for extensions", text: "In VS Code settings, set extensions.autoUpdate to false. Review changelogs before accepting updates. This prevents a previously trusted extension from silently becoming malicious through an update." },
+      { name: "Rotate your credentials", text: "If you had any recently installed or updated VS Code extensions, rotate your npm tokens (npm token revoke), GitHub personal access tokens, AWS access keys, SSH keys, and any API keys stored in environment variables." },
+      { name: "Verify browser tools are client-side", text: "Open DevTools (F12), go to the Network tab, clear entries, then use the tool with test data. If zero network requests are made, your data never left your browser. If you see POST requests to an API, the tool is server-side and your data was sent elsewhere." },
+      { name: "Use client-side browser tools for sensitive data", text: "For tasks involving credentials, tokens, API keys, or proprietary code, use a verified client-side browser tool instead of a VS Code extension. The browser sandbox guarantees your data cannot be exfiltrated — it cannot access your file system, shell, or credentials." },
+      { name: "Scan code for hidden payloads", text: "GlassWorm hid malicious code in invisible Unicode characters. Run a security scan on any recently modified code to check for zero-width characters, hardcoded secrets, and injection patterns using a client-side code scanner." },
+    ],
+  },
+  {
     slug: "vibe-coding-security",
     title: "Vibe Coding Security: How to Review AI-Generated Code for Vulnerabilities",
     description:
