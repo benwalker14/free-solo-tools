@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add File Hash Calculator tool (#74)
+
+- Built File Hash Calculator at `/tools/file-hash` — P3 task, drag-and-drop file hashing, extends Hash Generator
+- **Drag-and-drop file upload** — select any file type up to 2 GB
+- **5 hash algorithms**: MD5, SHA-1, SHA-256, SHA-384, SHA-512
+  - SHA algorithms use the Web Crypto API (`crypto.subtle.digest`)
+  - MD5 uses a pure JavaScript implementation (Web Crypto doesn't support MD5)
+  - Algorithm selection via checkboxes — choose which hashes to compute
+- **File info display**: name, size (formatted), MIME type, last modified date
+- **Hash results**: each algorithm displayed with individual copy buttons + "Copy All" button
+- **Verify mode**: paste an expected hash to compare — auto-matches against all computed algorithms, shows green (match with algorithm name) or red (no match)
+- **Privacy-first**: all processing happens entirely in the browser, no files uploaded
+- **Standard features**: rate limiting, Ctrl+Enter keyboard shortcut, analytics tracking
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `FileHashTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #74), `CLAUDE.md`, `TASK_BOARD.md`
+
+---
+
 ### 2026-03-18 | developer | Rebuild .env File Validator tool (#77) — component files were missing
 
 - Previous agent run registered the tool in tools.ts, CLAUDE.md, TASK_BOARD.md, and AGENT_LOG.md but the actual component files were never committed

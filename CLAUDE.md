@@ -123,3 +123,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 71. Placeholder Image Generator (/tools/placeholder-image)
 72. Nginx Config Generator (/tools/nginx-config)
 73. .env File Validator (/tools/env-validator)
+74. File Hash Calculator (/tools/file-hash)

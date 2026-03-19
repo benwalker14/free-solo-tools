@@ -582,4 +582,12 @@ export const tools: Tool[] = [
     icon: "ENV",
     category: "Inspect",
   },
+  {
+    title: "File Hash Calculator",
+    description:
+      "Compute MD5, SHA-1, SHA-256, SHA-384, SHA-512 file hashes — drag and drop to verify integrity with checksum comparison",
+    href: "/tools/file-hash",
+    icon: "#F",
+    category: "Inspect",
+  },
 ];
