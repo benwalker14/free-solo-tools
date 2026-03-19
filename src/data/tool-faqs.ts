@@ -1913,4 +1913,27 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "DevBolt's Code Complexity Analyzer uses pattern-based static analysis to identify functions and calculate metrics. It handles standard JavaScript and TypeScript function declarations, arrow functions, class methods, and common patterns. The metrics are approximations — for precise results in CI/CD pipelines, use ESLint's complexity rule, SonarQube, or CodeClimate. This tool is ideal for quick code reviews, evaluating AI-generated code quality, and learning about complexity metrics without installing anything.",
     },
   ],
+
+  "http-request-builder": [
+    {
+      question: "How do I build an HTTP request without code?",
+      answer:
+        "Use the visual builder to set the HTTP method (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS), enter the URL, add headers, query parameters, authorization (Bearer token, Basic Auth, API Key), and a request body (JSON, form-urlencoded, or raw). The tool generates working code in cURL, JavaScript (fetch), Python (requests), Go (net/http), Rust (reqwest), and PHP (curl). Copy the generated code and paste it into your project. Everything runs in your browser — no data is sent to any server.",
+    },
+    {
+      question: "How is this different from Postman or ReqBin?",
+      answer:
+        "This tool focuses on code generation rather than executing requests. Postman and ReqBin send actual HTTP requests from their servers. DevBolt's HTTP Request Builder runs entirely in your browser and generates ready-to-use code in 6 languages. There is no account, no download, and no data leaves your device. It is ideal for quickly scaffolding API calls in your preferred language without installing a desktop app.",
+    },
+    {
+      question: "What authentication methods are supported?",
+      answer:
+        "The builder supports Bearer Token (adds Authorization: Bearer header), Basic Auth (base64-encoded username:password, uses native auth mechanisms in each language like requests auth= in Python and -u in cURL), and API Key (sent as a custom header or query parameter). Each auth method generates idiomatic code for the selected language.",
+    },
+    {
+      question: "Can I send a JSON body with a GET request?",
+      answer:
+        "While technically possible, sending a body with GET is discouraged by HTTP specifications and many servers ignore it. The builder allows it for flexibility (some APIs like Elasticsearch accept GET with body), but best practice is to use POST, PUT, or PATCH for requests with a body. The builder does not restrict method-body combinations so you can match your API's requirements.",
+    },
+  ],
 };

@@ -940,4 +940,138 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Case Converter",
     },
   ],
+
+  "http-request-builder": [
+    {
+      slug: "curl-generator",
+      title: "cURL Command Generator",
+      metaTitle: "cURL Command Generator Online — Build cURL Visually",
+      metaDescription:
+        "Generate cURL commands visually with a form-based builder. Set method, headers, auth, and body without memorizing flags. Free online cURL generator.",
+      h1: "cURL Command Generator Online",
+      intro:
+        "Build cURL commands without memorizing flags. Use the visual form above to set method, URL, headers, authentication, and request body — the tool generates a ready-to-paste cURL command instantly.",
+      content: [
+        {
+          heading: "Why generate cURL commands visually?",
+          body: "cURL has over 200 command-line flags, and constructing complex requests with multiple headers, authentication, and JSON bodies is error-prone. A visual builder eliminates quoting issues, flag typos, and ensures proper escaping. The generated command is ready to paste into a terminal, CI/CD pipeline, or API documentation.",
+          codeExample: '# Simple GET request\ncurl -X GET "https://api.example.com/users"\n\n# POST with JSON body and auth\ncurl -X POST "https://api.example.com/users" \\\n  -H "Content-Type: application/json" \\\n  -H "Authorization: Bearer eyJ..." \\\n  -d \'{"name": "John", "email": "john@example.com"}\'',
+        },
+        {
+          heading: "Common cURL flags",
+          body: "-X sets the HTTP method, -H adds a header, -d sends a request body, -u provides basic auth credentials, -o saves output to a file, -L follows redirects, and -k skips SSL verification. The visual builder handles all of these through form fields, so you do not need to remember the flags.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I send a POST request with cURL?",
+          answer:
+            "Use -X POST with -d for the body and -H for the Content-Type header. For JSON: curl -X POST -H \"Content-Type: application/json\" -d '{\"key\":\"value\"}' URL. The visual builder above generates this automatically.",
+        },
+        {
+          question: "How do I add authentication to a cURL command?",
+          answer:
+            "For Bearer token: -H \"Authorization: Bearer TOKEN\". For Basic auth: -u username:password. For API key: -H \"X-API-Key: KEY\". The visual builder supports all three auth types.",
+        },
+      ],
+      keywords: [
+        "curl generator",
+        "curl command builder",
+        "generate curl command",
+        "curl builder online",
+        "build curl request",
+        "curl command generator",
+      ],
+      parentToolSlug: "http-request-builder",
+      parentToolName: "HTTP Request Builder",
+    },
+    {
+      slug: "fetch-api-generator",
+      title: "JavaScript Fetch API Generator",
+      metaTitle: "JavaScript Fetch API Generator — Build fetch() Visually",
+      metaDescription:
+        "Generate JavaScript fetch() calls visually. Set method, headers, body, and auth with a form — get ready-to-use fetch code. Free online tool.",
+      h1: "JavaScript Fetch API Code Generator",
+      intro:
+        "Generate JavaScript fetch() calls without writing boilerplate. Configure your request visually and get clean, copy-paste-ready fetch code with proper headers, body serialization, and error handling.",
+      content: [
+        {
+          heading: "The Fetch API basics",
+          body: "The Fetch API is the modern standard for making HTTP requests in JavaScript, replacing XMLHttpRequest. It returns Promises and integrates with async/await. A basic fetch call takes a URL and an options object with method, headers, and body. The visual builder above generates properly structured fetch() calls with JSON.stringify for body, correct Content-Type headers, and response parsing.",
+          codeExample: '// GET request with fetch\nconst response = await fetch("https://api.example.com/users", {\n  method: "GET",\n  headers: {\n    "Accept": "application/json",\n    "Authorization": "Bearer eyJ..."\n  }\n});\n\nconst data = await response.json();\nconsole.log(data);',
+        },
+        {
+          heading: "POST with JSON body",
+          body: "To send JSON with fetch, set the Content-Type header to application/json and pass JSON.stringify(data) as the body. The visual builder handles this automatically when you select JSON body type. Remember that fetch does not reject on HTTP error status codes (4xx, 5xx) — you need to check response.ok or response.status manually.",
+          codeExample: '// POST with JSON body\nconst response = await fetch("https://api.example.com/users", {\n  method: "POST",\n  headers: {\n    "Content-Type": "application/json"\n  },\n  body: JSON.stringify({\n    name: "John Doe",\n    email: "john@example.com"\n  })\n});\n\nconst data = await response.json();',
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between fetch and axios?",
+          answer:
+            "fetch() is built into browsers and Node.js 18+ — no dependencies needed. axios is a third-party library that adds automatic JSON parsing, request interceptors, timeout support, and progress events. For simple requests, fetch is sufficient. For complex apps with retry logic and interceptors, axios adds value.",
+        },
+        {
+          question: "Does fetch work in Node.js?",
+          answer:
+            "Yes, since Node.js 18. The global fetch() is available without imports. For older Node.js versions, use the node-fetch package or the built-in http/https modules.",
+        },
+      ],
+      keywords: [
+        "fetch api generator",
+        "javascript fetch builder",
+        "generate fetch request",
+        "fetch api example",
+        "fetch post json",
+        "javascript http request",
+      ],
+      parentToolSlug: "http-request-builder",
+      parentToolName: "HTTP Request Builder",
+    },
+    {
+      slug: "python-requests-generator",
+      title: "Python Requests Code Generator",
+      metaTitle: "Python Requests Generator — Build HTTP Requests for Python",
+      metaDescription:
+        "Generate Python requests code visually. Set method, headers, auth, and JSON body with a form — get ready-to-use Python code. Free online tool.",
+      h1: "Python Requests Code Generator",
+      intro:
+        "Generate Python requests library code without writing boilerplate. Configure your HTTP request visually and get clean, copy-paste-ready Python code with proper auth, headers, and JSON handling.",
+      content: [
+        {
+          heading: "Python requests library basics",
+          body: "The requests library is the most popular HTTP client for Python with over 300 million monthly downloads. It provides a simple API: requests.get(), requests.post(), requests.put(), etc. The visual builder generates idiomatic Python code using the correct convenience method and kwargs for headers, auth, json, and data parameters.",
+          codeExample: 'import requests\n\n# GET with Bearer token\nresponse = requests.get(\n    "https://api.example.com/users",\n    headers={"Authorization": "Bearer eyJ..."},\n)\n\nprint(response.status_code)\nprint(response.json())',
+        },
+        {
+          heading: "POST with JSON in Python",
+          body: "Use the json= parameter instead of data= to send JSON. The requests library automatically serializes the dict to JSON and sets the Content-Type header. For form data, use data= with a dict. The visual builder generates the correct parameter based on your body type selection.",
+          codeExample: 'import requests\n\n# POST with JSON — use json= not data=\nresponse = requests.post(\n    "https://api.example.com/users",\n    json={"name": "John", "email": "john@example.com"},\n    auth=("admin", "secret"),  # Basic Auth\n)\n\nprint(response.json())',
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I use json= or data= in Python requests?",
+          answer:
+            "Use json= for JSON payloads — it auto-serializes and sets Content-Type. Use data= for form-encoded or raw string bodies. Using data= with a dict sends form-encoded data, not JSON.",
+        },
+        {
+          question: "How do I add authentication in Python requests?",
+          answer:
+            "For Basic Auth: auth=(\"user\", \"pass\"). For Bearer tokens: headers={\"Authorization\": \"Bearer TOKEN\"}. For API keys: headers={\"X-API-Key\": \"KEY\"}. The requests library also supports digest and custom auth handlers.",
+        },
+      ],
+      keywords: [
+        "python requests generator",
+        "python http request builder",
+        "generate python requests code",
+        "python requests example",
+        "python post json",
+        "python api request",
+      ],
+      parentToolSlug: "http-request-builder",
+      parentToolName: "HTTP Request Builder",
+    },
+  ],
 };

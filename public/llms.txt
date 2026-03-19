@@ -109,6 +109,7 @@
 - [ESLint to Biome Converter](https://devbolt.dev/tools/eslint-to-biome): Convert ESLint config to Biome — maps 100+ rules from core, TypeScript, React, JSX-A11y, and import plugins to biome.json
 - [AI Code Security Scanner](https://devbolt.dev/tools/code-security-scanner): Scan JavaScript and TypeScript code for vulnerabilities — hardcoded secrets, injection, XSS, SSRF, prototype pollution, and 20+ security checks
 - [Code Complexity Analyzer](https://devbolt.dev/tools/code-complexity-analyzer): Analyze JavaScript and TypeScript code for cyclomatic complexity, cognitive complexity, nesting depth, and maintainability index with per-function metrics
+- [HTTP Request Builder](https://devbolt.dev/tools/http-request-builder): Build HTTP requests visually and generate code in cURL, JavaScript, Python, Go, Rust, and PHP — lightweight Postman/ReqBin alternative
 
 ## Cheat Sheets
 

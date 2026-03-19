@@ -4,6 +4,29 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 17:00 | developer | Add HTTP Request Builder tool (#106)
+
+- **Task:** Add HTTP Request Builder tool (P3) — lightweight Postman/ReqBin alternative
+- **What was done:**
+  - Created visual HTTP request builder at `/tools/http-request-builder` with form-based interface
+  - **Request configuration:** HTTP method selector (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS), URL input, collapsible sections for query parameters, headers, authorization, and request body
+  - **Headers:** Key-value editor with enable/disable checkboxes, auto-add new row, 11 common header quick-add buttons (Accept, Content-Type, Authorization, etc.)
+  - **Query parameters:** Key-value editor with enable/disable checkboxes, auto-appended to URL in generated code
+  - **Authorization:** 4 auth types — None, Bearer Token, Basic Auth (username/password), API Key (header or query param). Each generates idiomatic code per language (e.g., requests auth= in Python, -u in cURL, SetBasicAuth in Go)
+  - **Request body:** 4 body types — None, JSON, Form URL-Encoded, Raw. JSON body auto-serialized via JSON.stringify/json= per language
+  - **Code generation:** 6 output languages — cURL (with proper flag generation), JavaScript (fetch API), Python (requests library), Go (net/http), Rust (reqwest with tokio), PHP (curl extension)
+  - **5 presets:** GET JSON API, POST JSON, PUT Update, DELETE, Form POST — each populates all fields and auto-opens relevant sections
+  - **Method color badges:** GET=green, POST=blue, PUT/PATCH=amber, DELETE=red, HEAD=purple, OPTIONS=gray
+  - **4 FAQs** covering: building without code, Postman comparison, auth methods, GET with body
+  - **Quick answer block** for AI Overview citation
+  - **3 SEO sub-pages:** curl-generator, fetch-api-generator, python-requests-generator — each with code examples, explanations, and FAQs
+  - Ctrl+K searchable via command palette. All client-side
+- **Files created:** `src/app/tools/http-request-builder/page.tsx`, `src/app/tools/http-request-builder/HttpRequestBuilderTool.tsx`, `src/app/tools/http-request-builder/[subpage]/page.tsx`
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `public/llms.txt`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors. `npm run lint` passes with 0 warnings
+
+---
+
 ### 2026-03-19 16:00 | developer | Build Smart Paste / Format Detection
 
 - **Task:** Build Smart Paste / Format Detection (P2) — paste content anywhere, auto-detect format, suggest right tool

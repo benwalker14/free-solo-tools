@@ -838,4 +838,12 @@ export const tools: Tool[] = [
     icon: "CCX",
     category: "Inspect",
   },
+  {
+    title: "HTTP Request Builder",
+    description:
+      "Build HTTP requests visually and generate code in cURL, JavaScript, Python, Go, Rust, and PHP — lightweight Postman/ReqBin alternative",
+    href: "/tools/http-request-builder",
+    icon: "HTTP",
+    category: "Generate",
+  },
 ];

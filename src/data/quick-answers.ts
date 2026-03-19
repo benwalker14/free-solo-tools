@@ -109,4 +109,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your JavaScript or TypeScript code and click Analyze to see cyclomatic complexity, cognitive complexity, nesting depth, and maintainability index for every function. Each function gets a risk rating with actionable refactoring recommendations. All analysis runs in your browser — your code never leaves your device.",
   },
+  "http-request-builder": {
+    question: "How do I build an HTTP request and generate code online?",
+    answer:
+      "Select the HTTP method, enter a URL, then configure headers, query parameters, authorization, and body using the visual builder. The tool instantly generates working code in cURL, JavaScript, Python, Go, Rust, and PHP. Copy the generated snippet into your project. Everything runs in your browser — your data never leaves your device.",
+  },
 };
