@@ -74,7 +74,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format (JSON/Base64/JWT/CSV/YAML), suggest right tool. UX differentiator no web competitor has.
 - [ ] Add lifetime deal option ($49-79) alongside Pro subscription — DevUtils charges $19.99 one-time and has 10K+ users. Captures subscription-averse devs.
 - [ ] Write "TypeScript 7.0: What We Know About the Go Rewrite" blog post — forward-looking, ages well.
-- [ ] Add HowTo structured data to tutorial blog posts — FAQ rich results restricted to gov/health sites as of Dec 2025. HowTo schema still eligible for rich results.
+- [x] Add HowTo structured data to tutorial blog posts — FAQ rich results restricted to gov/health sites as of Dec 2025. HowTo schema still eligible for rich results.
 - [ ] Create language-specific landing pages — "Python JSON Formatter", "JavaScript Base64 Encode", "Node.js JWT Decode". Programmatic SEO with code examples + embedded tool. 10-20 pages.
 
 ### P3 - Low (Catalog Expansion)

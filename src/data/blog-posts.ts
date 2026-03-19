@@ -1,3 +1,8 @@
+export interface HowToStep {
+  name: string;
+  text: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -6,6 +11,7 @@ export interface BlogPost {
   readTime: string;
   tags: string[];
   relatedTools: { title: string; href: string }[];
+  howToSteps?: HowToStep[];
 }
 
 export const blogPosts: BlogPost[] = [
@@ -23,6 +29,18 @@ export const blogPosts: BlogPost[] = [
       { title: "JSON Visualizer", href: "/tools/json-visualizer" },
       { title: "JSON Path Tester", href: "/tools/json-path" },
     ],
+    howToSteps: [
+      { name: "Paste your JSON into a validator", text: "Use a JSON formatter tool to paste your JSON and see exactly where the parse error occurs. The tool highlights the line and character position of the first syntax error." },
+      { name: "Check for trailing commas", text: "Remove any trailing commas after the last item in objects or arrays. JSON does not allow trailing commas, unlike JavaScript. For example, {\"a\": 1,} is invalid — remove the comma after the 1." },
+      { name: "Replace single quotes with double quotes", text: "JSON requires double quotes for all strings and keys. Replace any single quotes with double quotes. {\'name\': \'value\'} must become {\"name\": \"value\"}." },
+      { name: "Quote all object keys", text: "Every key in a JSON object must be a double-quoted string. Unquoted keys like {name: \"value\"} are invalid — change to {\"name\": \"value\"}." },
+      { name: "Remove comments", text: "JSON does not support comments. Remove any // or /* */ comments from your JSON. If you need comments in config files, consider using JSONC or YAML instead." },
+      { name: "Fix missing commas between items", text: "Add commas between every key-value pair in objects and every element in arrays. A missing comma like {\"a\": 1 \"b\": 2} causes a parse error." },
+      { name: "Close all brackets and braces", text: "Ensure every opening { has a matching } and every [ has a matching ]. Use a JSON formatter with bracket matching to find unclosed delimiters." },
+      { name: "Escape special characters in strings", text: "Backslashes, double quotes, newlines, and tabs inside strings must be escaped: use \\\\, \\\", \\n, and \\t respectively." },
+      { name: "Replace undefined and NaN with null", text: "JSON does not support undefined or NaN. Replace these with null or remove the key entirely." },
+      { name: "Validate the fixed JSON", text: "After making corrections, paste the JSON back into the validator to confirm it parses successfully. A valid JSON document should format cleanly with proper indentation." },
+    ],
   },
   {
     slug: "fix-jwt-errors",
@@ -37,6 +55,16 @@ export const blogPosts: BlogPost[] = [
       { title: "JWT Builder & Generator", href: "/tools/jwt-builder" },
       { title: "Base64 Encoder & Decoder", href: "/tools/base64" },
       { title: "Hash Generator", href: "/tools/hash-generator" },
+    ],
+    howToSteps: [
+      { name: "Decode the JWT token", text: "Paste the JWT into a decoder tool to inspect the header and payload. Check the algorithm (alg), expiration (exp), issuer (iss), and audience (aud) claims. This reveals which claim is causing the error." },
+      { name: "Check the expiration time", text: "If you see TokenExpiredError, the exp claim timestamp has passed. Compare exp to the current Unix timestamp. Fix by issuing a new token or increasing the token lifetime in your auth configuration." },
+      { name: "Verify the signing secret or key", text: "Invalid signature errors mean the token was signed with a different secret than what the verifier expects. Ensure the same secret key or key pair is used for signing and verification. Check for typos, encoding differences, or rotated keys." },
+      { name: "Check for malformed token structure", text: "A valid JWT has exactly three Base64URL-encoded parts separated by dots: header.payload.signature. If the token is truncated, has extra characters, or is missing a segment, it will fail to parse." },
+      { name: "Validate the algorithm", text: "Ensure the alg in the JWT header matches what your verification code expects. Never accept alg:none in production. If using RS256, verify with the public key, not the private key." },
+      { name: "Check clock skew between servers", text: "If exp or nbf (not before) claims fail intermittently, your servers may have clock drift. Add a small clockTolerance (e.g., 30 seconds) to your JWT verification options." },
+      { name: "Verify issuer and audience claims", text: "If your verifier checks iss or aud claims, ensure the values in the token match exactly. These are case-sensitive string comparisons." },
+      { name: "Test with a freshly generated token", text: "Generate a new JWT with known-good claims and verify it works. This isolates whether the issue is in token generation or verification." },
     ],
   },
   {
@@ -53,6 +81,15 @@ export const blogPosts: BlogPost[] = [
       { title: "cURL to Code Converter", href: "/tools/curl-converter" },
       { title: "HTTP Status Code Reference", href: "/tools/http-status-codes" },
     ],
+    howToSteps: [
+      { name: "Identify the CORS error in your browser console", text: "Open DevTools (F12) and check the Console tab. CORS errors show messages like 'Access to fetch has been blocked by CORS policy'. Note the specific error — missing header, preflight failure, or origin mismatch." },
+      { name: "Understand that CORS is a server-side fix", text: "CORS errors cannot be fixed in frontend code. The server must send the correct Access-Control-Allow-Origin header. If you control the API, configure it on the server. If you do not, use a backend proxy." },
+      { name: "Add the Access-Control-Allow-Origin header", text: "On your server, set the Access-Control-Allow-Origin header to the requesting origin (e.g., https://yourdomain.com) or use * for public APIs. Avoid using * if the request includes credentials." },
+      { name: "Handle preflight OPTIONS requests", text: "For non-simple requests (PUT, DELETE, custom headers), the browser sends a preflight OPTIONS request. Your server must respond to OPTIONS with 200 and the correct Access-Control-Allow-Methods and Access-Control-Allow-Headers." },
+      { name: "Configure allowed methods and headers", text: "Set Access-Control-Allow-Methods to the HTTP methods your API uses (GET, POST, PUT, DELETE). Set Access-Control-Allow-Headers to include any custom headers like Authorization or Content-Type." },
+      { name: "Enable credentials if needed", text: "If your requests include cookies or Authorization headers, set Access-Control-Allow-Credentials: true on the server. When using credentials, you cannot use * for the origin — specify the exact origin instead." },
+      { name: "Test with cURL to verify headers", text: "Use cURL to send a request directly to your API and inspect the response headers. Run: curl -I -H 'Origin: https://yourdomain.com' https://api.example.com/endpoint. Verify the CORS headers are present in the response." },
+    ],
   },
   {
     slug: "fix-docker-compose-errors",
@@ -68,6 +105,16 @@ export const blogPosts: BlogPost[] = [
       { title: "YAML Validator & Formatter", href: "/tools/yaml-formatter" },
       { title: ".env File Validator", href: "/tools/env-validator" },
     ],
+    howToSteps: [
+      { name: "Validate your YAML syntax", text: "Paste your docker-compose.yml into a YAML validator. Most Compose errors are YAML syntax issues — incorrect indentation, tabs instead of spaces, or missing colons. YAML requires consistent 2-space indentation." },
+      { name: "Check port mapping format", text: "Ports must be strings when using the short syntax to avoid YAML parsing issues. Use quotes: ports: - \"8080:80\" instead of ports: - 8080:80. Without quotes, YAML may interpret the colon as a time value." },
+      { name: "Remove the version field for Compose V2", text: "Docker Compose V2 (the docker compose command without a hyphen) no longer requires the version field. If you see a version warning, remove the version: line entirely. It is ignored in modern Compose." },
+      { name: "Fix service indentation", text: "All services must be indented under the services: key at the same level. Each service property (image, ports, volumes) must be indented one level deeper. Mixing tabs and spaces causes silent failures." },
+      { name: "Use correct volume syntax", text: "Bind mounts use host:container format like ./data:/app/data. Named volumes are defined under the top-level volumes: key and referenced by name in services. Ensure paths use forward slashes even on Windows." },
+      { name: "Quote environment variable values", text: "Always quote environment variable values, especially those containing special characters: environment: - \"DATABASE_URL=postgres://user:pass@db:5432/app\". Unquoted values with special YAML characters can break parsing." },
+      { name: "Check depends_on syntax", text: "depends_on only controls startup order, not readiness. Use the short form (depends_on: - db) or long form with conditions (depends_on: db: condition: service_healthy) for health-check-based ordering." },
+      { name: "Validate with docker compose config", text: "Run docker compose config to validate and display the resolved configuration. This command merges all compose files, resolves variables, and shows the final config. Fix any errors it reports." },
+    ],
   },
   {
     slug: "fix-regex-errors",
@@ -82,6 +129,16 @@ export const blogPosts: BlogPost[] = [
       { title: "Regex Generator", href: "/tools/regex-generator" },
       { title: "Word & Character Counter", href: "/tools/word-counter" },
       { title: "Case Converter", href: "/tools/case-converter" },
+    ],
+    howToSteps: [
+      { name: "Test your pattern in an interactive regex tester", text: "Paste your regex pattern and test string into an interactive regex tester with real-time highlighting. This immediately shows which parts of the input match and which capture groups are populated." },
+      { name: "Escape metacharacters that should be literal", text: "Characters like . * + ? ( ) [ ] { } ^ $ | \\ have special meaning in regex. To match them literally, prefix with a backslash. For example, to match a dot use \\. instead of just a period." },
+      { name: "Switch from greedy to lazy quantifiers", text: "If your pattern matches too much text, your quantifiers are greedy. Add ? after *, +, or {} to make them lazy. For example, <.*?> matches the shortest possible tag instead of everything between the first < and last >." },
+      { name: "Add anchors for exact matching", text: "Use ^ to anchor the start and $ to anchor the end of the string. Without anchors, a pattern like \\d{3} matches any 3-digit substring. With ^\\d{3}$, it only matches strings that are exactly 3 digits." },
+      { name: "Check your regex flags", text: "Flags change matching behavior. Use g for global (find all matches, not just the first), i for case-insensitive matching, m for multiline mode (^ and $ match line boundaries), and s for dotall mode (. matches newlines)." },
+      { name: "Fix character class ranges", text: "Inside square brackets, use hyphens for ranges like [a-z] or [0-9]. Place literal hyphens at the start or end: [-abc] or [abc-]. Escape special characters inside classes: [\\[\\]] to match brackets." },
+      { name: "Avoid catastrophic backtracking", text: "Nested quantifiers like (a+)+ or (a|a)* cause exponential backtracking on non-matching input. Simplify your pattern, use possessive quantifiers (a++ if supported), or use atomic groups to prevent backtracking." },
+      { name: "Test across multiple regex engines", text: "Regex behavior varies between JavaScript, Python, Go, and Java. Features like lookbehind width, Unicode support, and flag availability differ. Test your pattern in the target language to catch engine-specific issues." },
     ],
   },
   {

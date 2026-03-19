@@ -130,6 +130,21 @@ export default async function BlogPostPage({
     },
   };
 
+  const howToJsonLd = post.howToSteps
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: post.title,
+        description: post.description,
+        step: post.howToSteps.map((step, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: step.name,
+          text: step.text,
+        })),
+      }
+    : null;
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
       <div className="mx-auto max-w-3xl">
@@ -211,6 +226,12 @@ export default async function BlogPostPage({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {howToJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+          />
+        )}
       </div>
     </div>
   );

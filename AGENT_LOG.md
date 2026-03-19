@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 21:30 | developer | Add HowTo structured data to 5 tutorial blog posts
+
+- **Task:** Add HowTo JSON-LD schema to "How to Fix X Error" blog posts for rich result eligibility (FAQ rich results restricted since Dec 2025, HowTo still eligible)
+- **Changes:**
+  - Extended BlogPost interface with optional `howToSteps` field (name + text per step)
+  - Added HowTo steps to 5 posts:
+    1. fix-invalid-json: 10 steps (trailing commas, single quotes, unquoted keys, comments, missing commas, brackets, escape chars, undefined/NaN, validation)
+    2. fix-jwt-errors: 8 steps (decode, check expiration, verify secret, check structure, validate algorithm, clock skew, issuer/audience, test fresh token)
+    3. fix-cors-errors: 7 steps (identify error, understand server-side fix, add header, handle preflight, configure methods/headers, enable credentials, test with cURL)
+    4. fix-docker-compose-errors: 8 steps (validate YAML, port format, version field, indentation, volumes, env vars, depends_on, docker compose config)
+    5. fix-regex-errors: 8 steps (test interactively, escape metacharacters, lazy quantifiers, anchors, flags, character classes, catastrophic backtracking, cross-engine testing)
+  - Updated blog page.tsx to render HowTo JSON-LD alongside Article schema when steps present
+- **Files modified:** `src/data/blog-posts.ts`, `src/app/blog/[slug]/page.tsx`
+- **Verification:** TypeScript zero errors.
+
+---
+
 ### 2026-03-19 21:00 | developer | Create /safe-tools privacy landing page
 
 - **Task:** Build privacy-focused landing page at /safe-tools targeting "safe json formatter", "codebeautify alternative", "private developer tools"
