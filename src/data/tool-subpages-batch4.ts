@@ -3783,4 +3783,309 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "package.json Generator",
     },
   ],
+
+  "security-headers": [
+    {
+      slug: "hsts-guide",
+      title: "HSTS Guide",
+      metaTitle:
+        "HSTS Guide — Strict-Transport-Security Explained | DevBolt",
+      metaDescription:
+        "Learn how Strict-Transport-Security (HSTS) works, how to configure max-age, includeSubDomains, and preload, and best practices for deploying HSTS safely.",
+      h1: "HSTS Guide — Strict-Transport-Security Explained",
+      intro:
+        "Strict-Transport-Security (HSTS) tells browsers to always connect via HTTPS. Learn how to configure it correctly, avoid common pitfalls, and submit to browser preload lists.",
+      content: [
+        {
+          heading: "What is HSTS?",
+          body: "HTTP Strict-Transport-Security (HSTS) is a response header that instructs browsers to only connect to your site over HTTPS for a specified duration. Once a browser receives the HSTS header, it automatically converts all HTTP requests to HTTPS — even if the user types http:// or clicks an HTTP link. This prevents SSL-stripping attacks where an attacker downgrades connections from HTTPS to HTTP.",
+        },
+        {
+          heading: "Configuring max-age",
+          body: "The max-age directive specifies how long (in seconds) the browser should remember to only use HTTPS. Start with a short value (e.g., 300 seconds) to test, then increase to 31536000 (1 year) or 63072000 (2 years) for production. Once set, you cannot easily undo HSTS — browsers will refuse HTTP connections until max-age expires. The minimum recommended value for preload submission is 31536000.",
+        },
+        {
+          heading: "HSTS preload lists",
+          body: "Browser preload lists (hstspreload.org) hardcode HSTS for your domain into the browser itself, so even the first visit is protected. Requirements: valid certificate, redirect HTTP to HTTPS, serve HSTS on the root domain with max-age >= 31536000, includeSubDomains, and preload directives. Removal from preload lists can take months, so only submit when you are fully committed to HTTPS.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I undo HSTS once it is set?",
+          answer:
+            "You can set max-age=0 to tell browsers to stop enforcing HSTS, but users must visit your site again over HTTPS to receive this updated header. If you are on a preload list, removal takes weeks to months. Always test with short max-age values first.",
+        },
+        {
+          question:
+            "Should I use includeSubDomains with HSTS?",
+          answer:
+            "Yes, if all your subdomains support HTTPS. This prevents attackers from using insecure subdomains to set cookies or perform downgrade attacks. It is required for HSTS preload submission.",
+        },
+        {
+          question: "Does HSTS affect performance?",
+          answer:
+            "HSTS improves performance by eliminating HTTP-to-HTTPS redirects after the first visit. The browser upgrades connections locally without making the initial HTTP request, saving a round trip.",
+        },
+      ],
+      keywords: [
+        "hsts guide",
+        "strict transport security",
+        "hsts header",
+        "hsts preload",
+        "hsts max-age",
+        "http strict transport security",
+      ],
+      parentToolSlug: "security-headers",
+      parentToolName: "Security Headers Generator",
+    },
+    {
+      slug: "security-headers-explained",
+      title: "Security Headers Explained",
+      metaTitle:
+        "HTTP Security Headers Explained — Complete Guide | DevBolt",
+      metaDescription:
+        "Complete guide to HTTP security headers: HSTS, CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP, COEP, CORP. Learn what each header does and when to use it.",
+      h1: "HTTP Security Headers Explained",
+      intro:
+        "HTTP security headers are your first line of defense against common web attacks. This guide covers every security header, what it protects against, and recommended values for production.",
+      content: [
+        {
+          heading: "Why security headers matter",
+          body: "Security headers instruct browsers to enable built-in security features: blocking XSS (CSP), preventing clickjacking (X-Frame-Options), forcing HTTPS (HSTS), and controlling information leakage (Referrer-Policy). Without them, browsers use permissive defaults that leave your users vulnerable. Adding security headers is one of the highest-impact, lowest-effort security improvements you can make.",
+        },
+        {
+          heading: "Essential headers every site needs",
+          body: "At minimum, every website should set: Strict-Transport-Security (force HTTPS), X-Content-Type-Options: nosniff (prevent MIME sniffing), X-Frame-Options: DENY or SAMEORIGIN (prevent clickjacking), and Referrer-Policy: strict-origin-when-cross-origin (control referrer leakage). These four headers cover the most common attack vectors with minimal risk of breaking functionality.",
+        },
+        {
+          heading: "Advanced headers for full protection",
+          body: "For maximum security, add: Content-Security-Policy (comprehensive XSS prevention), Permissions-Policy (restrict browser APIs), Cross-Origin-Opener-Policy (isolate browsing context), Cross-Origin-Embedder-Policy (control resource loading), and Cross-Origin-Resource-Policy (prevent cross-origin reads). These require more careful configuration but significantly raise the security bar.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Which security headers are most important?",
+          answer:
+            "HSTS, Content-Security-Policy, and X-Content-Type-Options are the most critical. HSTS prevents downgrade attacks, CSP prevents XSS, and X-Content-Type-Options prevents MIME-type confusion attacks. Together they address the majority of common web vulnerabilities.",
+        },
+        {
+          question: "Can security headers break my website?",
+          answer:
+            "Yes, if misconfigured. CSP is the most likely to cause issues — overly restrictive policies can block legitimate scripts, styles, or images. Start with CSP in report-only mode (Content-Security-Policy-Report-Only) to identify what would be blocked before enforcing.",
+        },
+        {
+          question: "How do I test my security headers?",
+          answer:
+            "Use browser DevTools (Network tab → response headers), online scanners like securityheaders.com, or curl -I to inspect headers. Test in staging before production, especially for CSP changes.",
+        },
+      ],
+      keywords: [
+        "security headers explained",
+        "http security headers guide",
+        "web security headers",
+        "security headers best practices",
+        "security headers list",
+        "http headers security",
+      ],
+      parentToolSlug: "security-headers",
+      parentToolName: "Security Headers Generator",
+    },
+    {
+      slug: "security-headers-checker",
+      title: "Security Headers Checker Guide",
+      metaTitle:
+        "How to Check Security Headers — Audit Guide | DevBolt",
+      metaDescription:
+        "Learn how to audit your website's security headers, identify missing protections, and fix common issues. Step-by-step guide with tools and recommended values.",
+      h1: "How to Audit Your Security Headers",
+      intro:
+        "Not sure if your site has the right security headers? This guide walks you through checking your current headers, identifying gaps, and fixing common issues across Nginx, Apache, Vercel, Netlify, and Cloudflare.",
+      content: [
+        {
+          heading: "Checking headers with browser DevTools",
+          body: "Open Chrome DevTools (F12) → Network tab → click any request → Headers tab → scroll to Response Headers. Look for Strict-Transport-Security, Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, and Referrer-Policy. Missing headers mean the browser uses permissive defaults, leaving your site exposed.",
+        },
+        {
+          heading: "Common issues and fixes",
+          body: "Missing HSTS: Add Strict-Transport-Security header after confirming HTTPS works on all pages and subdomains. Missing X-Content-Type-Options: Always add nosniff — it has no side effects. X-Frame-Options ALLOW-FROM: Deprecated in most browsers — use CSP frame-ancestors instead. X-XSS-Protection: 1: Deprecated and can introduce vulnerabilities — set to 0 and use CSP.",
+        },
+        {
+          heading: "Platform-specific configuration",
+          body: "Nginx: Use add_header directives in server blocks (add 'always' flag for error pages). Apache: Use Header directives in .htaccess or httpd.conf. Vercel: Add headers array in vercel.json. Netlify: Create a _headers file in publish directory. Cloudflare: Use Transform Rules or _headers file with Pages. Each platform has different syntax — use the generator above to get the right format.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What grade should my security headers get?",
+          answer:
+            "Aim for an A or A+ grade. This means having at minimum HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, and ideally CSP and Permissions-Policy. An A+ requires a strong CSP without unsafe-inline or unsafe-eval.",
+        },
+        {
+          question: "Do CDNs strip security headers?",
+          answer:
+            "Most CDNs preserve origin headers, but some may strip or override specific headers. Cloudflare preserves all custom headers. AWS CloudFront requires explicit header forwarding. Always verify headers are present after CDN deployment.",
+        },
+        {
+          question:
+            "Should I set security headers on API responses too?",
+          answer:
+            "Yes. APIs should set X-Content-Type-Options: nosniff, Strict-Transport-Security, and a restrictive CSP (default-src 'none'). X-Frame-Options: DENY is also recommended since API responses should never be framed.",
+        },
+      ],
+      keywords: [
+        "security headers checker",
+        "check security headers",
+        "security headers audit",
+        "security headers test",
+        "missing security headers",
+        "fix security headers",
+      ],
+      parentToolSlug: "security-headers",
+      parentToolName: "Security Headers Generator",
+    },
+  ],
+  "typescript-to-js": [
+    {
+      slug: "type-stripping-guide",
+      title: "TypeScript Type Stripping Guide",
+      metaTitle:
+        "TypeScript Type Stripping Guide — How TS Compiles to JS | DevBolt",
+      metaDescription:
+        "Learn how TypeScript compiles to JavaScript by stripping types. Understand what gets removed (interfaces, type aliases, generics) and what stays (enums, decorators, class fields).",
+      h1: "TypeScript Type Stripping: What Gets Removed and What Stays",
+      intro:
+        "TypeScript to JavaScript conversion is primarily about removing type annotations. Understanding what gets stripped and what remains helps you write better TypeScript and predict the JavaScript output.",
+      content: [
+        {
+          heading: "What TypeScript removes during compilation",
+          body: "TypeScript strips all type-only constructs: interface declarations, type aliases, type annotations on variables and parameters, generic type parameters, type assertions (as Type), access modifiers (public/private/protected), the readonly keyword, implements clauses, declare statements, and non-null assertions (!). These exist only for the type checker and have zero runtime impact.",
+        },
+        {
+          heading: "What TypeScript keeps or transforms",
+          body: "Enums are converted to JavaScript objects. Decorators are transformed to function calls. Class fields with initializers are preserved. Optional chaining (?.) and nullish coalescing (??) are kept as-is for modern targets or polyfilled for older targets. Import statements are rewritten based on the module format (CommonJS vs ESM). JSX is either preserved or compiled to React.createElement calls depending on the jsx compiler option.",
+        },
+        {
+          heading: "Type-only imports and exports",
+          body: "TypeScript 3.8+ supports 'import type' and 'export type' syntax, which are completely erased during compilation. Regular imports of types are also removed if the compiler can determine they are type-only. This is called 'import elision' and helps produce cleaner JavaScript output with no unused imports.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does TypeScript add any runtime code?",
+          answer:
+            "In most cases, no. TypeScript is a compile-time-only type system. Exceptions: enums generate runtime objects, decorators generate function calls, and downlevel compilation (targeting ES5) may add helper functions for async/await, spread operators, and class features.",
+        },
+        {
+          question: "Can I strip TypeScript types without the full compiler?",
+          answer:
+            "Yes. Tools like sucrase, esbuild, and SWC perform type stripping without full type checking, which is much faster. Node.js 23.6+ also has experimental --experimental-strip-types flag for native type stripping. This DevBolt tool strips types client-side without any server processing.",
+        },
+      ],
+      keywords: [
+        "typescript type stripping",
+        "typescript compilation",
+        "what typescript removes",
+        "typescript to javascript compilation",
+        "typescript erasure",
+        "strip types typescript",
+      ],
+      parentToolSlug: "typescript-to-js",
+      parentToolName: "TypeScript to JavaScript",
+    },
+    {
+      slug: "ts-vs-js-differences",
+      title: "TypeScript vs JavaScript Differences",
+      metaTitle:
+        "TypeScript vs JavaScript — Key Differences Explained | DevBolt",
+      metaDescription:
+        "Compare TypeScript and JavaScript — type system, interfaces, enums, generics, and tooling. Learn when to use TypeScript vs plain JavaScript for your project.",
+      h1: "TypeScript vs JavaScript: Key Differences for Developers",
+      intro:
+        "TypeScript extends JavaScript with static types, interfaces, and advanced tooling. Understanding the differences helps you decide when TypeScript adds value and when plain JavaScript is sufficient.",
+      content: [
+        {
+          heading: "Type system: the core difference",
+          body: "JavaScript is dynamically typed — variables can hold any value and types are checked at runtime. TypeScript adds optional static typing checked at compile time. You annotate variables (let name: string), function parameters (function greet(name: string)), and return types (function getAge(): number). The type checker catches bugs before code runs, but all types are erased in the output JavaScript.",
+        },
+        {
+          heading: "Interfaces, enums, and generics",
+          body: "TypeScript adds constructs that don't exist in JavaScript: interfaces define object shapes for type checking, enums create named constants (compiled to objects), and generics enable reusable type-safe code (function identity<T>(value: T): T). These features make large codebases more maintainable but add a learning curve for JavaScript developers.",
+        },
+        {
+          heading: "When to use TypeScript vs JavaScript",
+          body: "Use TypeScript for: large team projects (type contracts prevent integration bugs), library/framework development (consumers get autocomplete), complex business logic (catch errors at compile time), and long-lived codebases (types serve as documentation). Use plain JavaScript for: small scripts, rapid prototyping, learning projects, and environments without build steps (browser consoles, Deno scripts).",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is TypeScript slower than JavaScript?",
+          answer:
+            "At runtime, no — TypeScript compiles to plain JavaScript, so execution speed is identical. The compilation step adds build time (typically 1-10 seconds for most projects). Tools like esbuild and SWC make compilation near-instant by skipping type checking.",
+        },
+        {
+          question:
+            "Can I use TypeScript and JavaScript in the same project?",
+          answer:
+            "Yes. TypeScript supports gradual adoption — you can have .ts and .js files in the same project. Set 'allowJs: true' in tsconfig.json. You can incrementally convert files from .js to .ts as you add types.",
+        },
+      ],
+      keywords: [
+        "typescript vs javascript",
+        "typescript javascript differences",
+        "ts vs js",
+        "typescript or javascript",
+        "when to use typescript",
+        "typescript vs javascript comparison",
+      ],
+      parentToolSlug: "typescript-to-js",
+      parentToolName: "TypeScript to JavaScript",
+    },
+    {
+      slug: "migrate-typescript-to-javascript",
+      title: "Migrate TypeScript to JavaScript",
+      metaTitle:
+        "How to Migrate TypeScript to JavaScript — Step-by-Step Guide | DevBolt",
+      metaDescription:
+        "Step-by-step guide to converting a TypeScript project back to JavaScript. Remove types, rename files, update tooling, and handle edge cases like enums and decorators.",
+      h1: "How to Migrate a TypeScript Project to JavaScript",
+      intro:
+        "Migrating from TypeScript back to JavaScript involves stripping types, renaming files, and updating build tooling. This guide covers the complete process for projects of any size.",
+      content: [
+        {
+          heading: "Step 1: Strip types from all files",
+          body: "Use the TypeScript compiler (tsc --outDir dist) to emit JavaScript files, or use a faster tool like esbuild or sucrase for type-only stripping. For individual files, paste them into this converter tool. The key transformation is removing type annotations, interfaces, type aliases, and generics while preserving all runtime code.",
+        },
+        {
+          heading: "Step 2: Handle TypeScript-specific features",
+          body: "Some TypeScript features need manual conversion: enums become plain objects or string constants, decorators need a Babel plugin or manual refactoring, namespace declarations become IIFEs or modules, and 'import type' statements are simply deleted. Parameter properties (constructor(public name: string)) must be converted to explicit field assignments.",
+        },
+        {
+          heading: "Step 3: Update project configuration",
+          body: "Remove tsconfig.json (or keep it for editor support with 'checkJs'). Update build scripts to remove the tsc step. Rename files from .ts/.tsx to .js/.jsx. Update imports that reference .ts extensions. Remove @types/* devDependencies that are no longer needed. Consider adding JSDoc type annotations for editor support without TypeScript.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Why would I migrate from TypeScript back to JavaScript?",
+          answer:
+            "Common reasons: simplifying the build pipeline (especially for small projects), reducing onboarding complexity for new contributors, following a project's decision to use JSDoc types instead, or extracting code for environments without TypeScript support. Some open-source projects (like Svelte) have migrated from TS to JSDoc-typed JS.",
+        },
+        {
+          question: "Can I keep type checking without TypeScript files?",
+          answer:
+            "Yes. Use JSDoc comments with TypeScript's checkJs option: add // @ts-check at the top of .js files and write types in /** @type {string} */ comments. This gives you type checking in VS Code without .ts files or a build step.",
+        },
+      ],
+      keywords: [
+        "migrate typescript to javascript",
+        "convert typescript project to javascript",
+        "remove typescript from project",
+        "typescript to javascript migration",
+        "strip types from project",
+        "typescript to jsdoc",
+      ],
+      parentToolSlug: "typescript-to-js",
+      parentToolName: "TypeScript to JavaScript",
+    },
+  ],
 };

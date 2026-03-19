@@ -750,4 +750,20 @@ export const tools: Tool[] = [
     icon: "npm",
     category: "Generate",
   },
+  {
+    title: "Security Headers Generator",
+    description:
+      "Generate HTTP security headers for Nginx, Apache, Vercel, Netlify, and Cloudflare with presets, security scoring, and multi-format output",
+    href: "/tools/security-headers",
+    icon: "HDR",
+    category: "Generate",
+  },
+  {
+    title: "TypeScript to JavaScript",
+    description:
+      "Convert TypeScript to JavaScript — strip types, interfaces, enums, generics, and access modifiers to get clean JS output",
+    href: "/tools/typescript-to-js",
+    icon: "TS",
+    category: "Convert",
+  },
 ];
