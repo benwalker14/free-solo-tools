@@ -1,382 +1,812 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useToolAnalytics } from "@/hooks/useToolAnalytics";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
+import RateLimitBanner from "@/components/RateLimitBanner";
 
-// --- Types ---
-
-interface PolicyConfig {
-  siteName: string;
-  siteUrl: string;
+interface PolicyFields {
   companyName: string;
+  websiteUrl: string;
   contactEmail: string;
   effectiveDate: string;
-  // Data collection
   collectsPersonalInfo: boolean;
   collectsUsageData: boolean;
-  collectsLocationData: boolean;
-  collectsPaymentInfo: boolean;
   usesCookies: boolean;
   usesAnalytics: boolean;
-  // Third-party services
-  thirdPartyAnalytics: string;
-  thirdPartyPayment: string;
-  thirdPartyAds: boolean;
-  thirdPartySocialLogin: boolean;
-  // Compliance
-  gdpr: boolean;
-  ccpa: boolean;
-  coppa: boolean;
-  // Additional
-  dataRetention: string;
-  allowsAccountDeletion: boolean;
-  hasNewsletterSignup: boolean;
+  analyticsProvider: string;
+  usesAds: boolean;
+  adsProvider: string;
+  allowsUserAccounts: boolean;
+  collectsPaymentInfo: boolean;
+  paymentProcessor: string;
+  sharesWithThirdParties: boolean;
+  thirdPartyDescription: string;
+  hasNewsletters: boolean;
+  hasChildrenPolicy: boolean;
+  dataRetentionPeriod: string;
+  includesGdpr: boolean;
+  includesCcpa: boolean;
+  governingLaw: string;
 }
 
-const DEFAULTS: PolicyConfig = {
-  siteName: "",
-  siteUrl: "",
+const DEFAULTS: PolicyFields = {
   companyName: "",
+  websiteUrl: "",
   contactEmail: "",
   effectiveDate: new Date().toISOString().split("T")[0],
   collectsPersonalInfo: true,
   collectsUsageData: true,
-  collectsLocationData: false,
-  collectsPaymentInfo: false,
   usesCookies: true,
   usesAnalytics: true,
-  thirdPartyAnalytics: "Google Analytics",
-  thirdPartyPayment: "",
-  thirdPartyAds: false,
-  thirdPartySocialLogin: false,
-  gdpr: true,
-  ccpa: true,
-  coppa: false,
-  dataRetention: "24 months",
-  allowsAccountDeletion: true,
-  hasNewsletterSignup: false,
+  analyticsProvider: "Google Analytics",
+  usesAds: false,
+  adsProvider: "",
+  allowsUserAccounts: false,
+  collectsPaymentInfo: false,
+  paymentProcessor: "Stripe",
+  sharesWithThirdParties: false,
+  thirdPartyDescription: "",
+  hasNewsletters: false,
+  hasChildrenPolicy: true,
+  dataRetentionPeriod: "as long as necessary",
+  includesGdpr: true,
+  includesCcpa: true,
+  governingLaw: "",
 };
 
-const ANALYTICS_OPTIONS = [
+const ANALYTICS_PROVIDERS = [
   "Google Analytics",
   "Plausible",
   "Fathom",
   "Matomo",
-  "Mixpanel",
   "Vercel Analytics",
   "PostHog",
-  "None",
+  "Mixpanel",
+  "Other",
 ];
 
-const PAYMENT_OPTIONS = [
-  "",
+const PAYMENT_PROCESSORS = [
   "Stripe",
   "PayPal",
   "Square",
   "Braintree",
   "Paddle",
   "Lemon Squeezy",
+  "Other",
 ];
 
-const RETENTION_OPTIONS = [
-  "6 months",
-  "12 months",
-  "24 months",
-  "36 months",
-  "Until account deletion",
-  "As required by law",
+const RETENTION_PERIODS = [
+  "as long as necessary",
+  "30 days",
+  "90 days",
+  "1 year",
+  "2 years",
+  "5 years",
 ];
 
-// --- Policy generator ---
+function formatDate(dateStr: string): string {
+  if (!dateStr) return "[Date]";
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
-function generatePolicy(c: PolicyConfig): string {
-  const name = c.siteName || "[Your Website]";
-  const company = c.companyName || name;
-  const url = c.siteUrl || "[your-website-url]";
-  const email = c.contactEmail || "[your-email@example.com]";
-  const date = c.effectiveDate || "[Date]";
+function generatePolicy(f: PolicyFields): string {
+  const name = f.companyName || "[Company Name]";
+  const url = f.websiteUrl || "[Website URL]";
+  const email = f.contactEmail || "[contact@example.com]";
+  const date = formatDate(f.effectiveDate);
 
   const sections: string[] = [];
 
-  // Title
-  sections.push(`Privacy Policy for ${name}`);
-  sections.push(`${"=".repeat(40)}`);
-  sections.push(`Effective Date: ${date}\n`);
+  sections.push(`PRIVACY POLICY
 
-  // Introduction
-  sections.push(`1. Introduction`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(
-    `${company} ("we", "us", or "our") operates ${url} (the "Service"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this policy carefully. By using the Service, you agree to the collection and use of information in accordance with this policy.\n`
-  );
+Last updated: ${date}
 
-  // Information We Collect
-  sections.push(`2. Information We Collect`);
-  sections.push(`${"─".repeat(40)}`);
+${name} ("we," "us," or "our") operates ${url} (the "Website"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Website.
 
-  if (c.collectsPersonalInfo) {
-    sections.push(`Personal Information:`);
-    sections.push(
-      `We may collect personally identifiable information that you voluntarily provide when using our Service, including but not limited to:`
-    );
-    sections.push(`  - Name and email address`);
-    if (c.hasNewsletterSignup) {
-      sections.push(
-        `  - Email address provided for newsletter subscriptions`
-      );
-    }
-    if (c.collectsPaymentInfo) {
-      sections.push(
-        `  - Billing address and payment information (processed securely by our payment provider)`
-      );
-    }
-    sections.push("");
+Please read this Privacy Policy carefully. By using the Website, you agree to the collection and use of information in accordance with this policy.`);
+
+  const infoTypes: string[] = [];
+  if (f.collectsPersonalInfo) {
+    infoTypes.push(`Personal Information
+When you use our Website, we may ask you to provide certain personally identifiable information, including but not limited to:
+- Name
+- Email address
+- Phone number
+- Mailing address`);
+  }
+  if (f.allowsUserAccounts) {
+    infoTypes.push(`Account Information
+When you create an account, we collect your username, email address, and password. We store this information to provide you with access to your account and associated features.`);
+  }
+  if (f.collectsPaymentInfo) {
+    infoTypes.push(`Payment Information
+When you make a purchase, your payment information is processed by ${f.paymentProcessor || "[Payment Processor]"}. We do not store your full credit card number or payment details on our servers. Please refer to ${f.paymentProcessor || "[Payment Processor]"}'s privacy policy for more information on how your payment data is handled.`);
+  }
+  if (f.collectsUsageData) {
+    infoTypes.push(`Usage Data
+We automatically collect certain information when you visit the Website, including:
+- Your IP address
+- Browser type and version
+- Pages you visit and time spent on those pages
+- The date and time of your visit
+- Unique device identifiers
+- Referring website addresses`);
   }
 
-  if (c.collectsUsageData) {
-    sections.push(`Usage Data:`);
-    sections.push(
-      `We automatically collect certain information when you access our Service, including:`
-    );
-    sections.push(`  - IP address and browser type`);
-    sections.push(`  - Pages visited and time spent on pages`);
-    sections.push(`  - Referring website addresses`);
-    sections.push(`  - Device type and operating system`);
-    sections.push("");
+  if (infoTypes.length > 0) {
+    sections.push(`INFORMATION WE COLLECT
+
+${infoTypes.join("\n\n")}`);
   }
 
-  if (c.collectsLocationData) {
-    sections.push(`Location Data:`);
-    sections.push(
-      `We may collect approximate location information based on your IP address. We do not collect precise GPS location without your explicit consent.\n`
-    );
+  if (f.usesCookies) {
+    sections.push(`COOKIES AND TRACKING TECHNOLOGIES
+
+We use cookies and similar tracking technologies to track activity on our Website and store certain information. Cookies are small data files placed on your device.
+
+Types of cookies we use:
+- Essential Cookies: Required for the Website to function properly.
+- Analytics Cookies: Help us understand how visitors interact with the Website.
+- Preference Cookies: Remember your settings and preferences.${f.usesAds ? "\n- Advertising Cookies: Used to deliver relevant advertisements." : ""}
+
+You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, some parts of the Website may not function properly.`);
   }
 
-  // Cookies
-  if (c.usesCookies) {
-    sections.push(`3. Cookies and Tracking Technologies`);
-    sections.push(`${"─".repeat(40)}`);
-    sections.push(
-      `We use cookies and similar tracking technologies to monitor activity on our Service and store certain information. Cookies are small data files placed on your device.\n`
-    );
-    sections.push(`Types of cookies we use:`);
-    sections.push(
-      `  - Essential Cookies: Required for the Service to function properly.`
-    );
-    if (c.usesAnalytics) {
-      sections.push(
-        `  - Analytics Cookies: Help us understand how visitors interact with our Service.`
-      );
-    }
-    if (c.thirdPartyAds) {
-      sections.push(
-        `  - Advertising Cookies: Used to deliver relevant advertisements.`
-      );
-    }
-    sections.push(
-      `\nYou can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, some parts of the Service may not function properly without cookies.\n`
-    );
+  if (f.usesAnalytics) {
+    sections.push(`ANALYTICS
+
+We use ${f.analyticsProvider || "[Analytics Provider]"} to monitor and analyze the use of our Website. This service may collect information about your use of the Website, including your IP address, browser type, and pages visited. This data helps us improve the Website and understand user behavior.
+
+For more information on the privacy practices of ${f.analyticsProvider || "[Analytics Provider]"}, please visit their privacy policy.`);
   }
 
-  // How We Use Information
-  const useSection = c.usesCookies ? 4 : 3;
-  sections.push(`${useSection}. How We Use Your Information`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(`We use the collected information for the following purposes:`);
-  sections.push(`  - To provide, operate, and maintain our Service`);
-  sections.push(`  - To improve, personalize, and expand our Service`);
-  sections.push(
-    `  - To understand and analyze how you use our Service`
-  );
-  sections.push(
-    `  - To communicate with you, including for customer service and support`
-  );
-  if (c.hasNewsletterSignup) {
-    sections.push(
-      `  - To send you newsletters and marketing communications (with your consent)`
-    );
-  }
-  if (c.collectsPaymentInfo) {
-    sections.push(`  - To process transactions and send related information`);
-  }
-  sections.push(
-    `  - To detect, prevent, and address technical issues and security threats`
-  );
-  sections.push("");
+  if (f.usesAds) {
+    sections.push(`ADVERTISING
 
-  // Third-Party Services
-  const thirdSection = useSection + 1;
-  sections.push(`${thirdSection}. Third-Party Services`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(
-    `We may employ third-party companies and services to facilitate our Service. These third parties have access to your information only to perform specific tasks on our behalf and are obligated not to disclose or use it for other purposes.\n`
-  );
-
-  if (c.usesAnalytics && c.thirdPartyAnalytics !== "None") {
-    sections.push(`Analytics:`);
-    sections.push(
-      `We use ${c.thirdPartyAnalytics} to monitor and analyze the use of our Service. ${c.thirdPartyAnalytics} collects data about website traffic and usage patterns. For more information, please review their privacy policy.\n`
-    );
+We may use third-party advertising companies${f.adsProvider ? ` such as ${f.adsProvider}` : ""} to serve ads when you visit the Website. These companies may use cookies and similar technologies to collect information about your visits to this and other websites in order to provide relevant advertisements.`);
   }
 
-  if (c.collectsPaymentInfo && c.thirdPartyPayment) {
-    sections.push(`Payment Processing:`);
-    sections.push(
-      `We use ${c.thirdPartyPayment} for payment processing. We do not store your payment card details. ${c.thirdPartyPayment} adheres to PCI-DSS standards for secure payment handling. For more information, please review their privacy policy.\n`
-    );
+  sections.push(`HOW WE USE YOUR INFORMATION
+
+We may use the information we collect for various purposes, including to:
+- Provide, operate, and maintain the Website
+- Improve, personalize, and expand the Website
+- Understand and analyze how you use the Website
+- Develop new products, services, features, and functionality${f.allowsUserAccounts ? "\n- Manage your account and provide customer support" : ""}${f.collectsPaymentInfo ? "\n- Process transactions and send related information" : ""}${f.hasNewsletters ? "\n- Send you newsletters and marketing communications (with your consent)" : ""}
+- Find and prevent fraud
+- Comply with legal obligations`);
+
+  if (f.sharesWithThirdParties) {
+    sections.push(`SHARING YOUR INFORMATION
+
+We may share your information with third parties in the following situations:
+${f.thirdPartyDescription || "- With service providers who assist us in operating the Website\n- With business partners for joint marketing initiatives\n- When required by law or to protect our rights"}
+
+We do not sell your personal information to third parties.`);
+  } else {
+    sections.push(`SHARING YOUR INFORMATION
+
+We do not sell, trade, or rent your personal information to third parties. We may share generic aggregated demographic information not linked to any personal identification with our business partners and trusted affiliates for the purposes outlined above.`);
   }
 
-  if (c.thirdPartySocialLogin) {
-    sections.push(`Social Login:`);
-    sections.push(
-      `We offer the ability to sign in using third-party social media accounts. If you choose to do so, we may receive certain profile information from the social media provider. We only use this information to create and manage your account.\n`
-    );
+  if (f.hasNewsletters) {
+    sections.push(`EMAIL COMMUNICATIONS
+
+If you subscribe to our newsletter or marketing emails, you may opt out at any time by clicking the "unsubscribe" link at the bottom of any email or by contacting us at ${email}. Please note that we may still send you transactional or administrative emails related to your account.`);
   }
 
-  if (c.thirdPartyAds) {
-    sections.push(`Advertising:`);
-    sections.push(
-      `We may use third-party advertising partners to display ads on our Service. These partners may use cookies and similar technologies to collect information about your browsing activities to provide targeted advertisements.\n`
-    );
+  sections.push(`DATA SECURITY
+
+We use administrative, technical, and physical security measures to protect your personal information. While we have taken reasonable steps to secure the information you provide to us, please be aware that no method of transmission over the Internet or method of electronic storage is 100% secure. We cannot guarantee the absolute security of your data.`);
+
+  sections.push(`DATA RETENTION
+
+We will retain your personal information only for ${f.dataRetentionPeriod} to fulfill the purposes for which it was collected, including to satisfy any legal, accounting, or reporting requirements. When your information is no longer needed, we will securely delete or anonymize it.`);
+
+  if (f.includesGdpr) {
+    sections.push(`YOUR RIGHTS UNDER GDPR (EUROPEAN USERS)
+
+If you are a resident of the European Economic Area (EEA), you have certain data protection rights under the General Data Protection Regulation (GDPR). These include the right to:
+- Access the personal data we hold about you
+- Rectify inaccurate personal data
+- Request erasure of your personal data
+- Object to processing of your personal data
+- Request restriction of processing your personal data
+- Request transfer of your personal data (data portability)
+- Withdraw consent at any time
+
+To exercise any of these rights, please contact us at ${email}. We will respond to your request within 30 days.`);
   }
 
-  // Data Retention
-  const retentionSection = thirdSection + 1;
-  sections.push(`${retentionSection}. Data Retention`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(
-    `We retain your personal information for ${c.dataRetention.toLowerCase()}, or as long as necessary to fulfill the purposes outlined in this policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our agreements.\n`
-  );
+  if (f.includesCcpa) {
+    sections.push(`YOUR RIGHTS UNDER CCPA (CALIFORNIA USERS)
 
-  if (c.allowsAccountDeletion) {
-    sections.push(
-      `You may request deletion of your account and associated data at any time by contacting us at ${email}.\n`
-    );
+If you are a California resident, the California Consumer Privacy Act (CCPA) grants you the following rights:
+- The right to know what personal information is collected, used, shared, or sold
+- The right to delete personal information held by businesses
+- The right to opt out of the sale of personal information
+- The right to non-discrimination for exercising your CCPA rights
+
+To exercise any of these rights, please contact us at ${email}. We will respond to your request within 45 days.`);
   }
 
-  // Security
-  const securitySection = retentionSection + 1;
-  sections.push(`${securitySection}. Data Security`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(
-    `The security of your data is important to us. We implement commercially reasonable security measures to protect your personal information. However, no method of transmission over the Internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security.\n`
-  );
+  if (f.hasChildrenPolicy) {
+    sections.push(`CHILDREN'S PRIVACY
 
-  // GDPR
-  let nextSection = securitySection + 1;
-  if (c.gdpr) {
-    sections.push(
-      `${nextSection}. Your Rights Under GDPR (European Economic Area)`
-    );
-    sections.push(`${"─".repeat(40)}`);
-    sections.push(
-      `If you are a resident of the European Economic Area (EEA), you have certain data protection rights under the General Data Protection Regulation (GDPR). We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your personal data.\n`
-    );
-    sections.push(`You have the right to:`);
-    sections.push(
-      `  - Access: Request copies of your personal data.`
-    );
-    sections.push(
-      `  - Rectification: Request correction of inaccurate personal data.`
-    );
-    sections.push(
-      `  - Erasure: Request deletion of your personal data under certain conditions.`
-    );
-    sections.push(
-      `  - Restrict Processing: Request restriction of processing your personal data.`
-    );
-    sections.push(
-      `  - Data Portability: Request transfer of your data to another organization.`
-    );
-    sections.push(
-      `  - Object: Object to our processing of your personal data.`
-    );
-    sections.push(
-      `\nTo exercise these rights, please contact us at ${email}. We will respond within 30 days.\n`
-    );
-    nextSection++;
+Our Website is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal data from a child under 13 without verification of parental consent, we will take steps to remove that information from our servers.`);
   }
 
-  // CCPA
-  if (c.ccpa) {
-    sections.push(
-      `${nextSection}. Your Rights Under CCPA (California Residents)`
-    );
-    sections.push(`${"─".repeat(40)}`);
-    sections.push(
-      `If you are a California resident, the California Consumer Privacy Act (CCPA) grants you specific rights regarding your personal information.\n`
-    );
-    sections.push(`You have the right to:`);
-    sections.push(
-      `  - Know: Request disclosure of the categories and specific pieces of personal information we have collected.`
-    );
-    sections.push(
-      `  - Delete: Request deletion of personal information we have collected from you.`
-    );
-    sections.push(
-      `  - Opt-Out: Opt out of the sale of your personal information. We do not sell personal information.`
-    );
-    sections.push(
-      `  - Non-Discrimination: Not be discriminated against for exercising your CCPA rights.`
-    );
-    sections.push(
-      `\nTo exercise these rights, please contact us at ${email}. We will respond within 45 days.\n`
-    );
-    nextSection++;
+  sections.push(`THIRD-PARTY LINKS
+
+Our Website may contain links to third-party websites and services that are not operated by us. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party sites or services. We encourage you to review the privacy policy of every site you visit.`);
+
+  sections.push(`CHANGES TO THIS PRIVACY POLICY
+
+We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.`);
+
+  if (f.governingLaw) {
+    sections.push(`GOVERNING LAW
+
+This Privacy Policy shall be governed by and construed in accordance with the laws of ${f.governingLaw}, without regard to its conflict of law provisions.`);
   }
 
-  // COPPA
-  if (c.coppa) {
-    sections.push(`${nextSection}. Children's Privacy (COPPA)`);
-    sections.push(`${"─".repeat(40)}`);
-    sections.push(
-      `Our Service is not directed to children under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us at ${email}. If we become aware that we have collected personal data from children without verification of parental consent, we will take steps to remove that information from our servers.\n`
-    );
-    nextSection++;
-  }
+  sections.push(`CONTACT US
 
-  // Changes to Policy
-  sections.push(`${nextSection}. Changes to This Privacy Policy`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(
-    `We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top. You are advised to review this Privacy Policy periodically for any changes.\n`
-  );
-  nextSection++;
+If you have any questions about this Privacy Policy, please contact us:
+- By email: ${email}${f.websiteUrl ? `\n- By visiting: ${url}` : ""}`);
 
-  // Contact
-  sections.push(`${nextSection}. Contact Us`);
-  sections.push(`${"─".repeat(40)}`);
-  sections.push(
-    `If you have any questions about this Privacy Policy, please contact us:`
-  );
-  sections.push(`  - Email: ${email}`);
-  if (c.siteUrl) {
-    sections.push(`  - Website: ${url}`);
-  }
-  if (c.companyName) {
-    sections.push(`  - Company: ${company}`);
-  }
-  sections.push("");
-
-  return sections.join("\n");
+  return sections.join("\n\n---\n\n");
 }
 
-// --- Component ---
+export default function PrivacyPolicyTool() {
+  const [fields, setFields] = useState<PolicyFields>(DEFAULTS);
+  const [copied, setCopied] = useState(false);
+  const [format, setFormat] = useState<"text" | "html" | "markdown">("text");
+  const { trackAction } = useToolAnalytics("privacy-policy");
+  const { isLimited, remaining, dailyLimit, recordUsage } = useRateLimit(
+    "privacy-policy"
+  );
+
+  const rawPolicy = useMemo(() => generatePolicy(fields), [fields]);
+
+  const formattedOutput = useMemo(() => {
+    if (format === "text") return rawPolicy;
+    if (format === "markdown") return textToMarkdown(rawPolicy);
+    return textToHtml(rawPolicy, fields);
+  }, [rawPolicy, format, fields]);
+
+  const handleCopy = async () => {
+    recordUsage();
+    if (isLimited) return;
+    trackAction("copy");
+    await navigator.clipboard.writeText(formattedOutput);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownload = () => {
+    recordUsage();
+    if (isLimited) return;
+    trackAction("download");
+    const ext = format === "html" ? "html" : format === "markdown" ? "md" : "txt";
+    const mime = format === "html" ? "text/html" : "text/plain";
+    const blob = new Blob([formattedOutput], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `privacy-policy.${ext}`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  useKeyboardShortcut("Enter", handleCopy);
+
+  const update = <K extends keyof PolicyFields>(
+    key: K,
+    value: PolicyFields[K]
+  ) => {
+    setFields((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const reset = () => setFields(DEFAULTS);
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="mb-6">
+        <Link
+          href="/"
+          className="text-blue-400 hover:text-blue-300 text-sm transition-colors"
+        >
+          ← Back to Tools
+        </Link>
+      </div>
+
+      <h1 className="text-3xl font-bold text-white mb-2">
+        Privacy Policy Generator
+      </h1>
+      <p className="text-slate-400 mb-6">
+        Generate a customized privacy policy for your website or app. Fill in
+        your details and toggle the sections you need.
+      </p>
+
+      <RateLimitBanner
+        isLimited={isLimited}
+        remaining={remaining}
+        dailyLimit={dailyLimit}
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left — Form */}
+        <div className="space-y-6">
+          {/* Basic Info */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Basic Information
+            </h2>
+            <div className="space-y-4">
+              <Field
+                label="Company / Website Name"
+                value={fields.companyName}
+                onChange={(v) => update("companyName", v)}
+                placeholder="Acme Inc."
+              />
+              <Field
+                label="Website URL"
+                value={fields.websiteUrl}
+                onChange={(v) => update("websiteUrl", v)}
+                placeholder="https://example.com"
+                type="url"
+              />
+              <Field
+                label="Contact Email"
+                value={fields.contactEmail}
+                onChange={(v) => update("contactEmail", v)}
+                placeholder="privacy@example.com"
+                type="email"
+              />
+              <Field
+                label="Effective Date"
+                value={fields.effectiveDate}
+                onChange={(v) => update("effectiveDate", v)}
+                type="date"
+              />
+              <Field
+                label="Governing Law (jurisdiction)"
+                value={fields.governingLaw}
+                onChange={(v) => update("governingLaw", v)}
+                placeholder="State of California, United States"
+              />
+            </div>
+          </div>
+
+          {/* Data Collection */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Data Collection
+            </h2>
+            <div className="space-y-4">
+              <Toggle
+                label="Collects personal information (name, email, etc.)"
+                checked={fields.collectsPersonalInfo}
+                onChange={(v) => update("collectsPersonalInfo", v)}
+              />
+              <Toggle
+                label="Collects usage data (IP, browser, pages visited)"
+                checked={fields.collectsUsageData}
+                onChange={(v) => update("collectsUsageData", v)}
+              />
+              <Toggle
+                label="Allows user accounts / registration"
+                checked={fields.allowsUserAccounts}
+                onChange={(v) => update("allowsUserAccounts", v)}
+              />
+              <Toggle
+                label="Collects payment information"
+                checked={fields.collectsPaymentInfo}
+                onChange={(v) => update("collectsPaymentInfo", v)}
+              />
+              {fields.collectsPaymentInfo && (
+                <SelectField
+                  label="Payment Processor"
+                  value={fields.paymentProcessor}
+                  onChange={(v) => update("paymentProcessor", v)}
+                  options={PAYMENT_PROCESSORS}
+                />
+              )}
+              <SelectField
+                label="Data Retention Period"
+                value={fields.dataRetentionPeriod}
+                onChange={(v) => update("dataRetentionPeriod", v)}
+                options={RETENTION_PERIODS}
+              />
+            </div>
+          </div>
+
+          {/* Cookies & Tracking */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Cookies & Tracking
+            </h2>
+            <div className="space-y-4">
+              <Toggle
+                label="Uses cookies"
+                checked={fields.usesCookies}
+                onChange={(v) => update("usesCookies", v)}
+              />
+              <Toggle
+                label="Uses analytics"
+                checked={fields.usesAnalytics}
+                onChange={(v) => update("usesAnalytics", v)}
+              />
+              {fields.usesAnalytics && (
+                <SelectField
+                  label="Analytics Provider"
+                  value={fields.analyticsProvider}
+                  onChange={(v) => update("analyticsProvider", v)}
+                  options={ANALYTICS_PROVIDERS}
+                />
+              )}
+              <Toggle
+                label="Displays advertisements"
+                checked={fields.usesAds}
+                onChange={(v) => update("usesAds", v)}
+              />
+              {fields.usesAds && (
+                <Field
+                  label="Ad Provider"
+                  value={fields.adsProvider}
+                  onChange={(v) => update("adsProvider", v)}
+                  placeholder="Google AdSense, Carbon Ads, etc."
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Communication & Sharing */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Communication & Sharing
+            </h2>
+            <div className="space-y-4">
+              <Toggle
+                label="Sends newsletters / marketing emails"
+                checked={fields.hasNewsletters}
+                onChange={(v) => update("hasNewsletters", v)}
+              />
+              <Toggle
+                label="Shares data with third parties"
+                checked={fields.sharesWithThirdParties}
+                onChange={(v) => update("sharesWithThirdParties", v)}
+              />
+              {fields.sharesWithThirdParties && (
+                <div>
+                  <label className="text-sm font-medium text-slate-300 mb-1 block">
+                    Third-party sharing details
+                  </label>
+                  <textarea
+                    value={fields.thirdPartyDescription}
+                    onChange={(e) =>
+                      update("thirdPartyDescription", e.target.value)
+                    }
+                    placeholder="Describe who you share data with and why..."
+                    rows={3}
+                    className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm resize-none"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Compliance */}
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <h2 className="text-lg font-semibold text-white mb-4">
+              Compliance
+            </h2>
+            <div className="space-y-4">
+              <Toggle
+                label="Include GDPR rights section (EU users)"
+                checked={fields.includesGdpr}
+                onChange={(v) => update("includesGdpr", v)}
+              />
+              <Toggle
+                label="Include CCPA rights section (California users)"
+                checked={fields.includesCcpa}
+                onChange={(v) => update("includesCcpa", v)}
+              />
+              <Toggle
+                label="Include children's privacy clause (COPPA)"
+                checked={fields.hasChildrenPolicy}
+                onChange={(v) => update("hasChildrenPolicy", v)}
+              />
+            </div>
+          </div>
+
+          <button
+            onClick={reset}
+            className="text-sm text-slate-400 hover:text-white transition-colors"
+          >
+            Reset all fields
+          </button>
+        </div>
+
+        {/* Right — Output */}
+        <div className="space-y-6">
+          <div className="bg-slate-800 border border-slate-700 rounded-lg p-5">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-lg font-semibold text-white">
+                Generated Policy
+              </h2>
+              <div className="flex bg-slate-900 rounded-lg p-0.5">
+                {(["text", "markdown", "html"] as const).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFormat(f)}
+                    className={`px-3 py-1 text-sm rounded-md transition-colors ${
+                      format === f
+                        ? "bg-slate-700 text-white"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    {f === "text"
+                      ? "Text"
+                      : f === "markdown"
+                        ? "MD"
+                        : "HTML"}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <pre className="bg-slate-900 border border-slate-600 rounded-lg p-4 text-sm text-slate-300 overflow-x-auto whitespace-pre-wrap break-words font-mono max-h-[600px] overflow-y-auto">
+              {formattedOutput}
+            </pre>
+
+            <div className="flex items-center justify-between mt-3">
+              <p className="text-xs text-slate-500">
+                <span className="text-slate-600">Ctrl+Enter to copy</span>
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleDownload}
+                  disabled={isLimited}
+                  className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 disabled:bg-slate-600 disabled:cursor-not-allowed text-white text-sm rounded-lg transition-colors"
+                >
+                  Download
+                </button>
+                <button
+                  onClick={handleCopy}
+                  disabled={isLimited}
+                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-600 disabled:cursor-not-allowed text-white text-sm rounded-lg transition-colors"
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="bg-amber-900/20 border border-amber-700/50 rounded-lg p-4">
+            <h3 className="text-amber-400 text-sm font-semibold mb-1">
+              Disclaimer
+            </h3>
+            <p className="text-amber-200/70 text-sm">
+              This tool generates a privacy policy template for informational
+              purposes only. It does not constitute legal advice. You should
+              consult with a qualified attorney to ensure your privacy policy
+              complies with applicable laws and regulations.
+            </p>
+          </div>
+
+          {/* Quick Reference */}
+          <details className="bg-slate-800 border border-slate-700 rounded-lg">
+            <summary className="px-5 py-3 cursor-pointer text-sm font-medium text-slate-300 hover:text-white transition-colors">
+              Quick reference — when do you need a privacy policy?
+            </summary>
+            <div className="px-5 pb-4 text-sm text-slate-400 space-y-3">
+              <div>
+                <h3 className="text-slate-200 font-medium mb-1">GDPR (EU)</h3>
+                <p>
+                  Required if you collect data from EU residents. Must explain
+                  what data you collect, why, and how users can exercise their
+                  rights.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-slate-200 font-medium mb-1">
+                  CCPA (California)
+                </h3>
+                <p>
+                  Required for businesses serving California residents with
+                  annual revenue over $25M, data on 100K+ consumers, or 50%+
+                  revenue from selling data.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-slate-200 font-medium mb-1">
+                  Google Analytics / AdSense
+                </h3>
+                <p>
+                  Google requires a privacy policy if you use Analytics, AdSense,
+                  or any Google API that collects user data.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-slate-200 font-medium mb-1">
+                  App Stores
+                </h3>
+                <p>
+                  Both Apple App Store and Google Play Store require a privacy
+                  policy for all published apps.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-slate-200 font-medium mb-1">COPPA</h3>
+                <p>
+                  The Children&apos;s Online Privacy Protection Act requires a privacy
+                  policy if your site is directed at children under 13.
+                </p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Format converters ─── */
+
+function textToMarkdown(text: string): string {
+  return text
+    .split("\n\n---\n\n")
+    .map((section) => {
+      const lines = section.split("\n");
+      const firstLine = lines[0];
+      if (firstLine === firstLine.toUpperCase() && /^[A-Z]/.test(firstLine)) {
+        if (firstLine === "PRIVACY POLICY") {
+          return `# Privacy Policy\n\n${lines.slice(1).join("\n")}`;
+        }
+        const heading = firstLine
+          .split(" ")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+          .join(" ");
+        return `## ${heading}\n\n${lines.slice(1).join("\n")}`;
+      }
+      return section;
+    })
+    .join("\n\n");
+}
+
+function textToHtml(text: string, fields: PolicyFields): string {
+  const name = fields.companyName || "[Company Name]";
+  const sections = text.split("\n\n---\n\n");
+  const htmlSections = sections.map((section) => {
+    const lines = section.split("\n");
+    const firstLine = lines[0];
+    if (firstLine === firstLine.toUpperCase() && /^[A-Z]/.test(firstLine)) {
+      const tag = firstLine === "PRIVACY POLICY" ? "h1" : "h2";
+      const heading = firstLine
+        .split(" ")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join(" ");
+      const body = lines
+        .slice(1)
+        .join("\n")
+        .trim()
+        .split("\n\n")
+        .map((para) => {
+          if (para.startsWith("- ")) {
+            const items = para
+              .split("\n")
+              .map((li) => `  <li>${esc(li.replace(/^- /, ""))}</li>`)
+              .join("\n");
+            return `<ul>\n${items}\n</ul>`;
+          }
+          return `<p>${esc(para)}</p>`;
+        })
+        .join("\n");
+      return `<${tag}>${esc(heading)}</${tag}>\n${body}`;
+    }
+    return section
+      .split("\n\n")
+      .map((p) => `<p>${esc(p)}</p>`)
+      .join("\n");
+  });
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - ${esc(name)}</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.4rem; margin-top: 2rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.25rem; }
+  </style>
+</head>
+<body>
+${htmlSections.join("\n\n")}
+</body>
+</html>`;
+}
+
+function esc(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/* ─── Sub-components ─── */
 
 function Field({
   label,
-  children,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
 }: {
   label: string;
-  children: React.ReactNode;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
+      <label className="text-sm font-medium text-slate-300 mb-1 block">
         {label}
       </label>
-      {children}
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm"
+      />
+    </div>
+  );
+}
+
+function SelectField({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+}) {
+  return (
+    <div>
+      <label className="text-sm font-medium text-slate-300 mb-1 block">
+        {label}
+      </label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500 text-sm"
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
@@ -385,386 +815,26 @@ function Toggle({
   label,
   checked,
   onChange,
-  description,
 }: {
   label: string;
   checked: boolean;
   onChange: (v: boolean) => void;
-  description?: string;
 }) {
   return (
-    <label className="flex items-start gap-3 cursor-pointer group">
-      <div className="pt-0.5">
-        <button
-          type="button"
-          role="switch"
-          aria-checked={checked}
-          onClick={() => onChange(!checked)}
-          className={`relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors ${
-            checked
-              ? "bg-indigo-600"
-              : "bg-gray-300 dark:bg-gray-600"
-          }`}
-        >
-          <span
-            className={`inline-block h-3.5 w-3.5 rounded-full bg-white transition-transform ${
-              checked ? "translate-x-[18px]" : "translate-x-[3px]"
-            }`}
-          />
-        </button>
+    <label className="flex items-center gap-3 cursor-pointer group">
+      <div className="relative">
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={(e) => onChange(e.target.checked)}
+          className="sr-only peer"
+        />
+        <div className="w-10 h-5 bg-slate-600 rounded-full peer-checked:bg-blue-600 transition-colors" />
+        <div className="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5" />
       </div>
-      <div>
-        <span className="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-          {label}
-        </span>
-        {description && (
-          <span className="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-            {description}
-          </span>
-        )}
-      </div>
+      <span className="text-sm text-slate-300 group-hover:text-white transition-colors">
+        {label}
+      </span>
     </label>
-  );
-}
-
-const INPUT_CLS =
-  "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100";
-
-const SELECT_CLS =
-  "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100";
-
-export default function PrivacyPolicyTool() {
-  const [config, setConfig] = useState<PolicyConfig>(DEFAULTS);
-  const [copied, setCopied] = useState(false);
-  const { trackFirstInteraction } = useToolAnalytics("privacy-policy");
-
-  const set = useCallback(
-    <K extends keyof PolicyConfig>(key: K, value: PolicyConfig[K]) => {
-      trackFirstInteraction();
-      setConfig((prev) => ({ ...prev, [key]: value }));
-    },
-    [trackFirstInteraction]
-  );
-
-  const output = useMemo(() => generatePolicy(config), [config]);
-
-  const wordCount = useMemo(
-    () => output.split(/\s+/).filter(Boolean).length,
-    [output]
-  );
-
-  const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(output);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  }, [output]);
-
-  const handleDownload = useCallback(() => {
-    trackFirstInteraction();
-    const blob = new Blob([output], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "privacy-policy.txt";
-    a.click();
-    URL.revokeObjectURL(url);
-  }, [output, trackFirstInteraction]);
-
-  const handleReset = useCallback(() => {
-    setConfig(DEFAULTS);
-  }, []);
-
-  return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <Link
-        href="/"
-        className="mb-8 block text-sm text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
-      >
-        &larr; Back to tools
-      </Link>
-
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-        Privacy Policy Generator
-      </h1>
-      <p className="text-gray-600 dark:text-gray-400 mb-8">
-        Generate a professional privacy policy for your website or app. Fill in
-        your details and customize the sections you need.
-      </p>
-
-      <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-        {/* Left: Configuration Form */}
-        <div className="space-y-6">
-          {/* Basic Info */}
-          <div className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              Basic Information
-            </h2>
-            <div className="space-y-3">
-              <Field label="Website / App Name">
-                <input
-                  type="text"
-                  value={config.siteName}
-                  onChange={(e) => set("siteName", e.target.value)}
-                  placeholder="My Website"
-                  className={INPUT_CLS}
-                />
-              </Field>
-              <Field label="Website URL">
-                <input
-                  type="text"
-                  value={config.siteUrl}
-                  onChange={(e) => set("siteUrl", e.target.value)}
-                  placeholder="https://example.com"
-                  className={INPUT_CLS}
-                />
-              </Field>
-              <Field label="Company / Organization Name (optional)">
-                <input
-                  type="text"
-                  value={config.companyName}
-                  onChange={(e) => set("companyName", e.target.value)}
-                  placeholder="Acme Inc."
-                  className={INPUT_CLS}
-                />
-              </Field>
-              <Field label="Contact Email">
-                <input
-                  type="email"
-                  value={config.contactEmail}
-                  onChange={(e) => set("contactEmail", e.target.value)}
-                  placeholder="privacy@example.com"
-                  className={INPUT_CLS}
-                />
-              </Field>
-              <Field label="Effective Date">
-                <input
-                  type="date"
-                  value={config.effectiveDate}
-                  onChange={(e) => set("effectiveDate", e.target.value)}
-                  className={INPUT_CLS}
-                />
-              </Field>
-            </div>
-          </div>
-
-          {/* Data Collection */}
-          <div className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              Data Collection
-            </h2>
-            <div className="space-y-3">
-              <Toggle
-                label="Personal Information"
-                description="Name, email, and other identifiable info"
-                checked={config.collectsPersonalInfo}
-                onChange={(v) => set("collectsPersonalInfo", v)}
-              />
-              <Toggle
-                label="Usage Data"
-                description="IP address, browser type, pages visited"
-                checked={config.collectsUsageData}
-                onChange={(v) => set("collectsUsageData", v)}
-              />
-              <Toggle
-                label="Location Data"
-                description="Approximate location from IP address"
-                checked={config.collectsLocationData}
-                onChange={(v) => set("collectsLocationData", v)}
-              />
-              <Toggle
-                label="Payment Information"
-                description="Billing address, payment card details"
-                checked={config.collectsPaymentInfo}
-                onChange={(v) => set("collectsPaymentInfo", v)}
-              />
-              <Toggle
-                label="Cookies"
-                description="Cookie and tracking technology usage"
-                checked={config.usesCookies}
-                onChange={(v) => set("usesCookies", v)}
-              />
-              <Toggle
-                label="Analytics"
-                description="Third-party analytics tracking"
-                checked={config.usesAnalytics}
-                onChange={(v) => set("usesAnalytics", v)}
-              />
-              <Toggle
-                label="Newsletter Signup"
-                description="Email collection for marketing"
-                checked={config.hasNewsletterSignup}
-                onChange={(v) => set("hasNewsletterSignup", v)}
-              />
-            </div>
-          </div>
-
-          {/* Third-Party Services */}
-          <div className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              Third-Party Services
-            </h2>
-            <div className="space-y-3">
-              <Field label="Analytics Provider">
-                <select
-                  value={config.thirdPartyAnalytics}
-                  onChange={(e) =>
-                    set("thirdPartyAnalytics", e.target.value)
-                  }
-                  className={SELECT_CLS}
-                >
-                  {ANALYTICS_OPTIONS.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <Field label="Payment Processor">
-                <select
-                  value={config.thirdPartyPayment}
-                  onChange={(e) =>
-                    set("thirdPartyPayment", e.target.value)
-                  }
-                  className={SELECT_CLS}
-                >
-                  {PAYMENT_OPTIONS.map((opt) => (
-                    <option key={opt} value={opt || "__none"}>
-                      {opt || "None"}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-              <Toggle
-                label="Third-Party Advertising"
-                description="Display ads from ad networks"
-                checked={config.thirdPartyAds}
-                onChange={(v) => set("thirdPartyAds", v)}
-              />
-              <Toggle
-                label="Social Login"
-                description="Sign in with Google, GitHub, etc."
-                checked={config.thirdPartySocialLogin}
-                onChange={(v) => set("thirdPartySocialLogin", v)}
-              />
-            </div>
-          </div>
-
-          {/* Compliance */}
-          <div className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-            <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">
-              Compliance & Rights
-            </h2>
-            <div className="space-y-3">
-              <Toggle
-                label="GDPR Compliance"
-                description="European data protection rights"
-                checked={config.gdpr}
-                onChange={(v) => set("gdpr", v)}
-              />
-              <Toggle
-                label="CCPA Compliance"
-                description="California consumer privacy rights"
-                checked={config.ccpa}
-                onChange={(v) => set("ccpa", v)}
-              />
-              <Toggle
-                label="COPPA Compliance"
-                description="Children's online privacy protection"
-                checked={config.coppa}
-                onChange={(v) => set("coppa", v)}
-              />
-              <Toggle
-                label="Account Deletion"
-                description="Allow users to request data deletion"
-                checked={config.allowsAccountDeletion}
-                onChange={(v) => set("allowsAccountDeletion", v)}
-              />
-              <Field label="Data Retention Period">
-                <select
-                  value={config.dataRetention}
-                  onChange={(e) => set("dataRetention", e.target.value)}
-                  className={SELECT_CLS}
-                >
-                  {RETENTION_OPTIONS.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-            </div>
-          </div>
-
-          <button
-            onClick={handleReset}
-            className="text-sm text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-          >
-            Reset to defaults
-          </button>
-        </div>
-
-        {/* Right: Output */}
-        <div>
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-              Generated Privacy Policy
-            </h2>
-            <span className="text-xs text-gray-500 dark:text-gray-400">
-              ~{wordCount} words
-            </span>
-          </div>
-
-          <div className="relative rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-950">
-            <pre className="max-h-[700px] overflow-auto p-4 font-mono text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap break-words">
-              {output}
-            </pre>
-          </div>
-
-          {/* Action buttons */}
-          <div className="mt-4 flex gap-3">
-            <button
-              onClick={handleCopy}
-              className="flex-1 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
-            >
-              {copied ? "Copied!" : "Copy to Clipboard"}
-            </button>
-            <button
-              onClick={handleDownload}
-              className="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
-            >
-              Download .txt
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Info section */}
-      <div className="mt-10 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
-        <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-          About This Tool
-        </h2>
-        <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-          <li>
-            This generator creates a <strong>customizable privacy policy</strong>{" "}
-            based on your selections. It covers data collection, cookies,
-            third-party services, and compliance sections.
-          </li>
-          <li>
-            Supports <strong>GDPR</strong>, <strong>CCPA</strong>, and{" "}
-            <strong>COPPA</strong> compliance sections for websites serving
-            users in the EU, California, or children under 13.
-          </li>
-          <li>
-            <strong>Disclaimer:</strong> This tool generates a template for
-            informational purposes only. It is not legal advice. Consult a
-            qualified attorney to ensure your privacy policy meets all
-            applicable legal requirements.
-          </li>
-          <li>
-            Everything runs in your browser — no data is sent over the network.
-          </li>
-        </ul>
-      </div>
-    </div>
   );
 }

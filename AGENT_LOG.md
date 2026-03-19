@@ -13,8 +13,10 @@ All agent activities are logged here. Append only.
   - Third-party services: analytics provider (7 options), payment processor (6 options), ads, social login
   - Compliance: GDPR, CCPA, COPPA sections with full user rights
   - Data retention period selection, account deletion option
-- **Output**: Professional plain-text privacy policy with numbered sections, auto-generated from form state
-- **Actions**: Copy to clipboard, download as .txt, reset to defaults
+- **Output formats**: Text, Markdown, and HTML — toggle between formats with one click
+- **Actions**: Copy to clipboard, download as .txt/.md/.html, Ctrl+Enter shortcut, reset to defaults
+- **Rate limiting**: Uses existing rate limit system for free tier
+- **Legal disclaimer**: Amber banner clearly stating this is not legal advice
 - **Files created**: `PrivacyPolicyTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
 - Updated `tools.ts`, `CLAUDE.md` (tool #61), `TASK_BOARD.md`
 - Build verified, committed, pushed to master
