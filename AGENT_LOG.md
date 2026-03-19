@@ -4,6 +4,29 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 13:00 | developer | Audit subpages and add code example support
+
+- **Task:** Audit 126 programmatic sub-pages for thin content (P2) — March 2026 core update risk
+- **What was done:**
+  - Ran programmatic audit across all 236 sub-pages in 7 data files
+  - **Audit findings:** 170/236 pages missing code references, 8 pages under 150 words, all pages have 2+ FAQs
+  - **Infrastructure:** Added optional `codeExample` and `codeLanguage` fields to `SubpageContent` interface
+  - **SubpageLayout:** Added `<pre><code>` rendering block for code examples — dark theme, overflow-x-auto, rounded corners
+  - **Fixed 8 thinnest pages** with code examples and expanded content:
+    - `ts6-migration/typescript-6-breaking-changes` (68w → 150w+) — tsconfig before/after examples
+    - `ts6-migration/tsconfig-migration-guide` (89w → 200w+) — 4 migration priority code blocks
+    - `json-formatter/examples` (112w → 180w+) — API response, package.json, nested data JSON examples
+    - `regex-tester/phone` (137w → 200w+) — JS/Python phone regex validation examples
+    - `json-formatter/minify` (145w → 180w+) — JS/CLI/jq minification examples
+    - `hash-generator/sha512` (149w → 180w+) — CLI/Python/Node.js SHA-512 examples
+    - `uuid-generator/bulk` (149w → 170w+) — SQL INSERT and JS crypto.randomUUID() examples
+    - `color-converter/rgb-to-hex` (137w → 170w+) — JS/Python/CSS conversion examples
+  - Remaining 162 pages with missing code refs documented for future batches
+- **Files modified:** `src/data/tool-subpages.ts` (interface + 6 pages), `src/data/tool-subpages-batch4.ts` (2 pages), `src/components/SubpageLayout.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors
+
+---
+
 ### 2026-03-19 12:00 | developer | Add ItemList JSON-LD to listing pages
 
 - **Task:** Add ItemList JSON-LD to /free-tools, /cheatsheets, /safe-tools (P2)

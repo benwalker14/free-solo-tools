@@ -4814,14 +4814,17 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Removed compiler options",
           body: 'TypeScript 6.0 removes several long-standing options. "target": "es3" and "target": "es5" are no longer valid — the lowest supported target is now "es2015". The "outFile" option is completely removed; use a bundler like Webpack, Rollup, or esbuild instead. The module systems "amd", "umd", and "systemjs" are removed as well. If your project uses any of these, you must update before upgrading to TS 6.0.',
+          codeExample: '// tsconfig.json — options REMOVED in TS 6.0\n{\n  "compilerOptions": {\n    "target": "es5",           // ERROR: removed (use "es2015" or higher)\n    "outFile": "./bundle.js",  // ERROR: removed (use a bundler)\n    "module": "amd"            // ERROR: removed (use "esnext" or "commonjs")\n  }\n}\n\n// Fixed tsconfig.json\n{\n  "compilerOptions": {\n    "target": "es2015",\n    "module": "esnext"\n  }\n}',
         },
         {
           heading: "Changed default values",
           body: 'Nine compiler option defaults have changed. "strict" now defaults to true (was false), "target" defaults to "es2025" (was "es5"), "module" defaults to "esnext" (was "commonjs"), "moduleResolution" defaults to "bundler" (was "node10"), "rootDir" defaults to the tsconfig.json directory (was inferred), and "types" defaults to an empty array (was all @types). Projects without explicit settings will behave differently after upgrading.',
+          codeExample: '// Explicit settings to preserve TS 5.x behavior\n{\n  "compilerOptions": {\n    "strict": false,                 // was implicit default\n    "target": "es5",                 // now "es2025" — use "es2015"+ \n    "module": "commonjs",            // now "esnext"\n    "moduleResolution": "node",      // now "bundler"\n    "types": ["node", "jest"],       // now [] — must list explicitly\n    "rootDir": "./src"               // now tsconfig directory\n  }\n}',
         },
         {
           heading: "The escape hatch",
           body: 'All deprecations in TS 6.0 can be temporarily silenced by adding "ignoreDeprecations": "6.0" to your tsconfig.json compilerOptions. This buys time for migration but will NOT work in TypeScript 7.0, so plan to address every issue before the next major release.',
+          codeExample: '// Temporary escape hatch — silences all TS 6.0 deprecation errors\n{\n  "compilerOptions": {\n    "ignoreDeprecations": "6.0"\n    // Fix all issues before TS 7.0 — this flag will be removed\n  }\n}',
         },
       ],
       faqs: [
@@ -4864,19 +4867,23 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       content: [
         {
           heading: "Priority 1: Add explicit types",
-          body: 'The most commonly missed change is the "types" default shifting to an empty array. Add "types": ["node"] (and other needed packages like "jest", "vitest", etc.) to your compilerOptions. Without this, global type declarations like Buffer, process, and test matchers will be missing. To restore old behavior, use "types": ["*"].',
+          body: 'The most commonly missed change is the "types" default shifting to an empty array. Add "types": ["node"] (and other needed packages like "jest", "vitest", etc.) to your compilerOptions. Without this, global type declarations like Buffer, process, and test matchers will be missing. To restore old behavior, use "types": ["*"]. Check which @types packages you have installed with npm ls @types to know what to include.',
+          codeExample: '// Before (TS 5.x) — types auto-included from node_modules/@types\n{\n  "compilerOptions": { }\n}\n\n// After (TS 6.0) — must list explicitly\n{\n  "compilerOptions": {\n    "types": ["node", "jest"]  // or ["node", "vitest"] etc.\n  }\n}',
         },
         {
           heading: "Priority 2: Set rootDir explicitly",
-          body: 'Previously, TypeScript inferred rootDir from input files. Now it defaults to the tsconfig.json directory. Projects with a "src/" structure will see output at dist/src/index.js instead of dist/index.js unless you add "rootDir": "./src" (or your source root) explicitly.',
+          body: 'Previously, TypeScript inferred rootDir from input files. Now it defaults to the tsconfig.json directory. Projects with a "src/" structure will see output at dist/src/index.js instead of dist/index.js unless you add "rootDir": "./src" (or your source root) explicitly. This also affects declaration file output paths.',
+          codeExample: '// Fix for typical src/ project structure\n{\n  "compilerOptions": {\n    "rootDir": "./src",   // prevents dist/src/index.js nesting\n    "outDir": "./dist"\n  },\n  "include": ["src"]\n}',
         },
         {
           heading: "Priority 3: Handle strict mode",
-          body: 'If your project wasn\'t using strict mode, you\'ll see many new type errors after upgrading. Either add "strict": false to preserve old behavior, or fix the type errors to adopt strict mode. The strict flag enables strictNullChecks, noImplicitAny, strictFunctionTypes, and several other checks.',
+          body: 'If your project wasn\'t using strict mode, you\'ll see many new type errors after upgrading. Either add "strict": false to preserve old behavior, or fix the type errors to adopt strict mode. The strict flag enables strictNullChecks, noImplicitAny, strictFunctionTypes, and several other checks. Adopting strict is recommended — it catches real bugs.',
+          codeExample: '// Option A: Preserve old behavior\n{ "compilerOptions": { "strict": false } }\n\n// Option B: Gradual adoption — enable sub-flags one at a time\n{\n  "compilerOptions": {\n    "strict": false,\n    "strictNullChecks": true,    // start here\n    "noImplicitAny": true        // then add more\n  }\n}',
         },
         {
           heading: "Priority 4: Update module and target",
-          body: 'Set explicit "module" and "target" values if you need specific output. "module" now defaults to "esnext" (was "commonjs") — add "module": "commonjs" if you need require() output. "target" now defaults to "es2025" — add an explicit target if you support older runtimes.',
+          body: 'Set explicit "module" and "target" values if you need specific output. "module" now defaults to "esnext" (was "commonjs") — add "module": "commonjs" if you need require() output. "target" now defaults to "es2025" — add an explicit target if you support older runtimes. For Node.js projects, match your Node version: Node 18 supports "es2022", Node 20+ supports "es2023".',
+          codeExample: '// Node.js CommonJS project\n{\n  "compilerOptions": {\n    "module": "commonjs",\n    "target": "es2022",\n    "moduleResolution": "node"\n  }\n}\n\n// Modern ESM project (Next.js, Vite)\n{\n  "compilerOptions": {\n    "module": "esnext",\n    "target": "es2022",\n    "moduleResolution": "bundler"\n  }\n}',
         },
       ],
       faqs: [

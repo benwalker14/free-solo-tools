@@ -6,6 +6,8 @@ export interface SubpageFAQ {
 export interface SubpageContent {
   heading: string;
   body: string;
+  codeExample?: string;
+  codeLanguage?: string;
 }
 
 export interface ToolSubpage {
@@ -94,11 +96,12 @@ const coreSubpages: Record<string, ToolSubpage[]> = {
       content: [
         {
           heading: "What is SHA-512?",
-          body: "SHA-512 (Secure Hash Algorithm 512-bit) produces a 512-bit (64-byte) hash, displayed as a 128-character hexadecimal string. Part of the SHA-2 family, it provides a larger security margin than SHA-256. SHA-512 is actually faster than SHA-256 on 64-bit processors due to native 64-bit arithmetic.",
+          body: "SHA-512 (Secure Hash Algorithm 512-bit) produces a 512-bit (64-byte) hash, displayed as a 128-character hexadecimal string. Part of the SHA-2 family, it provides a larger security margin than SHA-256. SHA-512 is actually faster than SHA-256 on 64-bit processors due to native 64-bit arithmetic. It is used in TLS handshakes, Ed25519 signatures, and HMAC authentication.",
+          codeExample: '# Generate SHA-512 hash from command line\necho -n "hello world" | sha512sum\n\n# Python\nimport hashlib\nhash = hashlib.sha512(b"hello world").hexdigest()\nprint(hash)  # 309ecc489c12d6eb...\n\n# Node.js\nconst crypto = require("crypto");\ncrypto.createHash("sha512").update("hello world").digest("hex");',
         },
         {
           heading: "When to use SHA-512",
-          body: "SHA-512 is preferred in environments that process 64-bit data natively, such as modern servers and desktops. It is commonly used in digital signatures, certificate authorities, secure file verification, and applications requiring maximum hash security margin.",
+          body: "SHA-512 is preferred in environments that process 64-bit data natively, such as modern servers and desktops. It is commonly used in digital signatures, certificate authorities, secure file verification, and applications requiring maximum hash security margin. For password hashing, pair SHA-512 with a salt and key-stretching algorithm like bcrypt or Argon2 rather than using it directly.",
         },
       ],
       faqs: [
@@ -180,11 +183,12 @@ const coreSubpages: Record<string, ToolSubpage[]> = {
       content: [
         {
           heading: "Why minify JSON?",
-          body: "Minified JSON removes all formatting whitespace while keeping the data identical. This reduces payload size by 10–40%, speeding up API responses, reducing bandwidth costs, and improving page load times. Most production APIs serve minified JSON by default.",
+          body: "Minified JSON removes all formatting whitespace while keeping the data identical. This reduces payload size by 10–40%, speeding up API responses, reducing bandwidth costs, and improving page load times. Most production APIs serve minified JSON by default. For large datasets, combining minification with Gzip or Brotli compression can reduce transfer size by over 90%.",
+          codeExample: '// JavaScript — minify JSON programmatically\nconst formatted = JSON.stringify(data, null, 2); // pretty\nconst minified = JSON.stringify(data);             // compact\n\n# Command line — minify a JSON file\ncat data.json | python3 -c "import sys,json;print(json.dumps(json.load(sys.stdin)))" > min.json\n\n# jq (fastest CLI option)\njq -c . data.json > min.json',
         },
         {
           heading: "Minified vs formatted JSON",
-          body: "Formatted (pretty-printed) JSON uses indentation and newlines for human readability. Minified JSON packs everything onto a single line. Both are valid JSON — parsers handle them identically. Use formatted JSON during development and minified JSON in production.",
+          body: "Formatted (pretty-printed) JSON uses indentation and newlines for human readability. Minified JSON packs everything onto a single line. Both are valid JSON — parsers handle them identically. Use formatted JSON during development and minified JSON in production. Most frameworks like Express (res.json()) and Django REST Framework serve minified JSON in production mode automatically.",
         },
       ],
       faqs: [
@@ -264,15 +268,18 @@ const coreSubpages: Record<string, ToolSubpage[]> = {
       content: [
         {
           heading: "API response example",
-          body: 'A typical REST API response wraps data in a standard envelope: { "status": "success", "data": { "id": 1, "name": "John Doe", "email": "john@example.com", "roles": ["admin", "user"] }, "meta": { "page": 1, "total": 42 } }. This pattern separates data from metadata and provides a consistent structure for clients.',
+          body: 'A typical REST API response wraps data in a standard envelope with status, data, and metadata fields. This pattern separates the payload from pagination info and provides a consistent structure for clients. Most frameworks like Express, FastAPI, and Spring Boot follow this convention.',
+          codeExample: '{\n  "status": "success",\n  "data": {\n    "id": 1,\n    "name": "John Doe",\n    "email": "john@example.com",\n    "roles": ["admin", "user"]\n  },\n  "meta": {\n    "page": 1,\n    "total": 42,\n    "per_page": 20\n  }\n}',
         },
         {
           heading: "Configuration file example",
-          body: 'JSON is widely used for configuration: package.json (Node.js), tsconfig.json (TypeScript), .eslintrc.json (ESLint), and settings.json (VS Code). These files typically use nested objects with string, number, boolean, and array values to define application behavior.',
+          body: 'JSON is widely used for configuration: package.json (Node.js), tsconfig.json (TypeScript), .eslintrc.json (ESLint), and settings.json (VS Code). These files typically use nested objects with string, number, boolean, and array values to define application behavior. Paste any config file into the formatter above to validate and beautify it.',
+          codeExample: '// package.json — minimal Node.js project\n{\n  "name": "my-app",\n  "version": "1.0.0",\n  "type": "module",\n  "scripts": {\n    "dev": "next dev",\n    "build": "next build",\n    "start": "next start"\n  },\n  "dependencies": {\n    "next": "^16.0.0",\n    "react": "^19.0.0"\n  }\n}',
         },
         {
           heading: "Nested data structures",
           body: "JSON supports arbitrary nesting of objects and arrays. Common patterns include arrays of objects (database rows), nested objects (hierarchical data), and mixed structures (API responses with pagination). The formatter handles any nesting depth with proper indentation.",
+          codeExample: '// Array of objects — common database/API pattern\n[\n  { "id": 1, "name": "Alice", "tags": ["admin"] },\n  { "id": 2, "name": "Bob", "tags": ["user", "editor"] }\n]\n\n// Nested hierarchy — org chart, menu, file tree\n{\n  "name": "Engineering",\n  "children": [\n    { "name": "Frontend", "children": [] },\n    { "name": "Backend", "children": [] }\n  ]\n}',
         },
       ],
       faqs: [
@@ -483,10 +490,11 @@ const coreSubpages: Record<string, ToolSubpage[]> = {
         {
           heading: "When you need bulk UUIDs",
           body: "Bulk UUID generation is common for: seeding databases with test data, generating unique identifiers for CSV imports, creating test fixtures for automated testing, populating mock APIs, and assigning IDs to batch-imported records. Generate exactly the number you need and copy them all at once.",
+          codeExample: '-- SQL: Insert bulk UUIDs as seed data\nINSERT INTO users (id, name) VALUES\n  (\'550e8400-e29b-41d4-a716-446655440000\', \'Alice\'),\n  (\'6ba7b810-9dad-11d1-80b4-00c04fd430c8\', \'Bob\');\n\n// JavaScript: generate UUIDs in code\nconst ids = Array.from({ length: 100 }, () => crypto.randomUUID());',
         },
         {
           heading: "Output formats",
-          body: "Copy bulk UUIDs as a newline-separated list (one per line), comma-separated values, or a JSON array. Choose the format that matches your use case — paste directly into SQL INSERT statements, CSV files, or code.",
+          body: "Copy bulk UUIDs as a newline-separated list (one per line), comma-separated values, or a JSON array. Choose the format that matches your use case — paste directly into SQL INSERT statements, CSV files, or JSON fixtures. The JSON array format works directly with most API testing tools like Postman and Insomnia.",
         },
       ],
       faqs: [
@@ -663,11 +671,13 @@ const coreSubpages: Record<string, ToolSubpage[]> = {
       content: [
         {
           heading: "US phone number regex",
-          body: "Match US phone numbers in various formats: ^\\+?1?[-.\\s]?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$ — this handles formats like (555) 123-4567, 555-123-4567, +1 555 123 4567, and 5551234567. It allows optional country code, parentheses, hyphens, dots, and spaces.",
+          body: "Match US phone numbers in various formats: ^\\+?1?[-.\\s]?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$ — this handles formats like (555) 123-4567, 555-123-4567, +1 555 123 4567, and 5551234567. It allows optional country code, parentheses, hyphens, dots, and spaces as separators between digit groups.",
+          codeExample: '// JavaScript — validate US phone numbers\nconst usPhone = /^\\+?1?[-.\\s]?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/;\n\nusPhone.test("(555) 123-4567");   // true\nusPhone.test("555-123-4567");      // true\nusPhone.test("+1 555 123 4567");   // true\nusPhone.test("5551234567");        // true\n\n# Python\nimport re\npattern = r"^\\+?1?[-.\\s]?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$"\nre.match(pattern, "(555) 123-4567")  # Match',
         },
         {
           heading: "International phone number regex",
-          body: "For international numbers: ^\\+[1-9]\\d{1,14}$ (E.164 format) matches numbers like +14155551234 and +442071234567. For user-facing input that allows formatting: ^\\+?\\d{1,4}[-.\\s]?\\(?\\d{1,4}\\)?[-.\\s]?[\\d-.\\s]{4,15}$ handles most international formats with optional formatting characters.",
+          body: "For international numbers: ^\\+[1-9]\\d{1,14}$ (E.164 format) matches numbers like +14155551234 and +442071234567. For user-facing input that allows formatting: ^\\+?\\d{1,4}[-.\\s]?\\(?\\d{1,4}\\)?[-.\\s]?[\\d-.\\s]{4,15}$ handles most international formats with optional formatting characters. For production validation, consider using the libphonenumber library instead of regex alone.",
+          codeExample: '// E.164 format — the international standard for phone storage\nconst e164 = /^\\+[1-9]\\d{1,14}$/;\n\ne164.test("+14155551234");    // true  (US)\ne164.test("+442071234567");   // true  (UK)\ne164.test("+81312345678");    // true  (Japan)\ne164.test("14155551234");     // false (missing +)',
         },
       ],
       faqs: [
@@ -969,11 +979,12 @@ const coreSubpages: Record<string, ToolSubpage[]> = {
       content: [
         {
           heading: "How RGB to HEX conversion works",
-          body: "Each RGB value (0–255) is converted to a two-digit hexadecimal number. Red 255 → FF, Green 87 → 57, Blue 51 → 33, combined as #FF5733. The formula: hex = '#' + r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2, '0').",
+          body: "Each RGB value (0–255) is converted to a two-digit hexadecimal number. Red 255 → FF, Green 87 → 57, Blue 51 → 33, combined as #FF5733. The formula converts each decimal channel to base-16 and pads single-digit results with a leading zero.",
+          codeExample: '// JavaScript — RGB to HEX\nfunction rgbToHex(r, g, b) {\n  return "#" + [r, g, b]\n    .map(v => v.toString(16).padStart(2, "0"))\n    .join("");\n}\nrgbToHex(255, 87, 51); // "#ff5733"\n\n# Python\ndef rgb_to_hex(r, g, b):\n    return f"#{r:02x}{g:02x}{b:02x}"\nrgb_to_hex(255, 87, 51)  # "#ff5733"\n\n/* CSS — both formats are equivalent */\ncolor: rgb(255, 87, 51);\ncolor: #ff5733;',
         },
         {
           heading: "Shorthand HEX codes",
-          body: "When each hex pair has identical digits (e.g., #FF5533), some pairs can be shortened: #AABBCC → #ABC. However, #FF5733 cannot be shortened because 57 and 33 have different digits. CSS supports both 3-digit and 6-digit HEX codes.",
+          body: "When each hex pair has identical digits (e.g., #AABBCC), the code can be shortened to #ABC. However, #FF5733 cannot be shortened because 57 and 33 have different digits. CSS supports both 3-digit and 6-digit HEX codes. Modern CSS also supports 8-digit hex for alpha transparency: #FF573380 is 50% transparent.",
         },
       ],
       faqs: [

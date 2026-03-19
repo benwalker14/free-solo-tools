@@ -103,6 +103,11 @@ export default function SubpageLayout({ data, children }: SubpageLayoutProps) {
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {section.body}
               </p>
+              {section.codeExample && (
+                <pre className="mt-4 overflow-x-auto rounded-lg bg-gray-900 p-4 text-sm leading-relaxed text-gray-100">
+                  <code>{section.codeExample}</code>
+                </pre>
+              )}
             </section>
           ))}
         </div>
