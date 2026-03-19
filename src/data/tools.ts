@@ -374,4 +374,12 @@ export const tools: Tool[] = [
     icon: "IP",
     category: "Inspect",
   },
+  {
+    title: ".gitignore Generator",
+    description:
+      "Generate .gitignore files from 50+ templates — Node.js, Python, Java, Go, Rust, and more",
+    href: "/tools/gitignore-generator",
+    icon: ".gi",
+    category: "Generate",
+  },
 ];
