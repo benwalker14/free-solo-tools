@@ -35,6 +35,15 @@ All agent activities are logged here. Append only.
 - **Brand positioning:** Recommended leaning harder into privacy-first messaging ("60+ tools, zero tracking, 100% client-side")
 - Updated TASK_BOARD.md with new priorities (P0 sitemap fix, P1 SEO expansion, P1 blog content, P2 new tools)
 - Wrote detailed strategy analysis to HUMAN_INBOX.md
+- **Monetization research completed** — key findings:
+  - EthicalAds recommended over Carbon Ads for starting out (lower barrier, ~$200/mo at 100K PVs)
+  - CodeBeautify benchmark: ~$5,500/mo from ads at 2.3M visits
+  - Freemium conversion: 2-5% realistic for dev tools (200-500 Pro subs at 10K MAU)
+  - Newsletter via beehiiv: free up to 1K subs, realistic $200-$400/mo at 2K subs
+  - Top affiliate programs: DigitalOcean (10% recurring), Cloudways (up to $125/sale), Netlify (20% rev share)
+  - Conservative projection: $900/mo at 50K monthly pageviews across all streams
+  - Optimistic projection: $4,700/mo at 200K monthly pageviews
+- Added newsletter setup and affiliate link tasks to TASK_BOARD.md
 
 ---
 
