@@ -145,3 +145,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 93. GraphQL to TypeScript Converter (/tools/graphql-to-typescript)
 94. package.json Generator (/tools/package-json-generator)
 95. Security Headers Generator (/tools/security-headers)
+96. TypeScript to JavaScript Converter (/tools/typescript-to-js)

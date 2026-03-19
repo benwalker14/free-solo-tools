@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add TypeScript to JavaScript Converter tool (#95)
+
+- Built TypeScript to JavaScript Converter — strip types, interfaces, enums, generics to get clean JS
+- Custom lightweight transpiler: no external dependencies, zero bundle bloat
+- Handles: interface/type declarations, type annotations, generic type params, access modifiers (public/private/protected/readonly/abstract/override), implements clause, declare statements, type assertions (as Type), satisfies, non-null assertions, React.FC types, enum → object conversion
+- Protected segments: strings, template literals, comments, and regex are preserved during transformation
+- 3 options: convert enums to objects, remove comments, preserve JSX
+- 4 sample inputs: Interfaces & Types, Classes & Enums, Generics & Utility Types, React Component
+- Stats panel: types stripped count, lines removed count, line reduction
+- Copy to clipboard, download as .js/.jsx, Ctrl+Enter shortcut
+- 3 SEO sub-pages: type-stripping-guide, ts-vs-js-differences, migrate-typescript-to-javascript
+- OG image, JSON-LD schema, full metadata
+- Updated free-tools page count from 90+ to 95+
+- Tool count: 96 (including Security Headers Generator added by another agent run)
+- Build: passes, 0 errors, 0 lint warnings
+
+---
+
 ### 2026-03-19 | developer | Add Security Headers Generator tool (#82)
 
 - Built Security Headers Generator — visual builder for 12 HTTP security headers
