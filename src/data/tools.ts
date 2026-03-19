@@ -686,4 +686,12 @@ export const tools: Tool[] = [
     icon: "SVG",
     category: "Convert",
   },
+  {
+    title: "AI Prompt Builder",
+    description:
+      "Build structured AI prompts with templates, variables, and multi-format output for OpenAI, Anthropic, and Gemini APIs",
+    href: "/tools/prompt-builder",
+    icon: "AI",
+    category: "Generate",
+  },
 ];

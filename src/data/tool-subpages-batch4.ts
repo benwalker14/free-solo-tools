@@ -2500,4 +2500,156 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "SVG to JSX Converter",
     },
   ],
+  "prompt-builder": [
+    {
+      slug: "prompt-engineering-guide",
+      title: "Prompt Engineering Guide",
+      metaTitle: "Prompt Engineering Guide — Best Practices & Techniques | DevBolt",
+      metaDescription:
+        "Learn prompt engineering best practices: role assignment, few-shot examples, chain of thought, structured output, and constraints. Practical guide with examples for OpenAI, Anthropic, and Gemini.",
+      h1: "Prompt Engineering Guide for Developers",
+      intro:
+        "Master the techniques that make AI prompts effective. This guide covers role assignment, few-shot learning, chain of thought, and structured output — with practical examples you can use immediately.",
+      content: [
+        {
+          heading: "What is prompt engineering?",
+          body: "Prompt engineering is the practice of designing inputs to AI language models to get accurate, useful, and consistent outputs. Unlike traditional programming where you write deterministic code, prompt engineering involves crafting natural language instructions that guide a probabilistic model. Good prompt engineering reduces hallucinations, improves output quality, and makes AI tools reliable enough for production workflows.",
+        },
+        {
+          heading: "Core techniques",
+          body: "The most effective prompt engineering techniques include: Role Assignment (giving the model an expert persona), Few-Shot Examples (providing 2-3 input/output pairs), Chain of Thought (asking the model to reason step by step), Structured Output (specifying exact response format like JSON or Markdown), and Constraint Setting (defining boundaries like max length, included/excluded topics, and style). Combining these techniques yields the best results.",
+        },
+        {
+          heading: "System prompts vs user prompts",
+          body: "System prompts define the AI's persona, capabilities, and rules — they persist across the conversation. User prompts contain the specific request or data for each turn. OpenAI and Anthropic support dedicated system message fields. For Gemini, system instructions are prepended as the first user message. Separating system and user content makes prompts more maintainable and reusable across different requests.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the best way to start a prompt?",
+          answer:
+            "Start with a clear role assignment in the system prompt (e.g., 'You are a senior TypeScript developer'), then provide context, the specific task, and the desired output format in the user prompt. This structure consistently produces better results than unstructured instructions.",
+        },
+        {
+          question: "How many examples should I include in few-shot prompts?",
+          answer:
+            "Two to three examples are usually optimal. One example may not establish a clear pattern, while more than five can waste tokens without improving quality. Choose diverse examples that cover edge cases relevant to your use case.",
+        },
+        {
+          question: "Does temperature affect prompt engineering?",
+          answer:
+            "Yes. Lower temperature (0-0.3) produces more deterministic, focused outputs — ideal for code generation and data extraction. Higher temperature (0.7-1.0) produces more creative, varied outputs — better for brainstorming and creative writing. Match temperature to your task.",
+        },
+      ],
+      keywords: [
+        "prompt engineering guide",
+        "prompt engineering best practices",
+        "ai prompt techniques",
+        "chatgpt prompt tips",
+        "prompt engineering for developers",
+      ],
+      parentToolSlug: "prompt-builder",
+      parentToolName: "AI Prompt Template Builder",
+    },
+    {
+      slug: "openai-vs-anthropic-prompts",
+      title: "OpenAI vs Anthropic Prompt Formats",
+      metaTitle: "OpenAI vs Anthropic API Prompt Formats Compared | DevBolt",
+      metaDescription:
+        "Compare OpenAI and Anthropic API prompt formats side by side. Learn the key differences in system messages, message structure, and parameters for ChatGPT/GPT-4 and Claude.",
+      h1: "OpenAI vs Anthropic: API Prompt Format Comparison",
+      intro:
+        "OpenAI and Anthropic use different API structures for prompts. This guide compares them side by side so you can write prompts that work across both platforms or convert between them.",
+      content: [
+        {
+          heading: "Message structure differences",
+          body: "OpenAI places system instructions inside the messages array as a message with role 'system'. Anthropic uses a top-level 'system' parameter separate from the messages array. Both support alternating user/assistant messages for multi-turn conversations. This structural difference means you cannot simply copy-paste API payloads between providers — the system prompt must be moved to/from the messages array.",
+        },
+        {
+          heading: "Model parameters compared",
+          body: "Both APIs support temperature (0-1 for OpenAI, 0-1 for Anthropic), max tokens (max_tokens in both), and top_p. OpenAI additionally supports frequency_penalty and presence_penalty for repetition control. Anthropic supports stop_sequences for custom stop tokens. OpenAI defaults to no max token limit while Anthropic requires max_tokens to be specified explicitly.",
+        },
+        {
+          heading: "When to use which format",
+          body: "Use OpenAI format when targeting GPT-4o, GPT-4 Turbo, or o1/o3 models. Use Anthropic format for Claude Opus, Sonnet, and Haiku models. If building for multiple providers, use a template builder like DevBolt's to generate both formats from a single prompt. The core prompt content is the same — only the JSON wrapper changes.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I use the same prompt for OpenAI and Anthropic?",
+          answer:
+            "The prompt content (system instructions, user messages) can be identical, but the JSON structure differs. OpenAI puts system messages in the messages array while Anthropic uses a top-level system parameter. A prompt template builder can generate both formats from one source.",
+        },
+        {
+          question: "Which API format does Gemini use?",
+          answer:
+            "Google Gemini uses a 'contents' array with 'parts' objects. It has no native system message field — system instructions are typically sent as the first user message, followed by a model acknowledgment. The generationConfig object controls temperature and max output tokens.",
+        },
+        {
+          question: "Do OpenAI and Anthropic handle multi-turn differently?",
+          answer:
+            "Both require alternating user/assistant messages. OpenAI allows multiple consecutive system messages. Anthropic requires the first message to be from the user. Both support injecting previous conversation history for context.",
+        },
+      ],
+      keywords: [
+        "openai vs anthropic api",
+        "chatgpt vs claude prompt format",
+        "openai api format",
+        "anthropic api format",
+        "ai api comparison",
+      ],
+      parentToolSlug: "prompt-builder",
+      parentToolName: "AI Prompt Template Builder",
+    },
+    {
+      slug: "prompt-templates-developers",
+      title: "AI Prompt Templates for Developers",
+      metaTitle: "AI Prompt Templates for Developers — Code Review, Testing, Docs | DevBolt",
+      metaDescription:
+        "Ready-to-use AI prompt templates for code review, unit testing, API documentation, SQL generation, refactoring, and more. Copy and customize for ChatGPT, Claude, or Gemini.",
+      h1: "AI Prompt Templates for Software Developers",
+      intro:
+        "Copy-paste prompt templates optimized for common developer tasks. Each template uses proven prompt engineering techniques — role assignment, structured output, and constraints — to get consistent, high-quality results.",
+      content: [
+        {
+          heading: "Why use prompt templates?",
+          body: "Prompt templates solve the biggest problem with AI-assisted development: inconsistent output quality. By standardizing your prompts with clear roles, structured tasks, and output format requirements, you get reliable results every time. Templates also save time — instead of crafting a new prompt for each code review or test generation task, you fill in variables and go. Teams can share templates to maintain consistent AI usage across projects.",
+        },
+        {
+          heading: "Template anatomy",
+          body: "Effective prompt templates have five sections: Role (who the AI is), Context (what it's working with), Task (what to do), Output Format (how to structure the response), and Constraints (boundaries and rules). Not every prompt needs all five sections, but including Role, Task, and Output Format dramatically improves output quality. Variables like {{language}} and {{framework}} make templates reusable across different projects.",
+        },
+        {
+          heading: "Common developer prompt categories",
+          body: "The most useful prompt template categories for developers are: Code Review (bugs, performance, security), Test Generation (unit tests, edge cases, coverage), Documentation (API docs, README, code comments), Code Explanation (line-by-line walkthrough, concept explanation), Refactoring (DRY, SOLID, readability), and Data Tasks (SQL generation, data analysis, schema design). Each category benefits from specialized system prompts and output formats.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What makes a good AI prompt for code review?",
+          answer:
+            "A good code review prompt assigns an expert reviewer role, specifies the language and project context, lists what to check (bugs, performance, security, style), and defines the output format (severity, affected code, issue description, fix suggestion). Including constraints like 'focus on top 5 issues' prevents overwhelming output.",
+        },
+        {
+          question: "How do I create reusable prompt templates?",
+          answer:
+            "Use variables (e.g., {{language}}, {{framework}}) for values that change between uses. Structure your prompt into named sections (Role, Context, Task, Format, Constraints) that can be toggled on/off. Store templates in a builder tool or version-control them alongside your codebase.",
+        },
+        {
+          question: "Should I use system prompts or include everything in the user message?",
+          answer:
+            "Use system prompts for persistent behavior (role, rules, output format) and user messages for per-request content (the actual code, data, or question). This separation makes templates more modular — you can reuse the same system prompt with different user inputs.",
+        },
+      ],
+      keywords: [
+        "ai prompt templates developers",
+        "chatgpt code review prompt",
+        "ai prompt for unit tests",
+        "developer prompt templates",
+        "code generation prompt",
+      ],
+      parentToolSlug: "prompt-builder",
+      parentToolName: "AI Prompt Template Builder",
+    },
+  ],
 };

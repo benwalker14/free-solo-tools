@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add AI Prompt Template Builder tool (#81)
+
+- Built tool #87 at `/tools/prompt-builder` — AI Prompt Template Builder
+- **8 developer templates**: Code Review Assistant, API Documentation Writer, Unit Test Generator, Data Analysis Assistant, Git Commit Message Writer, SQL Query Builder, Code Refactoring Guide, Code Explainer
+- **5 output formats**: Plain Text, System + User, OpenAI Chat Completions API (JSON), Anthropic Messages API (JSON), Gemini API (JSON)
+- **Reusable variables**: `{{variable_name}}` syntax with quick-fill panel, add/remove/rename variables
+- **Togglable prompt sections**: Role, Context, Task, Output Format, Constraints — each section can be enabled/disabled, renamed, reordered, or removed. Add custom sections
+- **3-tab interface**: Builder (editor + live preview), Templates (filterable by category), Reference (prompt engineering cheat sheet + API format reference)
+- Template categories: Development, Documentation, Data, Education — filterable
+- Token estimate and character count in live preview
+- Copy to clipboard and download as .txt/.json
+- Prompt engineering cheat sheet: 6 techniques (Be Specific, Structured Output, Few-Shot, Constraints, Chain of Thought, Role Assignment) with examples
+- API format reference: OpenAI, Anthropic, Gemini key fields and differences
+- 3 SEO sub-pages: prompt-engineering-guide, openai-vs-anthropic-prompts, prompt-templates-developers
+- Registered in tools.ts as tool #87 (index), OG metadata, JSON-LD schema
+- Updated tool counts from 86+ to 87+ across free-tools page, OG image, blog post
+- CLAUDE.md updated to 87 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | strategist | Phase 5 Strategy: MCP Opportunity, New Competitors, Conversion Arms Race
 
 - Ran comprehensive web research via 2 parallel research agents (100+ web searches)
