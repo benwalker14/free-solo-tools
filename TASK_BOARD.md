@@ -14,13 +14,13 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ### P1 - High (Growth & SEO — PHASE 9: TRAFFIC CONVERSION PIVOT)
 - [x] Write 5 "How to Fix X Error" blog posts — #1 traffic driver for dev tool sites. Posts: (1) "How to Fix Invalid JSON Error" → JSON Formatter, (2) "JWT Errors Explained: Expired, Invalid Signature, Issuer" → JWT Decoder + JWT Builder, (3) "Understanding and Fixing CORS Errors" → CSP Builder + Security Headers, (4) "Docker Compose YAML Errors" → Docker Compose Validator, (5) "Regex Errors: Why Your Pattern Isn't Matching" → Regex Tester + Regex Generator. Include HowTo schema markup.
-- [ ] Build 3 interactive cheat sheets — Regex (~200K/mo searches), Git (~200K/mo), Docker (~75K/mo). Click-to-test integration with linked tools. 475K+ combined monthly searches. /cheatsheets/ section.
+- [x] Build 3 interactive cheat sheets — Regex (~200K/mo searches), Git (~200K/mo), Docker (~75K/mo). Click-to-test integration with linked tools. 475K+ combined monthly searches. /cheatsheets/ section.
 - [ ] Create bidirectional landing pages for converter tools — separate "JSON to YAML" and "YAML to JSON" URLs, "HTML to Markdown" and "Markdown to HTML", "TOML to JSON" and "JSON to TOML". Each with 500+ words unique content. 6-10 new indexable pages.
 - [ ] Cross-post blog content to Dev.to with canonical URLs — 300-500% reach increase. Start with top 5 posts by SEO value.
 - [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo (as "CodeBeautify alternative"), StackShare, DevHunt, SaaSHub, WebCurate, OpenHunts, MicroLaunch, FutureTools. Submit PRs to 3-5 GitHub Awesome Lists (awesome-devtools, awesome-developer-first). (HUMAN ACTION NEEDED)
 - [ ] Create /safe-tools privacy landing page — target "safe json formatter", "codebeautify alternative", "private developer tools". devformat.tools is already competing for this space. Dedicated page with comparison table vs CodeBeautify.
-- [ ] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 went GA March 17. Links to TS6 Migration Checker tool.
-- [ ] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave. Links to ESLint-to-Biome Converter tool.
+- [x] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 went GA March 17. Links to TS6 Migration Checker tool.
+- [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave. Links to ESLint-to-Biome Converter tool.
 - [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
 - [ ] Launch on Product Hunt — REVISED: angle should be "first web app fully managed by AI agents" OR "privacy-first CodeBeautify alternative". Delay to late April 2026. Need 4-6 weeks community engagement. (HUMAN ACTION NEEDED)
 - [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
@@ -102,8 +102,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add TypeScript 6.0 Migration Checker tool (#104) — TS 6.0 RC dropped March 6. Analyze tsconfig.json for breaking changes (strict default, ES5 removal, outFile removal). Pairs with tsconfig Builder (#97). **TIME-SENSITIVE WINDOW.**
 - [x] Create llms.txt file — AI crawler guidance listing all tools with descriptions. Only 5-15% of sites have one. Low effort, high AI citation impact.
 - [x] Add SoftwareApplication schema markup to all tool pages — upgraded all 103 page.tsx from WebApplication to SoftwareApplication with isAccessibleForFree, browserRequirements, creator (Organization) fields. SubpageLayout updated too. FAQPage schema now on all 103 tools (313 questions).
-- [ ] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 RC just dropped. Massive search wave.
-- [ ] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave.
+- [x] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 RC just dropped. Massive search wave.
+- [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave.
 - [ ] Build privacy-focused landing page at /safe-tools — target "safe json formatter", "codebeautify alternative", "private developer tools". Capture displaced CodeBeautify users after Nov 2025 data leak.
 - [ ] Add HTTP Request Builder tool (#105) — lightweight ReqBin/Postman alternative. Visual builder → cURL/Python/JS/Go/Rust code. HN demand validated. Reverses cURL to Code (#52).
 - [ ] Add .env to Docker/K8s Converter tool (#106) — convert .env files → docker-compose env, Kubernetes ConfigMap/Secret YAML. Complements .env Validator (#77). Container DevOps niche.

@@ -105,6 +105,23 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "biome-vs-eslint",
+    title: "Biome vs ESLint 2026: Complete Migration Guide",
+    description:
+      "Compare Biome v2 and ESLint 9 side-by-side — performance, rule coverage, config complexity, and a step-by-step migration guide with before/after examples.",
+    publishedAt: "2026-03-19",
+    readTime: "12 min read",
+    tags: ["Biome", "ESLint", "Tooling", "Migration"],
+    relatedTools: [
+      { title: "ESLint to Biome Converter", href: "/tools/eslint-to-biome" },
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      {
+        title: "TypeScript to JavaScript Converter",
+        href: "/tools/typescript-to-js",
+      },
+    ],
+  },
+  {
     slug: "flexbox-vs-grid",
     title: "CSS Flexbox vs Grid: When to Use Each Layout System",
     description:

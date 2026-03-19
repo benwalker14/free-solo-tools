@@ -42,6 +42,12 @@ export default function Header() {
             Blog
           </Link>
           <Link
+            href="/cheatsheets"
+            className="transition-colors hover:text-gray-900 dark:hover:text-white"
+          >
+            Cheat Sheets
+          </Link>
+          <Link
             href="/about"
             className="transition-colors hover:text-gray-900 dark:hover:text-white"
           >

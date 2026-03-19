@@ -29,6 +29,7 @@ import MarkdownCheatSheet from "./posts/MarkdownCheatSheet";
 import DockerComposeGuide from "./posts/DockerComposeGuide";
 import YamlGuide from "./posts/YamlGuide";
 import TypeScript6MigrationGuide from "./posts/TypeScript6MigrationGuide";
+import BiomeVsEslint from "./posts/BiomeVsEslint";
 import FixInvalidJson from "./posts/FixInvalidJson";
 import FixJwtErrors from "./posts/FixJwtErrors";
 import FixCorsErrors from "./posts/FixCorsErrors";
@@ -42,6 +43,7 @@ const postContent: Record<string, React.ReactNode> = {
   "fix-docker-compose-errors": <FixDockerComposeErrors />,
   "fix-regex-errors": <FixRegexErrors />,
   "typescript-6-migration-guide": <TypeScript6MigrationGuide />,
+  "biome-vs-eslint": <BiomeVsEslint />,
   "flexbox-vs-grid": <FlexboxVsGrid />,
   "json-vs-yaml": <JsonVsYaml />,
   "sha256-vs-md5": <Sha256VsMd5 />,
