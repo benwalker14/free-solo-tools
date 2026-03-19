@@ -430,4 +430,12 @@ export const tools: Tool[] = [
     icon: "TW",
     category: "Generate",
   },
+  {
+    title: "Open Graph Preview",
+    description:
+      "Preview and debug Open Graph, Twitter Card, and SEO meta tags for social sharing",
+    href: "/tools/og-preview",
+    icon: "OG",
+    category: "Inspect",
+  },
 ];

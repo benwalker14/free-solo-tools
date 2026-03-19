@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Open Graph Preview & Debugger tool (#61)
+
+- Created `src/app/tools/og-preview/page.tsx` — server component with SEO metadata targeting "open graph preview", "og tag tester", "social media preview" (high search volume keywords)
+- Created `src/app/tools/og-preview/OgPreviewTool.tsx` — full-featured OG debugger with:
+  - **Two input modes:** Fetch URL (server-side via API route to bypass CORS) or paste raw HTML
+  - **4 social platform previews:** Facebook, Twitter/X (summary + summary_large_image cards), LinkedIn, Slack — each pixel-matched to the platform's actual card rendering
+  - **Tag validation:** Checks for missing/invalid og:title, og:description, og:image, og:url, og:type, twitter:card with error/warning/pass levels
+  - **Structured OG data view:** All 13 key OG/Twitter properties listed with values or "not set" indicators
+  - **All detected tags table:** Shows every meta tag, title, and link tag found with color-coded display
+  - **Image preview handling:** Graceful fallback for missing or broken images across all preview cards
+- Created `src/app/api/og-fetch/route.ts` — server-side URL fetcher with security protections:
+  - SSRF prevention (blocks localhost, private IPs, internal hostnames)
+  - 10s timeout, 512KB response limit, HTML content-type validation
+  - Regex-based meta tag extraction (no DOM parser dependency)
+- Registered tool in `src/data/tools.ts` as tool #55, category "Inspect", icon "OG"
+- **Complements** existing Meta Tag Generator (#45) — generate tags there, validate them here
+- Updated TASK_BOARD.md (moved to Done), CLAUDE.md (added to tool list)
+- Build passes, lint clean
+
+---
+
 ### 2026-03-18 | developer | Implement programmatic SEO sub-pages for top 10 tools
 
 - **25 SEO sub-pages** across 10 tools targeting long-tail keywords:

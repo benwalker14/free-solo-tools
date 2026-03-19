@@ -20,7 +20,7 @@ _None_
 - [ ] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [ ] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
 - [ ] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
-- [ ] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
+- [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 
 ### P3 - Low (Catalog Expansion)
@@ -31,6 +31,7 @@ _None_
 - [ ] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator, URL fetch + HTML paste, 4 social platform previews, validation
 - [x] Implement programmatic SEO sub-pages for top 10 tools — 25 sub-pages targeting long-tail keywords with FAQPage schema
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, visual builder with presets
