@@ -4,6 +4,38 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 24:30 | developer | Add quick answer blocks to top 20 tool pages
+
+- **Task:** Add "quick answer blocks" above the fold on top 20 tool pages — 2-3 sentence direct answers before tool UI for AI Overview citation optimization
+- **Approach:** Created a reusable `QuickAnswer` component (client-side, `usePathname()` pattern matching `ToolFAQ`) that auto-displays on tool pages with registered quick answers. Data stored in `quick-answers.ts`.
+- **Tools covered (20):**
+  1. JSON Formatter — "How do I format and validate JSON online?"
+  2. Base64 Encoder & Decoder — "How do I encode or decode Base64 online?"
+  3. Hash Generator — "How do I generate a SHA-256 or MD5 hash online?"
+  4. UUID Generator — "How do I generate a UUID online?"
+  5. Color Converter — "How do I convert colors between HEX, RGB, and HSL?"
+  6. JWT Decoder — "How do I decode a JWT token online?"
+  7. Regex Tester — "How do I test a regular expression online?"
+  8. URL Parser — "How do I parse a URL into its components?"
+  9. Markdown Preview — "How do I preview Markdown online?"
+  10. Diff Checker — "How do I compare two texts and find differences online?"
+  11. Epoch Converter — "How do I convert a Unix timestamp to a human-readable date?"
+  12. Password Generator — "How do I generate a strong random password online?"
+  13. URL Encoder & Decoder — "How do I URL-encode or decode a string online?"
+  14. JSON ↔ YAML Converter — "How do I convert JSON to YAML or YAML to JSON online?"
+  15. Case Converter — "How do I convert text between camelCase, snake_case, and other cases?"
+  16. CSV ↔ JSON Converter — "How do I convert CSV to JSON or JSON to CSV online?"
+  17. SQL Formatter — "How do I format and beautify SQL online?"
+  18. QR Code Generator — "How do I generate a QR code online?"
+  19. Word & Character Counter — "How do I count words and characters in text online?"
+  20. AI Code Security Scanner — "How do I scan code for security vulnerabilities online?"
+- **Design:** Indigo-tinted card with question (bold) + answer (2-3 sentences). Positioned between PrivacyBadge and tool UI. Only shows on main tool pages (not subpages). Dark mode support.
+- **Files created:** `src/data/quick-answers.ts`, `src/components/QuickAnswer.tsx`
+- **Files modified:** `src/app/tools/layout.tsx` (added QuickAnswer import + render)
+- **Verification:** `npm run build` passes. Quick answer blocks render on all 20 tool pages, hidden on other tools and subpages.
+
+---
+
 ### 2026-03-20 00:30 | developer | Complete AI Code Security Scanner tool (#104)
 
 - **Task:** Add AI Code Security Scanner tool — #1 P1 priority tool

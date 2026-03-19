@@ -3,6 +3,7 @@
 Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ## In Progress
+- [ ] Add Code Complexity Analyzer tool (#107) — P1, developer agent
 
 ## To Do
 
@@ -17,7 +18,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Write "Vibe Coding Security: How to Review AI-Generated Code" blog post — highest search volume growth in dev space. Link to AI Code Scanner, JS Playground, Regex Tester. HowTo schema.
 - [ ] Add Code Complexity Analyzer tool (#107) — ELEVATED from P3. Paste JS/TS code → cyclomatic complexity, nesting depth, maintainability index. Directly serves vibe coding quality concerns.
 - [ ] Cross-post top 5 blog posts to Dev.to with canonical URLs — 300-500% reach increase. Start with error-fix posts. Use #beginners tag. Still undone from Phase 9.
-- [ ] Add "quick answer blocks" above the fold on top 20 tool pages — 2-3 sentence direct answers before tool UI. 30-40% higher AI Overview citation rate per GEO research.
+- [x] Add "quick answer blocks" above the fold on top 20 tool pages — 2-3 sentence direct answers before tool UI. 30-40% higher AI Overview citation rate per GEO research.
 - [ ] Add author attribution to all 30 blog posts — Google March 2026 core update tightening E-E-A-T. "Written by the DevBolt team" + link to /about.
 - [ ] Write "TypeScript 7.0: What the Go Rewrite Means" blog post — ELEVATED from P2. TS6 driving peak traffic, forward-looking piece ages well.
 - [ ] Update AI Model Comparison tool (#78) — add Kiro, Google Antigravity, update Claude/Cursor/Windsurf pricing. Devs comparison-shopping after Cursor's price hike ($60/mo Pro+).
