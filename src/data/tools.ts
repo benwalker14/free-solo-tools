@@ -702,4 +702,12 @@ export const tools: Tool[] = [
     icon: "MCP",
     category: "Generate",
   },
+  {
+    title: "OpenAPI to TypeScript",
+    description:
+      "Convert OpenAPI 3.x and Swagger 2.0 specs to TypeScript interfaces and types with $ref resolution, allOf/oneOf/anyOf, enums, and API operation types",
+    href: "/tools/openapi-to-typescript",
+    icon: "API",
+    category: "Convert",
+  },
 ];

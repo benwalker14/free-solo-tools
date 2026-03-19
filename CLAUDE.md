@@ -138,3 +138,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 86. SVG to JSX Converter (/tools/svg-to-jsx)
 87. AI Prompt Template Builder (/tools/prompt-builder)
 88. MCP Config Builder (/tools/mcp-config-builder)
+89. OpenAPI to TypeScript Converter (/tools/openapi-to-typescript)

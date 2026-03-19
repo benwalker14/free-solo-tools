@@ -2804,4 +2804,145 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "MCP Config Builder",
     },
   ],
+  "openapi-to-typescript": [
+    {
+      slug: "openapi-codegen-typescript",
+      title: "OpenAPI TypeScript Code Generation",
+      metaTitle:
+        "OpenAPI TypeScript Code Generation Online — Free Tool | DevBolt",
+      metaDescription:
+        "Generate TypeScript interfaces and types from OpenAPI 3.x specs online. Handles $ref, allOf/oneOf, enums, and nested schemas. Free client-side codegen tool.",
+      h1: "OpenAPI TypeScript Code Generation Online",
+      intro:
+        "Paste an OpenAPI specification and instantly generate TypeScript types for every schema and API operation. Everything runs in your browser — your spec is never uploaded.",
+      content: [
+        {
+          heading: "Why generate TypeScript from OpenAPI?",
+          body: "OpenAPI specifications define your API's contract — the request and response shapes, parameter types, and available endpoints. Generating TypeScript types from this contract ensures your frontend code stays in sync with your API, catching type mismatches at compile time rather than runtime. This is especially valuable in large codebases where APIs evolve frequently.",
+        },
+        {
+          heading: "How does online codegen compare to CLI tools?",
+          body: "CLI tools like openapi-typescript-codegen (2.14M weekly npm downloads) are great for CI pipelines, but an online converter is faster for one-off tasks: reviewing a new API's types, prototyping a client, or checking what types a spec produces before committing to a code generation pipeline. DevBolt's converter handles the same core features — $ref resolution, composition types, enums — without installing anything.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What OpenAPI versions are supported?",
+          answer:
+            "DevBolt supports OpenAPI 3.0.x, 3.1.x, and Swagger 2.0 specifications in both JSON and YAML formats. The converter auto-detects which version you're using.",
+        },
+        {
+          question:
+            "Does this tool handle $ref and allOf/oneOf/anyOf?",
+          answer:
+            "Yes. $ref pointers within the spec are resolved to clean TypeScript type names. allOf becomes intersection types (A & B), while oneOf and anyOf become union types (A | B).",
+        },
+        {
+          question: "Is my API specification uploaded to a server?",
+          answer:
+            "No. The entire conversion runs client-side in your browser using JavaScript. Your OpenAPI spec never leaves your device.",
+        },
+      ],
+      keywords: [
+        "openapi typescript codegen",
+        "openapi typescript generator online",
+        "generate typescript from openapi",
+        "openapi code generation",
+        "swagger typescript codegen",
+      ],
+      parentToolSlug: "openapi-to-typescript",
+      parentToolName: "OpenAPI to TypeScript Converter",
+    },
+    {
+      slug: "swagger-to-typescript",
+      title: "Swagger to TypeScript Converter",
+      metaTitle:
+        "Swagger to TypeScript Converter Online — Free Tool | DevBolt",
+      metaDescription:
+        "Convert Swagger 2.0 definitions to TypeScript interfaces and types. Handles refs, enums, nested objects, and request/response types. Free online tool.",
+      h1: "Swagger to TypeScript Converter Online",
+      intro:
+        "Convert Swagger 2.0 specs to TypeScript types instantly. Paste your swagger.json or YAML file and get properly typed interfaces for every definition and API operation.",
+      content: [
+        {
+          heading: "Swagger 2.0 vs OpenAPI 3.x",
+          body: "Swagger 2.0 stores schemas under 'definitions' and uses 'consumes'/'produces' for content types. OpenAPI 3.x moved schemas to 'components.schemas' and introduced 'requestBody' and 'content' negotiation. DevBolt's converter handles both formats transparently — just paste your spec and it auto-detects the version.",
+        },
+        {
+          heading: "Migrating from Swagger to OpenAPI",
+          body: "If you're still on Swagger 2.0, generating TypeScript types from your spec is a good first step toward understanding your API surface before migrating. The generated types will be identical regardless of spec version, so you can migrate your spec without changing your TypeScript code.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I convert swagger.json to TypeScript?",
+          answer:
+            "Yes. Paste your swagger.json content directly into the input field. The converter auto-detects JSON format and the Swagger 2.0 version, then generates TypeScript interfaces from every definition.",
+        },
+        {
+          question:
+            "What's the difference between Swagger and OpenAPI types?",
+          answer:
+            "The generated TypeScript types are identical. The main difference is where schemas are stored in the spec: 'definitions' (Swagger 2.0) vs 'components.schemas' (OpenAPI 3.x). DevBolt handles both automatically.",
+        },
+      ],
+      keywords: [
+        "swagger to typescript",
+        "swagger typescript converter",
+        "swagger json to typescript",
+        "convert swagger to types",
+        "swagger 2.0 typescript",
+      ],
+      parentToolSlug: "openapi-to-typescript",
+      parentToolName: "OpenAPI to TypeScript Converter",
+    },
+    {
+      slug: "openapi-typescript-interfaces",
+      title: "OpenAPI TypeScript Interfaces Guide",
+      metaTitle:
+        "OpenAPI to TypeScript Interfaces — Guide & Online Tool | DevBolt",
+      metaDescription:
+        "Learn how to generate TypeScript interfaces from OpenAPI schemas. Covers $ref, enums, nullable, allOf, and API operation types with a free online converter.",
+      h1: "OpenAPI to TypeScript Interfaces",
+      intro:
+        "A practical guide to generating TypeScript interfaces from OpenAPI specifications, covering schema types, composition patterns, and API operation typing.",
+      content: [
+        {
+          heading: "Interface vs type alias",
+          body: "TypeScript interfaces support declaration merging and are generally preferred for object shapes. Type aliases are required for union types (oneOf/anyOf) and intersection types (allOf). DevBolt lets you choose your preferred style. For schemas that use composition, type aliases are used automatically regardless of your setting.",
+        },
+        {
+          heading: "Handling enums",
+          body: "OpenAPI enums are converted to TypeScript string literal union types (e.g., type Status = \"active\" | \"inactive\" | \"pending\"). This is more idiomatic in TypeScript than using the enum keyword, as it works better with type narrowing and doesn't generate any runtime JavaScript.",
+        },
+        {
+          heading: "Nullable and optional fields",
+          body: "Fields listed in the 'required' array become required TypeScript properties; others get the optional marker (?). The nullable: true flag adds '| null' to the type. You can also toggle 'all optional' to make every field optional, useful when generating types for PATCH endpoints or partial updates.",
+        },
+      ],
+      faqs: [
+        {
+          question:
+            "Should I use interfaces or type aliases for OpenAPI types?",
+          answer:
+            "Use interfaces for plain object schemas (they support declaration merging and are more readable). Use type aliases for schemas using allOf/oneOf/anyOf, as these require intersection or union types which can't be expressed with interfaces.",
+        },
+        {
+          question:
+            "How are additionalProperties converted to TypeScript?",
+          answer:
+            "OpenAPI additionalProperties maps to TypeScript's Record type. For example, additionalProperties: { type: string } becomes Record<string, string>. Untyped additionalProperties become Record<string, unknown>.",
+        },
+      ],
+      keywords: [
+        "openapi typescript interfaces",
+        "openapi generate interfaces",
+        "typescript interface from openapi",
+        "openapi schema typescript",
+        "openapi enum typescript",
+      ],
+      parentToolSlug: "openapi-to-typescript",
+      parentToolName: "OpenAPI to TypeScript Converter",
+    },
+  ],
 };

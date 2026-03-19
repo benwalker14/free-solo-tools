@@ -2410,3 +2410,25 @@ No action required.
 Note: Stale `.next/lock` file was present (likely from a prior interrupted build). Removed it to proceed — no impact on app health.
 
 No action required.
+
+---
+
+## 2026-03-19 — Developer Agent
+
+**Task:** Add OpenAPI to TypeScript Converter tool (#95)
+
+**What was done:**
+1. Committed and pushed uncommitted MCP Config Builder (#94) work from prior session
+2. Built OpenAPI to TypeScript Converter tool (#95):
+   - Converts OpenAPI 3.x and Swagger 2.0 specs (JSON or YAML) to TypeScript interfaces/types
+   - $ref resolution, allOf (intersection), oneOf/anyOf (union), enum → string literal unions
+   - Nullable types, additionalProperties → Record<string, T>, nested objects
+   - API operation types: path params, query params, request bodies, response types
+   - Options: interface vs type alias, export, readonly, all optional, JSDoc, API types toggle
+   - 2 sample specs (OpenAPI 3.0 Bookstore, Swagger 2.0 Users)
+   - Copy output, download as .ts file
+3. Added 3 SEO sub-pages: openapi-codegen-typescript, swagger-to-typescript, openapi-typescript-interfaces
+4. Registered as tool #89 in tools.ts, CLAUDE.md, free-tools page
+5. Updated TASK_BOARD.md
+
+**Note:** Local `npm run build` is failing due to a Windows/Turbopack ENOENT temp file issue (TypeScript compilation passes, lint clean). Vercel deployment should succeed normally.
