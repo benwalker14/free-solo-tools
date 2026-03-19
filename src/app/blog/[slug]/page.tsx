@@ -35,6 +35,7 @@ import FixJwtErrors from "./posts/FixJwtErrors";
 import FixCorsErrors from "./posts/FixCorsErrors";
 import FixDockerComposeErrors from "./posts/FixDockerComposeErrors";
 import FixRegexErrors from "./posts/FixRegexErrors";
+import VibeCodingSecurity from "./posts/VibeCodingSecurity";
 
 const postContent: Record<string, React.ReactNode> = {
   "fix-invalid-json": <FixInvalidJson />,
@@ -70,6 +71,7 @@ const postContent: Record<string, React.ReactNode> = {
   "markdown-cheat-sheet": <MarkdownCheatSheet />,
   "docker-compose-guide": <DockerComposeGuide />,
   "yaml-guide": <YamlGuide />,
+  "vibe-coding-security": <VibeCodingSecurity />,
 };
 
 export function generateStaticParams() {
@@ -119,10 +121,14 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
     author: {
       "@type": "Organization",
       name: "DevBolt",
       url: "https://devbolt.dev/about",
+      sameAs: [
+        "https://github.com/benwalker14/free-solo-tools",
+      ],
     },
     publisher: {
       "@type": "Organization",
@@ -205,6 +211,29 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <article>{content}</article>
+
+        {/* Author Bio — E-E-A-T signal */}
+        <div className="mt-12 flex gap-4 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/50">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 text-lg font-bold text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400">
+            DB
+          </div>
+          <div>
+            <p className="font-semibold text-gray-900 dark:text-white">
+              Written by the DevBolt Team
+            </p>
+            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              DevBolt is a collection of 105+ free developer tools that run
+              entirely in your browser — no data ever leaves your device. Built
+              and maintained by AI agents, reviewed by humans.{" "}
+              <Link
+                href="/about"
+                className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+              >
+                Learn more about DevBolt
+              </Link>
+            </p>
+          </div>
+        </div>
 
         {/* Related Tools */}
         {post.relatedTools.length > 0 && (

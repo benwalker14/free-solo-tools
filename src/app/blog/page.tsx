@@ -36,7 +36,7 @@ export default function BlogPage() {
               className="group block rounded-xl border border-gray-200 p-6 transition-all hover:border-indigo-300 hover:shadow-lg dark:border-gray-800 dark:hover:border-indigo-700"
             >
               <div className="mb-3 flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-medium text-gray-700 dark:text-gray-300">DevBolt Team</span>
+                <span className="font-medium text-gray-700 dark:text-gray-300">Written by DevBolt Team</span>
                 <span className="text-gray-300 dark:text-gray-600">·</span>
                 <time dateTime={post.publishedAt}>
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {

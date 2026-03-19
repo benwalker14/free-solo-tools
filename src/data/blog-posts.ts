@@ -544,6 +544,31 @@ export const blogPosts: BlogPost[] = [
       { title: "Kubernetes YAML Validator", href: "/tools/k8s-validator" },
     ],
   },
+  {
+    slug: "vibe-coding-security",
+    title: "Vibe Coding Security: How to Review AI-Generated Code for Vulnerabilities",
+    description:
+      "45% of AI-generated code contains vulnerabilities. This step-by-step guide covers how to review vibe-coded AI output for hardcoded secrets, injection, XSS, auth flaws, and complexity before shipping to production.",
+    publishedAt: "2026-03-19",
+    readTime: "14 min read",
+    tags: ["Security", "AI", "HowTo", "Code Review"],
+    relatedTools: [
+      { title: "AI Code Security Scanner", href: "/tools/code-security-scanner" },
+      { title: "Code Complexity Analyzer", href: "/tools/code-complexity-analyzer" },
+      { title: "JWT Decoder", href: "/tools/jwt-decoder" },
+      { title: ".env File Validator", href: "/tools/env-validator" },
+    ],
+    howToSteps: [
+      { name: "Scan for known vulnerability patterns", text: "Run the AI-generated code through an automated security scanner to catch hardcoded secrets, dangerous functions like eval(), SQL injection via string interpolation, and common anti-patterns. This catches low-hanging fruit in seconds." },
+      { name: "Check for hardcoded secrets and credentials", text: "Search for API keys, database passwords, JWT secrets, and connection strings hardcoded in the source. Replace them with environment variables and validate your .env file structure." },
+      { name: "Validate all user inputs", text: "Verify that every value from request bodies, query parameters, URL paths, and headers is validated before use. Look for string interpolation in SQL queries, eval() with user input, innerHTML with unsanitized data, and file paths from user input." },
+      { name: "Review authentication and authorization", text: "Check that JWT tokens are verified (not just decoded), algorithms are explicitly specified, role-based access controls exist on every endpoint, and cookies have httpOnly, secure, and sameSite attributes." },
+      { name: "Check for cross-site scripting (XSS)", text: "Look for innerHTML, dangerouslySetInnerHTML, and document.write with unsanitized user data. Use textContent for text rendering or sanitize HTML with DOMPurify before rendering." },
+      { name: "Audit dependencies and imports", text: "Verify that suggested packages exist, are actively maintained, and have no known vulnerabilities. Run npm audit after installing. Watch for hallucinated package names that could be typosquat targets." },
+      { name: "Test error handling for information leakage", text: "Ensure error responses do not expose stack traces, SQL queries, file paths, or server configuration to clients. Log full errors server-side but return generic messages to users." },
+      { name: "Measure code complexity", text: "Use a complexity analyzer to check cyclomatic complexity (keep under 10), cognitive complexity (keep under 15), and nesting depth (keep under 4). High complexity functions are statistically more likely to contain bugs including security bugs." },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {

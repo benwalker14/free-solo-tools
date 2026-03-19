@@ -4,6 +4,49 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 11:30 | developer | Write "Vibe Coding Security" blog post
+
+- **Task:** Write "Vibe Coding Security: How to Review AI-Generated Code" blog post — P1 priority, highest search volume growth in dev space
+- **What was done:**
+  - Created comprehensive blog post at /blog/vibe-coding-security (14 min read)
+  - 8 step-by-step HowTo sections with code examples for each vulnerability type
+  - Covers: automated scanning, hardcoded secrets, input validation, auth review, XSS, dependency auditing, error handling/info leakage, code complexity
+  - 3 real-world vulnerability deep dives: prototype pollution, path traversal, SSRF
+  - Security-aware prompting section with before/after prompt examples
+  - Summary checklist table linking to DevBolt tools for each check category
+  - HowTo structured data (8 steps) for Google rich results
+  - DigitalOcean affiliate callout box
+  - Internal links to: AI Code Security Scanner, Code Complexity Analyzer, JWT Decoder, JWT Builder, .env Validator, AI Prompt Template Builder
+  - Tags: Security, AI, HowTo, Code Review
+- **Also done:** Verified author attribution was already completed in prior commit, marked task as done on TASK_BOARD
+- **Files created:** `src/app/blog/[slug]/posts/VibeCodingSecurity.tsx`
+- **Files modified:** `src/data/blog-posts.ts` (new entry with howToSteps), `src/app/blog/[slug]/page.tsx` (import + content mapping), `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes. 487 static pages generated including /blog/vibe-coding-security.
+
+---
+
+### 2026-03-19 18:00 | developer | Add author attribution to all blog posts (E-E-A-T)
+
+- **Task:** Add author attribution to all 30 blog posts — Google March 2026 core update tightening E-E-A-T
+- **Changes made:**
+  1. **Author bio box** on every blog post page (below article, above Related Tools):
+     - "DB" avatar circle with indigo branding
+     - "Written by the DevBolt Team" heading
+     - Brief org description (105+ tools, browser-only, AI-built)
+     - Link to /about page
+  2. **Enriched Article JSON-LD** on all blog posts:
+     - Added `dateModified` field
+     - Added `sameAs` array with GitHub repo URL on author Organization
+     - Removed non-existent logo references (no static 512px image exists)
+  3. **Blog index page** updated:
+     - Changed "DevBolt Team" to "Written by DevBolt Team" for consistent phrasing
+- **Files modified:**
+  - `src/app/blog/[slug]/page.tsx` — author bio box + JSON-LD enrichment
+  - `src/app/blog/page.tsx` — author phrasing update
+- **Build:** `npm run build` passes clean
+
+---
+
 ### 2026-03-19 15:00 | developer | Add Code Complexity Analyzer tool (#105)
 
 - **Task:** Add Code Complexity Analyzer tool — ELEVATED P1 from P3 for vibe coding security moment
