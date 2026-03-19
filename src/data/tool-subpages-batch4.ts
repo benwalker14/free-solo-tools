@@ -4492,4 +4492,151 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Git Diff Viewer",
     },
   ],
+
+  "sql-to-typescript": [
+    {
+      slug: "sql-to-prisma-schema",
+      title: "SQL to Prisma Schema Generator",
+      metaTitle: "SQL to Prisma Schema Generator — Free Online Tool | DevBolt",
+      metaDescription:
+        "Convert SQL CREATE TABLE statements to Prisma schema models with @id, @default, @unique, @map, and @db annotations. Free client-side converter.",
+      h1: "SQL to Prisma Schema Generator",
+      intro:
+        "Generate Prisma schema models directly from your SQL DDL. This tool parses CREATE TABLE statements and produces Prisma models with correct types, decorators, and field mappings.",
+      content: [
+        {
+          heading: "What is Prisma Schema?",
+          body: "Prisma schema is the central configuration file for Prisma ORM. It defines your data models, their fields, types, and relationships using a declarative syntax. Each model maps to a database table, and Prisma uses the schema to generate a type-safe query client for TypeScript and JavaScript applications.",
+        },
+        {
+          heading: "How the converter maps SQL to Prisma",
+          body: "The converter maps SQL column types to Prisma scalar types: INT becomes Int, VARCHAR becomes String, BOOLEAN becomes Boolean, TIMESTAMP becomes DateTime, DECIMAL becomes Decimal, and JSON/JSONB becomes Json. Constraints like PRIMARY KEY map to @id, UNIQUE to @unique, DEFAULT to @default, and AUTO_INCREMENT to @default(autoincrement()). Column names are converted to camelCase with @map annotations preserving the original SQL name.",
+        },
+        {
+          heading: "Prisma annotations generated",
+          body: "The tool generates @id for primary keys, @unique for unique constraints, @default(autoincrement()) for serial/auto-increment columns, @default(now()) for timestamp defaults, @default(uuid()) for UUID generation, @map for column name mapping, @db.* annotations for database-specific types (e.g., @db.VarChar(255), @db.Uuid, @db.Timestamptz), and @@index/@@unique for table-level indexes.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does this tool handle foreign key relationships?",
+          answer:
+            "The tool detects REFERENCES and FOREIGN KEY constraints and annotates columns accordingly. For full Prisma relation fields, you may need to add relation annotations manually since Prisma relations require both sides of the relationship to be defined.",
+        },
+        {
+          question: "Which SQL dialects are supported?",
+          answer:
+            "The parser handles PostgreSQL, MySQL, and SQLite CREATE TABLE syntax including quoted identifiers (backticks and double quotes), multi-word types like TIMESTAMP WITH TIME ZONE, and dialect-specific features like SERIAL, AUTO_INCREMENT, and AUTOINCREMENT.",
+        },
+      ],
+      keywords: [
+        "sql to prisma",
+        "sql to prisma schema",
+        "create table to prisma",
+        "prisma schema generator",
+        "convert sql to prisma",
+        "prisma model generator",
+      ],
+      parentToolSlug: "sql-to-typescript",
+      parentToolName: "SQL to TypeScript/Prisma/Drizzle",
+    },
+    {
+      slug: "sql-to-drizzle-schema",
+      title: "SQL to Drizzle ORM Schema Generator",
+      metaTitle:
+        "SQL to Drizzle ORM Schema Generator — Free Online Tool | DevBolt",
+      metaDescription:
+        "Convert SQL CREATE TABLE statements to Drizzle ORM table definitions for pgTable, mysqlTable, and sqliteTable. Free online converter.",
+      h1: "SQL to Drizzle ORM Schema Generator",
+      intro:
+        "Generate Drizzle ORM table definitions from SQL DDL. Select your database dialect and get correctly typed pgTable, mysqlTable, or sqliteTable definitions with column types, constraints, and references.",
+      content: [
+        {
+          heading: "What is Drizzle ORM?",
+          body: "Drizzle ORM is a lightweight, type-safe TypeScript ORM that provides a SQL-like query builder. Unlike Prisma, Drizzle schema definitions are written in TypeScript using helper functions like pgTable, mysqlTable, and sqliteTable. Each table is defined as a JavaScript object with column definitions that map directly to database columns.",
+        },
+        {
+          heading: "How the converter generates Drizzle schemas",
+          body: "The converter maps SQL types to Drizzle column functions: integer(), varchar(), text(), boolean(), timestamp(), serial(), uuid(), json(), jsonb(), numeric(), real(), doublePrecision(), and more. Constraints are added as method chains: .primaryKey(), .notNull(), .unique(), .default(), and .references(). The output uses the correct import path based on your selected dialect (drizzle-orm/pg-core, drizzle-orm/mysql-core, or drizzle-orm/sqlite-core).",
+        },
+        {
+          heading: "Drizzle vs Prisma schema",
+          body: "Drizzle schema is pure TypeScript code, making it easy to compose, generate, and version control alongside your application. Prisma uses its own DSL (.prisma files) that requires a separate code generation step. Drizzle provides a thinner abstraction over SQL, while Prisma offers a more opinionated data access layer. Choose based on your project's needs.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does the converter handle dialect-specific types?",
+          answer:
+            "Yes. The converter generates different column functions based on your selected dialect. PostgreSQL gets functions like uuid(), jsonb(), and timestamp with timezone support. MySQL gets int(), datetime(), and varchar with required length. SQLite maps everything to integer(), text(), real(), or blob().",
+        },
+        {
+          question: "Are foreign key references included?",
+          answer:
+            "Yes. Both inline REFERENCES and table-level FOREIGN KEY constraints are detected and converted to Drizzle .references(() => tableName.columnName) calls, maintaining referential integrity in your schema definition.",
+        },
+      ],
+      keywords: [
+        "sql to drizzle",
+        "sql to drizzle orm",
+        "create table to drizzle",
+        "drizzle schema generator",
+        "convert sql to drizzle",
+        "drizzle orm table definition",
+      ],
+      parentToolSlug: "sql-to-typescript",
+      parentToolName: "SQL to TypeScript/Prisma/Drizzle",
+    },
+    {
+      slug: "sql-type-mapping",
+      title: "SQL to TypeScript Type Mapping Reference",
+      metaTitle:
+        "SQL to TypeScript Type Mapping Reference — Free Online Tool | DevBolt",
+      metaDescription:
+        "Complete SQL to TypeScript type mapping reference. See how INT, VARCHAR, BOOLEAN, TIMESTAMP, JSON, UUID, and other SQL types map to TypeScript types.",
+      h1: "SQL to TypeScript Type Mapping Reference",
+      intro:
+        "A comprehensive reference for mapping SQL column types to TypeScript types. Use this guide when building TypeScript interfaces from database schemas or when working with ORMs like Prisma and Drizzle.",
+      content: [
+        {
+          heading: "Numeric types",
+          body: "SQL INT, INTEGER, SMALLINT, TINYINT, MEDIUMINT, BIGINT, SERIAL, and BIGSERIAL all map to TypeScript number. FLOAT, DOUBLE, DOUBLE PRECISION, REAL, NUMERIC, and DECIMAL also map to number. In Prisma, integers map to Int or BigInt, while decimals map to Decimal or Float. For JavaScript safety with very large integers (BIGINT), consider using BigInt type instead of number.",
+        },
+        {
+          heading: "String and text types",
+          body: "VARCHAR(n), CHAR(n), TEXT, and all text variants (TINYTEXT, MEDIUMTEXT, LONGTEXT) map to TypeScript string. UUID also maps to string since TypeScript has no built-in UUID type. ENUM types typically map to string, though you can use string literal union types for type safety (e.g., 'active' | 'inactive').",
+        },
+        {
+          heading: "Date, time, and boolean types",
+          body: "TIMESTAMP, TIMESTAMPTZ, DATETIME, DATE, TIME, and TIME WITH TIME ZONE all map to TypeScript Date. BOOLEAN and BOOL map to boolean. In Prisma, date types map to DateTime and boolean types map to Boolean. Drizzle preserves the specific column type function (timestamp, date, time) for accurate database mapping.",
+        },
+        {
+          heading: "JSON and binary types",
+          body: "JSON and JSONB map to TypeScript Record<string, unknown> (or you can use a more specific type). BYTEA, BLOB, BINARY, and VARBINARY map to Buffer. In Prisma, JSON types map to Json and binary types map to Bytes. When working with JSON columns, consider defining a specific TypeScript interface for the expected shape of the JSON data.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I use number or BigInt for BIGINT columns?",
+          answer:
+            "JavaScript numbers are safe up to 2^53 - 1 (Number.MAX_SAFE_INTEGER). If your BIGINT values exceed this range, use the TypeScript bigint type. For most applications (auto-increment IDs, timestamps), number is sufficient. Prisma uses BigInt type for BIGINT columns by default.",
+        },
+        {
+          question: "How should I handle nullable columns in TypeScript?",
+          answer:
+            "There are two common patterns: use union types (field: string | null) for explicit nullability, or use optional properties (field?: string) for fields that may be absent. The union type approach is more precise since it distinguishes between 'not set' and 'explicitly null'. Most ORMs including Prisma use the optional (?) pattern.",
+        },
+      ],
+      keywords: [
+        "sql to typescript types",
+        "sql typescript type mapping",
+        "sql type to typescript",
+        "database types to typescript",
+        "sql column types typescript",
+        "prisma type mapping",
+      ],
+      parentToolSlug: "sql-to-typescript",
+      parentToolName: "SQL to TypeScript/Prisma/Drizzle",
+    },
+  ],
 };

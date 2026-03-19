@@ -790,4 +790,12 @@ export const tools: Tool[] = [
     icon: "GDV",
     category: "Inspect",
   },
+  {
+    title: "SQL to TypeScript/Prisma/Drizzle",
+    description:
+      "Convert SQL CREATE TABLE statements to TypeScript interfaces, Prisma schema, and Drizzle ORM definitions for PostgreSQL, MySQL, and SQLite",
+    href: "/tools/sql-to-typescript",
+    icon: "SQL",
+    category: "Convert",
+  },
 ];
