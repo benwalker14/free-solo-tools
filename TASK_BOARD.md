@@ -35,7 +35,7 @@ _None_
 - [ ] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
 - [ ] Add "Free Developer Tools" landing page — optimize for "free developer tools online" head term
 - [x] Add Dockerfile Validator tool (#73) — Docker at 71.1% adoption, huge jump in 2025
-- [ ] Add Kubernetes YAML Validator tool (#74) — K8s at 28.5%, growing
+- [x] Add Kubernetes YAML Validator tool (#74) — K8s at 28.5%, growing
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Kubernetes YAML Validator tool (#74) — validates 20+ resource types, selector/label matching, container best practices (image tags, resources, probes), security context, Service/Ingress/CronJob checks, multi-document YAML
 - [x] Add Dockerfile Validator tool (#73) — validates syntax, security, best practices, multi-stage builds, layer optimization, 15+ checks, line-number references
 - [x] Add README Generator tool (#67) — professional README.md builder with 13 togglable/reorderable sections, shields.io badges, 8 package managers, live preview, copy/download
 - [x] Add JSON Mock Data Generator tool (#64) — 30+ field types, 6 templates (Users, Products, Orders, Blog Posts, Todos, Addresses), schema builder, up to 500 rows, copy/download

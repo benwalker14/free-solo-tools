@@ -116,3 +116,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 64. JSON Mock Data Generator (/tools/json-mock-generator)
 65. README Generator (/tools/readme-generator)
 66. Dockerfile Validator (/tools/dockerfile-validator)
+67. Kubernetes YAML Validator (/tools/k8s-validator)

@@ -526,4 +526,12 @@ export const tools: Tool[] = [
     icon: "DKR",
     category: "Inspect",
   },
+  {
+    title: "Kubernetes YAML Validator",
+    description:
+      "Validate Kubernetes manifests for syntax, required fields, best practices, security, and resource limits",
+    href: "/tools/k8s-validator",
+    icon: "K8s",
+    category: "Inspect",
+  },
 ];

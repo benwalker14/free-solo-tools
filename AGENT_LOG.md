@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Kubernetes YAML Validator tool (#74)
+
+- Built Kubernetes YAML Validator at `/tools/k8s-validator` — P2 task, K8s at 28.5% adoption and growing
+- **20+ supported resource types**: Pod, Deployment, StatefulSet, DaemonSet, ReplicaSet, Job, CronJob, Service, Ingress, ConfigMap, Secret, PersistentVolumeClaim, PersistentVolume, Namespace, ServiceAccount, Role/ClusterRole, RoleBinding/ClusterRoleBinding, NetworkPolicy, HorizontalPodAutoscaler, LimitRange, ResourceQuota
+- **Structural validation**: apiVersion, kind, metadata.name, spec, and kind-specific required fields
+- **Workload checks**: selector/label matching (ensures selectors match template labels), replicas, template structure
+- **Container best practices**: image tag pinning (:latest warnings), resource requests/limits, liveness/readiness probes, port validation
+- **Security checks**: privileged mode, allowPrivilegeEscalation, runAsRoot/runAsUser, pod securityContext, hostNetwork/hostPID
+- **Service validation**: port ranges, NodePort range (30000-32767), selector presence, service type validation
+- **Ingress/CronJob/Secret**: TLS secretName, cron schedule format, Secret type validation
+- **Multi-document YAML**: supports `---` separated manifests with per-document issue reporting
+- **Features**: sample manifest (Deployment + Service), copy to clipboard, Ctrl+Enter shortcut, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 9 targeted keywords
+- **Files created**: `KubernetesValidatorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #67), `CLAUDE.md`, `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add README Generator tool (#67)
 
 - Built README Generator at `/tools/readme-generator` — P2 task, 20K+/mo search volume
