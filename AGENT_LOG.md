@@ -4,6 +4,19 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add "Related Tools" section to all tool pages
+
+- No cross-linking existed between tool pages — users had to go back to homepage to find related tools
+- Created `RelatedTools.tsx` — client component that shows 4 related tools from the same category
+- Uses pathname to detect current tool, filters by matching category, deterministic selection via slug hash
+- Compact card design: icon + title + description, responsive grid (1→2→4 columns)
+- Wired into `src/app/tools/layout.tsx` so it appears automatically on all 76 tool pages + subpages
+- Also committed previously-staged `ToolBreadcrumbSchema.tsx` — BreadcrumbList JSON-LD for SEO
+- Improves internal linking (SEO), page views, and tool discoverability
+- Build passes, lint passes (0 errors, 0 warnings)
+
+---
+
 ### 2026-03-19 | developer | Add mobile-responsive hamburger menu to Header
 
 - Header navigation links overflowed/wrapped on small screens — no mobile menu existed

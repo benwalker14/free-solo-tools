@@ -34,6 +34,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add AI-assisted Regex Generator tool (#57) — describe patterns in English, strong differentiator
 - [x] Add JavaScript/TypeScript Playground tool (#60) — run JS in-browser, popular with learners
 - [x] Add Open Graph Preview / Debugger tool (#61) — complements Meta Tag Generator
+- [x] Add "Related Tools" section to all tool pages — auto-generated cross-links by category, improves internal linking and tool discovery
 - [ ] Build Chrome Extension — top 5 tools quick access, free distribution via Chrome Web Store
 - [x] Update homepage tagline to emphasize privacy-first positioning
 - [x] Add contextual affiliate links in blog posts (DigitalOcean, Cloudways, Netlify)
@@ -56,6 +57,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add "Related Tools" section to all 76 tool pages — auto-generated cross-links showing 4 tools from the same category (Format/Convert/Generate/Inspect), deterministic selection based on slug hash, compact card design with icons and descriptions, wired via tools layout so it appears on every tool page and subpage automatically. Also committed BreadcrumbList JSON-LD schema for all tool pages
 - [x] Add global command palette (Ctrl+K / Cmd+K) — modal search overlay available on every page, searches all 76 tools by title/description/category, keyboard navigation (arrow keys + Enter), accessible ARIA roles, category badges, ESC to close, search button in header with platform-aware shortcut hint
 - [x] Add contextual affiliate links in all 15 blog posts — DigitalOcean (Docker Best Practices, Docker Compose, YAML Guide, UUID Guide, cURL Guide, JSON Validation, JSON Schema Guide), Cloudways (Password Security, JWT Tutorial, Base64 Explained, Regex Cheat Sheet), Netlify (CSS Grid, Flexbox, .gitignore Guide, Markdown Cheat Sheet). Blue callout boxes with `rel="noopener sponsored"`
 - [x] Fix 3 lint warnings — missing useCallback dependency in FileHashTool, unused variables in K8s/OpenAPI validators. Added `argsIgnorePattern: "^_"` to ESLint config. 0 errors, 0 warnings

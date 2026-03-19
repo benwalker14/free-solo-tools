@@ -1,4 +1,5 @@
 import ToolBreadcrumbSchema from "@/components/ToolBreadcrumbSchema";
+import RelatedTools from "@/components/RelatedTools";
 
 export default function ToolsLayout({
   children,
@@ -9,6 +10,7 @@ export default function ToolsLayout({
     <>
       <ToolBreadcrumbSchema />
       {children}
+      <RelatedTools />
     </>
   );
 }
