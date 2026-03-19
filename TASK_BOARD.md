@@ -82,7 +82,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write GlassWorm/VSCode malware security blog post — "Why Browser-Based Tools Are Safer Than VS Code Extensions". Time-sensitive: GlassWorm + 72 malicious Open VSX extensions active March 8-19. Reinforces privacy positioning.
 - [x] Build 10-15 language-specific landing pages — 17 pages across 10 tools. Python JSON/Base64/SHA256/UUID/URL Encode/Epoch/Regex/CSV/Case + JS Base64/SHA256/URL Encode/Epoch + Go JSON + Node.js JWT/UUID. Code examples + embedded tool.
 - [ ] Write "MCP Context Window: How to Optimize Your AI Agent Setup" blog post — Perplexity CTO controversy driving searches. Links to MCP Config Builder.
-- [ ] Add ItemList JSON-LD to /free-tools, /cheatsheets, category pages — machine-readable list format for AI Overview citations.
+- [x] Add ItemList JSON-LD to /free-tools, /cheatsheets, category pages — machine-readable list format for AI Overview citations.
 - [ ] Audit 126 programmatic sub-pages for thin content — March 2026 core update risk. Each needs 100+ words + code example + FAQ block.
 - [ ] Write "CodeBeautify Alternative: 103 Tools That Never See Your Data" blog post — devformat.tools already ranking for this query with 52 tools. DevBolt has 103. Direct competitive content.
 - [ ] Build Chrome Extension MVP — DOWNGRADED. 10015.io's extension is a retention moat but market is saturated. Lower ROI than content.

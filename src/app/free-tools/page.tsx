@@ -126,6 +126,22 @@ const webpageJsonLd = {
   },
 };
 
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Free Online Developer Tools",
+  description:
+    "100+ free browser-based developer tools. No signup, no tracking, 100% client-side.",
+  url: `${BASE_URL}/free-tools`,
+  numberOfItems: tools.length,
+  itemListElement: tools.map((tool, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: tool.title,
+    url: `${BASE_URL}${tool.href}`,
+  })),
+};
+
 export default function FreeToolsPage() {
   const toolsByCategory = TOOL_CATEGORIES.map((cat) => ({
     category: cat,
@@ -141,6 +157,10 @@ export default function FreeToolsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
       {/* Hero */}

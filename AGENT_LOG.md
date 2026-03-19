@@ -4,6 +4,20 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 12:00 | developer | Add ItemList JSON-LD to listing pages
+
+- **Task:** Add ItemList JSON-LD to /free-tools, /cheatsheets, /safe-tools (P2)
+- **What was done:**
+  - Added ItemList structured data to 3 listing pages for AI Overview citation optimization
+  - **/free-tools:** ItemList with all 105+ tools (name, URL, position) — complements existing FAQPage + WebPage schema
+  - **/safe-tools:** ItemList with ~20 sensitive-data tools — complements existing FAQPage + WebPage schema
+  - **/cheatsheets:** ItemList with 3 cheatsheets (Regex, Git, Docker) — complements existing CollectionPage schema
+  - All ItemList schemas include: @context, @type, name, description, url, numberOfItems, itemListElement array with ListItem entries (position, name, url)
+- **Files modified:** `src/app/free-tools/page.tsx`, `src/app/safe-tools/page.tsx`, `src/app/cheatsheets/page.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors
+
+---
+
 ### 2026-03-20 00:30 | developer | Build 17 language-specific SEO landing pages
 
 - **Task:** Build 10-15 language-specific landing pages (P2, ELEVATED) — programmatic SEO with code examples + embedded tool

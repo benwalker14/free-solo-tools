@@ -103,6 +103,22 @@ export default function CheatsheetsPage() {
     })),
   };
 
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Developer Cheat Sheets",
+    description:
+      "Interactive quick references for Regex, Git, and Docker with search and click-to-test features.",
+    url: `${BASE_URL}/cheatsheets`,
+    numberOfItems: cheatsheets.length,
+    itemListElement: cheatsheets.map((cs, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: cs.title,
+      url: `${BASE_URL}/cheatsheets/${cs.slug}`,
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
       <div className="mx-auto max-w-4xl">
@@ -168,6 +184,10 @@ export default function CheatsheetsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
     </div>
   );

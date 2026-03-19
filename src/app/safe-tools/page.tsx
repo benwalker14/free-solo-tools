@@ -162,6 +162,22 @@ const webpageJsonLd = {
   },
 };
 
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Safe Developer Tools for Sensitive Data",
+  description:
+    "Client-side developer tools safe for API keys, tokens, passwords, and credentials. Your data never leaves your browser.",
+  url: `${BASE_URL}/safe-tools`,
+  numberOfItems: safeTools.length,
+  itemListElement: safeTools.map((tool, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: tool.title,
+    url: `${BASE_URL}${tool.href}`,
+  })),
+};
+
 export default function SafeToolsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
@@ -172,6 +188,10 @@ export default function SafeToolsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
       {/* Hero */}
