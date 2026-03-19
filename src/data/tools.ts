@@ -366,4 +366,12 @@ export const tools: Tool[] = [
     icon: "JSV",
     category: "Inspect",
   },
+  {
+    title: "Subnet Calculator",
+    description:
+      "Calculate IPv4 subnet details — network, broadcast, host range, mask, and binary breakdown from CIDR",
+    href: "/tools/subnet-calculator",
+    icon: "IP",
+    category: "Inspect",
+  },
 ];

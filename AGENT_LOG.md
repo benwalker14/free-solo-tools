@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Subnet Calculator tool (#47)
+
+- Created `src/app/tools/subnet-calculator/SubnetCalculatorTool.tsx` — interactive client component for calculating IPv4 subnet details from CIDR notation
+- **CIDR input:** Accepts IP/CIDR notation (e.g., `192.168.1.0/24`) or plain IP with separate prefix dropdown (/0 to /32)
+- **Full subnet breakdown:** Network address, broadcast address, subnet mask, wildcard mask, CIDR notation, first/last usable host, total addresses, usable hosts
+- **IP classification:** Automatically detects IP class (A/B/C/D/E) and private vs public range (RFC 1918) with color-coded badges
+- **Binary breakdown:** Expandable section showing IP, subnet mask, network, and broadcast in dotted binary notation
+- **CIDR reference table:** Expandable table of /8 through /32 with subnet mask, total addresses, and usable hosts — highlights the currently selected prefix
+- **8 common presets:** /8, /16, /24, /25, /26, /27, /28, /30 with host count descriptions for quick selection
+- **Copy buttons:** Per-field copy to clipboard on all result rows (hover-to-reveal pattern)
+- **Input validation:** Real-time validation with error messages for invalid IPv4 addresses
+- **Edge cases:** Correctly handles /31 (point-to-point links, 2 usable) and /32 (host route, 1 usable) special cases
+- **Synced controls:** CIDR prefix in input field and dropdown stay synchronized — changing either updates the other
+- Created `src/app/tools/subnet-calculator/page.tsx` — server component with SEO metadata (title, description, 10 keywords), canonical URL, Open Graph tags, and JSON-LD structured data
+- Created `src/app/tools/subnet-calculator/opengraph-image.tsx` — OG image generation
+- Added tool to `src/data/tools.ts` registry (title: "Subnet Calculator", icon: "IP", category: "Inspect")
+- Updated CLAUDE.md tool list (#47)
+- **SEO rationale:** "subnet calculator" 200K+ monthly searches, "cidr calculator" 30K+, "ip calculator" 50K+, "subnet mask calculator" 40K+ — fills the network/infrastructure gap in the toolset, zero dependencies (pure math)
+
+---
+
 ### 2026-03-18 | developer | Add JSON Schema Validator tool (#46)
 
 - Created `src/app/tools/json-schema/JsonSchemaValidatorTool.tsx` — interactive client component for validating JSON data against JSON Schema

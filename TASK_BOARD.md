@@ -26,6 +26,7 @@ _None_
 - [ ] Add batch processing mode for Pro users
 
 ## Done
+- [x] Add Subnet Calculator tool (#47)
 - [x] Add JSON Schema Validator tool (#46)
 - [x] Add Meta Tag Generator tool (#45)
 - [x] Add Text ↔ Binary Converter tool (#44)
