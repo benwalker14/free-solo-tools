@@ -2097,4 +2097,26 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "The CSS aspect-ratio property (e.g., aspect-ratio: 16 / 9) tells the browser to maintain a specific width-to-height proportion for an element. It replaced the old padding-top hack for responsive containers. Supported in all modern browsers since 2021. Combined with width: 100% and object-fit: cover, it is the cleanest way to create responsive images and video embeds that never distort.",
     },
   ],
+  "clip-path": [
+    {
+      question: "What is the CSS clip-path property?",
+      answer:
+        "The clip-path CSS property clips an element to a defined shape, hiding everything outside that shape. It supports four basic shape functions: circle(), ellipse(), inset() (rectangles with optional rounding), and polygon() (arbitrary shapes with any number of vertices). Unlike overflow: hidden which only clips to the element's box, clip-path can create non-rectangular visible areas like triangles, stars, and custom polygons.",
+    },
+    {
+      question: "How do I create a triangle with clip-path?",
+      answer:
+        "Use polygon() with three coordinate pairs: clip-path: polygon(50% 0%, 0% 100%, 100% 100%). The first value in each pair is the X position (left to right) and the second is the Y position (top to bottom), both as percentages of the element's dimensions. Adjust the coordinates to change the triangle's shape — for example, polygon(0% 0%, 100% 50%, 0% 100%) creates a right-pointing arrow triangle.",
+    },
+    {
+      question: "Does clip-path affect layout and click events?",
+      answer:
+        "Clip-path only changes the visible area — it does not affect the element's box model or layout. The element still occupies its full rectangular space in the document flow. However, by default pointer events (clicks, hovers) still fire on the clipped-away areas. To restrict interaction to the visible shape, add pointer-events: none to the clipped element and handle events on a child, or use the clip-path on a wrapper.",
+    },
+    {
+      question: "Is clip-path supported in all browsers?",
+      answer:
+        "Yes, clip-path with basic shapes (circle, ellipse, inset, polygon) is supported in all modern browsers including Chrome, Firefox, Safari, and Edge. Safari versions before 13.1 require the -webkit-clip-path prefix. The url() function referencing SVG clipPath elements has broader legacy support. For older browsers, you can use the -webkit- prefix version as a fallback — this generator provides a copy option with the prefix included.",
+    },
+  ],
 };

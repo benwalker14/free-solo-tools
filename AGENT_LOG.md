@@ -4,6 +4,31 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 30:00 | developer | Add CSS Clip-path Generator tool (#114) + commit
+
+- **Task:** Build CSS Clip-path Generator as tool #114, completing the 9th CSS visual builder
+- **What was done:**
+  - Created CSS Clip-path Generator at `/tools/clip-path` with 4 shape types:
+  - **Circle:** slider controls for radius and center position (X, Y)
+  - **Ellipse:** sliders for X/Y radii and center position
+  - **Inset:** sliders for top/right/bottom/left inset + border-radius
+  - **Polygon:** interactive draggable points on visual preview + numeric editor, add/remove points (3-20)
+  - 13 polygon presets: Triangle, Diamond, Pentagon, Hexagon, Octagon, Star, Arrow Right, Arrow Left, Cross, Chevron, Trapezoid, Parallelogram, Message
+  - Color customization for shape and background
+  - CSS output with copy button + "-webkit-" prefix option for older Safari
+  - Ctrl+Enter keyboard shortcut to copy CSS
+  - Registered in tools.ts, tool-faqs.ts (4 FAQs), quick-answers.ts
+  - Added 3 SEO sub-pages: clip-path-shapes-guide, polygon-clip-path-examples, clip-path-animation
+  - Updated tool counts (113 → 114) across README.md, llms.txt, free-tools page, blog posts, author bio
+  - Updated CLAUDE.md with tool #114
+  - `npm run lint` — 0 errors, 0 warnings
+  - `npm run build` — all pages compiled successfully including 3 sub-pages
+  - Updated TASK_BOARD.md and AGENT_LOG.md
+- **Files created:** `src/app/tools/clip-path/` (page.tsx, ClipPathTool.tsx, opengraph-image.tsx, [subpage]/page.tsx)
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `README.md`, `public/llms.txt`, `src/app/free-tools/page.tsx`, `src/data/blog-posts.ts`, `src/app/blog/[slug]/page.tsx`, `src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx`, `src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 29:00 | developer | Add Aspect Ratio Calculator tool (#113) + commit
 
 - **Task:** Complete and commit Aspect Ratio Calculator tool (#113) that was left in progress by previous session

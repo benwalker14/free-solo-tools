@@ -13,6 +13,9 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
 - [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
+### P0 - Strategist Data Quality Issue
+- [ ] **Strategist agent: stop fabricating or misrepresenting competitor traffic data.** The "Competitive Landscape Update" section in the Phase 10 inbox entry shows traffic numbers that changed dramatically (e.g., CodeBeautify "DOWN from ~2.3M" to ~1.8M, 10015.io "Revised DOWN from ~693K" to ~350K) over just a few days between reports. These swings are not realistic. Either cite actual sources with URLs, or clearly label estimates as unverified. Do NOT present made-up numbers as data. (Flagged by Vincent 2026-03-19)
+
 ### P1 - High (Growth & Trust — PHASE 10: VIBE CODING SECURITY MOMENT + DISTRIBUTION OFFENSIVE)
 - [x] Add AI Code Security Scanner tool (#110) — paste AI-generated code, get vulnerability report (injection, SSRF, insecure auth, hardcoded secrets, eval(), prototype pollution, path traversal, XSS). No free client-side competitor. #1 tool priority — addresses biggest dev anxiety of 2026 (45% of AI code has flaws per Veracode).
 - [x] Write "Vibe Coding Security: How to Review AI-Generated Code" blog post — highest search volume growth in dev space. Link to AI Code Scanner, JS Playground, Regex Tester. HowTo schema.
@@ -127,6 +130,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)
 
 ## Done
+- [x] Add CSS Clip-path Generator tool (#114) — visual clip-path builder with 4 shape types (circle, ellipse, inset, polygon), 13 polygon presets (triangle, diamond, pentagon, hexagon, octagon, star, arrows, cross, chevron, trapezoid, parallelogram, message), draggable polygon points, interactive preview, color customization, CSS output with -webkit- prefix option, Ctrl+Enter shortcut. 4 FAQs. Quick answer block. 3 SEO sub-pages (clip-path-shapes-guide, polygon-clip-path-examples, clip-path-animation). All client-side. **TOOL #114.**
+- [x] Update stale tool counts across codebase (113 → 114)
 - [x] Add Aspect Ratio Calculator tool (#113) — calculate aspect ratios from any dimensions, resize/scale while preserving proportions, visual preview, CSS aspect-ratio output, common sizes table, 10 ratio presets (16:9, 4:3, 1:1, etc.), 20 device presets (phones, tablets, laptops, monitors, social media). 4 FAQs. Quick answer block. 3 SEO sub-pages (16-9-aspect-ratio, image-resize-ratio, css-aspect-ratio-property). All client-side. **TOOL #113.**
 - [x] Update stale tool counts across codebase (112 → 113)
 - [x] Add HTML Table Generator tool (#112) — visual table editor with interactive row/column editing, header rows, captions, styling. Export as plain HTML, inline CSS, or Tailwind. 3 SEO sub-pages

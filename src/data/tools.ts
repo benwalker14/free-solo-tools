@@ -902,4 +902,12 @@ export const tools: Tool[] = [
     icon: "⊞",
     category: "Inspect",
   },
+  {
+    title: "CSS Clip-path Generator",
+    description:
+      "Create CSS clip-path shapes visually — circle, ellipse, inset, or polygon with draggable points. 13 shape presets, interactive preview, and production-ready CSS output",
+    href: "/tools/clip-path",
+    icon: "✂",
+    category: "Generate",
+  },
 ];

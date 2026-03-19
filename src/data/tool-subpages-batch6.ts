@@ -2154,4 +2154,162 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Aspect Ratio Calculator",
     },
   ],
+  "clip-path": [
+    {
+      slug: "clip-path-shapes-guide",
+      title: "CSS Clip-path Shapes Guide",
+      metaTitle:
+        "CSS Clip-path Shapes Guide — Circle, Ellipse, Polygon Examples | DevBolt",
+      metaDescription:
+        "Learn how to use CSS clip-path with circle(), ellipse(), inset(), and polygon() to create custom shapes. Code examples and visual explanations.",
+      h1: "CSS Clip-path Shapes Guide",
+      intro:
+        "The CSS clip-path property lets you clip elements to geometric shapes — circles, ellipses, rectangles, and arbitrary polygons. This guide covers every shape function with practical code examples.",
+      content: [
+        {
+          heading: "circle() — circular clips",
+          body: "circle(radius at centerX centerY) creates a circular clip. The radius can be a length or percentage — 50% means the circle touches the edges. Position defaults to the element center. Example: clip-path: circle(40% at 50% 50%) creates a circle at 40% radius centered in the element. Use closest-side or farthest-side keywords for responsive circles.",
+        },
+        {
+          heading: "ellipse() — oval clips",
+          body: "ellipse(radiusX radiusY at centerX centerY) creates an oval. Two radii control horizontal and vertical size independently. clip-path: ellipse(50% 35% at 50% 50%) makes a horizontally wider oval. Like circle(), position defaults to center and you can use closest-side/farthest-side keywords.",
+        },
+        {
+          heading: "polygon() — custom shapes",
+          body: "polygon(x1 y1, x2 y2, ...) defines a shape with any number of vertices. Each pair is a percentage or length coordinate. polygon(50% 0%, 100% 100%, 0% 100%) creates a triangle. More points create more complex shapes — stars, arrows, hexagons, and any custom outline. Points are connected in order and the shape is automatically closed.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I animate CSS clip-path?",
+          answer:
+            "Yes, clip-path is animatable with CSS transitions and keyframes as long as both states use the same shape function with the same number of points. For example, transitioning between two polygon() values with 6 points each will smoothly morph. Transitioning between different shape types (e.g., circle to polygon) does not interpolate.",
+        },
+        {
+          question: "What is the difference between clip-path and mask?",
+          answer:
+            "clip-path clips to hard geometric edges — the boundary is either visible or hidden. CSS mask uses an image (gradient, SVG, PNG) as an alpha channel, allowing soft edges, transparency, and gradual fading. Use clip-path for geometric shapes and mask for complex transparency effects.",
+        },
+        {
+          question: "How do I clip to an SVG path with clip-path?",
+          answer:
+            "Use clip-path: url(#clipId) referencing an SVG clipPath element, or clip-path: path('M...') with an inline SVG path string. The path() function gives you full SVG path control including curves (C, Q), arcs (A), and complex outlines beyond what polygon() can express.",
+        },
+      ],
+      keywords: [
+        "css clip-path shapes",
+        "clip-path circle",
+        "clip-path polygon",
+        "clip-path ellipse",
+        "css clipping shapes",
+        "clip-path examples",
+      ],
+      parentToolSlug: "clip-path",
+      parentToolName: "CSS Clip-path Generator",
+    },
+    {
+      slug: "polygon-clip-path-examples",
+      title: "CSS Polygon Clip-path Examples",
+      metaTitle:
+        "CSS Polygon Clip-path Examples — Triangle, Star, Hexagon & More | DevBolt",
+      metaDescription:
+        "Ready-to-use CSS polygon clip-path examples for triangles, stars, hexagons, arrows, diamonds, and more. Copy the code and customize visually.",
+      h1: "CSS Polygon Clip-path Examples",
+      intro:
+        "The polygon() function is the most versatile clip-path shape — it can create any outline from triangles to complex custom shapes. Here are the most commonly needed polygon clip-paths with copy-ready code.",
+      content: [
+        {
+          heading: "Basic geometric shapes",
+          body: "Triangle: polygon(50% 0%, 0% 100%, 100% 100%). Diamond: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%). Pentagon: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%). Hexagon: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%). Each shape is defined by vertex coordinates as percentages of the element dimensions.",
+        },
+        {
+          heading: "Stars and decorative shapes",
+          body: "A 5-point star alternates between outer and inner radius points: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%). A cross shape uses 12 points: polygon(35% 0%, 65% 0%, 65% 35%, 100% 35%, 100% 65%, 65% 65%, 65% 100%, 35% 100%, 35% 65%, 0% 65%, 0% 35%, 35% 35%). More points allow more complex outlines.",
+        },
+        {
+          heading: "Arrows and UI shapes",
+          body: "Right arrow: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%). Chevron: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%). Message bubble: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%). These work well for navigation elements, badges, and decorative containers.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How many points can a polygon clip-path have?",
+          answer:
+            "There is no hard limit — browsers handle hundreds of points. However, more points mean more CSS to maintain. For most UI shapes, 3-12 points are sufficient. Complex curves are better expressed with path() or an SVG clip-path rather than approximating with many polygon points.",
+        },
+        {
+          question: "How do I make a responsive polygon clip-path?",
+          answer:
+            "Use percentage coordinates — polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) scales with the element. Avoid mixing percentages and fixed lengths unless you want the shape to change at different sizes. For truly responsive shapes, CSS custom properties can parameterize the values.",
+        },
+        {
+          question: "Can I create rounded polygon corners?",
+          answer:
+            "Not directly with polygon() — its edges are always straight lines. For rounded corners on polygon shapes, use an SVG clipPath with rounded path commands, or apply a slight filter: blur() and contrast trick. The inset() function does support a round keyword for rectangular shapes.",
+        },
+      ],
+      keywords: [
+        "polygon clip-path css",
+        "css triangle clip-path",
+        "css star clip-path",
+        "css hexagon clip-path",
+        "clip-path arrow css",
+        "polygon shape examples",
+      ],
+      parentToolSlug: "clip-path",
+      parentToolName: "CSS Clip-path Generator",
+    },
+    {
+      slug: "clip-path-animation",
+      title: "Animating CSS Clip-path Shapes",
+      metaTitle:
+        "Animating CSS Clip-path — Transitions, Keyframes & Morph Effects | DevBolt",
+      metaDescription:
+        "Learn how to animate CSS clip-path with transitions and keyframes. Create shape morphing effects, reveal animations, and interactive hover states.",
+      h1: "Animating CSS Clip-path Shapes",
+      intro:
+        "CSS clip-path is animatable, making it perfect for reveal effects, shape morphing, and interactive hover states. The key constraint: both the start and end states must use the same shape function with the same number of points.",
+      content: [
+        {
+          heading: "Transition basics",
+          body: "Add transition: clip-path 0.3s ease to smoothly animate between clip-path states on hover or class changes. For example, transitioning from circle(0% at 50% 50%) to circle(100% at 50% 50%) creates a circular reveal. The browser interpolates each numeric value independently, producing smooth animation.",
+        },
+        {
+          heading: "Polygon morphing",
+          body: "To morph between polygon shapes, both states must have the same number of vertices. polygon(50% 0%, 100% 100%, 0% 100%) can smoothly transition to polygon(50% 20%, 80% 80%, 20% 80%) because both have 3 points. If you need to morph between shapes with different point counts, pad the simpler shape by duplicating vertices at the same position.",
+        },
+        {
+          heading: "Keyframe animations",
+          body: "Use @keyframes for multi-step clip-path animations: define clip-path values at each percentage step. This enables effects like rotating stars, pulsing shapes, or complex reveal sequences. Performance tip: clip-path animations trigger paint but not layout, so they perform well. For best performance, apply will-change: clip-path to hint the browser to optimize the layer.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Why is my clip-path animation not working?",
+          answer:
+            "The most common cause is mismatched shape functions or point counts. Both the start and end clip-path must use the same function (e.g., both polygon()) with the same number of coordinate pairs. Also ensure you have a transition property set — clip-path does not animate automatically.",
+        },
+        {
+          question: "Can I animate from circle to polygon?",
+          answer:
+            "Not directly — CSS cannot interpolate between different shape functions. The workaround is to use polygon() for both states, approximating the circle with many points (e.g., 36 points on a circular path). Or use two overlapping elements and cross-fade opacity while changing clip-path on each.",
+        },
+        {
+          question: "Is clip-path animation performant?",
+          answer:
+            "Clip-path changes trigger repaint but not reflow/layout, so they perform reasonably well. For heavy animations, add will-change: clip-path to promote the element to its own compositing layer. Avoid animating clip-path on many elements simultaneously — batch the animations or use requestAnimationFrame for JavaScript-driven morphing.",
+        },
+      ],
+      keywords: [
+        "animate clip-path css",
+        "clip-path transition",
+        "css shape morphing",
+        "clip-path keyframes",
+        "clip-path hover effect",
+        "css reveal animation clip-path",
+      ],
+      parentToolSlug: "clip-path",
+      parentToolName: "CSS Clip-path Generator",
+    },
+  ],
 };

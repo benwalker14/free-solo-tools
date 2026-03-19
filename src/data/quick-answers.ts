@@ -149,4 +149,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Enter the width and height in pixels and this calculator instantly shows the simplified ratio (e.g., 16:9), decimal value, CSS aspect-ratio property, visual preview, and a table of equivalent sizes at common resolutions. Use the Resize tab to scale dimensions while preserving proportions, or browse Device Presets for phones, tablets, monitors, and social media formats. Everything runs in your browser — no signup required.",
   },
+  "clip-path": {
+    question: "How do I create custom CSS clip-path shapes?",
+    answer:
+      "Select a shape type (circle, ellipse, inset, or polygon), then adjust the visual controls to design your clip-path. For polygons, drag the points directly on the preview or choose from 13 presets including triangle, star, hexagon, arrow, cross, and more. The generator outputs production-ready CSS that you can copy with one click. Add the -webkit- prefix for older Safari support. Everything runs in your browser — no signup required.",
+  },
 };

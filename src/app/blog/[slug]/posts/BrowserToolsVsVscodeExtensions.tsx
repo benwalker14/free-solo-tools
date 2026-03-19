@@ -67,7 +67,7 @@ export default function BrowserToolsVsVscodeExtensions() {
       </p>
 
       <InfoBox>
-        DevBolt&apos;s 113+ tools run entirely in your browser. No extensions to
+        DevBolt&apos;s 114+ tools run entirely in your browser. No extensions to
         install, no permissions to grant, no supply chain to trust. Try the{" "}
         <Link
           href="/tools/code-security-scanner"
@@ -480,7 +480,7 @@ https.request({
           JSON Formatter
         </Link>
         , open the Network tab, paste some data, and click Format. Zero
-        requests. Every one of DevBolt&apos;s 113+ tools works the same way.
+        requests. Every one of DevBolt&apos;s 114+ tools works the same way.
       </InfoBox>
 
       {/* ── What to Do Right Now ── */}
