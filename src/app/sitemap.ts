@@ -91,5 +91,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
+    ...(
+      [
+        "json-to-yaml",
+        "yaml-to-json",
+        "html-to-markdown",
+        "markdown-to-html",
+        "toml-to-json",
+        "json-to-toml",
+      ] as const
+    ).map((slug) => ({
+      url: `${baseUrl}/tools/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
   ];
 }

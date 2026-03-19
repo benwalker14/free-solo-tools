@@ -148,8 +148,8 @@ const MODES: { value: Mode; label: string }[] = [
   { value: "yaml-to-toml", label: "YAML → TOML" },
 ];
 
-export default function TomlConverterTool() {
-  const [mode, setMode] = useState<Mode>("toml-to-json");
+export default function TomlConverterTool({ initialMode = "toml-to-json" }: { initialMode?: Mode } = {}) {
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");

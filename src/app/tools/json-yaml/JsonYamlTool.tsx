@@ -72,8 +72,8 @@ spec:
               cpu: 250m
               memory: 64Mi`;
 
-export default function JsonYamlTool() {
-  const [mode, setMode] = useState<Mode>("json-to-yaml");
+export default function JsonYamlTool({ initialMode = "json-to-yaml" }: { initialMode?: Mode } = {}) {
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");

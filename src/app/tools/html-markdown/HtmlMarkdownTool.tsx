@@ -72,11 +72,11 @@ Visit [DevBolt](https://devbolt.dev) for more tools.
 | HTML | Web pages, emails |
 | Markdown | Documentation, READMEs |`;
 
-export default function HtmlMarkdownTool() {
+export default function HtmlMarkdownTool({ initialDirection = "html-to-md" }: { initialDirection?: Direction } = {}) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
-  const [direction, setDirection] = useState<Direction>("html-to-md");
+  const [direction, setDirection] = useState<Direction>(initialDirection);
   const [headingStyle, setHeadingStyle] = useState<HeadingStyle>("atx");
   const [bulletMarker, setBulletMarker] = useState<BulletMarker>("-");
   const [codeBlockStyle, setCodeBlockStyle] =

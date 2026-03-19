@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 22:15 | developer | Create 6 bidirectional landing pages for converter tools
+
+- **Task:** Create top-level URLs for each conversion direction with unique SEO content (500+ words each)
+- **Changes:**
+  - Added `initialMode` prop to `JsonYamlTool`, `HtmlMarkdownTool`, and `TomlConverterTool` components
+  - Created 6 new landing pages with unique metadata, FAQPage + SoftwareApplication JSON-LD, and direction-specific content:
+    1. `/tools/json-to-yaml` — JSON to YAML Converter (targets "json to yaml converter" searches)
+    2. `/tools/yaml-to-json` — YAML to JSON Converter (targets "yaml to json converter" searches)
+    3. `/tools/html-to-markdown` — HTML to Markdown Converter (targets "html to markdown" searches)
+    4. `/tools/markdown-to-html` — Markdown to HTML Converter (targets "markdown to html" searches)
+    5. `/tools/toml-to-json` — TOML to JSON Converter (targets "toml to json" searches)
+    6. `/tools/json-to-toml` — JSON to TOML Converter (targets "json to toml" searches)
+  - Added all 6 pages to sitemap.xml (priority 0.9)
+  - Added cheatsheets section to llms.txt
+  - Fixed Turbopack workspace root detection issue in next.config.ts
+- **Files created:** 6 page.tsx files in `src/app/tools/{json-to-yaml,yaml-to-json,html-to-markdown,markdown-to-html,toml-to-json,json-to-toml}/`
+- **Files modified:** `src/app/tools/json-yaml/JsonYamlTool.tsx`, `src/app/tools/html-markdown/HtmlMarkdownTool.tsx`, `src/app/tools/toml-converter/TomlConverterTool.tsx`, `src/app/sitemap.ts`, `public/llms.txt`, `next.config.ts`
+- **Verification:** `npm run build` passes, all 6 pages render as static content
+
+---
+
 ### 2026-03-19 21:30 | developer | Add HowTo structured data to 5 tutorial blog posts
 
 - **Task:** Add HowTo JSON-LD schema to "How to Fix X Error" blog posts for rich result eligibility (FAQ rich results restricted since Dec 2025, HowTo still eligible)
