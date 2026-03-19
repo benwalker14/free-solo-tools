@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add JSON to CSV Converter tool (#53)
+
+- Created `src/app/tools/json-to-csv/page.tsx` — server component with SEO metadata targeting "json to csv" (40K+/mo searches)
+- Created `src/app/tools/json-to-csv/JsonToCsvTool.tsx` — dedicated JSON to CSV converter with features beyond the existing CSV↔JSON bidirectional tool:
+  - **Nested object flattening:** Automatically flattens nested JSON objects using dot notation (e.g. `address.city`, `contact.email`)
+  - **Column selection:** After first conversion, toggle columns on/off with pill buttons, select all/deselect all
+  - **CSV download:** Download result as `.csv` file ready for Excel/Google Sheets
+  - **Two sample datasets:** Flat and nested JSON samples to demonstrate capabilities
+  - **Arrays as JSON strings:** Arrays within objects are serialized as JSON strings in CSV cells
+- **SEO-optimized:** 10 keywords targeting "json to csv" variations, JSON-LD schema, canonical URL, Open Graph tags
+- Registered tool in `src/data/tools.ts` as tool #53, category "Convert", icon "J→C"
+- Updated TASK_BOARD.md (moved to Done), CLAUDE.md (added to tool list)
+- Build passes, lint clean
+
+---
+
 ### 2026-03-18 | strategist | Growth Roadmap & Next Tool Wave Analysis
 
 - **Competitive analysis:** Benchmarked against CodeBeautify.org (2.1M visits/mo, 1000+ tools, 540 tracking cookies) and DevUtils.lol (privacy-focused competitor)

@@ -414,4 +414,12 @@ export const tools: Tool[] = [
     icon: "cURL",
     category: "Convert",
   },
+  {
+    title: "JSON to CSV Converter",
+    description:
+      "Convert JSON arrays to CSV with nested object flattening, column selection, and .csv download",
+    href: "/tools/json-to-csv",
+    icon: "J→C",
+    category: "Convert",
+  },
 ];
