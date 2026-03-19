@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/data/tools";
+import { getAllSubpages } from "@/data/tool-subpages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://devbolt.dev";
@@ -46,6 +47,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.9,
+    })),
+    ...getAllSubpages().map((sp) => ({
+      url: `${baseUrl}/tools/${sp.toolSlug}/${sp.subpageSlug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
   ];
 }

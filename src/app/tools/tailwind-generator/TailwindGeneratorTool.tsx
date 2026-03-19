@@ -365,6 +365,37 @@ const labelFor = (cls: string) => cls || "(none)";
 const selectClass =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500";
 
+function SelectField({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div>
+      <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
+        {label}
+      </label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={selectClass}
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {labelFor(opt)}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 // --- Component ---
 
 export default function TailwindGeneratorTool() {
@@ -432,37 +463,7 @@ export default function TailwindGeneratorTool() {
   // Count active classes
   const activeCount = classString ? classString.split(" ").length : 0;
 
-  // --- Select helper ---
-  function SelectField({
-    label,
-    value,
-    options,
-    configKey,
-  }: {
-    label: string;
-    value: string;
-    options: string[];
-    configKey: keyof TailwindConfig;
-  }) {
-    return (
-      <div>
-        <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
-          {label}
-        </label>
-        <select
-          value={value}
-          onChange={(e) => update(configKey, e.target.value)}
-          className={selectClass}
-        >
-          {options.map((opt) => (
-            <option key={opt} value={opt}>
-              {labelFor(opt)}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
-  }
+  const sf = (configKey: keyof TailwindConfig) => (v: string) => update(configKey, v);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
@@ -567,71 +568,71 @@ export default function TailwindGeneratorTool() {
         {/* Layout */}
         <Section title="Layout">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Display" value={config.display} options={DISPLAY_OPTIONS} configKey="display" />
-            <SelectField label="Flex Direction" value={config.flexDirection} options={FLEX_DIRECTION_OPTIONS} configKey="flexDirection" />
-            <SelectField label="Justify Content" value={config.justifyContent} options={JUSTIFY_OPTIONS} configKey="justifyContent" />
-            <SelectField label="Align Items" value={config.alignItems} options={ALIGN_OPTIONS} configKey="alignItems" />
-            <SelectField label="Flex Wrap" value={config.flexWrap} options={FLEX_WRAP_OPTIONS} configKey="flexWrap" />
-            <SelectField label="Gap" value={config.gap} options={GAP_OPTIONS} configKey="gap" />
+            <SelectField label="Display" value={config.display} options={DISPLAY_OPTIONS} onChange={sf("display")} />
+            <SelectField label="Flex Direction" value={config.flexDirection} options={FLEX_DIRECTION_OPTIONS} onChange={sf("flexDirection")} />
+            <SelectField label="Justify Content" value={config.justifyContent} options={JUSTIFY_OPTIONS} onChange={sf("justifyContent")} />
+            <SelectField label="Align Items" value={config.alignItems} options={ALIGN_OPTIONS} onChange={sf("alignItems")} />
+            <SelectField label="Flex Wrap" value={config.flexWrap} options={FLEX_WRAP_OPTIONS} onChange={sf("flexWrap")} />
+            <SelectField label="Gap" value={config.gap} options={GAP_OPTIONS} onChange={sf("gap")} />
           </div>
         </Section>
 
         {/* Sizing */}
         <Section title="Sizing">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Width" value={config.width} options={WIDTH_OPTIONS} configKey="width" />
-            <SelectField label="Height" value={config.height} options={HEIGHT_OPTIONS} configKey="height" />
-            <SelectField label="Max Width" value={config.maxWidth} options={MAX_WIDTH_OPTIONS} configKey="maxWidth" />
+            <SelectField label="Width" value={config.width} options={WIDTH_OPTIONS} onChange={sf("width")} />
+            <SelectField label="Height" value={config.height} options={HEIGHT_OPTIONS} onChange={sf("height")} />
+            <SelectField label="Max Width" value={config.maxWidth} options={MAX_WIDTH_OPTIONS} onChange={sf("maxWidth")} />
           </div>
         </Section>
 
         {/* Spacing */}
         <Section title="Spacing">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Padding (all)" value={config.padding} options={PADDING_OPTIONS} configKey="padding" />
-            <SelectField label="Padding X" value={config.paddingX} options={PADDING_X_OPTIONS} configKey="paddingX" />
-            <SelectField label="Padding Y" value={config.paddingY} options={PADDING_Y_OPTIONS} configKey="paddingY" />
-            <SelectField label="Margin (all)" value={config.margin} options={MARGIN_OPTIONS} configKey="margin" />
-            <SelectField label="Margin X" value={config.marginX} options={MARGIN_X_OPTIONS} configKey="marginX" />
-            <SelectField label="Margin Y" value={config.marginY} options={MARGIN_Y_OPTIONS} configKey="marginY" />
+            <SelectField label="Padding (all)" value={config.padding} options={PADDING_OPTIONS} onChange={sf("padding")} />
+            <SelectField label="Padding X" value={config.paddingX} options={PADDING_X_OPTIONS} onChange={sf("paddingX")} />
+            <SelectField label="Padding Y" value={config.paddingY} options={PADDING_Y_OPTIONS} onChange={sf("paddingY")} />
+            <SelectField label="Margin (all)" value={config.margin} options={MARGIN_OPTIONS} onChange={sf("margin")} />
+            <SelectField label="Margin X" value={config.marginX} options={MARGIN_X_OPTIONS} onChange={sf("marginX")} />
+            <SelectField label="Margin Y" value={config.marginY} options={MARGIN_Y_OPTIONS} onChange={sf("marginY")} />
           </div>
         </Section>
 
         {/* Typography */}
         <Section title="Typography">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Font Size" value={config.fontSize} options={FONT_SIZE_OPTIONS} configKey="fontSize" />
-            <SelectField label="Font Weight" value={config.fontWeight} options={FONT_WEIGHT_OPTIONS} configKey="fontWeight" />
-            <SelectField label="Text Color" value={config.textColor} options={TEXT_COLOR_OPTIONS} configKey="textColor" />
-            <SelectField label="Text Align" value={config.textAlign} options={TEXT_ALIGN_OPTIONS} configKey="textAlign" />
-            <SelectField label="Line Height" value={config.lineHeight} options={LINE_HEIGHT_OPTIONS} configKey="lineHeight" />
-            <SelectField label="Letter Spacing" value={config.letterSpacing} options={LETTER_SPACING_OPTIONS} configKey="letterSpacing" />
+            <SelectField label="Font Size" value={config.fontSize} options={FONT_SIZE_OPTIONS} onChange={sf("fontSize")} />
+            <SelectField label="Font Weight" value={config.fontWeight} options={FONT_WEIGHT_OPTIONS} onChange={sf("fontWeight")} />
+            <SelectField label="Text Color" value={config.textColor} options={TEXT_COLOR_OPTIONS} onChange={sf("textColor")} />
+            <SelectField label="Text Align" value={config.textAlign} options={TEXT_ALIGN_OPTIONS} onChange={sf("textAlign")} />
+            <SelectField label="Line Height" value={config.lineHeight} options={LINE_HEIGHT_OPTIONS} onChange={sf("lineHeight")} />
+            <SelectField label="Letter Spacing" value={config.letterSpacing} options={LETTER_SPACING_OPTIONS} onChange={sf("letterSpacing")} />
           </div>
         </Section>
 
         {/* Background */}
         <Section title="Background">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Background Color" value={config.bgColor} options={BG_COLOR_OPTIONS} configKey="bgColor" />
+            <SelectField label="Background Color" value={config.bgColor} options={BG_COLOR_OPTIONS} onChange={sf("bgColor")} />
           </div>
         </Section>
 
         {/* Border */}
         <Section title="Border">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Border Width" value={config.borderWidth} options={BORDER_WIDTH_OPTIONS} configKey="borderWidth" />
-            <SelectField label="Border Radius" value={config.borderRadius} options={BORDER_RADIUS_OPTIONS} configKey="borderRadius" />
-            <SelectField label="Border Color" value={config.borderColor} options={BORDER_COLOR_OPTIONS} configKey="borderColor" />
+            <SelectField label="Border Width" value={config.borderWidth} options={BORDER_WIDTH_OPTIONS} onChange={sf("borderWidth")} />
+            <SelectField label="Border Radius" value={config.borderRadius} options={BORDER_RADIUS_OPTIONS} onChange={sf("borderRadius")} />
+            <SelectField label="Border Color" value={config.borderColor} options={BORDER_COLOR_OPTIONS} onChange={sf("borderColor")} />
           </div>
         </Section>
 
         {/* Effects */}
         <Section title="Effects & Transitions">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <SelectField label="Box Shadow" value={config.shadow} options={SHADOW_OPTIONS} configKey="shadow" />
-            <SelectField label="Opacity" value={config.opacity} options={OPACITY_OPTIONS} configKey="opacity" />
-            <SelectField label="Transition" value={config.transition} options={TRANSITION_OPTIONS} configKey="transition" />
-            <SelectField label="Cursor" value={config.cursor} options={CURSOR_OPTIONS} configKey="cursor" />
+            <SelectField label="Box Shadow" value={config.shadow} options={SHADOW_OPTIONS} onChange={sf("shadow")} />
+            <SelectField label="Opacity" value={config.opacity} options={OPACITY_OPTIONS} onChange={sf("opacity")} />
+            <SelectField label="Transition" value={config.transition} options={TRANSITION_OPTIONS} onChange={sf("transition")} />
+            <SelectField label="Cursor" value={config.cursor} options={CURSOR_OPTIONS} onChange={sf("cursor")} />
           </div>
         </Section>
 

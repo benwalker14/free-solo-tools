@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Implement programmatic SEO sub-pages for top 10 tools
+
+- **25 SEO sub-pages** across 10 tools targeting long-tail keywords:
+  - **Hash Generator** (3): /sha256, /sha512, /md5 — targeting individual algorithm searches
+  - **JSON Formatter** (3): /minify, /validate, /examples — targeting action-specific queries
+  - **Base64** (3): /encode, /decode, /image — targeting encode/decode searches
+  - **UUID Generator** (2): /v4, /bulk — targeting version-specific and bulk generation
+  - **JWT Decoder** (2): /examples, /structure — targeting JWT learning queries
+  - **Regex Tester** (3): /email, /phone, /cheat-sheet — targeting pattern-specific searches
+  - **Password Generator** (2): /strong, /pin — targeting security-level-specific queries
+  - **Epoch Converter** (2): /current, /milliseconds — targeting common epoch queries
+  - **Color Converter** (3): /hex-to-rgb, /rgb-to-hex, /hex-to-hsl — targeting conversion-direction queries
+  - **URL Encoder** (2): /encode, /decode — targeting action-specific queries
+- Created `src/data/tool-subpages.ts` — central data file with sub-page definitions (titles, meta descriptions, content sections, FAQs, keywords)
+- Created `src/components/SubpageLayout.tsx` — shared template with breadcrumbs, embedded tool, content sections, FAQPage JSON-LD schema, and related sub-page links
+- Created `[subpage]/page.tsx` in 10 tool directories with `generateStaticParams` for SSG and `generateMetadata` for SEO
+- Updated `src/app/sitemap.ts` to include all 25 sub-pages (priority 0.8)
+- **SEO features:** Unique meta title/description per sub-page, canonical URLs, OpenGraph tags, FAQPage structured data (featured snippet potential), WebApplication JSON-LD, breadcrumb navigation, internal cross-linking between sub-pages
+- Build passes (160 static pages), lint clean
+
+---
+
 ### 2026-03-18 | developer | Add Tailwind CSS Generator tool (#56)
 
 - Created `src/app/tools/tailwind-generator/page.tsx` — server component with SEO metadata targeting "tailwind css generator" (30K+/mo searches)
