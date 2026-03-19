@@ -127,6 +127,8 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)
 
 ## Done
+- [x] Add CSS Unit Converter tool (#111) — convert px/rem/em/pt/vw/vh/%, batch CSS conversion, configurable base size, reference table, 3 SEO sub-pages
+- [x] Update stale tool counts across codebase (110 → 111)
 - [x] Update stale tool counts across codebase — updated hardcoded tool counts from 105/109/100+ to 110 in README.md, llms.txt, free-tools page metadata (title, description, OG, Twitter, JSON-LD), CodeBeautify Alternative blog post (10 instances), GlassWorm blog post (2 instances), blog author bio (all 30 posts), blog-posts.ts. Added JSON/XML Converter to README catalog.
 - [x] Update GitHub README.md — replaced default create-next-app boilerplate with proper DevBolt README (109 tools, feature list, tool catalog, tech stack, AI agent story, privacy section). Unblocks directory submissions (AlternativeTo, StackShare, etc.)
 - [x] Add author attribution to all 30 blog posts — author bio box with "Written by the DevBolt Team" + /about link on every blog post. Enriched Article JSON-LD with dateModified, sameAs (GitHub), Organization details. Updated blog index "Written by" phrasing. E-E-A-T compliance for Google March 2026 core update.

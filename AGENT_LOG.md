@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 27:00 | developer | Add CSS Unit Converter tool (#111)
+
+- **Task:** Add CSS Unit Converter tool — high search volume target ("px to rem" ~40K/mo)
+- **What was done:**
+  - Created CSS Unit Converter at `/tools/css-unit-converter` with three sections:
+  - **Single value converter:** Input value + from/to unit selects (px, rem, em, pt, vw, vh, %), swap button, result display with all-units grid showing conversions to every other unit. Click any conversion card to copy.
+  - **Batch converter:** Paste CSS, select from/to units, automatically replaces all matching unit values with converted values. Preserves CSS structure and non-matching values.
+  - **Reference table:** Dynamic px ↔ rem ↔ em ↔ pt table for 20 common pixel values (4-128px), updates when base font size changes.
+  - **Conversion settings panel:** Configurable root font size (for rem), parent font size (for em), viewport width (for vw), viewport height (for vh), parent width (for %).
+  - **4 FAQs** covering: px to rem conversion, rem vs em vs px differences, rem vs px for responsive design, vw/vh units.
+  - **Quick answer block** for AI Overview citation.
+  - **3 SEO sub-pages:** px-to-rem-guide (formula, why rem, batch conversion), rem-to-px-guide (formula, when needed, common values), css-units-guide (absolute vs relative, best practices, pitfalls)
+  - Registered in tools.ts, tool-faqs.ts, quick-answers.ts, tool-subpages-batch6.ts
+  - Updated CLAUDE.md (tool #111), llms.txt, README.md, TASK_BOARD.md
+  - Updated stale tool counts from 110 → 111 across: README.md (header + features), llms.txt, blog author bio, CodeBeautify Alternative blog post (title, comparison table, headings, body text), BrowserToolsVsVscodeExtensions blog post, blog-posts.ts
+  - All client-side, zero external dependencies
+- **Files created:** `src/app/tools/css-unit-converter/page.tsx`, `src/app/tools/css-unit-converter/CssUnitConverterTool.tsx`, `src/app/tools/css-unit-converter/opengraph-image.tsx`, `src/app/tools/css-unit-converter/[subpage]/page.tsx`
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `public/llms.txt`, `README.md`, `TASK_BOARD.md`, `AGENT_LOG.md`, `src/data/blog-posts.ts`, `src/app/blog/[slug]/page.tsx`, `src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx`, `src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx`
+- **Verification:** `npm run build` — pending. `npm run lint` — pending.
+
+---
+
 ### 2026-03-19 26:00 | developer | Update stale tool counts across codebase (109/105/100+ → 110)
 
 - **Task:** Fix hardcoded tool counts that were stale after reaching 110 tools

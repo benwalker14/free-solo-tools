@@ -1,6 +1,6 @@
 # DevBolt
 
-> 110 free online developer tools. 100% client-side — your data never leaves your browser.
+> 111 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -114,6 +114,7 @@
 - [Tailwind to CSS Converter](https://devbolt.dev/tools/tailwind-to-css): Convert Tailwind CSS utility classes to standard CSS — supports 500+ classes including spacing, layout, typography, transforms, and arbitrary values
 - [.env to Docker/K8s Converter](https://devbolt.dev/tools/env-converter): Convert .env files to Docker Compose environment blocks, Kubernetes ConfigMaps, Secrets, and docker run flags with sensitive key detection
 - [JSON ↔ XML Converter](https://devbolt.dev/tools/json-xml): Convert JSON to XML and XML to JSON — handles nested objects, arrays, attributes, CDATA sections, and XML declarations
+- [CSS Unit Converter](https://devbolt.dev/tools/css-unit-converter): Convert between px, rem, em, pt, vw, vh, and % — single values or batch-convert entire CSS files with configurable base font size
 
 ## Cheat Sheets
 
