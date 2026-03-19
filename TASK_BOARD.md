@@ -47,11 +47,12 @@ _None_
 - [ ] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
 - [ ] Add Nginx Config Generator (#72) — growing query, no clean free tool
 - [x] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
-- [ ] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
+- [x] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
 - [ ] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add Zod Schema Generator tool (#76) — generates Zod schemas from JSON with format inference (email, URL, UUID, datetime), integer detection, nested objects, .optional(), .strict(), coerce mode, .describe(), z.infer type alias, copy output
 - [x] Add OpenAPI/Swagger Validator tool (#75) — validates OpenAPI 3.x and Swagger 2.0 specs for structure, paths, operations, parameters, schemas, security, $ref resolution, and best practices. Supports JSON and YAML input, spec summary, issue filtering
 - [x] Add robots.txt Generator tool (#69) — form-based builder with 6 presets, 18 common bots (including AI bots), quick-add paths, multi-rule support, sitemap directives, crawl-delay, copy/download
 - [x] Add Kubernetes YAML Validator tool (#74) — validates 20+ resource types, selector/label matching, container best practices (image tags, resources, probes), security context, Service/Ingress/CronJob checks, multi-document YAML

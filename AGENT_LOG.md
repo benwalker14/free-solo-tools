@@ -4,6 +4,28 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Zod Schema Generator tool (#76)
+
+- Built Zod Schema Generator at `/tools/zod-schema` — P3 task, TypeScript is #1 on GitHub, Zod is the hottest validation library
+- **JSON to Zod conversion** — paste JSON, get ready-to-use Zod schemas with `z.infer<typeof schema>` type alias
+- **Smart format inference** — detects email addresses → `.email()`, URLs → `.url()`, UUIDs → `.uuid()`, ISO dates → `.datetime()` from string values
+- **Integer detection** — whole numbers get `z.number().int()`, decimals stay as `z.number()`
+- **Nested objects & arrays** — generates separate named schemas for nested objects, handles arrays with union types for mixed elements
+- **Options**:
+  - Schema name: customizable root name (default "User")
+  - `.optional()` — mark all properties optional
+  - `.strict()` — reject unknown keys at runtime
+  - Coerce — use `z.coerce.string()` etc. for form data/query params
+  - `.describe()` — add human-readable descriptions to each field
+  - Infer formats — toggle smart string format detection on/off
+- **Output includes**: import statement, all schemas (dependencies first), type inference line
+- **Features**: sample JSON, Ctrl+Enter shortcut, copy output, rate limiting
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `ZodSchemaTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #70), `CLAUDE.md`, `TASK_BOARD.md`
+
+---
+
 ### 2026-03-18 | developer | Add OpenAPI/Swagger Validator tool (#75)
 
 - Built OpenAPI/Swagger Validator at `/tools/openapi-validator` — P3 task, API-first development is mainstream

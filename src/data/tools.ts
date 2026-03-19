@@ -550,4 +550,12 @@ export const tools: Tool[] = [
     icon: "API",
     category: "Inspect",
   },
+  {
+    title: "Zod Schema Generator",
+    description:
+      "Generate Zod validation schemas from JSON — auto-detects emails, URLs, UUIDs, dates, and nested objects",
+    href: "/tools/zod-schema",
+    icon: "ZOD",
+    category: "Generate",
+  },
 ];
