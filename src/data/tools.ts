@@ -390,4 +390,12 @@ export const tools: Tool[] = [
     icon: "⏰",
     category: "Generate",
   },
+  {
+    title: "Favicon Generator",
+    description:
+      "Generate favicons from text or emoji — download PNGs, SVG, Apple Touch Icon, and HTML tags",
+    href: "/tools/favicon-generator",
+    icon: "FAV",
+    category: "Generate",
+  },
 ];
