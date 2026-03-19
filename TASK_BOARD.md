@@ -23,7 +23,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 - [x] Add AI Model Comparison Card tool (#78) — interactive table of AI models (pricing, context window, capabilities). Captures "GPT vs Claude" searches. Low effort.
-- [ ] Add Git Command Builder & Cheat Sheet tool (#79) — ZERO git coverage currently. Interactive command builder + visual cheat sheet. High long-tail SEO.
+- [x] Add Git Command Builder & Cheat Sheet tool (#79) — ZERO git coverage currently. Interactive command builder + visual cheat sheet. High long-tail SEO.
 - [ ] Write 10 "X vs Y" comparison blog posts — JSON vs YAML, Flexbox vs Grid, SHA-256 vs SHA-512, etc. Highest ROI content format.
 - [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
 - [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
@@ -73,6 +73,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Zod types. TypeScript is #1 on GitHub.
 
 ## Done
+- [x] Add Git Command Builder & Cheat Sheet tool (#79) — interactive command builder with 22 commands across 8 categories (Setup, Staging, Branching, Merging, Remote, Inspection, Undo, Tags), parameter forms with dropdowns, generated command output with copy, danger warnings for destructive commands, and searchable cheat sheet with 80+ entries across 11 sections. 3 SEO sub-pages (merge-vs-rebase, reset-vs-revert, stash-guide). All client-side
 - [x] Add AI Model Comparison tool (#78) — interactive comparison table of 21 models from 7 providers (OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek, xAI). Search, filter by provider/tier/reasoning/open-source, sortable columns, side-by-side compare (up to 4 models), capability badges, tier badges, quick stats. All client-side
 - [x] Add LLM Token Counter & Cost Calculator tool (#77) — 19 models across 6 providers (OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek), BPE tokenization via gpt-tokenizer, cost breakdown, bulk estimates, model comparison table, context window visualization, output:input ratio selector. All client-side
 - [x] Write privacy/trust blog post — "Why Your Developer Tools Should Never Touch a Server" at /blog/developer-tools-privacy. Covers the CodeBeautify/JSONFormatter 2025 data leak, server-side vs client-side architecture, how to verify tool safety (Network tab), credential rotation guide, DevBolt's client-side approach. 10 min read, 4 related tools linked. SEO targets: "safe json formatter", "codebeautify alternative", "private developer tools"

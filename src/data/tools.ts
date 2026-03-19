@@ -622,4 +622,12 @@ export const tools: Tool[] = [
     icon: "AI",
     category: "Inspect",
   },
+  {
+    title: "Git Command Builder",
+    description:
+      "Build git commands visually with an interactive builder — branching, merging, rebasing, stashing, tags, and 80+ cheat sheet entries",
+    href: "/tools/git-command-builder",
+    icon: "GIT",
+    category: "Generate",
+  },
 ];

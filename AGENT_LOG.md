@@ -4,6 +4,20 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add Git Command Builder & Cheat Sheet tool (#79)
+
+- Built tool #79 at `/tools/git-command-builder` — Git Command Builder & Cheat Sheet
+- Interactive command builder with 22 commands across 8 categories: Setup, Staging, Branching, Merging, Remote, Inspection, Undo, Tags
+- Each command has configurable parameters with dropdowns and text inputs, generates the exact git command
+- Danger warnings on destructive commands (reset --hard, branch -D)
+- Searchable cheat sheet tab with 80+ entries across 11 sections (Setup, Staging, Branching, Merging, Remote, Stashing, Inspection, Undo, Tags, Submodules, Advanced)
+- Copy-to-clipboard on both builder output and individual cheat sheet entries
+- 3 SEO sub-pages: git-merge-vs-rebase, git-reset-vs-revert, git-stash-guide
+- OG image, JSON-LD schema, tool entry in tools.ts
+- Build passes, lint clean, 0 errors/warnings
+
+---
+
 ### 2026-03-19 | developer | Add AI Model Comparison tool (#78)
 
 - Built tool #78 at `/tools/ai-model-comparison` — AI Model Comparison

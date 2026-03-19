@@ -1316,4 +1316,140 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JSON Diff",
     },
   ],
+
+  "git-command-builder": [
+    {
+      slug: "git-merge-vs-rebase",
+      title: "Git Merge vs Rebase",
+      metaTitle: "Git Merge vs Rebase — When to Use Each | DevBolt",
+      metaDescription:
+        "Understand the difference between git merge and git rebase. Learn when to use each strategy with clear examples and visual explanations.",
+      h1: "Git Merge vs Rebase — When to Use Each",
+      intro:
+        "Merge and rebase both integrate changes from one branch into another, but they work very differently. Use the command builder above to construct either command with the right flags.",
+      content: [
+        {
+          heading: "How git merge works",
+          body: "git merge creates a new merge commit that ties together the histories of two branches. The original branch history is preserved exactly as it happened. This is the safest option because it never rewrites history. Use --no-ff to always create a merge commit even when a fast-forward is possible.",
+        },
+        {
+          heading: "How git rebase works",
+          body: "git rebase replays your branch's commits on top of another branch, creating new commits with different hashes. This produces a linear history without merge commits. The trade-off is that it rewrites commit history, which can cause problems if others are working on the same branch.",
+        },
+        {
+          heading: "Which should I use?",
+          body: "Use merge for shared branches (main, develop) where preserving history matters. Use rebase for local feature branches before merging to keep history clean. The golden rule: never rebase commits that have been pushed to a shared remote branch.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is git rebase dangerous?",
+          answer:
+            "Rebase rewrites commit history, which is safe for local unpushed branches. It becomes dangerous when you rebase commits that others have based work on. Stick to rebasing only your own unpushed feature branches.",
+        },
+        {
+          question: "What is the difference between merge and rebase?",
+          answer:
+            "Merge creates a merge commit preserving both branch histories. Rebase replays commits on top of another branch for a linear history. Merge is safer; rebase is cleaner.",
+        },
+      ],
+      keywords: [
+        "git merge vs rebase",
+        "git rebase vs merge",
+        "when to use git rebase",
+        "git merge or rebase",
+        "git rebase explained",
+      ],
+      parentToolSlug: "git-command-builder",
+      parentToolName: "Git Command Builder",
+    },
+    {
+      slug: "git-reset-vs-revert",
+      title: "Git Reset vs Revert",
+      metaTitle: "Git Reset vs Revert — Undo Changes Safely | DevBolt",
+      metaDescription:
+        "Learn the difference between git reset and git revert. Understand when to use each to undo commits safely without losing work.",
+      h1: "Git Reset vs Revert — Undo Changes Safely",
+      intro:
+        "Both reset and revert undo changes, but they work very differently. Use the builder above to construct the right command with safe defaults.",
+      content: [
+        {
+          heading: "git reset — rewrite history",
+          body: "git reset moves the branch pointer backward, effectively removing commits from history. --soft keeps changes staged, --mixed (default) keeps changes unstaged, --hard discards everything. Because it rewrites history, only use reset on unpushed commits.",
+        },
+        {
+          heading: "git revert — safe undo",
+          body: "git revert creates a new commit that undoes the changes from a previous commit. The original commit stays in history. This is safe to use on shared branches because it does not rewrite history. Use --no-edit to accept the default revert message.",
+        },
+        {
+          heading: "Which should I use?",
+          body: "Use revert for commits that have been pushed to a shared branch. Use reset for local unpushed commits where you want a clean history. When in doubt, use revert — it is always safe.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I undo a git reset?",
+          answer:
+            "Yes, using git reflog. Find the commit hash before the reset and run git reset --hard <hash>. Reflog keeps a history of HEAD changes for about 90 days.",
+        },
+        {
+          question: "What does git reset --soft do?",
+          answer:
+            "git reset --soft HEAD~1 undoes the last commit but keeps all changes staged. This is useful when you want to amend or restructure a commit without losing any work.",
+        },
+      ],
+      keywords: [
+        "git reset vs revert",
+        "git revert vs reset",
+        "undo git commit",
+        "git reset explained",
+        "git revert explained",
+        "git undo changes",
+      ],
+      parentToolSlug: "git-command-builder",
+      parentToolName: "Git Command Builder",
+    },
+    {
+      slug: "git-stash-guide",
+      title: "Git Stash Guide",
+      metaTitle: "Git Stash Guide — Save & Restore Work in Progress | DevBolt",
+      metaDescription:
+        "Complete guide to git stash. Learn to save, list, apply, pop, and drop stashes. Keep uncommitted work safe while switching branches.",
+      h1: "Git Stash Guide — Save & Restore Work in Progress",
+      intro:
+        "Git stash lets you save uncommitted changes without committing them, so you can switch branches or pull updates cleanly. Build stash commands with the interactive tool above.",
+      content: [
+        {
+          heading: "Basic stash workflow",
+          body: "git stash saves your uncommitted changes (staged and unstaged) and reverts the working tree to HEAD. git stash pop restores the most recent stash and removes it from the stash list. This is the most common pattern: stash, switch branches, do work, switch back, pop.",
+        },
+        {
+          heading: "Advanced stash usage",
+          body: "Use git stash push -m 'description' to label stashes. git stash --include-untracked saves new untracked files too. git stash apply restores without removing from the list (useful when applying to multiple branches). git stash branch <name> creates a new branch from a stash.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does git stash save untracked files?",
+          answer:
+            "By default, no. Use git stash --include-untracked (or -u) to also stash new files that have not been added to git. Use --all to include ignored files too.",
+        },
+        {
+          question: "How do I stash only specific files?",
+          answer:
+            "Use git stash push <file1> <file2> to stash specific files. Or use git stash push -p for interactive mode where you can select individual hunks to stash.",
+        },
+      ],
+      keywords: [
+        "git stash",
+        "git stash guide",
+        "git stash pop",
+        "git stash apply",
+        "git save work in progress",
+        "git stash tutorial",
+      ],
+      parentToolSlug: "git-command-builder",
+      parentToolName: "Git Command Builder",
+    },
+  ],
 };
