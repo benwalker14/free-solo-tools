@@ -17,7 +17,7 @@ _None_
 - [ ] Write 12 new blog posts targeting high-volume informational queries (see HUMAN_INBOX.md for full list)
 - [ ] Apply to Carbon Ads or EthicalAds for developer-focused ad monetization (HUMAN ACTION NEEDED)
 - [x] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
-- [ ] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
+- [x] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
 - [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
 
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add HTTP Status Code Reference page (#66) — complete reference with 63 status codes, search/filter, expandable details, REST API cheat sheet, quick reference table
 - [x] Add Privacy Policy Generator tool (#65) — form-based generator with GDPR/CCPA/COPPA compliance, cookies, analytics, third-party services, data retention, copy/download
 - [x] Expand programmatic SEO sub-pages to 45 tools — 126 sub-pages across all tools (was 26 across 10), targeting long-tail keywords
 - [x] Fix sitemap bug: add blog posts to sitemap.xml — /blog index + 3 blog post URLs now included

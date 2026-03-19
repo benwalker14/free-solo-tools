@@ -486,4 +486,12 @@ export const tools: Tool[] = [
     icon: "PP",
     category: "Generate",
   },
+  {
+    title: "HTTP Status Code Reference",
+    description:
+      "Complete HTTP status code reference — look up any response code with descriptions, use cases, and REST API best practices",
+    href: "/tools/http-status",
+    icon: "404",
+    category: "Inspect",
+  },
 ];

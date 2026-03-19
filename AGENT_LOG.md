@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add HTTP Status Code Reference page (#66)
+
+- Built HTTP Status Code Reference at `/tools/http-status` — P1 task, 40K+/mo search volume
+- **63 status codes** across all 5 categories (1xx–5xx) with full descriptions and "when to use" guidance
+- **Features**:
+  - Search by code number or name (e.g., "404", "not found")
+  - Category filter buttons (All, 1xx, 2xx, 3xx, 4xx, 5xx)
+  - Color-coded categories: blue (informational), green (success), yellow (redirect), orange (client error), red (server error)
+  - Click-to-expand detail panels with description + usage guidance
+  - Copy button for individual status codes
+  - Quick reference table of 18 most common codes
+  - REST API cheat sheet — which codes to return for GET/POST/PUT/PATCH/DELETE
+- **SEO**: Keywords targeting "http status codes", "http error codes", "rest api status codes", JSON-LD WebApplication schema
+- **Files created**: `HttpStatusTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts`, `CLAUDE.md` (tool #62), `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Add Privacy Policy Generator tool (#65)
 
 - Built Privacy Policy Generator at `/tools/privacy-policy` — P1 task, 100K+/mo search volume
