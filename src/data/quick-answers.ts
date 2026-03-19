@@ -129,4 +129,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your .env file and select an output format: Docker Compose inline environment, Docker Compose env_file reference, Kubernetes ConfigMap, Kubernetes Secret (base64 or stringData), or docker run -e flags. The tool parses KEY=VALUE pairs, strips quotes, detects sensitive keys (passwords, tokens, API keys), and generates valid YAML or shell commands. Everything runs in your browser — your secrets never leave your device.",
   },
+  "json-xml": {
+    question: "How do I convert JSON to XML or XML to JSON online?",
+    answer:
+      "Paste your JSON or XML, select the conversion direction, and click Convert. JSON objects become XML elements, arrays wrap items in configurable tags, and primitives become text content. XML attributes are preserved with a configurable prefix (default: '@'). Options include XML declaration, CDATA sections, root element name, and indentation. Download as .xml or .json. Everything runs in your browser — your data never leaves your device.",
+  },
 };

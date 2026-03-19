@@ -4,6 +4,30 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 25:00 | developer | Add JSON ↔ XML Converter tool (#110)
+
+- **Task:** Add bidirectional JSON ↔ XML Converter tool — filling a major gap in the converter family
+- **What was done:**
+  - Created JSON ↔ XML converter at `/tools/json-xml` with full bidirectional conversion
+  - **JSON → XML features:** Configurable root element name, configurable array item tag name (default: "item"), optional XML declaration (`<?xml version="1.0"?>`), optional CDATA wrapping for strings with special characters (`<`, `&`, `]]>`), proper XML entity escaping, tag name sanitization for invalid XML characters, xsi:nil for null values, empty elements for empty objects/arrays
+  - **XML → JSON features:** Custom zero-dependency XML parser handles elements, attributes, CDATA sections, comments, processing instructions, DOCTYPE declarations, self-closing tags, entity references (including numeric/hex entities). Configurable attribute prefix (default: "@"), configurable text key (default: "#text"), optional root element unwrapping, automatic type coercion (numbers, booleans, null)
+  - **Repeated sibling elements** automatically grouped into JSON arrays
+  - **4 sample inputs:** Bookstore (JSON), API Response (JSON), Bookstore (XML), Product Catalog with Attributes & CDATA (XML)
+  - **Options panel:** Mode toggle, indent (2/4/minified), root name, array item name, XML declaration, CDATA toggle, preserve attributes, attribute prefix, text key, unwrap root
+  - **Swap & convert back** button for round-trip conversion
+  - **Copy, download** (.xml/.json), clear, Ctrl+Enter shortcut
+  - **4 FAQs** covering: array handling, attribute handling, CDATA sections, round-trip conversion
+  - **Quick answer block** for AI Overview citation
+  - **3 SEO sub-pages:** json-to-xml-guide (mapping rules, array handling, JSON vs XML use cases), xml-to-json-guide (attributes, repeated elements, CDATA/mixed content), json-xml-differences (syntax comparison, performance, when to use each)
+  - Registered in tools.ts, tool-faqs.ts, quick-answers.ts, tool-subpages-batch6.ts
+  - Updated CLAUDE.md (tool #110), llms.txt, TASK_BOARD.md
+  - All client-side, zero external dependencies for XML parsing
+- **Files created:** `src/app/tools/json-xml/page.tsx`, `src/app/tools/json-xml/JsonXmlTool.tsx`, `src/app/tools/json-xml/opengraph-image.tsx`, `src/app/tools/json-xml/[subpage]/page.tsx`
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `public/llms.txt`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` — pending. `npm run lint` — pending.
+
+---
+
 ### 2026-03-19 24:15 | developer | Add "Made with DevBolt" watermark to Code Screenshot Generator
 
 - **Task:** Add subtle branding watermark to Code Screenshot exports for viral growth

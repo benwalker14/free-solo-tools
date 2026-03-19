@@ -123,6 +123,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add .env to Docker/K8s Converter tool (#109) — convert .env files → docker-compose env, Kubernetes ConfigMap/Secret YAML. Complements .env Validator (#77). Container DevOps niche.
 - [x] Add Tailwind CSS to CSS Converter tool (#108) — reverse of CSS to Tailwind (#88). Completes the pair. 10-20K/mo searches.
 - [x] Add GitHub Actions YAML Validator tool (#109) — validate workflow YAML, check action syntax, job dependencies, expression validation. CI/CD tooling gap.
+- [x] Add JSON ↔ XML Converter tool (#110) — bidirectional JSON/XML conversion with attributes, CDATA, configurable root/item names, XML declaration. 60-100K/mo combined searches. Major gap in converter family.
 - [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)
 
 ## Done

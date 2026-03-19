@@ -870,4 +870,12 @@ export const tools: Tool[] = [
     icon: "ENV",
     category: "Convert",
   },
+  {
+    title: "JSON ↔ XML Converter",
+    description:
+      "Convert JSON to XML and XML to JSON instantly — handles nested objects, arrays, attributes, CDATA sections, and XML declarations",
+    href: "/tools/json-xml",
+    icon: "XML",
+    category: "Convert",
+  },
 ];

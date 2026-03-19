@@ -1519,4 +1519,151 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: ".env to Docker/K8s Converter",
     },
   ],
+
+  "json-xml": [
+    {
+      slug: "json-to-xml-guide",
+      title: "JSON to XML Conversion Guide",
+      metaTitle: "JSON to XML Conversion — Complete Guide with Examples",
+      metaDescription:
+        "Learn how to convert JSON to XML with practical examples. Understand mapping rules for objects, arrays, nulls, and data types. Free JSON to XML converter.",
+      h1: "JSON to XML Conversion Guide",
+      intro:
+        "Converting JSON to XML requires mapping JSON's data model (objects, arrays, primitives) to XML's element-based hierarchy. This guide covers the conversion rules, edge cases, and best practices.",
+      content: [
+        {
+          heading: "How JSON maps to XML elements",
+          body: "JSON objects become XML elements with child elements for each key. JSON arrays require a wrapper element and repeated child elements. Primitives (strings, numbers, booleans) become text content inside their parent element. Null values can be represented with xsi:nil=\"true\" or an empty element.",
+          codeExample: '// JSON input\n{\n  "user": {\n    "name": "Alice",\n    "age": 30,\n    "active": true,\n    "tags": ["admin", "editor"]\n  }\n}\n\n<!-- XML output -->\n<user>\n  <name>Alice</name>\n  <age>30</age>\n  <active>true</active>\n  <tags>\n    <item>admin</item>\n    <item>editor</item>\n  </tags>\n</user>',
+          codeLanguage: "xml",
+        },
+        {
+          heading: "Handling arrays in XML",
+          body: "JSON arrays have no direct XML equivalent. The standard approach wraps array items in a parent element matching the JSON key, with each item in a child element (commonly named 'item'). Some converters use the singular form of the parent name — e.g., <books> wrapping <book> elements. DevBolt's converter lets you configure the array item tag name.",
+        },
+        {
+          heading: "When to use JSON vs XML",
+          body: "JSON dominates modern REST APIs, JavaScript/TypeScript ecosystems, and NoSQL databases due to its compact syntax and native JavaScript support. XML remains essential for SOAP web services, enterprise integrations (EDI, HL7), document formats (XHTML, SVG, RSS/Atom), and systems requiring schemas (XSD), namespaces, or mixed content. Many integration workflows require converting between both.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can JSON arrays be represented in XML?",
+          answer:
+            "Yes, but XML has no native array type. Arrays are typically represented as a parent element containing repeated child elements with the same tag name. For example, a JSON array [1, 2, 3] becomes <items><item>1</item><item>2</item><item>3</item></items>.",
+        },
+        {
+          question: "How are JSON null values represented in XML?",
+          answer:
+            "Common approaches: an empty self-closing element (<field />), the xsi:nil=\"true\" attribute (<field xsi:nil=\"true\" />), or omitting the element entirely. The best choice depends on your XML schema requirements.",
+        },
+      ],
+      keywords: [
+        "json to xml",
+        "convert json to xml",
+        "json to xml converter",
+        "json xml mapping",
+        "json to xml example",
+        "json to xml online",
+      ],
+      parentToolSlug: "json-xml",
+      parentToolName: "JSON ↔ XML Converter",
+    },
+    {
+      slug: "xml-to-json-guide",
+      title: "XML to JSON Conversion Guide",
+      metaTitle: "XML to JSON Conversion — Complete Guide with Examples",
+      metaDescription:
+        "Learn how to convert XML to JSON with practical examples. Handle attributes, CDATA, namespaces, and mixed content. Free XML to JSON converter.",
+      h1: "XML to JSON Conversion Guide",
+      intro:
+        "Converting XML to JSON requires careful handling of attributes, text content, repeated elements, and CDATA sections. This guide covers the rules and common conventions.",
+      content: [
+        {
+          heading: "XML attributes in JSON",
+          body: "XML attributes have no direct JSON equivalent. The most common convention uses a prefix character (typically '@') to distinguish attributes from child elements. For example, <book id=\"123\"> becomes {\"@id\": 123}. Other conventions include a nested \"_attributes\" object or flattening attributes as regular keys. DevBolt's converter uses a configurable prefix (default: '@').",
+          codeExample: '<!-- XML input -->\n<product id="P001" category="electronics">\n  <name>Wireless Mouse</name>\n  <price currency="USD">29.99</price>\n</product>\n\n// JSON output (with @ prefix)\n{\n  "@id": "P001",\n  "@category": "electronics",\n  "name": "Wireless Mouse",\n  "price": {\n    "@currency": "USD",\n    "#text": 29.99\n  }\n}',
+          codeLanguage: "json",
+        },
+        {
+          heading: "Handling repeated elements as arrays",
+          body: "When multiple sibling elements share the same tag name, they are grouped into a JSON array. A single element becomes a plain value. This can cause inconsistency — one <item> produces a value, two <item> elements produce an array. Some converters offer a 'force array' option for specific tags to ensure consistent array output regardless of element count.",
+        },
+        {
+          heading: "CDATA and mixed content",
+          body: "CDATA sections (<![CDATA[...]]>) contain text that should not be parsed as XML markup. In JSON conversion, CDATA content is extracted as plain text. Mixed content (elements containing both text and child elements) uses a text key (default: '#text') to preserve the text alongside child element keys.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How are XML attributes represented in JSON?",
+          answer:
+            "The most common convention prefixes attribute names with '@' — e.g., <book id=\"1\"> becomes {\"@id\": 1}. This distinguishes attributes from child elements in the same JSON object. The prefix character is configurable.",
+        },
+        {
+          question: "Is XML to JSON conversion lossless?",
+          answer:
+            "Not always. XML features like processing instructions, comments, namespace declarations, document type definitions, and attribute ordering have no JSON equivalent. Element order within objects may also change since JSON objects are unordered. For most data interchange scenarios, the conversion preserves all meaningful content.",
+        },
+      ],
+      keywords: [
+        "xml to json",
+        "convert xml to json",
+        "xml to json converter",
+        "xml json mapping",
+        "xml attributes to json",
+        "xml to json online",
+      ],
+      parentToolSlug: "json-xml",
+      parentToolName: "JSON ↔ XML Converter",
+    },
+    {
+      slug: "json-xml-differences",
+      title: "JSON vs XML — Key Differences",
+      metaTitle: "JSON vs XML — Syntax, Performance & Use Cases Compared",
+      metaDescription:
+        "Compare JSON and XML: syntax differences, performance, use cases, and when to use each format. Understand the trade-offs for APIs, configs, and data interchange.",
+      h1: "JSON vs XML — Key Differences Explained",
+      intro:
+        "JSON and XML are the two dominant data interchange formats. Understanding their differences helps you choose the right format and convert between them effectively.",
+      content: [
+        {
+          heading: "Syntax comparison",
+          body: "JSON uses curly braces for objects, square brackets for arrays, and colons for key-value pairs. It supports strings, numbers, booleans, null, objects, and arrays — 6 data types. XML uses opening/closing tags for elements, supports attributes on elements, and treats all content as text (no native data types). JSON is typically 30-50% smaller than equivalent XML due to the absence of closing tags.",
+          codeExample: '// JSON (compact)\n{"name": "Alice", "age": 30, "active": true}\n\n<!-- XML (verbose) -->\n<person>\n  <name>Alice</name>\n  <age>30</age>\n  <active>true</active>\n</person>\n\n<!-- XML with attributes (more compact) -->\n<person name="Alice" age="30" active="true" />',
+          codeLanguage: "xml",
+        },
+        {
+          heading: "Performance and parsing",
+          body: "JSON parsing is faster in most languages because JSON maps directly to native data structures (JavaScript objects, Python dicts, Go maps). XML parsing requires DOM or SAX parsers, namespace resolution, and schema validation. For web APIs, JSON is 2-10x faster to parse. However, XML streaming parsers (SAX/StAX) handle very large documents more efficiently than loading entire JSON files into memory.",
+        },
+        {
+          heading: "When to use each format",
+          body: "Use JSON for: REST APIs, web/mobile apps, NoSQL databases, configuration files, inter-service communication. Use XML for: SOAP services, enterprise integrations (EDI, HL7, FHIR), document formats (XHTML, SVG, RSS), systems requiring strong schema validation (XSD), mixed content documents, and legacy system interoperability. Many systems need both — hence the need for reliable conversion tools.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is JSON faster than XML?",
+          answer:
+            "For parsing, generally yes — JSON maps directly to native data structures in most languages. JSON documents are also smaller (no closing tags), reducing transfer time. However, XML streaming parsers can handle very large documents more memory-efficiently than loading entire JSON files.",
+        },
+        {
+          question: "Can XML do everything JSON can?",
+          answer:
+            "Yes, XML is more expressive than JSON. XML supports attributes, namespaces, mixed content, processing instructions, CDATA sections, and schema validation (XSD). JSON is simpler by design, which makes it easier to use but less capable for complex document structures.",
+        },
+      ],
+      keywords: [
+        "json vs xml",
+        "json xml differences",
+        "json or xml",
+        "json xml comparison",
+        "when to use json vs xml",
+        "json vs xml performance",
+      ],
+      parentToolSlug: "json-xml",
+      parentToolName: "JSON ↔ XML Converter",
+    },
+  ],
 };

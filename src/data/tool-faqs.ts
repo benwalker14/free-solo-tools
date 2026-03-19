@@ -2005,4 +2005,27 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "Yes. The generated YAML and shell commands are valid and ready to paste into your project files. Docker Compose output includes the services: block structure. Kubernetes output includes apiVersion, kind, and metadata fields. The docker run output generates a complete command with -e flags. You may need to adjust the service name, resource name, namespace, or image name to match your project.",
     },
   ],
+
+  "json-xml": [
+    {
+      question: "How does JSON to XML conversion handle arrays?",
+      answer:
+        "JSON arrays are wrapped in a parent element matching the key name, with each array item wrapped in a configurable child element (default: 'item'). For example, {\"colors\": [\"red\", \"blue\"]} becomes <colors><item>red</item><item>blue</item></colors>. You can customize the array item tag name in the options.",
+    },
+    {
+      question: "How does XML to JSON conversion handle attributes?",
+      answer:
+        "XML attributes are preserved in the JSON output using a configurable prefix (default: '@'). For example, <book id=\"123\">Title</book> becomes {\"@id\": 123, \"#text\": \"Title\"}. You can change the attribute prefix or disable attribute preservation entirely in the options.",
+    },
+    {
+      question: "Does the converter handle CDATA sections?",
+      answer:
+        "Yes. In JSON → XML mode, you can enable 'CDATA for special chars' to wrap string values containing <, &, or ]]> in CDATA sections instead of using XML entity escaping. In XML → JSON mode, CDATA sections are automatically parsed and their text content is extracted into the JSON output.",
+    },
+    {
+      question: "Can I do a round-trip conversion (JSON → XML → JSON)?",
+      answer:
+        "Yes. Click the 'Swap & convert back' button to carry the output into the input and switch direction. Note that JSON ↔ XML is not a lossless round-trip — XML attributes, mixed content, and processing instructions have no direct JSON equivalent, so some structural information may change between conversions.",
+    },
+  ],
 };
