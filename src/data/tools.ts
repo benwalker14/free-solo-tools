@@ -822,4 +822,12 @@ export const tools: Tool[] = [
     icon: "BIO",
     category: "Convert",
   },
+  {
+    title: "AI Code Security Scanner",
+    description:
+      "Scan JavaScript and TypeScript code for vulnerabilities — hardcoded secrets, injection, XSS, SSRF, prototype pollution, and 20+ security checks",
+    href: "/tools/code-security-scanner",
+    icon: "SEC",
+    category: "Inspect",
+  },
 ];

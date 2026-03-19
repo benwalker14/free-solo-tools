@@ -681,4 +681,166 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "YAML Formatter",
     },
   ],
+
+  "code-security-scanner": [
+    {
+      slug: "ai-code-review",
+      title: "AI Code Security Review",
+      metaTitle: "AI Code Security Review — Scan AI-Generated Code for Vulnerabilities",
+      metaDescription:
+        "Review AI-generated code for security vulnerabilities. Detects common issues in code from ChatGPT, Claude, Copilot, and Cursor — injection, XSS, hardcoded secrets, and more.",
+      h1: "AI Code Security Review — Find Vulnerabilities in AI-Generated Code",
+      intro:
+        "AI coding assistants generate code fast, but 45% of AI-generated code contains security vulnerabilities (Veracode, 2025). This scanner catches the most common security antipatterns before they reach production.",
+      content: [
+        {
+          heading: "Why AI-generated code needs security review",
+          body: "AI coding assistants like ChatGPT, Claude, GitHub Copilot, and Cursor generate functional code quickly, but they frequently introduce security vulnerabilities. Common issues include hardcoded API keys and secrets in example code, SQL queries built with string concatenation instead of parameterized queries, innerHTML and eval() usage without sanitization, missing input validation on user-controlled data, and insecure cookie or session configurations. These tools optimize for 'code that works' rather than 'code that is secure.' A dedicated security scan catches these patterns before deployment.",
+        },
+        {
+          heading: "The vibe coding security problem",
+          body: "Vibe coding — rapidly building applications with AI assistance — has transformed developer productivity. But speed introduces risk. When you accept AI suggestions without review, you inherit every security shortcut the model made. Production codebases with AI-generated authentication, database queries, and API handlers are particularly vulnerable. This scanner helps you review AI-generated code in seconds: paste the output, see every security issue highlighted with severity, CWE reference, and a specific fix.",
+        },
+        {
+          heading: "Common vulnerabilities in AI-generated JavaScript",
+          body: "The most frequent security issues in AI-generated JavaScript and TypeScript code: (1) Hardcoded secrets — AI often generates example API keys and leaves them in the code, (2) SQL injection — string concatenation in queries instead of parameterized statements, (3) XSS — using innerHTML or dangerouslySetInnerHTML with user data, (4) Command injection — passing user input to exec() or spawn(), (5) Insecure randomness — using Math.random() for tokens or session IDs, (6) Missing rate limiting on authentication endpoints. Each of these is detectable with pattern-based analysis.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What percentage of AI-generated code has security vulnerabilities?",
+          answer:
+            "According to Veracode's 2025 research, approximately 45% of AI-generated code contains security flaws. The most common issues are hardcoded credentials, injection vulnerabilities, and missing input validation. This rate is higher than human-written code because AI models optimize for functionality over security.",
+        },
+        {
+          question: "Does this scanner send my code to an AI model?",
+          answer:
+            "No. The scanner uses local regex-based pattern matching in your browser — it does not call any AI API, LLM, or external service. Your code stays on your device. This is a deliberate design choice: code security tools should not introduce their own data exposure risks.",
+        },
+        {
+          question: "Which AI coding tools produce the most vulnerabilities?",
+          answer:
+            "All AI coding assistants can produce vulnerable code. The risk depends more on the prompt and context than the specific tool. ChatGPT, Claude, Copilot, and Cursor all generate functional code that may include hardcoded secrets, injection-prone queries, and missing input validation. Always review AI-generated code before deploying.",
+        },
+      ],
+      keywords: [
+        "ai code security review",
+        "ai generated code vulnerabilities",
+        "vibe coding security",
+        "chatgpt code security",
+        "copilot code security",
+        "ai code audit",
+        "scan ai code for bugs",
+        "review ai generated code",
+      ],
+      parentToolSlug: "code-security-scanner",
+      parentToolName: "AI Code Security Scanner",
+    },
+    {
+      slug: "javascript-security",
+      title: "JavaScript Security Scanner",
+      metaTitle: "JavaScript Security Scanner Online — Find JS Vulnerabilities",
+      metaDescription:
+        "Scan JavaScript code for security vulnerabilities online. Detects XSS, injection, hardcoded secrets, eval(), prototype pollution, and OWASP Top 10 issues. Free and private.",
+      h1: "JavaScript Security Scanner — Detect JS Vulnerabilities Instantly",
+      intro:
+        "Scan JavaScript code for common security vulnerabilities with a free, client-side static analysis tool. Detects OWASP Top 10 issues including XSS, injection flaws, hardcoded secrets, and insecure patterns.",
+      content: [
+        {
+          heading: "OWASP Top 10 vulnerabilities in JavaScript",
+          body: "The OWASP Top 10 lists the most critical web application security risks. In JavaScript applications, the most common are: A01 Broken Access Control (missing authorization checks), A02 Cryptographic Failures (weak hashing, insecure randomness), A03 Injection (SQL, command, NoSQL injection via string concatenation), A04 Insecure Design (missing rate limiting, open redirects), A07 Cross-Site Scripting (innerHTML, document.write, dangerouslySetInnerHTML). This scanner checks for patterns associated with each of these categories.",
+        },
+        {
+          heading: "Client-side vs server-side JavaScript security",
+          body: "Client-side JavaScript faces XSS, prototype pollution, and DOM manipulation risks. Server-side Node.js faces injection, path traversal, SSRF, and command execution risks. This scanner covers both contexts — it detects innerHTML and document.write() (browser-specific), as well as exec(), readFile(), and database queries (server-specific). Paste any JavaScript code and get a comprehensive security assessment.",
+        },
+        {
+          heading: "JavaScript-specific security patterns",
+          body: "JavaScript has unique security concerns: eval() and new Function() enable arbitrary code execution, prototype pollution through bracket notation can bypass security checks, Math.random() is predictable and should never be used for security, template literals with ${} in database queries enable injection, and the dynamic typing system can be exploited for type confusion attacks. This scanner checks for all of these patterns with specific fix recommendations.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What JavaScript vulnerabilities does this scanner detect?",
+          answer:
+            "The scanner detects 20+ vulnerability patterns: hardcoded secrets and API keys, SQL/NoSQL/command injection, XSS via innerHTML and dangerouslySetInnerHTML, SSRF with user-controlled URLs, path traversal in filesystem operations, prototype pollution, eval() and new Function(), insecure cookies, CORS misconfigurations, weak hashing, JWT decode without verify, open redirects, and more.",
+        },
+        {
+          question: "Does this work for TypeScript code?",
+          answer:
+            "Yes. TypeScript is a superset of JavaScript, so all JavaScript security patterns apply. The scanner analyzes the code as text — it works equally well with .js and .ts files, including React/JSX/TSX components.",
+        },
+        {
+          question: "How accurate is regex-based security scanning?",
+          answer:
+            "Regex-based scanning catches common vulnerability patterns with high precision but can produce false positives (flagging safe code) and false negatives (missing complex vulnerabilities). It excels at finding hardcoded secrets, obvious injection patterns, and known antipatterns. For data flow analysis, use a full SAST tool like Semgrep or CodeQL.",
+        },
+      ],
+      keywords: [
+        "javascript security scanner",
+        "js vulnerability scanner",
+        "javascript security audit",
+        "node.js security scanner",
+        "xss scanner javascript",
+        "javascript sast tool",
+        "scan js code for vulnerabilities",
+        "javascript owasp scanner",
+      ],
+      parentToolSlug: "code-security-scanner",
+      parentToolName: "AI Code Security Scanner",
+    },
+    {
+      slug: "hardcoded-secrets-scanner",
+      title: "Hardcoded Secrets Scanner",
+      metaTitle: "Hardcoded Secrets Scanner — Find API Keys & Credentials in Code",
+      metaDescription:
+        "Scan code for hardcoded API keys, passwords, tokens, and credentials. Detect secrets before they reach version control. Free, client-side — your code stays private.",
+      h1: "Hardcoded Secrets Scanner — Detect Credentials Before They Leak",
+      intro:
+        "Find hardcoded API keys, passwords, tokens, and credentials in your code before they reach Git. Detects AWS keys, API secrets, database passwords, and authentication tokens using pattern matching — all in your browser.",
+      content: [
+        {
+          heading: "The hardcoded secrets problem",
+          body: "Hardcoded credentials are the most common and most dangerous security vulnerability in source code. GitGuardian's 2025 report found over 12 million new secrets exposed in public GitHub repositories in a single year. Once a secret is committed to Git, it exists in the repository history forever — even if deleted from the current codebase. Leaked AWS keys can be exploited within minutes by automated scanners. This tool catches secrets before they enter version control.",
+        },
+        {
+          heading: "What secrets this scanner detects",
+          body: "The scanner identifies: API keys with common naming patterns (api_key, apiKey, secret_key, client_secret), AWS access key IDs (AKIA prefix), authentication tokens (auth_token, access_token, bearer tokens), database passwords (password, passwd, DB_PASSWORD), private keys and client secrets, and hardcoded connection strings with embedded credentials. Each finding includes the exact line number and a recommendation to move the secret to environment variables.",
+        },
+        {
+          heading: "Best practices for managing secrets",
+          body: "Never hardcode secrets in source code. Use environment variables (process.env.API_KEY), a secrets manager (AWS Secrets Manager, HashiCorp Vault, Doppler), or a .env file that is listed in .gitignore. Add a pre-commit hook (git-secrets, detect-secrets) to catch leaked credentials automatically. Rotate any credential that has ever been committed to a repository, even if removed — it exists in Git history. Use this scanner as a quick check before committing.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What types of secrets does this scanner detect?",
+          answer:
+            "The scanner detects API keys, secret keys, passwords, authentication tokens, AWS access key IDs (AKIA prefix), client secrets, database credentials, and any string assigned to variables with common credential naming patterns. It uses regex pattern matching to identify secrets regardless of the programming language.",
+        },
+        {
+          question: "Is this scanner safe for checking code with real secrets?",
+          answer:
+            "Yes. The scanner runs 100% in your browser — your code and any secrets it contains are never transmitted to any server. This is the safest way to check for hardcoded credentials online, because the detection tool itself does not create an exposure risk.",
+        },
+        {
+          question: "How do I fix hardcoded secrets in my code?",
+          answer:
+            "Replace hardcoded values with environment variable references (process.env.API_KEY in Node.js, os.environ in Python). Store actual values in a .env file excluded from Git via .gitignore, or use a secrets manager. If the secret was ever committed to Git, rotate it immediately — deletion from the current code does not remove it from Git history.",
+        },
+      ],
+      keywords: [
+        "hardcoded secrets scanner",
+        "find api keys in code",
+        "detect credentials in code",
+        "secret scanning tool",
+        "find passwords in source code",
+        "api key scanner",
+        "credential detection",
+        "pre-commit secret scanner",
+      ],
+      parentToolSlug: "code-security-scanner",
+      parentToolName: "AI Code Security Scanner",
+    },
+  ],
 };

@@ -1,6 +1,6 @@
 # DevBolt
 
-> 103 free online developer tools. 100% client-side — your data never leaves your browser.
+> 104 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -107,6 +107,7 @@
 - [Compression Tester](https://devbolt.dev/tools/compression-tester): Test and compare Brotli, Gzip, and Deflate compression ratios for text content with side-by-side results
 - [TypeScript 6.0 Migration Checker](https://devbolt.dev/tools/ts6-migration): Analyze tsconfig.json for TS 6.0 breaking changes, deprecated options, new defaults, and get a readiness grade with fixes
 - [ESLint to Biome Converter](https://devbolt.dev/tools/eslint-to-biome): Convert ESLint config to Biome — maps 100+ rules from core, TypeScript, React, JSX-A11y, and import plugins to biome.json
+- [AI Code Security Scanner](https://devbolt.dev/tools/code-security-scanner): Scan JavaScript and TypeScript code for vulnerabilities — hardcoded secrets, injection, XSS, SSRF, prototype pollution, and 20+ security checks
 
 ## Cheat Sheets
 

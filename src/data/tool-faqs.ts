@@ -1872,4 +1872,22 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "Chain Zod's validation methods onto the generated schema: .min()/.max() for constraints, .email()/.url()/.uuid() for formats, .optional()/.nullable()/.default() for optionality, .nonempty() for arrays, and .refine()/.superRefine() for custom logic like password confirmation matching. Transform data during parsing with .transform() to coerce types or normalize formats. If you input JSON Schema with constraints, these methods are generated automatically.",
     },
   ],
+
+  "code-security-scanner": [
+    {
+      question: "What security vulnerabilities does the AI Code Security Scanner detect?",
+      answer:
+        "The scanner checks for 20+ vulnerability patterns across 8 categories: hardcoded secrets and API keys (CWE-798), SQL injection via string concatenation (CWE-89), command injection through exec/spawn (CWE-78), cross-site scripting via innerHTML and dangerouslySetInnerHTML (CWE-79), server-side request forgery with user-controlled URLs (CWE-918), path traversal in filesystem operations (CWE-22), prototype pollution through dynamic property assignment (CWE-1321), insecure randomness with Math.random() (CWE-330), weak cryptographic algorithms, open redirects, missing rate limiting, and more. Each finding includes a CWE reference, severity level, and specific fix recommendation.",
+    },
+    {
+      question: "Is the code scanner safe for proprietary or production code?",
+      answer:
+        "Yes. The scanner runs 100% in your browser using JavaScript pattern matching — your code is never sent to any server, API, or AI model. All analysis happens locally in your browser's memory and is discarded when you close the tab. You can verify this by checking the Network tab in DevTools while scanning. This makes it safe for scanning production code, internal libraries, and proprietary business logic that should never be shared with third parties.",
+    },
+    {
+      question: "Can this scanner replace a full SAST tool like Semgrep or CodeQL?",
+      answer:
+        "No — this tool uses regex-based pattern matching to catch common vulnerabilities quickly, but it does not perform full abstract syntax tree (AST) analysis, data flow tracking, or taint analysis like Semgrep, CodeQL, or Snyk Code. It is best used as a quick first-pass review, especially for AI-generated code that may contain obvious security antipatterns. For production security audits, combine this with a proper SAST tool in your CI/CD pipeline.",
+    },
+  ],
 };

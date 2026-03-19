@@ -12,36 +12,44 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
 - [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
-### P1 - High (Growth & SEO — PHASE 9: TRAFFIC CONVERSION PIVOT)
-- [x] Write 5 "How to Fix X Error" blog posts — #1 traffic driver for dev tool sites. Posts: (1) "How to Fix Invalid JSON Error" → JSON Formatter, (2) "JWT Errors Explained: Expired, Invalid Signature, Issuer" → JWT Decoder + JWT Builder, (3) "Understanding and Fixing CORS Errors" → CSP Builder + Security Headers, (4) "Docker Compose YAML Errors" → Docker Compose Validator, (5) "Regex Errors: Why Your Pattern Isn't Matching" → Regex Tester + Regex Generator. Include HowTo schema markup.
-- [x] Build 3 interactive cheat sheets — Regex (~200K/mo searches), Git (~200K/mo), Docker (~75K/mo). Click-to-test integration with linked tools. 475K+ combined monthly searches. /cheatsheets/ section.
-- [x] Create bidirectional landing pages for converter tools — separate "JSON to YAML" and "YAML to JSON" URLs, "HTML to Markdown" and "Markdown to HTML", "TOML to JSON" and "JSON to TOML". Each with 500+ words unique content. 6-10 new indexable pages.
-- [ ] Cross-post blog content to Dev.to with canonical URLs — 300-500% reach increase. Start with top 5 posts by SEO value.
-- [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo (as "CodeBeautify alternative"), StackShare, DevHunt, SaaSHub, WebCurate, OpenHunts, MicroLaunch, FutureTools. Submit PRs to 3-5 GitHub Awesome Lists (awesome-devtools, awesome-developer-first). (HUMAN ACTION NEEDED)
-- [x] Create /safe-tools privacy landing page — target "safe json formatter", "codebeautify alternative", "private developer tools". devformat.tools is already competing for this space. Dedicated page with comparison table vs CodeBeautify.
-- [x] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 went GA March 17. Links to TS6 Migration Checker tool.
-- [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave. Links to ESLint-to-Biome Converter tool.
-- [x] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
-- [ ] Launch on Product Hunt — REVISED: angle should be "first web app fully managed by AI agents" OR "privacy-first CodeBeautify alternative". Delay to late April 2026. Need 4-6 weeks community engagement. (HUMAN ACTION NEEDED)
+### P1 - High (Growth & Trust — PHASE 10: VIBE CODING SECURITY MOMENT + DISTRIBUTION OFFENSIVE)
+- [x] Add AI Code Security Scanner tool (#110) — paste AI-generated code, get vulnerability report (injection, SSRF, insecure auth, hardcoded secrets, eval(), prototype pollution, path traversal, XSS). No free client-side competitor. #1 tool priority — addresses biggest dev anxiety of 2026 (45% of AI code has flaws per Veracode).
+- [ ] Write "Vibe Coding Security: How to Review AI-Generated Code" blog post — highest search volume growth in dev space. Link to AI Code Scanner, JS Playground, Regex Tester. HowTo schema.
+- [ ] Add Code Complexity Analyzer tool (#107) — ELEVATED from P3. Paste JS/TS code → cyclomatic complexity, nesting depth, maintainability index. Directly serves vibe coding quality concerns.
+- [ ] Cross-post top 5 blog posts to Dev.to with canonical URLs — 300-500% reach increase. Start with error-fix posts. Use #beginners tag. Still undone from Phase 9.
+- [ ] Add "quick answer blocks" above the fold on top 20 tool pages — 2-3 sentence direct answers before tool UI. 30-40% higher AI Overview citation rate per GEO research.
+- [ ] Add author attribution to all 30 blog posts — Google March 2026 core update tightening E-E-A-T. "Written by the DevBolt team" + link to /about.
+- [ ] Write "TypeScript 7.0: What the Go Rewrite Means" blog post — ELEVATED from P2. TS6 driving peak traffic, forward-looking piece ages well.
+- [ ] Update AI Model Comparison tool (#78) — add Kiro, Google Antigravity, update Claude/Cursor/Windsurf pricing. Devs comparison-shopping after Cursor's price hike ($60/mo Pro+).
+- [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo, StackShare, DevHunt, SaaSHub, WebCurate, OpenHunts, MicroLaunch. Submit PRs to GitHub Awesome Lists. (HUMAN ACTION NEEDED)
+- [ ] Launch on Product Hunt — angle: "trust tools for the AI age" + autonomous AI agent story. Late April 2026. (HUMAN ACTION NEEDED)
 - [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
 - [ ] Apply to EthicalAds for developer-focused ad monetization — $3-7.50 CPM, $1K minimum. Once 50K PV/mo reached (HUMAN ACTION NEEDED)
-- [x] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
-- [x] Expand programmatic SEO sub-pages to 45 tools — from 26 → 126 indexed sub-pages
+- [x] Write 5 "How to Fix X Error" blog posts — all 5 done (JSON, JWT, CORS, Docker Compose, Regex)
+- [x] Build 3 interactive cheat sheets — Regex, Git, Docker done
+- [x] Create bidirectional landing pages for converter tools — 6 pages done
+- [x] Create /safe-tools privacy landing page — done
+- [x] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — done
+- [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — done
+- [x] Add HowTo structured data to tutorial blog posts — done
+- [x] Add 10-15 privacy-targeted SEO sub-pages — done
+- [x] Implement programmatic SEO sub-pages for top 10 tools
+- [x] Expand programmatic SEO sub-pages to 45 tools — 126 indexed sub-pages
 - [x] Write 8 more blog posts targeting high-volume queries (12/12 done)
-- [x] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
-- [x] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
-- [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
-- [x] Add Tailwind CSS Generator tool (#56) — 30K+/mo searches, hot framework, no competitor has a good one
-- [x] Add AI Model Comparison Card tool (#78) — interactive table of AI models (pricing, context window, capabilities). Captures "GPT vs Claude" searches. Low effort.
-- [x] Add Git Command Builder & Cheat Sheet tool (#79) — ZERO git coverage currently. Interactive command builder + visual cheat sheet. High long-tail SEO.
-- [x] Add HTML to JSX Converter tool (#85) — 40-60K/mo searches. React has 44.7% dev share. transform.tools gets massive traffic from this. Low effort, huge ROI.
-- [x] Add JSON to Code Generator - Multi-Language (#86) — Go, Python, Java, C#, Dart, Rust, Swift, Kotlin. quicktype.io gets 762K/mo visitors from this alone. 80-120K aggregate searches. DevBolt only has JSON-to-TypeScript.
-- [x] Add Code Screenshot Generator tool (#87) — Carbon/Ray.so alternative. 30-50K/mo. Highly viral — every shared screenshot = free backlink/marketing. Canvas-based, fully client-side.
-- [x] Add MCP Config Builder tool (#94) — visual mcp.json builder for Claude Desktop/Cursor/VS Code/Windsurf/Claude Code. 16 server templates, 5 client formats, env var management. 3 SEO sub-pages.
-- [x] Add OpenAPI to TypeScript Converter tool (#95) — 2.14M weekly npm downloads for CLI tool, no dominant online converter. transform.tools is only competitor. Pairs with OpenAPI Validator (#75).
-- [x] Write 10 "X vs Y" comparison blog posts — TypeScript vs JavaScript, React vs Vue, REST vs GraphQL, Docker vs K8s, Tailwind vs Bootstrap, Flexbox vs Grid, JSON vs YAML, SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding (10/10 done)
-- [x] Optimize top 20 tool pages for AI Overview citation — FAQ sections (3-4 questions each) with FAQPage JSON-LD schema, direct answers in first 60 words, 134-167 word paragraphs. Data-driven via `src/data/tool-faqs.ts`. 70+ FAQs across 20 tools.
-- [x] Expand FAQ sections to all 103 tools — 313 FAQ questions across all tools in single `src/data/tool-faqs.ts`. Native `<details>` accordion for SEO crawlability. FAQPage JSON-LD schema on every tool page.
+- [x] Add Privacy Policy Generator tool (#65)
+- [x] Add HTTP Status Code Reference page (#66)
+- [x] Add JSON to CSV Converter tool (#53)
+- [x] Add Tailwind CSS Generator tool (#56)
+- [x] Add AI Model Comparison Card tool (#78)
+- [x] Add Git Command Builder & Cheat Sheet tool (#79)
+- [x] Add HTML to JSX Converter tool (#85)
+- [x] Add JSON to Code Generator (#86)
+- [x] Add Code Screenshot Generator tool (#87)
+- [x] Add MCP Config Builder tool (#94)
+- [x] Add OpenAPI to TypeScript Converter tool (#95)
+- [x] Write 10 "X vs Y" comparison blog posts (10/10 done)
+- [x] Optimize top 20 tool pages for AI Overview citation — FAQ sections with schema
+- [x] Expand FAQ sections to all 103 tools — 313 FAQ questions
 
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
@@ -70,12 +78,16 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder targeting developers (code review, API docs, testing prompts). Multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
 - [x] Add JWT Builder/Generator tool (#100) — complement to JWT Decoder (#6). 8-20K/mo searches. Visual header/payload editor, 10 algorithms (HS256/HS384/HS512/RS256/RS384/RS512/ES256/ES384/ES512/none), key pair generation, client-side signing via panva/jose. 3 SEO sub-pages. jwt.io's UX is aging.
 - [x] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
-- [ ] Build Chrome Extension MVP — DOWNGRADED from P1. Market is saturated for utility extensions. If built: command palette (Ctrl+Shift+D) → quick access to top 10 tools, privacy badge. Lower ROI than content/cheat sheets.
-- [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format (JSON/Base64/JWT/CSV/YAML), suggest right tool. UX differentiator no web competitor has.
-- [ ] Add lifetime deal option ($49-79) alongside Pro subscription — DevUtils charges $19.99 one-time and has 10K+ users. Captures subscription-averse devs.
-- [ ] Write "TypeScript 7.0: What We Know About the Go Rewrite" blog post — forward-looking, ages well.
-- [x] Add HowTo structured data to tutorial blog posts — FAQ rich results restricted to gov/health sites as of Dec 2025. HowTo schema still eligible for rich results.
-- [ ] Create language-specific landing pages — "Python JSON Formatter", "JavaScript Base64 Encode", "Node.js JWT Decode". Programmatic SEO with code examples + embedded tool. 10-20 pages.
+- [ ] Write GlassWorm/VSCode malware security blog post — "Why Browser-Based Tools Are Safer Than VS Code Extensions". Time-sensitive: GlassWorm + 72 malicious Open VSX extensions active March 8-19. Reinforces privacy positioning.
+- [ ] Build 10-15 language-specific landing pages — "Python JSON Formatter", "JavaScript Base64 Encode", "Node.js JWT Decode". Programmatic SEO with code examples + embedded tool. ELEVATED from P2. AI Mode "fan-out" queries favor these.
+- [ ] Write "MCP Context Window: How to Optimize Your AI Agent Setup" blog post — Perplexity CTO controversy driving searches. Links to MCP Config Builder.
+- [ ] Add ItemList JSON-LD to /free-tools, /cheatsheets, category pages — machine-readable list format for AI Overview citations.
+- [ ] Audit 126 programmatic sub-pages for thin content — March 2026 core update risk. Each needs 100+ words + code example + FAQ block.
+- [ ] Write "CodeBeautify Alternative: 103 Tools That Never See Your Data" blog post — devformat.tools already ranking for this query with 52 tools. DevBolt has 103. Direct competitive content.
+- [ ] Build Chrome Extension MVP — DOWNGRADED. 10015.io's extension is a retention moat but market is saturated. Lower ROI than content.
+- [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format, suggest right tool. UX differentiator.
+- [ ] Add lifetime deal option ($49-79) alongside Pro subscription — captures subscription-averse devs.
+- [x] Add HowTo structured data to tutorial blog posts — done.
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
@@ -104,16 +116,15 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add SoftwareApplication schema markup to all tool pages — upgraded all 103 page.tsx from WebApplication to SoftwareApplication with isAccessibleForFree, browserRequirements, creator (Organization) fields. SubpageLayout updated too. FAQPage schema now on all 103 tools (313 questions).
 - [x] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 RC just dropped. Massive search wave.
 - [x] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave.
-- [ ] Build privacy-focused landing page at /safe-tools — target "safe json formatter", "codebeautify alternative", "private developer tools". Capture displaced CodeBeautify users after Nov 2025 data leak.
+- [x] Build privacy-focused landing page at /safe-tools — done
 - [ ] Add HTTP Request Builder tool (#105) — lightweight ReqBin/Postman alternative. Visual builder → cURL/Python/JS/Go/Rust code. HN demand validated. Reverses cURL to Code (#52).
 - [ ] Add .env to Docker/K8s Converter tool (#106) — convert .env files → docker-compose env, Kubernetes ConfigMap/Secret YAML. Complements .env Validator (#77). Container DevOps niche.
-- [ ] Add Code Complexity Analyzer tool (#107) — paste JS/TS code → cyclomatic complexity, lines, nesting depth, maintainability index. AI-generated code quality concern trending.
 - [ ] Add Tailwind CSS to CSS Converter tool (#108) — reverse of CSS to Tailwind (#88). Completes the pair. 10-20K/mo searches.
 - [ ] Add GitHub Actions YAML Validator tool (#109) — validate workflow YAML, check action syntax, job dependencies, expression validation. CI/CD tooling gap.
-- [ ] Write "How to Fix Invalid JSON Error" blog post — CodeBeautify json-fixer page drives huge traffic. Natural funnel to JSON Formatter tool.
-- [ ] Write "TypeScript 7.0: What We Know About the Go Rewrite" blog post — forward-looking piece, TS 7.0 will rewrite compiler in Go for 7-10x speed. Ages well.
+- [x] Write "How to Fix Invalid JSON Error" blog post — done (included in Phase 9 error-fix batch)
 
 ## Done
+- [x] Add AI Code Security Scanner tool (#104) — paste AI-generated code, get vulnerability report. 25 security rules across 10 categories (Secrets, Injection, XSS, SSRF, Path Traversal, Cryptography, Session, Configuration, Authentication, Code Quality, Information Exposure, Redirect). 4 severity levels (critical, high, medium, low) with CWE references. Detects hardcoded secrets/AWS keys, SQL/NoSQL/command injection, eval()/Function(), innerHTML/dangerouslySetInnerHTML XSS, SSRF via fetch/axios, path traversal in fs operations, prototype pollution, insecure randomness (Math.random), weak hashing (MD5/SHA-1), JWT decode without verify, CORS wildcards, open redirects, missing rate limiting, insecure cookies, HTTP URLs, security TODOs, disabled lint rules, sensitive console.log. Security grade (A-F), severity/category filters, expandable findings with description + fix + code snippet, CWE reference links to MITRE. 4 sample inputs (Vulnerable API Handler, Insecure React Component, Clean Secure Code, AI-Generated CRUD). False positive filtering. 3 SEO sub-pages (ai-code-review, javascript-security, hardcoded-secrets-scanner). Ctrl+Enter shortcut. All client-side. **TOOL #104.**
 - [x] Write 5 "How to Fix X Error" blog posts — (1) "How to Fix Invalid JSON" at /blog/fix-invalid-json — 10 common errors (trailing commas, single quotes, unquoted keys, comments, missing commas, unclosed brackets, escape sequences, undefined/NaN, duplicate keys, BOM) with code examples in JS/Python/Go/CLI, step-by-step debugging guide, prevention tips, JSON Formatter + Schema Validator + Visualizer + Path Tester links, DigitalOcean affiliate. (2) "JWT Errors Explained" at /blog/fix-jwt-errors — 8 errors (expired, invalid signature, malformed, alg:none, nbf, aud, iss, clock skew) with Node.js/Python/Go fixes, security best practices, JWT Decoder + Builder links, Cloudways affiliate. (3) "How to Fix CORS Errors" at /blog/fix-cors-errors — 7 errors (missing header, origin mismatch, preflight, method/header not allowed, credentials+wildcard, redirect) with Express/Next.js/Nginx/Apache/Go/Flask config, CSP Builder + Security Headers links, DigitalOcean affiliate. (4) "Docker Compose Errors" at /blog/fix-docker-compose-errors — 10 errors (indentation, ports, version, services, volumes, env vars, depends_on, networks, build context, duplicates) with V1→V2 migration, Docker Compose Validator + Dockerfile Validator links, DigitalOcean affiliate. (5) "Regex Errors" at /blog/fix-regex-errors — 10 errors (unescaped chars, greedy/lazy, anchors, char classes, catastrophic backtracking, flags, escaping, lookahead, unicode, capture groups) with 6 battle-tested patterns, language-specific gotchas (JS/Python/Go/Java), Regex Tester + Generator links, Cloudways affiliate. All posts: 500+ words, HowTo-style step-by-step, multi-language code examples, affiliate callout boxes, internal tool links. All client-side rendered.
 - [x] Expand FAQ sections to all 103 tools + upgrade SoftwareApplication schema — 313 FAQ questions across 5 data batches covering every tool. Upgraded all 103 tool pages from WebApplication to SoftwareApplication JSON-LD with isAccessibleForFree, browserRequirements, creator fields. SubpageLayout schema updated. ToolFAQ component rewritten from useState accordion to native `<details>` elements for SEO crawlability. FAQPage + SoftwareApplication dual schema on every tool page. AI Overview citation optimization complete.
 - [x] Add ESLint to Biome Config Converter tool (#103) — convert .eslintrc.json/module.exports to biome.json. 100+ rule mappings across 8 categories (correctness, suspicious, style, complexity, a11y, security, performance, nursery). TypeScript-ESLint (18 rules), React/Hooks (10 rules), JSX-A11y (26 rules), import plugin. Formatter extraction (indent, semi, quotes, comma-dangle, arrow-parens, max-len). Detects extends (prettier, airbnb, standard) with migration advice. 4 sample configs (React+TS, Node.js Airbnb, Next.js Strict, Minimal Legacy). Stats panel, warnings tab with severity filters, migration steps guide, rule mapping reference table. Copy/download biome.json, Ctrl+Enter shortcut. 3 SEO sub-pages (biome-migration-guide, biome-vs-eslint, biome-rule-mapping). All client-side
