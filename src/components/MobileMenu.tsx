@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
@@ -18,7 +18,6 @@ export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [prevPath, setPrevPath] = useState(pathname);
-
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Close menu on route change
@@ -31,7 +30,10 @@ export default function MobileMenu() {
   useEffect(() => {
     if (!open) return;
     function handleClick(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     }
