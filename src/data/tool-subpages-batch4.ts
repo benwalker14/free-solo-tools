@@ -2245,4 +2245,133 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "CSS to Tailwind Converter",
     },
   ],
+
+  "json-visualizer": [
+    {
+      slug: "json-tree-viewer",
+      title: "JSON Tree Viewer Online",
+      metaTitle: "JSON Tree Viewer Online — Interactive JSON Explorer | DevBolt",
+      metaDescription:
+        "View JSON as an interactive tree with collapsible nodes. Expand, collapse, search, and copy JSON paths. Free online JSON tree viewer — no signup, 100% client-side.",
+      h1: "JSON Tree Viewer Online",
+      intro:
+        "Explore JSON data as a collapsible tree with real-time search, path copying, and depth controls. Everything runs in your browser — no data leaves your device.",
+      content: [
+        {
+          heading: "What is a JSON tree viewer?",
+          body: "A JSON tree viewer renders JSON data as a hierarchical tree structure where objects and arrays become expandable nodes. This makes it easy to navigate deeply nested data without scrolling through raw text. Unlike a plain text editor, a tree viewer lets you collapse irrelevant sections and focus on the data that matters.",
+        },
+        {
+          heading: "When to use a JSON tree viewer",
+          body: "Tree viewers are essential when working with large API responses, configuration files, or database exports. They help you quickly understand data structure, find specific values, verify nesting depth, and identify unexpected types. Developers commonly use them during debugging, API integration, and data migration.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I search within the JSON tree?",
+          answer:
+            "Yes. Type any key name or value in the search bar to highlight matching nodes. Use Ctrl+F to focus the search bar from anywhere on the page.",
+        },
+        {
+          question: "Is my JSON data safe in an online viewer?",
+          answer:
+            "Yes. DevBolt's JSON viewer runs entirely in your browser using JavaScript. Your JSON is never sent to any server, making it safe for viewing sensitive API responses, credentials, and configuration data.",
+        },
+      ],
+      keywords: [
+        "json tree viewer",
+        "json tree viewer online",
+        "json tree",
+        "view json as tree",
+        "json node viewer",
+        "interactive json viewer",
+      ],
+      parentToolSlug: "json-visualizer",
+      parentToolName: "JSON Visualizer",
+    },
+    {
+      slug: "json-explorer",
+      title: "JSON Explorer — Navigate Nested Data",
+      metaTitle: "JSON Explorer Online — Navigate Nested JSON Data | DevBolt",
+      metaDescription:
+        "Explore and navigate nested JSON data interactively. Copy JSON paths, expand to any depth, search keys and values. Free JSON explorer tool.",
+      h1: "JSON Explorer Online",
+      intro:
+        "Navigate deeply nested JSON structures with expand/collapse controls, path copying, and instant search. Perfect for exploring API responses and config files.",
+      content: [
+        {
+          heading: "Navigating nested JSON",
+          body: "Deeply nested JSON is common in API responses, cloud configurations, and data pipelines. A JSON explorer lets you drill into specific branches without losing your place. Click any object or array node to expand it, and use depth controls (L2, L3, L5, All) to expand the entire tree to a specific level.",
+        },
+        {
+          heading: "Copying JSON paths",
+          body: "Hover over any node and click 'path' to copy its JSON path (e.g., $.data.users[0].name). JSON paths are useful for writing code that accesses specific values, configuring JSON path queries, and documenting API response structures. You can also copy the full value of any node as formatted or minified JSON.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What JSON path format does the explorer use?",
+          answer:
+            "The explorer uses dot notation with bracket syntax for arrays: $.data.users[0].name. The $ represents the root. This format is compatible with most JSON path libraries (JSONPath, jq).",
+        },
+        {
+          question: "Can the explorer handle large JSON files?",
+          answer:
+            "The explorer works well with JSON files up to several megabytes. For very large files, use the depth controls to avoid expanding thousands of nodes at once. The tree is rendered on demand — collapsed nodes don't consume rendering resources.",
+        },
+      ],
+      keywords: [
+        "json explorer",
+        "json explorer online",
+        "explore json",
+        "navigate json",
+        "json path finder",
+        "json data explorer",
+      ],
+      parentToolSlug: "json-visualizer",
+      parentToolName: "JSON Visualizer",
+    },
+    {
+      slug: "json-viewer-alternative",
+      title: "JSON Crack / JSON Viewer Alternative",
+      metaTitle: "JSON Crack Alternative — Free JSON Viewer Online | DevBolt",
+      metaDescription:
+        "Free JSON Crack alternative with interactive tree view, search, path copy, and stats. No signup, no tracking — 100% client-side JSON viewer.",
+      h1: "Free JSON Crack Alternative",
+      intro:
+        "Looking for a free, privacy-focused alternative to JSON Crack or other online JSON viewers? DevBolt's JSON Visualizer offers an interactive tree, search, depth controls, and path copying — all running in your browser with zero data collection.",
+      content: [
+        {
+          heading: "Why use DevBolt's JSON Viewer?",
+          body: "Unlike many online JSON viewers that send your data to a server for processing, DevBolt's JSON Visualizer runs 100% client-side. Your JSON never leaves your browser. This makes it safe for viewing API keys, tokens, configuration secrets, and any other sensitive data you wouldn't want uploaded to a third-party server.",
+        },
+        {
+          heading: "Features comparison",
+          body: "DevBolt's JSON Visualizer includes: interactive collapsible tree, key/value search with highlighting, JSON path copy on hover, depth-level controls (collapse, L2, L3, L5, all), data statistics (keys, depth, type counts, size), copy as formatted or minified JSON, and multiple sample datasets. All features are free with no signup required.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is this a replacement for JSON Crack?",
+          answer:
+            "DevBolt's JSON Visualizer provides a tree-based viewer that covers the most common JSON exploration needs: expanding/collapsing nodes, searching, and copying paths. JSON Crack offers a graph visualization which is better for seeing relationships. Both tools are useful for different purposes.",
+        },
+        {
+          question: "Do I need to create an account?",
+          answer:
+            "No. DevBolt's JSON Visualizer is completely free with no signup, no account, and no usage limits. Just paste your JSON and start exploring.",
+        },
+      ],
+      keywords: [
+        "json crack alternative",
+        "json viewer alternative",
+        "free json viewer",
+        "json viewer online free",
+        "json viewer no signup",
+        "private json viewer",
+      ],
+      parentToolSlug: "json-visualizer",
+      parentToolName: "JSON Visualizer",
+    },
+  ],
 };

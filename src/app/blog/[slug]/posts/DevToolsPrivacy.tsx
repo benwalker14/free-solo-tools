@@ -432,7 +432,7 @@ Content-Type: application/json
           href="/free-tools"
           className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
         >
-          84+ tools
+          85+ tools
         </Link>{" "}
         runs entirely in your browser. No server calls. No data storage. No
         cookies.

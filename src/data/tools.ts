@@ -670,4 +670,12 @@ export const tools: Tool[] = [
     icon: "TW",
     category: "Convert",
   },
+  {
+    title: "JSON Visualizer",
+    description:
+      "Visualize JSON as an interactive tree — collapsible nodes, search, path copy, depth controls, and data statistics",
+    href: "/tools/json-visualizer",
+    icon: "{ }",
+    category: "Inspect",
+  },
 ];
