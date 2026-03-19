@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPost } from "@/data/blog-posts";
+import FlexboxVsGrid from "./posts/FlexboxVsGrid";
+import JsonVsYaml from "./posts/JsonVsYaml";
+import Sha256VsMd5 from "./posts/Sha256VsMd5";
+import NextjsVsNuxt from "./posts/NextjsVsNuxt";
+import Base64VsUrlEncoding from "./posts/Base64VsUrlEncoding";
 import TypeScriptVsJavaScript from "./posts/TypeScriptVsJavaScript";
 import ReactVsVue from "./posts/ReactVsVue";
 import RestVsGraphql from "./posts/RestVsGraphql";
@@ -25,6 +30,11 @@ import DockerComposeGuide from "./posts/DockerComposeGuide";
 import YamlGuide from "./posts/YamlGuide";
 
 const postContent: Record<string, React.ReactNode> = {
+  "flexbox-vs-grid": <FlexboxVsGrid />,
+  "json-vs-yaml": <JsonVsYaml />,
+  "sha256-vs-md5": <Sha256VsMd5 />,
+  "nextjs-vs-nuxt": <NextjsVsNuxt />,
+  "base64-vs-url-encoding": <Base64VsUrlEncoding />,
   "typescript-vs-javascript": <TypeScriptVsJavaScript />,
   "react-vs-vue": <ReactVsVue />,
   "rest-vs-graphql": <RestVsGraphql />,

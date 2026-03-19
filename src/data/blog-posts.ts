@@ -10,6 +10,76 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "flexbox-vs-grid",
+    title: "CSS Flexbox vs Grid: When to Use Each Layout System",
+    description:
+      "A practical comparison of CSS Flexbox and Grid — one-dimensional vs two-dimensional layouts, when to use each, and how to combine them effectively.",
+    publishedAt: "2026-03-19",
+    readTime: "9 min read",
+    tags: ["CSS", "Layout", "Frontend", "Comparison"],
+    relatedTools: [
+      { title: "CSS Flexbox Generator", href: "/tools/flexbox-generator" },
+      { title: "CSS Grid Generator", href: "/tools/grid-generator" },
+      { title: "CSS to Tailwind Converter", href: "/tools/css-to-tailwind" },
+    ],
+  },
+  {
+    slug: "json-vs-yaml",
+    title: "JSON vs YAML: Which Data Format Should You Use?",
+    description:
+      "Compare JSON and YAML side-by-side — syntax, comments, gotchas, parsing speed, and when each format is the right choice for APIs, config, and data exchange.",
+    publishedAt: "2026-03-19",
+    readTime: "9 min read",
+    tags: ["JSON", "YAML", "DevOps", "Comparison"],
+    relatedTools: [
+      { title: "JSON ↔ YAML Converter", href: "/tools/json-yaml" },
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      { title: "YAML Validator & Formatter", href: "/tools/yaml-formatter" },
+    ],
+  },
+  {
+    slug: "sha256-vs-md5",
+    title: "SHA-256 vs MD5: Why MD5 Is Broken and What to Use Instead",
+    description:
+      "Understand the real differences between SHA-256 and MD5 — collision attacks, security guarantees, code examples, and why neither is for passwords.",
+    publishedAt: "2026-03-19",
+    readTime: "9 min read",
+    tags: ["Security", "Cryptography", "Comparison"],
+    relatedTools: [
+      { title: "Hash Generator", href: "/tools/hash-generator" },
+      { title: "File Hash Calculator", href: "/tools/file-hash" },
+      { title: "Password Generator", href: "/tools/password-generator" },
+    ],
+  },
+  {
+    slug: "nextjs-vs-nuxt",
+    title: "Next.js vs Nuxt: Choosing Between React and Vue Meta-Frameworks",
+    description:
+      "Compare Next.js and Nuxt — routing, data fetching, server rendering, ecosystem, and when each meta-framework is the better choice for your project.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["React", "Vue", "Frontend", "Comparison"],
+    relatedTools: [
+      { title: "HTML to JSX Converter", href: "/tools/html-to-jsx" },
+      { title: "JSON to TypeScript Generator", href: "/tools/json-to-typescript" },
+      { title: "Tailwind CSS Generator", href: "/tools/tailwind-generator" },
+    ],
+  },
+  {
+    slug: "base64-vs-url-encoding",
+    title: "Base64 vs URL Encoding: What Each Does and When to Use Which",
+    description:
+      "Base64 converts binary to text. URL encoding makes strings safe for URLs. Learn the differences, common mistakes, and when to use each encoding.",
+    publishedAt: "2026-03-19",
+    readTime: "9 min read",
+    tags: ["Encoding", "Web Development", "Comparison"],
+    relatedTools: [
+      { title: "Base64 Encoder & Decoder", href: "/tools/base64" },
+      { title: "URL Encoder & Decoder", href: "/tools/url-encoder" },
+      { title: "Encode/Decode Multi-Tool", href: "/tools/encode-decode" },
+    ],
+  },
+  {
     slug: "typescript-vs-javascript",
     title: "TypeScript vs JavaScript: What's the Difference and Which Should You Use?",
     description:

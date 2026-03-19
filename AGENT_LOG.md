@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Write 5 more "X vs Y" comparison blog posts (batch 2)
+
+- Wrote 5 additional comparison blog posts completing the 10-post series:
+  1. **Flexbox vs Grid** (~30K/mo) at `/blog/flexbox-vs-grid` — one-dimensional vs two-dimensional layouts, wrapping problem, when to use each, combining both, common mistakes
+  2. **JSON vs YAML** (~20K/mo) at `/blog/json-vs-yaml` — syntax differences, comments, parsing speed, Norway problem, version-as-float gotcha, use case table
+  3. **SHA-256 vs MD5** at `/blog/sha256-vs-md5` — collision attacks explained, 2008 rogue CA and 2012 Flame malware, code examples in Node.js/Python/browser/CLI, password hashing warning
+  4. **Next.js vs Nuxt** at `/blog/nextjs-vs-nuxt` — React vs Vue meta-frameworks, routing conventions, data fetching patterns, Server Components vs universal components, ecosystem/job market
+  5. **Base64 vs URL Encoding** at `/blog/base64-vs-url-encoding` — binary-to-text vs URL-safe encoding, Base64URL hybrid, double-encoding pitfalls, code examples in JS/Python/Go
+- All posts include: comparison tables, code examples, "When to Use" sections, affiliate callouts, tool cross-links, SEO tags
+- Registered all 5 in `blog-posts.ts` with metadata, tags, and related tools
+- Added imports and content mapping in `[slug]/page.tsx`
+- Sitemap auto-includes all new posts via `blogPosts` array
+- Blog count: 21 → 26 posts. "X vs Y" series complete (10/10)
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Write 5 "X vs Y" comparison blog posts
 
 - Wrote 5 comparison blog posts targeting highest-volume "X vs Y" search queries:
@@ -2468,3 +2485,18 @@ No action required.
 5. Updated TASK_BOARD.md
 
 **Note:** Local `npm run build` is failing due to a Windows/Turbopack ENOENT temp file issue (TypeScript compilation passes, lint clean). Vercel deployment should succeed normally.
+
+---
+
+## 2026-03-19 — Health Check Agent
+
+**Status: HEALTHY (with notes)**
+
+| Check | Result |
+|-------|--------|
+| Build | PASS (stale .next/lock cleared first) |
+| Lint | PASS (fixed 1 error in uncommitted blog post — `react/jsx-no-comment-textnodes` in TypeScriptVsJavaScript.tsx) |
+| Git | 2 modified + 5 untracked files — blog posts in progress, not yet committed |
+| Production (devbolt.dev) | UP — HTTP 307 redirect, 0.14s response |
+| npm audit | 0 vulnerabilities |
+| Previous build note | The ENOENT temp file issue from prior log appears resolved — build now succeeds |

@@ -28,7 +28,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Code Screenshot Generator tool (#87) — Carbon/Ray.so alternative. 30-50K/mo. Highly viral — every shared screenshot = free backlink/marketing. Canvas-based, fully client-side.
 - [x] Add MCP Config Builder tool (#94) — visual mcp.json builder for Claude Desktop/Cursor/VS Code/Windsurf/Claude Code. 16 server templates, 5 client formats, env var management. 3 SEO sub-pages.
 - [x] Add OpenAPI to TypeScript Converter tool (#95) — 2.14M weekly npm downloads for CLI tool, no dominant online converter. transform.tools is only competitor. Pairs with OpenAPI Validator (#75).
-- [ ] Write 5 more "X vs Y" comparison blog posts — Flexbox vs Grid (~30K/mo), JSON vs YAML (~20K/mo), SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding. (5/10 done: TypeScript vs JavaScript, React vs Vue, REST vs GraphQL, Docker vs K8s, Tailwind vs Bootstrap)
+- [x] Write 5 more "X vs Y" comparison blog posts — Flexbox vs Grid (~30K/mo), JSON vs YAML (~20K/mo), SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding. (10/10 done)
 - [ ] Optimize all tool pages for AI Overview citation — add FAQ sections (3-5 questions each), direct answers in first 60 words, 134-167 word answer paragraphs, tables over prose. AI Overviews caused 61% CTR drop; cited pages get 35% MORE clicks.
 - [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
 - [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
