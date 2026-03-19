@@ -259,8 +259,8 @@ export default function TypeScript7GoRewrite() {
           <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500" />
           <span>
             <strong>Same error messages.</strong> Error codes, messages, and
-            diagnostic output are preserved. Your <Code>// @ts-ignore</Code>{" "}
-            and <Code>// @ts-expect-error</Code> comments still work.
+            diagnostic output are preserved. Your <Code>{"// @ts-ignore"}</Code>{" "}
+            and <Code>{"// @ts-expect-error"}</Code> comments still work.
           </span>
         </li>
       </ul>
