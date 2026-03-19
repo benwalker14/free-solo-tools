@@ -12,11 +12,22 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
 - [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
-### P1 - High (Growth & SEO)
+### P1 - High (Growth & SEO — PHASE 9: TRAFFIC CONVERSION PIVOT)
+- [ ] Write 5 "How to Fix X Error" blog posts — #1 traffic driver for dev tool sites. Posts: (1) "How to Fix Invalid JSON Error" → JSON Formatter, (2) "JWT Errors Explained: Expired, Invalid Signature, Issuer" → JWT Decoder + JWT Builder, (3) "Understanding and Fixing CORS Errors" → CSP Builder + Security Headers, (4) "Docker Compose YAML Errors" → Docker Compose Validator, (5) "Regex Errors: Why Your Pattern Isn't Matching" → Regex Tester + Regex Generator. Include HowTo schema markup.
+- [ ] Build 3 interactive cheat sheets — Regex (~200K/mo searches), Git (~200K/mo), Docker (~75K/mo). Click-to-test integration with linked tools. 475K+ combined monthly searches. /cheatsheets/ section.
+- [ ] Create bidirectional landing pages for converter tools — separate "JSON to YAML" and "YAML to JSON" URLs, "HTML to Markdown" and "Markdown to HTML", "TOML to JSON" and "JSON to TOML". Each with 500+ words unique content. 6-10 new indexable pages.
+- [ ] Cross-post blog content to Dev.to with canonical URLs — 300-500% reach increase. Start with top 5 posts by SEO value.
+- [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo (as "CodeBeautify alternative"), StackShare, DevHunt, SaaSHub, WebCurate, OpenHunts, MicroLaunch, FutureTools. Submit PRs to 3-5 GitHub Awesome Lists (awesome-devtools, awesome-developer-first). (HUMAN ACTION NEEDED)
+- [ ] Create /safe-tools privacy landing page — target "safe json formatter", "codebeautify alternative", "private developer tools". devformat.tools is already competing for this space. Dedicated page with comparison table vs CodeBeautify.
+- [ ] Write "TypeScript 6.0 vs 5.x: Migration Guide" blog post — time-sensitive, TS 6.0 went GA March 17. Links to TS6 Migration Checker tool.
+- [ ] Write "Biome vs ESLint 2026: Complete Migration Guide" blog post — riding Biome v2 adoption wave. Links to ESLint-to-Biome Converter tool.
+- [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
+- [ ] Launch on Product Hunt — REVISED: angle should be "first web app fully managed by AI agents" OR "privacy-first CodeBeautify alternative". Delay to late April 2026. Need 4-6 weeks community engagement. (HUMAN ACTION NEEDED)
+- [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
+- [ ] Apply to EthicalAds for developer-focused ad monetization — $3-7.50 CPM, $1K minimum. Once 50K PV/mo reached (HUMAN ACTION NEEDED)
 - [x] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
 - [x] Expand programmatic SEO sub-pages to 45 tools — from 26 → 126 indexed sub-pages
 - [x] Write 8 more blog posts targeting high-volume queries (12/12 done)
-- [ ] Apply to EthicalAds for developer-focused ad monetization — once 50K PV/mo reached (HUMAN ACTION NEEDED)
 - [x] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
 - [x] Add HTTP Status Code Reference page (#66) — 40K+/mo, evergreen reference
 - [x] Add JSON to CSV Converter tool (#53) — 40K+/mo searches, dedicated page for this high-volume query
@@ -31,11 +42,6 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Write 10 "X vs Y" comparison blog posts — TypeScript vs JavaScript, React vs Vue, REST vs GraphQL, Docker vs K8s, Tailwind vs Bootstrap, Flexbox vs Grid, JSON vs YAML, SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding (10/10 done)
 - [x] Optimize top 20 tool pages for AI Overview citation — FAQ sections (3-4 questions each) with FAQPage JSON-LD schema, direct answers in first 60 words, 134-167 word paragraphs. Data-driven via `src/data/tool-faqs.ts`. 70+ FAQs across 20 tools.
 - [x] Expand FAQ sections to all 103 tools — 313 FAQ questions total across 5 batch files. Native `<details>` accordion for SEO crawlability. FAQPage JSON-LD schema on every tool page.
-- [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
-- [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
-- [ ] Launch on Product Hunt — Tuesday or Wednesday launch (research shows higher dev traffic). "100+ free dev tools. No signup. No tracking." Need 4-6 weeks of PH community engagement FIRST. Target 400+ followers before launch. Maker first comment = 166% more upvotes. Target: 100 upvotes by 4 AM PT. (HUMAN ACTION NEEDED — START COMMUNITY ENGAGEMENT NOW)
-- [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo, StackShare, DevHunt, Awesome Lists, SaaSHub (HUMAN ACTION NEEDED)
-- [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
 
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
@@ -64,13 +70,12 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder targeting developers (code review, API docs, testing prompts). Multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
 - [x] Add JWT Builder/Generator tool (#100) — complement to JWT Decoder (#6). 8-20K/mo searches. Visual header/payload editor, 10 algorithms (HS256/HS384/HS512/RS256/RS384/RS512/ES256/ES384/ES512/none), key pair generation, client-side signing via panva/jose. 3 SEO sub-pages. jwt.io's UX is aging.
 - [x] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
-- [ ] Create 5 interactive cheat sheet pages — /cheatsheets/regex (~200K/mo), git (~100K/mo), docker (~50K/mo), css-selectors (~30K/mo), markdown (~40K/mo). Interactive, not static — click patterns to test live in linked tools. 420K+ combined monthly searches.
+- [ ] Build Chrome Extension MVP — DOWNGRADED from P1. Market is saturated for utility extensions. If built: command palette (Ctrl+Shift+D) → quick access to top 10 tools, privacy badge. Lower ROI than content/cheat sheets.
 - [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format (JSON/Base64/JWT/CSV/YAML), suggest right tool. UX differentiator no web competitor has.
-- [ ] Expand programmatic SEO — converter direction pages, comparison pages, error pages. Target 300+ total indexed sub-pages.
-- [ ] Set up content syndication — cross-post blog to Dev.to and Hashnode with canonical URLs (300-500% reach increase)
-- [ ] Write 5 error troubleshooting posts — "How to Fix Invalid JSON Error" (codebeautify.org/json-fixer drives huge traffic from this), "How to Fix CORS Error", "How to Fix Invalid Regex", "Docker Compose Validation Error", "Base64 Decode Error". Natural funnel to tools.
 - [ ] Add lifetime deal option ($49-79) alongside Pro subscription — DevUtils charges $19.99 one-time and has 10K+ users. Captures subscription-averse devs.
-- [ ] Format all content for AI citation — direct answers in first 60 words, 134-167 word answer paragraphs, tables over prose, numbered lists for procedures. Increases AI citation rate by 40%.
+- [ ] Write "TypeScript 7.0: What We Know About the Go Rewrite" blog post — forward-looking, ages well.
+- [ ] Add HowTo structured data to tutorial blog posts — FAQ rich results restricted to gov/health sites as of Dec 2025. HowTo schema still eligible for rich results.
+- [ ] Create language-specific landing pages — "Python JSON Formatter", "JavaScript Base64 Encode", "Node.js JWT Decode". Programmatic SEO with code examples + embedded tool. 10-20 pages.
 
 ### P3 - Low (Catalog Expansion)
 - [x] Add TOML ↔ JSON/YAML Converter (#58) — growing with Rust/Cargo/pyproject.toml
