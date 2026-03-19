@@ -4,6 +4,37 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add .env File Validator tool (#77)
+
+- Built .env File Validator at `/tools/env-validator` — P3 task, security/privacy tooling growing
+- **Two modes**: Validate mode and Compare mode (.env vs .env.example)
+- **Syntax validation**:
+  - Valid KEY=VALUE format, missing `=` signs
+  - Leading whitespace detection
+  - Key naming: must start with letter/underscore, alphanumeric + underscore only
+  - UPPER_SNAKE_CASE convention checking
+  - Duplicate key detection (warns which line takes precedence)
+- **Security checks**:
+  - Detects real secrets in 10+ common patterns (API keys, tokens, passwords, database URLs, cloud credentials)
+  - Placeholder value detection (changeme, your-xxx-here, xxx, etc.)
+  - Empty values for keys that look like required secrets
+- **Best practices**:
+  - Spaces around `=` sign (not universally supported)
+  - Unquoted values with spaces
+  - Inline comments (not supported by all parsers)
+- **Compare mode**: Side-by-side .env vs .env.example
+  - Missing keys (in example but not in .env)
+  - Extra keys (in .env but not in example)
+  - Matching key count
+  - Plus full validation of the .env file
+- **Sample data**: Pre-loaded .env with intentional issues for demo, plus matching .env.example
+- **4 issue severity levels**: Error (red), Security (orange), Warning (yellow), Info (blue)
+- **SEO optimized**: metadata, Open Graph image, JSON-LD WebApplication schema, 10 targeted keywords
+- **Files created**: `EnvValidatorTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts` (tool #73), `CLAUDE.md`, `TASK_BOARD.md`
+
+---
+
 ### 2026-03-18 | developer | Add Nginx Config Generator tool (#72)
 
 - Built Nginx Config Generator at `/tools/nginx-config` — P3 task, growing query, no clean free tool exists

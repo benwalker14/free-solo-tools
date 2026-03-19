@@ -48,10 +48,11 @@ _None_
 - [x] Add Nginx Config Generator (#72) — growing query, no clean free tool
 - [x] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
 - [x] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
-- [ ] Add .env File Validator (#77) — security/privacy tooling growing
+- [x] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add .env File Validator tool (#77) — validates syntax, security (exposed secrets, placeholders), duplicate keys, naming conventions, quoting issues. Compare mode diffs .env vs .env.example for missing/extra keys. Sample data included
 - [x] Add Nginx Config Generator tool (#72) — form-based builder with 7 presets (Static, Reverse Proxy, SPA, Node.js, PHP/Laravel, Load Balancer, HTTPS+SSL), SSL/TLS with HSTS, gzip, security headers, rate limiting, upstream/load balancing with 3 methods, location blocks (static/proxy/try_files/redirect/deny/custom), WebSocket support, copy/download
 - [x] Add Placeholder Image Generator tool (#68) — canvas-based generator with 16 presets (social, devices, ads), custom dimensions/colors/text, auto font sizing, auto contrast text, download as PNG/JPEG/WebP/SVG, copy data URL, copy HTML tag
 - [x] Add Zod Schema Generator tool (#76) — generates Zod schemas from JSON with format inference (email, URL, UUID, datetime), integer detection, nested objects, .optional(), .strict(), coerce mode, .describe(), z.infer type alias, copy output

@@ -574,4 +574,12 @@ export const tools: Tool[] = [
     icon: "NGX",
     category: "Generate",
   },
+  {
+    title: ".env File Validator",
+    description:
+      "Validate .env files for syntax errors, security issues, duplicate keys, and best practices — compare against .env.example",
+    href: "/tools/env-validator",
+    icon: ".ev",
+    category: "Inspect",
+  },
 ];
