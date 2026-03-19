@@ -4,6 +4,33 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add CSS to Tailwind Converter tool (#88)
+
+- Built tool #88 at `/tools/css-to-tailwind` — CSS to Tailwind Converter
+- **100+ CSS properties** mapped to Tailwind utility classes across 9 categories:
+  - **Layout**: display, position, top/right/bottom/left, inset, z-index, overflow, visibility, box-sizing
+  - **Flexbox**: flex-direction, flex-wrap, flex, flex-grow, flex-shrink, order, justify-content, align-items, align-self, align-content, place-content, place-items
+  - **Grid**: grid-template-columns/rows, gap, row-gap, column-gap
+  - **Spacing**: padding (all sides + shorthand), margin (all sides + shorthand + auto), width, height, min/max width/height
+  - **Typography**: font-size (12 sizes), font-weight (9 weights), font-style, font-family, line-height, letter-spacing, text-align, text-decoration, text-transform, white-space, word-break, text-overflow, vertical-align, list-style
+  - **Colors**: color, background-color, border-color (named colors + hex black/white)
+  - **Borders**: border shorthand, border-width, border-style, border-radius, outline, outline-offset, border-collapse
+  - **Effects**: opacity (21 stops), box-shadow (8 presets), cursor (13 types), pointer-events, user-select, transition properties/duration/timing, transform, mix-blend-mode, will-change
+  - **Misc**: object-fit/position, aspect-ratio, resize, appearance, scroll-behavior, table-layout, columns, content, isolation, accent-color
+- Shorthand expansion: `padding: 1rem 2rem` → `py-4 px-8`, `margin: 0 auto` → `mx-auto`
+- Negative margin support: `-mt-4`, `-mx-2`
+- Parses full CSS rule blocks (with selectors) OR bare inline style declarations
+- 7 sample inputs: Centered Card, Button, Grid Layout, Nav Header, Typography, Overlay, Inline Styles
+- Per-rule copy + Copy All buttons
+- Unconverted property tracking with amber badges
+- Property reference section listing all supported categories
+- 3 SEO sub-pages: tailwind-spacing-classes, tailwind-flexbox-grid, tailwind-typography-classes
+- Registered in tools.ts as tool #84, OG metadata, JSON-LD schema
+- CLAUDE.md updated to 84 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Fix JSON to Code Generator (#86) + Add Code Screenshot Generator (#87)
 
 - Fixed TypeScript error in JsonToCodeTool.tsx: `trackAction("generate", { language })` → `trackAction("generate")` (trackAction only takes 1 argument)

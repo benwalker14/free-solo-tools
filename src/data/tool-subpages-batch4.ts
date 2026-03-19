@@ -2093,4 +2093,156 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Code Screenshot Generator",
     },
   ],
+
+  "css-to-tailwind": [
+    {
+      slug: "tailwind-spacing-classes",
+      title: "Tailwind Spacing Classes Reference",
+      metaTitle: "Tailwind Spacing Classes — Padding & Margin Conversion Guide | DevBolt",
+      metaDescription:
+        "Convert CSS padding and margin values to Tailwind spacing utilities. Complete reference for p-, m-, px-, py-, mx-, my- classes with rem and px values.",
+      h1: "Tailwind Spacing Classes — Padding & Margin Reference",
+      intro:
+        "Tailwind uses a consistent spacing scale for padding, margin, gap, width, and height utilities. Paste your CSS into the converter above to instantly map px and rem values to Tailwind classes.",
+      content: [
+        {
+          heading: "How Tailwind Spacing Works",
+          body: "Tailwind's spacing scale maps numbers to rem values: 1 = 0.25rem (4px), 2 = 0.5rem (8px), 4 = 1rem (16px), 8 = 2rem (32px), etc. Padding uses p- (all sides), px- (horizontal), py- (vertical), pt/pr/pb/pl- (individual sides). Margin uses the same pattern with m- instead of p-. The scale goes from 0 to 96, plus special values like px (1px) and auto.",
+        },
+        {
+          heading: "CSS Shorthand to Tailwind",
+          body: "CSS shorthand like 'padding: 1rem 2rem' (vertical horizontal) converts to 'py-4 px-8' in Tailwind. Four-value shorthand 'margin: 0 auto 2rem 0' maps to 'mt-0 mx-auto mb-8 ml-0'. The converter handles all shorthand variants — 1 value (all sides), 2 values (vertical/horizontal), and 4 values (top/right/bottom/left).",
+        },
+        {
+          heading: "Negative Spacing",
+          body: "Tailwind supports negative margin with a dash prefix: -mt-4, -mx-2, -mb-8. Negative padding is not supported in Tailwind because negative padding has no valid CSS use case. The converter automatically maps negative margin values like 'margin-top: -1rem' to '-mt-4'.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What Tailwind class is 16px padding?",
+          answer:
+            "16px = 1rem = p-4 in Tailwind. For horizontal only: px-4. For vertical only: py-4. For individual sides: pt-4, pr-4, pb-4, pl-4.",
+        },
+        {
+          question: "How do I center with margin auto in Tailwind?",
+          answer:
+            "'margin: 0 auto' converts to 'mx-auto' in Tailwind. This is the standard pattern for centering block elements. Add my-0 if you want to explicitly set vertical margin to zero.",
+        },
+        {
+          question: "What if my spacing value is not in Tailwind's scale?",
+          answer:
+            "Use arbitrary values with bracket notation: p-[13px], m-[1.125rem], gap-[7px]. This works for any CSS value but should be used sparingly — prefer the built-in scale when possible for consistency.",
+        },
+      ],
+      keywords: [
+        "tailwind spacing classes",
+        "tailwind padding classes",
+        "tailwind margin classes",
+        "css padding to tailwind",
+        "tailwind spacing scale",
+        "tailwind px py mx my",
+      ],
+      parentToolSlug: "css-to-tailwind",
+      parentToolName: "CSS to Tailwind Converter",
+    },
+    {
+      slug: "tailwind-flexbox-grid",
+      title: "Tailwind Flexbox & Grid Classes",
+      metaTitle: "Tailwind Flexbox & Grid Classes — CSS Layout Conversion | DevBolt",
+      metaDescription:
+        "Convert CSS flexbox and grid layout properties to Tailwind utility classes. flex-direction, justify-content, align-items, grid-template-columns, and gap.",
+      h1: "Tailwind Flexbox & Grid Classes Reference",
+      intro:
+        "Flexbox and Grid are the backbone of modern CSS layouts. Convert your CSS layout rules to Tailwind utility classes with the converter above, or use this reference to learn the mappings.",
+      content: [
+        {
+          heading: "CSS Flexbox to Tailwind",
+          body: "The core flex properties map directly: display: flex → flex, flex-direction: column → flex-col, flex-wrap: wrap → flex-wrap, justify-content: center → justify-center, align-items: center → items-center. Flex shorthand works too: flex: 1 1 0% → flex-1, flex: none → flex-none. Grow and shrink have dedicated classes: flex-grow: 1 → grow, flex-shrink: 0 → shrink-0.",
+        },
+        {
+          heading: "CSS Grid to Tailwind",
+          body: "Grid template columns use the pattern grid-cols-N: grid-template-columns: repeat(3, 1fr) → grid-cols-3. Gap converts directly: gap: 1.5rem → gap-6, with row-gap and column-gap mapping to gap-y and gap-x respectively. Place utilities like place-content-center and place-items-center handle the less common alignment properties.",
+        },
+        {
+          heading: "Common Layout Patterns",
+          body: "Centered flex container: 'display: flex; align-items: center; justify-content: center' → 'flex items-center justify-center'. Responsive grid: use responsive prefixes like 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'. Sticky header: 'position: sticky; top: 0; z-index: 50' → 'sticky top-0 z-50'.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the Tailwind class for justify-content: space-between?",
+          answer:
+            "justify-between. Other justify-content values: flex-start → justify-start, center → justify-center, flex-end → justify-end, space-around → justify-around, space-evenly → justify-evenly.",
+        },
+        {
+          question: "How do I make a responsive grid in Tailwind?",
+          answer:
+            "Use responsive prefixes: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'. This creates a 1-column layout on mobile, 2 columns on tablets, and 3 columns on desktops.",
+        },
+      ],
+      keywords: [
+        "tailwind flexbox classes",
+        "tailwind grid classes",
+        "css flexbox to tailwind",
+        "css grid to tailwind",
+        "tailwind justify center",
+        "tailwind align items center",
+        "tailwind grid cols",
+      ],
+      parentToolSlug: "css-to-tailwind",
+      parentToolName: "CSS to Tailwind Converter",
+    },
+    {
+      slug: "tailwind-typography-classes",
+      title: "Tailwind Typography Classes",
+      metaTitle: "Tailwind Typography Classes — Font Size, Weight & Text Conversion | DevBolt",
+      metaDescription:
+        "Convert CSS typography properties to Tailwind utility classes. font-size, font-weight, line-height, letter-spacing, text-align, and text-transform mappings.",
+      h1: "Tailwind Typography Classes Reference",
+      intro:
+        "Convert CSS typography rules to Tailwind utility classes. This reference covers font-size, font-weight, line-height, letter-spacing, text-align, text-decoration, and text-transform conversions.",
+      content: [
+        {
+          heading: "Font Size Scale",
+          body: "Tailwind maps font sizes to a semantic scale: text-xs (0.75rem/12px), text-sm (0.875rem/14px), text-base (1rem/16px), text-lg (1.125rem/18px), text-xl (1.25rem/20px), text-2xl (1.5rem/24px), up to text-9xl (8rem/128px). Each size includes a default line-height for optimal readability.",
+        },
+        {
+          heading: "Font Weight Classes",
+          body: "CSS font-weight values map to named utilities: 100 → font-thin, 300 → font-light, 400 → font-normal, 500 → font-medium, 600 → font-semibold, 700 → font-bold, 800 → font-extrabold, 900 → font-black. Named values like 'bold' and 'normal' are also supported.",
+        },
+        {
+          heading: "Text Styling Properties",
+          body: "Text alignment: text-left, text-center, text-right, text-justify. Text decoration: underline, line-through, no-underline. Text transform: uppercase, lowercase, capitalize, normal-case. White space: whitespace-nowrap, whitespace-pre, whitespace-pre-wrap. Text overflow: text-ellipsis, text-clip (use with overflow-hidden and whitespace-nowrap for truncation).",
+        },
+      ],
+      faqs: [
+        {
+          question: "What Tailwind class is font-size: 14px?",
+          answer:
+            "14px (0.875rem) maps to text-sm. The full scale: 12px → text-xs, 14px → text-sm, 16px → text-base, 18px → text-lg, 20px → text-xl, 24px → text-2xl, 30px → text-3xl, 36px → text-4xl.",
+        },
+        {
+          question: "How do I truncate text in Tailwind?",
+          answer:
+            "Use the truncate utility class, which applies overflow: hidden, text-overflow: ellipsis, and white-space: nowrap. For multi-line truncation, use line-clamp-N (e.g., line-clamp-3 for 3 lines).",
+        },
+        {
+          question: "What is the Tailwind class for letter-spacing?",
+          answer:
+            "Tailwind uses tracking- utilities: tracking-tighter (-0.05em), tracking-tight (-0.025em), tracking-normal (0), tracking-wide (0.025em), tracking-wider (0.05em), tracking-widest (0.1em).",
+        },
+      ],
+      keywords: [
+        "tailwind typography classes",
+        "tailwind font size classes",
+        "tailwind font weight classes",
+        "css font to tailwind",
+        "tailwind text classes",
+        "tailwind text-sm text-lg",
+      ],
+      parentToolSlug: "css-to-tailwind",
+      parentToolName: "CSS to Tailwind Converter",
+    },
+  ],
 };

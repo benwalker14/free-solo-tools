@@ -662,4 +662,12 @@ export const tools: Tool[] = [
     icon: "CAM",
     category: "Generate",
   },
+  {
+    title: "CSS to Tailwind Converter",
+    description:
+      "Convert CSS to Tailwind utility classes instantly — 100+ properties including layout, spacing, typography, borders, and effects",
+    href: "/tools/css-to-tailwind",
+    icon: "TW",
+    category: "Convert",
+  },
 ];
