@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add batch processing mode for Pro API
+
+- Created `src/app/api/v1/batch/route.ts` — batch endpoint for Pro users to process multiple tool operations in a single request
+- **Max 50 operations per request** — each operation specifies a `tool` and `params`
+- **8 supported tools:** json-format, base64, hash, uuid, url-encode, jwt-decode, case-convert, epoch (same as individual endpoints)
+- **Independent execution:** Each operation runs independently — if one fails, the rest still succeed
+- **Response format:** Returns `results` array (same order as input) with `status` ("success"/"error"), `data` or `error` per operation, plus `total`/`succeeded`/`failed` summary counts
+- **Input validation:** Validates operations array is non-empty, checks tool names, enforces max operations limit
+- **Auth:** Same Pro API key authentication as individual endpoints
+- **Updated API docs page** (`src/app/docs/ApiDocsPage.tsx`): Added "Batch Processing" section above individual endpoints with endpoint card showing request body docs, curl example with 3 mixed operations, and example response
+- Updated TASK_BOARD.md
+- Build passes, lint clean
+
+---
+
 ### 2026-03-18 | developer | Create Pro REST API endpoints
 
 - Created full Pro API infrastructure — Stripe-based auth, 8 tool endpoints, webhook, docs page

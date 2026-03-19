@@ -15,6 +15,38 @@ interface Endpoint {
 
 const BASE_URL = "https://devbolt.dev";
 
+const batchEndpoint: Endpoint = {
+  method: "POST",
+  path: "/api/v1/batch",
+  title: "Batch Processing",
+  description:
+    "Process multiple tool operations in a single request. Up to 50 operations per batch. Each operation specifies a tool and its parameters. Results are returned in the same order.",
+  body: {
+    operations:
+      '(array, required) — array of { "tool": string, "params": object } items. Valid tools: json-format, base64, hash, uuid, url-encode, jwt-decode, case-convert, epoch',
+  },
+  exampleRequest: `curl -X POST ${BASE_URL}/api/v1/batch \\
+  -H "Authorization: Bearer dvb_your_api_key" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "operations": [
+      { "tool": "hash", "params": { "input": "hello", "algorithm": "sha256" } },
+      { "tool": "base64", "params": { "input": "world", "action": "encode" } },
+      { "tool": "uuid", "params": { "count": 2 } }
+    ]
+  }'`,
+  exampleResponse: `{
+  "results": [
+    { "tool": "hash", "status": "success", "data": { "algorithm": "sha256", "hash": "2cf24d..." } },
+    { "tool": "base64", "status": "success", "data": { "result": "d29ybGQ=" } },
+    { "tool": "uuid", "status": "success", "data": { "uuids": ["...","..."], "count": 2 } }
+  ],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0
+}`,
+};
+
 const endpoints: Endpoint[] = [
   {
     method: "POST",
@@ -415,6 +447,20 @@ print(data["hash"])`}
           />
         </section>
 
+        {/* Batch Processing */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
+            Batch Processing
+          </h2>
+          <p className="mb-6 text-gray-600 dark:text-gray-400">
+            Run up to 50 tool operations in a single API call. Each operation
+            runs independently — if one fails, the rest still succeed.
+          </p>
+          <div className="space-y-3">
+            <EndpointCard ep={batchEndpoint} />
+          </div>
+        </section>
+
         {/* Endpoints */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -422,6 +468,7 @@ print(data["hash"])`}
           </h2>
           <p className="mb-6 text-gray-600 dark:text-gray-400">
             Click any endpoint to see request/response details and examples.
+            All of these tools are also available via the batch endpoint above.
           </p>
           <div className="space-y-3">
             {endpoints.map((ep) => (
