@@ -135,3 +135,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 83. Code Screenshot Generator (/tools/code-screenshot)
 84. CSS to Tailwind Converter (/tools/css-to-tailwind)
 85. JSON Visualizer & Tree Viewer (/tools/json-visualizer)
+86. SVG to JSX Converter (/tools/svg-to-jsx)

@@ -2374,4 +2374,130 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JSON Visualizer",
     },
   ],
+
+  "svg-to-jsx": [
+    {
+      slug: "svg-to-react-component",
+      title: "SVG to React Component",
+      metaTitle: "SVG to React Component Converter — Free Online Tool | DevBolt",
+      metaDescription:
+        "Convert SVG files to React components with proper JSX attributes, forwardRef support, TypeScript types, and memo optimization. Free client-side tool.",
+      h1: "SVG to React Component Converter",
+      intro:
+        "Transform raw SVG markup into production-ready React components. This tool converts attributes to JSX-compatible camelCase, wraps in a component function, and adds optional TypeScript types, forwardRef, and memo.",
+      content: [
+        {
+          heading: "Why convert SVG to React components?",
+          body: "Using SVG as React components gives you full control over icon styling via props, enables tree-shaking for smaller bundles, and allows dynamic color and size changes at runtime. Unlike <img> tags or CSS backgrounds, inline SVG components respond to theme changes, support accessibility attributes like <title> and aria-label, and can be composed with other React elements.",
+        },
+        {
+          heading: "What this tool converts",
+          body: "The converter handles 80+ SVG attribute mappings (stroke-width to strokeWidth, fill-opacity to fillOpacity, clip-path to clipPath, etc.), transforms inline style strings to JSX style objects, removes XML declarations and comments, strips namespace attributes, and optionally removes fixed width/height for responsive sizing. It outputs either raw JSX, a JavaScript component, or a fully typed TypeScript component.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does this converter support TypeScript?",
+          answer:
+            "Yes. Select the 'React Component (TS)' output mode to get a typed component with SVGProps interface, optional custom props type, and proper Ref typing when using forwardRef.",
+        },
+        {
+          question: "Can I use the output directly in a Next.js or Vite project?",
+          answer:
+            "Yes. The generated component is standard React and works in any React-based framework including Next.js, Vite, Remix, and Gatsby. Save the output as a .jsx or .tsx file and import it like any other component.",
+        },
+      ],
+      keywords: [
+        "svg to react component",
+        "svg react component generator",
+        "convert svg to react",
+        "react svg component",
+        "svg jsx component",
+      ],
+      parentToolSlug: "svg-to-jsx",
+      parentToolName: "SVG to JSX Converter",
+    },
+    {
+      slug: "svg-attribute-conversion",
+      title: "SVG Attribute to JSX Reference",
+      metaTitle: "SVG to JSX Attribute Conversion Reference — Free Tool | DevBolt",
+      metaDescription:
+        "Complete reference of SVG attributes that need conversion to JSX — stroke-width to strokeWidth, clip-path to clipPath, and 80+ more mappings.",
+      h1: "SVG Attribute to JSX Conversion Reference",
+      intro:
+        "React requires SVG attributes in camelCase instead of kebab-case. This tool automatically converts all 80+ SVG attributes to their JSX equivalents so you never have to look them up manually.",
+      content: [
+        {
+          heading: "Common SVG attribute conversions",
+          body: "The most frequently needed conversions include: stroke-width → strokeWidth, fill-opacity → fillOpacity, stroke-linecap → strokeLinecap, stroke-linejoin → strokeLinejoin, clip-path → clipPath, fill-rule → fillRule, font-size → fontSize, text-anchor → textAnchor, stop-color → stopColor, and class → className. These cover the vast majority of SVG icons you will encounter.",
+        },
+        {
+          heading: "Namespace and style handling",
+          body: "Beyond simple attribute renaming, JSX requires inline styles as objects ({ strokeWidth: 2 } instead of 'stroke-width: 2'), xlink:href becomes xlinkHref, and namespace declarations like xmlns:xlink are typically removed since React handles SVG namespaces automatically. This tool handles all of these transformations.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Why does React require camelCase SVG attributes?",
+          answer:
+            "React uses a virtual DOM that maps to JavaScript object properties, which follow camelCase convention. Since JSX compiles to JavaScript function calls, attributes must be valid JavaScript identifiers — so stroke-width becomes strokeWidth.",
+        },
+        {
+          question: "What happens to attributes the tool doesn't recognize?",
+          answer:
+            "Unrecognized attributes are passed through unchanged. Standard data-* and aria-* attributes are already valid in JSX and don't need conversion.",
+        },
+      ],
+      keywords: [
+        "svg jsx attributes",
+        "svg camelcase attributes",
+        "react svg attributes",
+        "stroke-width jsx",
+        "svg attribute reference",
+      ],
+      parentToolSlug: "svg-to-jsx",
+      parentToolName: "SVG to JSX Converter",
+    },
+    {
+      slug: "svg-icon-library",
+      title: "Build an SVG Icon Library for React",
+      metaTitle: "Build SVG Icon Library for React — Free Converter | DevBolt",
+      metaDescription:
+        "Convert SVG icons to React components for your own icon library. Supports forwardRef, memo, TypeScript, and tree-shaking. Free online tool.",
+      h1: "Build an SVG Icon Library for React",
+      intro:
+        "Create a custom React icon library by converting your SVG icons to components with consistent props, forwardRef support, and TypeScript types. This tool generates production-ready code for each icon.",
+      content: [
+        {
+          heading: "Why build a custom icon library?",
+          body: "Custom icon libraries give you full control over icon design consistency, bundle size, and API surface. Unlike using icon font packages (which load all icons regardless of usage) or third-party React icon libraries (which may include thousands of unused icons), a custom library contains exactly the icons you need. Combined with tree-shaking, each page only bundles the icons it imports.",
+        },
+        {
+          heading: "Best practices for React icon components",
+          body: "Use forwardRef so parent components can access the SVG DOM element. Add memo to prevent unnecessary re-renders. Accept SVGProps via props spread so consumers can set className, onClick, aria-label, and other standard attributes. Remove fixed width/height and use currentColor for fill and stroke so icons inherit size and color from their parent. Include a displayName for better DevTools debugging.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I use forwardRef for all icon components?",
+          answer:
+            "It is a best practice to use forwardRef for icon components. It allows parent components to programmatically focus, measure, or animate the SVG element. Libraries like Radix UI and Headless UI expect forwardRef support from icon components.",
+        },
+        {
+          question: "How do I make icons responsive to parent size?",
+          answer:
+            "Remove fixed width and height attributes (check 'Remove width/height' in this tool) and set viewBox on the SVG. Then control size via CSS or className on the component. The icon will scale to fill its container.",
+        },
+      ],
+      keywords: [
+        "react icon library",
+        "svg icon components",
+        "build icon library react",
+        "svg to react icons",
+        "custom icon library",
+      ],
+      parentToolSlug: "svg-to-jsx",
+      parentToolName: "SVG to JSX Converter",
+    },
+  ],
 };

@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add SVG to JSX/React Component Converter tool (#90)
+
+- Built tool #90 at `/tools/svg-to-jsx` — SVG to JSX / React Component Converter
+- **80+ SVG attribute mappings**: stroke-width → strokeWidth, fill-opacity → fillOpacity, clip-path → clipPath, stop-color → stopColor, text-anchor → textAnchor, xlink:href → xlinkHref, and many more
+- Inline style string → JSX style object conversion (e.g., `style="opacity: 0.8"` → `style={{opacity: 0.8}}`)
+- Automatic cleanup: removes XML declarations, comments, DOCTYPE, xmlns:xlink, xml:space
+- **3 output modes**: JSX Only, React Component (JS), React Component (TS)
+- **Component options**: custom component name, props spread with title support, forwardRef with proper ref typing, memo wrapper, export default vs named export
+- TypeScript mode generates SVGProps interface, optional custom props type, and Ref typing
+- 5 sample SVG inputs: Simple Icon, Logo (with gradient), Arrow (Feather style), With Styles, Complex (with XML declaration + namespaces)
+- Live SVG preview thumbnail next to input
+- Change log showing all transformations applied (attribute conversions, removals, style conversions)
+- Download as .jsx/.tsx file
+- 3 SEO sub-pages: svg-to-react-component, svg-attribute-conversion, svg-icon-library
+- Registered in tools.ts as tool #86 (index), OG metadata, JSON-LD schema
+- Updated tool counts from 85+ to 86+ across free-tools page, OG image, blog post
+- CLAUDE.md updated to 86 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Commit Code Screenshot (#87), verify CSS-to-Tailwind (#88), build JSON Visualizer (#89)
 
 - Committed and pushed Code Screenshot Generator (#87) which was built but uncommitted from previous session

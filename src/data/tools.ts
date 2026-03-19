@@ -678,4 +678,12 @@ export const tools: Tool[] = [
     icon: "{ }",
     category: "Inspect",
   },
+  {
+    title: "SVG to JSX Converter",
+    description:
+      "Convert SVG to JSX or a React/TypeScript component — camelCase attributes, style objects, forwardRef, memo, props spread",
+    href: "/tools/svg-to-jsx",
+    icon: "SVG",
+    category: "Convert",
+  },
 ];
