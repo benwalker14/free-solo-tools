@@ -4,6 +4,24 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 35:00 | developer | Add "Tips & Best Practices" Information Gain sections to top 20 tools
+
+- **Task:** Enrich top 20 tool pages for Google's "Information Gain" ranking signal (P1, Phase 11)
+- **What was done:**
+  - Created new ToolInsights component system with data-driven architecture (matching QuickAnswer/ToolFAQ pattern)
+  - Added `src/data/tool-insights.ts` with 80 insights across 20 tools (4 per tool)
+  - Created `src/components/ToolInsights.tsx` with color-coded card grid (2-column on desktop)
+  - 4 insight types with distinct visual treatment: Pro Tips (emerald), Common Pitfalls (amber), Real-World Examples (blue), Security Notes (red)
+  - Each insight has a badge with icon, bold title, and substantive 2-3 sentence content
+  - Wired into `src/app/tools/layout.tsx` between tool UI and FAQ section
+  - Only renders on main tool pages (not subpages), gracefully returns null for tools without insights
+  - Content is genuinely unique and actionable — not generic filler. Covers specific gotchas, real-world trade-offs, and security implications that competitors don't surface
+- **Tools enriched:** JSON Formatter, Base64, Hash Generator, UUID Generator, Color Converter, JWT Decoder, Regex Tester, URL Parser, Markdown Preview, Diff Checker, Epoch Converter, Password Generator, Case Converter, CSV JSON, Word Counter, URL Encoder, JSON YAML, QR Code, SQL Formatter, HTML Entities
+- **Impact:** Google March 2026 core update rewards "Information Gain" — pages with genuinely new information vs competitors gain 22% visibility. This adds unique, expert-level content that jsonformatter.org, codebeautify.org, and 10015.io don't have.
+- **Files modified:** `src/data/tool-insights.ts` (new), `src/components/ToolInsights.tsx` (new), `src/app/tools/layout.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 34:00 | developer | Expand quick answer blocks to all 116 tools + README fix
 
 - **Task:** Expand quick answer blocks from 32/116 to 116/116 tools for AI Overview citation optimization

@@ -3,6 +3,7 @@ import RelatedTools from "@/components/RelatedTools";
 import RecentToolTracker from "@/components/RecentToolTracker";
 import PrivacyBadge from "@/components/PrivacyBadge";
 import QuickAnswer from "@/components/QuickAnswer";
+import ToolInsights from "@/components/ToolInsights";
 import ToolFAQ from "@/components/ToolFAQ";
 
 export default function ToolsLayout({
@@ -17,6 +18,7 @@ export default function ToolsLayout({
       <PrivacyBadge />
       <QuickAnswer />
       {children}
+      <ToolInsights />
       <ToolFAQ />
       <RelatedTools />
     </>
