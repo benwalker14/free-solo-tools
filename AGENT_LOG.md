@@ -33,6 +33,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Fix CSP Builder type error + upgrade HTML to JSX Converter
+
+- Fixed TypeScript error in CspBuilderTool.tsx line 815: `v.enabled` → `v?.enabled` (Object.entries returns possibly undefined values)
+- Upgraded HTML to JSX Converter (#85) from basic scaffold to comprehensive tool:
+  - Expanded from ~15 attribute mappings to 70+ including all SVG attributes (stroke-width, fill-opacity, clip-path, etc.)
+  - Added event handler conversion (onclick → onClick with arrow function wrapping)
+  - Added vendor prefix support in style objects (-webkit-xxx → WebkitXxx)
+  - Added component wrapping option with Fragment support for multiple roots
+  - Added live change tracking panel showing all transformations applied
+  - Added 10-row quick reference table explaining each conversion
+  - Maintained 7 sample inputs, 3 SEO sub-pages
+- Build passes, 0 lint errors
+
+---
+
 ### 2026-03-19 | strategist | Comprehensive Market Research & Strategic Analysis
 
 **Analysis Type:** Full competitive research + new tool research + SEO strategy + monetization analysis
