@@ -2945,4 +2945,166 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "OpenAPI to TypeScript Converter",
     },
   ],
+
+  "json-to-zod": [
+    {
+      slug: "json-schema-to-zod",
+      title: "JSON Schema to Zod Converter",
+      metaTitle:
+        "JSON Schema to Zod Converter Online — Free Tool | DevBolt",
+      metaDescription:
+        "Convert JSON Schema definitions to Zod validation schemas online. Supports $ref, allOf/oneOf/anyOf, enum, format constraints, required fields, and nested objects. Free and private.",
+      h1: "JSON Schema to Zod Converter Online",
+      intro:
+        "Paste a JSON Schema and instantly generate Zod validation code. Handles $ref references, composition keywords (allOf, oneOf, anyOf), enums, format constraints, and required/optional field mapping.",
+      content: [
+        {
+          heading: "Why convert JSON Schema to Zod?",
+          body: "JSON Schema is the industry standard for describing JSON data structures, used in OpenAPI specs, configuration files, and API documentation. Zod is the dominant runtime validation library in TypeScript with 90M+ weekly npm downloads. Converting JSON Schema to Zod gives you compile-time types AND runtime validation from a single source of truth — eliminating the drift between your schema definitions and TypeScript types.",
+        },
+        {
+          heading: "Supported JSON Schema features",
+          body: "This converter handles the most commonly used JSON Schema keywords: type (string, number, integer, boolean, null, object, array), properties and required, $ref with $defs/definitions resolution, allOf (intersection), oneOf/anyOf (union), enum and const, format (email, uri, uuid, date-time, date, ipv4, ipv6), pattern (regex), minimum/maximum, exclusiveMinimum/exclusiveMaximum, minLength/maxLength, minItems/maxItems, default values, description, nullable, and additionalProperties.",
+        },
+        {
+          heading: "How $ref resolution works",
+          body: "Local $ref pointers like #/$defs/Address or #/definitions/Project are resolved to separate named Zod schemas. The converter generates each referenced schema as its own const variable and references it by name in parent schemas. This produces clean, readable code that mirrors your JSON Schema's structure rather than inlining everything into a single massive schema.",
+        },
+      ],
+      faqs: [
+        {
+          question:
+            "Does this tool handle $ref and allOf/oneOf/anyOf from JSON Schema?",
+          answer:
+            "Yes. Local $ref pointers within $defs or definitions are resolved to named Zod schemas. allOf maps to z.intersection(), while oneOf and anyOf map to z.union(). Nested compositions are fully supported.",
+        },
+        {
+          question:
+            "How are required and optional fields handled?",
+          answer:
+            "Fields listed in the JSON Schema required array become required Zod fields. All other properties get .optional() appended automatically. You can also toggle the global .optional() checkbox to make all fields optional regardless of the schema.",
+        },
+        {
+          question: "What JSON Schema draft versions are supported?",
+          answer:
+            "The converter supports Draft-07 and Draft 2020-12 keywords including $defs (2020-12) and definitions (Draft-07). Most JSON Schema features used in practice are covered.",
+        },
+      ],
+      keywords: [
+        "json schema to zod",
+        "convert json schema to zod",
+        "json schema zod converter",
+        "json schema zod",
+        "zod from json schema",
+        "json schema to zod online",
+      ],
+      parentToolSlug: "json-to-zod",
+      parentToolName: "JSON to Zod Converter",
+    },
+    {
+      slug: "zod-validation-guide",
+      title: "Zod Validation Guide for TypeScript",
+      metaTitle:
+        "Zod Validation Guide for TypeScript — Schemas & Types | DevBolt",
+      metaDescription:
+        "Learn Zod validation for TypeScript: schemas, types, refinements, transforms, and integration with React Hook Form, tRPC, and Next.js. Practical examples and best practices.",
+      h1: "Zod Validation Guide for TypeScript",
+      intro:
+        "Zod is the most popular TypeScript-first schema validation library with 90M+ weekly npm downloads. This guide covers everything from basic schemas to advanced patterns used in production TypeScript applications.",
+      content: [
+        {
+          heading: "Why Zod dominates TypeScript validation",
+          body: "Zod solves a fundamental TypeScript problem: TypeScript types exist only at compile time and are erased at runtime. Zod schemas validate data at runtime AND infer TypeScript types via z.infer<typeof schema>, giving you a single source of truth. This eliminates the common bug where your TypeScript interface says a field is a string but the API actually returns null. Zod catches this at runtime instead of crashing in production.",
+        },
+        {
+          heading: "Common Zod patterns",
+          body: "z.string().email() validates email format. z.number().int().positive() ensures positive integers. z.enum(['admin', 'user', 'viewer']) creates a union of literal types. z.object({}).strict() rejects unknown keys. z.array(z.string()).min(1) requires at least one item. z.union([z.string(), z.number()]) accepts either type. z.discriminatedUnion('type', [...]) efficiently validates tagged unions. These patterns cover 90% of real-world validation needs.",
+        },
+        {
+          heading: "Zod with React Hook Form, tRPC, and Next.js",
+          body: "Zod integrates deeply with the TypeScript ecosystem. With React Hook Form, use @hookform/resolvers/zod to get automatic form validation with type-safe error messages. With tRPC, Zod schemas define your API input/output types and validate them automatically. With Next.js Server Actions, Zod validates form submissions on the server. These integrations mean your Zod schemas become the contract between your frontend and backend.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is Zod better than Yup or Joi for TypeScript?",
+          answer:
+            "For TypeScript projects, Zod is generally the best choice. Unlike Yup and Joi, Zod was built from scratch for TypeScript with first-class type inference via z.infer. Yup's TypeScript support was retrofitted and has edge cases where inferred types are incorrect. Joi has no official TypeScript type inference at all.",
+        },
+        {
+          question: "How do I use Zod with React Hook Form?",
+          answer:
+            "Install @hookform/resolvers, then pass your Zod schema to useForm: useForm({ resolver: zodResolver(mySchema) }). Form errors will automatically match your Zod validation messages, and the form data type is inferred from the schema.",
+        },
+        {
+          question: "Does Zod work at runtime or only at compile time?",
+          answer:
+            "Both. Zod validates data at runtime (schema.parse(data) throws if invalid, schema.safeParse(data) returns a result object). It also infers TypeScript types at compile time via z.infer<typeof schema>. This dual behavior is Zod's key advantage.",
+        },
+      ],
+      keywords: [
+        "zod validation",
+        "zod typescript",
+        "zod guide",
+        "zod tutorial",
+        "zod react hook form",
+        "zod trpc",
+        "zod next.js",
+      ],
+      parentToolSlug: "json-to-zod",
+      parentToolName: "JSON to Zod Converter",
+    },
+    {
+      slug: "zod-vs-yup-vs-joi",
+      title: "Zod vs Yup vs Joi — TypeScript Validation Comparison",
+      metaTitle:
+        "Zod vs Yup vs Joi — TypeScript Validation Comparison | DevBolt",
+      metaDescription:
+        "Compare Zod, Yup, and Joi for TypeScript validation. Type inference, bundle size, performance, ecosystem integration, and migration guide. Which validation library should you use?",
+      h1: "Zod vs Yup vs Joi — TypeScript Validation Comparison",
+      intro:
+        "Choosing a validation library for TypeScript? Compare Zod, Yup, and Joi across type safety, bundle size, performance, and ecosystem integration to find the best fit for your project.",
+      content: [
+        {
+          heading: "Type inference comparison",
+          body: "Zod: First-class TypeScript inference via z.infer — every schema automatically produces the correct TypeScript type, including unions, intersections, optionals, and transforms. Yup: InferType<typeof schema> exists but has known edge cases with nullable/optional fields and transforms. Joi: No official TypeScript type inference — you must manually write interfaces that mirror your schemas, creating a maintenance burden and drift risk.",
+        },
+        {
+          heading: "Bundle size and performance",
+          body: "Zod: ~13KB minified+gzipped. Yup: ~12KB minified+gzipped. Joi: ~30KB+ minified+gzipped (designed for Node.js, not optimized for browsers). For frontend applications, Zod and Yup are comparable in size. Joi is significantly larger and was designed for server-side use. Performance is similar for typical validation workloads — the difference is negligible for most applications.",
+        },
+        {
+          heading: "When to use each library",
+          body: "Use Zod for new TypeScript projects, especially with tRPC, Next.js, or React Hook Form — it has the best TypeScript integration and fastest-growing ecosystem. Use Yup if you have an existing Formik-based codebase — Formik was built around Yup and migration would be costly. Use Joi for Node.js-only backends where you need extensive validation features and don't need TypeScript type inference.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I migrate from Yup to Zod?",
+          answer:
+            "If you rely on z.infer for type safety across your app, the migration is worthwhile. If you only use Yup for form validation with Formik and don't need type inference, the migration cost may not justify the benefit. For new features, consider using Zod alongside Yup and gradually migrating.",
+        },
+        {
+          question: "Which validation library has the most downloads?",
+          answer:
+            "Zod leads with 90M+ weekly npm downloads (as of early 2026), followed by Joi at ~10M and Yup at ~6M. Zod's growth has been explosive — it surpassed both Joi and Yup in 2024 and continues to accelerate.",
+        },
+        {
+          question: "Can I use Zod and Yup together in the same project?",
+          answer:
+            "Yes. They are independent libraries with no conflicts. This is a practical migration strategy: use Zod for new code and tRPC/API layers while keeping Yup for existing Formik forms. Gradually replace Yup schemas as you touch those files.",
+        },
+      ],
+      keywords: [
+        "zod vs yup",
+        "zod vs joi",
+        "yup vs zod",
+        "zod yup comparison",
+        "typescript validation library",
+        "best validation library typescript",
+      ],
+      parentToolSlug: "json-to-zod",
+      parentToolName: "JSON to Zod Converter",
+    },
+  ],
 };

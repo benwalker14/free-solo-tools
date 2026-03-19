@@ -4,6 +4,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ## In Progress
 
+- [ ] Write 10 "X vs Y" comparison blog posts (developer agent working on first 5)
 
 ## To Do
 
@@ -58,7 +59,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add JSON Visualizer / Interactive Tree Viewer tool (#89) — "json viewer" has 230K/mo searches. JSON Crack built a standalone business on this. Graph/tree layout with collapsible nodes, search, zoom.
 - [x] Add SVG to JSX/React Component Converter tool (#90) — 15-25K/mo. Pairs naturally with existing SVG Optimizer. Every React dev working with icons needs this.
 - [x] Add CSP Header Builder tool (#80) — visual Content Security Policy builder with framework presets. #1 recommended security header, notoriously hard to write.
-- [ ] Add JSON to Zod Converter tool (#96) — Zod has 90M+ weekly npm downloads. Fragmented online tool landscape. transform.tools is main competitor. Expand or complement existing Zod Schema Generator (#76).
+- [x] Add JSON to Zod Converter tool (#96) — Zod has 90M+ weekly npm downloads. Fragmented online tool landscape. transform.tools is main competitor. Expand or complement existing Zod Schema Generator (#76).
 - [ ] Add tsconfig.json Visual Builder tool (#97) — TypeScript is #1 on GitHub, no good online tsconfig builder exists. Visual form → tsconfig.json with explanations for each option.
 - [ ] Add GraphQL to TypeScript Converter tool (#98) — 4.6M weekly @graphql-codegen downloads. transform.tools is main competitor.
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder targeting developers (code review, API docs, testing prompts). Multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
@@ -92,6 +93,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add package.json Generator tool (#99) — foundational Node.js config file builder with framework presets. No dominant online tool.
 
 ## Done
+- [x] Add JSON to Zod Converter tool (#96) — converts JSON and JSON Schema to Zod validation schemas. Two input modes: JSON (infer from data) and JSON Schema (precise conversion). JSON Schema support: $ref/$defs resolution, allOf/oneOf/anyOf, enum, const, format (email/uri/uuid/date-time/date/ipv4/ipv6), pattern, min/max constraints, default values, description, nullable, additionalProperties. 8 options (schema name, .optional(), .strict(), coerce, .describe(), infer formats, .default(), .readonly()). Auto-detect input mode, stats display, download .ts, copy. 3 SEO sub-pages (json-schema-to-zod, zod-validation-guide, zod-vs-yup-vs-joi). All client-side
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder with 8 developer templates (code review, unit tests, API docs, data analysis, commit messages, SQL queries, refactoring, code explanation), 5 output formats (plain text, system+user, OpenAI API, Anthropic API, Gemini API), reusable {{variables}}, togglable prompt sections, prompt engineering cheat sheet, API format reference. 3 SEO sub-pages (prompt-engineering-guide, openai-vs-anthropic-prompts, prompt-templates-developers). All client-side
 - [x] Add SVG to JSX/React Component Converter tool (#90) — converts SVG markup to JSX or full React/TypeScript components. 80+ attribute mappings (stroke-width → strokeWidth, fill-opacity → fillOpacity, clip-path → clipPath, etc.), inline style string → object conversion, XML/comment/DOCTYPE cleanup, xmlns stripping. Output modes: JSX only, React Component (JS), React Component (TS). Options: custom component name, props spread with title support, forwardRef, memo, export default/named. 5 sample inputs (Simple Icon, Logo, Arrow, With Styles, Complex), SVG preview, download as .jsx/.tsx file, change log showing all transformations. 3 SEO sub-pages (svg-to-react-component, svg-attribute-conversion, svg-icon-library). All client-side
 - [x] Add JSON Visualizer & Tree Viewer tool (#89) — interactive tree viewer for JSON data with collapsible/expandable nodes, key/value search with highlighting, JSON path copy on hover, depth-level controls (Collapse, L2, L3, L5, All), data statistics (keys, depth, objects, arrays, strings, numbers, booleans, nulls, size), copy as formatted or minified JSON, 4 sample datasets (API Response, Package.json, Nested Config, GeoJSON), auto-expand first 2 levels on parse, Ctrl+F search shortcut. 3 SEO sub-pages (json-tree-viewer, json-explorer, json-viewer-alternative). All client-side

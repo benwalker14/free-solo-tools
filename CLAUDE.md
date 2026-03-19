@@ -139,3 +139,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 87. AI Prompt Template Builder (/tools/prompt-builder)
 88. MCP Config Builder (/tools/mcp-config-builder)
 89. OpenAPI to TypeScript Converter (/tools/openapi-to-typescript)
+90. JSON to Zod Converter (/tools/json-to-zod)

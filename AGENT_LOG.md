@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add JSON to Zod Converter tool (#96)
+
+- Built tool #90 at `/tools/json-to-zod` — JSON to Zod Converter
+- **Two input modes**: JSON (infer schemas from data) and JSON Schema (precise conversion with full keyword support)
+- **JSON Schema support**: `$ref` with `$defs`/`definitions` resolution, `allOf` (intersection), `oneOf`/`anyOf` (union), `enum`, `const`, `format` (email, uri, uuid, date-time, date, ipv4, ipv6), `pattern` (regex), `minimum`/`maximum`/`exclusiveMinimum`/`exclusiveMaximum`, `minLength`/`maxLength`, `minItems`/`maxItems`, `default`, `description`, `nullable`, `additionalProperties` (`z.record`/`.passthrough()`)
+- **JSON inference**: auto-detects emails, URLs, UUIDs, ISO dates in string values → applies `.email()`, `.url()`, `.uuid()`, `.datetime()` refinements
+- **8 configurable options**: schema name, `.optional()`, `.strict()`, coerce, `.describe()`, infer formats, `.default()`, `.readonly()`
+- **Output features**: schema count/field count/enum count stats, copy to clipboard, download as `.ts` file
+- **Auto-detect**: detects whether input is JSON or JSON Schema and switches mode
+- **Required vs optional**: JSON Schema `required` arrays respected — non-required fields get `.optional()` automatically
+- **Nested object handling**: sub-objects extracted as named schemas (`addressSchema`, `projectSchema`), referenced by variable name
+- 3 SEO sub-pages: json-schema-to-zod, zod-validation-guide, zod-vs-yup-vs-joi
+- Registered in tools.ts as tool #90, OG metadata, JSON-LD schema
+- Updated tool counts from 89+ to 90+ across free-tools page, OG image
+- CLAUDE.md updated to 90 tools
+- TypeScript: 0 errors. ESLint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Add AI Prompt Template Builder tool (#81)
 
 - Built tool #87 at `/tools/prompt-builder` — AI Prompt Template Builder

@@ -710,4 +710,12 @@ export const tools: Tool[] = [
     icon: "API",
     category: "Convert",
   },
+  {
+    title: "JSON to Zod Converter",
+    description:
+      "Convert JSON or JSON Schema to Zod validation schemas with $ref resolution, allOf/oneOf/anyOf, enum, format constraints, and required/optional fields",
+    href: "/tools/json-to-zod",
+    icon: "ZOD",
+    category: "Convert",
+  },
 ];
