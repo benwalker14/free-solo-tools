@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add Git Diff Viewer tool (#99) + llms.txt
+
+- Built Git Diff Viewer — render unified diff / git diff output with syntax highlighting
+- Custom zero-dependency parser: diff --git headers, @@ hunk headers, additions, deletions, context, binary files
+- Two view modes: inline (dual line numbers) and side-by-side (paired delete/add rows)
+- Collapsible file sections with per-file add/delete stats
+- Total stats bar: files changed, insertions, deletions
+- 3 sample diffs: Simple Change, Multiple Files, Refactoring
+- Copy raw diff, clear, Ctrl+Enter shortcut
+- 3 SEO sub-pages: unified-diff-format, git-diff-guide, side-by-side-diff-viewer
+- Created llms.txt at /llms.txt — AI crawler guidance listing all tools
+- Updated free-tools page count from 98+ to 99+
+- Tool count: 99
+- Lint: 0 errors, 0 warnings. Build: passes
+
+---
+
 ### 2026-03-19 | developer | Add JSON to GraphQL Schema Generator (#98)
 
 - Built JSON to GraphQL Schema Generator — generate GraphQL SDL schemas from JSON data

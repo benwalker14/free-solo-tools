@@ -1,0 +1,105 @@
+# DevBolt
+
+> 99 free online developer tools. 100% client-side — your data never leaves your browser.
+
+## Tools
+
+- [JSON Formatter](https://devbolt.dev/tools/json-formatter): Format, validate, and minify JSON data instantly
+- [Base64 Codec](https://devbolt.dev/tools/base64): Encode and decode Base64 strings with Unicode support
+- [Hash Generator](https://devbolt.dev/tools/hash-generator): Generate SHA-1, SHA-256, SHA-384, SHA-512 hashes
+- [UUID Generator](https://devbolt.dev/tools/uuid-generator): Generate random UUID v4 identifiers in bulk
+- [Color Converter](https://devbolt.dev/tools/color-converter): Convert colors between HEX, RGB, and HSL formats
+- [JWT Decoder](https://devbolt.dev/tools/jwt-decoder): Decode and inspect JSON Web Tokens instantly
+- [Regex Tester](https://devbolt.dev/tools/regex-tester): Test regular expressions with real-time match highlighting
+- [URL Parser](https://devbolt.dev/tools/url-parser): Parse URLs into protocol, host, path, and query params
+- [Markdown Preview](https://devbolt.dev/tools/markdown-preview): Write and preview Markdown with live rendering
+- [Diff Checker](https://devbolt.dev/tools/diff-checker): Compare two texts and see differences highlighted
+- [Epoch Converter](https://devbolt.dev/tools/epoch-converter): Convert Unix timestamps to dates and back
+- [Password Generator](https://devbolt.dev/tools/password-generator): Generate strong, secure random passwords
+- [Lorem Ipsum Generator](https://devbolt.dev/tools/lorem-ipsum): Generate placeholder text for designs and layouts
+- [Case Converter](https://devbolt.dev/tools/case-converter): Convert text between camelCase, snake_case, kebab-case, and more
+- [Number Base Converter](https://devbolt.dev/tools/number-base-converter): Convert numbers between binary, octal, decimal, and hex
+- [CSV to JSON Converter](https://devbolt.dev/tools/csv-json): Convert between CSV and JSON formats with custom delimiters
+- [Cron Expression Parser](https://devbolt.dev/tools/cron-parser): Parse cron schedules into plain English with next run times
+- [Word & Character Counter](https://devbolt.dev/tools/word-counter): Count words, characters, sentences, and estimate reading time
+- [URL Encoder & Decoder](https://devbolt.dev/tools/url-encoder): Encode and decode URLs with encodeURIComponent and encodeURI
+- [JSON to YAML Converter](https://devbolt.dev/tools/json-yaml): Convert between JSON and YAML for Kubernetes, Docker, and CI/CD configs
+- [Chmod Calculator](https://devbolt.dev/tools/chmod-calculator): Calculate Unix file permissions with an interactive permission matrix
+- [HTML Entity Encoder](https://devbolt.dev/tools/html-entities): Encode and decode HTML entities, special characters, and symbols
+- [CSS Gradient Generator](https://devbolt.dev/tools/gradient-generator): Create beautiful CSS gradients visually with live preview
+- [QR Code Generator](https://devbolt.dev/tools/qr-code): Generate customizable QR codes from text or URLs
+- [SQL Formatter](https://devbolt.dev/tools/sql-formatter): Format, beautify, and minify SQL queries instantly
+- [XML Formatter](https://devbolt.dev/tools/xml-formatter): Format, beautify, validate, and minify XML documents instantly
+- [Code Minifier & Beautifier](https://devbolt.dev/tools/code-minifier): Minify and beautify JavaScript, CSS, and HTML code instantly
+- [Image to Base64](https://devbolt.dev/tools/image-base64): Convert images to Base64 data URIs or decode Base64 back to images
+- [Color Palette Generator](https://devbolt.dev/tools/color-palette): Generate harmonious color palettes using color theory algorithms
+- [JSON to TypeScript](https://devbolt.dev/tools/json-to-typescript): Generate TypeScript interfaces and type aliases from JSON data
+- [HTML to Markdown Converter](https://devbolt.dev/tools/html-markdown): Convert between HTML and Markdown in either direction
+- [YAML Formatter](https://devbolt.dev/tools/yaml-formatter): Validate, format, beautify, and minify YAML documents instantly
+- [JSON Path Tester](https://devbolt.dev/tools/json-path): Test JSONPath expressions against JSON data with real-time evaluation
+- [SVG Optimizer](https://devbolt.dev/tools/svg-optimizer): Optimize SVGs by removing metadata, comments, editor data, and unnecessary attributes
+- [Image Compressor](https://devbolt.dev/tools/image-compressor): Compress and resize images with adjustable quality — JPEG, WebP, and PNG
+- [Box Shadow Generator](https://devbolt.dev/tools/box-shadow): Design CSS box shadows visually with multiple layers, presets, and live preview
+- [Color Contrast Checker](https://devbolt.dev/tools/contrast-checker): Check WCAG 2.1 color contrast ratios for AA and AAA accessibility compliance
+- [Flexbox Generator](https://devbolt.dev/tools/flexbox-generator): Build CSS flexbox layouts visually with live preview, item config, and presets
+- [Grid Generator](https://devbolt.dev/tools/grid-generator): Build CSS grid layouts visually with columns, rows, gap, item placement, and presets
+- [Border Radius Generator](https://devbolt.dev/tools/border-radius): Design CSS border-radius visually with per-corner controls, unit selection, and presets
+- [Text Shadow Generator](https://devbolt.dev/tools/text-shadow): Design CSS text shadows visually with multiple layers, presets, and live preview
+- [CSS Animation Generator](https://devbolt.dev/tools/css-animation): Build CSS keyframe animations visually with presets, live preview, and copy-ready code
+- [Markdown Table Generator](https://devbolt.dev/tools/markdown-table): Build Markdown tables visually with an interactive editor, CSV import, and alignment controls
+- [Text to Binary Converter](https://devbolt.dev/tools/text-binary): Convert text to binary, hexadecimal, octal, or decimal and decode back with UTF-8 support
+- [Meta Tag Generator](https://devbolt.dev/tools/meta-tag-generator): Generate SEO, Open Graph, and Twitter Card meta tags with live Google and social previews
+- [JSON Schema Validator](https://devbolt.dev/tools/json-schema): Validate JSON data against JSON Schema (Draft 07) with detailed error reporting and schema generation
+- [IP / CIDR Toolkit](https://devbolt.dev/tools/subnet-calculator): Subnet calculator, VLSM divider, IP range to CIDR converter, and IP address classifier
+- [.gitignore Generator](https://devbolt.dev/tools/gitignore-generator): Generate .gitignore files from 50+ templates — Node.js, Python, Java, Go, Rust, and more
+- [Crontab Generator](https://devbolt.dev/tools/cron-generator): Build cron expressions visually — select frequency, time, and days to generate cron schedules
+- [Favicon Generator](https://devbolt.dev/tools/favicon-generator): Generate favicons from text or emoji — download PNGs, SVG, Apple Touch Icon, and HTML tags
+- [URL Slug Generator](https://devbolt.dev/tools/slug-generator): Convert text into clean, URL-friendly slugs with Unicode transliteration and bulk mode
+- [cURL to Code](https://devbolt.dev/tools/curl-converter): Convert cURL commands to JavaScript, Python, Go, PHP, Ruby, and Java code instantly
+- [JSON to CSV Converter](https://devbolt.dev/tools/json-to-csv): Convert JSON arrays to CSV with nested object flattening, column selection, and .csv download
+- [Tailwind CSS Generator](https://devbolt.dev/tools/tailwind-generator): Build Tailwind CSS utility classes visually with live preview and component presets
+- [Open Graph Preview](https://devbolt.dev/tools/og-preview): Preview and debug Open Graph, Twitter Card, and SEO meta tags for social sharing
+- [JS/TS Playground](https://devbolt.dev/tools/js-playground): Run JavaScript and TypeScript code in your browser with instant console output
+- [JSON Diff](https://devbolt.dev/tools/json-diff): Compare two JSON objects and see structural differences — added, removed, and changed keys
+- [TOML to JSON/YAML Converter](https://devbolt.dev/tools/toml-converter): Convert between TOML, JSON, and YAML — perfect for Cargo.toml and pyproject.toml
+- [Encode / Decode Multi-Tool](https://devbolt.dev/tools/encode-decode): Base64, Base32, Hex, Binary, URL, and HTML encoding & decoding all in one tool
+- [Docker Compose Validator](https://devbolt.dev/tools/docker-compose): Validate and format Docker Compose files — check services, networks, volumes, and dependencies
+- [Privacy Policy Generator](https://devbolt.dev/tools/privacy-policy): Generate a customized privacy policy with GDPR, CCPA, cookies, analytics, and payment sections
+- [HTTP Status Codes](https://devbolt.dev/tools/http-status-codes): Complete HTTP status code reference — 1xx through 5xx with detailed explanations and use cases
+- [Date Format Tester](https://devbolt.dev/tools/date-format-tester): Test date format patterns for strftime, date-fns, Moment.js, Go, and Java with live preview
+- [JSON Mock Data Generator](https://devbolt.dev/tools/json-mock-generator): Generate realistic fake JSON data for API testing with 30+ field types and preset templates
+- [README Generator](https://devbolt.dev/tools/readme-generator): Generate professional GitHub README.md files with badges, installation steps, and usage examples
+- [Dockerfile Validator](https://devbolt.dev/tools/dockerfile-validator): Validate and lint Dockerfiles for syntax errors, security issues, best practices, and layer optimization
+- [Kubernetes YAML Validator](https://devbolt.dev/tools/k8s-validator): Validate Kubernetes manifests for syntax, required fields, best practices, security, and resource limits
+- [robots.txt Generator](https://devbolt.dev/tools/robots-generator): Generate robots.txt files with crawl rules for Googlebot, Bingbot, AI bots, and more
+- [OpenAPI / Swagger Validator](https://devbolt.dev/tools/openapi-validator): Validate OpenAPI 3.x and Swagger 2.0 specs for structure, paths, schemas, security, and best practices
+- [Zod Schema Generator](https://devbolt.dev/tools/zod-schema): Generate Zod validation schemas from JSON — auto-detects emails, URLs, UUIDs, dates, and nested objects
+- [Placeholder Image Generator](https://devbolt.dev/tools/placeholder-image): Generate custom placeholder images for wireframes, mockups, and prototyping with custom dimensions and colors
+- [Nginx Config Generator](https://devbolt.dev/tools/nginx-config): Generate nginx configuration files — server blocks, SSL, reverse proxy, gzip, load balancing, and security headers
+- [.env File Validator](https://devbolt.dev/tools/env-validator): Validate .env files for syntax errors, duplicate keys, security risks, and best practices
+- [File Hash Calculator](https://devbolt.dev/tools/file-hash): Compute MD5, SHA-1, SHA-256, SHA-384, SHA-512 file hashes with drag-and-drop and checksum comparison
+- [ASCII Art Text Generator](https://devbolt.dev/tools/ascii-art): Convert text into ASCII art with 7 font styles and comment wrapping for code
+- [Regex Generator](https://devbolt.dev/tools/regex-generator): Generate regex patterns by describing what you need — 60+ curated patterns, visual composer, and live tester
+- [LLM Token Counter](https://devbolt.dev/tools/token-counter): Count tokens and estimate API costs for GPT-4o, Claude, Gemini, and other LLMs
+- [AI Model Comparison](https://devbolt.dev/tools/ai-model-comparison): Compare GPT, Claude, Gemini, Llama, and more — pricing, context windows, capabilities, and reasoning support
+- [Git Command Builder](https://devbolt.dev/tools/git-command-builder): Build git commands visually — branching, merging, rebasing, stashing, tags, and 80+ cheat sheet entries
+- [CSP Header Builder](https://devbolt.dev/tools/csp-builder): Build Content Security Policy headers visually with framework presets, security analysis, and multi-format output
+- [HTML to JSX Converter](https://devbolt.dev/tools/html-to-jsx): Convert HTML to JSX — class to className, inline styles to objects, self-closing tags, and SVG attributes
+- [JSON to Code Generator](https://devbolt.dev/tools/json-to-code): Generate typed code from JSON in 8 languages — Go, Python, Java, C#, Dart, Rust, Swift, Kotlin
+- [Code Screenshot Generator](https://devbolt.dev/tools/code-screenshot): Create beautiful code screenshots with 8 themes, syntax highlighting, and customizable backgrounds
+- [CSS to Tailwind Converter](https://devbolt.dev/tools/css-to-tailwind): Convert CSS to Tailwind utility classes instantly — 100+ properties including layout, spacing, typography, and effects
+- [JSON Visualizer](https://devbolt.dev/tools/json-visualizer): Visualize JSON as an interactive tree — collapsible nodes, search, path copy, and depth controls
+- [SVG to JSX Converter](https://devbolt.dev/tools/svg-to-jsx): Convert SVG to JSX or a React/TypeScript component — camelCase attributes, style objects, forwardRef, and memo
+- [AI Prompt Builder](https://devbolt.dev/tools/prompt-builder): Build structured AI prompts with templates, variables, and multi-format output for OpenAI, Anthropic, and Gemini APIs
+- [MCP Config Builder](https://devbolt.dev/tools/mcp-config-builder): Build MCP configuration files visually for Claude Desktop, Cursor, VS Code, Windsurf, and Claude Code
+- [OpenAPI to TypeScript](https://devbolt.dev/tools/openapi-to-typescript): Convert OpenAPI 3.x and Swagger 2.0 specs to TypeScript interfaces and types with $ref resolution
+- [JSON to Zod Converter](https://devbolt.dev/tools/json-to-zod): Convert JSON or JSON Schema to Zod validation schemas with $ref resolution, allOf/oneOf/anyOf, and enum support
+- [JWT Builder](https://devbolt.dev/tools/jwt-builder): Build and sign JSON Web Tokens with HMAC, RSA, and ECDSA algorithms — visual payload editor with expiration presets
+- [tsconfig.json Builder](https://devbolt.dev/tools/tsconfig-builder): Build TypeScript tsconfig.json visually with framework presets and explanations for every option
+- [GraphQL to TypeScript](https://devbolt.dev/tools/graphql-to-typescript): Convert GraphQL SDL schemas to TypeScript interfaces, types, enums, unions, and operations
+- [package.json Generator](https://devbolt.dev/tools/package-json-generator): Generate package.json visually with framework presets, dependency editor, scripts, and module config
+- [Security Headers Generator](https://devbolt.dev/tools/security-headers): Generate HTTP security headers for Nginx, Apache, Vercel, Netlify, and Cloudflare with presets and security scoring
+- [TypeScript to JavaScript](https://devbolt.dev/tools/typescript-to-js): Convert TypeScript to JavaScript — strip types, interfaces, enums, generics, and access modifiers
+- [JSON to SQL Converter](https://devbolt.dev/tools/json-to-sql): Convert JSON arrays to SQL CREATE TABLE and INSERT statements for PostgreSQL, MySQL, and SQLite
+- [JSON to GraphQL Schema](https://devbolt.dev/tools/json-to-graphql): Generate GraphQL schema definitions from JSON data with automatic type inference and Query/Mutation generation
+- [Git Diff Viewer](https://devbolt.dev/tools/git-diff-viewer): Paste unified diff output from git diff and view it with syntax highlighting, line numbers, and side-by-side or inline display

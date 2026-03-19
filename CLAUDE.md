@@ -148,3 +148,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 96. TypeScript to JavaScript Converter (/tools/typescript-to-js)
 97. JSON to SQL Converter (/tools/json-to-sql)
 98. JSON to GraphQL Schema Generator (/tools/json-to-graphql)
+99. Git Diff Viewer (/tools/git-diff-viewer)

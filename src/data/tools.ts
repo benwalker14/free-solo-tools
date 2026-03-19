@@ -782,4 +782,12 @@ export const tools: Tool[] = [
     icon: "GQL",
     category: "Generate",
   },
+  {
+    title: "Git Diff Viewer",
+    description:
+      "Paste unified diff output from git diff and view it with syntax highlighting, line numbers, and side-by-side or inline display",
+    href: "/tools/git-diff-viewer",
+    icon: "GDV",
+    category: "Inspect",
+  },
 ];

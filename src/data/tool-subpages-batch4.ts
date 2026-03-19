@@ -4355,4 +4355,141 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JSON to GraphQL Schema Generator",
     },
   ],
+
+  "git-diff-viewer": [
+    {
+      slug: "unified-diff-format",
+      title: "Unified Diff Format Explained",
+      metaTitle: "Unified Diff Format Explained — Syntax & Structure Guide | DevBolt",
+      metaDescription:
+        "Learn the unified diff format used by git diff, patch, and GNU diff. Understand hunk headers, context lines, additions, and deletions with visual examples.",
+      h1: "Unified Diff Format Explained",
+      intro:
+        "The unified diff format is the standard output of git diff and is used by patch tools worldwide. Paste any unified diff into the viewer above to see it rendered with syntax highlighting.",
+      content: [
+        {
+          heading: "What is unified diff format?",
+          body: "Unified diff format (also called unidiff) shows changes between two files in a compact, human-readable way. It was introduced by GNU diff and is now the default output format for git diff. Each diff starts with file headers (--- and +++ lines), followed by one or more hunks that show the actual changes with surrounding context lines.",
+        },
+        {
+          heading: "Anatomy of a unified diff",
+          body: "A unified diff has several parts: (1) The diff header line starting with 'diff --git a/file b/file'. (2) File metadata lines like 'index abc1234..def5678'. (3) The old file name prefixed with '--- a/'. (4) The new file name prefixed with '+++ b/'. (5) Hunk headers like '@@ -10,7 +10,8 @@' indicating line ranges. (6) Context lines starting with a space. (7) Removed lines starting with '-'. (8) Added lines starting with '+'.",
+        },
+        {
+          heading: "Understanding hunk headers",
+          body: "The hunk header @@ -10,7 +10,8 @@ means: in the old file, this hunk starts at line 10 and spans 7 lines; in the new file, it starts at line 10 and spans 8 lines. The numbers after the comma indicate the number of lines shown (context + changes). Some hunks include a function name after the closing @@ for additional context.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What do the + and - symbols mean in a diff?",
+          answer:
+            "Lines starting with '-' (minus) were removed from the old version. Lines starting with '+' (plus) were added in the new version. Lines starting with a space are unchanged context lines shown for reference. Lines starting with '@@' are hunk headers indicating line positions.",
+        },
+        {
+          question: "What is the difference between unified and context diff format?",
+          answer:
+            "Unified diff (git diff default) shows changes inline with +/- prefixes and is more compact. Context diff (diff -c) shows old and new versions in separate blocks marked with *** and ---. Unified format is preferred for code review and version control because it is more readable and produces smaller patches.",
+        },
+      ],
+      keywords: [
+        "unified diff format",
+        "diff format explained",
+        "git diff format",
+        "unified diff syntax",
+        "diff hunk header",
+        "patch file format",
+      ],
+      parentToolSlug: "git-diff-viewer",
+      parentToolName: "Git Diff Viewer",
+    },
+    {
+      slug: "git-diff-guide",
+      title: "Git Diff Command Guide",
+      metaTitle: "Git Diff Command Guide — Options, Flags & Examples | DevBolt",
+      metaDescription:
+        "Complete guide to the git diff command. Learn git diff options, compare branches, staged changes, specific files, and generate patches. Free examples and cheat sheet.",
+      h1: "Git Diff Command Guide",
+      intro:
+        "Master the git diff command with practical examples. Generate diff output and paste it into the viewer above to see it rendered with syntax highlighting and line numbers.",
+      content: [
+        {
+          heading: "Basic git diff usage",
+          body: "Running 'git diff' with no arguments shows unstaged changes in your working directory compared to the index (staging area). Use 'git diff --staged' (or --cached) to see changes that are staged for the next commit. Use 'git diff HEAD' to see all changes (staged and unstaged) compared to the last commit.",
+        },
+        {
+          heading: "Comparing branches and commits",
+          body: "Compare two branches: 'git diff main..feature-branch'. Compare a specific commit to HEAD: 'git diff abc1234..HEAD'. Show changes introduced by a single commit: 'git diff abc1234^..abc1234' or simply 'git show abc1234'. Compare specific files: 'git diff main -- src/app.ts'. Use 'git diff --stat' for a summary of changed files without full content.",
+        },
+        {
+          heading: "Useful git diff flags",
+          body: "Common flags include: --stat (file change summary), --name-only (list changed file names), --name-status (names with A/M/D status), --word-diff (word-level differences), --color-words (inline word-level coloring), -U5 (show 5 context lines instead of default 3), --ignore-space-change (-b, ignore whitespace changes), and --diff-filter=M (show only modified files).",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I see what changed in the last commit?",
+          answer:
+            "Use 'git diff HEAD~1..HEAD' to compare the last commit with the one before it. Alternatively, 'git show' displays the diff for the most recent commit along with its commit message. For a specific commit, use 'git show <commit-hash>'.",
+        },
+        {
+          question: "How do I generate a patch file from git diff?",
+          answer:
+            "Run 'git diff > changes.patch' to save the diff to a file. Apply it later with 'git apply changes.patch'. For commits, use 'git format-patch -1 HEAD' to create a patch file with commit metadata. Patches can be shared via email or file transfer and applied with 'git am'.",
+        },
+      ],
+      keywords: [
+        "git diff command",
+        "git diff guide",
+        "git diff examples",
+        "git diff options",
+        "git diff branches",
+        "git diff staged",
+      ],
+      parentToolSlug: "git-diff-viewer",
+      parentToolName: "Git Diff Viewer",
+    },
+    {
+      slug: "side-by-side-diff-viewer",
+      title: "Side-by-Side Diff Viewer",
+      metaTitle: "Side-by-Side Diff Viewer Online — Compare Code Changes | DevBolt",
+      metaDescription:
+        "View git diffs side by side online. Paste unified diff output and see old and new versions displayed in parallel columns with syntax highlighting and line numbers.",
+      h1: "Side-by-Side Diff Viewer Online",
+      intro:
+        "View your git diff output in a side-by-side layout with the old version on the left and new version on the right. Paste any unified diff above and switch to Side by Side view mode.",
+      content: [
+        {
+          heading: "Why use side-by-side diff view?",
+          body: "Side-by-side diff view displays the old and new file versions in parallel columns, making it easier to see exactly what changed at each line. It is the preferred view for code reviews because you can scan corresponding lines horizontally. Inline view is better for small changes or narrow screens, while side-by-side excels for refactoring and multi-line changes.",
+        },
+        {
+          heading: "How to read a side-by-side diff",
+          body: "In side-by-side view, the left column shows the original file and the right column shows the modified version. Deleted lines appear highlighted in red on the left with an empty slot on the right. Added lines appear highlighted in green on the right with an empty slot on the left. Modified lines show the old version in red (left) and new version in green (right) on the same row.",
+        },
+      ],
+      faqs: [
+        {
+          question: "When should I use side-by-side vs inline diff view?",
+          answer:
+            "Use side-by-side view for code reviews, refactoring comparisons, and when you need to see old and new versions simultaneously. Use inline view on narrow screens, for small single-line changes, or when you want a compact view of the diff. Most code review tools default to side-by-side for desktop and inline for mobile.",
+        },
+        {
+          question: "Can I use side-by-side view with any diff format?",
+          answer:
+            "This tool accepts unified diff format (the output of git diff). Paste your diff text and select 'Side by Side' from the view dropdown. The viewer automatically pairs deleted and added lines for parallel display. Context lines appear on both sides.",
+        },
+      ],
+      keywords: [
+        "side by side diff",
+        "side by side diff viewer",
+        "compare code side by side",
+        "parallel diff view",
+        "split diff viewer",
+        "diff viewer online",
+      ],
+      parentToolSlug: "git-diff-viewer",
+      parentToolName: "Git Diff Viewer",
+    },
+  ],
 };
