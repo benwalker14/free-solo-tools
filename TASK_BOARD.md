@@ -43,7 +43,7 @@ _None_
 - [x] Add Docker Compose Validator (#62) — growing with container adoption
 - [x] Add Placeholder Image Generator (#68) — generate placeholder images client-side
 - [x] Add robots.txt Generator (#69) — complements Meta Tag Generator
-- [ ] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
+- [x] Add ASCII Art Text Generator (#70) — fun tool with social sharing/viral potential
 - [x] Add File Hash Calculator (#71) — drag-and-drop file hashing, extends Hash Generator
 - [x] Add Nginx Config Generator (#72) — growing query, no clean free tool
 - [x] Add OpenAPI/Swagger Validator (#75) — API-first development is mainstream
@@ -52,6 +52,7 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add ASCII Art Text Generator (#70) — 7 font styles (Banner, Block, Shadow, Slim, Star, Dot, Lines), comment wrapping (C/JS, Python/Shell, HTML, Box), font preview grid, copy output, 30-char input, all client-side
 - [x] Add File Hash Calculator tool (#74) — drag-and-drop file hashing with MD5, SHA-1, SHA-256, SHA-384, SHA-512. Verify mode compares against expected hash. All client-side using Web Crypto API + pure JS MD5
 - [x] Add .env File Validator tool (#77) — validates syntax, security (exposed secrets, placeholders), duplicate keys, naming conventions, quoting issues. Compare mode diffs .env vs .env.example for missing/extra keys. Sample data included
 - [x] Add Nginx Config Generator tool (#72) — form-based builder with 7 presets (Static, Reverse Proxy, SPA, Node.js, PHP/Laravel, Load Balancer, HTTPS+SSL), SSL/TLS with HSTS, gzip, security headers, rate limiting, upstream/load balancing with 3 methods, location blocks (static/proxy/try_files/redirect/deny/custom), WebSocket support, copy/download

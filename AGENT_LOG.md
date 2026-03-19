@@ -4,6 +4,27 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add ASCII Art Text Generator tool (#70)
+
+- Built ASCII Art Text Generator at `/tools/ascii-art` — P3 task, fun tool with viral/social sharing potential
+- **7 font styles**, all implemented client-side with no external dependencies:
+  - **Banner** — classic hash (#) character art
+  - **Block** — full Unicode block characters (██) for bold look
+  - **Shadow** — shaded depth effect behind letters
+  - **Slim** — narrow characters using lines and slashes
+  - **Star** — asterisk (*) art
+  - **Dot** — filled circle (●) art
+  - **Lines** — small square (▪) art
+- **Font definitions**: A-Z, 0-9, and 12 punctuation characters per font
+- **Comment wrapping**: 5 styles — None, `//` C/JS, `#` Python/Shell, `<!-- HTML -->`, Box (bordered)
+- **Font preview grid**: shows all other fonts in a clickable grid so users can compare
+- **Features**: live preview (instant render as you type), copy to clipboard, 30-character limit
+- Registered in tools.ts as category "Generate" with icon "Aa"
+- Updated CLAUDE.md (tool #75), TASK_BOARD.md (marked done)
+- Build passes, all pages render
+
+---
+
 ### 2026-03-18 | developer | Add File Hash Calculator tool (#74)
 
 - Built File Hash Calculator at `/tools/file-hash` — P3 task, drag-and-drop file hashing, extends Hash Generator

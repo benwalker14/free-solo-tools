@@ -590,4 +590,12 @@ export const tools: Tool[] = [
     icon: "#F",
     category: "Inspect",
   },
+  {
+    title: "ASCII Art Text Generator",
+    description:
+      "Convert text into ASCII art with 7 font styles — banner, block, shadow, slim, star, dot, lines — with comment wrapping for code",
+    href: "/tools/ascii-art",
+    icon: "Aa",
+    category: "Generate",
+  },
 ];
