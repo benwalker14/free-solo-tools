@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Fix sitemap bug + Expand SEO sub-pages to 126 pages
+
+**Sitemap fix (P0):**
+- Added blog index (`/blog`) and 3 blog post URLs to `sitemap.xml` — imported `blogPosts` from data file
+- Google can now discover all blog content via sitemap
+
+**SEO sub-page expansion (P1):**
+- Expanded programmatic SEO sub-pages from 26 across 10 tools → **126 across 45 tools**
+- Added 100 new sub-pages targeting long-tail keywords across 35 new tools:
+  - Converter tools (10): json-yaml, html-markdown, csv-json, toml-converter, text-binary, image-base64, html-entities, curl-converter, case-converter, number-base-converter
+  - Formatter/CSS tools (10): code-minifier, sql-formatter, xml-formatter, yaml-formatter, gradient-generator, box-shadow, flexbox-generator, grid-generator, border-radius, text-shadow
+  - Generator tools (10): css-animation, qr-code, meta-tag-generator, tailwind-generator, json-to-typescript, json-to-csv, markdown-preview, gitignore-generator, favicon-generator, markdown-table
+  - Inspector/utility tools (15): diff-checker, contrast-checker, json-path, json-schema, word-counter, url-parser, chmod-calculator, subnet-calculator, docker-compose, cron-parser, cron-generator, image-compressor, svg-optimizer, slug-generator, json-diff
+- Each sub-page has: SEO metadata, FAQPage schema, WebApplication schema, keyword-targeted content, FAQs
+- Split data into modular batch files (tool-subpages-batch1–4.ts) for maintainability
+- Created `[subpage]/page.tsx` route files for all 35 new tools
+- Build verified (all 126 sub-pages render), committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Expand Subnet Calculator into IP/CIDR Toolkit (#54)
 
 - Expanded `SubnetCalculatorTool.tsx` from single-purpose subnet calculator into a 4-tab IP/CIDR Toolkit:

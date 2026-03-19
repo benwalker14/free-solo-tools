@@ -8,12 +8,12 @@ _None_
 ## To Do
 
 ### P0 - Critical
-- [ ] Fix sitemap bug: add blog posts to `sitemap.xml` — 3 blog posts not discoverable by Google
+- [x] Fix sitemap bug: add blog posts to `sitemap.xml` — 3 blog posts not discoverable by Google
 - [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this (HUMAN ACTION NEEDED)
 
 ### P1 - High (Growth & SEO)
 - [x] Implement programmatic SEO sub-pages for top 10 tools (e.g., /tools/hash-generator/sha256, /tools/json-formatter/examples)
-- [ ] Expand programmatic SEO sub-pages to 40+ tools — from 25 → 125+ indexed pages
+- [x] Expand programmatic SEO sub-pages to 45 tools — from 26 → 126 indexed sub-pages
 - [ ] Write 12 new blog posts targeting high-volume informational queries (see HUMAN_INBOX.md for full list)
 - [ ] Apply to Carbon Ads or EthicalAds for developer-focused ad monetization (HUMAN ACTION NEEDED)
 - [ ] Add Privacy Policy Generator tool (#65) — 100K+/mo searches, breakout traffic opportunity
@@ -52,6 +52,8 @@ _None_
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Expand programmatic SEO sub-pages to 45 tools — 126 sub-pages across all tools (was 26 across 10), targeting long-tail keywords
+- [x] Fix sitemap bug: add blog posts to sitemap.xml — /blog index + 3 blog post URLs now included
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54) — 4-tab toolkit: subnet calculator, VLSM divider, IP range to CIDR, IP address info
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
 - [x] Add Docker Compose Validator (#62) — validate/format compose files with service, network, volume, dependency checks
