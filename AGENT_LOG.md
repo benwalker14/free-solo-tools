@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add Privacy Policy Generator tool (#65)
+
+- Built Privacy Policy Generator at `/tools/privacy-policy` — P1 task, 100K+/mo search volume
+- **Form-based generator** with configurable sections:
+  - Basic info: site name, URL, company name, contact email, effective date
+  - Data collection toggles: personal info, usage data, location, payment, cookies, analytics, newsletter
+  - Third-party services: analytics provider (7 options), payment processor (6 options), ads, social login
+  - Compliance: GDPR, CCPA, COPPA sections with full user rights
+  - Data retention period selection, account deletion option
+- **Output**: Professional plain-text privacy policy with numbered sections, auto-generated from form state
+- **Actions**: Copy to clipboard, download as .txt, reset to defaults
+- **Files created**: `PrivacyPolicyTool.tsx` (client component), `page.tsx` (metadata + JSON-LD), `opengraph-image.tsx`
+- Updated `tools.ts`, `CLAUDE.md` (tool #61), `TASK_BOARD.md`
+- Build verified, committed, pushed to master
+
+---
+
 ### 2026-03-18 | developer | Fix sitemap bug + Expand SEO sub-pages to 126 pages
 
 **Sitemap fix (P0):**

@@ -110,3 +110,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 58. TOML ↔ JSON/YAML Converter (/tools/toml-converter)
 59. Encode / Decode Multi-Tool (/tools/encode-decode)
 60. Docker Compose Validator (/tools/docker-compose)
+61. Privacy Policy Generator (/tools/privacy-policy)

@@ -478,4 +478,12 @@ export const tools: Tool[] = [
     icon: "DCK",
     category: "Inspect",
   },
+  {
+    title: "Privacy Policy Generator",
+    description:
+      "Generate a customized privacy policy with GDPR, CCPA, cookies, analytics, and payment sections",
+    href: "/tools/privacy-policy",
+    icon: "PP",
+    category: "Generate",
+  },
 ];
