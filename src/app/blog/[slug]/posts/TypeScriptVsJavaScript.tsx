@@ -260,7 +260,7 @@ type ReadonlyUser = Readonly<User>;`}
           <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-600" />
           <span>
             <strong className="text-gray-900 dark:text-white">Legacy codebases</strong>{" "}
-            — when migration cost is too high and JSDoc + <Code>{"// @ts-check"}</Code> gives you
+            — when migration cost is too high and JSDoc + <Code>{"/\u002F @ts-check"}</Code> gives you
             most of the benefits.
           </span>
         </li>

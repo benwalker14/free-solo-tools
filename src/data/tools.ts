@@ -718,4 +718,12 @@ export const tools: Tool[] = [
     icon: "ZOD",
     category: "Convert",
   },
+  {
+    title: "JWT Builder",
+    description:
+      "Build and sign JSON Web Tokens with HMAC, RSA, and ECDSA algorithms — visual payload editor with expiration presets",
+    href: "/tools/jwt-builder",
+    icon: "JWT",
+    category: "Generate",
+  },
 ];

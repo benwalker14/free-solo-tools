@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Code({ children }: { children: React.ReactNode }) {
+function _Code({ children }: { children: React.ReactNode }) {
   return (
     <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm font-mono text-indigo-600 dark:bg-gray-800 dark:text-indigo-400">
       {children}

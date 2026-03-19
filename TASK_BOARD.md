@@ -28,11 +28,11 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Code Screenshot Generator tool (#87) — Carbon/Ray.so alternative. 30-50K/mo. Highly viral — every shared screenshot = free backlink/marketing. Canvas-based, fully client-side.
 - [x] Add MCP Config Builder tool (#94) — visual mcp.json builder for Claude Desktop/Cursor/VS Code/Windsurf/Claude Code. 16 server templates, 5 client formats, env var management. 3 SEO sub-pages.
 - [x] Add OpenAPI to TypeScript Converter tool (#95) — 2.14M weekly npm downloads for CLI tool, no dominant online converter. transform.tools is only competitor. Pairs with OpenAPI Validator (#75).
-- [x] Write 5 more "X vs Y" comparison blog posts — Flexbox vs Grid (~30K/mo), JSON vs YAML (~20K/mo), SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding. (10/10 done)
+- [ ] Write 5 more "X vs Y" comparison blog posts — Flexbox vs Grid (~30K/mo), JSON vs YAML (~20K/mo), SHA-256 vs MD5, Next.js vs Nuxt, Base64 vs URL Encoding. (5/10 done: TypeScript vs JavaScript, React vs Vue, REST vs GraphQL, Docker vs K8s, Tailwind vs Bootstrap)
 - [ ] Optimize all tool pages for AI Overview citation — add FAQ sections (3-5 questions each), direct answers in first 60 words, 134-167 word answer paragraphs, tables over prose. AI Overviews caused 61% CTR drop; cited pages get 35% MORE clicks.
 - [ ] Build Chrome Extension MVP — top 5 tools quick access, right-click context menu, privacy badge. Builds direct traffic immune to AI Overview cannibalization.
 - [ ] Add 10-15 privacy-targeted SEO sub-pages — "safe json formatter", "private base64 encoder", etc. Trust-related long-tail keywords.
-- [ ] Launch on Product Hunt — weekend launch (Saturday/Sunday for max dev eyeballs). "85+ Developer Tools. Zero Data Collection. 100% Free." Pre-build PH community 2-4 weeks before. Plan repeat launches at 100 tools milestone. (HUMAN ACTION NEEDED)
+- [ ] Launch on Product Hunt — Tuesday or Wednesday launch (research shows higher dev traffic). "100+ free dev tools. No signup. No tracking." Need 4-6 weeks of PH community engagement FIRST. Target 400+ followers before launch. Maker first comment = 166% more upvotes. Target: 100 upvotes by 4 AM PT. (HUMAN ACTION NEEDED — START COMMUNITY ENGAGEMENT NOW)
 - [ ] Submit DevBolt to 10-15 high-DA directories — AlternativeTo, StackShare, DevHunt, Awesome Lists, SaaSHub (HUMAN ACTION NEEDED)
 - [ ] Post Show HN launch — after PH launch. Tuesday-Thursday 9-12 PM PT. (HUMAN ACTION NEEDED)
 
@@ -61,6 +61,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add tsconfig.json Visual Builder tool (#97) — TypeScript is #1 on GitHub, no good online tsconfig builder exists. Visual form → tsconfig.json with explanations for each option.
 - [ ] Add GraphQL to TypeScript Converter tool (#98) — 4.6M weekly @graphql-codegen downloads. transform.tools is main competitor.
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder targeting developers (code review, API docs, testing prompts). Multi-model formatting (OpenAI/Anthropic/Gemini). 68% of devs expect AI proficiency as job requirement.
+- [x] Add JWT Builder/Generator tool (#100) — complement to JWT Decoder (#6). 8-20K/mo searches. Visual header/payload editor, algorithm selection (HS256/HS384/HS512), client-side signing via Web Crypto API. jwt.io's UX is aging.
 - [ ] Add Security Headers Generator tool (#82) — analyze/generate security headers for Nginx, Apache, Vercel, Netlify, Cloudflare
 - [ ] Create 5 interactive cheat sheet pages — /cheatsheets/regex (~200K/mo), git (~100K/mo), docker (~50K/mo), css-selectors (~30K/mo), markdown (~40K/mo). Interactive, not static — click patterns to test live in linked tools. 420K+ combined monthly searches.
 - [ ] Build Smart Paste / Format Detection — paste content anywhere, auto-detect format (JSON/Base64/JWT/CSV/YAML), suggest right tool. UX differentiator no web competitor has.
@@ -83,14 +84,17 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add Zod Schema Generator (#76) — TypeScript is #1 on GitHub, Zod is hot
 - [x] Add .env File Validator (#77) — security/privacy tooling growing
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
-- [ ] Add HTTP Request Builder tool (#83) — lightweight Postman alternative. Visual builder → cURL/Python/JS/Go/Rust code. Reverse of cURL to Code (#52).
-- [ ] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Zod types. TypeScript is #1 on GitHub.
-- [ ] Add TypeScript to JavaScript Converter tool (#91) — 10-20K/mo. Strip types for compatibility/debugging. Runs in browser using TS compiler API.
-- [ ] Add JSON to SQL Converter tool (#92) — 15-25K/mo. Growing as devs move data between APIs and databases. No DevBolt coverage.
-- [ ] Add JSON to GraphQL Schema Generator (#93) — 10-15K/mo. GraphQL adoption growing. Most competitor sites lack this.
-- [ ] Add package.json Generator tool (#99) — foundational Node.js config file builder with framework presets. No dominant online tool.
+- [ ] Add HTTP Request Builder tool (#83) — lightweight Postman alternative. Visual builder → cURL/Python/JS/Go/Rust code. Reverse of cURL to Code (#52). Hoppscotch (71K stars) dominates; lower priority.
+- [ ] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Zod types. NO competitor does all 3 targets. Unique differentiator. **PATH TO 100.**
+- [ ] Add TypeScript to JavaScript Converter tool (#91) — 10-30K/mo. Saturated but massive traffic. TS compiler API does the work. Worth it for SEO alone. **PATH TO 100.**
+- [ ] Add JSON to SQL Converter tool (#92) — 5-12K/mo. Parse JSON → CREATE TABLE + INSERT. Multi-dialect (MySQL, PostgreSQL, SQLite). Very fast to build. **PATH TO 100.**
+- [ ] Add JSON to GraphQL Schema Generator (#93) — 10-15K/mo. Quick build. Completes GraphQL tooling story alongside #98. **PATH TO 100.**
+- [ ] Add package.json Generator tool (#99) — foundational Node.js config file builder with framework presets. Simplest build. Good long-tail SEO. **PATH TO 100.**
+- [ ] Add Git Diff Viewer tool (#101) — natural extension of Diff Checker (#10). diff2html library. Syntax highlighting, side-by-side view. **PATH TO 100.**
+- [ ] Add Brotli/Gzip Compression Tester tool (#102) — test text compression ratios client-side. brotli-wasm + native CompressionStream API. Performance optimization niche. **PATH TO 100.**
 
 ## Done
+- [x] Add JWT Builder & Generator tool (#100) — complement to JWT Decoder (#6). Visual header/payload editor with algorithm selection (HS256, HS384, HS512, none), standard claims (iss, sub, aud, exp, iat, nbf, jti) with auto-populate, custom claims with type selection (string, number, boolean, JSON), expiration duration presets (5 min to 1 year), UUID generator for jti, payload preview, color-coded JWT output (header.payload.signature), copy to clipboard, link to JWT Decoder. 3 presets (Auth Token, API Key, Minimal). Client-side signing via Web Crypto API HMAC. 3 SEO sub-pages (jwt-claims-guide, hs256-vs-rs256, jwt-security-best-practices). All client-side
 - [x] Add JSON to Zod Converter tool (#96) — converts JSON and JSON Schema to Zod validation schemas. Two input modes: JSON (infer from data) and JSON Schema (precise conversion). JSON Schema support: $ref/$defs resolution, allOf/oneOf/anyOf, enum, const, format (email/uri/uuid/date-time/date/ipv4/ipv6), pattern, min/max constraints, default values, description, nullable, additionalProperties. 8 options (schema name, .optional(), .strict(), coerce, .describe(), infer formats, .default(), .readonly()). Auto-detect input mode, stats display, download .ts, copy. 3 SEO sub-pages (json-schema-to-zod, zod-validation-guide, zod-vs-yup-vs-joi). All client-side
 - [x] Add AI Prompt Template Builder tool (#81) — structured prompt builder with 8 developer templates (code review, unit tests, API docs, data analysis, commit messages, SQL queries, refactoring, code explanation), 5 output formats (plain text, system+user, OpenAI API, Anthropic API, Gemini API), reusable {{variables}}, togglable prompt sections, prompt engineering cheat sheet, API format reference. 3 SEO sub-pages (prompt-engineering-guide, openai-vs-anthropic-prompts, prompt-templates-developers). All client-side
 - [x] Add SVG to JSX/React Component Converter tool (#90) — converts SVG markup to JSX or full React/TypeScript components. 80+ attribute mappings (stroke-width → strokeWidth, fill-opacity → fillOpacity, clip-path → clipPath, etc.), inline style string → object conversion, XML/comment/DOCTYPE cleanup, xmlns stripping. Output modes: JSX only, React Component (JS), React Component (TS). Options: custom component name, props spread with title support, forwardRef, memo, export default/named. 5 sample inputs (Simple Icon, Logo, Arrow, With Styles, Complex), SVG preview, download as .jsx/.tsx file, change log showing all transformations. 3 SEO sub-pages (svg-to-react-component, svg-attribute-conversion, svg-icon-library). All client-side

@@ -3107,4 +3107,166 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "JSON to Zod Converter",
     },
   ],
+  "jwt-builder": [
+    {
+      slug: "jwt-claims-guide",
+      title: "JWT Claims Guide",
+      metaTitle:
+        "JWT Claims Guide — Standard & Custom Claims Explained | DevBolt",
+      metaDescription:
+        "Learn about JWT registered claims (iss, sub, aud, exp, iat, nbf, jti), public claims, and private claims. Understand when to use each claim type in your tokens.",
+      h1: "JWT Claims Guide — Standard & Custom Claims",
+      intro:
+        "JSON Web Tokens carry claims — statements about the user and metadata. Understanding which claims to include and how they're validated is essential for building secure authentication and authorization systems.",
+      content: [
+        {
+          heading: "Registered claims",
+          body: 'The JWT specification (RFC 7519) defines seven registered claims: "iss" (issuer) identifies who created the token, "sub" (subject) identifies who the token is about, "aud" (audience) specifies the intended recipient, "exp" (expiration time) sets when the token expires as a Unix timestamp, "nbf" (not before) sets the earliest time the token is valid, "iat" (issued at) records when the token was created, and "jti" (JWT ID) provides a unique identifier to prevent replay attacks. All are optional but strongly recommended for production tokens.',
+        },
+        {
+          heading: "Public and private claims",
+          body: "Public claims are registered in the IANA JSON Web Token Claims registry to avoid collisions — examples include \"email\", \"name\", and \"preferred_username\" from OpenID Connect. Private claims are custom key-value pairs agreed upon between the issuer and consumer, such as \"role\", \"permissions\", or \"tenant_id\". Use namespaced keys (e.g., \"https://example.com/role\") for private claims shared across multiple services to avoid naming conflicts.",
+        },
+        {
+          heading: "Best practices for claims",
+          body: "Keep payloads small — every claim increases token size and network overhead. Never store sensitive data (passwords, credit card numbers) in claims since JWTs are only encoded, not encrypted by default. Always set an expiration (exp) to limit the damage from token theft. Use the audience (aud) claim to prevent tokens issued for one service from being accepted by another. For refresh tokens, prefer opaque tokens stored server-side over long-lived JWTs.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between iat and nbf in JWT?",
+          answer:
+            '"iat" (issued at) records when the token was created. "nbf" (not before) specifies the earliest time the token should be accepted. A token might be issued at 10:00 (iat) but not valid until 10:05 (nbf), useful for scheduled access or clock skew tolerance.',
+        },
+        {
+          question: "Should I put user roles in JWT claims?",
+          answer:
+            "Yes, for authorization decisions that don't change frequently. Including roles like \"admin\" or \"editor\" in claims avoids a database lookup on every request. However, if roles change often, the stale JWT will still contain old roles until it expires. Use short expiration times or a token revocation list to mitigate this.",
+        },
+        {
+          question: "How large can a JWT payload be?",
+          answer:
+            "There is no specification limit, but practical limits apply. Most HTTP servers cap header size at 8 KB. Since JWTs are typically sent in the Authorization header, keep the total token under 4-6 KB. A typical auth token with 5-10 claims is around 300-500 bytes encoded.",
+        },
+      ],
+      keywords: [
+        "JWT claims",
+        "JWT registered claims",
+        "JWT custom claims",
+        "iss sub aud exp",
+        "JWT payload fields",
+        "JWT best practices",
+      ],
+      parentToolSlug: "jwt-builder",
+      parentToolName: "JWT Builder",
+    },
+    {
+      slug: "hs256-vs-rs256",
+      title: "HS256 vs RS256 — JWT Signing Algorithms",
+      metaTitle:
+        "HS256 vs RS256 — JWT Signing Algorithm Comparison | DevBolt",
+      metaDescription:
+        "Compare HMAC (HS256) and RSA (RS256) JWT signing algorithms. Learn when to use symmetric vs asymmetric signing, key management, and security trade-offs.",
+      h1: "HS256 vs RS256 — JWT Signing Algorithms Compared",
+      intro:
+        "Choosing between HS256 (HMAC) and RS256 (RSA) is one of the most important decisions when implementing JWT authentication. Each algorithm has different security properties, key management requirements, and performance characteristics.",
+      content: [
+        {
+          heading: "HS256 — symmetric signing",
+          body: "HS256 uses HMAC with SHA-256, a symmetric algorithm where the same secret key signs and verifies the token. It is fast, simple to implement, and works well when the token issuer and verifier are the same service or share a trusted secret. The main risk is secret distribution — every service that needs to verify tokens must have the secret, and a leaked secret compromises all tokens.",
+        },
+        {
+          heading: "RS256 — asymmetric signing",
+          body: "RS256 uses RSA with SHA-256, an asymmetric algorithm with a private key for signing and a public key for verification. The private key stays with the issuer (auth server), while verifiers only need the public key. This is ideal for microservices and third-party integrations because the public key can be freely distributed without compromising token security. The trade-off is larger token size (~256 bytes for the signature vs ~32 bytes for HS256) and slower signing.",
+        },
+        {
+          heading: "When to use which",
+          body: "Use HS256 for monolithic applications where the same service issues and verifies tokens, internal tools with a single trusted secret, and when simplicity and performance matter most. Use RS256 for microservice architectures where multiple services verify tokens, OAuth 2.0 and OpenID Connect implementations, public APIs where clients need to verify tokens without a shared secret, and JWKS (JSON Web Key Set) rotation scenarios.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Is RS256 more secure than HS256?",
+          answer:
+            "Not inherently — both are secure when used correctly. RS256 has better key management properties because the verification key (public) cannot be used to forge tokens. HS256 is equally secure cryptographically but requires careful secret distribution. The \"alg: none\" attack and key confusion attacks are implementation bugs, not algorithm weaknesses.",
+        },
+        {
+          question: "Can I switch from HS256 to RS256 without breaking existing tokens?",
+          answer:
+            "No. Tokens signed with HS256 cannot be verified with an RS256 public key, and vice versa. To migrate, issue new tokens with RS256 while continuing to verify old HS256 tokens during a transition period. Set short expiration times on HS256 tokens to speed up the migration.",
+        },
+        {
+          question: "What about ES256 (ECDSA)?",
+          answer:
+            "ES256 uses Elliptic Curve Digital Signatures, offering the same asymmetric benefits as RS256 with smaller keys and signatures. An ES256 signature is ~64 bytes vs ~256 bytes for RS256. It is increasingly preferred for new implementations, especially in mobile and IoT where bandwidth matters.",
+        },
+      ],
+      keywords: [
+        "HS256 vs RS256",
+        "JWT signing algorithms",
+        "HMAC vs RSA JWT",
+        "symmetric vs asymmetric JWT",
+        "JWT algorithm comparison",
+        "RS256 vs HS256",
+      ],
+      parentToolSlug: "jwt-builder",
+      parentToolName: "JWT Builder",
+    },
+    {
+      slug: "jwt-security-best-practices",
+      title: "JWT Security Best Practices",
+      metaTitle:
+        "JWT Security Best Practices — Avoid Common Vulnerabilities | DevBolt",
+      metaDescription:
+        "Learn JWT security best practices: prevent alg:none attacks, set proper expiration, validate all claims, and handle token storage securely. Avoid the most common JWT vulnerabilities.",
+      h1: "JWT Security Best Practices",
+      intro:
+        "JWTs are powerful but easy to misuse. Common vulnerabilities include algorithm confusion, missing validation, excessive token lifetimes, and insecure storage. Follow these best practices to build secure JWT-based systems.",
+      content: [
+        {
+          heading: "Always validate the algorithm",
+          body: "The most critical JWT vulnerability is the \"alg: none\" attack, where an attacker modifies the header to use the \"none\" algorithm, removing signature verification. Always whitelist allowed algorithms on the server side — never trust the \"alg\" header from the token itself. Most JWT libraries support an \"algorithms\" parameter that restricts which algorithms are accepted during verification.",
+        },
+        {
+          heading: "Set short expiration times",
+          body: "Access tokens should expire in 5-15 minutes for high-security applications and up to 1 hour for lower-risk scenarios. Use refresh tokens (stored securely, preferably server-side) to issue new access tokens without requiring re-authentication. Short-lived tokens limit the window of abuse if a token is stolen. Never create tokens without an expiration claim.",
+        },
+        {
+          heading: "Secure token storage",
+          body: "In browsers, store tokens in httpOnly, Secure, SameSite cookies — not localStorage or sessionStorage, which are vulnerable to XSS attacks. If you must use localStorage (e.g., for SPAs calling third-party APIs), implement Content Security Policy headers and sanitize all user input rigorously. In mobile apps, use the platform keychain (iOS Keychain, Android Keystore). Never log or expose tokens in URLs.",
+        },
+        {
+          heading: "Validate all claims",
+          body: "Always verify: the signature is valid, the token has not expired (exp), the issuer (iss) matches your expected issuer, the audience (aud) includes your service, and the token is not being used before its \"not before\" time (nbf). Skipping any of these checks opens attack vectors. Additionally, maintain a token blacklist or use short expiration for immediate revocation needs.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Should I encrypt my JWTs?",
+          answer:
+            "Standard JWTs (JWS) are signed but not encrypted — the payload is Base64url-encoded and readable by anyone. If your payload contains sensitive data, use JWE (JSON Web Encryption) or, better yet, keep sensitive data out of the token entirely and store it server-side, referenced by a claim like \"sub\" or \"jti\".",
+        },
+        {
+          question: "How do I revoke a JWT before it expires?",
+          answer:
+            "JWTs are stateless by design, so there is no built-in revocation mechanism. Common approaches: maintain a server-side blacklist of revoked token IDs (jti), use very short expiration times with refresh tokens, or switch to opaque tokens for scenarios requiring immediate revocation. Each approach trades off between statelessness and control.",
+        },
+        {
+          question: "Is it safe to decode JWTs in the browser?",
+          answer:
+            "Yes — decoding (reading the payload) is safe and expected. The payload is not secret; it is only Base64url-encoded. However, never trust a decoded token without verifying its signature on the server side. Client-side decoding is useful for displaying user info or checking expiration, but all authorization decisions must happen server-side after signature verification.",
+        },
+      ],
+      keywords: [
+        "JWT security",
+        "JWT best practices",
+        "JWT vulnerabilities",
+        "alg none attack",
+        "JWT token storage",
+        "secure JWT implementation",
+      ],
+      parentToolSlug: "jwt-builder",
+      parentToolName: "JWT Builder",
+    },
+  ],
 };
