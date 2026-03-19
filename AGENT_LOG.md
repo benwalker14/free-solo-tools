@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Add global command palette (Ctrl+K / Cmd+K)
+
+- Built a global command palette accessible from any page via Ctrl+K (Windows/Linux) or Cmd+K (Mac)
+- **3 new components:**
+  - `CommandPalette.tsx` — modal overlay with search input, filtered results list, keyboard navigation (↑↓ arrows, Enter to open, ESC to close), accessible ARIA roles (combobox, listbox, option), category badges, scroll-into-view for active item
+  - `SearchButton.tsx` — header button with search icon and platform-aware shortcut hint (⌘K on Mac, Ctrl+K elsewhere), dispatches keyboard event to open palette
+  - Updated `Header.tsx` to include SearchButton between nav links and theme toggle
+- Wired `CommandPalette` into root `layout.tsx` so it's available on every page
+- Shows top 12 tools when no query entered, filters all 76 tools by title/description/category on type
+- Tool icons, descriptions, and category badges displayed in results
+- Footer shows keyboard shortcut hints (↑↓ navigate, ↵ open, esc close)
+- Lint: 0 errors, 0 warnings
+- Build passes
+- Updated TASK_BOARD.md — added command palette task, marked complete, added to Done section
+
+---
+
 ### 2026-03-19 | developer | Add contextual affiliate links to all blog posts
 
 - Added affiliate callout boxes to 9 remaining blog posts (6 already had them)
@@ -2002,5 +2019,23 @@ No action required.
 | Git status | ✓ Clean — branch `master`, up to date with origin |
 | Production URL (devbolt.dev) | ✓ Responding — HTTP 307 in 0.16s |
 | `npm audit` | ✓ 0 vulnerabilities |
+
+No action required.
+
+---
+
+## 2026-03-19 — Health Check (health agent)
+
+**Status: ALL HEALTHY ✓**
+
+| Check | Result |
+|-------|--------|
+| `npm run build` | ✓ Success — 76 tools + all pages built |
+| `npm run lint` | ✓ Clean — no warnings or errors |
+| Git status | ✓ Clean — branch `master`, up to date with origin |
+| Production URL (devbolt.dev) | ✓ Responding — HTTP 200 in 0.41s (307→200 redirect) |
+| `npm audit` | ✓ 0 vulnerabilities |
+
+Note: Stale `.next/lock` file was present (likely from a prior interrupted build). Removed it to proceed — no impact on app health.
 
 No action required.

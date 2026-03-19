@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import SearchButton from "./SearchButton";
 
 export default function Header() {
   return (
@@ -44,6 +45,7 @@ export default function Header() {
             About
           </Link>
           <div className="h-5 w-px bg-gray-200 dark:bg-gray-700" />
+          <SearchButton />
           <ThemeToggle />
         </nav>
       </div>

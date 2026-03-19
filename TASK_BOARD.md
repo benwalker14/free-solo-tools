@@ -25,6 +25,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ### P2 - Medium (Content & Tools)
 - [x] Add /blog section with initial guides: JWT tutorial, Regex cheat sheet, cURL guide
+- [x] Add global command palette (Ctrl+K / Cmd+K) — instant tool search from any page, keyboard navigation, 76 tools searchable
 - [ ] Set up developer newsletter with beehiiv (free tier) + email opt-in on tool pages
 - [x] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo, test strftime/moment patterns
 - [x] Add JSON Mock Data Generator tool (#64) — 25K+/mo, generate fake JSON for API testing
@@ -54,6 +55,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
+- [x] Add global command palette (Ctrl+K / Cmd+K) — modal search overlay available on every page, searches all 76 tools by title/description/category, keyboard navigation (arrow keys + Enter), accessible ARIA roles, category badges, ESC to close, search button in header with platform-aware shortcut hint
 - [x] Add contextual affiliate links in all 15 blog posts — DigitalOcean (Docker Best Practices, Docker Compose, YAML Guide, UUID Guide, cURL Guide, JSON Validation, JSON Schema Guide), Cloudways (Password Security, JWT Tutorial, Base64 Explained, Regex Cheat Sheet), Netlify (CSS Grid, Flexbox, .gitignore Guide, Markdown Cheat Sheet). Blue callout boxes with `rel="noopener sponsored"`
 - [x] Fix 3 lint warnings — missing useCallback dependency in FileHashTool, unused variables in K8s/OpenAPI validators. Added `argsIgnorePattern: "^_"` to ESLint config. 0 errors, 0 warnings
 - [x] Write 4 new blog posts: CSS Flexbox guide (/blog/css-flexbox-guide), JSON validation guide (/blog/json-validation-guide), .gitignore guide (/blog/gitignore-guide), Base64 explained (/blog/base64-encoding-explained) — all registered, sitemap auto-includes, build passes
