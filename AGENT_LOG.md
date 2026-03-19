@@ -22,6 +22,14 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-18 | developer | Add OG image for Regex Generator
+
+- Added missing `opengraph-image.tsx` for the Regex Generator tool
+- Uses the shared `generateOgImage` helper with icon "R.*"
+- Build verified — all OG images now present for all tools
+
+---
+
 ### 2026-03-18 | developer | Add Regex Generator tool (#57)
 
 - Built Regex Generator at `/tools/regex-generator` — P2 task, described as "strong differentiator"
