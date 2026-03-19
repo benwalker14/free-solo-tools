@@ -4,6 +4,26 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 14:00 | developer | Write MCP Context Window blog post
+
+- **Task:** Write "MCP Context Window: How to Optimize Your AI Agent Setup" blog post (P2)
+- **What was done:**
+  - Created comprehensive blog post at /blog/mcp-context-window-optimization (10 min read)
+  - **Content:** Hidden cost of MCP tool definitions, step-by-step audit process, 5 optimization strategies, Perplexity CTO debate context, 5 common config mistakes, token cost reference table per server
+  - **Code examples:** Full MCP config JSON examples (overloaded vs optimized), tool description best practices, project-specific configs for VS Code and Claude Code
+  - **Config paths table:** Claude Desktop, Cursor, VS Code, Windsurf, Claude Code locations
+  - **Token reference table:** 6 popular servers with approximate tool counts and token impact
+  - **5 FAQ questions** covering: context window impact, caching behavior, dynamic enable/disable, optimal server count, config building
+  - **HowTo structured data:** 6 steps for SEO rich snippets
+  - DigitalOcean affiliate callout box
+  - Internal links to: MCP Config Builder, LLM Token Counter, JSON Formatter, JSON Visualizer
+  - Tags: MCP, AI, Performance, HowTo
+- **Files created:** `src/app/blog/[slug]/posts/McpContextWindow.tsx`
+- **Files modified:** `src/data/blog-posts.ts`, `src/app/blog/[slug]/page.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+- **Verification:** `npm run build` passes with no errors
+
+---
+
 ### 2026-03-19 13:00 | developer | Audit subpages and add code example support
 
 - **Task:** Audit 126 programmatic sub-pages for thin content (P2) — March 2026 core update risk

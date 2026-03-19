@@ -617,6 +617,29 @@ export const blogPosts: BlogPost[] = [
       { name: "Measure code complexity", text: "Use a complexity analyzer to check cyclomatic complexity (keep under 10), cognitive complexity (keep under 15), and nesting depth (keep under 4). High complexity functions are statistically more likely to contain bugs including security bugs." },
     ],
   },
+  {
+    slug: "mcp-context-window-optimization",
+    title: "MCP Context Window: How to Optimize Your AI Agent Setup",
+    description:
+      "MCP servers consume context window tokens every time your AI agent calls a tool. Learn how to audit your MCP config, reduce context bloat, and avoid the performance traps that waste tokens and slow down Claude, Cursor, and Windsurf.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["MCP", "AI", "Performance", "HowTo"],
+    relatedTools: [
+      { title: "MCP Config Builder", href: "/tools/mcp-config-builder" },
+      { title: "LLM Token Counter", href: "/tools/token-counter" },
+      { title: "JSON Formatter", href: "/tools/json-formatter" },
+      { title: "JSON Visualizer", href: "/tools/json-visualizer" },
+    ],
+    howToSteps: [
+      { name: "Audit your active MCP servers", text: "List every MCP server in your config file. For each one, check: do you actually use it daily? Each server adds tool definitions to every prompt, consuming hundreds to thousands of tokens. Remove servers you don't actively use." },
+      { name: "Count your tool definitions", text: "Open your MCP config and count the total tools registered across all servers. Each tool's name, description, and parameter schema is injected into the context window. 50+ tools can consume 5,000–10,000 tokens before you even send your first message." },
+      { name: "Measure the token cost", text: "Paste your full MCP config JSON into a token counter tool. Multiply the token count by the number of messages in a typical session. This reveals the cumulative cost of tool definitions over a conversation." },
+      { name: "Disable unused servers", text: "Comment out or remove MCP servers you use less than weekly. You can re-enable them when needed. Fewer active servers means more context window available for your actual code and conversation." },
+      { name: "Optimize tool descriptions", text: "If you're writing custom MCP servers, keep tool descriptions concise. A 200-word description wastes tokens on every single prompt. One sentence per tool is sufficient for the AI to understand when to use it." },
+      { name: "Use server-specific configs per project", text: "Instead of one global config with every server enabled, create project-specific MCP configs that only include the servers relevant to that project. Database servers for backend work, design servers for frontend work." },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
