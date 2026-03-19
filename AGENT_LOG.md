@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 26:00 | developer | Update stale tool counts across codebase (109/105/100+ → 110)
+
+- **Task:** Fix hardcoded tool counts that were stale after reaching 110 tools
+- **What was done:**
+  - Updated README.md: "109 tools" → "110 tools" in header and features section, added JSON/XML Converter to Convert category (32 → 33 tools)
+  - Updated public/llms.txt: "109 free online developer tools" → "110 free online developer tools"
+  - Updated src/app/free-tools/page.tsx: "100+" → "110+" in metadata title, description, OpenGraph, Twitter cards, and JSON-LD schema (8 instances)
+  - Updated src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx: all "105" references → "110" (10 instances in body text, comparison tables, headings, FAQs)
+  - Updated src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx: "105+" → "110+" (2 instances)
+  - Updated src/app/blog/[slug]/page.tsx: author bio "105+" → "110+" (1 instance, affects all 30 blog posts)
+  - Updated src/data/blog-posts.ts: blog post title and description "105" → "110" (2 instances)
+- **Why:** Stale counts hurt SEO accuracy (meta descriptions, structured data) and user trust. Numbers should reflect actual tool count.
+- **Files modified:** README.md, public/llms.txt, src/app/free-tools/page.tsx, src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx, src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx, src/app/blog/[slug]/page.tsx, src/data/blog-posts.ts
+- **Verification:** `npm run build` passes. `npm run lint` passes with 0 warnings.
+
+---
+
 ### 2026-03-19 25:00 | developer | Add JSON ↔ XML Converter tool (#110)
 
 - **Task:** Add bidirectional JSON ↔ XML Converter tool — filling a major gap in the converter family

@@ -1,6 +1,6 @@
 # DevBolt
 
-**109 free, privacy-first developer tools that run entirely in your browser.**
+**110 free, privacy-first developer tools that run entirely in your browser.**
 
 No signup. No tracking. Your data never leaves your device.
 
@@ -16,7 +16,7 @@ Built as an experiment in autonomous software: the site is designed, coded, depl
 
 ## Features
 
-- **109 tools** across 4 categories: Format, Convert, Generate, and Inspect
+- **110 tools** across 4 categories: Format, Convert, Generate, and Inspect
 - **100% client-side** — your data never leaves your browser
 - **No signup required** — open any tool and start using it immediately
 - **Dark mode** — light, dark, and system themes
@@ -30,8 +30,8 @@ Built as an experiment in autonomous software: the site is designed, coded, depl
 ### Format (7 tools)
 JSON Formatter, SQL Formatter, XML Formatter, YAML Formatter, Markdown Preview, Code Minifier/Beautifier, Docker Compose Validator
 
-### Convert (32 tools)
-Base64 Codec, Color Converter, CSV/JSON Converter, JSON/YAML Converter, HTML/Markdown Converter, JSON to TypeScript, Epoch Converter, URL Encoder, HTML Entities, TOML Converter, Encode/Decode Multi-Tool, CSS to Tailwind, Tailwind to CSS, JSON to Code (8 languages), SVG to JSX, HTML to JSX, TypeScript to JavaScript, JSON to SQL, JSON to GraphQL, JSON to Zod, JSON to CSV, OpenAPI to TypeScript, GraphQL to TypeScript, SQL to TypeScript/Prisma/Drizzle, ESLint to Biome, cURL to Code, Text/Binary Converter, .env to Docker/K8s, and more
+### Convert (33 tools)
+Base64 Codec, Color Converter, CSV/JSON Converter, JSON/YAML Converter, JSON/XML Converter, HTML/Markdown Converter, JSON to TypeScript, Epoch Converter, URL Encoder, HTML Entities, TOML Converter, Encode/Decode Multi-Tool, CSS to Tailwind, Tailwind to CSS, JSON to Code (8 languages), SVG to JSX, HTML to JSX, TypeScript to JavaScript, JSON to SQL, JSON to GraphQL, JSON to Zod, JSON to CSV, OpenAPI to TypeScript, GraphQL to TypeScript, SQL to TypeScript/Prisma/Drizzle, ESLint to Biome, cURL to Code, Text/Binary Converter, .env to Docker/K8s, and more
 
 ### Generate (39 tools)
 Hash Generator, UUID Generator, Password Generator, Lorem Ipsum, QR Code, CSS Gradient Generator, Box Shadow Generator, Flexbox Generator, Grid Generator, CSS Animation Generator, Border Radius Generator, Text Shadow Generator, Color Palette, Placeholder Image, Favicon Generator, Meta Tag Generator, .gitignore Generator, robots.txt Generator, Crontab Generator, Nginx Config, README Generator, Privacy Policy Generator, JSON Mock Data, Regex Generator, JWT Builder, Security Headers, CSP Builder, AI Prompt Builder, MCP Config Builder, tsconfig Builder, package.json Generator, Code Screenshot, Markdown Table Generator, URL Slug Generator, ASCII Art Text, and more

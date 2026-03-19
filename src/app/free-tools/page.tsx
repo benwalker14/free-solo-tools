@@ -5,9 +5,9 @@ import { tools, TOOL_CATEGORIES } from "@/data/tools";
 const BASE_URL = "https://devbolt.dev";
 
 export const metadata: Metadata = {
-  title: "Free Developer Tools Online — 100+ Browser-Based Utilities",
+  title: "Free Developer Tools Online — 110+ Browser-Based Utilities",
   description:
-    "100+ free online developer tools that run entirely in your browser. JSON formatter, Base64 encoder, hash generator, UUID generator, regex tester, and more. No signup, no tracking, 100% client-side.",
+    "110+ free online developer tools that run entirely in your browser. JSON formatter, Base64 encoder, hash generator, UUID generator, regex tester, and more. No signup, no tracking, 100% client-side.",
   keywords: [
     "free developer tools",
     "free online developer tools",
@@ -26,17 +26,17 @@ export const metadata: Metadata = {
     "regex tester free",
   ],
   openGraph: {
-    title: "Free Developer Tools Online — 100+ Browser-Based Utilities",
+    title: "Free Developer Tools Online — 110+ Browser-Based Utilities",
     description:
-      "100+ free online developer tools. No signup, no tracking. JSON formatter, Base64, hash generator, UUID, regex tester, and more. 100% client-side.",
+      "110+ free online developer tools. No signup, no tracking. JSON formatter, Base64, hash generator, UUID, regex tester, and more. 100% client-side.",
     url: `${BASE_URL}/free-tools`,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Developer Tools Online — 100+ Browser-Based Utilities",
+    title: "Free Developer Tools Online — 110+ Browser-Based Utilities",
     description:
-      "100+ free online developer tools. No signup, no tracking. 100% client-side.",
+      "110+ free online developer tools. No signup, no tracking. 100% client-side.",
   },
   alternates: {
     canonical: `${BASE_URL}/free-tools`,
@@ -117,7 +117,7 @@ const webpageJsonLd = {
   "@type": "WebPage",
   name: "Free Developer Tools Online",
   description:
-    "100+ free online developer tools that run entirely in your browser. No signup, no tracking, 100% client-side.",
+    "110+ free online developer tools that run entirely in your browser. No signup, no tracking, 100% client-side.",
   url: `${BASE_URL}/free-tools`,
   isPartOf: {
     "@type": "WebSite",
@@ -131,7 +131,7 @@ const itemListJsonLd = {
   "@type": "ItemList",
   name: "Free Online Developer Tools",
   description:
-    "100+ free browser-based developer tools. No signup, no tracking, 100% client-side.",
+    "110+ free browser-based developer tools. No signup, no tracking, 100% client-side.",
   url: `${BASE_URL}/free-tools`,
   numberOfItems: tools.length,
   itemListElement: tools.map((tool, index) => ({

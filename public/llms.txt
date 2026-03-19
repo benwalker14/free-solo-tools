@@ -1,6 +1,6 @@
 # DevBolt
 
-> 109 free online developer tools. 100% client-side — your data never leaves your browser.
+> 110 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 

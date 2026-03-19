@@ -116,7 +116,7 @@ export default function CodeBeautifyAlternative() {
         over 5 GB of user submissions on their servers &mdash; including AWS
         keys, database passwords, and Stripe secrets. If you&apos;re looking
         for a CodeBeautify alternative that actually respects your data,
-        DevBolt offers 105 developer tools that run entirely in your browser.
+        DevBolt offers 110 developer tools that run entirely in your browser.
         Nothing is ever sent to a server.
       </p>
 
@@ -173,7 +173,7 @@ export default function CodeBeautifyAlternative() {
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
             <tr>
               <td className="px-4 py-2.5 font-medium text-gray-900 dark:text-white">Tool count</td>
-              <td className="px-4 py-2.5 text-emerald-600 dark:text-emerald-400 font-medium">105 tools</td>
+              <td className="px-4 py-2.5 text-emerald-600 dark:text-emerald-400 font-medium">110 tools</td>
               <td className="px-4 py-2.5 text-gray-600 dark:text-gray-400">~45 tools</td>
             </tr>
             <tr>
@@ -238,7 +238,7 @@ export default function CodeBeautifyAlternative() {
       </p>
 
       <h2 className="mt-12 mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
-        All 105 Tools &mdash; Organized by Category
+        All 110 Tools &mdash; Organized by Category
       </h2>
 
       <p className="text-gray-600 dark:text-gray-400">
@@ -477,7 +477,7 @@ export default function CodeBeautifyAlternative() {
 
       <p className="text-gray-600 dark:text-gray-400">
         DevBolt isn&apos;t the only CodeBeautify alternative, but it&apos;s
-        the only one with 105+ tools that are all client-side:
+        the only one with 110+ tools that are all client-side:
       </p>
 
       <div className="my-6 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800">
@@ -493,7 +493,7 @@ export default function CodeBeautifyAlternative() {
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
             <tr>
               <td className="px-4 py-2.5 font-medium text-indigo-600 dark:text-indigo-400">DevBolt</td>
-              <td className="px-4 py-2.5 text-gray-900 dark:text-white font-medium">105</td>
+              <td className="px-4 py-2.5 text-gray-900 dark:text-white font-medium">110</td>
               <td className="px-4 py-2.5 text-emerald-600 dark:text-emerald-400">All tools</td>
               <td className="px-4 py-2.5 text-emerald-600 dark:text-emerald-400">None</td>
             </tr>
@@ -592,7 +592,7 @@ export default function CodeBeautifyAlternative() {
           {" "}&mdash; scan AI-generated code for vulnerabilities before shipping
         </li>
         <li>
-          <ToolLink href="/">Browse all 105 tools</ToolLink>
+          <ToolLink href="/">Browse all 110 tools</ToolLink>
           {" "}&mdash; searchable with Ctrl+K from any page
         </li>
       </ul>
@@ -600,7 +600,7 @@ export default function CodeBeautifyAlternative() {
       <InfoBox>
         <strong>Keyboard tip:</strong> Press{" "}
         <Code>Ctrl+K</Code> (or <Code>Cmd+K</Code> on Mac)
-        from any page to instantly search all 105 tools. Use arrow keys to
+        from any page to instantly search all 110 tools. Use arrow keys to
         navigate and Enter to open.
       </InfoBox>
 
@@ -614,7 +614,7 @@ export default function CodeBeautifyAlternative() {
             Is DevBolt really free?
           </h3>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Yes. All 105 tools are free to use with no signup, no account,
+            Yes. All 110 tools are free to use with no signup, no account,
             and no limits on usage. DevBolt also offers a Pro API for
             developers who want to integrate tools programmatically.
           </p>
@@ -671,7 +671,7 @@ export default function CodeBeautifyAlternative() {
             What makes DevBolt different from devformat.tools?
           </h3>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            DevBolt has 105 tools vs devformat&apos;s ~52. DevBolt also
+            DevBolt has 110 tools vs devformat&apos;s ~52. DevBolt also
             covers categories devformat doesn&apos;t &mdash; security
             scanning, DevOps validation, AI development tools, CSS visual
             builders, and TypeScript tooling. Both are client-side, but
