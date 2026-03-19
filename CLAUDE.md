@@ -164,3 +164,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 112. HTML Table Generator (/tools/html-table-generator)
 113. Aspect Ratio Calculator (/tools/aspect-ratio-calculator)
 114. CSS Clip-path Generator (/tools/clip-path)
+115. CSS Filter Generator (/tools/css-filter)

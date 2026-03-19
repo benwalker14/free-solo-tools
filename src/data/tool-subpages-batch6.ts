@@ -2312,4 +2312,162 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "CSS Clip-path Generator",
     },
   ],
+  "css-filter": [
+    {
+      slug: "css-filter-functions-guide",
+      title: "CSS Filter Functions — Complete Guide",
+      metaTitle:
+        "CSS Filter Functions — blur, brightness, contrast & More | DevBolt",
+      metaDescription:
+        "Learn every CSS filter function: blur(), brightness(), contrast(), grayscale(), hue-rotate(), invert(), opacity(), saturate(), sepia(), and drop-shadow(). Syntax, values, and examples.",
+      h1: "CSS Filter Functions — Complete Guide",
+      intro:
+        "The CSS filter property accepts 10 filter functions that can be combined to create complex visual effects. Each function takes a single value and modifies a specific aspect of the element's rendering. Here is a complete reference for every function.",
+      content: [
+        {
+          heading: "Color adjustment filters",
+          body: "brightness(%) scales the luminance of the element — 100% is unchanged, 0% is completely black, and values above 100% increase brightness. contrast(%) adjusts the difference between light and dark areas — 100% is normal, 0% produces a flat gray, and higher values create sharper contrast. saturate(%) controls color intensity — 0% is fully desaturated (gray), 100% is normal, and 200%+ produces vivid, oversaturated colors.",
+        },
+        {
+          heading: "Color transformation filters",
+          body: "grayscale(%) converts colors to grayscale — 0% is unchanged, 100% is fully gray. sepia(%) applies a warm brownish tone simulating aged photographs — 0% is unchanged, 100% is full sepia. invert(%) flips the colors — 0% is unchanged, 100% is complete inversion (negative image). hue-rotate(deg) rotates all colors around the color wheel — 0deg is unchanged, 180deg shifts to complementary colors, 360deg wraps back to the original.",
+        },
+        {
+          heading: "Blur, opacity, and drop-shadow",
+          body: "blur(px) applies a Gaussian blur — 0 is sharp, larger values produce increasingly blurry results. Unlike box-shadow which only blurs a shadow copy, filter blur blurs the entire element. opacity(%) controls transparency — 100% is fully visible, 0% is fully transparent. This is similar to the opacity property but can be combined with other filters. drop-shadow(x y blur color) adds a shadow that follows the element's alpha channel, respecting transparent areas in PNGs and SVGs.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How many CSS filter functions can I combine?",
+          answer:
+            "There is no hard limit — you can chain as many filter functions as needed in a single declaration. They are applied left to right, so order matters. For example, applying grayscale before hue-rotate produces a different result than hue-rotate before grayscale. In practice, 2-4 filters cover most visual effects.",
+        },
+        {
+          question: "What is the default value for CSS filter?",
+          answer:
+            "The default value is filter: none, meaning no filters are applied. Each individual function also has a default: brightness(100%), contrast(100%), saturate(100%), opacity(100%), blur(0px), grayscale(0%), sepia(0%), invert(0%), hue-rotate(0deg). Only include functions that differ from these defaults.",
+        },
+        {
+          question: "Can I animate CSS filters with transitions?",
+          answer:
+            "Yes. The filter property is animatable with CSS transitions and @keyframes. Add transition: filter 0.3s ease for smooth hover effects. The browser interpolates each numeric value independently. For best performance, add will-change: filter to promote the element to its own GPU compositing layer.",
+        },
+      ],
+      keywords: [
+        "css filter functions",
+        "css blur brightness contrast",
+        "css grayscale sepia invert",
+        "css hue-rotate",
+        "css filter syntax",
+        "css filter examples",
+      ],
+      parentToolSlug: "css-filter",
+      parentToolName: "CSS Filter Generator",
+    },
+    {
+      slug: "css-image-effects",
+      title: "CSS Image Effects with Filters",
+      metaTitle:
+        "CSS Image Effects — Hover, Grayscale, Vintage & More | DevBolt",
+      metaDescription:
+        "Create image effects with CSS filters: grayscale on hover, vintage photo look, duotone, color tinting, and blur overlays. Copy-paste CSS snippets.",
+      h1: "CSS Image Effects with Filters",
+      intro:
+        "CSS filters are the fastest way to add visual effects to images without touching an image editor. From simple grayscale hover effects to vintage film looks, everything is done with a single CSS property and no JavaScript.",
+      content: [
+        {
+          heading: "Grayscale on hover",
+          body: "The most common image filter effect: set filter: grayscale(100%) on the image by default, then grayscale(0%) on :hover with a transition. This creates a reveal effect where images start desaturated and gain color on hover. Add transition: filter 0.3s ease for a smooth animation. This works great for team photo grids and portfolio galleries.",
+        },
+        {
+          heading: "Vintage and film effects",
+          body: "Combine sepia, contrast, and brightness to simulate old photographs: filter: sepia(40%) contrast(110%) brightness(95%) creates a warm vintage look. For a faded film style, use contrast(80%) brightness(110%) saturate(70%) sepia(15%). Adjust hue-rotate to shift the color temperature — positive values warm it up, values around 180deg create cool-toned effects.",
+        },
+        {
+          heading: "Duotone and color tinting",
+          body: "Create a duotone effect by combining grayscale(100%) sepia(100%) saturate(200%) hue-rotate(Xdeg). First, grayscale removes the original colors. Then sepia adds a base warm tone. Saturate intensifies it, and hue-rotate shifts it to any color on the color wheel. Changing hue-rotate gives you pink (300deg), blue (180deg), green (90deg), or any other duotone palette.",
+        },
+      ],
+      faqs: [
+        {
+          question: "How do I make an image grayscale with CSS?",
+          answer:
+            "Add filter: grayscale(100%) to the image element. Use grayscale(50%) for partial desaturation. To add a hover effect that reveals color, combine it with transition: filter 0.3s ease and set filter: grayscale(0%) on :hover.",
+        },
+        {
+          question: "Can I apply CSS filters to background images?",
+          answer:
+            "The filter property applies to the entire element including its background, borders, and children. If you want to filter only the background image, use a pseudo-element (::before) with the background and filter, or use backdrop-filter on an overlay element.",
+        },
+        {
+          question: "Do CSS filters work on all image formats?",
+          answer:
+            "Yes. CSS filters work on JPG, PNG, WebP, AVIF, GIF, and SVG images rendered via <img> tags, CSS background-image, <picture>, or inline SVG. They also work on <video> and <canvas> elements. The drop-shadow filter is especially useful for PNGs and SVGs because it respects the alpha channel.",
+        },
+      ],
+      keywords: [
+        "css image effects",
+        "css grayscale hover",
+        "css vintage filter",
+        "css duotone effect",
+        "css image filter hover",
+        "css photo effects",
+      ],
+      parentToolSlug: "css-filter",
+      parentToolName: "CSS Filter Generator",
+    },
+    {
+      slug: "filter-vs-backdrop-filter",
+      title: "CSS filter vs backdrop-filter — When to Use Each",
+      metaTitle:
+        "CSS filter vs backdrop-filter — Differences & Use Cases | DevBolt",
+      metaDescription:
+        "Understand the difference between CSS filter and backdrop-filter. Learn when to use each for blur effects, frosted glass, overlays, and image manipulation.",
+      h1: "CSS filter vs backdrop-filter — When to Use Each",
+      intro:
+        "CSS filter and backdrop-filter accept the same functions but apply them to different things. Understanding when to use each one is essential for creating blur overlays, frosted glass UIs, and image effects correctly.",
+      content: [
+        {
+          heading: "filter applies to the element itself",
+          body: "The filter property modifies the visual rendering of the element and everything inside it — text, images, children, borders, and backgrounds. If you blur a container with filter: blur(5px), all its children become blurry too. This is ideal for image effects, dimming elements, or creating disabled states. The element's box model and layout are not affected.",
+        },
+        {
+          heading: "backdrop-filter applies to what is behind the element",
+          body: "The backdrop-filter property applies effects to the area behind an element, not the element itself. The element must have a partially transparent or semi-transparent background for the effect to be visible. This is how you create frosted glass overlays, blurred navigation bars over scrolling content, and modal backdrops. Common use: background: rgba(255,255,255,0.3) with backdrop-filter: blur(10px).",
+        },
+        {
+          heading: "Choosing the right property",
+          body: "Use filter when you want to modify how an element looks — image effects, grayscale, brightness adjustments, drop shadows that follow alpha channels. Use backdrop-filter when you want to modify what appears behind an element — frosted glass cards, blurred modal overlays, navigation bars with blur-through. If you need to blur a background image without blurring the text above it, backdrop-filter is the right choice.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does backdrop-filter work in all browsers?",
+          answer:
+            "Yes, as of 2024 backdrop-filter is supported in all modern browsers including Chrome, Firefox (since v103), Safari, and Edge. Safari was actually the first to implement it. For older Firefox versions, you can use @supports (backdrop-filter: blur(1px)) to provide a fallback with a solid semi-transparent background.",
+        },
+        {
+          question: "Can I use filter and backdrop-filter together?",
+          answer:
+            "Yes. They are independent properties that can be applied to the same element. filter modifies the element's rendering, and backdrop-filter modifies the backdrop behind it. For example, you could use backdrop-filter: blur(10px) for a frosted glass effect while also applying filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) for a shadow.",
+        },
+        {
+          question: "Why is my backdrop-filter not working?",
+          answer:
+            "The most common cause is a fully opaque background on the element. backdrop-filter only affects what is visible behind the element, so the element needs a transparent or semi-transparent background (e.g., background: rgba(255,255,255,0.3)). Also check that no parent element has a filter applied — this creates a new stacking context that can break backdrop-filter.",
+        },
+      ],
+      keywords: [
+        "css filter vs backdrop-filter",
+        "backdrop-filter blur",
+        "css frosted glass",
+        "backdrop-filter not working",
+        "css blur background",
+        "css glass effect",
+      ],
+      parentToolSlug: "css-filter",
+      parentToolName: "CSS Filter Generator",
+    },
+  ],
 };

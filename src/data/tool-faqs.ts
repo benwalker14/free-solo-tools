@@ -2119,4 +2119,26 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "Yes, clip-path with basic shapes (circle, ellipse, inset, polygon) is supported in all modern browsers including Chrome, Firefox, Safari, and Edge. Safari versions before 13.1 require the -webkit-clip-path prefix. The url() function referencing SVG clipPath elements has broader legacy support. For older browsers, you can use the -webkit- prefix version as a fallback — this generator provides a copy option with the prefix included.",
     },
   ],
+  "css-filter": [
+    {
+      question: "What does the CSS filter property do?",
+      answer:
+        "The CSS filter property applies graphical effects like blur, brightness, contrast, and color shifts to an element's rendering. Filters are applied before the element is composited, so they affect the entire element including its children, borders, and backgrounds. Multiple filters can be chained in a single declaration: filter: blur(2px) brightness(120%) contrast(110%). The browser applies them left to right.",
+    },
+    {
+      question: "What is the difference between filter and backdrop-filter?",
+      answer:
+        "The filter property applies effects to an element and its contents, while backdrop-filter applies effects to the area behind an element. For example, backdrop-filter: blur(10px) on a semi-transparent overlay creates a frosted-glass effect over background content. Both accept the same filter functions (blur, brightness, contrast, etc.), but backdrop-filter requires the element to have a partially transparent background to be visible.",
+    },
+    {
+      question: "Does CSS filter affect performance?",
+      answer:
+        "CSS filters trigger compositing and paint operations but not layout recalculations, so they perform well for static elements. For animations, add will-change: filter to promote the element to its own GPU layer. Blur is the most expensive filter because it samples surrounding pixels. Avoid applying heavy blur values (>10px) to large elements or animating blur on many elements simultaneously. Other filters like brightness, contrast, and hue-rotate are GPU-accelerated and very fast.",
+    },
+    {
+      question: "Can I use CSS filters on images and SVG?",
+      answer:
+        "Yes. CSS filter works on any HTML element including <img>, <video>, <canvas>, and inline SVG. For images, common uses include grayscale on hover (filter: grayscale(100%) → grayscale(0) on :hover), brightness adjustments, and color tinting with sepia + hue-rotate. Note that filter applies to the entire element — for per-channel control on SVG, use SVG filter primitives (feColorMatrix, feGaussianBlur) via the url() function instead.",
+    },
+  ],
 };

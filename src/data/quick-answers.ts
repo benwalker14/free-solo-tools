@@ -154,4 +154,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Select a shape type (circle, ellipse, inset, or polygon), then adjust the visual controls to design your clip-path. For polygons, drag the points directly on the preview or choose from 13 presets including triangle, star, hexagon, arrow, cross, and more. The generator outputs production-ready CSS that you can copy with one click. Add the -webkit- prefix for older Safari support. Everything runs in your browser — no signup required.",
   },
+  "css-filter": {
+    question: "How do I use CSS filters to add visual effects?",
+    answer:
+      "Use the sliders to adjust 10 CSS filter functions — blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, and drop-shadow. The live preview updates in real time so you can see exactly how your filters look. Choose from 12 presets like Vintage, B&W, Warm, Cool, and Dramatic for quick starting points, then fine-tune individual values. Copy the production-ready CSS with one click. Everything runs in your browser — no signup required.",
+  },
 };

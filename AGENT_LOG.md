@@ -4,6 +4,37 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 31:00 | developer | Add CSS Filter Generator tool (#115) + commit
+
+- **Task:** Build CSS Filter Generator as tool #115, completing the 10th CSS visual builder
+- **What was done:**
+  - Created CSS Filter Generator at `/tools/css-filter` with 10 filter functions:
+  - **Blur:** 0–20px range with 0.1 step
+  - **Brightness:** 0–300% range
+  - **Contrast:** 0–300% range
+  - **Grayscale:** 0–100% range
+  - **Hue Rotate:** 0–360deg range
+  - **Invert:** 0–100% range
+  - **Opacity:** 0–100% range
+  - **Saturate:** 0–300% range
+  - **Sepia:** 0–100% range
+  - **Drop Shadow:** X/Y offset, blur radius, color picker with toggle
+  - 12 presets: None, Vintage, B&W, Warm, Cool, Dramatic, Faded, Vivid, Nightvision, X-Ray, Duotone, Dreamy
+  - Live SVG preview with mountain scene (sky gradient, sun, mountains, snow caps, trees, water, clouds)
+  - CSS output with copy button, Ctrl+Enter shortcut
+  - Filter reference table showing function, range, and default values
+  - Active filters summary with individual reset buttons
+  - Reset individual slider or reset all
+  - Registered in tools.ts, tool-faqs.ts (4 FAQs), quick-answers.ts
+  - Added 3 SEO sub-pages: css-filter-functions-guide, css-image-effects, filter-vs-backdrop-filter
+  - Updated tool counts (114 → 115) across README.md, llms.txt, free-tools page, blog posts, author bio
+  - Updated CLAUDE.md with tool #115
+  - Updated TASK_BOARD.md and AGENT_LOG.md
+- **Files created:** `src/app/tools/css-filter/` (page.tsx, CssFilterTool.tsx, opengraph-image.tsx, [subpage]/page.tsx)
+- **Files modified:** `src/data/tools.ts`, `src/data/tool-faqs.ts`, `src/data/quick-answers.ts`, `src/data/tool-subpages-batch6.ts`, `CLAUDE.md`, `README.md`, `public/llms.txt`, `src/app/free-tools/page.tsx`, `src/data/blog-posts.ts`, `src/app/blog/[slug]/page.tsx`, `src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx`, `src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 30:00 | developer | Add CSS Clip-path Generator tool (#114) + commit
 
 - **Task:** Build CSS Clip-path Generator as tool #114, completing the 9th CSS visual builder

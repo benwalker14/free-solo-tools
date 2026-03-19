@@ -910,4 +910,12 @@ export const tools: Tool[] = [
     icon: "✂",
     category: "Generate",
   },
+  {
+    title: "CSS Filter Generator",
+    description:
+      "Build CSS filter effects visually — blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, and drop-shadow with 12 presets and live preview",
+    href: "/tools/css-filter",
+    icon: "FX",
+    category: "Generate",
+  },
 ];

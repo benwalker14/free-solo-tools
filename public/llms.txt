@@ -1,6 +1,6 @@
 # DevBolt
 
-> 114 free online developer tools. 100% client-side — your data never leaves your browser.
+> 115 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -118,6 +118,7 @@
 - [HTML Table Generator](https://devbolt.dev/tools/html-table-generator): Build HTML tables visually with an interactive editor — add rows, columns, header rows, captions, and styling. Export as plain HTML, inline CSS, or Tailwind classes
 - [Aspect Ratio Calculator](https://devbolt.dev/tools/aspect-ratio-calculator): Calculate aspect ratios from any dimensions, resize while preserving proportions, find equivalent sizes, and browse device presets for phones, tablets, monitors, and social media
 - [CSS Clip-path Generator](https://devbolt.dev/tools/clip-path): Create CSS clip-path shapes visually with circle, ellipse, inset, and polygon modes. 13 shape presets, draggable polygon points, and production-ready CSS output
+- [CSS Filter Generator](https://devbolt.dev/tools/css-filter): Build CSS filter effects visually — blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, and drop-shadow with 12 presets and live preview
 
 ## Cheat Sheets
 
