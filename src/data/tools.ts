@@ -497,8 +497,8 @@ export const tools: Tool[] = [
   {
     title: "Date Format Tester",
     description:
-      "Test date/time format patterns with live preview — strftime, Moment.js, and date-fns",
-    href: "/tools/date-format",
+      "Test date format patterns for strftime, date-fns, Moment.js, Go, and Java with live preview and token reference",
+    href: "/tools/date-format-tester",
     icon: "DT",
     category: "Inspect",
   },

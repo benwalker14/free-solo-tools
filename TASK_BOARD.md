@@ -3,7 +3,7 @@
 Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ## In Progress
-- [ ] Add Timestamp / Date Format Tester tool (#63) — 50K+/mo searches (developer)
+_None_
 
 ## To Do
 
@@ -52,7 +52,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Expand Subnet Calculator into full IP/CIDR toolkit (#54)
 
 ## Done
-- [x] Add Date Format Tester tool (#63) — live preview with strftime/Moment.js/date-fns, 12 presets, token reference tables, live clock mode
+- [x] Add Date Format Tester tool (#63) — 4 format styles (strftime, Unicode/date-fns, Go, Java), 8 presets, live preview table, token reference, copy output
 - [x] Add HTTP Status Code Reference page (#66) — complete reference with 63 status codes, search/filter, expandable details, REST API cheat sheet, quick reference table
 - [x] Add Privacy Policy Generator tool (#65) — form-based generator with GDPR/CCPA/COPPA compliance, cookies, analytics, third-party services, data retention, copy/download
 - [x] Expand programmatic SEO sub-pages to 45 tools — 126 sub-pages across all tools (was 26 across 10), targeting long-tail keywords
