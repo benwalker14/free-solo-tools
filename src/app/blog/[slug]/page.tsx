@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPost } from "@/data/blog-posts";
+import DevToolsPrivacy from "./posts/DevToolsPrivacy";
 import JwtTutorial from "./posts/JwtTutorial";
 import RegexCheatSheet from "./posts/RegexCheatSheet";
 import CurlGuide from "./posts/CurlGuide";
@@ -19,6 +20,7 @@ import DockerComposeGuide from "./posts/DockerComposeGuide";
 import YamlGuide from "./posts/YamlGuide";
 
 const postContent: Record<string, React.ReactNode> = {
+  "developer-tools-privacy": <DevToolsPrivacy />,
   "jwt-tutorial": <JwtTutorial />,
   "regex-cheat-sheet": <RegexCheatSheet />,
   "curl-guide": <CurlGuide />,

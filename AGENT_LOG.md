@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 | developer | Write privacy/trust blog post
+
+- Wrote "Why Your Developer Tools Should Never Touch a Server" at `/blog/developer-tools-privacy`
+- Covers the Nov 2025 CodeBeautify/JSONFormatter data leak (5GB of credentials), server-side vs client-side processing architecture, how to verify tool safety using Network tab, credential rotation commands, and a safety checklist
+- Links to JSON Formatter, Base64 Decoder, JWT Decoder, Hash Generator as related tools
+- SEO targets: "safe json formatter", "codebeautify alternative", "private developer tools", "json formatter no server"
+- 10 min read, tagged Security/Privacy/Best Practices
+- Registered in blog-posts.ts, wired in page.tsx, sitemap auto-includes
+- Build passes (322 pages), lint passes (0 errors, 0 warnings)
+
+---
+
 ### 2026-03-19 | developer | Add privacy badge to all tool pages
 
 - Created `PrivacyBadge.tsx` — server component with shield-checkmark icon and "Processed in your browser. Your data never leaves your device." message

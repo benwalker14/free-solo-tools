@@ -10,7 +10,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 ### P0 - Critical
 - [x] Fix sitemap bug: add blog posts to `sitemap.xml` — 3 blog posts not discoverable by Google
 - [ ] Set up Stripe environment variables in Vercel — Pro subscriptions are blocked without this, day 3 (HUMAN ACTION NEEDED)
-- [ ] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
+- [x] Write privacy/trust blog post — capitalize on CodeBeautify/JSONFormatter Nov 2025 data leak (5GB of credentials). Target "safe json formatter", "codebeautify alternative" keywords. Time-sensitive.
 - [x] Add privacy badge/indicator to all tool pages — "Processed in your browser. Your data never leaves your device." Visible trust signal near tool input area.
 
 ### P1 - High (Growth & SEO)
@@ -74,6 +74,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [ ] Add SQL to TypeScript/Prisma/Drizzle Converter tool (#84) — paste SQL CREATE TABLE → get TS interfaces, Prisma schema, Zod types. TypeScript is #1 on GitHub.
 
 ## Done
+- [x] Write privacy/trust blog post — "Why Your Developer Tools Should Never Touch a Server" at /blog/developer-tools-privacy. Covers the CodeBeautify/JSONFormatter 2025 data leak, server-side vs client-side architecture, how to verify tool safety (Network tab), credential rotation guide, DevBolt's client-side approach. 10 min read, 4 related tools linked. SEO targets: "safe json formatter", "codebeautify alternative", "private developer tools"
 - [x] Add privacy badge/indicator to all tool pages — emerald shield badge with "Processed in your browser. Your data never leaves your device." text, wired via tools layout so it appears on every tool page automatically. Pill-style design with dark mode support.
 - [x] Fix branding, security headers, viewport, cleanup — favicon FS→DB, security headers in next.config.ts (X-Content-Type-Options, Referrer-Policy, Permissions-Policy), /tools→/ redirect, viewport export, removed 5 unused scaffolding SVGs
 - [x] Add "Related Tools" section to all 76 tool pages — auto-generated cross-links showing 4 tools from the same category (Format/Convert/Generate/Inspect), deterministic selection based on slug hash, compact card design with icons and descriptions, wired via tools layout so it appears on every tool page and subpage automatically. Also committed BreadcrumbList JSON-LD schema for all tool pages

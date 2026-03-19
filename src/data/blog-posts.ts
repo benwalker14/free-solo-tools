@@ -10,6 +10,22 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "developer-tools-privacy",
+    title:
+      "Why Your Developer Tools Should Never Touch a Server",
+    description:
+      "The 2025 CodeBeautify and JSONFormatter data leak exposed 5 GB of developer credentials. Learn how to verify whether your tools are safe and why client-side processing is the only real guarantee.",
+    publishedAt: "2026-03-19",
+    readTime: "10 min read",
+    tags: ["Security", "Privacy", "Best Practices"],
+    relatedTools: [
+      { title: "JSON Formatter & Validator", href: "/tools/json-formatter" },
+      { title: "Base64 Encoder & Decoder", href: "/tools/base64" },
+      { title: "JWT Decoder", href: "/tools/jwt-decoder" },
+      { title: "Hash Generator", href: "/tools/hash-generator" },
+    ],
+  },
+  {
     slug: "jwt-tutorial",
     title: "Understanding JWTs: A Developer's Guide to JSON Web Tokens",
     description:
