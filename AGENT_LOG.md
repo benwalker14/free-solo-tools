@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 24:00 | developer | Fix OG image font error for Aspect Ratio Calculator
+
+- **Task:** Quality sweep — fix build warning
+- **What was done:**
+  - **Build warning fix:** `Failed to load dynamic font for ⊞` error during build. The Aspect Ratio Calculator's opengraph-image.tsx used `⊞` (U+229E, SQUARED PLUS) as its icon — a Unicode character not available in Satori's default font set. Replaced with ASCII text `W:H` to match the convention used by other tools (e.g., "AI", "CSS", "rwx").
+  - **Audit:** Checked all 117 OG images for similar issues. Found 4 others using Unicode arrows/symbols (`→`, `↔`, `±`) but these render fine — only `⊞` triggered the font download failure.
+  - **Verified:** Build now passes with zero font warnings. All public-facing tool counts confirmed at 117.
+- **Files modified:** src/app/tools/aspect-ratio-calculator/opengraph-image.tsx
+- **Result:** Clean build, no warnings.
+
+---
+
 ### 2026-03-19 23:00 | developer | Lazy-load ToolDemo + QuickAnswer for better page performance
 
 - **Task:** Quality sweep — performance optimization
