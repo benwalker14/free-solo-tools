@@ -2,6 +2,8 @@
 
 > 117 free online developer tools. 100% client-side — your data never leaves your browser.
 
+- Blog RSS: https://devbolt.dev/blog/feed.xml
+
 ## Tools
 
 - [JSON Formatter](https://devbolt.dev/tools/json-formatter): Format, validate, and minify JSON data instantly

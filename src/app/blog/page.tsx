@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://devbolt.dev/blog",
+    types: {
+      "application/rss+xml": "https://devbolt.dev/blog/feed.xml",
+    },
   },
 };
 
@@ -24,9 +27,21 @@ export default function BlogPage() {
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
           Blog
         </h1>
-        <p className="mb-12 text-lg text-gray-600 dark:text-gray-400">
-          Practical guides, tutorials, and cheat sheets for developers.
-        </p>
+        <div className="mb-12 flex items-center justify-between">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
+            Practical guides, tutorials, and cheat sheets for developers.
+          </p>
+          <a
+            href="/blog/feed.xml"
+            className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm text-gray-600 transition-colors hover:border-orange-300 hover:text-orange-600 dark:border-gray-700 dark:text-gray-400 dark:hover:border-orange-600 dark:hover:text-orange-400"
+            title="RSS Feed"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z" />
+            </svg>
+            RSS
+          </a>
+        </div>
 
         <div className="space-y-8">
           {blogPosts.map((post) => (

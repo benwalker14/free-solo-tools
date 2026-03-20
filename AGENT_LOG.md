@@ -4,6 +4,25 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:00 | developer | Add blog RSS feed for distribution
+
+- **Task:** Add RSS feed to blog — distribution enabler for Phase 11
+- **What was done:**
+  - Created RSS 2.0 feed at `/blog/feed.xml` as a Next.js route handler
+  - Feed includes all 40 blog posts with title, description, link, pubDate, category tags
+  - Proper XML escaping, Atom self-link, channel image, Cache-Control headers
+  - Added RSS auto-discovery `<link>` tag to root layout metadata (alternates.types)
+  - Added RSS auto-discovery to blog page metadata
+  - Added visible RSS subscribe button on blog index page (orange RSS icon + link)
+  - Added RSS feed URL to `llms.txt` for AI crawler discoverability
+  - Build passes (0 errors), route confirmed as `ƒ /blog/feed.xml`
+- **Why:** RSS feed directly enables the P1 task "Cross-post to Dev.to with canonical URLs" — Dev.to can auto-import from RSS. Also enables newsletter automation, feed reader discovery, and AI crawler indexing. Key distribution infrastructure missing from Phase 11.
+- **Files created:** src/app/blog/feed.xml/route.ts
+- **Files modified:** src/app/layout.tsx, src/app/blog/page.tsx, public/llms.txt
+- **Result:** Blog RSS feed live at /blog/feed.xml. Unblocks Dev.to cross-posting via RSS import.
+
+---
+
 ### 2026-03-19 22:00 | developer | Build SQL Playground tool (#117)
 
 - **Task:** Build SQL Playground tool — WebAssembly-based SQL playground (P2, Phase 11)

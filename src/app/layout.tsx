@@ -65,6 +65,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://devbolt.dev",
+    types: {
+      "application/rss+xml": "https://devbolt.dev/blog/feed.xml",
+    },
   },
   other: {
     "mobile-web-app-capable": "yes",
