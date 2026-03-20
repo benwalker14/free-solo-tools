@@ -1273,4 +1273,784 @@ export const toolInsights: Record<string, ToolInsight[]> = {
         "Developers frequently paste cURL commands with Bearer tokens, API keys, or Basic auth into Slack, GitHub issues, and Stack Overflow. These credentials are harvestable by bots. Always replace real credentials with placeholders (YOUR_API_KEY) before sharing. Use environment variables: curl -H \"Authorization: Bearer $API_KEY\".",
     },
   ],
+  "json-to-csv": [
+    {
+      type: "tip",
+      title: "Flatten nested objects before converting to CSV",
+      content:
+        "CSV is inherently flat — there are no nested columns. When converting JSON with nested objects, flatten keys using dot notation (user.address.city → user_address_city). This preserves the data hierarchy in column names while keeping the output importable into Excel, Google Sheets, and databases.",
+    },
+    {
+      type: "pitfall",
+      title: "Commas and newlines inside values break naive CSV parsers",
+      content:
+        "If a JSON string value contains commas, quotes, or newlines, the CSV cell must be wrapped in double quotes with internal quotes escaped as \"\". Many hand-rolled CSV converters skip this, producing corrupt files that import incorrectly into spreadsheets and databases.",
+    },
+    {
+      type: "example",
+      title: "Export API responses to CSV for stakeholder reports",
+      content:
+        "Product managers and data analysts often need API data in spreadsheets. Converting a /api/users JSON response to CSV lets them build pivot tables and charts in Excel without writing code. Use consistent field ordering so the columns align across exports.",
+    },
+    {
+      type: "security",
+      title: "CSV injection can execute formulas in spreadsheets",
+      content:
+        "If JSON values start with =, +, -, or @, Excel and Google Sheets interpret them as formulas. A malicious value like '=HYPERLINK(\"http://evil.com\",\"Click\")' can execute when opened. Prefix dangerous values with a single quote or tab character before CSV export.",
+    },
+  ],
+  "json-to-code": [
+    {
+      type: "tip",
+      title: "Use generated types as a starting point, not the final schema",
+      content:
+        "Auto-generated Go structs, Python dataclasses, and Rust structs infer types from sample data. A field with value 1 might be inferred as int when it should be float, or a missing nullable field won't be marked as optional. Always review generated types against your API documentation.",
+    },
+    {
+      type: "pitfall",
+      title: "Sample data may not represent all possible field types",
+      content:
+        "If your JSON sample has a null field, the generator can't determine the actual type (string? object?). If a field is sometimes an array and sometimes null, the generated type might miss the array case. Use the most complete sample data available — ideally from API docs, not a single response.",
+    },
+    {
+      type: "example",
+      title: "Generate Go structs with json tags from API responses",
+      content:
+        "Paste a JSON API response to get Go structs with correct json:\"fieldName\" tags. Go uses PascalCase for exported fields but APIs use camelCase or snake_case — the generated tags handle this mapping automatically, saving tedious manual struct creation.",
+    },
+    {
+      type: "security",
+      title: "Never expose internal fields in generated API types",
+      content:
+        "When generating types from a database record JSON, internal fields like password_hash, internal_id, or is_admin may appear. Remove these from your public-facing types. Use separate request/response types rather than sharing one struct that accidentally exposes sensitive fields.",
+    },
+  ],
+  "json-to-sql": [
+    {
+      type: "tip",
+      title: "Use transactions for multi-row INSERT statements",
+      content:
+        "When converting a JSON array to INSERT statements, wrap them in BEGIN/COMMIT. Without a transaction, a failure mid-import leaves your database in a partial state — some rows inserted, others missing. Transactions ensure all-or-nothing atomicity.",
+    },
+    {
+      type: "pitfall",
+      title: "Auto-inferred SQL types may not match your schema",
+      content:
+        "A JSON number 42 could be INTEGER, BIGINT, or NUMERIC depending on context. A date string might be DATE, TIMESTAMP, or VARCHAR. Always verify the generated CREATE TABLE types match your intended schema, especially for IDs (UUID vs SERIAL) and monetary values (NUMERIC vs FLOAT).",
+    },
+    {
+      type: "example",
+      title: "Seed a development database from JSON fixtures",
+      content:
+        "Keep test data as JSON files in your repo, convert to SQL for seeding dev/staging databases. This workflow is common with tools like Prisma seed scripts. JSON fixtures are easier to read and edit than raw SQL INSERT statements.",
+    },
+    {
+      type: "security",
+      title: "Sanitize string values to prevent SQL injection",
+      content:
+        "Generated INSERT statements should properly escape single quotes in string values (O'Brien → O''Brien). If you're using the generated SQL in application code rather than direct database import, prefer parameterized queries instead of string-interpolated INSERT statements.",
+    },
+  ],
+  "json-to-graphql": [
+    {
+      type: "tip",
+      title: "Use custom scalar types for dates and IDs",
+      content:
+        "GraphQL has no built-in Date or DateTime type. When generating a schema from JSON with date strings, define custom scalars (scalar DateTime) rather than using String. This enables proper validation and serialization with libraries like graphql-scalars.",
+    },
+    {
+      type: "pitfall",
+      title: "Nullable vs non-null defaults matter for schema evolution",
+      content:
+        "Making all fields non-null (String!) in your generated schema is strict but dangerous — adding a new nullable field later is a breaking change for clients expecting non-null. Start with nullable fields by default and only add ! for fields you're certain will always be present.",
+    },
+    {
+      type: "example",
+      title: "Generate a schema from your REST API responses",
+      content:
+        "Migrating from REST to GraphQL? Paste your existing REST JSON responses to get a starting GraphQL schema. This captures the current data shape and lets you iterate on the schema design before writing resolvers.",
+    },
+    {
+      type: "security",
+      title: "Limit query depth to prevent denial-of-service",
+      content:
+        "Deeply nested GraphQL types (User → Posts → Comments → Author → Posts...) allow recursive queries that can overwhelm your server. After generating your schema, configure query depth limiting (typically 7-10 levels max) using graphql-depth-limit or similar middleware.",
+    },
+  ],
+  "json-to-zod": [
+    {
+      type: "tip",
+      title: "Add .transform() for runtime data coercion",
+      content:
+        "Generated Zod schemas validate shape, but API data often needs transformation — date strings to Date objects, string numbers to actual numbers, empty strings to null. Chain .transform() after .parse() to clean data in the same step as validation.",
+    },
+    {
+      type: "pitfall",
+      title: "z.infer<typeof schema> doesn't capture .transform() output types",
+      content:
+        "z.infer gives you the input type. If your schema uses .transform(), you need z.output<typeof schema> for the transformed type. Using z.infer with transforms means your TypeScript types won't match the actual runtime values.",
+    },
+    {
+      type: "example",
+      title: "Validate API responses at the boundary",
+      content:
+        "Parse every external API response through a Zod schema: const data = UserSchema.parse(await res.json()). This catches type mismatches immediately at the boundary rather than letting bad data propagate through your app and cause cryptic errors downstream.",
+    },
+    {
+      type: "security",
+      title: "Use .strict() to reject unexpected fields",
+      content:
+        "By default, Zod strips unknown keys. If an attacker sends extra fields (isAdmin: true, role: 'superuser'), they're silently removed. But if you spread the parsed object into a database query, those fields might sneak through. Use .strict() to throw on unexpected fields instead of silently dropping them.",
+    },
+  ],
+  "json-visualizer": [
+    {
+      type: "tip",
+      title: "Collapse to depth 2 for a structural overview",
+      content:
+        "Large JSON responses can have hundreds of nodes. Collapsing to depth 2 gives you the top-level structure — what keys exist, which are objects vs arrays — without drowning in leaf values. Expand individual branches to explore specific sections.",
+    },
+    {
+      type: "pitfall",
+      title: "Large JSON files (10MB+) can freeze browser-based viewers",
+      content:
+        "Tree rendering creates DOM nodes for every key-value pair. A 50,000-node JSON tree can make the browser unresponsive. For large files, use the search feature to find specific paths rather than expanding the entire tree, or filter the JSON to the relevant subset first.",
+    },
+    {
+      type: "example",
+      title: "Copy JSON paths for use in code",
+      content:
+        "Hover over any node to see its full path (e.g., data.users[0].address.city). Copy this path directly into your JavaScript (obj.data.users[0].address.city), Python (data['users'][0]['address']['city']), or jq (.data.users[0].address.city) code.",
+    },
+    {
+      type: "security",
+      title: "Inspect API responses for accidentally exposed data",
+      content:
+        "Use the tree view to audit API responses for fields that shouldn't be public: password hashes, internal IDs, email addresses, API keys, or admin flags. It's easier to spot sensitive fields in a visual tree than in raw JSON text.",
+    },
+  ],
+  "json-diff": [
+    {
+      type: "tip",
+      title: "Sort object keys before diffing for meaningful comparisons",
+      content:
+        "JSON object key order is not guaranteed by the spec. Two semantically identical objects with different key ordering will show as completely different in a naive diff. Sort keys alphabetically before comparing to focus on actual value changes rather than ordering noise.",
+    },
+    {
+      type: "pitfall",
+      title: "Array diffs are order-sensitive by default",
+      content:
+        "Moving an item from index 0 to index 5 in a JSON array appears as a deletion and an addition, not a move. If your arrays represent unordered sets (e.g., tags, roles), sort them first. For ordered sequences (timeline events), the positional diff is correct.",
+    },
+    {
+      type: "example",
+      title: "Compare API responses across environments",
+      content:
+        "Diff the JSON response from staging vs production for the same endpoint to catch environment-specific bugs: missing fields, different default values, or schema version mismatches. This is faster than manually reading two large response bodies.",
+    },
+    {
+      type: "security",
+      title: "Diff config files before deploying to catch unintended changes",
+      content:
+        "Before deploying updated Kubernetes manifests, Terraform state, or application config, diff the old vs new JSON/YAML. This review step catches accidental permission escalations, removed security headers, or disabled authentication flags that might slip through in large config files.",
+    },
+  ],
+  "json-xml": [
+    {
+      type: "tip",
+      title: "Use consistent root and item element names",
+      content:
+        "JSON-to-XML conversion requires choosing element names for arrays and the root element. Use descriptive names (<users><user>...</user></users>) rather than generic ones (<root><item>...</item></root>). This makes the XML self-documenting and easier to query with XPath.",
+    },
+    {
+      type: "pitfall",
+      title: "JSON arrays and XML have a fundamental mismatch",
+      content:
+        "JSON has native arrays: [1, 2, 3]. XML represents arrays as repeated sibling elements: <item>1</item><item>2</item><item>3</item>. Converting XML back to JSON, there's ambiguity: is a single <item> a one-element array or a standalone element? Different converters make different choices.",
+    },
+    {
+      type: "example",
+      title: "Convert REST API JSON to XML for SOAP/legacy system integration",
+      content:
+        "Many enterprise systems (banking, healthcare, government) still require XML/SOAP. Converting modern REST JSON responses to XML bridges the gap when integrating with legacy systems without rewriting the upstream API.",
+    },
+    {
+      type: "security",
+      title: "XML External Entity (XXE) attacks don't apply to generated XML",
+      content:
+        "XXE vulnerabilities occur when XML parsers process external entity declarations in untrusted input. When generating XML from JSON, the output contains no DOCTYPE or entity declarations, so it's safe. However, if you're parsing XML input, always disable external entity resolution in your parser.",
+    },
+  ],
+  "json-mock-generator": [
+    {
+      type: "tip",
+      title: "Use realistic data types for each field",
+      content:
+        "Names, emails, addresses, and UUIDs each have distinct formats. Using random strings for all fields makes mocks unrealistic and hides bugs — a regex-validated email field won't catch issues if your mock always generates 'test@test.com'. Use field-specific generators for realistic test data.",
+    },
+    {
+      type: "pitfall",
+      title: "Mock data with identical patterns creates false confidence",
+      content:
+        "If all mock users have the same country, language, or timezone, you won't catch i18n bugs. If all dates are in the same month, date boundary bugs hide. Ensure mocks include edge cases: different locales, DST transitions, Unicode names (é, ñ, 中文), and empty/null optional fields.",
+    },
+    {
+      type: "example",
+      title: "Generate 500 rows to stress-test pagination and search",
+      content:
+        "Test your frontend table component with 500 realistic rows to verify pagination, virtual scrolling, sorting, and filtering all work under load. This catches performance issues that don't appear with 5-row toy datasets.",
+    },
+    {
+      type: "security",
+      title: "Never use mock data generators to create fake production records",
+      content:
+        "Generated data should only be used in development and testing environments. Inserting fake records into production databases (even 'test' accounts) can violate data integrity, skew analytics, and create compliance issues. Use feature flags or separate environments instead.",
+    },
+  ],
+  "html-markdown": [
+    {
+      type: "tip",
+      title: "Clean up HTML before converting for best Markdown output",
+      content:
+        "Rich text editors (Google Docs, Word, Notion) export HTML full of inline styles, empty spans, and nested divs. Strip these before converting — Markdown has no concept of font colors or spacing divs. The cleaner the HTML input, the more readable the Markdown output.",
+    },
+    {
+      type: "pitfall",
+      title: "HTML tables convert poorly to Markdown",
+      content:
+        "Markdown tables don't support colspan, rowspan, cell alignment, or nested elements. Complex HTML tables with merged cells or nested lists convert to pipe tables that lose structure. For complex tables, consider keeping them as raw HTML blocks within your Markdown.",
+    },
+    {
+      type: "example",
+      title: "Migrate blog content from WordPress to Markdown-based platforms",
+      content:
+        "Export WordPress posts as HTML, then convert to Markdown for Gatsby, Hugo, Astro, or Next.js MDX blogs. Batch-convert all posts, then manually review headings, images (update paths), and code blocks that may need syntax highlighting hints added.",
+    },
+    {
+      type: "security",
+      title: "Markdown-to-HTML renders can introduce XSS if not sanitized",
+      content:
+        "Raw HTML is valid Markdown — a Markdown file containing <script>alert('xss')</script> will execute when rendered. Always use a sanitizing Markdown renderer (like DOMPurify + marked) that strips script tags, event handlers, and javascript: URLs from the HTML output.",
+    },
+  ],
+  "html-to-jsx": [
+    {
+      type: "tip",
+      title: "class → className is just the start",
+      content:
+        "Beyond class → className, HTML-to-JSX conversion handles 50+ attribute renames: for → htmlFor, tabindex → tabIndex, onclick → onClick, stroke-width → strokeWidth, and all SVG attributes. Missing even one causes React warnings and broken functionality.",
+    },
+    {
+      type: "pitfall",
+      title: "Inline style strings must become objects",
+      content:
+        "HTML: style=\"margin-top: 10px; background-color: red\". JSX: style={{ marginTop: '10px', backgroundColor: 'red' }}. The conversion involves camelCasing every CSS property and wrapping values as strings. Numeric values (except unitless ones like zIndex) need string quotes.",
+    },
+    {
+      type: "example",
+      title: "Port HTML email templates to React Email or MJML",
+      content:
+        "Email templates are notoriously HTML-heavy with inline styles and legacy attributes. Converting to JSX is the first step toward using React Email, which lets you build email templates with components. Convert the HTML, then extract repeated patterns into reusable React components.",
+    },
+    {
+      type: "security",
+      title: "innerHTML → dangerouslySetInnerHTML is intentionally scary",
+      content:
+        "React renamed innerHTML to dangerouslySetInnerHTML as a warning. If your HTML uses innerHTML, the converter preserves it — but you should replace it with proper React components. Rendering user-supplied HTML via dangerouslySetInnerHTML is the #1 source of XSS in React apps.",
+    },
+  ],
+  "html-table-generator": [
+    {
+      type: "tip",
+      title: "Use <thead>, <tbody>, and <th> for accessible tables",
+      content:
+        "Screen readers use table structure to navigate. <thead> with <th> headers lets assistive technology announce column names as users move through cells. Without semantic markup, a table is just a grid of anonymous values. Always use proper table sections even for simple tables.",
+    },
+    {
+      type: "pitfall",
+      title: "Tables are not responsive by default",
+      content:
+        "HTML tables overflow on mobile screens because they don't shrink below their content width. Wrap tables in a container with overflow-x: auto for horizontal scrolling, or use CSS to stack columns vertically on small screens. Never use tables for page layout — use CSS Grid or Flexbox.",
+    },
+    {
+      type: "example",
+      title: "Generate comparison tables for documentation sites",
+      content:
+        "Pricing pages, feature comparison matrices, and API reference tables are everywhere in docs. Generate the HTML with proper headers and captions, then style with your framework's table classes (Tailwind's divide-y, Bootstrap's table-striped) for consistent appearance.",
+    },
+    {
+      type: "security",
+      title: "Escape user data rendered in table cells",
+      content:
+        "If table content comes from user input or external APIs, HTML-encode special characters (<, >, &, \") before rendering in cells. Unescaped content like <img onerror=alert(1)> in a table cell is a stored XSS vulnerability.",
+    },
+  ],
+  "docker-compose": [
+    {
+      type: "tip",
+      title: "Always pin image versions — never use :latest in production",
+      content:
+        "image: postgres:latest means your dev, staging, and production environments can run different Postgres versions. Pin to a specific version (postgres:16.2-alpine) for reproducible builds. Use Docker Compose's extends feature or .env files to manage version numbers centrally.",
+    },
+    {
+      type: "pitfall",
+      title: "depends_on only waits for container start, not readiness",
+      content:
+        "depends_on: [db] starts the database container before your app, but doesn't wait for it to accept connections. Your app will crash connecting to a database that's still initializing. Use healthcheck + condition: service_healthy, or add retry logic in your app's database connection code.",
+    },
+    {
+      type: "example",
+      title: "Use named volumes for database persistence across restarts",
+      content:
+        "Without a named volume, docker compose down destroys your database data. Define volumes: db-data: and mount it with volumes: - db-data:/var/lib/postgresql/data. Named volumes persist across container lifecycle changes. Use docker compose down -v only when you intentionally want to reset data.",
+    },
+    {
+      type: "security",
+      title: "Never hardcode secrets in docker-compose.yml",
+      content:
+        "Environment variables with passwords (POSTGRES_PASSWORD: mysecret) get committed to version control. Use env_file: .env with .env in .gitignore, or Docker Secrets for Swarm mode. For local development, docker compose supports a .env file that's automatically loaded.",
+    },
+  ],
+  "dockerfile-validator": [
+    {
+      type: "tip",
+      title: "Order layers from least to most frequently changing",
+      content:
+        "Docker caches layers sequentially — a change invalidates all subsequent layers. Put OS packages and dependencies (rarely change) before your application code (changes every commit). This pattern: COPY package.json → RUN npm install → COPY . means npm install is cached unless package.json changes.",
+    },
+    {
+      type: "pitfall",
+      title: "Running as root inside containers is a critical security risk",
+      content:
+        "By default, Dockerfiles run as root. If an attacker exploits your app, they have root access inside the container (and potentially escape to the host). Always add USER nonroot after installing dependencies. Many base images (gcr.io/distroless) run as non-root by default.",
+    },
+    {
+      type: "example",
+      title: "Use multi-stage builds to reduce image size by 90%",
+      content:
+        "A Node.js app with devDependencies can produce a 1.5 GB image. Multi-stage build: stage 1 installs and builds (FROM node:20 AS builder), stage 2 copies only the output (FROM node:20-slim, COPY --from=builder /app/dist). Final image: ~150 MB with no build tools, source code, or devDependencies.",
+    },
+    {
+      type: "security",
+      title: "Scan your Dockerfile for known vulnerabilities",
+      content:
+        "Use hadolint for Dockerfile best practices and docker scout or trivy for vulnerability scanning of base images. Alpine-based images have fewer CVEs than Ubuntu/Debian bases. Pin base images with digest (@sha256:...) to prevent supply chain attacks via tag hijacking.",
+    },
+  ],
+  "k8s-validator": [
+    {
+      type: "tip",
+      title: "Always set resource requests and limits",
+      content:
+        "Without resource limits, a single pod can consume all CPU/memory on a node, killing other workloads. Set requests (guaranteed minimum) and limits (hard ceiling) for every container: resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 500m, memory: 512Mi } }.",
+    },
+    {
+      type: "pitfall",
+      title: "Missing liveness probes cause zombie pods",
+      content:
+        "Without a livenessProbe, Kubernetes doesn't know if your app is deadlocked. The pod stays 'Running' while serving zero requests. Add an HTTP or TCP liveness probe that checks actual application health, not just that the process is alive. Set initialDelaySeconds high enough for startup.",
+    },
+    {
+      type: "example",
+      title: "Use readinessProbe to prevent traffic to unhealthy pods",
+      content:
+        "During deployment, new pods receive traffic immediately even if they're still loading config or warming caches. A readinessProbe tells the Service to wait until the pod is ready. This prevents 502/503 errors during rollouts. Use a /healthz endpoint that checks dependencies (DB, cache).",
+    },
+    {
+      type: "security",
+      title: "Run pods as non-root with read-only filesystem",
+      content:
+        "Set securityContext: { runAsNonRoot: true, readOnlyRootFilesystem: true, allowPrivilegeEscalation: false }. This limits the blast radius of container escapes. Use emptyDir volumes for any paths that need write access (tmp, logs). Most app containers don't need to write to the root filesystem.",
+    },
+  ],
+  "nginx-config": [
+    {
+      type: "tip",
+      title: "Enable gzip for text-based assets to save 60-80% bandwidth",
+      content:
+        "Add gzip on; with gzip_types text/plain text/css application/json application/javascript text/xml. Don't gzip images or already-compressed files (gzip_min_length 256). For modern browsers, consider adding Brotli (ngx_brotli) for an additional 15-20% improvement over gzip.",
+    },
+    {
+      type: "pitfall",
+      title: "proxy_pass with a trailing slash behaves differently",
+      content:
+        "proxy_pass http://backend/ (with slash) strips the location prefix. proxy_pass http://backend (without slash) preserves it. Example: location /api/ with proxy_pass http://backend/ forwards /api/users as /users. Without the slash, it forwards as /api/users. This subtle difference causes routing bugs.",
+    },
+    {
+      type: "example",
+      title: "Serve SPAs with try_files for client-side routing",
+      content:
+        "Single-page apps need all routes to serve index.html: location / { try_files $uri $uri/ /index.html; }. This serves existing static files directly but falls back to index.html for any path your JavaScript router handles. Without this, refreshing /dashboard returns a 404.",
+    },
+    {
+      type: "security",
+      title: "Hide Nginx version and add security headers",
+      content:
+        "server_tokens off; hides the Nginx version from response headers. Add add_header X-Content-Type-Options nosniff; add_header X-Frame-Options DENY; add_header Referrer-Policy strict-origin-when-cross-origin; to prevent MIME sniffing, clickjacking, and referrer leakage. Use DevBolt's Security Headers tool for the full set.",
+    },
+  ],
+  "security-headers": [
+    {
+      type: "tip",
+      title: "Start with Strict-Transport-Security and Content-Type-Options",
+      content:
+        "HSTS (Strict-Transport-Security: max-age=63072000; includeSubDomains) forces HTTPS and prevents SSL stripping attacks. X-Content-Type-Options: nosniff prevents browsers from MIME-sniffing responses as executable scripts. These two headers are the highest impact and lowest risk to add.",
+    },
+    {
+      type: "pitfall",
+      title: "Don't set HSTS includeSubDomains if you have HTTP-only subdomains",
+      content:
+        "HSTS with includeSubDomains forces HTTPS on every subdomain. If staging.example.com or internal.example.com uses plain HTTP, those sites become unreachable. Start with the main domain only, verify all subdomains support HTTPS, then add includeSubDomains.",
+    },
+    {
+      type: "example",
+      title: "Test your headers with SecurityHeaders.com before deploying",
+      content:
+        "Configure your headers in DevBolt's generator, deploy them to staging, then scan with securityheaders.com to verify they're applied correctly. Many headers are silently ignored if the syntax is wrong. A B+ grade or higher indicates solid security posture.",
+    },
+    {
+      type: "security",
+      title: "Permissions-Policy replaces the deprecated Feature-Policy",
+      content:
+        "Permissions-Policy: camera=(), microphone=(), geolocation=() blocks your site (and embedded iframes) from accessing sensitive device APIs. Even if your app doesn't use these features, blocking them prevents any injected third-party script from silently activating the camera or microphone.",
+    },
+  ],
+  "csp-builder": [
+    {
+      type: "tip",
+      title: "Start with Content-Security-Policy-Report-Only",
+      content:
+        "A misconfigured CSP breaks your site — scripts stop loading, styles disappear, images fail. Deploy as Content-Security-Policy-Report-Only first to log violations without blocking. Monitor report-uri endpoints for a week, fix legitimate sources, then switch to enforcing mode.",
+    },
+    {
+      type: "pitfall",
+      title: "'unsafe-inline' for scripts defeats the purpose of CSP",
+      content:
+        "script-src 'self' 'unsafe-inline' allows any inline <script> tag, which is exactly what XSS attacks inject. Use nonces (script-src 'nonce-abc123') or hashes instead. Most frameworks (Next.js, Nuxt) support CSP nonces. 'unsafe-inline' for styles is less dangerous but still not ideal.",
+    },
+    {
+      type: "example",
+      title: "Build a CSP for Next.js with Google Analytics",
+      content:
+        "Start with default-src 'self'; script-src 'self' 'nonce-{random}' https://www.googletagmanager.com; img-src 'self' https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com. Next.js 14+ supports nonce-based CSP via middleware. Test with Report-Only first.",
+    },
+    {
+      type: "security",
+      title: "frame-ancestors replaces X-Frame-Options for clickjacking protection",
+      content:
+        "frame-ancestors 'none' (equivalent to X-Frame-Options: DENY) prevents your site from being embedded in iframes on other domains. Unlike X-Frame-Options, CSP frame-ancestors supports multiple domains and is the modern standard. Set both for backward compatibility with older browsers.",
+    },
+  ],
+  "code-security-scanner": [
+    {
+      type: "tip",
+      title: "Scan code before committing, not after deployment",
+      content:
+        "Integrate security scanning into your pre-commit hooks or CI pipeline. Finding a hardcoded API key in a PR review is 100x cheaper than finding it in production logs after a breach. Shift security left — the earlier you catch vulnerabilities, the cheaper and safer the fix.",
+    },
+    {
+      type: "pitfall",
+      title: "Not all findings are exploitable — prioritize by context",
+      content:
+        "A scanner flags Math.random() in all contexts, but using it for CSS animation jitter is fine — only for tokens and secrets is it dangerous. Focus on critical and high severity findings first. For each finding, ask: can an attacker actually reach and exploit this code path?",
+    },
+    {
+      type: "example",
+      title: "Use scanner results to build a security checklist for AI code reviews",
+      content:
+        "AI code assistants (Copilot, Cursor, Claude) often generate code with hardcoded secrets, SQL injection via string concatenation, and missing input validation. Run their output through a security scanner to build a team checklist of common AI code mistakes to watch for.",
+    },
+    {
+      type: "security",
+      title: "Static analysis catches known patterns — not business logic flaws",
+      content:
+        "Scanners detect SQL injection, XSS, and hardcoded secrets, but they can't catch authorization bypass (user A accessing user B's data), IDOR vulnerabilities, or race conditions. Static scanning is one layer — combine with manual code review and penetration testing for complete coverage.",
+    },
+  ],
+  "code-complexity-analyzer": [
+    {
+      type: "tip",
+      title: "Aim for cyclomatic complexity under 10 per function",
+      content:
+        "Functions with complexity above 10 are hard to test and maintain. Each branch (if/else, switch case, ternary, catch) adds a test case you need to write. A function with complexity 15 needs at minimum 15 test paths. Extract helper functions or use early returns to reduce branching.",
+    },
+    {
+      type: "pitfall",
+      title: "Low complexity doesn't mean good code — it means testable code",
+      content:
+        "A function that calls 20 external services sequentially has low cyclomatic complexity (no branches) but is a maintenance nightmare. Complexity metrics measure one dimension of code quality. Combine with nesting depth, cognitive complexity, and function length for a complete picture.",
+    },
+    {
+      type: "example",
+      title: "Use complexity to prioritize refactoring in legacy codebases",
+      content:
+        "Sort functions by complexity to find the highest-risk code. Functions with complexity 25+ are the ones that cause the most bugs and take the longest to modify. Refactor these first — the ROI on reducing a function from complexity 30 to three functions of complexity 8 is enormous.",
+    },
+    {
+      type: "security",
+      title: "High complexity correlates with more vulnerabilities",
+      content:
+        "Research shows that functions with cyclomatic complexity above 15 are 2-3x more likely to contain security bugs. Complex branching logic hides edge cases where input validation is skipped or authorization checks are bypassed. High complexity code deserves extra security review.",
+    },
+  ],
+  "typescript-to-js": [
+    {
+      type: "tip",
+      title: "TypeScript enums become runtime objects — consider const enums",
+      content:
+        "Regular TypeScript enums compile to JavaScript objects with reverse mappings. const enums are inlined at compile time and produce no runtime code. When converting TS to JS, regular enum values become object lookups, while const enum values become literal constants.",
+    },
+    {
+      type: "pitfall",
+      title: "Type-only imports disappear and may break side effects",
+      content:
+        "TypeScript's type-only imports (import type { Foo }) are removed during compilation. But if you accidentally import a value as a type, the import disappears and any side effects from that module (polyfills, global registrations) stop executing. Use import type consistently to avoid confusion.",
+    },
+    {
+      type: "example",
+      title: "Strip types to share code with non-TypeScript projects",
+      content:
+        "Need to share a utility function with a JavaScript project? Convert it to JS rather than requiring the consumer to set up TypeScript. The core logic stays identical — you're just removing type annotations, interfaces, and generics to get portable JavaScript.",
+    },
+    {
+      type: "security",
+      title: "TypeScript's type system provides no runtime safety",
+      content:
+        "TypeScript types exist only at compile time. After conversion to JavaScript, there's no runtime validation. If your code relies on types to prevent invalid data (expecting a number but receiving a string), add runtime validation with Zod, io-ts, or manual checks at system boundaries.",
+    },
+  ],
+  "graphql-to-typescript": [
+    {
+      type: "tip",
+      title: "Generate types from the schema, not from sample responses",
+      content:
+        "Schema-based generation captures every possible field, nullable type, and union variant. Response-based generation only captures what appeared in one query. Use your .graphql schema files as the source of truth for comprehensive TypeScript types.",
+    },
+    {
+      type: "pitfall",
+      title: "GraphQL nullable fields should be T | null, not optional (T?)",
+      content:
+        "In GraphQL, a nullable field (without !) can explicitly return null. In TypeScript, field?: T means the field might be undefined (missing from the object). These are semantically different. Use field: T | null for nullable GraphQL fields to preserve the distinction.",
+    },
+    {
+      type: "example",
+      title: "Auto-generate types from your GraphQL API for end-to-end type safety",
+      content:
+        "Combine graphql-codegen with this converter to auto-generate TypeScript types from your GraphQL schema on every build. Your queries, mutations, and React hooks get typed automatically — changing a field name in the schema immediately surfaces type errors across your frontend.",
+    },
+    {
+      type: "security",
+      title: "Don't expose internal schema types in client-side code",
+      content:
+        "Generated types from your full schema may include admin-only types (AdminUser, InternalMetrics, AuditLog). Only generate client types from the public schema or specific operations. Exposing internal type names helps attackers understand your data model.",
+    },
+  ],
+  "openapi-to-typescript": [
+    {
+      type: "tip",
+      title: "Generate both request and response types for full coverage",
+      content:
+        "An OpenAPI spec defines request bodies, query parameters, path parameters, and response schemas. Generate types for all of them — not just responses. This gives you type-safe API clients where both the data you send and receive are validated at compile time.",
+    },
+    {
+      type: "pitfall",
+      title: "oneOf/anyOf/discriminatedUnion schemas need manual refinement",
+      content:
+        "OpenAPI's oneOf and anyOf map to TypeScript union types, but the generated unions are often too broad. If your API uses discriminated unions (type: 'email' | type: 'sms'), add a discriminator to the OpenAPI spec so the generated types include proper type narrowing.",
+    },
+    {
+      type: "example",
+      title: "Generate a type-safe API client from your Swagger spec",
+      content:
+        "Paste your openapi.json, generate TypeScript interfaces, then use them with a typed fetch wrapper. Every endpoint gets a function with typed parameters and return type. When the API changes, regenerate types and TypeScript immediately flags all the places your code needs to update.",
+    },
+    {
+      type: "security",
+      title: "Validate responses even with generated types",
+      content:
+        "Generated types provide compile-time safety but not runtime safety. A compromised or buggy API might return data that doesn't match the spec. Use Zod schemas (convert types to Zod with DevBolt's JSON to Zod tool) for runtime validation of critical API responses.",
+    },
+  ],
+  "openapi-validator": [
+    {
+      type: "tip",
+      title: "Validate your spec in CI to prevent drift from implementation",
+      content:
+        "Add OpenAPI validation to your CI pipeline. Every PR that changes routes should also update the spec. Stale specs mislead consumers, break code generation, and cause integration failures. Tools like spectral or redocly lint can enforce rules beyond basic schema validity.",
+    },
+    {
+      type: "pitfall",
+      title: "A valid spec doesn't mean a usable API",
+      content:
+        "Validation checks structure (valid JSON/YAML, required fields, correct $ref targets) but not quality. An API with 50 endpoints all named /do-thing-1 through /do-thing-50, no descriptions, and no examples passes validation but is unusable. Add descriptions, examples, and consistent naming.",
+    },
+    {
+      type: "example",
+      title: "Validate before publishing to API marketplaces or gateways",
+      content:
+        "API gateways (Kong, Apigee), documentation tools (Redoc, Swagger UI), and marketplaces (RapidAPI) all consume OpenAPI specs. An invalid spec fails silently — routes don't appear, parameters are missing, or types are wrong. Always validate before publishing to catch $ref errors and missing schemas.",
+    },
+    {
+      type: "security",
+      title: "Define security schemes for every endpoint",
+      content:
+        "OpenAPI specs should declare security schemes (Bearer token, API key, OAuth2) and apply them to each operation. Endpoints without a security requirement in the spec might accidentally be deployed without authentication. Use the validator to verify every endpoint has appropriate security defined.",
+    },
+  ],
+  "sql-to-typescript": [
+    {
+      type: "tip",
+      title: "Generate Prisma schemas for rapid prototyping, Drizzle for production control",
+      content:
+        "Prisma's schema is more concise and includes migrations out of the box — great for prototyping. Drizzle's schema is TypeScript-native, giving you full control over queries with zero abstraction cost. Choose based on your project maturity and performance requirements.",
+    },
+    {
+      type: "pitfall",
+      title: "SQL DECIMAL/NUMERIC types should not become TypeScript number",
+      content:
+        "JavaScript's number type is IEEE 754 floating point — it cannot exactly represent 0.1 + 0.2. Financial and precision-sensitive SQL columns (DECIMAL, NUMERIC, MONEY) should map to string or a Decimal library (decimal.js, Prisma Decimal) in TypeScript, not number.",
+    },
+    {
+      type: "example",
+      title: "Migrate a legacy database to a modern TypeScript ORM",
+      content:
+        "Export your existing database schema as CREATE TABLE statements (pg_dump --schema-only), paste into this converter, and get Prisma or Drizzle schemas. This shortcut saves hours of manually translating column types, constraints, and relationships for legacy database migrations.",
+    },
+    {
+      type: "security",
+      title: "Generated types should separate read and write interfaces",
+      content:
+        "A SQL table with auto-generated id, created_at, and hashed_password columns shouldn't have a single TypeScript interface. Create separate InsertUser (without id/timestamps), SelectUser (without password), and InternalUser (full row) types to prevent accidentally exposing or overwriting sensitive columns.",
+    },
+  ],
+  "sql-playground": [
+    {
+      type: "tip",
+      title: "Practice JOINs with the built-in sample datasets",
+      content:
+        "Understanding JOINs is the most important SQL skill. Use the sample datasets with related tables (users + orders, posts + comments) to practice INNER JOIN, LEFT JOIN, and self-joins. Master these three and you can handle 95% of real-world query requirements.",
+    },
+    {
+      type: "pitfall",
+      title: "SQLite has quirks that differ from PostgreSQL and MySQL",
+      content:
+        "This playground runs SQLite (via WebAssembly). SQLite uses dynamic typing (any column accepts any type), doesn't enforce VARCHAR length, and has limited ALTER TABLE support. Queries that work here may need adjustment for PostgreSQL (stricter types) or MySQL (different date functions).",
+    },
+    {
+      type: "example",
+      title: "Use CTEs and window functions for interview-style SQL problems",
+      content:
+        "WITH ranked AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn FROM employees) SELECT * FROM ranked WHERE rn <= 3; This common interview pattern uses both CTEs and window functions — practice it here until it's second nature.",
+    },
+    {
+      type: "security",
+      title: "Client-side SQL is safe — your data never leaves the browser",
+      content:
+        "This playground runs SQLite entirely in WebAssembly inside your browser. Your tables and data exist only in browser memory and are discarded when you close the tab. No database server is involved, so there's no risk of accidental data exposure or SQL injection to a production system.",
+    },
+  ],
+  "tsconfig-builder": [
+    {
+      type: "tip",
+      title: "Enable strict mode — it catches bugs that unit tests miss",
+      content:
+        "strict: true enables strictNullChecks, noImplicitAny, strictFunctionTypes, and more. These catch null pointer errors, implicit any types, and function signature mismatches at compile time. Fixing strict mode errors in a new project is easy — retrofitting it into a large codebase is painful.",
+    },
+    {
+      type: "pitfall",
+      title: "moduleResolution: 'node' is legacy — use 'bundler' for modern apps",
+      content:
+        "moduleResolution: 'node' (Node10) follows Node.js's CommonJS resolution algorithm. For apps using Vite, Next.js, or any bundler, use 'bundler' which supports package.json exports, conditional imports, and ESM properly. 'nodenext' is for pure Node.js ESM projects.",
+    },
+    {
+      type: "example",
+      title: "Use path aliases to eliminate ../../../ imports",
+      content:
+        "Set baseUrl: '.' and paths: { '@/*': ['src/*'] } to enable import { Button } from '@/components/Button' instead of import { Button } from '../../../components/Button'. Most bundlers (Vite, Next.js, webpack) need matching aliases in their config.",
+    },
+    {
+      type: "security",
+      title: "skipLibCheck: true hides vulnerabilities in dependencies",
+      content:
+        "skipLibCheck skips type checking of .d.ts files, which includes node_modules type definitions. While this speeds up compilation, it means type-level bugs or incompatibilities in dependencies won't surface until runtime. In security-critical code, consider disabling skipLibCheck.",
+    },
+  ],
+  "eslint-to-biome": [
+    {
+      type: "tip",
+      title: "Biome combines linting and formatting — replace Prettier too",
+      content:
+        "Biome replaces both ESLint and Prettier in a single tool. Remove eslint-config-prettier, @typescript-eslint/parser, and all ESLint plugins. One biome.json replaces .eslintrc, .prettierrc, and .editorconfig. This typically removes 10-15 devDependencies.",
+    },
+    {
+      type: "pitfall",
+      title: "Not all ESLint rules have Biome equivalents",
+      content:
+        "Biome supports ~200 lint rules vs ESLint's ecosystem of thousands across plugins. Plugin-specific rules (eslint-plugin-react-hooks, eslint-plugin-import) may not have 1:1 mappings. Check the converter's warnings output for unmapped rules and assess whether you actually need them.",
+    },
+    {
+      type: "example",
+      title: "Migrate incrementally with biome check --apply for auto-fixes",
+      content:
+        "Don't fix all linting issues manually. Run biome check --apply to auto-fix safe issues (formatting, import sorting, simple lint fixes), then review biome check --apply-unsafe for riskier transformations. Commit the auto-fixes separately from manual fixes for clean git history.",
+    },
+    {
+      type: "security",
+      title: "Biome's security rules catch patterns ESLint misses by default",
+      content:
+        "Biome includes security rules (noGlobalEval, noDangerouslySetInnerHtml, noGlobalAssign) in its recommended preset — no extra plugins needed. ESLint requires eslint-plugin-security or manual configuration for equivalent coverage. After migrating, verify your security rules are still active.",
+    },
+  ],
+  "ts6-migration": [
+    {
+      type: "tip",
+      title: "Check for ES5 target and CommonJS modules first — these are removed",
+      content:
+        "TypeScript 6.0 removes target: 'ES5' and module: 'commonjs' output modes. If your tsconfig.json uses these, you must migrate to ES2015+ target and ESM modules. This is the highest-impact breaking change and affects the most projects.",
+    },
+    {
+      type: "pitfall",
+      title: "strict: true is now the default — existing projects may see new errors",
+      content:
+        "Previously, strict mode was opt-in. In TS 6.0, it's the default. Projects that relied on implicit any types, unchecked null access, and loose function types will see hundreds of new errors. Add strict: false to your tsconfig.json explicitly if you can't fix them yet.",
+    },
+    {
+      type: "example",
+      title: "Run the migration checker before upgrading TypeScript",
+      content:
+        "Paste your tsconfig.json into DevBolt's TS6 Migration Checker before running npm install typescript@6. The readiness grade (A-F) and specific issue list tell you exactly what to fix. Grade A projects can upgrade immediately; grade D/F projects need preparation.",
+    },
+    {
+      type: "security",
+      title: "The strict default improves security of TypeScript codebases",
+      content:
+        "strict: true enables strictNullChecks (prevents null pointer errors), noImplicitAny (prevents untyped code), and strictFunctionTypes (prevents unsafe function assignments). These catches prevent common vulnerability patterns. Embrace the strict default rather than disabling it.",
+    },
+  ],
+  "jwt-builder": [
+    {
+      type: "tip",
+      title: "Use RS256 for multi-service architectures, HS256 for single-service",
+      content:
+        "HS256 (symmetric) uses one shared secret — any service that can verify a JWT can also create one. RS256 (asymmetric) uses a private key to sign and a public key to verify. In microservice architectures, RS256 lets services verify tokens without having the signing key.",
+    },
+    {
+      type: "pitfall",
+      title: "Never set excessively long expiration times",
+      content:
+        "JWTs cannot be revoked — once issued, they're valid until expiration. A JWT with exp set to 1 year means a leaked token grants access for up to a year. Use short-lived access tokens (5-15 minutes) paired with refresh tokens for session management.",
+    },
+    {
+      type: "example",
+      title: "Include only the minimum necessary claims in the payload",
+      content:
+        "JWTs are sent with every request — large payloads waste bandwidth. Include only identity (sub), permissions (role), and expiration (exp, iat). Don't embed user profiles, preferences, or other data that can be fetched from your API when needed.",
+    },
+    {
+      type: "security",
+      title: "Never use the 'none' algorithm in production",
+      content:
+        "The alg: 'none' option creates unsigned tokens — useful for development and testing only. Attackers exploit misconfigured JWT libraries by sending tokens with alg: 'none' to bypass signature verification. Always validate the algorithm server-side and reject 'none' in production.",
+    },
+  ],
 };

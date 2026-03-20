@@ -389,4 +389,459 @@ console.log('hello');
 </code></pre>`,
     },
   ],
+  "json-yaml": [
+    {
+      label: "Convert JSON config to YAML",
+      action: "Convert",
+      input: `{"server":{"host":"localhost","port":3000},"debug":true}`,
+      output: `server:
+  host: localhost
+  port: 3000
+debug: true`,
+    },
+    {
+      label: "Convert YAML to JSON",
+      action: "Convert",
+      input: `name: my-app
+version: 1.0.0
+dependencies:
+  - express
+  - cors`,
+      output: `{
+  "name": "my-app",
+  "version": "1.0.0",
+  "dependencies": ["express", "cors"]
+}`,
+    },
+    {
+      label: "Nested YAML to JSON",
+      action: "Convert",
+      input: `database:
+  host: db.example.com
+  port: 5432
+  credentials:
+    user: admin
+    password: secret`,
+      output: `{
+  "database": {
+    "host": "db.example.com",
+    "port": 5432,
+    "credentials": {
+      "user": "admin",
+      "password": "secret"
+    }
+  }
+}`,
+    },
+  ],
+  "html-entities": [
+    {
+      label: "Encode special HTML characters",
+      action: "Encode",
+      input: `<div class="alert">Price: $5 & up</div>`,
+      output: `&lt;div class=&quot;alert&quot;&gt;Price: $5 &amp; up&lt;/div&gt;`,
+    },
+    {
+      label: "Decode HTML entities to text",
+      action: "Decode",
+      input: `&lt;script&gt;alert(&apos;hello&apos;)&lt;/script&gt;`,
+      output: `<script>alert('hello')</script>`,
+    },
+    {
+      label: "Encode for safe embedding",
+      action: "Encode",
+      input: `Tom & Jerry's "Adventure" © 2024`,
+      output: `Tom &amp; Jerry&apos;s &quot;Adventure&quot; &copy; 2024`,
+    },
+  ],
+  "chmod-calculator": [
+    {
+      label: "Standard file permissions",
+      action: "Calculate",
+      input: `Owner: read, write
+Group: read
+Others: read`,
+      output: `chmod 644 file.txt
+-rw-r--r--`,
+    },
+    {
+      label: "Executable script permissions",
+      action: "Calculate",
+      input: `Owner: read, write, execute
+Group: read, execute
+Others: read, execute`,
+      output: `chmod 755 script.sh
+-rwxr-xr-x`,
+    },
+    {
+      label: "Private key permissions",
+      action: "Calculate",
+      input: `Owner: read, write
+Group: none
+Others: none`,
+      output: `chmod 600 id_rsa
+-rw-------`,
+    },
+  ],
+  "qr-code": [
+    {
+      label: "Generate URL QR code",
+      action: "Generate",
+      input: `https://devbolt.dev`,
+      output: `[QR Code Image]
+Size: 256×256px
+Error correction: M`,
+    },
+    {
+      label: "WiFi connection QR code",
+      action: "Generate",
+      input: `WIFI:T:WPA;S:MyNetwork;P:pass123;;`,
+      output: `[QR Code Image]
+Network: MyNetwork
+Security: WPA`,
+    },
+    {
+      label: "Contact vCard QR code",
+      action: "Generate",
+      input: `BEGIN:VCARD
+FN:Jane Smith
+TEL:+1234567890
+END:VCARD`,
+      output: `[QR Code Image]
+Type: vCard
+Contact: Jane Smith`,
+    },
+  ],
+  "sql-formatter": [
+    {
+      label: "Format a compact SELECT query",
+      action: "Format",
+      input: `SELECT u.name, u.email, COUNT(o.id) as orders FROM users u JOIN orders o ON u.id = o.user_id WHERE u.active = true GROUP BY u.name, u.email HAVING COUNT(o.id) > 5 ORDER BY orders DESC;`,
+      output: `SELECT
+  u.name,
+  u.email,
+  COUNT(o.id) AS orders
+FROM users u
+JOIN orders o
+  ON u.id = o.user_id
+WHERE u.active = true
+GROUP BY
+  u.name,
+  u.email
+HAVING COUNT(o.id) > 5
+ORDER BY orders DESC;`,
+    },
+    {
+      label: "Format a CREATE TABLE statement",
+      action: "Format",
+      input: `CREATE TABLE products (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, price DECIMAL(10,2) DEFAULT 0.00, created_at TIMESTAMP DEFAULT NOW());`,
+      output: `CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  price DECIMAL(10, 2) DEFAULT 0.00,
+  created_at TIMESTAMP DEFAULT NOW()
+);`,
+    },
+    {
+      label: "Format nested subquery",
+      action: "Format",
+      input: `SELECT * FROM users WHERE id IN (SELECT user_id FROM orders WHERE total > 100) AND status = 'active';`,
+      output: `SELECT *
+FROM users
+WHERE id IN (
+  SELECT user_id
+  FROM orders
+  WHERE total > 100
+)
+AND status = 'active';`,
+    },
+  ],
+  "word-counter": [
+    {
+      label: "Count a paragraph",
+      action: "Analyze",
+      input: `The quick brown fox jumps over the lazy dog. This classic sentence contains every letter of the English alphabet.`,
+      output: `Words: 19
+Characters: 111
+Sentences: 2
+Reading time: <1 min`,
+    },
+    {
+      label: "Analyze tweet length",
+      action: "Analyze",
+      input: `Just shipped a new feature! 🚀 Check out our latest update at devbolt.dev #webdev #coding`,
+      output: `Words: 14
+Characters: 89 / 280
+Sentences: 2
+Reading time: <1 min`,
+    },
+    {
+      label: "Code comment analysis",
+      action: "Analyze",
+      input: `This function validates user input by checking email format, password strength, and username availability against the database.`,
+      output: `Words: 17
+Characters: 122
+Sentences: 1
+Reading time: <1 min`,
+    },
+  ],
+  "number-base-converter": [
+    {
+      label: "Decimal to hexadecimal",
+      action: "Convert",
+      input: `255`,
+      output: `Hex: FF
+Binary: 11111111
+Octal: 377`,
+    },
+    {
+      label: "Hex color to decimal RGB",
+      action: "Convert",
+      input: `#3B82F6 (Hex)`,
+      output: `R: 59  G: 130  B: 246
+Binary: 00111011 10000010 11110110`,
+    },
+    {
+      label: "Binary to decimal",
+      action: "Convert",
+      input: `10101010 (Binary)`,
+      output: `Decimal: 170
+Hex: AA
+Octal: 252`,
+    },
+  ],
+  "lorem-ipsum": [
+    {
+      label: "Generate 2 paragraphs",
+      action: "Generate",
+      input: `Paragraphs: 2
+Type: Standard`,
+      output: `Lorem ipsum dolor sit amet, consectetur
+adipiscing elit. Sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua.
+
+Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.`,
+    },
+    {
+      label: "Generate word list",
+      action: "Generate",
+      input: `Words: 10
+Type: Words only`,
+      output: `lorem ipsum dolor sit amet consectetur
+adipiscing elit sed do`,
+    },
+    {
+      label: "Generate sentences",
+      action: "Generate",
+      input: `Sentences: 3
+Type: Sentences`,
+      output: `Lorem ipsum dolor sit amet. Consectetur
+adipiscing elit sed do eiusmod. Tempor
+incididunt ut labore et dolore.`,
+    },
+  ],
+  "json-to-typescript": [
+    {
+      label: "Convert API response to interfaces",
+      action: "Generate",
+      input: `{"id":1,"name":"Alice","email":"a@b.com","active":true}`,
+      output: `interface Root {
+  id: number;
+  name: string;
+  email: string;
+  active: boolean;
+}`,
+    },
+    {
+      label: "Nested object types",
+      action: "Generate",
+      input: `{"user":{"name":"Bob","address":{"city":"NYC","zip":"10001"}}}`,
+      output: `interface Address {
+  city: string;
+  zip: string;
+}
+
+interface User {
+  name: string;
+  address: Address;
+}
+
+interface Root {
+  user: User;
+}`,
+    },
+    {
+      label: "Array of objects",
+      action: "Generate",
+      input: `{"items":[{"id":1,"title":"Post"},{"id":2,"title":"Comment"}]}`,
+      output: `interface Item {
+  id: number;
+  title: string;
+}
+
+interface Root {
+  items: Item[];
+}`,
+    },
+  ],
+  "xml-formatter": [
+    {
+      label: "Format compact XML",
+      action: "Format",
+      input: `<root><user id="1"><name>Alice</name><email>a@b.com</email></user></root>`,
+      output: `<root>
+  <user id="1">
+    <name>Alice</name>
+    <email>a@b.com</email>
+  </user>
+</root>`,
+    },
+    {
+      label: "Format SOAP envelope",
+      action: "Format",
+      input: `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><GetUser><ID>42</ID></GetUser></soap:Body></soap:Envelope>`,
+      output: `<soap:Envelope
+  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetUser>
+      <ID>42</ID>
+    </GetUser>
+  </soap:Body>
+</soap:Envelope>`,
+    },
+    {
+      label: "Validate and format config",
+      action: "Format",
+      input: `<?xml version="1.0"?><config><db host="localhost" port="5432"/><cache ttl="300"/></config>`,
+      output: `<?xml version="1.0"?>
+<config>
+  <db host="localhost" port="5432"/>
+  <cache ttl="300"/>
+</config>`,
+    },
+  ],
+  "image-base64": [
+    {
+      label: "Small icon to data URI",
+      action: "Convert",
+      input: `[16×16 PNG favicon]
+Size: 1.2 KB`,
+      output: `data:image/png;base64,
+iVBORw0KGgoAAAANSUhEU...
+Length: 1,608 characters (+34%)`,
+    },
+    {
+      label: "Photo to Base64",
+      action: "Convert",
+      input: `[800×600 JPEG photo]
+Size: 45 KB`,
+      output: `data:image/jpeg;base64,
+/9j/4AAQSkZJRgABAQ...
+Length: 61,440 characters (+36%)`,
+    },
+    {
+      label: "SVG to inline data URI",
+      action: "Convert",
+      input: `<svg width="24" height="24">
+  <circle cx="12" cy="12" r="10"/>
+</svg>`,
+      output: `data:image/svg+xml;base64,
+PHN2ZyB3aWR0aD0iMjQi...
+Length: 96 characters`,
+    },
+  ],
+  "code-minifier": [
+    {
+      label: "Minify JavaScript",
+      action: "Minify",
+      input: `function greet(name) {
+  const message = "Hello, " + name;
+  console.log(message);
+  return message;
+}`,
+      output: `function greet(n){const m="Hello, "+n;console.log(m);return m}`,
+    },
+    {
+      label: "Minify CSS",
+      action: "Minify",
+      input: `.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}`,
+      output: `.container{display:flex;justify-content:center;align-items:center;padding:16px}`,
+    },
+    {
+      label: "Beautify minified HTML",
+      action: "Beautify",
+      input: `<div class="card"><h2>Title</h2><p>Content here</p><a href="#">Link</a></div>`,
+      output: `<div class="card">
+  <h2>Title</h2>
+  <p>Content here</p>
+  <a href="#">Link</a>
+</div>`,
+    },
+  ],
+  "gradient-generator": [
+    {
+      label: "Two-color linear gradient",
+      action: "Generate",
+      input: `Direction: to right
+Color 1: #3B82F6
+Color 2: #8B5CF6`,
+      output: `background: linear-gradient(
+  to right,
+  #3B82F6,
+  #8B5CF6
+);`,
+    },
+    {
+      label: "Radial gradient",
+      action: "Generate",
+      input: `Shape: circle
+Center: center
+Color 1: #F59E0B
+Color 2: #EF4444`,
+      output: `background: radial-gradient(
+  circle at center,
+  #F59E0B,
+  #EF4444
+);`,
+    },
+    {
+      label: "Three-color gradient",
+      action: "Generate",
+      input: `Direction: 135deg
+#667EEA → #764BA2 → #F093FB`,
+      output: `background: linear-gradient(
+  135deg,
+  #667EEA 0%,
+  #764BA2 50%,
+  #F093FB 100%
+);`,
+    },
+  ],
+  "slug-generator": [
+    {
+      label: "Blog post title to slug",
+      action: "Generate",
+      input: `How to Fix "Invalid JSON" Errors in 2024`,
+      output: `how-to-fix-invalid-json-errors-in-2024`,
+    },
+    {
+      label: "Unicode title to slug",
+      action: "Generate",
+      input: `Café Résumé — Tips & Tricks (Updated!)`,
+      output: `cafe-resume-tips-and-tricks-updated`,
+    },
+    {
+      label: "Product name to slug",
+      action: "Generate",
+      input: `DevBolt Pro: 100+ Developer Tools`,
+      output: `devbolt-pro-100-developer-tools`,
+    },
+  ],
 };
