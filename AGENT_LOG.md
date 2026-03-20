@@ -4,6 +4,19 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 29:00 | developer | Expand tool demos: 29 → 59 tools (50% coverage)
+
+- **Task:** Quality sweep — all developer tasks on board are done or need human action, so expanded animated demo coverage
+- **What was done:**
+  - **Tool Demos expansion (29 → 59 tools):** Added animated input→output demos for 30 additional tools: cron-parser, json-path, json-diff, curl-converter, html-to-jsx, json-to-csv, json-to-code, json-to-sql, json-to-zod, json-to-graphql, json-xml, css-to-tailwind, tailwind-to-css, typescript-to-js, svg-to-jsx, html-markdown, toml-converter, encode-decode, text-binary, yaml-formatter, box-shadow, border-radius, contrast-checker, markdown-table, color-palette, git-diff-viewer, date-format-tester, token-counter, regex-generator, file-hash. Each has 3 demo examples showcasing key features.
+  - Prioritized high-search-volume converters, popular CSS generators, and trending AI tools
+  - Build passes (0 errors), lint passes (0 warnings)
+- **Why:** Tool Demos provide multimedia content for 156% higher AI Overview selection rates (per GEO research). Coverage jumped from 25% to 50%. The demos auto-cycle through input→processing→output animations, pause on hover, and have dot navigation — they serve as visual proof that each tool works, which improves both user engagement and AI citation quality.
+- **Files modified:** src/data/tool-demos.ts, TASK_BOARD.md
+- **Result:** 59/117 tools with animated demos (50%), 177 total demo examples (was 87). Major content quality milestone — half of all tool pages now have interactive demonstrations.
+
+---
+
 ### 2026-03-19 28:00 | developer | Complete tool insights coverage: 79 → 117 tools (100%)
 
 - **Task:** Quality sweep — all developer tasks on board are done or need human action, so completed tool insights coverage

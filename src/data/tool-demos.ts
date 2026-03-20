@@ -844,4 +844,966 @@ Color 2: #EF4444`,
       output: `devbolt-pro-100-developer-tools`,
     },
   ],
+  "cron-parser": [
+    {
+      label: "Parse a common cron schedule",
+      action: "Parse",
+      input: `*/15 * * * *`,
+      output: `Every 15 minutes`,
+    },
+    {
+      label: "Weekday morning schedule",
+      action: "Parse",
+      input: `0 9 * * 1-5`,
+      output: `At 09:00 AM, Monday through Friday`,
+    },
+    {
+      label: "Monthly backup schedule",
+      action: "Parse",
+      input: `0 2 1 * *`,
+      output: `At 02:00 AM on the 1st of every month`,
+    },
+  ],
+  "json-path": [
+    {
+      label: "Extract nested field",
+      action: "Query",
+      input: `Path: $.store.book[0].title
+Data: {"store":{"book":[{"title":"Moby Dick"}]}}`,
+      output: `"Moby Dick"`,
+    },
+    {
+      label: "Filter by price",
+      action: "Query",
+      input: `Path: $.store.book[?(@.price<10)]
+Data: {"store":{"book":[{"title":"A","price":8},{"title":"B","price":12}]}}`,
+      output: `[{"title": "A", "price": 8}]`,
+    },
+    {
+      label: "Select all authors",
+      action: "Query",
+      input: `Path: $..author
+Data: {"books":[{"author":"Tolkien"},{"author":"Orwell"}]}`,
+      output: `["Tolkien", "Orwell"]`,
+    },
+  ],
+  "json-diff": [
+    {
+      label: "Detect value change",
+      action: "Compare",
+      input: `Left:  {"name":"Alice","age":28}
+Right: {"name":"Alice","age":29}`,
+      output: `~ age: 28 → 29
+1 change found`,
+    },
+    {
+      label: "Detect added field",
+      action: "Compare",
+      input: `Left:  {"id":1}
+Right: {"id":1,"role":"admin"}`,
+      output: `+ role: "admin"
+1 addition found`,
+    },
+    {
+      label: "Detect removed field",
+      action: "Compare",
+      input: `Left:  {"host":"localhost","port":3000,"debug":true}
+Right: {"host":"localhost","port":3000}`,
+      output: `- debug: true
+1 removal found`,
+    },
+  ],
+  "curl-converter": [
+    {
+      label: "cURL to JavaScript fetch",
+      action: "Convert",
+      input: `curl -X POST https://api.example.com/users -H "Content-Type: application/json" -d '{"name":"Alice"}'`,
+      output: `const res = await fetch(
+  "https://api.example.com/users",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: "Alice" }),
+  }
+);`,
+    },
+    {
+      label: "cURL to Python requests",
+      action: "Convert",
+      input: `curl https://api.example.com/users?page=1 -H "Authorization: Bearer token123"`,
+      output: `import requests
+
+response = requests.get(
+    "https://api.example.com/users",
+    params={"page": "1"},
+    headers={"Authorization": "Bearer token123"},
+)`,
+    },
+    {
+      label: "cURL to Go net/http",
+      action: "Convert",
+      input: `curl -X DELETE https://api.example.com/users/42`,
+      output: `req, _ := http.NewRequest(
+  "DELETE",
+  "https://api.example.com/users/42",
+  nil,
+)
+client := &http.Client{}
+resp, _ := client.Do(req)`,
+    },
+  ],
+  "html-to-jsx": [
+    {
+      label: "Convert class to className",
+      action: "Convert",
+      input: `<div class="container">
+  <label for="email">Email</label>
+  <input type="email" tabindex="1" />
+</div>`,
+      output: `<div className="container">
+  <label htmlFor="email">Email</label>
+  <input type="email" tabIndex="1" />
+</div>`,
+    },
+    {
+      label: "Convert inline style",
+      action: "Convert",
+      input: `<p style="font-size: 16px; color: red;">Hello</p>`,
+      output: `<p style={{ fontSize: "16px", color: "red" }}>Hello</p>`,
+    },
+    {
+      label: "Self-close void elements",
+      action: "Convert",
+      input: `<img src="logo.png" alt="Logo">
+<br>
+<hr>`,
+      output: `<img src="logo.png" alt="Logo" />
+<br />
+<hr />`,
+    },
+  ],
+  "json-to-csv": [
+    {
+      label: "Flat JSON array to CSV",
+      action: "Convert",
+      input: `[
+  {"name":"Alice","age":28,"city":"NYC"},
+  {"name":"Bob","age":35,"city":"London"}
+]`,
+      output: `name,age,city
+Alice,28,NYC
+Bob,35,London`,
+    },
+    {
+      label: "Nested fields with dot notation",
+      action: "Convert",
+      input: `[{"user":{"name":"Alice"},"role":"admin"}]`,
+      output: `user.name,role
+Alice,admin`,
+    },
+    {
+      label: "Handle special characters",
+      action: "Convert",
+      input: `[{"company":"Smith, Jones & Co","revenue":"$1,000,000"}]`,
+      output: `company,revenue
+"Smith, Jones & Co","$1,000,000"`,
+    },
+  ],
+  "json-to-code": [
+    {
+      label: "JSON to Go struct",
+      action: "Generate",
+      input: `{"id":1,"name":"Alice","email":"a@b.com","active":true}`,
+      output: `type Root struct {
+    ID     int    \`json:"id"\`
+    Name   string \`json:"name"\`
+    Email  string \`json:"email"\`
+    Active bool   \`json:"active"\`
+}`,
+    },
+    {
+      label: "JSON to Python dataclass",
+      action: "Generate",
+      input: `{"title":"Post","views":100,"tags":["go","rust"]}`,
+      output: `@dataclass
+class Root:
+    title: str
+    views: int
+    tags: list[str]`,
+    },
+    {
+      label: "JSON to Rust struct",
+      action: "Generate",
+      input: `{"name":"Alice","score":95.5,"passed":true}`,
+      output: `#[derive(Serialize, Deserialize)]
+struct Root {
+    name: String,
+    score: f64,
+    passed: bool,
+}`,
+    },
+  ],
+  "json-to-sql": [
+    {
+      label: "JSON to CREATE TABLE + INSERT",
+      action: "Convert",
+      input: `[{"id":1,"name":"Alice","email":"a@b.com"}]`,
+      output: `CREATE TABLE data (
+  id INTEGER,
+  name VARCHAR(255),
+  email VARCHAR(255)
+);
+
+INSERT INTO data (id, name, email)
+VALUES (1, 'Alice', 'a@b.com');`,
+    },
+    {
+      label: "Auto-detect column types",
+      action: "Convert",
+      input: `[{"price":29.99,"active":true,"created":"2026-01-15"}]`,
+      output: `CREATE TABLE data (
+  price DECIMAL(10,2),
+  active BOOLEAN,
+  created TIMESTAMP
+);`,
+    },
+    {
+      label: "PostgreSQL dialect",
+      action: "Convert",
+      input: `[{"id":"550e8400-e29b-41d4","data":{"key":"val"}}]`,
+      output: `CREATE TABLE data (
+  id UUID,
+  data JSONB
+);`,
+    },
+  ],
+  "json-to-zod": [
+    {
+      label: "Simple object to Zod schema",
+      action: "Generate",
+      input: `{"name":"Alice","age":28,"email":"a@b.com"}`,
+      output: `const schema = z.object({
+  name: z.string(),
+  age: z.number(),
+  email: z.string().email(),
+});`,
+    },
+    {
+      label: "Nested object with array",
+      action: "Generate",
+      input: `{"user":{"name":"Bob","roles":["admin","editor"]}}`,
+      output: `const schema = z.object({
+  user: z.object({
+    name: z.string(),
+    roles: z.array(z.string()),
+  }),
+});`,
+    },
+    {
+      label: "Nullable and optional fields",
+      action: "Generate",
+      input: `{"id":1,"bio":null,"tags":[]}`,
+      output: `const schema = z.object({
+  id: z.number(),
+  bio: z.string().nullable(),
+  tags: z.array(z.unknown()),
+});`,
+    },
+  ],
+  "json-to-graphql": [
+    {
+      label: "JSON to GraphQL type",
+      action: "Generate",
+      input: `{"id":1,"name":"Alice","email":"a@b.com"}`,
+      output: `type Root {
+  id: Int!
+  name: String!
+  email: String!
+}`,
+    },
+    {
+      label: "Nested object types",
+      action: "Generate",
+      input: `{"user":{"name":"Bob","posts":[{"title":"Hello"}]}}`,
+      output: `type Post {
+  title: String!
+}
+
+type User {
+  name: String!
+  posts: [Post!]!
+}
+
+type Root {
+  user: User!
+}`,
+    },
+    {
+      label: "Generate Query type",
+      action: "Generate",
+      input: `{"id":"uuid-123","status":"active","price":29.99}`,
+      output: `type Root {
+  id: ID!
+  status: String!
+  price: Float!
+}
+
+type Query {
+  getRoot(id: ID!): Root
+  listRoots: [Root!]!
+}`,
+    },
+  ],
+  "json-xml": [
+    {
+      label: "JSON to XML",
+      action: "Convert",
+      input: `{"user":{"name":"Alice","age":28}}`,
+      output: `<?xml version="1.0"?>
+<user>
+  <name>Alice</name>
+  <age>28</age>
+</user>`,
+    },
+    {
+      label: "XML to JSON",
+      action: "Convert",
+      input: `<book id="1">
+  <title>Dune</title>
+  <author>Herbert</author>
+</book>`,
+      output: `{
+  "book": {
+    "@id": "1",
+    "title": "Dune",
+    "author": "Herbert"
+  }
+}`,
+    },
+    {
+      label: "Array conversion",
+      action: "Convert",
+      input: `{"items":{"item":[{"name":"A"},{"name":"B"}]}}`,
+      output: `<items>
+  <item><name>A</name></item>
+  <item><name>B</name></item>
+</items>`,
+    },
+  ],
+  "css-to-tailwind": [
+    {
+      label: "Layout CSS to Tailwind",
+      action: "Convert",
+      input: `.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+}`,
+      output: `flex justify-center items-center p-4 gap-2`,
+    },
+    {
+      label: "Typography styles",
+      action: "Convert",
+      input: `.heading {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #1f2937;
+}`,
+      output: `text-2xl font-bold leading-normal text-gray-800`,
+    },
+    {
+      label: "Responsive width and border",
+      action: "Convert",
+      input: `.box {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}`,
+      output: `w-full max-w-xl rounded-lg border border-gray-200`,
+    },
+  ],
+  "tailwind-to-css": [
+    {
+      label: "Layout utilities to CSS",
+      action: "Convert",
+      input: `flex items-center justify-between p-4 gap-2`,
+      output: `display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1rem;
+gap: 0.5rem;`,
+    },
+    {
+      label: "Typography utilities",
+      action: "Convert",
+      input: `text-xl font-semibold text-gray-900 leading-tight`,
+      output: `font-size: 1.25rem;
+line-height: 1.75rem;
+font-weight: 600;
+color: #111827;
+line-height: 1.25;`,
+    },
+    {
+      label: "Spacing and sizing",
+      action: "Convert",
+      input: `w-full max-w-md mx-auto rounded-lg shadow-md`,
+      output: `width: 100%;
+max-width: 28rem;
+margin-left: auto;
+margin-right: auto;
+border-radius: 0.5rem;
+box-shadow: 0 4px 6px -1px rgba(0,0,0,.1);`,
+    },
+  ],
+  "typescript-to-js": [
+    {
+      label: "Strip interface and types",
+      action: "Convert",
+      input: `interface User {
+  name: string;
+  age: number;
+}
+
+const greet = (user: User): string => {
+  return \`Hello, \${user.name}\`;
+};`,
+      output: `const greet = (user) => {
+  return \`Hello, \${user.name}\`;
+};`,
+    },
+    {
+      label: "Convert enum to object",
+      action: "Convert",
+      input: `enum Status {
+  Active = "active",
+  Inactive = "inactive",
+}`,
+      output: `const Status = {
+  Active: "active",
+  Inactive: "inactive",
+};`,
+    },
+    {
+      label: "Remove generics and assertions",
+      action: "Convert",
+      input: `const data = response.json() as ApiResponse<User[]>;
+const items: Array<string> = [];`,
+      output: `const data = response.json();
+const items = [];`,
+    },
+  ],
+  "svg-to-jsx": [
+    {
+      label: "Convert SVG attributes to JSX",
+      action: "Convert",
+      input: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <path stroke-width="2" fill-opacity="0.5" clip-path="url(#c)" d="M12 2L2 22h20z"/>
+</svg>`,
+      output: `<svg viewBox="0 0 24 24">
+  <path strokeWidth="2" fillOpacity="0.5" clipPath="url(#c)" d="M12 2L2 22h20z"/>
+</svg>`,
+    },
+    {
+      label: "Generate React component",
+      action: "Convert",
+      input: `<svg width="24" height="24" class="icon">
+  <circle cx="12" cy="12" r="10"/>
+</svg>`,
+      output: `const Icon = (props) => (
+  <svg width="24" height="24"
+    className="icon" {...props}>
+    <circle cx="12" cy="12" r="10"/>
+  </svg>
+);`,
+    },
+    {
+      label: "Convert inline styles",
+      action: "Convert",
+      input: `<svg>
+  <rect style="fill: red; stroke-width: 2"/>
+</svg>`,
+      output: `<svg>
+  <rect style={{ fill: "red", strokeWidth: 2 }}/>
+</svg>`,
+    },
+  ],
+  "html-markdown": [
+    {
+      label: "HTML to Markdown",
+      action: "Convert",
+      input: `<h1>Title</h1>
+<p>This is <strong>bold</strong> and <em>italic</em>.</p>
+<ul>
+  <li>Item one</li>
+  <li>Item two</li>
+</ul>`,
+      output: `# Title
+
+This is **bold** and *italic*.
+
+- Item one
+- Item two`,
+    },
+    {
+      label: "Markdown to HTML",
+      action: "Convert",
+      input: `## Features
+
+1. Fast **performance**
+2. Easy [setup](https://example.com)
+3. \`Zero config\``,
+      output: `<h2>Features</h2>
+<ol>
+  <li>Fast <strong>performance</strong></li>
+  <li>Easy <a href="https://example.com">setup</a></li>
+  <li><code>Zero config</code></li>
+</ol>`,
+    },
+    {
+      label: "Convert HTML table",
+      action: "Convert",
+      input: `<table>
+  <tr><th>Name</th><th>Role</th></tr>
+  <tr><td>Alice</td><td>Admin</td></tr>
+</table>`,
+      output: `| Name | Role |
+|------|------|
+| Alice | Admin |`,
+    },
+  ],
+  "toml-converter": [
+    {
+      label: "TOML to JSON",
+      action: "Convert",
+      input: `[package]
+name = "my-app"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+serde = "1.0"
+tokio = { version = "1", features = ["full"] }`,
+      output: `{
+  "package": {
+    "name": "my-app",
+    "version": "1.0.0",
+    "edition": "2021"
+  },
+  "dependencies": {
+    "serde": "1.0",
+    "tokio": { "version": "1", "features": ["full"] }
+  }
+}`,
+    },
+    {
+      label: "JSON to TOML",
+      action: "Convert",
+      input: `{"server":{"host":"0.0.0.0","port":8080},"debug":false}`,
+      output: `debug = false
+
+[server]
+host = "0.0.0.0"
+port = 8080`,
+    },
+    {
+      label: "TOML to YAML",
+      action: "Convert",
+      input: `[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]`,
+      output: `tool:
+  pytest:
+    ini_options:
+      minversion: "6.0"
+      testpaths:
+        - tests`,
+    },
+  ],
+  "encode-decode": [
+    {
+      label: "Hex encode text",
+      action: "Encode",
+      input: `Hello, World!`,
+      output: `48656c6c6f2c20576f726c6421`,
+    },
+    {
+      label: "Base32 encode",
+      action: "Encode",
+      input: `DevBolt`,
+      output: `IRSWG33OMUXA====`,
+    },
+    {
+      label: "Binary encode",
+      action: "Encode",
+      input: `Hi`,
+      output: `01001000 01101001`,
+    },
+  ],
+  "text-binary": [
+    {
+      label: "Text to binary",
+      action: "Convert",
+      input: `Hello`,
+      output: `01001000 01100101 01101100
+01101100 01101111`,
+    },
+    {
+      label: "Binary to text",
+      action: "Convert",
+      input: `01000100 01100101 01110110`,
+      output: `Dev`,
+    },
+    {
+      label: "Encode with ASCII codes",
+      action: "Convert",
+      input: `A B C`,
+      output: `01000001 00100000 01000010
+00100000 01000011
+ASCII: 65 32 66 32 67`,
+    },
+  ],
+  "yaml-formatter": [
+    {
+      label: "Format messy YAML",
+      action: "Format",
+      input: `name: my-app
+version:   1.0
+deps:
+  - express
+  -    cors
+  - dotenv`,
+      output: `name: my-app
+version: 1.0
+deps:
+  - express
+  - cors
+  - dotenv`,
+    },
+    {
+      label: "Validate YAML syntax",
+      action: "Validate",
+      input: `server:
+  host: localhost
+  port: 3000
+  ssl: true`,
+      output: `Valid YAML
+Keys: 4
+Depth: 2
+Type: object`,
+    },
+    {
+      label: "Sort YAML keys",
+      action: "Format",
+      input: `port: 8080
+name: api
+host: 0.0.0.0
+debug: false`,
+      output: `debug: false
+host: 0.0.0.0
+name: api
+port: 8080`,
+    },
+  ],
+  "box-shadow": [
+    {
+      label: "Subtle card shadow",
+      action: "Generate",
+      input: `Offset: 0 4px
+Blur: 6px
+Spread: -1px
+Color: rgba(0,0,0,0.1)`,
+      output: `box-shadow:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1);`,
+    },
+    {
+      label: "Elevated button shadow",
+      action: "Generate",
+      input: `Offset: 0 10px
+Blur: 15px
+Spread: -3px
+Color: rgba(0,0,0,0.2)`,
+      output: `box-shadow:
+  0 10px 15px -3px rgba(0, 0, 0, 0.2);`,
+    },
+    {
+      label: "Inset shadow",
+      action: "Generate",
+      input: `Inset: true
+Offset: 0 2px
+Blur: 4px
+Color: rgba(0,0,0,0.06)`,
+      output: `box-shadow:
+  inset 0 2px 4px rgba(0, 0, 0, 0.06);`,
+    },
+  ],
+  "border-radius": [
+    {
+      label: "Rounded corners",
+      action: "Generate",
+      input: `All corners: 12px`,
+      output: `border-radius: 12px;`,
+    },
+    {
+      label: "Pill shape",
+      action: "Generate",
+      input: `All corners: 9999px`,
+      output: `border-radius: 9999px;
+/* Creates a pill/capsule shape */`,
+    },
+    {
+      label: "Custom per-corner",
+      action: "Generate",
+      input: `Top-left: 16px
+Top-right: 16px
+Bottom-right: 0
+Bottom-left: 0`,
+      output: `border-radius: 16px 16px 0 0;
+/* Rounded top, flat bottom */`,
+    },
+  ],
+  "contrast-checker": [
+    {
+      label: "Check dark text on white",
+      action: "Check",
+      input: `Text: #1F2937
+Background: #FFFFFF`,
+      output: `Contrast ratio: 15.4:1
+WCAG AA: Pass (normal + large)
+WCAG AAA: Pass (normal + large)`,
+    },
+    {
+      label: "Check brand colors",
+      action: "Check",
+      input: `Text: #FFFFFF
+Background: #3B82F6`,
+      output: `Contrast ratio: 4.6:1
+WCAG AA: Pass (large only)
+WCAG AAA: Fail`,
+    },
+    {
+      label: "Low contrast warning",
+      action: "Check",
+      input: `Text: #9CA3AF
+Background: #F3F4F6`,
+      output: `Contrast ratio: 2.1:1
+WCAG AA: Fail
+WCAG AAA: Fail
+Suggestion: Darken text to #6B7280`,
+    },
+  ],
+  "markdown-table": [
+    {
+      label: "Generate a 3-column table",
+      action: "Generate",
+      input: `Columns: Name, Role, Team
+Rows: 3`,
+      output: `| Name  | Role    | Team      |
+|-------|---------|-----------|
+| Alice | Admin   | Platform  |
+| Bob   | Dev     | Frontend  |
+| Eve   | DevOps  | Infra     |`,
+    },
+    {
+      label: "Aligned columns",
+      action: "Generate",
+      input: `Columns: Feature, Status, Priority
+Align: left, center, right`,
+      output: `| Feature | Status | Priority |
+|:--------|:------:|---------:|
+| Auth    | Done   |     High |
+| Search  | WIP    |   Medium |`,
+    },
+    {
+      label: "Comparison table",
+      action: "Generate",
+      input: `Columns: Tool, Free, Pro
+Rows: 2`,
+      output: `| Tool     | Free | Pro |
+|----------|------|-----|
+| JSON     | Yes  | Yes |
+| API Keys | No   | Yes |`,
+    },
+  ],
+  "color-palette": [
+    {
+      label: "Generate from base color",
+      action: "Generate",
+      input: `Base: #3B82F6`,
+      output: `50:  #EFF6FF
+100: #DBEAFE
+200: #BFDBFE
+300: #93C5FD
+400: #60A5FA
+500: #3B82F6
+600: #2563EB
+700: #1D4ED8
+800: #1E40AF
+900: #1E3A8A`,
+    },
+    {
+      label: "Complementary pair",
+      action: "Generate",
+      input: `Color: #8B5CF6 (violet)`,
+      output: `Primary:  #8B5CF6
+Complement: #F6E05E
+Analogous: #6366F1, #A855F7`,
+    },
+    {
+      label: "Triadic harmony",
+      action: "Generate",
+      input: `Color: #EF4444 (red)`,
+      output: `Color 1: #EF4444 (red)
+Color 2: #22C55E (green)
+Color 3: #3B82F6 (blue)`,
+    },
+  ],
+  "git-diff-viewer": [
+    {
+      label: "View file modification",
+      action: "Render",
+      input: `--- a/config.ts
++++ b/config.ts
+@@ -1,3 +1,3 @@
+ const config = {
+-  port: 3000,
++  port: 8080,
+ };`,
+      output: `config.ts: 1 addition, 1 deletion
+  const config = {
+-   port: 3000,
++   port: 8080,
+  };`,
+    },
+    {
+      label: "View added file",
+      action: "Render",
+      input: `--- /dev/null
++++ b/utils.ts
+@@ -0,0 +1,3 @@
++export function add(a: number, b: number) {
++  return a + b;
++}`,
+      output: `utils.ts (new file): 3 additions
++ export function add(a: number, b: number) {
++   return a + b;
++ }`,
+    },
+    {
+      label: "Multi-file diff stats",
+      action: "Render",
+      input: `3 files changed, 15 insertions(+), 7 deletions(-)`,
+      output: `Files changed: 3
++15 insertions  -7 deletions
+Net: +8 lines`,
+    },
+  ],
+  "date-format-tester": [
+    {
+      label: "Test strftime format",
+      action: "Format",
+      input: `Format: %Y-%m-%d %H:%M:%S
+Date: March 19, 2026`,
+      output: `2026-03-19 14:30:00`,
+    },
+    {
+      label: "ISO 8601 format",
+      action: "Format",
+      input: `Format: YYYY-MM-DDTHH:mm:ssZ
+Date: March 19, 2026`,
+      output: `2026-03-19T14:30:00+00:00`,
+    },
+    {
+      label: "Human-readable format",
+      action: "Format",
+      input: `Format: MMMM Do, YYYY
+Date: March 19, 2026`,
+      output: `March 19th, 2026`,
+    },
+  ],
+  "token-counter": [
+    {
+      label: "Count GPT-4 tokens",
+      action: "Count",
+      input: `Hello, how are you doing today?`,
+      output: `Tokens: 8
+Cost (GPT-4o): $0.00002 input
+Context used: 0.006%`,
+    },
+    {
+      label: "Count Claude tokens",
+      action: "Count",
+      input: `Write a Python function to sort a list of objects by name.`,
+      output: `Tokens: 13
+Cost (Claude Sonnet): $0.000039 input
+Context used: 0.006%`,
+    },
+    {
+      label: "Compare model costs",
+      action: "Count",
+      input: `[500 word essay on JavaScript]`,
+      output: `Tokens: ~650
+GPT-4o:       $0.0016
+Claude Opus:  $0.0098
+Gemini 2.5:   $0.0008`,
+    },
+  ],
+  "regex-generator": [
+    {
+      label: "Describe a pattern in English",
+      action: "Generate",
+      input: `Match email addresses`,
+      output: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}
+
+Matches: user@example.com, first.last@co.uk`,
+    },
+    {
+      label: "Match phone numbers",
+      action: "Generate",
+      input: `US phone numbers with optional country code`,
+      output: `(\\+1\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}
+
+Matches: +1 (555) 123-4567, 555.123.4567`,
+    },
+    {
+      label: "Extract URLs from text",
+      action: "Generate",
+      input: `Match HTTP and HTTPS URLs`,
+      output: `https?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=]+
+
+Matches: https://devbolt.dev/tools`,
+    },
+  ],
+  "file-hash": [
+    {
+      label: "Calculate SHA-256 of a file",
+      action: "Hash",
+      input: `[document.pdf]
+Size: 2.4 MB`,
+      output: `SHA-256: 9f86d081884c7d659a2f...
+MD5: 098f6bcd4621d373cade4e832627b4f6
+SHA-1: a94a8fe5ccb19ba61c4c0873d391e987982fbbd3`,
+    },
+    {
+      label: "Verify download integrity",
+      action: "Hash",
+      input: `Expected: 9f86d081884c7d65...
+File: [installer.exe]`,
+      output: `SHA-256: 9f86d081884c7d65...
+Status: Match confirmed
+File integrity: Verified`,
+    },
+    {
+      label: "Compare two files",
+      action: "Hash",
+      input: `File A: [config-v1.json]
+File B: [config-v2.json]`,
+      output: `File A: 5d41402abc4b2a76b...
+File B: 7d793037a0760186b...
+Match: No (files differ)`,
+    },
+  ],
 };
