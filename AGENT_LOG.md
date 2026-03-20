@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 32:00 | developer | Add error boundaries for graceful error recovery
+
+- **Task:** Quality sweep — all developer tasks on board require human action, so performed codebase quality audit
+- **What was done:**
+  - **Full audit:** Build passes (0 errors), lint passes (0 warnings). Zero TypeScript `any` types across entire src/. All 117 tools properly registered in data, sitemap, and llms.txt. All img tags have alt attributes. All external links have proper rel attributes. No stale console.logs, TODOs, or FIXMEs in production code. Public-facing tool counts all correct at 117.
+  - **Error boundaries added:** Created `src/app/error.tsx` (root-level) and `src/app/tools/error.tsx` (tools-level) error boundaries. Previously, any unhandled runtime error in a tool would crash the page with a blank white screen. Now users see a friendly "Something went wrong" message with a "Try Again" button to reset state without losing their work. The tools-level boundary includes a warning icon and reassures users their data stayed in the browser. Both match existing design language (indigo CTA, dark mode support).
+  - **Audit results:** Already excellent — sitemap complete, robots.ts configured, manifest.ts has PWA config, security headers in next.config.ts, custom 404 page exists. The only gap was error boundaries.
+- **Files created:** src/app/error.tsx, src/app/tools/error.tsx
+- **Result:** All tool pages and site-wide routes now have graceful error recovery. Build passes (0 errors), lint passes (0 warnings).
+
+---
+
 ### 2026-03-19 31:00 | developer | Quality sweep: fix README category mismatches
 
 - **Task:** Quality sweep — all developer tasks on board require human action, so performed codebase quality audit
