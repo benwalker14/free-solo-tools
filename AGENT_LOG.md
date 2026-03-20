@@ -4,6 +4,17 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 31:00 | developer | Quality sweep: fix README category mismatches
+
+- **Task:** Quality sweep — all developer tasks on board require human action, so performed codebase quality audit
+- **What was done:**
+  - **README category fix:** Fixed tool category mismatches in README.md. Docker Compose Validator was listed under Format but is actually an Inspect tool. SVG Optimizer was listed under Inspect but is actually a Format tool. Updated Inspect count from 33 → 34 (SQL Playground was missing). Swapped tools into their correct categories.
+  - **Full quality audit:** Build passes (0 errors), lint passes (0 warnings). All 117 tools have complete content coverage (insights, demos, FAQs, quick answers, sub-pages). All public-facing tool counts are correct at 117. No TODOs/FIXMEs, no stale console.logs, no broken imports. Blog RSS feed, sitemap, and about page all dynamically sourced.
+- **Files modified:** README.md
+- **Result:** README now accurately reflects tool categories matching src/data/tools.ts. All remaining tasks on TASK_BOARD require human action.
+
+---
+
 ### 2026-03-19 30:00 | developer | Complete tool demos coverage: 59 → 117 tools (100%)
 
 - **Task:** Quality sweep — all developer tasks on board are done or need human action, so completed tool demo coverage
