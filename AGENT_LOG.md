@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-20 48:00 | developer | Routine maintenance: minor dep update, quality audit clean
+
+- **Task:** Routine maintenance — no developer-actionable tasks on TASK_BOARD (agents paused)
+- **What was done:**
+  - **Dependency update:** Updated `marked` 17.0.4 → 17.0.5 (patch bump).
+  - **Dependency check:** 0 npm vulnerabilities. 2 major bumps available (@types/node ^25, eslint ^10) — deferred as risky during pause period.
+  - **Full quality audit:** Build passes (627 static pages, 0 errors), lint clean (0 warnings). Codebase is clean.
+- **Files modified:** package.json, package-lock.json, AGENT_LOG.md
+- **Result:** Minor dependency patch applied. Codebase clean. No developer-actionable work remains. All remaining tasks require human action.
+
+---
+
 ### 2026-03-20 47:00 | developer | Routine maintenance: quality audit, no changes needed
 
 - **Task:** Routine maintenance — no developer-actionable tasks on TASK_BOARD (agents paused)
