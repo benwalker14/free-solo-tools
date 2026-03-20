@@ -15,6 +15,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a text diff?",
           body: "A text diff compares two versions of a document line by line and highlights what was added, removed, or modified. Diff algorithms power version control systems like Git, collaborative editing tools, and document review workflows. Understanding diffs is essential for tracking changes across any text-based content.",
+          codeExample: '// JavaScript — compare two strings line by line\nfunction diffLines(a, b) {\n  const linesA = a.split("\\n"), linesB = b.split("\\n");\n  return linesB.map((line, i) =>\n    line === linesA[i] ? `  ${line}` : `+ ${line}`\n  ).join("\\n");\n}\n\n# Python — quick text diff\nimport difflib\ndiff = difflib.unified_diff(\n    old.splitlines(), new.splitlines(),\n    fromfile="original", tofile="modified", lineterm=""\n)\nprint("\\n".join(diff))',
         },
         {
           heading: "Common use cases",
@@ -56,6 +57,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a code diff?",
           body: "A code diff visualizes the differences between two versions of source code. Unlike plain text diffs, code diffs are often displayed with syntax highlighting so developers can quickly identify meaningful changes versus whitespace or formatting shifts. Code diffs are the backbone of pull request reviews on platforms like GitHub and GitLab.",
+          codeExample: '// JavaScript — diff two code snippets\nimport { diffLines } from "diff";\nconst changes = diffLines(oldCode, newCode);\nchanges.forEach(part => {\n  const prefix = part.added ? "+" : part.removed ? "-" : " ";\n  process.stdout.write(prefix + part.value);\n});\n\n# Python — compare code files\nimport difflib\ndiff = difflib.unified_diff(\n    open("old.py").readlines(),\n    open("new.py").readlines(),\n    fromfile="old.py", tofile="new.py"\n)\nprint("".join(diff))',
         },
         {
           heading: "Common use cases",
@@ -100,6 +102,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is WCAG AA?",
           body: "WCAG AA is the mid-level conformance standard in the Web Content Accessibility Guidelines published by the W3C. For normal text, AA requires a contrast ratio of at least 4.5:1 between foreground and background colors. For large text (18pt or 14pt bold), the requirement is 3:1. Meeting AA is the most common legal and organizational accessibility target worldwide.",
+          codeExample: '// JavaScript — check WCAG AA contrast ratio (minimum 4.5:1)\nfunction luminance(r, g, b) {\n  const [rs, gs, bs] = [r, g, b].map(c => {\n    c /= 255;\n    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;\n  });\n  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;\n}\nfunction contrastRatio(l1, l2) {\n  const lighter = Math.max(l1, l2), darker = Math.min(l1, l2);\n  return (lighter + 0.05) / (darker + 0.05);\n}\nconst ratio = contrastRatio(luminance(0,0,0), luminance(255,255,255));\nconsole.log(ratio >= 4.5 ? "AA pass" : "AA fail"); // 21:1 → AA pass',
         },
         {
           heading: "Common use cases",
@@ -141,6 +144,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is WCAG AAA?",
           body: "WCAG AAA is the highest conformance level in the Web Content Accessibility Guidelines. It requires a contrast ratio of at least 7:1 for normal text and 4.5:1 for large text. While not always required by law, AAA conformance provides the best readability for users with moderate to severe vision impairments and benefits all users in challenging lighting conditions.",
+          codeExample: '// JavaScript — check WCAG AAA contrast (7:1 for normal text, 4.5:1 for large)\nconst ratio = contrastRatio(fgLuminance, bgLuminance);\nconst aaaNormal = ratio >= 7;    // 14px normal text\nconst aaaLarge  = ratio >= 4.5;  // 18px+ or 14px bold\nconsole.log(`Ratio: ${ratio.toFixed(2)}:1`);\nconsole.log(`AAA Normal: ${aaaNormal ? "PASS" : "FAIL"}`);\nconsole.log(`AAA Large:  ${aaaLarge ? "PASS" : "FAIL"}`);',
         },
         {
           heading: "Common use cases",
@@ -185,6 +189,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is JSONPath?",
           body: "JSONPath is a query language for JSON, analogous to XPath for XML. It lets you extract specific values from deeply nested JSON structures using concise dot-notation or bracket-notation expressions. JSONPath was originally proposed by Stefan Goessner in 2007 and is now formalized in RFC 9535.",
+          codeExample: '// JSONPath syntax examples\n// $           → root object\n// $.store     → store property\n// $.store.book[0]  → first book\n// $..author   → all authors (recursive)\n// $.store.book[*].title  → all titles\n// $.store.book[?(@.price < 10)]  → filter\n// $.store.book[-1]  → last book\n\n// JavaScript — query with jsonpath-plus\nimport { JSONPath } from "jsonpath-plus";\nconst titles = JSONPath({ path: "$.store.book[*].title", json: data });\nconsole.log(titles); // ["Sayings of the Century", ...]',
         },
         {
           heading: "Core operators",
@@ -226,6 +231,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why learn JSONPath by example?",
           body: "JSONPath syntax is compact but can be tricky with nested arrays and filter expressions. Working through real examples is the fastest way to build fluency. Each example below covers a common scenario like extracting nested fields, filtering arrays by value, and using wildcards for bulk extraction.",
+          codeExample: '// Common JSONPath queries\nconst data = { users: [{ name: "Alice", age: 30 }, { name: "Bob", age: 25 }] };\n\n// All names:       $.users[*].name → ["Alice", "Bob"]\n// First user:      $.users[0] → { name: "Alice", age: 30 }\n// Filter by age:   $.users[?(@.age > 28)] → [{ name: "Alice", age: 30 }]\n// Slice:           $.users[0:1] → [{ name: "Alice", age: 30 }]\n// Recursive:       $..name → ["Alice", "Bob"]\n\n# Python — jsonpath-ng\nfrom jsonpath_ng import parse\nexpr = parse("$.users[*].name")\nnames = [m.value for m in expr.find(data)]',
         },
         {
           heading: "Common use cases",
@@ -270,6 +276,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a JSON Schema?",
           body: "JSON Schema is a vocabulary that lets you annotate and validate the structure of JSON documents. It defines expected data types, required properties, value constraints, and nested object shapes. JSON Schema is used in API documentation (OpenAPI/Swagger), form validation, configuration file validation, and data pipeline contracts.",
+          codeExample: '// JavaScript — generate JSON Schema from sample data\nfunction generateSchema(value) {\n  if (value === null) return { type: "null" };\n  if (Array.isArray(value)) return {\n    type: "array",\n    items: value.length ? generateSchema(value[0]) : {}\n  };\n  if (typeof value === "object") return {\n    type: "object",\n    properties: Object.fromEntries(\n      Object.entries(value).map(([k, v]) => [k, generateSchema(v)])\n    ),\n    required: Object.keys(value)\n  };\n  return { type: typeof value };\n}\nconsole.log(JSON.stringify(generateSchema({ name: "Alice", age: 30 }), null, 2));',
         },
         {
           heading: "Common use cases",
@@ -311,6 +318,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is JSON Schema Draft-07?",
           body: "Draft-07 (published 2018) is the most widely adopted version of the JSON Schema specification. It introduced conditional keywords like if/then/else, the readOnly and writeOnly annotations, and the contentMediaType/contentEncoding keywords. Most major validation libraries — including Ajv, jsonschema (Python), and everit-json-schema (Java) — fully support Draft-07.",
+          codeExample: '// JSON Schema Draft-07 example\n{\n  "$schema": "http://json-schema.org/draft-07/schema#",\n  "type": "object",\n  "properties": {\n    "name":  { "type": "string", "minLength": 1 },\n    "email": { "type": "string", "format": "email" },\n    "age":   { "type": "integer", "minimum": 0, "maximum": 150 }\n  },\n  "required": ["name", "email"],\n  "additionalProperties": false\n}\n\n// Node.js — validate with ajv\nimport Ajv from "ajv";\nconst ajv = new Ajv();\nconst valid = ajv.validate(schema, data);\nif (!valid) console.log(ajv.errors);',
         },
         {
           heading: "Common use cases",
@@ -355,6 +363,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a character counter?",
           body: "A character counter tallies the number of individual characters in a piece of text, including letters, numbers, punctuation, and optionally spaces. It is essential for platforms with strict character limits such as Twitter/X (280 chars), Instagram bios (150 chars), Google Ads headlines (30 chars), and HTML meta descriptions (155-160 chars).",
+          codeExample: '// JavaScript — count characters, words, and sentences\nfunction countText(text) {\n  return {\n    chars: text.length,\n    charsNoSpaces: text.replace(/\\s/g, "").length,\n    words: text.trim().split(/\\s+/).filter(Boolean).length,\n    sentences: text.split(/[.!?]+/).filter(s => s.trim()).length,\n    lines: text.split("\\n").length,\n  };\n}\nconsole.log(countText("Hello world. How are you?"));\n// { chars: 25, charsNoSpaces: 21, words: 5, sentences: 2, lines: 1 }',
         },
         {
           heading: "Common use cases",
@@ -396,6 +405,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How is reading time calculated?",
           body: "Reading time is estimated by dividing the total word count by the average adult reading speed, typically 200-250 words per minute for English text. This tool uses 238 WPM as its default, which is the commonly cited average from research studies. Technical content with code or data may take longer, while familiar content may be faster.",
+          codeExample: '// JavaScript — estimate reading time (avg 238 words/min)\nfunction readingTime(text) {\n  const words = text.trim().split(/\\s+/).length;\n  const minutes = Math.ceil(words / 238);\n  return `${minutes} min read`;\n}\nconsole.log(readingTime(articleText));\n\n# Python — reading time estimate\ndef reading_time(text, wpm=238):\n    words = len(text.split())\n    minutes = -(-words // wpm)  # ceiling division\n    return f"{minutes} min read"\nprint(reading_time(article_text))',
         },
         {
           heading: "Common use cases",
@@ -440,6 +450,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a query string?",
           body: "A query string is the portion of a URL that follows the question mark (?). It contains key-value pairs separated by ampersands (&), such as ?page=2&sort=name&order=asc. Query strings pass data to web servers, configure page state, and carry tracking parameters like UTM codes for analytics.",
+          codeExample: '// JavaScript — parse query string parameters\nconst url = new URL("https://example.com/search?q=hello&page=2&sort=date");\nconst params = Object.fromEntries(url.searchParams);\nconsole.log(params); // { q: "hello", page: "2", sort: "date" }\n\n// Build query string from object\nconst qs = new URLSearchParams({ q: "test", page: "1" }).toString();\nconsole.log(qs); // "q=test&page=1"\n\n# Python — parse query strings\nfrom urllib.parse import parse_qs, urlencode\nparams = parse_qs("q=hello&page=2")\nprint(params)  # {"q": ["hello"], "page": ["2"]}',
         },
         {
           heading: "Common use cases",
@@ -481,6 +492,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What are URL components?",
           body: "A URL (Uniform Resource Locator) consists of several parts defined by RFC 3986: the scheme (https), authority (user@host:port), path (/page), query (?key=value), and fragment (#section). Understanding these components is essential for web development, security auditing, and SEO. Each part serves a distinct purpose in how browsers and servers locate and deliver resources.",
+          codeExample: '// JavaScript — extract URL components\nconst url = new URL("https://user:pass@api.example.com:8080/v1/users?active=true#top");\nconsole.log(url.protocol);  // "https:"\nconsole.log(url.hostname);  // "api.example.com"\nconsole.log(url.port);      // "8080"\nconsole.log(url.pathname);  // "/v1/users"\nconsole.log(url.search);    // "?active=true"\nconsole.log(url.hash);      // "#top"\nconsole.log(url.origin);    // "https://api.example.com:8080"\n\n# Python\nfrom urllib.parse import urlparse\np = urlparse("https://api.example.com:8080/v1/users?active=true")\nprint(p.scheme, p.hostname, p.port, p.path)',
         },
         {
           heading: "Common use cases",
@@ -525,6 +537,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is chmod symbolic notation?",
           body: "Chmod symbolic notation uses letters to represent permissions: r (read), w (write), and x (execute). Permissions are grouped into three categories: u (user/owner), g (group), and o (others). Symbolic commands like u+x (add execute for owner) or go-w (remove write for group and others) are often easier to read than their octal equivalents.",
+          codeExample: '# Chmod symbolic notation\nchmod u+rwx file     # owner: read + write + execute\nchmod g+rx file      # group: read + execute\nchmod o-w file       # others: remove write\nchmod a+r file       # all: add read\nchmod u=rw,g=r,o= file  # owner: rw, group: r, others: none\n\n# Common examples\nchmod u+x script.sh      # make script executable\nchmod go-rwx secret.key  # owner only access\nchmod a+r public.html    # world-readable',
         },
         {
           heading: "Common use cases",
@@ -566,6 +579,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is chmod octal notation?",
           body: "Chmod octal notation uses three digits (e.g., 755) to represent file permissions. Each digit is the sum of permission values: read (4), write (2), and execute (1). The first digit is the owner, the second is the group, and the third is others. So 755 means the owner can read, write, and execute (7), while group and others can read and execute (5).",
+          codeExample: '# Chmod octal values:  4=read  2=write  1=execute\n# Sum per group: owner | group | others\n\nchmod 755 script.sh   # rwxr-xr-x — executable scripts\nchmod 644 index.html  # rw-r--r-- — regular files\nchmod 600 .env        # rw------- — secrets (owner only)\nchmod 700 .ssh/       # rwx------ — SSH directory\nchmod 664 shared.txt  # rw-rw-r-- — group-writable\nchmod 777 /tmp/test   # rwxrwxrwx — avoid in production!\n\n# Calculate: 7 = 4+2+1, 5 = 4+1, 4 = 4\n# 755 → owner: rwx, group: r-x, others: r-x',
         },
         {
           heading: "Common use cases",
@@ -610,6 +624,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is CIDR notation?",
           body: "CIDR (Classless Inter-Domain Routing) notation represents IP address ranges using a base address and prefix length, such as 10.0.0.0/8. The prefix length indicates how many leading bits define the network portion. CIDR replaced the old classful addressing system (Class A, B, C) in 1993, enabling more efficient allocation of IP address space and smaller routing tables.",
+          codeExample: '// JavaScript — calculate CIDR network details\nfunction cidrInfo(cidr) {\n  const [ip, prefix] = cidr.split("/");\n  const bits = parseInt(prefix);\n  const ipNum = ip.split(".").reduce((sum, oct) => (sum << 8) + parseInt(oct), 0) >>> 0;\n  const mask = (~0 << (32 - bits)) >>> 0;\n  const network = (ipNum & mask) >>> 0;\n  const broadcast = (network | ~mask) >>> 0;\n  const hosts = Math.pow(2, 32 - bits) - 2;\n  return { network: numToIp(network), broadcast: numToIp(broadcast), hosts };\n}\n// cidrInfo("192.168.1.0/24")\n// → { network: "192.168.1.0", broadcast: "192.168.1.255", hosts: 254 }',
         },
         {
           heading: "Common use cases",
@@ -651,6 +666,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is VLSM?",
           body: "VLSM (Variable Length Subnet Masking) allows different subnets within the same network to use different prefix lengths. Unlike fixed-length subnetting where every subnet is the same size, VLSM lets you allocate a /28 (14 hosts) for a small office and a /22 (1,022 hosts) for a data center floor — all from the same address block. This minimizes IP address waste.",
+          codeExample: '# VLSM (Variable Length Subnet Masking) — allocate different-sized subnets\n# Network: 192.168.1.0/24 (256 addresses)\n# Requirements: 100 hosts, 50 hosts, 25 hosts, 10 hosts\n\n# Step 1: Sort by size (largest first)\n# Step 2: Allocate smallest fitting subnet for each\n\n# 100 hosts → /25 (128 addresses) → 192.168.1.0/25\n#  50 hosts → /26 (64 addresses)  → 192.168.1.128/26\n#  25 hosts → /27 (32 addresses)  → 192.168.1.192/27\n#  10 hosts → /28 (16 addresses)  → 192.168.1.224/28\n# Remaining: 192.168.1.240/28 (16 addresses)',
         },
         {
           heading: "Common use cases",
@@ -695,6 +711,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why use Docker Compose examples?",
           body: "Starting from a working example is faster and less error-prone than writing a docker-compose.yml from scratch. Examples demonstrate best practices like health checks, restart policies, named volumes, and proper networking. They also show correct YAML indentation and key ordering, which are common sources of frustration for newcomers.",
+          codeExample: '# docker-compose.yml — Node.js app + PostgreSQL + Redis\nservices:\n  app:\n    build: .\n    ports:\n      - "3000:3000"\n    environment:\n      DATABASE_URL: postgres://user:pass@db:5432/mydb\n      REDIS_URL: redis://cache:6379\n    depends_on:\n      - db\n      - cache\n  db:\n    image: postgres:16-alpine\n    volumes:\n      - pgdata:/var/lib/postgresql/data\n    environment:\n      POSTGRES_PASSWORD: pass\n  cache:\n    image: redis:7-alpine\nvolumes:\n  pgdata:',
         },
         {
           heading: "Common use cases",
@@ -736,6 +753,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Docker Compose file structure",
           body: "A Docker Compose file defines services (containers), networks, volumes, and optionally configs and secrets. Each service specifies an image or build context, port mappings, environment variables, volume mounts, and dependencies. The file uses YAML syntax, so proper indentation with spaces (not tabs) is critical.",
+          codeExample: '# Docker Compose key fields reference\nservices:\n  app:\n    image: node:20-alpine      # base image\n    build:                      # or build from Dockerfile\n      context: .\n      dockerfile: Dockerfile\n    ports: ["3000:3000"]        # host:container\n    volumes: ["./src:/app/src"] # bind mount\n    environment:                # env vars\n      NODE_ENV: production\n    env_file: [.env]            # load from file\n    depends_on: [db]            # startup order\n    restart: unless-stopped     # restart policy\n    healthcheck:\n      test: ["CMD", "curl", "-f", "http://localhost:3000"]\n      interval: 30s',
         },
         {
           heading: "Common use cases",
@@ -780,6 +798,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a cron expression?",
           body: "A cron expression is a string of five (or six) fields that defines a recurring schedule. The standard five fields are: minute (0-59), hour (0-23), day of month (1-31), month (1-12), and day of week (0-7, where 0 and 7 are Sunday). Special characters include * (any value), , (list), - (range), and / (step). For example, */15 * * * * runs every 15 minutes.",
+          codeExample: '# Cron expression format:\n# ┌───── minute (0-59)\n# │ ┌───── hour (0-23)\n# │ │ ┌───── day of month (1-31)\n# │ │ │ ┌───── month (1-12)\n# │ │ │ │ ┌───── day of week (0-7, Sun=0 or 7)\n# │ │ │ │ │\n# * * * * *  command\n\n# Special characters:\n# *    any value         */5  every 5 units\n# ,    list (1,3,5)      -    range (1-5)\n# @hourly   = 0 * * * *\n# @daily    = 0 0 * * *\n# @weekly   = 0 0 * * 0\n# @monthly  = 0 0 1 * *',
         },
         {
           heading: "Common use cases",
@@ -821,6 +840,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why use cron expression examples?",
           body: "Even experienced developers second-guess cron syntax. Is 0 3 * * 1 Monday at 3 AM or January at 3 AM? Starting from a verified example eliminates guesswork. Each example below shows the expression, a plain-English description, and the next several run times so you can confirm it does what you expect.",
+          codeExample: '# Common cron expressions\n0 * * * *       # Every hour (at minute 0)\n*/15 * * * *    # Every 15 minutes\n0 9 * * 1-5     # Weekdays at 9:00 AM\n0 0 * * *       # Every day at midnight\n0 0 1 * *       # First day of every month\n30 2 * * 0      # Every Sunday at 2:30 AM\n0 9,17 * * *    # 9 AM and 5 PM daily\n0 0 */2 * *     # Every other day\n0 6 * * 1       # Every Monday at 6:00 AM\n@reboot         # Run once at system startup',
         },
         {
           heading: "Common scheduling patterns",
@@ -865,6 +885,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a daily cron job?",
           body: "A daily cron job is a scheduled task that runs once every day at a specified time. The basic pattern is 0 H * * * where H is the hour (0-23). For example, 0 3 * * * runs at 3:00 AM daily. You can also specify a minute for more precision, like 30 2 * * * for 2:30 AM every day.",
+          codeExample: '# Daily cron job examples\n0 0 * * *       # Midnight every day\n0 6 * * *       # 6:00 AM every day\n30 23 * * *     # 11:30 PM every day\n0 */6 * * *     # Every 6 hours (00:00, 06:00, 12:00, 18:00)\n\n# Daily backup example\n0 2 * * * /usr/local/bin/backup.sh >> /var/log/backup.log 2>&1\n\n# Daily log rotation\n0 0 * * * find /var/log/app -name "*.log" -mtime +30 -delete',
         },
         {
           heading: "Common use cases",
@@ -906,6 +927,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a weekly cron job?",
           body: "A weekly cron job runs once per week on a specific day at a specific time. The pattern is M H * * D where M is minutes, H is hours, and D is the day of the week (0=Sunday, 1=Monday, ... 6=Saturday). For example, 0 9 * * 1 runs every Monday at 9:00 AM.",
+          codeExample: '# Weekly cron job examples\n0 0 * * 0       # Every Sunday at midnight\n0 9 * * 1       # Every Monday at 9:00 AM\n0 17 * * 5      # Every Friday at 5:00 PM\n0 3 * * 6       # Every Saturday at 3:00 AM\n\n# Weekly database maintenance\n0 3 * * 0 pg_dump mydb | gzip > /backups/weekly_$(date +\\%F).sql.gz\n\n# Weekly report generation\n0 8 * * 1 python3 /scripts/weekly_report.py --email team@company.com',
         },
         {
           heading: "Common use cases",
@@ -950,6 +972,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How does JPEG compression work?",
           body: "JPEG uses lossy compression based on the Discrete Cosine Transform (DCT). It divides the image into 8x8 pixel blocks, converts them to frequency domain, and discards high-frequency detail that the human eye is less sensitive to. Lower quality settings discard more data, producing smaller files with visible artifacts. Quality levels of 70-85% typically provide the best balance between file size and visual quality.",
+          codeExample: '// JavaScript — compress JPEG in browser using Canvas API\nfunction compressJpeg(file, quality = 0.7) {\n  return new Promise(resolve => {\n    const img = new Image();\n    img.onload = () => {\n      const canvas = document.createElement("canvas");\n      canvas.width = img.width;\n      canvas.height = img.height;\n      canvas.getContext("2d").drawImage(img, 0, 0);\n      canvas.toBlob(resolve, "image/jpeg", quality);\n    };\n    img.src = URL.createObjectURL(file);\n  });\n}\n// quality: 0.8 = ~60% smaller, 0.6 = ~75% smaller',
         },
         {
           heading: "Common use cases",
@@ -991,6 +1014,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How does PNG compression work?",
           body: "PNG uses lossless compression (DEFLATE), meaning no pixel data is lost. Optimization reduces file size by choosing better filter strategies, removing unnecessary metadata chunks (like timestamps and text), and reducing the color palette when possible. For images with fewer than 256 colors, converting from truecolor to indexed (PNG-8) can cut file sizes dramatically.",
+          codeExample: '// JavaScript — resize and compress PNG using Canvas API\nasync function compressPng(file, maxWidth = 1200) {\n  const img = await createImageBitmap(file);\n  const scale = Math.min(1, maxWidth / img.width);\n  const canvas = new OffscreenCanvas(\n    img.width * scale, img.height * scale\n  );\n  canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);\n  return canvas.convertToBlob({ type: "image/png" });\n}\n\n# Python — compress PNG with Pillow\nfrom PIL import Image\nimg = Image.open("input.png")\nimg.save("output.png", optimize=True)',
         },
         {
           heading: "Common use cases",
@@ -1032,6 +1056,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is WebP?",
           body: "WebP is a modern image format developed by Google that provides both lossy and lossless compression. Lossy WebP is typically 25-35% smaller than equivalent-quality JPEG, while lossless WebP is about 26% smaller than PNG. WebP also supports transparency (alpha channel) and animation, making it a versatile replacement for JPEG, PNG, and GIF on the web.",
+          codeExample: '// JavaScript — convert image to WebP format in browser\nasync function toWebP(file, quality = 0.8) {\n  const img = await createImageBitmap(file);\n  const canvas = new OffscreenCanvas(img.width, img.height);\n  canvas.getContext("2d").drawImage(img, 0, 0);\n  return canvas.convertToBlob({ type: "image/webp", quality });\n}\n// WebP is 25-35% smaller than JPEG at equivalent quality\n\n# Python — convert to WebP\nfrom PIL import Image\nimg = Image.open("photo.jpg")\nimg.save("photo.webp", quality=80, method=6)',
         },
         {
           heading: "Common use cases",
@@ -1076,6 +1101,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What does SVG minification do?",
           body: "SVG minification removes elements that don't affect rendering: XML comments, editor metadata (from Illustrator, Figma, Inkscape), empty groups, default attribute values, unnecessary whitespace, and redundant namespace declarations. This typically reduces SVG file size by 20-60% without changing the visual output. Minified SVGs load faster and reduce page weight.",
+          codeExample: '// Before — unoptimized SVG (482 bytes)\n<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"\n     width="24px" height="24px" viewBox="0 0 24 24">\n  <!-- icon -->\n  <path fill="#000000" d="M12 2L2 7l10 5 10-5-10-5z" />\n</svg>\n\n// After — minified SVG (124 bytes, 74% smaller)\n<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>',
         },
         {
           heading: "Common use cases",
@@ -1117,6 +1143,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is an SVG viewer?",
           body: "An SVG viewer renders Scalable Vector Graphics in the browser and lets you inspect the underlying XML structure. Unlike raster images, SVGs are code — each shape, path, and text element is a node you can examine. A good viewer shows the rendered output, source code, dimensions, viewBox settings, and total element count side by side.",
+          codeExample: '// JavaScript — load and display SVG with dimensions\nconst response = await fetch("icon.svg");\nconst svgText = await response.text();\nconst parser = new DOMParser();\nconst doc = parser.parseFromString(svgText, "image/svg+xml");\nconst svg = doc.documentElement;\nconsole.log("ViewBox:", svg.getAttribute("viewBox"));\nconsole.log("Width:", svg.getAttribute("width"));\nconsole.log("Elements:", svg.querySelectorAll("*").length);\n\n// Inject SVG inline for styling\ndocument.getElementById("icon").innerHTML = svgText;',
         },
         {
           heading: "Common use cases",
@@ -1161,6 +1188,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a URL slug?",
           body: "A URL slug is the human-readable portion of a URL that identifies a specific page, such as /blog/how-to-optimize-images in https://example.com/blog/how-to-optimize-images. Good slugs are lowercase, use hyphens to separate words, omit stop words (a, the, and), and include the target keyword. They help search engines understand page content and improve click-through rates in search results.",
+          codeExample: '// JavaScript — generate URL slug from text\nfunction slugify(text) {\n  return text\n    .toLowerCase()\n    .normalize("NFD").replace(/[\\u0300-\\u036f]/g, "")  // strip accents\n    .replace(/[^a-z0-9]+/g, "-")  // non-alphanumeric → hyphen\n    .replace(/^-+|-+$/g, "");     // trim leading/trailing hyphens\n}\nconsole.log(slugify("Hello World! 2024")); // "hello-world-2024"\nconsole.log(slugify("Café & Résumé"));      // "cafe-resume"\n\n# Python\nimport re, unicodedata\ndef slugify(text):\n    text = unicodedata.normalize("NFD", text.lower())\n    return re.sub(r"[^a-z0-9]+", "-", text).strip("-")',
         },
         {
           heading: "Common use cases",
@@ -1202,6 +1230,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What makes a URL SEO-friendly?",
           body: "An SEO-friendly URL is short (under 60 characters ideally), descriptive, lowercase, and uses hyphens as word separators. It includes the primary keyword near the beginning, avoids parameters and session IDs, and follows a logical site hierarchy. Google's guidelines recommend simple, human-readable URLs that convey the page's content at a glance.",
+          codeExample: '// SEO-friendly URL best practices\n\n// ✅ Good SEO URLs\n/blog/typescript-6-migration-guide       // descriptive, hyphenated\n/tools/json-formatter                     // short, keyword-rich\n/docs/api/authentication                  // hierarchical structure\n\n// ❌ Bad SEO URLs\n/page?id=1234                            // no keywords\n/blog/post_title_here_2024_01_15_v2      // too long, underscores\n/Blog/TypeScript-Guide                   // mixed case\n\n// JavaScript — generate SEO slug with max length\nfunction seoSlug(text, maxLen = 60) {\n  return slugify(text).substring(0, maxLen).replace(/-$/, "");\n}',
         },
         {
           heading: "Common use cases",
@@ -1246,6 +1275,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is JSON comparison?",
           body: "JSON comparison analyzes two JSON documents and identifies structural and value differences. Unlike plain text diff, JSON comparison understands the data structure — it can detect that two objects are equivalent even if keys are in different orders, and it reports changes using JSON paths (e.g., 'user.address.city changed from X to Y') rather than line numbers.",
+          codeExample: '// JavaScript — deep compare two JSON objects\nfunction jsonDiff(a, b, path = "") {\n  const diffs = [];\n  const allKeys = new Set([...Object.keys(a || {}), ...Object.keys(b || {})]);\n  for (const key of allKeys) {\n    const p = path ? `${path}.${key}` : key;\n    if (!(key in a)) diffs.push({ path: p, type: "added", value: b[key] });\n    else if (!(key in b)) diffs.push({ path: p, type: "removed", value: a[key] });\n    else if (typeof a[key] === "object" && typeof b[key] === "object")\n      diffs.push(...jsonDiff(a[key], b[key], p));\n    else if (a[key] !== b[key])\n      diffs.push({ path: p, type: "changed", from: a[key], to: b[key] });\n  }\n  return diffs;\n}',
         },
         {
           heading: "Common use cases",
@@ -1287,6 +1317,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a structural JSON diff?",
           body: "A structural diff goes beyond line-by-line comparison to analyze the JSON tree. It categorizes changes as additions (new keys or array elements), deletions (removed keys), modifications (changed values), and type changes (e.g., string to number). Results are presented with full JSON paths, making it easy to locate each change in deeply nested structures.",
+          codeExample: '// JavaScript — detect structural changes in JSON\nfunction structuralDiff(a, b) {\n  const typeA = Array.isArray(a) ? "array" : typeof a;\n  const typeB = Array.isArray(b) ? "array" : typeof b;\n  if (typeA !== typeB) return { type: "type-change", from: typeA, to: typeB };\n  if (typeA !== "object" && typeA !== "array") return null; // same primitive type\n  const keysA = new Set(Object.keys(a));\n  const keysB = new Set(Object.keys(b));\n  return {\n    added: [...keysB].filter(k => !keysA.has(k)),\n    removed: [...keysA].filter(k => !keysB.has(k)),\n    shared: [...keysA].filter(k => keysB.has(k)),\n  };\n}',
         },
         {
           heading: "Common use cases",
@@ -1331,6 +1362,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How git merge works",
           body: "git merge creates a new merge commit that ties together the histories of two branches. The original branch history is preserved exactly as it happened. This is the safest option because it never rewrites history. Use --no-ff to always create a merge commit even when a fast-forward is possible.",
+          codeExample: '# Git Merge — preserves full branch history\ngit checkout main\ngit merge feature-branch\n# Creates a merge commit, keeps all branch commits intact\n# Commit graph: A-B-C-M (M merges feature into main)\n\n# Git Rebase — creates linear history\ngit checkout feature-branch\ngit rebase main\ngit checkout main\ngit merge feature-branch  # fast-forward\n# Replays commits on top of main — no merge commit\n# Commit graph: A-B-C-D-E (linear)\n\n# Rule of thumb:\n# Merge → shared/public branches (main, develop)\n# Rebase → local/personal feature branches',
         },
         {
           heading: "How git rebase works",
@@ -1376,6 +1408,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "git reset — rewrite history",
           body: "git reset moves the branch pointer backward, effectively removing commits from history. --soft keeps changes staged, --mixed (default) keeps changes unstaged, --hard discards everything. Because it rewrites history, only use reset on unpushed commits.",
+          codeExample: '# Git Reset — moves HEAD backward (rewrites history)\ngit reset --soft HEAD~1    # undo commit, keep staged changes\ngit reset --mixed HEAD~1   # undo commit + unstage (default)\ngit reset --hard HEAD~1    # undo commit + discard all changes\n# ⚠ Never reset commits already pushed to shared branches\n\n# Git Revert — creates a new commit that undoes changes (safe)\ngit revert HEAD            # undo last commit with a new commit\ngit revert abc123          # undo a specific commit\ngit revert HEAD~3..HEAD    # undo last 3 commits\n# ✅ Safe for shared branches — preserves history',
         },
         {
           heading: "git revert — safe undo",
@@ -1422,6 +1455,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Basic stash workflow",
           body: "git stash saves your uncommitted changes (staged and unstaged) and reverts the working tree to HEAD. git stash pop restores the most recent stash and removes it from the stash list. This is the most common pattern: stash, switch branches, do work, switch back, pop.",
+          codeExample: '# Git Stash — temporarily save uncommitted changes\ngit stash                    # stash tracked changes\ngit stash -u                 # include untracked files\ngit stash push -m "WIP: auth feature"  # with a description\n\ngit stash list               # view all stashes\n# stash@{0}: WIP: auth feature\n# stash@{1}: WIP on main: abc1234\n\ngit stash pop                # apply latest + remove from stash\ngit stash apply stash@{1}    # apply specific stash (keep it)\ngit stash drop stash@{0}     # delete a stash\ngit stash clear              # delete all stashes',
         },
         {
           heading: "Advanced stash usage",
@@ -1467,6 +1501,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What are CSP directives?",
           body: "CSP directives are rules that tell the browser which resources are allowed to load and execute on your page. Each directive controls a specific resource type: script-src controls JavaScript, style-src controls CSS, img-src controls images, and so on. The default-src directive acts as a fallback for any directive you don't explicitly set.",
+          codeExample: '// Content-Security-Policy header — key directives\n\n// Recommended strict CSP\nContent-Security-Policy:\n  default-src \'self\';\n  script-src \'self\' \'nonce-abc123\';\n  style-src \'self\' \'unsafe-inline\';\n  img-src \'self\' data: https:;\n  font-src \'self\' https://fonts.gstatic.com;\n  connect-src \'self\' https://api.example.com;\n  frame-ancestors \'none\';\n  base-uri \'self\';\n  form-action \'self\';\n\n// \'nonce-*\' is preferred over \'unsafe-inline\' for scripts\n// \'strict-dynamic\' trusts scripts loaded by trusted scripts',
         },
         {
           heading: "Fetch directives vs document directives",
@@ -1518,6 +1553,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Next.js CSP configuration",
           body: "In Next.js, set CSP headers in next.config.js using the headers() function, or in middleware.ts for dynamic nonce-based CSP. Next.js requires 'unsafe-eval' for development hot reload and 'unsafe-inline' for styled-jsx. For production, use nonces with 'strict-dynamic' for the strongest policy.",
+          codeExample: '// Next.js — CSP in next.config.js\nconst cspHeader = `\n  default-src \'self\';\n  script-src \'self\' \'unsafe-eval\' \'unsafe-inline\';\n  style-src \'self\' \'unsafe-inline\';\n  img-src \'self\' blob: data:;\n`;\n\n// Express middleware\napp.use((req, res, next) => {\n  res.setHeader("Content-Security-Policy",\n    "default-src \'self\'; script-src \'self\'");\n  next();\n});\n\n// Nginx\nadd_header Content-Security-Policy "default-src \'self\'; script-src \'self\'" always;\n\n// Vercel (vercel.json)\n{ "headers": [{ "key": "Content-Security-Policy", "value": "default-src \'self\'" }] }',
         },
         {
           heading: "Nginx and Apache CSP headers",
@@ -1570,6 +1606,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Refused to execute inline script",
           body: "This error means your CSP blocks inline <script> tags and on* event handlers. Fix options: (1) Move inline scripts to external files (best), (2) Add a nonce to each script tag and include 'nonce-{value}' in script-src, (3) Add 'unsafe-inline' to script-src (weakens security). Using nonces with 'strict-dynamic' is the recommended modern approach.",
+          codeExample: '// Common CSP errors and fixes\n\n// ❌ Refused to execute inline script\n// Fix: Add nonce or hash\n<script nonce="random123">console.log("ok")</script>\n// CSP: script-src \'nonce-random123\'\n\n// ❌ Refused to load font from \'https://fonts.gstatic.com\'\n// Fix: Add font source\n// CSP: font-src \'self\' https://fonts.gstatic.com\n\n// ❌ Refused to connect to \'https://api.example.com\'\n// Fix: Add API to connect-src\n// CSP: connect-src \'self\' https://api.example.com\n\n// Debug: use Content-Security-Policy-Report-Only header first',
         },
         {
           heading: "Refused to load the stylesheet",
@@ -1625,6 +1662,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Reserved words: class and for",
           body: "The biggest gotcha: HTML's class attribute becomes className in JSX because 'class' is a reserved keyword in JavaScript. Similarly, the for attribute on <label> elements becomes htmlFor because 'for' is used for loops in JavaScript. These are the two most common conversion mistakes.",
+          codeExample: '// HTML → JSX key differences\n\n// 1. class → className\n<div class="active">      →  <div className="active">\n\n// 2. for → htmlFor\n<label for="email">       →  <label htmlFor="email">\n\n// 3. Inline styles: string → object\n<div style="color: red">  →  <div style={{ color: "red" }}>\n\n// 4. Self-closing tags required\n<img src="a.png">         →  <img src="a.png" />\n<br>                      →  <br />\n<input type="text">       →  <input type="text" />\n\n// 5. Event handlers: lowercase → camelCase\n<button onclick="fn()">   →  <button onClick={fn}>',
         },
         {
           heading: "Inline styles are objects, not strings",
@@ -1678,6 +1716,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Attribute name mappings",
           body: "The most common attribute renames: class → className, for → htmlFor, tabindex → tabIndex, readonly → readOnly, maxlength → maxLength, colspan → colSpan, rowspan → rowSpan, cellpadding → cellPadding, crossorigin → crossOrigin, autocomplete → autoComplete, autofocus → autoFocus, enctype → encType, datetime → dateTime.",
+          codeExample: '// JSX essentials\n\n// Expressions in curly braces\n<h1>{user.name}</h1>\n<p>{isLoggedIn ? "Welcome" : "Login"}</p>\n\n// Conditional rendering\n{isAdmin && <AdminPanel />}\n{error ? <Error msg={error} /> : <Content />}\n\n// List rendering\n{items.map(item => <li key={item.id}>{item.name}</li>)}\n\n// Spread props\n<Button {...buttonProps} />\n\n// Fragment (no extra DOM node)\n<>{children}</>\n\n// Dynamic tag\nconst Tag = isHeading ? "h1" : "p";\n<Tag>{text}</Tag>',
         },
         {
           heading: "SVG attribute names in JSX",
@@ -1731,6 +1770,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "CSS to JSX style conversion rules",
           body: "Every CSS property with a hyphen becomes camelCase: background-color → backgroundColor, font-size → fontSize, border-radius → borderRadius, z-index → zIndex, box-shadow → boxShadow. Properties without hyphens stay the same: color, margin, padding, display, opacity.",
+          codeExample: '// JSX inline styles — CSS properties become camelCase\nconst styles = {\n  backgroundColor: "#1a1a2e",    // background-color\n  fontSize: "16px",               // font-size\n  fontWeight: "bold",             // font-weight\n  borderRadius: "8px",            // border-radius\n  padding: "12px 24px",           // shorthand works\n  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",\n  zIndex: 10,                     // unitless number\n  WebkitTransform: "rotate(45deg)", // vendor prefix\n};\n\n<div style={styles}>Styled content</div>\n<div style={{ display: "flex", gap: "1rem" }}>Inline</div>',
         },
         {
           heading: "Values and units",
@@ -1788,6 +1828,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why Use Go Structs for JSON?",
           body: "Go's encoding/json package uses struct tags to map JSON fields to Go fields. Writing these structs by hand is tedious and error-prone, especially for deeply nested JSON. This generator infers the correct Go types (string, int64, float64, bool) and creates properly tagged structs automatically.",
+          codeExample: '// JSON input\n// { "name": "Alice", "age": 30, "email": "alice@example.com" }\n\n// Generated Go struct\ntype User struct {\n\tName  string `json:"name"`\n\tAge   int    `json:"age"`\n\tEmail string `json:"email"`\n}\n\n// Nested objects become separate structs\ntype Response struct {\n\tData    User   `json:"data"`\n\tStatus  string `json:"status"`\n\tCount   int    `json:"count"`\n}',
         },
         {
           heading: "How Go JSON Tags Work",
@@ -1841,6 +1882,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why Dataclasses Over Dicts?",
           body: "Python dataclasses provide type safety, IDE autocompletion, and self-documenting code compared to raw dictionaries. They also support default values, comparison, and hashing out of the box. This generator creates ready-to-use dataclasses from your JSON.",
+          codeExample: '// JSON input\n// { "name": "Alice", "age": 30, "tags": ["admin", "editor"] }\n\n# Generated Python dataclass\nfrom dataclasses import dataclass, field\nfrom typing import List\n\n@dataclass\nclass User:\n    name: str\n    age: int\n    tags: List[str] = field(default_factory=list)\n\n# Usage\nuser = User(name="Alice", age=30, tags=["admin"])\nprint(user.name)  # "Alice"',
         },
         {
           heading: "Type Hint Inference",
@@ -1894,6 +1936,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Serde Integration",
           body: "The generated structs use serde's Serialize and Deserialize derive macros, the standard way to handle JSON in Rust. Fields that need renaming (e.g., camelCase JSON keys to snake_case Rust fields) get #[serde(rename = \"...\")] attributes automatically.",
+          codeExample: '// JSON input\n// { "name": "Alice", "age": 30, "active": true }\n\n// Generated Rust struct\nuse serde::{Deserialize, Serialize};\n\n#[derive(Debug, Serialize, Deserialize)]\nstruct User {\n    name: String,\n    age: i64,\n    active: bool,\n}\n\n// Usage\nlet json = r#"{"name":"Alice","age":30,"active":true}"#;\nlet user: User = serde_json::from_str(json).unwrap();\nprintln!("{:?}", user);',
         },
         {
           heading: "Rust Type Mapping",
@@ -1949,6 +1992,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Dark Themes for Code",
           body: "Dark themes like Dracula, Monokai, and One Dark are the most popular choices for code screenshots. They provide high contrast text on dark backgrounds, reduce eye strain, and look professional when shared on social media or in documentation. Dracula uses distinctive purple and pink tones, while Monokai is known for its warm yellow-green palette.",
+          codeExample: '// Popular code screenshot themes\n\n// Dracula — dark purple (#282a36) with vibrant colors\n// Keywords: #ff79c6 (pink), Strings: #f1fa8c (yellow)\n// Comments: #6272a4 (muted blue)\n\n// Monokai — classic dark (#272822)\n// Keywords: #f92672 (magenta), Strings: #e6db74 (yellow)\n// Functions: #a6e22e (green)\n\n// GitHub Dark — modern dark (#0d1117)\n// Nord — arctic blue palette (#2e3440)\n// One Dark — Atom editor theme (#282c34)\n\n// CSS example for syntax highlighting\n.keyword { color: #c678dd; }\n.string  { color: #98c379; }\n.comment { color: #5c6370; font-style: italic; }',
         },
         {
           heading: "Theme Color Palettes",
@@ -2001,6 +2045,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why Use DevBolt Instead of Carbon?",
           body: "Carbon.sh requires sending your code to a server for rendering. DevBolt generates screenshots entirely client-side using HTML Canvas, meaning your code never leaves your browser. This is crucial for proprietary code, API keys, or any sensitive content. Plus, there are no rate limits or account requirements.",
+          codeExample: '// Create code screenshots programmatically\n\n// Using html2canvas (browser)\nimport html2canvas from "html2canvas";\nconst codeBlock = document.getElementById("code");\nconst canvas = await html2canvas(codeBlock, { scale: 2 }); // 2x for Retina\nconst link = document.createElement("a");\nlink.download = "code.png";\nlink.href = canvas.toDataURL("image/png");\nlink.click();\n\n// DevBolt advantage over Carbon:\n// ✅ No server upload needed (100% client-side)\n// ✅ 8 themes, 13 languages\n// ✅ "Made with DevBolt" watermark for sharing',
         },
         {
           heading: "Feature Comparison",
@@ -2053,6 +2098,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Code Images for Social Media",
           body: "Code snippets shared as text get poor engagement on social platforms. Images with syntax highlighting, clean backgrounds, and window chrome attract 3-5x more engagement. They are visually striking in feeds and communicate technical concepts at a glance — perfect for sharing tips, tricks, and solutions.",
+          codeExample: '// JavaScript — generate code screenshot with Canvas API\nconst canvas = document.createElement("canvas");\nconst ctx = canvas.getContext("2d");\n\n// Set dimensions with padding\ncanvas.width = 800;\ncanvas.height = 400;\n\n// Draw background\nctx.fillStyle = "#282a36"; // Dracula theme\nctx.fillRect(0, 0, 800, 400);\n\n// Draw window chrome\nctx.fillStyle = "#ff5f56"; ctx.beginPath(); ctx.arc(20, 20, 6, 0, Math.PI*2); ctx.fill();\nctx.fillStyle = "#ffbd2e"; ctx.beginPath(); ctx.arc(38, 20, 6, 0, Math.PI*2); ctx.fill();\nctx.fillStyle = "#27c93f"; ctx.beginPath(); ctx.arc(56, 20, 6, 0, Math.PI*2); ctx.fill();\n\n// Draw code text\nctx.font = "14px \'Fira Code\', monospace";\nctx.fillStyle = "#f8f8f2";\nctx.fillText("const greeting = \\"Hello, World!\\";", 20, 60);',
         },
         {
           heading: "Best Practices for Code Screenshots",
@@ -2108,6 +2154,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How Tailwind Spacing Works",
           body: "Tailwind's spacing scale maps numbers to rem values: 1 = 0.25rem (4px), 2 = 0.5rem (8px), 4 = 1rem (16px), 8 = 2rem (32px), etc. Padding uses p- (all sides), px- (horizontal), py- (vertical), pt/pr/pb/pl- (individual sides). Margin uses the same pattern with m- instead of p-. The scale goes from 0 to 96, plus special values like px (1px) and auto.",
+          codeExample: '/* CSS → Tailwind spacing classes */\n\n/* Padding */\npadding: 0;          →  p-0\npadding: 4px;        →  p-1\npadding: 8px;        →  p-2\npadding: 16px;       →  p-4\npadding: 24px;       →  p-6\npadding: 32px;       →  p-8\n\n/* Margin */\nmargin: 0 auto;      →  mx-auto\nmargin-top: 16px;    →  mt-4\nmargin-bottom: 8px;  →  mb-2\n\n/* Gap */\ngap: 16px;           →  gap-4\nrow-gap: 8px;        →  gap-y-2\ncolumn-gap: 24px;    →  gap-x-6\n\n/* Scale: 1 unit = 4px (0.25rem) */\n/* p-1 = 4px, p-2 = 8px, p-4 = 16px, p-8 = 32px */',
         },
         {
           heading: "CSS Shorthand to Tailwind",
@@ -2159,6 +2206,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "CSS Flexbox to Tailwind",
           body: "The core flex properties map directly: display: flex → flex, flex-direction: column → flex-col, flex-wrap: wrap → flex-wrap, justify-content: center → justify-center, align-items: center → items-center. Flex shorthand works too: flex: 1 1 0% → flex-1, flex: none → flex-none. Grow and shrink have dedicated classes: flex-grow: 1 → grow, flex-shrink: 0 → shrink-0.",
+          codeExample: '/* Flexbox — CSS → Tailwind */\ndisplay: flex;                →  flex\nflex-direction: column;       →  flex-col\njustify-content: center;      →  justify-center\nalign-items: center;          →  items-center\nflex-wrap: wrap;              →  flex-wrap\ngap: 16px;                    →  gap-4\nflex: 1 1 0%;                 →  flex-1\n\n/* Grid — CSS → Tailwind */\ndisplay: grid;                            →  grid\ngrid-template-columns: repeat(3, 1fr);    →  grid-cols-3\ngrid-template-columns: repeat(2, 1fr);    →  grid-cols-2\ngrid-column: span 2 / span 2;             →  col-span-2\ngap: 24px;                                →  gap-6',
         },
         {
           heading: "CSS Grid to Tailwind",
@@ -2206,6 +2254,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Font Size Scale",
           body: "Tailwind maps font sizes to a semantic scale: text-xs (0.75rem/12px), text-sm (0.875rem/14px), text-base (1rem/16px), text-lg (1.125rem/18px), text-xl (1.25rem/20px), text-2xl (1.5rem/24px), up to text-9xl (8rem/128px). Each size includes a default line-height for optimal readability.",
+          codeExample: '/* Typography — CSS → Tailwind */\nfont-size: 14px;           →  text-sm\nfont-size: 16px;           →  text-base\nfont-size: 24px;           →  text-2xl\nfont-size: 48px;           →  text-5xl\n\nfont-weight: 400;          →  font-normal\nfont-weight: 600;          →  font-semibold\nfont-weight: 700;          →  font-bold\n\ntext-align: center;        →  text-center\ntext-transform: uppercase; →  uppercase\ntext-decoration: underline;→  underline\nline-height: 1.5;          →  leading-normal\nletter-spacing: 0.05em;    →  tracking-wide\ncolor: #3b82f6;            →  text-blue-500',
         },
         {
           heading: "Font Weight Classes",
@@ -2260,6 +2309,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is a JSON tree viewer?",
           body: "A JSON tree viewer renders JSON data as a hierarchical tree structure where objects and arrays become expandable nodes. This makes it easy to navigate deeply nested data without scrolling through raw text. Unlike a plain text editor, a tree viewer lets you collapse irrelevant sections and focus on the data that matters.",
+          codeExample: '// JavaScript — build a collapsible JSON tree\nfunction renderTree(data, depth = 0) {\n  if (typeof data !== "object" || data === null) {\n    return `<span class="leaf">${JSON.stringify(data)}</span>`;\n  }\n  const entries = Object.entries(data);\n  return entries.map(([key, val]) => `\n    <details ${depth < 2 ? "open" : ""}>\n      <summary><span class="key">${key}</span></summary>\n      <div class="indent">${renderTree(val, depth + 1)}</div>\n    </details>\n  `).join("");\n}\ndocument.getElementById("tree").innerHTML = renderTree(jsonData);',
         },
         {
           heading: "When to use a JSON tree viewer",
@@ -2302,6 +2352,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Navigating nested JSON",
           body: "Deeply nested JSON is common in API responses, cloud configurations, and data pipelines. A JSON explorer lets you drill into specific branches without losing your place. Click any object or array node to expand it, and use depth controls (L2, L3, L5, All) to expand the entire tree to a specific level.",
+          codeExample: '// JavaScript — JSON path navigation\nfunction getByPath(obj, path) {\n  return path.split(".").reduce((curr, key) => {\n    if (key.includes("[")) {\n      const [prop, idx] = key.split("[");\n      return curr?.[prop]?.[parseInt(idx)];\n    }\n    return curr?.[key];\n  }, obj);\n}\n\nconst data = { users: [{ name: "Alice" }, { name: "Bob" }] };\nconsole.log(getByPath(data, "users[0].name")); // "Alice"\nconsole.log(getByPath(data, "users[1].name")); // "Bob"',
         },
         {
           heading: "Copying JSON paths",
@@ -2344,6 +2395,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why use DevBolt's JSON Viewer?",
           body: "Unlike many online JSON viewers that send your data to a server for processing, DevBolt's JSON Visualizer runs 100% client-side. Your JSON never leaves your browser. This makes it safe for viewing API keys, tokens, configuration secrets, and any other sensitive data you wouldn't want uploaded to a third-party server.",
+          codeExample: '// JavaScript — JSON stats for tree viewer\nfunction jsonStats(data) {\n  let keys = 0, depth = 0, arrays = 0, objects = 0;\n  function walk(node, d) {\n    depth = Math.max(depth, d);\n    if (Array.isArray(node)) { arrays++; node.forEach(v => walk(v, d + 1)); }\n    else if (node && typeof node === "object") {\n      objects++;\n      keys += Object.keys(node).length;\n      Object.values(node).forEach(v => walk(v, d + 1));\n    }\n  }\n  walk(data, 0);\n  return { keys, depth, arrays, objects, size: JSON.stringify(data).length };\n}\nconsole.log(jsonStats(myData));\n// { keys: 42, depth: 5, arrays: 8, objects: 12, size: 2048 }',
         },
         {
           heading: "Features comparison",
@@ -2389,6 +2441,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert SVG to React components?",
           body: "Using SVG as React components gives you full control over icon styling via props, enables tree-shaking for smaller bundles, and allows dynamic color and size changes at runtime. Unlike <img> tags or CSS backgrounds, inline SVG components respond to theme changes, support accessibility attributes like <title> and aria-label, and can be composed with other React elements.",
+          codeExample: '// SVG input\n<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">\n  <path fill="none" stroke="currentColor" stroke-width="2" d="M12 2L2 7l10 5 10-5-10-5z"/>\n</svg>\n\n// Generated React component\nimport { forwardRef } from "react";\n\nconst Icon = forwardRef((props, ref) => (\n  <svg ref={ref} xmlns="http://www.w3.org/2000/svg" width={24} height={24}\n    viewBox="0 0 24 24" {...props}>\n    <path fill="none" stroke="currentColor" strokeWidth={2}\n      d="M12 2L2 7l10 5 10-5-10-5z" />\n  </svg>\n));\nexport default Icon;',
         },
         {
           heading: "What this tool converts",
@@ -2430,6 +2483,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common SVG attribute conversions",
           body: "The most frequently needed conversions include: stroke-width → strokeWidth, fill-opacity → fillOpacity, stroke-linecap → strokeLinecap, stroke-linejoin → strokeLinejoin, clip-path → clipPath, fill-rule → fillRule, font-size → fontSize, text-anchor → textAnchor, stop-color → stopColor, and class → className. These cover the vast majority of SVG icons you will encounter.",
+          codeExample: '// SVG → JSX attribute conversion reference\n\n// Hyphenated → camelCase\nstroke-width      →  strokeWidth\nstroke-linecap    →  strokeLinecap\nstroke-linejoin   →  strokeLinejoin\nfill-opacity      →  fillOpacity\nfill-rule         →  fillRule\nclip-path         →  clipPath\nclip-rule         →  clipRule\nfont-size         →  fontSize\ntext-anchor       →  textAnchor\nstop-color        →  stopColor\nflood-color       →  floodColor\n\n// Special cases\nclass             →  className\nxmlns:xlink       →  (remove entirely)\nxlink:href        →  href  // or xlinkHref',
         },
         {
           heading: "Namespace and style handling",
@@ -2471,6 +2525,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why build a custom icon library?",
           body: "Custom icon libraries give you full control over icon design consistency, bundle size, and API surface. Unlike using icon font packages (which load all icons regardless of usage) or third-party React icon libraries (which may include thousands of unused icons), a custom library contains exactly the icons you need. Combined with tree-shaking, each page only bundles the icons it imports.",
+          codeExample: '// Build a React SVG icon library\n\n// 1. Create base Icon component\nconst Icon = ({ name, size = 24, ...props }) => {\n  const icons = { check: CheckIcon, close: CloseIcon, search: SearchIcon };\n  const SvgComponent = icons[name];\n  return <SvgComponent width={size} height={size} {...props} />;\n};\n\n// 2. Use in your app\n<Icon name="check" size={16} className="text-green-500" />\n<Icon name="close" size={20} />\n\n// 3. Export as barrel file\n// icons/index.ts\nexport { default as CheckIcon } from "./CheckIcon";\nexport { default as CloseIcon } from "./CloseIcon";\nexport { default as SearchIcon } from "./SearchIcon";',
         },
         {
           heading: "Best practices for React icon components",
@@ -2514,6 +2569,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is prompt engineering?",
           body: "Prompt engineering is the practice of designing inputs to AI language models to get accurate, useful, and consistent outputs. Unlike traditional programming where you write deterministic code, prompt engineering involves crafting natural language instructions that guide a probabilistic model. Good prompt engineering reduces hallucinations, improves output quality, and makes AI tools reliable enough for production workflows.",
+          codeExample: '// Structured prompt template for code review\nconst prompt = `\nYou are a senior software engineer performing a code review.\n\n## Context\nLanguage: ${language}\nFramework: ${framework}\n\n## Code to Review\n\\`\\`\\`${language}\n${code}\n\\`\\`\\`\n\n## Review Criteria\n1. Security vulnerabilities (injection, XSS, SSRF)\n2. Performance issues (N+1 queries, memory leaks)\n3. Error handling completeness\n4. Type safety and null checks\n\n## Output Format\nFor each issue found, provide:\n- **Severity**: Critical / High / Medium / Low\n- **Line**: affected line number\n- **Issue**: description\n- **Fix**: suggested code change\n`;',
         },
         {
           heading: "Core techniques",
@@ -2564,6 +2620,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Message structure differences",
           body: "OpenAI places system instructions inside the messages array as a message with role 'system'. Anthropic uses a top-level 'system' parameter separate from the messages array. Both support alternating user/assistant messages for multi-turn conversations. This structural difference means you cannot simply copy-paste API payloads between providers — the system prompt must be moved to/from the messages array.",
+          codeExample: '// OpenAI Chat Completions format\n{\n  "model": "gpt-4o",\n  "messages": [\n    { "role": "system", "content": "You are a helpful assistant." },\n    { "role": "user", "content": "Explain async/await" }\n  ],\n  "temperature": 0.7\n}\n\n// Anthropic Messages format\n{\n  "model": "claude-sonnet-4-20250514",\n  "max_tokens": 1024,\n  "system": "You are a helpful assistant.",\n  "messages": [\n    { "role": "user", "content": "Explain async/await" }\n  ]\n}\n\n// Key differences:\n// OpenAI: system message in messages array\n// Anthropic: system as top-level field, max_tokens required',
         },
         {
           heading: "Model parameters compared",
@@ -2614,6 +2671,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why use prompt templates?",
           body: "Prompt templates solve the biggest problem with AI-assisted development: inconsistent output quality. By standardizing your prompts with clear roles, structured tasks, and output format requirements, you get reliable results every time. Templates also save time — instead of crafting a new prompt for each code review or test generation task, you fill in variables and go. Teams can share templates to maintain consistent AI usage across projects.",
+          codeExample: '// Prompt template: Generate unit tests\nconst testPrompt = `\nGenerate unit tests for the following function.\n\nFunction:\n\\`\\`\\`${language}\n${functionCode}\n\\`\\`\\`\n\nRequirements:\n- Use ${testFramework} (e.g., Jest, Pytest, Go testing)\n- Cover: happy path, edge cases, error cases\n- Include descriptive test names\n- Mock external dependencies\n- Aim for 100% branch coverage\n\nOutput only the test code, no explanations.\n`;\n\n// Template variables: ${language}, ${functionCode}, ${testFramework}\n// Pro tip: include 1 example test for consistent style',
         },
         {
           heading: "Template anatomy",
@@ -2666,6 +2724,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is MCP?",
           body: "The Model Context Protocol (MCP) is an open standard created by Anthropic that lets AI assistants connect to external tools and data sources. Instead of being limited to what the AI knows, MCP servers give your assistant the ability to read files, query databases, search the web, manage GitHub repos, and much more. MCP has been adopted by Claude Desktop, Claude Code, Cursor, VS Code (via Copilot), Windsurf, and Zed.",
+          codeExample: '// Claude Desktop — ~/.claude/claude_desktop_config.json\n{\n  "mcpServers": {\n    "filesystem": {\n      "command": "npx",\n      "args": ["-y", "@anthropic-ai/mcp-filesystem", "/home/user/projects"]\n    },\n    "github": {\n      "command": "npx",\n      "args": ["-y", "@anthropic-ai/mcp-github"],\n      "env": { "GITHUB_TOKEN": "ghp_xxxxxxxxxxxx" }\n    }\n  }\n}\n\n// Verify connection\n// Ask Claude: "List my MCP tools" → should show filesystem + GitHub tools',
         },
         {
           heading: "Config file locations by client",
@@ -2716,6 +2775,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Official MCP servers",
           body: "Anthropic maintains a set of official reference servers under the @modelcontextprotocol npm scope. The most popular are: Filesystem (secure file access with directory sandboxing), GitHub (repo management, PRs, issues), PostgreSQL (database queries), Memory (persistent knowledge graph), Fetch (web content retrieval), Git (repository operations), Sequential Thinking (structured reasoning), Brave Search (web search), Puppeteer (browser automation), SQLite (local database), and Time (timezone utilities). These are well-maintained and guaranteed to follow the MCP specification.",
+          codeExample: '// Top MCP servers for AI coding assistants\n{\n  "mcpServers": {\n    // File system access\n    "filesystem": { "command": "npx", "args": ["-y", "@anthropic-ai/mcp-filesystem", "."] },\n    // GitHub integration\n    "github": { "command": "npx", "args": ["-y", "@anthropic-ai/mcp-github"] },\n    // PostgreSQL queries\n    "postgres": { "command": "npx", "args": ["-y", "@anthropic-ai/mcp-postgres", "postgresql://..."] },\n    // Web search\n    "brave-search": { "command": "npx", "args": ["-y", "@anthropic-ai/mcp-brave-search"] },\n    // Puppeteer browser control\n    "puppeteer": { "command": "npx", "args": ["-y", "@anthropic-ai/mcp-puppeteer"] }\n  }\n}',
         },
         {
           heading: "Third-party and vendor servers",
@@ -2766,6 +2826,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "JSON structure differences",
           body: "Most clients (Claude Desktop, Claude Code, Cursor, Windsurf) use 'mcpServers' as the root key. VS Code breaks the pattern by using 'servers' instead, and also adds support for an 'inputs' array that prompts users for secrets. Zed is the most different — it uses 'context_servers' as the root key and nests the command under a 'command' object with a 'path' field instead of a top-level 'command' string. The server entries themselves (command, args, env) are consistent across all clients.",
+          codeExample: '// MCP config locations by client\n\n// Claude Desktop\n// ~/.claude/claude_desktop_config.json\n{ "mcpServers": { "name": { "command": "...", "args": [] } } }\n\n// Claude Code (CLI)\n// .claude/settings.json or ~/.claude/settings.json\n{ "mcpServers": { "name": { "command": "...", "args": [] } } }\n\n// Cursor\n// .cursor/mcp.json\n{ "mcpServers": { "name": { "command": "...", "args": [] } } }\n\n// VS Code (Copilot)\n// .vscode/mcp.json\n{ "servers": { "name": { "command": "...", "args": [] } } }\n\n// All clients use stdio transport by default',
         },
         {
           heading: "Remote server support",
@@ -2819,6 +2880,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why generate TypeScript from OpenAPI?",
           body: "OpenAPI specifications define your API's contract — the request and response shapes, parameter types, and available endpoints. Generating TypeScript types from this contract ensures your frontend code stays in sync with your API, catching type mismatches at compile time rather than runtime. This is especially valuable in large codebases where APIs evolve frequently.",
+          codeExample: '// OpenAPI spec → TypeScript types\n\n// Input: paths./users.get.responses.200.content.application/json.schema\n// { "type": "array", "items": { "$ref": "#/components/schemas/User" } }\n\n// Generated TypeScript\nexport interface User {\n  id: number;\n  name: string;\n  email: string;\n  role: "admin" | "user" | "guest";\n  createdAt: string; // ISO 8601\n}\n\nexport type GetUsersResponse = User[];\n\n// Using openapi-typescript (CLI)\n// npx openapi-typescript api.yaml -o ./types/api.ts',
         },
         {
           heading: "How does online codegen compare to CLI tools?",
@@ -2867,6 +2929,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Swagger 2.0 vs OpenAPI 3.x",
           body: "Swagger 2.0 stores schemas under 'definitions' and uses 'consumes'/'produces' for content types. OpenAPI 3.x moved schemas to 'components.schemas' and introduced 'requestBody' and 'content' negotiation. DevBolt's converter handles both formats transparently — just paste your spec and it auto-detects the version.",
+          codeExample: '// Swagger 2.0 → TypeScript conversion\n\n// Swagger definition\n// "User": { "type": "object", "properties": {\n//   "id": { "type": "integer" },\n//   "name": { "type": "string" },\n//   "role": { "type": "string", "enum": ["admin", "user"] }\n// }, "required": ["id", "name"] }\n\n// Generated TypeScript\nexport interface User {\n  id: number;\n  name: string;\n  role?: "admin" | "user";\n}\n\n// CLI: npx swagger-typescript-api -p swagger.json -o ./src/api\n// Generates typed API client + interfaces from Swagger 2.0 specs',
         },
         {
           heading: "Migrating from Swagger to OpenAPI",
@@ -2910,6 +2973,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Interface vs type alias",
           body: "TypeScript interfaces support declaration merging and are generally preferred for object shapes. Type aliases are required for union types (oneOf/anyOf) and intersection types (allOf). DevBolt lets you choose your preferred style. For schemas that use composition, type aliases are used automatically regardless of your setting.",
+          codeExample: '// OpenAPI → TypeScript interface patterns\n\n// Nullable fields → optional property\n// { "type": "string", "nullable": true } → name?: string | null;\n\n// oneOf → union type\n// { "oneOf": [{ "$ref": "#/Pet" }, { "$ref": "#/Car" }] } → Pet | Car;\n\n// allOf → intersection type\n// { "allOf": [{ "$ref": "#/Base" }, { "type": "object" }] } → Base & Extra;\n\n// enum → string literal union\n// { "enum": ["active", "inactive"] } → "active" | "inactive";\n\n// Generated fetch client\nexport async function getUsers(): Promise<User[]> {\n  const res = await fetch("/api/users");\n  return res.json();\n}',
         },
         {
           heading: "Handling enums",
@@ -2961,6 +3025,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert JSON Schema to Zod?",
           body: "JSON Schema is the industry standard for describing JSON data structures, used in OpenAPI specs, configuration files, and API documentation. Zod is the dominant runtime validation library in TypeScript with 90M+ weekly npm downloads. Converting JSON Schema to Zod gives you compile-time types AND runtime validation from a single source of truth — eliminating the drift between your schema definitions and TypeScript types.",
+          codeExample: '// JSON Schema → Zod conversion\n\n// JSON Schema input\n// { "type": "object", "properties": {\n//   "email": { "type": "string", "format": "email" },\n//   "age": { "type": "integer", "minimum": 0, "maximum": 150 }\n// }, "required": ["email"] }\n\n// Generated Zod schema\nimport { z } from "zod";\n\nconst UserSchema = z.object({\n  email: z.string().email(),\n  age: z.number().int().min(0).max(150).optional(),\n});\n\ntype User = z.infer<typeof UserSchema>;\n// { email: string; age?: number | undefined }',
         },
         {
           heading: "Supported JSON Schema features",
@@ -3015,6 +3080,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why Zod dominates TypeScript validation",
           body: "Zod solves a fundamental TypeScript problem: TypeScript types exist only at compile time and are erased at runtime. Zod schemas validate data at runtime AND infer TypeScript types via z.infer<typeof schema>, giving you a single source of truth. This eliminates the common bug where your TypeScript interface says a field is a string but the API actually returns null. Zod catches this at runtime instead of crashing in production.",
+          codeExample: '// Zod validation patterns\nimport { z } from "zod";\n\n// Basic types\nconst schema = z.object({\n  name: z.string().min(1).max(100),\n  email: z.string().email(),\n  age: z.number().int().positive(),\n  role: z.enum(["admin", "user", "guest"]),\n  tags: z.array(z.string()).default([]),\n  metadata: z.record(z.unknown()).optional(),\n});\n\n// Validate and get typed result\nconst result = schema.safeParse(input);\nif (result.success) {\n  console.log(result.data); // fully typed\n} else {\n  console.log(result.error.issues); // validation errors\n}',
         },
         {
           heading: "Common Zod patterns",
@@ -3068,6 +3134,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Type inference comparison",
           body: "Zod: First-class TypeScript inference via z.infer — every schema automatically produces the correct TypeScript type, including unions, intersections, optionals, and transforms. Yup: InferType<typeof schema> exists but has known edge cases with nullable/optional fields and transforms. Joi: No official TypeScript type inference — you must manually write interfaces that mirror your schemas, creating a maintenance burden and drift risk.",
+          codeExample: '// Zod — TypeScript-first, infers types\nimport { z } from "zod";\nconst schema = z.object({ name: z.string(), age: z.number() });\ntype User = z.infer<typeof schema>; // { name: string; age: number }\n\n// Yup — popular with Formik, runtime validation\nimport * as yup from "yup";\nconst schema = yup.object({ name: yup.string().required(), age: yup.number() });\n// No type inference — need separate interface\n\n// Joi — Node.js standard, most mature\nimport Joi from "joi";\nconst schema = Joi.object({ name: Joi.string().required(), age: Joi.number() });\n// Server-side only, no TS type inference\n\n// Verdict: Zod for TypeScript projects, Joi for Node.js APIs',
         },
         {
           heading: "Bundle size and performance",
@@ -3122,6 +3189,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Registered claims",
           body: 'The JWT specification (RFC 7519) defines seven registered claims: "iss" (issuer) identifies who created the token, "sub" (subject) identifies who the token is about, "aud" (audience) specifies the intended recipient, "exp" (expiration time) sets when the token expires as a Unix timestamp, "nbf" (not before) sets the earliest time the token is valid, "iat" (issued at) records when the token was created, and "jti" (JWT ID) provides a unique identifier to prevent replay attacks. All are optional but strongly recommended for production tokens.',
+          codeExample: '// Standard JWT claims (registered claims)\n{\n  "iss": "https://auth.example.com",  // Issuer\n  "sub": "user-123",                  // Subject (user ID)\n  "aud": "https://api.example.com",   // Audience\n  "exp": 1711234567,                  // Expiration (Unix timestamp)\n  "nbf": 1711230000,                  // Not Before\n  "iat": 1711230000,                  // Issued At\n  "jti": "a1b2c3d4-unique-id"        // JWT ID (unique identifier)\n}\n\n// JavaScript — set expiration to 1 hour from now\nconst payload = {\n  sub: userId,\n  iat: Math.floor(Date.now() / 1000),\n  exp: Math.floor(Date.now() / 1000) + 3600, // 1 hour\n};',
         },
         {
           heading: "Public and private claims",
@@ -3174,6 +3242,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "HS256 — symmetric signing",
           body: "HS256 uses HMAC with SHA-256, a symmetric algorithm where the same secret key signs and verifies the token. It is fast, simple to implement, and works well when the token issuer and verifier are the same service or share a trusted secret. The main risk is secret distribution — every service that needs to verify tokens must have the secret, and a leaked secret compromises all tokens.",
+          codeExample: '// HS256 — symmetric (shared secret)\nimport jwt from "jsonwebtoken";\nconst token = jwt.sign({ sub: "user-1" }, "shared-secret", { algorithm: "HS256" });\njwt.verify(token, "shared-secret"); // same key for sign + verify\n// ✅ Simple, fast | ❌ Secret must be shared with verifiers\n\n// RS256 — asymmetric (public/private key pair)\nconst privateKey = fs.readFileSync("private.pem");\nconst publicKey = fs.readFileSync("public.pem");\nconst token = jwt.sign({ sub: "user-1" }, privateKey, { algorithm: "RS256" });\njwt.verify(token, publicKey); // public key for verification only\n// ✅ Public key is safe to share | ✅ Standard for OAuth/OIDC\n\n// Rule: HS256 for single-service, RS256 for distributed systems',
         },
         {
           heading: "RS256 — asymmetric signing",
@@ -3226,6 +3295,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Always validate the algorithm",
           body: "The most critical JWT vulnerability is the \"alg: none\" attack, where an attacker modifies the header to use the \"none\" algorithm, removing signature verification. Always whitelist allowed algorithms on the server side — never trust the \"alg\" header from the token itself. Most JWT libraries support an \"algorithms\" parameter that restricts which algorithms are accepted during verification.",
+          codeExample: '// JWT security checklist\n\n// 1. Always verify the signature\nconst decoded = jwt.verify(token, secret); // ✅\nconst decoded = jwt.decode(token);         // ❌ no verification!\n\n// 2. Set short expiration times\n{ exp: Math.floor(Date.now()/1000) + 900 }  // 15 minutes\n\n// 3. Validate issuer and audience\njwt.verify(token, secret, {\n  issuer: "https://auth.example.com",\n  audience: "https://api.example.com",\n});\n\n// 4. Use strong algorithms\n{ algorithm: "RS256" }  // ✅ asymmetric\n{ algorithm: "none" }   // ❌ NEVER in production\n\n// 5. Store in httpOnly cookies, not localStorage\n// 6. Implement token rotation with refresh tokens',
         },
         {
           heading: "Set short expiration times",
@@ -3285,6 +3355,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What does strict: true enable?",
           body: "Setting \"strict\": true in tsconfig.json enables 8 flags: noImplicitAny, strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, alwaysStrict, and useUnknownInCatchVariables. Each flag catches a different category of bugs. New projects should always start with strict: true.",
+          codeExample: '// tsconfig.json — strict mode enables these flags:\n{\n  "compilerOptions": {\n    "strict": true,\n    // Equivalent to enabling ALL of these:\n    // "strictNullChecks": true,       — null/undefined are distinct types\n    // "strictFunctionTypes": true,    — stricter function type checking\n    // "strictBindCallApply": true,    — type-check bind/call/apply\n    // "strictPropertyInitialization": true, — class properties must init\n    // "noImplicitAny": true,          — error on implicit any\n    // "noImplicitThis": true,         — error on implicit this\n    // "alwaysStrict": true,           — emit "use strict"\n    // "useUnknownInCatchVariables": true — catch(e) → e is unknown\n  }\n}\n// Start with "strict": true for new projects — fix errors incrementally',
         },
         {
           heading: "noImplicitAny vs strictNullChecks",
@@ -3343,6 +3414,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why Next.js uses specific tsconfig settings",
           body: "Next.js uses 'jsx': 'preserve' because it handles JSX transformation internally via SWC. 'moduleResolution': 'Bundler' matches how Next.js resolves imports. 'noEmit': true prevents tsc from outputting files since Next.js builds with its own compiler. 'incremental': true enables faster type-checking by caching build information.",
+          codeExample: '// tsconfig.json — recommended for Next.js App Router\n{\n  "compilerOptions": {\n    "target": "ES2017",\n    "lib": ["dom", "dom.iterable", "esnext"],\n    "module": "esnext",\n    "moduleResolution": "bundler",\n    "jsx": "preserve",\n    "strict": true,\n    "esModuleInterop": true,\n    "skipLibCheck": true,\n    "forceConsistentCasingInFileNames": true,\n    "noEmit": true,\n    "incremental": true,\n    "resolveJsonModule": true,\n    "isolatedModules": true,\n    "paths": { "@/*": ["./src/*"] },\n    "plugins": [{ "name": "next" }]\n  },\n  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],\n  "exclude": ["node_modules"]\n}',
         },
         {
           heading: "Next.js path aliases",
@@ -3395,6 +3467,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Module resolution strategies explained",
           body: "TypeScript offers 5 module resolution strategies: 'Node' (legacy, mimics Node.js require()), 'Node16'/'NodeNext' (modern Node.js with package.json exports support), 'Bundler' (for Webpack/Vite/esbuild/Turbopack), and 'Classic' (TypeScript 1.x legacy, avoid). Most new projects should use 'Bundler' for frontend or 'Node16'/'NodeNext' for backend.",
+          codeExample: '// TypeScript module resolution strategies\n\n// "bundler" — recommended for Vite, Next.js, webpack\n// Follows package.json "exports", supports #subpath imports\n{ "moduleResolution": "bundler" }\nimport { Button } from "@/components/Button"; // ✅ works with paths\n\n// "node16" / "nodenext" — for Node.js ESM/CJS\n// Requires file extensions in imports\n{ "moduleResolution": "nodenext" }\nimport { helper } from "./utils.js"; // ✅ .js extension required\n\n// "node" (legacy) — classic Node.js CJS resolution\n// ❌ No package.json "exports" support\n\n// "classic" (legacy) — TypeScript\'s original resolution\n// ❌ Removed in TypeScript 6.0',
         },
         {
           heading: "When to use Bundler resolution",
@@ -3456,6 +3529,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why generate TypeScript from GraphQL?",
           body: "GraphQL schemas define types, fields, and relationships. Manually writing matching TypeScript interfaces is error-prone and quickly becomes stale as the schema evolves. Automated code generation ensures your frontend types always match your API contract, catching mismatches at compile time instead of runtime.",
+          codeExample: '// GraphQL Code Generator setup\n// npm install -D @graphql-codegen/cli @graphql-codegen/typescript\n\n// codegen.ts\nimport type { CodegenConfig } from "@graphql-codegen/cli";\nconst config: CodegenConfig = {\n  schema: "https://api.example.com/graphql",\n  documents: ["src/**/*.graphql"],\n  generates: {\n    "src/generated/types.ts": {\n      plugins: ["typescript", "typescript-operations"],\n    },\n  },\n};\nexport default config;\n\n// Run: npx graphql-codegen\n// Generates TypeScript types from your GraphQL schema + queries',
         },
         {
           heading: "Schema-first vs code-first",
@@ -3512,6 +3586,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Object types",
           body: "Object types are the most common. 'type User { id: ID!, name: String! }' becomes a TypeScript interface with the same fields. Non-null fields (!) become required properties, nullable fields become optional or have '| null'. Arrays like '[Post!]!' become 'Post[]'.",
+          codeExample: '// GraphQL type system → TypeScript\n\n// Scalar types\ntype Query {\n  name: String!      # → string (non-null)\n  age: Int           # → number | null\n  score: Float!      # → number\n  active: Boolean!   # → boolean\n  id: ID!            # → string\n}\n\n// Object types\ntype User {\n  id: ID!\n  name: String!\n  posts: [Post!]!    # → Post[] (non-null array of non-null items)\n}\n\n// Enum types\nenum Role { ADMIN USER GUEST }  # → "ADMIN" | "USER" | "GUEST"\n\n// Union types\nunion SearchResult = User | Post  # → User | Post\n\n// Input types (for mutations)\ninput CreateUserInput { name: String! email: String! }',
         },
         {
           heading: "Input types",
@@ -3569,6 +3644,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "GraphQL: types built into the protocol",
           body: "GraphQL schemas are inherently typed. Every field has a declared type, nullability is explicit, and the schema is the single source of truth. This makes codegen straightforward: parse the SDL, map types to TypeScript, done. The schema guarantees that generated types match the API response shape exactly.",
+          codeExample: '// REST API — no built-in type system\n// You define types manually or use OpenAPI\ninterface User {\n  id: number;      // hope the API returns a number...\n  name: string;\n  email: string;\n}\nconst res = await fetch("/api/users/1");\nconst user = (await res.json()) as User; // unsafe cast\n\n// GraphQL — types enforced by schema\n// Schema guarantees the shape of the response\nconst { data } = await client.query<{ user: User }>({\n  query: gql`query { user(id: 1) { id name email } }`,\n});\n// data.user is fully typed — guaranteed by schema\n\n// GraphQL advantage: request exactly the fields you need\n// REST advantage: simpler caching, no query complexity concerns',
         },
         {
           heading: "REST + OpenAPI: types as documentation",
@@ -3628,6 +3704,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why exports matters",
           body: "The exports field replaces main/module/types as the primary entry point mechanism. It provides encapsulation (consumers can only import exported paths), conditional resolution (different code for import vs require), and subpath exports (import 'pkg/utils'). Node.js 12.7+ and all modern bundlers support it.",
+          codeExample: '// package.json "exports" field — modern entry points\n{\n  "name": "my-lib",\n  "type": "module",\n  "exports": {\n    ".": {\n      "import": "./dist/index.mjs",       // ESM import\n      "require": "./dist/index.cjs",       // CJS require\n      "types": "./dist/index.d.ts"         // TypeScript types\n    },\n    "./utils": {\n      "import": "./dist/utils.mjs",\n      "require": "./dist/utils.cjs",\n      "types": "./dist/utils.d.ts"\n    }\n  }\n}\n\n// Consumer:\nimport { helper } from "my-lib";         // → dist/index.mjs\nimport { formatDate } from "my-lib/utils"; // → dist/utils.mjs',
         },
         {
           heading: "Conditional exports for dual packages",
@@ -3684,6 +3761,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Built-in lifecycle scripts",
           body: "npm has special script names that run automatically: 'preinstall' and 'postinstall' run before/after npm install, 'prepublishOnly' runs before npm publish (ideal for building), 'prepare' runs after install and before publish. These hooks automate common workflows without manual intervention.",
+          codeExample: '// package.json — common npm scripts\n{\n  "scripts": {\n    "dev": "next dev",                    // development server\n    "build": "next build",                // production build\n    "start": "next start",                // start production\n    "lint": "eslint . --fix",             // lint + auto-fix\n    "test": "vitest",                     // run tests\n    "test:watch": "vitest --watch",       // watch mode\n    "typecheck": "tsc --noEmit",          // type checking only\n    "format": "prettier --write .",       // format code\n    "prepare": "husky install",           // git hooks setup\n    "precommit": "lint-staged"            // pre-commit checks\n  }\n}\n\n// Run: npm run dev, npm test, npm run build\n// Pre/post hooks: "prebuild" runs before "build" automatically',
         },
         {
           heading: "Pre and post hooks",
@@ -3740,6 +3818,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What type: module does",
           body: "Setting \"type\": \"module\" tells Node.js to treat .js files as ES modules. This enables import/export syntax, top-level await, and import.meta. Without it, Node.js treats .js as CommonJS (require/module.exports). You can override per-file with .mjs (always ESM) and .cjs (always CJS).",
+          codeExample: '// ESM (ECMAScript Modules) — modern standard\n// package.json: { "type": "module" }\nimport express from "express";\nimport { readFile } from "fs/promises";\nexport const helper = () => {};\nexport default app;\n// ✅ Tree-shaking, static analysis, top-level await\n\n// CommonJS — Node.js legacy default\n// package.json: { "type": "commonjs" } or omit\nconst express = require("express");\nconst { readFile } = require("fs/promises");\nmodule.exports = { helper };\nmodule.exports = app;\n// ✅ Simpler dynamic imports, wider compatibility\n\n// Dual package: ship both with "exports" field\n// { "exports": { "import": "./dist/index.mjs", "require": "./dist/index.cjs" } }',
         },
         {
           heading: "Key differences in practice",
@@ -3799,6 +3878,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is HSTS?",
           body: "HTTP Strict-Transport-Security (HSTS) is a response header that instructs browsers to only connect to your site over HTTPS for a specified duration. Once a browser receives the HSTS header, it automatically converts all HTTP requests to HTTPS — even if the user types http:// or clicks an HTTP link. This prevents SSL-stripping attacks where an attacker downgrades connections from HTTPS to HTTP.",
+          codeExample: '// HTTP Strict Transport Security (HSTS)\n// Forces HTTPS for all future requests\n\n// Basic — 1 year\nStrict-Transport-Security: max-age=31536000\n\n// Recommended — include subdomains + preload\nStrict-Transport-Security: max-age=31536000; includeSubDomains; preload\n\n// Nginx\nadd_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;\n\n// Express\napp.use((req, res, next) => {\n  res.setHeader("Strict-Transport-Security",\n    "max-age=31536000; includeSubDomains; preload");\n  next();\n});\n\n// Submit to preload list: https://hstspreload.org\n// ⚠ Once preloaded, removal takes months — test first',
         },
         {
           heading: "Configuring max-age",
@@ -3852,6 +3932,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why security headers matter",
           body: "Security headers instruct browsers to enable built-in security features: blocking XSS (CSP), preventing clickjacking (X-Frame-Options), forcing HTTPS (HSTS), and controlling information leakage (Referrer-Policy). Without them, browsers use permissive defaults that leave your users vulnerable. Adding security headers is one of the highest-impact, lowest-effort security improvements you can make.",
+          codeExample: '// Essential security headers\n\n// Prevent MIME sniffing attacks\nX-Content-Type-Options: nosniff\n\n// Prevent clickjacking\nX-Frame-Options: DENY\n// or Content-Security-Policy: frame-ancestors \'none\'\n\n// Control referrer information\nReferrer-Policy: strict-origin-when-cross-origin\n\n// Disable dangerous browser features\nPermissions-Policy: camera=(), microphone=(), geolocation=()\n\n// Force HTTPS\nStrict-Transport-Security: max-age=31536000; includeSubDomains\n\n// Prevent XSS (legacy, use CSP instead)\nX-XSS-Protection: 0\n\n// Vercel (vercel.json)\n{ "headers": [{ "source": "/(.*)", "headers": [\n  { "key": "X-Content-Type-Options", "value": "nosniff" }\n]}]}',
         },
         {
           heading: "Essential headers every site needs",
@@ -3904,6 +3985,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Checking headers with browser DevTools",
           body: "Open Chrome DevTools (F12) → Network tab → click any request → Headers tab → scroll to Response Headers. Look for Strict-Transport-Security, Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, and Referrer-Policy. Missing headers mean the browser uses permissive defaults, leaving your site exposed.",
+          codeExample: '// JavaScript — check security headers of a URL\nasync function checkHeaders(url) {\n  const res = await fetch(url, { method: "HEAD" });\n  const required = [\n    "strict-transport-security",\n    "content-security-policy",\n    "x-content-type-options",\n    "x-frame-options",\n    "referrer-policy",\n    "permissions-policy"\n  ];\n  return required.map(h => ({\n    header: h,\n    present: res.headers.has(h),\n    value: res.headers.get(h) || "missing"\n  }));\n}\n\n// Note: fetch() cannot read all headers cross-origin\n// Use curl or server-side check for full analysis',
         },
         {
           heading: "Common issues and fixes",
@@ -3959,6 +4041,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What TypeScript removes during compilation",
           body: "TypeScript strips all type-only constructs: interface declarations, type aliases, type annotations on variables and parameters, generic type parameters, type assertions (as Type), access modifiers (public/private/protected), the readonly keyword, implements clauses, declare statements, and non-null assertions (!). These exist only for the type checker and have zero runtime impact.",
+          codeExample: '// TypeScript type stripping — remove types, keep logic\n\n// Before (TypeScript)\ninterface User {\n  name: string;\n  age: number;\n}\nfunction greet(user: User): string {\n  return `Hello, ${user.name}`;\n}\nconst users: User[] = [{ name: "Alice", age: 30 }];\n\n// After (JavaScript) — types removed, logic preserved\nfunction greet(user) {\n  return `Hello, ${user.name}`;\n}\nconst users = [{ name: "Alice", age: 30 }];\n\n// Node.js 22+ supports --experimental-strip-types\n// node --experimental-strip-types app.ts',
         },
         {
           heading: "What TypeScript keeps or transforms",
@@ -4006,6 +4089,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Type system: the core difference",
           body: "JavaScript is dynamically typed — variables can hold any value and types are checked at runtime. TypeScript adds optional static typing checked at compile time. You annotate variables (let name: string), function parameters (function greet(name: string)), and return types (function getAge(): number). The type checker catches bugs before code runs, but all types are erased in the output JavaScript.",
+          codeExample: '// TypeScript features not in JavaScript\n\n// 1. Type annotations\nlet name: string = "Alice";       // TS\nlet name = "Alice";               // JS\n\n// 2. Interfaces and type aliases\ninterface User { name: string; }  // TS only\ntype ID = string | number;        // TS only\n\n// 3. Enums → objects or constants\nenum Color { Red, Green, Blue }   // TS\nconst Color = { Red: 0, Green: 1, Blue: 2 }; // JS equivalent\n\n// 4. Generics\nfunction first<T>(arr: T[]): T { return arr[0]; }  // TS\nfunction first(arr) { return arr[0]; }              // JS\n\n// 5. Access modifiers (public, private, protected)\n// 6. Abstract classes\n// 7. Declaration files (.d.ts)',
         },
         {
           heading: "Interfaces, enums, and generics",
@@ -4054,6 +4138,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Step 1: Strip types from all files",
           body: "Use the TypeScript compiler (tsc --outDir dist) to emit JavaScript files, or use a faster tool like esbuild or sucrase for type-only stripping. For individual files, paste them into this converter tool. The key transformation is removing type annotations, interfaces, type aliases, and generics while preserving all runtime code.",
+          codeExample: '// Migration steps: TypeScript → JavaScript\n\n// 1. Strip types with a tool (tsc, swc, or esbuild)\n// npx tsc --outDir dist --declaration false --removeComments\n\n// 2. Convert enums to objects\n// Before: enum Status { Active, Inactive }\n// After:\nconst Status = Object.freeze({ Active: 0, Inactive: 1 });\n\n// 3. Remove TypeScript-only imports\n// Before: import type { User } from "./types";\n// After: (delete the line)\n\n// 4. Rename .ts/.tsx files to .js/.jsx\n// find src -name "*.ts" -exec bash -c \'mv "$1" "${1%.ts}.js"\' _ {} \\;\n\n// 5. Remove tsconfig.json, uninstall typescript\n// npm uninstall typescript @types/*',
         },
         {
           heading: "Step 2: Handle TypeScript-specific features",
@@ -4103,6 +4188,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert JSON to PostgreSQL?",
           body: "PostgreSQL is the most popular open-source relational database, and developers frequently need to seed tables from JSON API responses, configuration files, or test fixtures. Manually writing CREATE TABLE and INSERT statements is tedious and error-prone. This tool automates the process with proper PostgreSQL syntax, quoting, and type mapping — including advanced types like JSONB for nested objects and UUID for identifier strings.",
+          codeExample: '-- JSON data → PostgreSQL CREATE TABLE + INSERT\n\n-- Generated from: [{ "id": 1, "name": "Alice", "email": "alice@example.com", "metadata": {} }]\n\nCREATE TABLE IF NOT EXISTS users (\n  id INTEGER NOT NULL,\n  name VARCHAR(255) NOT NULL,\n  email VARCHAR(255) NOT NULL,\n  metadata JSONB,\n  PRIMARY KEY (id)\n);\n\nINSERT INTO users (id, name, email, metadata) VALUES\n  (1, \'Alice\', \'alice@example.com\', \'{}\'::jsonb);\n\n-- PostgreSQL-specific types: JSONB, UUID, TIMESTAMPTZ, SERIAL\n-- Use JSONB for nested objects (indexed, queryable)',
         },
         {
           heading: "PostgreSQL type inference",
@@ -4146,6 +4232,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert JSON to MySQL?",
           body: "MySQL powers a huge share of web applications, and importing JSON data into MySQL tables is a common task for seeding databases, migrating data, and creating test fixtures. This tool generates MySQL-specific SQL with backtick-quoted identifiers, VARCHAR/TEXT types with appropriate lengths, and MySQL-compatible boolean handling. It handles the escaping and formatting so you can focus on your data.",
+          codeExample: '-- JSON data → MySQL CREATE TABLE + INSERT\n\n-- Generated from: [{ "id": 1, "name": "Alice", "active": true, "score": 9.5 }]\n\nCREATE TABLE IF NOT EXISTS users (\n  `id` INT NOT NULL,\n  `name` VARCHAR(255) NOT NULL,\n  `active` TINYINT(1) NOT NULL,\n  `score` DOUBLE NOT NULL,\n  PRIMARY KEY (`id`)\n);\n\nINSERT INTO `users` (`id`, `name`, `active`, `score`) VALUES\n  (1, \'Alice\', 1, 9.5);\n\n-- MySQL differences: backtick quoting, TINYINT for boolean\n-- JSON type available in MySQL 5.7+ for nested objects',
         },
         {
           heading: "MySQL type mapping",
@@ -4189,6 +4276,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert JSON to SQLite?",
           body: "SQLite is the world's most deployed database engine, embedded in mobile apps, desktop software, IoT devices, and development environments. Developers often need to populate SQLite databases from JSON exports, API responses, or configuration data. This tool generates SQLite-compatible SQL with the correct type affinities (TEXT, INTEGER, REAL) and proper quoting.",
+          codeExample: '-- JSON data → SQLite CREATE TABLE + INSERT\n\n-- Generated from: [{ "id": 1, "name": "Alice", "active": true, "score": 9.5 }]\n\nCREATE TABLE IF NOT EXISTS users (\n  id INTEGER NOT NULL,\n  name TEXT NOT NULL,\n  active INTEGER NOT NULL,\n  score REAL NOT NULL,\n  PRIMARY KEY (id)\n);\n\nINSERT INTO users (id, name, active, score) VALUES\n  (1, \'Alice\', 1, 9.5);\n\n-- SQLite type affinities: INTEGER, REAL, TEXT, BLOB\n-- Booleans stored as 0/1 (INTEGER)\n-- No native JSON type, use TEXT + json_extract()',
         },
         {
           heading: "SQLite type affinities",
@@ -4235,6 +4323,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert JSON to GraphQL?",
           body: "When migrating from REST to GraphQL or wrapping existing REST APIs with a GraphQL layer, you need schema definitions that match your existing data shapes. Manually writing type definitions for complex nested JSON responses is tedious and error-prone. This tool automates the process by analyzing your JSON structure and generating accurate GraphQL types with proper scalar assignments.",
+          codeExample: '// Generate GraphQL schema from API response\n\n// API response JSON:\n// { "users": [{ "id": "u1", "name": "Alice", "posts": [{ "title": "Hello" }] }] }\n\n// Generated GraphQL schema:\ntype Query {\n  users: [User!]!\n}\n\ntype User {\n  id: ID!\n  name: String!\n  posts: [Post!]!\n}\n\ntype Post {\n  title: String!\n}\n\n// JavaScript — infer types from JSON\nfunction jsonToGraphQLType(obj) {\n  if (typeof obj === "string") return "String";\n  if (typeof obj === "number") return Number.isInteger(obj) ? "Int" : "Float";\n  if (typeof obj === "boolean") return "Boolean";\n  return "String";\n}',
         },
         {
           heading: "How type inference works",
@@ -4278,6 +4367,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "GraphQL scalar types",
           body: "GraphQL has five built-in scalar types: String, Int, Float, Boolean, and ID. The ID type represents a unique identifier and is serialized as a string. For dates and timestamps, GraphQL uses custom scalars like DateTime and Date that must be declared in your schema and implemented in your server's resolver layer.",
+          codeExample: '// JSON → GraphQL type generator\n\n// Input JSON:\n{\n  "product": {\n    "id": "prod-001",\n    "name": "Widget",\n    "price": 29.99,\n    "inStock": true,\n    "tags": ["electronics", "sale"]\n  }\n}\n\n// Generated GraphQL types:\ntype Product {\n  id: ID!\n  name: String!\n  price: Float!\n  inStock: Boolean!\n  tags: [String!]!\n}\n\ntype Query {\n  product(id: ID!): Product\n  products: [Product!]!\n}\n\ninput CreateProductInput {\n  name: String!\n  price: Float!\n  inStock: Boolean!\n  tags: [String!]\n}',
         },
         {
           heading: "Non-null types and lists",
@@ -4321,6 +4411,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Naming conventions",
           body: "GraphQL types use PascalCase (User, BlogPost). Fields use camelCase (firstName, createdAt). Enum values use SCREAMING_SNAKE_CASE (PUBLISHED, DRAFT). Input types are conventionally suffixed with 'Input' (CreateUserInput). These conventions are not enforced by the spec but are widely adopted across the ecosystem.",
+          codeExample: '// GraphQL schema design best practices\n\n// 1. Use non-null by default, nullable for optional fields\ntype User {\n  id: ID!            # always present\n  name: String!      # required\n  bio: String        # nullable — may not be set\n}\n\n// 2. Use connections for pagination (Relay spec)\ntype Query {\n  users(first: Int!, after: String): UserConnection!\n}\ntype UserConnection {\n  edges: [UserEdge!]!\n  pageInfo: PageInfo!\n}\ntype UserEdge {\n  cursor: String!\n  node: User!\n}\n\n// 3. Use input types for mutations\nmutation { createUser(input: CreateUserInput!): User! }\n\n// 4. Use enums instead of strings for fixed sets\nenum OrderStatus { PENDING SHIPPED DELIVERED CANCELLED }',
         },
         {
           heading: "Designing for relationships",
@@ -4370,6 +4461,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is unified diff format?",
           body: "Unified diff format (also called unidiff) shows changes between two files in a compact, human-readable way. It was introduced by GNU diff and is now the default output format for git diff. Each diff starts with file headers (--- and +++ lines), followed by one or more hunks that show the actual changes with surrounding context lines.",
+          codeExample: '// Unified diff format anatomy\n\n--- a/src/app.ts              // original file\n+++ b/src/app.ts              // modified file\n@@ -10,7 +10,8 @@            // hunk header: line numbers\n // context line (unchanged)   // starts with space\n-const port = 3000;           // removed line (starts with -)\n+const port = parseInt(       // added line (starts with +)\n+  process.env.PORT || "3000" // added line\n+);\n // more context               // unchanged\n\n// Hunk header: @@ -oldStart,oldCount +newStart,newCount @@\n// -10,7 means: starting at line 10, showing 7 lines from original\n// +10,8 means: starting at line 10, showing 8 lines in modified',
         },
         {
           heading: "Anatomy of a unified diff",
@@ -4416,6 +4508,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Basic git diff usage",
           body: "Running 'git diff' with no arguments shows unstaged changes in your working directory compared to the index (staging area). Use 'git diff --staged' (or --cached) to see changes that are staged for the next commit. Use 'git diff HEAD' to see all changes (staged and unstaged) compared to the last commit.",
+          codeExample: '# Essential git diff commands\n\n# Unstaged changes (working directory vs index)\ngit diff\n\n# Staged changes (index vs last commit)\ngit diff --staged\n\n# Between two commits\ngit diff abc123 def456\n\n# Between branches\ngit diff main..feature-branch\n\n# Specific file only\ngit diff -- src/app.ts\n\n# Show only file names changed\ngit diff --name-only\n\n# Show stats (insertions/deletions per file)\ngit diff --stat\n\n# Word-level diff (instead of line-level)\ngit diff --word-diff\n\n# Ignore whitespace changes\ngit diff -w',
         },
         {
           heading: "Comparing branches and commits",
@@ -4462,6 +4555,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why use side-by-side diff view?",
           body: "Side-by-side diff view displays the old and new file versions in parallel columns, making it easier to see exactly what changed at each line. It is the preferred view for code reviews because you can scan corresponding lines horizontally. Inline view is better for small changes or narrow screens, while side-by-side excels for refactoring and multi-line changes.",
+          codeExample: '// JavaScript — render side-by-side diff view\nfunction sideBySide(oldLines, newLines) {\n  const pairs = [];\n  let oldIdx = 0, newIdx = 0;\n  while (oldIdx < oldLines.length || newIdx < newLines.length) {\n    const oldLine = oldLines[oldIdx] || "";\n    const newLine = newLines[newIdx] || "";\n    if (oldLine === newLine) {\n      pairs.push({ left: oldLine, right: newLine, type: "same" });\n      oldIdx++; newIdx++;\n    } else {\n      if (oldIdx < oldLines.length)\n        pairs.push({ left: oldLine, right: "", type: "removed" });\n      if (newIdx < newLines.length)\n        pairs.push({ left: "", right: newLine, type: "added" });\n      oldIdx++; newIdx++;\n    }\n  }\n  return pairs;\n}',
         },
         {
           heading: "How to read a side-by-side diff",
@@ -4507,6 +4601,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is Prisma Schema?",
           body: "Prisma schema is the central configuration file for Prisma ORM. It defines your data models, their fields, types, and relationships using a declarative syntax. Each model maps to a database table, and Prisma uses the schema to generate a type-safe query client for TypeScript and JavaScript applications.",
+          codeExample: '-- SQL input\nCREATE TABLE users (\n  id SERIAL PRIMARY KEY,\n  email VARCHAR(255) UNIQUE NOT NULL,\n  name VARCHAR(100),\n  created_at TIMESTAMP DEFAULT NOW()\n);\n\n// Generated Prisma schema\nmodel User {\n  id        Int      @id @default(autoincrement())\n  email     String   @unique @db.VarChar(255)\n  name      String?  @db.VarChar(100)\n  createdAt DateTime @default(now()) @map("created_at")\n  @@map("users")\n}',
         },
         {
           heading: "How the converter maps SQL to Prisma",
@@ -4554,6 +4649,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is Drizzle ORM?",
           body: "Drizzle ORM is a lightweight, type-safe TypeScript ORM that provides a SQL-like query builder. Unlike Prisma, Drizzle schema definitions are written in TypeScript using helper functions like pgTable, mysqlTable, and sqliteTable. Each table is defined as a JavaScript object with column definitions that map directly to database columns.",
+          codeExample: '-- SQL input\nCREATE TABLE posts (\n  id SERIAL PRIMARY KEY,\n  title VARCHAR(255) NOT NULL,\n  body TEXT,\n  author_id INTEGER REFERENCES users(id),\n  published BOOLEAN DEFAULT false\n);\n\n// Generated Drizzle ORM schema\nimport { pgTable, serial, varchar, text, integer, boolean } from "drizzle-orm/pg-core";\nimport { users } from "./users";\n\nexport const posts = pgTable("posts", {\n  id: serial("id").primaryKey(),\n  title: varchar("title", { length: 255 }).notNull(),\n  body: text("body"),\n  authorId: integer("author_id").references(() => users.id),\n  published: boolean("published").default(false),\n});',
         },
         {
           heading: "How the converter generates Drizzle schemas",
@@ -4601,6 +4697,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Numeric types",
           body: "SQL INT, INTEGER, SMALLINT, TINYINT, MEDIUMINT, BIGINT, SERIAL, and BIGSERIAL all map to TypeScript number. FLOAT, DOUBLE, DOUBLE PRECISION, REAL, NUMERIC, and DECIMAL also map to number. In Prisma, integers map to Int or BigInt, while decimals map to Decimal or Float. For JavaScript safety with very large integers (BIGINT), consider using BigInt type instead of number.",
+          codeExample: '// SQL → TypeScript type mapping reference\n\n// Integers\n// SMALLINT, INT2                → number\n// INTEGER, INT, INT4            → number\n// BIGINT, INT8                  → bigint (or string)\n// SERIAL, BIGSERIAL             → number (auto-increment)\n\n// Floating point\n// REAL, FLOAT4                  → number\n// DOUBLE PRECISION, FLOAT8      → number\n// DECIMAL, NUMERIC              → string (arbitrary precision)\n\n// Text\n// VARCHAR(n), CHAR(n), TEXT     → string\n\n// Boolean\n// BOOLEAN                       → boolean\n\n// Date/Time\n// TIMESTAMP, TIMESTAMPTZ        → Date (or string)\n// DATE                          → string (YYYY-MM-DD)\n\n// JSON\n// JSON, JSONB                   → Record<string, unknown>\n\n// UUID\n// UUID                          → string',
         },
         {
           heading: "String and text types",
@@ -4654,6 +4751,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Key Differences Between Brotli and Gzip",
           body: "Brotli uses a combination of LZ77, Huffman coding, and a predefined dictionary of common web content patterns, giving it an edge on HTML, CSS, and JavaScript. Gzip (based on DEFLATE) is faster to compress but produces larger output. For static assets served from CDNs, Brotli's superior ratio wins. For dynamic content compressed on-the-fly, Gzip's speed advantage may matter more.",
+          codeExample: '// Brotli vs Gzip compression comparison\n\n// Brotli (br) — newer, better ratios\n// 15-25% smaller than Gzip at similar speed\n// Best for static assets (pre-compressed)\n// Supported by all modern browsers\n// Content-Encoding: br\n\n// Gzip (gz) — universal standard\n// Fastest compression, widest support\n// Best for dynamic content (on-the-fly)\n// Content-Encoding: gzip\n\n// Nginx config — serve both\ngzip on;\ngzip_types text/html text/css application/javascript application/json;\n\nbrotli on;\nbrotli_types text/html text/css application/javascript application/json;\nbrotli_comp_level 6;\n\n// Typical results for 100KB JavaScript:\n// Gzip:  ~30KB (70% reduction)\n// Brotli: ~25KB (75% reduction)',
         },
         {
           heading: "Browser and Server Support",
@@ -4707,6 +4805,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How Compression Ratios Are Calculated",
           body: "Compression ratio = compressed size / original size. A ratio of 0.25 means the data was compressed to 25% of its original size. Savings percentage = (1 - ratio) x 100, so a 0.25 ratio means 75% savings. Lower ratios indicate better compression. The theoretical minimum depends on the data's entropy — truly random data cannot be compressed below its entropy.",
+          codeExample: '// Understanding compression ratios\n\n// Compression Ratio = Original Size / Compressed Size\n// 100KB → 25KB = 4:1 ratio (75% savings)\n// 100KB → 50KB = 2:1 ratio (50% savings)\n\n// JavaScript — calculate compression stats\nfunction compressionStats(original, compressed) {\n  const ratio = original / compressed;\n  const savings = ((original - compressed) / original * 100).toFixed(1);\n  return {\n    original: `${(original / 1024).toFixed(1)}KB`,\n    compressed: `${(compressed / 1024).toFixed(1)}KB`,\n    ratio: `${ratio.toFixed(1)}:1`,\n    savings: `${savings}%`\n  };\n}\n// Text compresses well (60-90%), images poorly (5-15%)\n// Already-compressed files (PNG, ZIP) won\'t compress further',
         },
         {
           heading: "What Affects Compression Ratios",
@@ -4759,6 +4858,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Impact on Core Web Vitals",
           body: "Compression directly affects Largest Contentful Paint (LCP) by reducing the time to download HTML, CSS, and JavaScript. Smaller transfers also improve Time to First Byte (TTFB) since the server sends less data. For a typical 100KB HTML page, Brotli compression reduces the transfer to ~15-25KB, saving 100-300ms on 3G connections and 10-30ms on broadband.",
+          codeExample: '// Enable HTTP compression for web performance\n\n// Vercel — automatic Brotli + Gzip for all assets\n// No config needed — enabled by default\n\n// Next.js — enable in next.config.js\nmodule.exports = { compress: true };\n\n// Express\nimport compression from "compression";\napp.use(compression({ level: 6, threshold: 1024 }));\n\n// Check compression with curl\n// curl -H "Accept-Encoding: br, gzip" -I https://example.com\n// Look for: Content-Encoding: br\n\n// Impact: 50-80% bandwidth reduction\n// Typical savings by file type:\n// JavaScript: 60-80%\n// CSS: 70-85%\n// HTML: 60-75%\n// JSON API: 70-90%',
         },
         {
           heading: "Server Configuration",
@@ -4928,6 +5028,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why TypeScript is moving to Go",
           body: "The TypeScript team announced a native Go rewrite to achieve 7-10x faster compilation, dramatically reducing build times for large codebases. The Go compiler (codenamed 'Corsa') will be a full rewrite, not a port. TypeScript 6.0 serves as the transition release, deprecating everything that won't carry forward.",
+          codeExample: '// Preparing for TypeScript 7.0 — the Go rewrite\n\n// What\'s changing in TS 7 (native compiler):\n// ✅ 10x faster type checking\n// ✅ Same type system, same syntax\n// ✅ tsc CLI remains the same\n\n// What to do NOW:\n// 1. Migrate off deprecated TS 5.x options\n{\n  "compilerOptions": {\n    "target": "es2022",           // not "es5" (removed in TS 6)\n    "module": "esnext",           // not "amd"/"umd" (removed)\n    "moduleResolution": "bundler" // not "classic" (removed)\n  }\n}\n\n// 2. Remove "ignoreDeprecations": "6.0" before TS 7\n// 3. Run TS 6 in CI to catch new strict-by-default errors\n// 4. Test with nightly: npm install typescript@next',
         },
         {
           heading: "What gets hard-removed in 7.0",
@@ -4982,6 +5083,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why migrate to Biome?",
           body: "Biome is 20-100x faster than ESLint because it is written in Rust and processes files in parallel. It combines linting, formatting, and import sorting in a single tool, eliminating the need for Prettier, eslint-config-prettier, and eslint-plugin-import. A single biome.json replaces .eslintrc, .prettierrc, and .editorconfig. Biome v2 added type-aware linting, closing the last major gap with TypeScript-ESLint.",
+          codeExample: '// Migrate from ESLint + Prettier to Biome\n\n// 1. Install Biome\nnpm install --save-dev --save-exact @biomejs/biome\nnpx @biomejs/biome init\n\n// 2. biome.json — equivalent of .eslintrc + .prettierrc\n{\n  "linter": {\n    "enabled": true,\n    "rules": { "recommended": true }\n  },\n  "formatter": {\n    "enabled": true,\n    "indentStyle": "space",\n    "indentWidth": 2\n  }\n}\n\n// 3. Update package.json scripts\n// "lint": "biome check ."        (replaces eslint .)\n// "format": "biome format --write ."  (replaces prettier --write .)\n\n// 4. Remove old deps\n// npm uninstall eslint prettier eslint-config-prettier',
         },
         {
           heading: "Step 1: Generate biome.json",
@@ -5041,6 +5143,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Performance",
           body: "Biome is written in Rust and processes files in parallel, making it 20-100x faster than ESLint on large codebases. A project with 10,000 TypeScript files that takes ESLint 45 seconds to lint finishes in under 1 second with Biome. This difference is transformative for CI pipelines and developer experience. ESLint 9 improved performance with flat config, but the architecture limits further gains.",
+          codeExample: '// Biome vs ESLint comparison\n\n// Speed (linting 1000 files):\n// Biome:  ~50ms  (Rust-based, single binary)\n// ESLint: ~2000ms (Node.js, plugin loading)\n\n// Configuration:\n// Biome: single biome.json — linter + formatter\n// ESLint: .eslintrc + .prettierrc + eslint-config-prettier\n\n// Rule coverage (as of 2026):\n// Biome: ~300 rules (eslint, typescript-eslint, jsx-a11y)\n// ESLint: ~600+ rules with plugins\n\n// Biome advantages:\n// ✅ 40x faster than ESLint\n// ✅ Built-in formatter (replaces Prettier)\n// ✅ Zero config needed for most projects\n// ✅ Single dependency\n\n// ESLint advantages:\n// ✅ Larger plugin ecosystem\n// ✅ More custom rule options\n// ✅ Mature community support',
         },
         {
           heading: "Rule coverage",
@@ -5100,6 +5203,7 @@ export const batch4Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How Biome organizes rules",
           body: "Biome groups rules into categories: correctness (bugs and errors), suspicious (likely mistakes), style (code style preferences), complexity (unnecessary complexity), performance (performance issues), security (security vulnerabilities), a11y (accessibility), and nursery (experimental rules). Each ESLint rule maps to one Biome group and rule name.",
+          codeExample: '// ESLint → Biome rule mapping (common rules)\n\n// eslint\n"no-unused-vars"           → lint/correctness/noUnusedVariables\n"no-console"               → lint/suspicious/noConsole\n"eqeqeq"                   → lint/suspicious/noDoubleEquals\n"no-debugger"              → lint/suspicious/noDebugger\n"no-var"                   → lint/style/noVar\n"prefer-const"             → lint/style/useConst\n\n// @typescript-eslint\n"no-explicit-any"          → lint/suspicious/noExplicitAny\n"no-non-null-assertion"    → lint/style/noNonNullAssertion\n\n// react\n"jsx-no-duplicate-props"   → lint/suspicious/noDuplicateJsxProps\n\n// jsx-a11y\n"alt-text"                 → lint/a11y/useAltText\n"anchor-is-valid"          → lint/a11y/useValidAnchor\n\n// Not yet available in Biome:\n// "import/order", "react-hooks/exhaustive-deps" (partial)',
         },
         {
           heading: "Core ESLint rules",

@@ -15,6 +15,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to format JSON in Python",
           body: "Python's built-in json module handles JSON formatting with json.dumps(). To pretty print JSON: import json; formatted = json.dumps(data, indent=2, sort_keys=True). To read a JSON file: with open('data.json') as f: data = json.load(f). To write formatted JSON: with open('output.json', 'w') as f: json.dump(data, f, indent=2). The indent parameter controls spacing (2 or 4 spaces are standard), and sort_keys alphabetizes object keys for consistent output.",
+          codeExample: '# Python — format JSON with built-in json module\nimport json\n\ndata = {"name": "Alice", "age": 30, "active": True}\nformatted = json.dumps(data, indent=2, sort_keys=True)\nprint(formatted)\n# {\n#   "active": true,\n#   "age": 30,\n#   "name": "Alice"\n# }\n\n# Read and format a JSON file\nwith open("data.json") as f:\n    data = json.load(f)\nwith open("data.json", "w") as f:\n    json.dump(data, indent=2, fp=f)',
         },
         {
           heading: "Common Python JSON errors and how to fix them",
@@ -68,6 +69,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to format JSON in Go",
           body: "Go's encoding/json package provides json.MarshalIndent() for pretty printing: output, err := json.MarshalIndent(data, \"\", \"  \"). To parse JSON into a struct: err := json.Unmarshal([]byte(jsonStr), &result). For compact JSON, use json.Marshal(). To format raw JSON bytes, use json.Indent(): var buf bytes.Buffer; json.Indent(&buf, rawJSON, \"\", \"  \"). Go's json package uses struct tags to map JSON keys: type User struct { Name string `json:\"name\"` }.",
+          codeExample: '// Go — format JSON with encoding/json\npackage main\n\nimport (\n\t"encoding/json"\n\t"fmt"\n)\n\nfunc main() {\n\traw := []byte(`{"name":"Alice","age":30}`)\n\tvar data map[string]interface{}\n\tjson.Unmarshal(raw, &data)\n\n\t// Pretty-print with 2-space indent\n\tformatted, _ := json.MarshalIndent(data, "", "  ")\n\tfmt.Println(string(formatted))\n\t// {\n\t//   "age": 30,\n\t//   "name": "Alice"\n\t// }\n}',
         },
         {
           heading: "Common Go JSON patterns",
@@ -124,6 +126,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to encode Base64 in JavaScript",
           body: "In the browser, use btoa() to encode: const encoded = btoa('Hello World'). For Node.js, use Buffer: const encoded = Buffer.from('Hello World').toString('base64'). Important: btoa() only handles Latin-1 characters. For Unicode strings, first encode to UTF-8: const encoded = btoa(unescape(encodeURIComponent(unicodeString))). Or in modern environments: const encoded = btoa(new TextEncoder().encode(str).reduce((s, b) => s + String.fromCharCode(b), '')).",
+          codeExample: '// JavaScript — Base64 encode and decode\n\n// Encode string to Base64\nconst encoded = btoa("Hello, World!");\nconsole.log(encoded); // "SGVsbG8sIFdvcmxkIQ=="\n\n// Decode Base64 to string\nconst decoded = atob("SGVsbG8sIFdvcmxkIQ==");\nconsole.log(decoded); // "Hello, World!"\n\n// Handle Unicode characters\nconst unicodeEncode = btoa(unescape(encodeURIComponent("Héllo 🌍")));\nconst unicodeDecode = decodeURIComponent(escape(atob(unicodeEncode)));\n\n// Node.js\nBuffer.from("Hello").toString("base64");     // encode\nBuffer.from("SGVsbG8=", "base64").toString(); // decode',
         },
         {
           heading: "How to decode Base64 in JavaScript",
@@ -177,6 +180,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to encode Base64 in Python",
           body: "Python's base64 module handles encoding: import base64; encoded = base64.b64encode(b'Hello World').decode('utf-8'). Note that b64encode() takes bytes and returns bytes — use .decode('utf-8') to get a string. For strings: base64.b64encode('Hello World'.encode('utf-8')).decode('utf-8'). For files: with open('file.pdf', 'rb') as f: encoded = base64.b64encode(f.read()).decode('utf-8'). For URL-safe Base64 (replacing + and / with - and _): base64.urlsafe_b64encode(data).",
+          codeExample: '# Python — Base64 encode and decode\nimport base64\n\n# Encode string to Base64\nencoded = base64.b64encode(b"Hello, World!").decode("utf-8")\nprint(encoded)  # "SGVsbG8sIFdvcmxkIQ=="\n\n# Decode Base64 to string\ndecoded = base64.b64decode("SGVsbG8sIFdvcmxkIQ==").decode("utf-8")\nprint(decoded)  # "Hello, World!"\n\n# URL-safe Base64 (replaces +/ with -_)\nurl_safe = base64.urlsafe_b64encode(b"data?with+special/chars")\nprint(url_safe.decode())  # safe for URLs\n\n# Encode a file\nwith open("image.png", "rb") as f:\n    encoded_file = base64.b64encode(f.read()).decode()',
         },
         {
           heading: "How to decode Base64 in Python",
@@ -233,6 +237,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to decode and verify JWTs in Node.js",
           body: "Install the jsonwebtoken package: npm install jsonwebtoken. To decode without verification (inspect claims): const decoded = jwt.decode(token, { complete: true }). To verify with a secret: const payload = jwt.verify(token, secretOrPublicKey). For RS256 tokens, pass the public key or certificate. Common pattern: try { const payload = jwt.verify(token, secret); } catch (err) { if (err.name === 'TokenExpiredError') { /* handle expiry */ } }. Use this tool to inspect token claims before writing verification logic.",
+          codeExample: '// Node.js — decode and verify JWT tokens\nimport jwt from "jsonwebtoken";\n\n// Decode WITHOUT verification (inspect only)\nconst decoded = jwt.decode(token, { complete: true });\nconsole.log(decoded.header); // { alg: "RS256", typ: "JWT" }\nconsole.log(decoded.payload); // { sub: "user-1", exp: ... }\n\n// Verify with secret (recommended)\ntry {\n  const verified = jwt.verify(token, process.env.JWT_SECRET);\n  console.log("Valid:", verified.sub);\n} catch (err) {\n  console.error("Invalid token:", err.message);\n  // "jwt expired", "invalid signature", etc.\n}',
         },
         {
           heading: "Express JWT middleware pattern",
@@ -286,6 +291,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to decode JWTs in Python",
           body: "Install PyJWT: pip install PyJWT. To decode and verify: import jwt; payload = jwt.decode(token, secret, algorithms=['HS256']). To decode without verification (inspection only): payload = jwt.decode(token, options={'verify_signature': False}). For RS256 tokens: payload = jwt.decode(token, public_key, algorithms=['RS256']). Always specify the algorithms parameter explicitly to prevent algorithm confusion attacks. Note: the package is 'PyJWT' on pip but imported as 'jwt' — don't confuse with the deprecated 'jwt' package.",
+          codeExample: '# Python — decode and verify JWT tokens\nimport jwt  # pip install PyJWT\n\n# Decode WITHOUT verification (inspect only)\npayload = jwt.decode(token, options={"verify_signature": False})\nprint(payload)  # {"sub": "user-1", "exp": 1711234567}\n\n# Verify with secret (recommended)\ntry:\n    payload = jwt.decode(token, "your-secret-key", algorithms=["HS256"])\n    print("Valid:", payload["sub"])\nexcept jwt.ExpiredSignatureError:\n    print("Token expired")\nexcept jwt.InvalidTokenError as e:\n    print(f"Invalid token: {e}")',
         },
         {
           heading: "Python JWT in Flask and Django",
@@ -342,6 +348,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to generate SHA-256 hashes in Python",
           body: "Python's hashlib module provides SHA-256: import hashlib; hash = hashlib.sha256(b'Hello World').hexdigest(). For strings, encode first: hashlib.sha256('Hello World'.encode('utf-8')).hexdigest(). For large files, read in chunks: h = hashlib.sha256(); with open('file', 'rb') as f: for chunk in iter(lambda: f.read(8192), b''): h.update(chunk); print(h.hexdigest()). The update() method lets you hash data incrementally without loading everything into memory.",
+          codeExample: '# Python — generate SHA-256 hash\nimport hashlib\n\n# Hash a string\ntext = "Hello, World!"\nhash_hex = hashlib.sha256(text.encode("utf-8")).hexdigest()\nprint(hash_hex)\n# "dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f"\n\n# Hash a file\ndef file_sha256(filepath):\n    sha256 = hashlib.sha256()\n    with open(filepath, "rb") as f:\n        for chunk in iter(lambda: f.read(8192), b""):\n            sha256.update(chunk)\n    return sha256.hexdigest()\n\nprint(file_sha256("document.pdf"))',
         },
         {
           heading: "Python HMAC-SHA256 for API authentication",
@@ -395,6 +402,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to generate SHA-256 hashes in JavaScript",
           body: "Browser (Web Crypto API): async function sha256(message) { const encoder = new TextEncoder(); const data = encoder.encode(message); const hash = await crypto.subtle.digest('SHA-256', data); return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join(''); }. Node.js: const crypto = require('crypto'); const hash = crypto.createHash('sha256').update('Hello World').digest('hex'). Note: Web Crypto API is async (returns a Promise); Node.js crypto is synchronous by default.",
+          codeExample: '// JavaScript — generate SHA-256 hash\n\n// Browser (Web Crypto API)\nasync function sha256(text) {\n  const data = new TextEncoder().encode(text);\n  const hash = await crypto.subtle.digest("SHA-256", data);\n  return Array.from(new Uint8Array(hash))\n    .map(b => b.toString(16).padStart(2, "0")).join("");\n}\nconst hash = await sha256("Hello, World!");\nconsole.log(hash);\n// "dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f"\n\n// Node.js\nimport { createHash } from "crypto";\nconst hash = createHash("sha256").update("Hello, World!").digest("hex");',
         },
         {
           heading: "SHA-256 hashing patterns in web development",
@@ -451,6 +459,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to generate UUIDs in Python",
           body: "Python's uuid module: import uuid; id = uuid.uuid4() generates a random UUID v4. Other versions: uuid.uuid1() (MAC address + timestamp — includes machine identity), uuid.uuid3(uuid.NAMESPACE_DNS, 'example.com') (MD5-based deterministic), uuid.uuid5(uuid.NAMESPACE_DNS, 'example.com') (SHA-1-based deterministic). Access as string: str(uuid.uuid4()) returns '550e8400-e29b-41d4-a716-446655440000'. As hex without dashes: uuid.uuid4().hex. As bytes: uuid.uuid4().bytes (16 bytes).",
+          codeExample: '# Python — generate UUIDs\nimport uuid\n\n# UUID v4 — random (most common)\nprint(uuid.uuid4())  # "f47ac10b-58cc-4372-a567-0e02b2c3d479"\n\n# UUID v1 — timestamp-based\nprint(uuid.uuid1())  # includes MAC address + timestamp\n\n# UUID v5 — name-based (deterministic)\nnamespace = uuid.NAMESPACE_DNS\nprint(uuid.uuid5(namespace, "example.com"))\n# Always produces the same UUID for same input\n\n# Validate a UUID string\ntry:\n    uuid.UUID("not-a-uuid")\nexcept ValueError:\n    print("Invalid UUID")',
         },
         {
           heading: "UUIDs in Python databases",
@@ -504,6 +513,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to generate UUIDs in Node.js",
           body: "Native (Node.js 19+): const id = crypto.randomUUID() — no package needed, cryptographically secure UUID v4. With the uuid package: npm install uuid; const { v4: uuidv4 } = require('uuid'); const id = uuidv4(). For older Node.js: require('crypto').randomBytes(16) and manually format as UUID. In browsers and Deno, crypto.randomUUID() is also available globally. The native method is fastest and has zero dependencies.",
+          codeExample: '// Node.js — generate UUIDs\nimport { randomUUID } from "crypto";\n\n// Built-in (Node.js 14.17+) — UUID v4\nconst id = randomUUID();\nconsole.log(id); // "f47ac10b-58cc-4372-a567-0e02b2c3d479"\n\n// Browser — crypto.randomUUID()\nconst browserId = crypto.randomUUID();\n\n// With uuid package (for v1, v3, v5)\nimport { v4, v5, validate } from "uuid";\nconsole.log(v4());                        // random UUID\nconsole.log(v5("example.com", v5.DNS));   // deterministic\nconsole.log(validate("not-a-uuid"));       // false',
         },
         {
           heading: "UUID patterns in Node.js applications",
@@ -560,6 +570,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to URL encode in Python",
           body: "Python's urllib.parse module: from urllib.parse import quote, quote_plus, urlencode. For path segments: quote('hello world') returns 'hello%20world'. For query parameters: quote_plus('hello world') returns 'hello+world' (spaces become +). For full query strings: urlencode({'key': 'value with spaces', 'q': 'a&b'}) returns 'key=value+with+spaces&q=a%26b'. The safe parameter controls which characters are NOT encoded: quote('/path/to/file', safe='/') preserves slashes.",
+          codeExample: '# Python — URL encode and decode\nfrom urllib.parse import quote, unquote, urlencode\n\n# Encode a string for URL\nencoded = quote("Hello World! @#$")\nprint(encoded)  # "Hello%20World%21%20%40%23%24"\n\n# Decode URL-encoded string\ndecoded = unquote("Hello%20World%21")\nprint(decoded)  # "Hello World!"\n\n# Encode query parameters\nparams = {"q": "python url encode", "page": 1, "sort": "date"}\nquery_string = urlencode(params)\nprint(query_string)  # "q=python+url+encode&page=1&sort=date"\n\n# quote_plus uses + for spaces (form encoding)\nfrom urllib.parse import quote_plus\nprint(quote_plus("hello world"))  # "hello+world"',
         },
         {
           heading: "URL encoding with the requests library",
@@ -614,6 +625,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to URL encode in JavaScript",
           body: "JavaScript provides two encoding functions: encodeURIComponent('hello world') returns 'hello%20world' — encodes everything except A-Z, a-z, 0-9, -, _, ., ~. Use this for query parameter values. encodeURI('https://example.com/path with spaces') preserves the URL structure (://?#& are not encoded). For query strings: new URLSearchParams({ q: 'hello world', page: '1' }).toString() returns 'q=hello+world&page=1'. The URL class handles encoding automatically: new URL('https://example.com/search?q=' + encodeURIComponent(query)).",
+          codeExample: '// JavaScript — URL encode and decode\n\n// encodeURIComponent — encode individual values\nconst encoded = encodeURIComponent("Hello World! @#$");\nconsole.log(encoded); // "Hello%20World!%20%40%23%24"\n\n// decodeURIComponent — decode back\nconst decoded = decodeURIComponent("Hello%20World%21");\nconsole.log(decoded); // "Hello World!"\n\n// encodeURI — encode full URL (preserves :/?#[]@!$&)\nconst url = encodeURI("https://example.com/path?q=hello world");\n\n// URLSearchParams — build query strings\nconst params = new URLSearchParams({ q: "hello world", page: "1" });\nconsole.log(params.toString()); // "q=hello+world&page=1"\nconsole.log(params.get("q"));   // "hello world"',
         },
         {
           heading: "URL encoding with fetch() and Axios",
@@ -672,6 +684,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to convert epoch timestamps in Python",
           body: "Get current epoch: import time; epoch = int(time.time()). Epoch to datetime: from datetime import datetime; dt = datetime.fromtimestamp(1616000000). Datetime to epoch: int(datetime(2024, 1, 15, 12, 0).timestamp()). For millisecond timestamps (JavaScript-style): datetime.fromtimestamp(1616000000000 / 1000). For UTC explicitly: datetime.utcfromtimestamp(epoch) or datetime.fromtimestamp(epoch, tz=timezone.utc). Always use timezone-aware datetimes in production to avoid bugs.",
+          codeExample: '# Python — epoch timestamp conversion\nfrom datetime import datetime, timezone\nimport time\n\n# Current epoch timestamp\nnow_epoch = int(time.time())\nprint(now_epoch)  # 1711230000\n\n# Epoch → datetime\ndt = datetime.fromtimestamp(1711230000, tz=timezone.utc)\nprint(dt)  # 2025-03-23 18:00:00+00:00\nprint(dt.strftime("%Y-%m-%d %H:%M:%S"))  # "2025-03-23 18:00:00"\n\n# Datetime → epoch\nepoch = int(dt.timestamp())\nprint(epoch)  # 1711230000\n\n# Milliseconds (JavaScript-style)\nms_epoch = int(time.time() * 1000)\nprint(ms_epoch)  # 1711230000000',
         },
         {
           heading: "Timezone handling with Python timestamps",
@@ -727,6 +740,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to work with epoch timestamps in JavaScript",
           body: "Get current epoch: Date.now() returns milliseconds. For seconds: Math.floor(Date.now() / 1000). Epoch to date: new Date(1616000000 * 1000) — JavaScript Date expects milliseconds. Date to epoch: Math.floor(new Date('2024-01-15').getTime() / 1000). Parse ISO string: new Date('2024-01-15T12:00:00Z').getTime() / 1000. Important: JavaScript timestamps are milliseconds (13 digits), while Unix timestamps are seconds (10 digits). Always check which format your API uses.",
+          codeExample: '// JavaScript — epoch timestamp conversion\n\n// Current epoch timestamp (seconds)\nconst epochSec = Math.floor(Date.now() / 1000);\nconsole.log(epochSec); // 1711230000\n\n// Current epoch (milliseconds)\nconst epochMs = Date.now();\nconsole.log(epochMs); // 1711230000000\n\n// Epoch → Date\nconst date = new Date(1711230000 * 1000);\nconsole.log(date.toISOString()); // "2025-03-23T18:00:00.000Z"\nconsole.log(date.toLocaleString()); // local format\n\n// Date → Epoch\nconst epoch = Math.floor(new Date("2025-03-23").getTime() / 1000);\nconsole.log(epoch); // 1711152000',
         },
         {
           heading: "Date formatting in JavaScript",
@@ -785,6 +799,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to use regex in Python",
           body: "Python's re module: import re. Key functions: re.search(pattern, string) returns the first match or None. re.match(pattern, string) matches only at the start. re.findall(pattern, string) returns all matches as a list. re.sub(pattern, replacement, string) replaces matches. re.compile(pattern) creates a reusable pattern object. Always use raw strings for patterns: re.search(r'\\d+', text) — the r prefix prevents Python from interpreting backslashes before the regex engine sees them.",
+          codeExample: '# Python — regular expressions with re module\nimport re\n\ntext = "Contact us at support@example.com or sales@example.com"\n\n# Find all email addresses\nemails = re.findall(r"[\\w.+-]+@[\\w-]+\\.[\\w.]+", text)\nprint(emails)  # ["support@example.com", "sales@example.com"]\n\n# Search for first match\nmatch = re.search(r"(\\w+)@(\\w+\\.\\w+)", text)\nprint(match.group(1))  # "support"\nprint(match.group(2))  # "example.com"\n\n# Replace with regex\ncleaned = re.sub(r"[\\w.+-]+@[\\w-]+\\.[\\w.]+", "[REDACTED]", text)\nprint(cleaned)  # "Contact us at [REDACTED] or [REDACTED]"\n\n# Compile for reuse\npattern = re.compile(r"^\\d{3}-\\d{4}$")\nprint(pattern.match("555-1234"))  # Match object',
         },
         {
           heading: "Python regex vs JavaScript regex differences",
@@ -842,6 +857,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to convert CSV to JSON in Python",
           body: "Using the csv module: import csv, json; with open('data.csv') as f: reader = csv.DictReader(f); rows = list(reader); with open('data.json', 'w') as f: json.dump(rows, f, indent=2). DictReader automatically uses the first row as keys. For custom delimiters: csv.DictReader(f, delimiter=';'). One-liner with pandas: import pandas as pd; pd.read_csv('data.csv').to_json('data.json', orient='records', indent=2). The orient='records' option produces a JSON array of objects — the most common format for APIs.",
+          codeExample: '# Python — convert CSV to JSON\nimport csv\nimport json\n\n# CSV string → JSON\ncsv_data = """name,age,city\nAlice,30,New York\nBob,25,London"""\n\nimport io\nreader = csv.DictReader(io.StringIO(csv_data))\njson_data = json.dumps(list(reader), indent=2)\nprint(json_data)\n# [\n#   { "name": "Alice", "age": "30", "city": "New York" },\n#   { "name": "Bob", "age": "25", "city": "London" }\n# ]\n\n# CSV file → JSON file\nwith open("data.csv") as f:\n    rows = list(csv.DictReader(f))\nwith open("data.json", "w") as f:\n    json.dump(rows, f, indent=2)',
         },
         {
           heading: "Handling CSV encoding and edge cases in Python",
@@ -899,6 +915,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Python naming conventions (PEP 8)",
           body: "PEP 8 defines Python's naming conventions: variables and functions use snake_case (my_variable, calculate_total). Classes use PascalCase (MyClass, HttpResponse). Constants use UPPER_SNAKE_CASE (MAX_RETRIES, API_BASE_URL). Module names use lowercase (my_module.py). Private attributes use leading underscore (_internal_value). Name-mangled attributes use double underscore (__private). When working with APIs that use camelCase (JavaScript conventions), you need to convert between cases at the API boundary.",
+          codeExample: '# Python — convert between naming conventions\nimport re\n\ndef to_snake_case(s):\n    return re.sub(r"(?<=[a-z])(?=[A-Z])", "_", s).lower()\n\ndef to_camel_case(s):\n    parts = re.split(r"[_\\-\\s]+", s)\n    return parts[0].lower() + "".join(w.capitalize() for w in parts[1:])\n\ndef to_pascal_case(s):\n    return "".join(w.capitalize() for w in re.split(r"[_\\-\\s]+", s))\n\ndef to_kebab_case(s):\n    return re.sub(r"(?<=[a-z])(?=[A-Z])", "-", s).lower().replace("_", "-")\n\nprint(to_snake_case("myVariableName"))   # "my_variable_name"\nprint(to_camel_case("my_variable_name")) # "myVariableName"\nprint(to_pascal_case("my-var-name"))     # "MyVarName"\nprint(to_kebab_case("myVariableName"))   # "my-variable-name"',
         },
         {
           heading: "How to convert between cases in Python",
@@ -1681,6 +1698,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to convert px to rem",
           body: "The formula is simple: rem = px / root-font-size. With the browser default of 16px, 1rem equals 16px. So 24px is 1.5rem, 14px is 0.875rem, and 32px is 2rem. If your project sets html { font-size: 62.5% } (a common Tailwind/CSS reset trick), the base becomes 10px, making the math easier: 16px = 1.6rem, 20px = 2rem. Use the settings panel to match your project's root font size for accurate conversions.",
+          codeExample: '/* px to rem conversion (default base: 16px) */\n/* Formula: rem = px / base-font-size */\n\n/* Common conversions (16px base) */\n 8px = 0.5rem\n12px = 0.75rem\n14px = 0.875rem\n16px = 1rem       /* browser default */\n18px = 1.125rem\n20px = 1.25rem\n24px = 1.5rem\n32px = 2rem\n48px = 3rem\n64px = 4rem\n\n/* CSS custom property for easy base changes */\n:root { font-size: 16px; } /* 1rem = 16px */\n:root { font-size: 62.5%; } /* 1rem = 10px (easier math) */\n\n/* JavaScript converter */\nconst pxToRem = (px, base = 16) => `${px / base}rem`;',
         },
         {
           heading: "Why use rem instead of px",
@@ -1734,6 +1752,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to convert rem to px",
           body: "The formula is: px = rem × root-font-size. With the default root font size of 16px, 1rem = 16px, 1.5rem = 24px, 0.875rem = 14px, and 2.5rem = 40px. You can check the computed root font size in DevTools by inspecting the <html> element and looking at the computed font-size property. If your project uses html { font-size: 62.5% }, multiply rem by 10 instead of 16.",
+          codeExample: '/* rem to px conversion (default base: 16px) */\n/* Formula: px = rem * base-font-size */\n\n/* Common conversions (16px base) */\n0.25rem = 4px\n0.5rem  = 8px\n0.75rem = 12px\n1rem    = 16px\n1.25rem = 20px\n1.5rem  = 24px\n2rem    = 32px\n2.5rem  = 40px\n3rem    = 48px\n4rem    = 64px\n\n/* JavaScript converter */\nconst remToPx = (rem, base = 16) => `${rem * base}px`;\n\n/* Get computed base font size */\nconst base = parseFloat(\n  getComputedStyle(document.documentElement).fontSize\n); // typically 16',
         },
         {
           heading: "When you need rem to px conversion",
@@ -1787,6 +1806,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Absolute vs relative CSS units",
           body: "Absolute units (px, pt, cm, mm, in) have a fixed size regardless of context. Pixels (px) are the most common — 1px equals one device pixel at standard density (but CSS pixels scale on high-DPI screens). Relative units (rem, em, vw, vh, %) are calculated based on another value: rem uses the root font size, em uses the parent font size, vw/vh use the viewport dimensions, and % uses the parent element's size. Relative units create flexible, responsive layouts and improve accessibility.",
+          codeExample: '/* CSS units comparison */\n\n/* Absolute */\npx    — 1 pixel (most common absolute unit)\npt    — 1 point (1/72 inch, for print)\n\n/* Relative to font */\nrem   — relative to root font-size (16px default)\nem    — relative to parent font-size\n\n/* Relative to viewport */\nvw    — 1% of viewport width\nvh    — 1% of viewport height\nvmin  — 1% of smaller dimension\nvmax  — 1% of larger dimension\n\n/* Percentage */\n%     — relative to parent element\n\n/* When to use what */\nfont-size: rem;     /* consistent, accessible scaling */\npadding: rem or em; /* scales with text */\nwidth: % or vw;     /* responsive layouts */\nborder: px;         /* precise, thin lines */\nmedia queries: em;  /* zoom-friendly breakpoints */',
         },
         {
           heading: "Best practices for choosing CSS units",
@@ -1845,6 +1865,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Essential CSS for HTML tables",
           body: "Start with border-collapse: collapse on the table element to merge cell borders into clean lines. Add padding to th and td cells (8-12px is standard) for readable spacing. Use border-bottom on rows instead of full borders for a lighter, modern look. Set width: 100% on the table for responsive behavior. For striped rows, use tr:nth-child(even) { background: #f9f9f9 }. Add tr:hover { background: #f0f4ff } for interactive row highlighting.",
+          codeExample: '/* Modern HTML table styling */\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  font-family: system-ui, sans-serif;\n}\n\nth, td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e5e7eb;\n}\n\nth {\n  background: #f9fafb;\n  font-weight: 600;\n  color: #374151;\n}\n\n/* Zebra striping */\ntr:nth-child(even) { background: #f9fafb; }\n\n/* Hover effect */\ntr:hover { background: #f3f4f6; }\n\n/* Responsive — horizontal scroll on small screens */\n.table-wrapper { overflow-x: auto; }\n\n/* Tailwind equivalent */\n/* <table class="w-full border-collapse"> */\n/* <th class="bg-gray-50 px-4 py-3 text-left font-semibold"> */',
         },
         {
           heading: "Responsive table patterns",
@@ -1899,6 +1920,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Semantic table structure",
           body: "Use thead, tbody, and optionally tfoot to group rows by purpose. Use th for header cells and td for data cells — never style td elements to look like headers. Screen readers announce th cells as column or row headers, helping users navigate large tables. Add a caption element as the first child of the table to describe its purpose — assistive technology announces this before reading cell data.",
+          codeExample: '<!-- Accessible HTML table best practices -->\n<table role="table" aria-label="Employee directory">\n  <caption>Q1 2026 Sales Report</caption>\n  <thead>\n    <tr>\n      <th scope="col">Name</th>\n      <th scope="col">Region</th>\n      <th scope="col" aria-sort="descending">Revenue</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th scope="row">Alice</th>  <!-- row header -->\n      <td>North</td>\n      <td>$45,000</td>\n    </tr>\n  </tbody>\n</table>\n\n<!-- Key attributes: -->\n<!-- caption — visible table description -->\n<!-- scope="col|row" — associates headers with data -->\n<!-- aria-sort — indicates sorted column -->',
         },
         {
           heading: "The scope attribute",
@@ -1953,6 +1975,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to convert CSV to HTML table",
           body: "Click 'Import CSV' in the tool above, paste your comma-separated or tab-separated data, and click Import. The first line is used as table headers (th elements inside thead) and the remaining lines become data rows (td elements inside tbody). After importing, you can edit any cell directly, add or remove rows and columns, toggle headers, and choose a visual style before generating the final HTML code.",
+          codeExample: '// JavaScript — convert CSV string to HTML table\nfunction csvToHtmlTable(csv) {\n  const rows = csv.trim().split("\\n").map(r => r.split(","));\n  const header = rows[0];\n  const body = rows.slice(1);\n  return `<table>\n  <thead><tr>${header.map(h => `<th>${h.trim()}</th>`).join("")}</tr></thead>\n  <tbody>${body.map(row =>\n    `<tr>${row.map(cell => `<td>${cell.trim()}</td>`).join("")}</tr>`\n  ).join("\\n  ")}</tbody>\n</table>`;\n}\n\nconst csv = `Name,Age,City\nAlice,30,New York\nBob,25,London`;\nconsole.log(csvToHtmlTable(csv));',
         },
         {
           heading: "Handling edge cases in CSV data",
@@ -2011,6 +2034,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Standard 16:9 resolutions",
           body: "The 16:9 ratio produces these standard resolutions: 640×360 (nHD), 1280×720 (720p / HD), 1920×1080 (1080p / Full HD), 2560×1440 (1440p / 2K QHD), 3840×2160 (2160p / 4K UHD), and 7680×4320 (8K). These are used across YouTube, streaming services, gaming, and broadcast television. The ratio means for every 16 units of width, there are 9 units of height — a decimal ratio of approximately 1.7778.",
+          codeExample: '/* Common 16:9 resolutions */\n/* Width × Height */\n 640 × 360    /* nHD */\n 854 × 480    /* FWVGA */\n1280 × 720    /* HD / 720p */\n1600 × 900    /* HD+ */\n1920 × 1080   /* Full HD / 1080p */\n2560 × 1440   /* QHD / 2K */\n3840 × 2160   /* UHD / 4K */\n\n/* Calculate height from width */\n/* height = width × 9 / 16 */\nconst height = Math.round(1920 * 9 / 16); // 1080\n\n/* CSS */\n.video-container {\n  aspect-ratio: 16 / 9;\n  width: 100%;\n}',
         },
         {
           heading: "Using 16:9 in CSS",
@@ -2063,6 +2087,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "The resize formula",
           body: "To resize proportionally: new_height = original_height × (new_width ÷ original_width). For example, to resize a 1920×1080 image to 1280px wide: 1080 × (1280 ÷ 1920) = 720. The result is 1280×720 — same 16:9 ratio, no stretching. To calculate from a target height instead: new_width = original_width × (new_height ÷ original_height).",
+          codeExample: '// JavaScript — resize while preserving aspect ratio\nfunction resizeKeepRatio(origW, origH, maxW, maxH) {\n  const ratio = Math.min(maxW / origW, maxH / origH);\n  return {\n    width: Math.round(origW * ratio),\n    height: Math.round(origH * ratio)\n  };\n}\n\n// 4000×3000 photo → fit in 800×600\nconsole.log(resizeKeepRatio(4000, 3000, 800, 600));\n// { width: 800, height: 600 }\n\n// 1920×1080 video → fit in 400×400\nconsole.log(resizeKeepRatio(1920, 1080, 400, 400));\n// { width: 400, height: 225 }\n\n# Python\ndef resize_keep_ratio(w, h, max_w, max_h):\n    ratio = min(max_w / w, max_h / h)\n    return round(w * ratio), round(h * ratio)',
         },
         {
           heading: "CSS techniques for responsive images",
@@ -2115,6 +2140,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Syntax and basic usage",
           body: "The property accepts a ratio: aspect-ratio: 16 / 9. The element will try to maintain this ratio as its size changes. Set width: 100% and the height adjusts automatically. For square elements: aspect-ratio: 1 / 1 (or just aspect-ratio: 1). You can also use decimal values: aspect-ratio: 1.7778. The auto keyword (aspect-ratio: auto) uses the element's intrinsic ratio — useful for images that should keep their natural proportions with auto as a fallback: aspect-ratio: auto 16 / 9.",
+          codeExample: '/* CSS aspect-ratio property */\n\n/* Basic usage */\n.video { aspect-ratio: 16 / 9; width: 100%; }\n.square { aspect-ratio: 1; width: 200px; }\n.photo { aspect-ratio: 4 / 3; }\n\n/* Responsive video embed */\n.video-wrapper {\n  aspect-ratio: 16 / 9;\n  width: 100%;\n  max-width: 800px;\n}\n.video-wrapper iframe {\n  width: 100%;\n  height: 100%;\n}\n\n/* Card with fixed ratio */\n.card-image {\n  aspect-ratio: 3 / 2;\n  object-fit: cover;\n  width: 100%;\n}\n\n/* Browser support: 95%+ (Chrome 88+, Firefox 89+, Safari 15+) */\n/* Fallback: padding-top hack */\n.fallback { padding-top: 56.25%; /* 9/16 = 0.5625 */ }',
         },
         {
           heading: "Common patterns",
@@ -2169,6 +2195,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "circle() — circular clips",
           body: "circle(radius at centerX centerY) creates a circular clip. The radius can be a length or percentage — 50% means the circle touches the edges. Position defaults to the element center. Example: clip-path: circle(40% at 50% 50%) creates a circle at 40% radius centered in the element. Use closest-side or farthest-side keywords for responsive circles.",
+          codeExample: '/* CSS clip-path basic shapes */\n\n/* Circle — center at 50% 50%, radius 50% */\n.circle { clip-path: circle(50% at 50% 50%); }\n\n/* Ellipse — 50% horizontal, 30% vertical radius */\n.ellipse { clip-path: ellipse(50% 30% at 50% 50%); }\n\n/* Inset — rectangle with optional border-radius */\n.rounded-inset { clip-path: inset(10% round 20px); }\n\n/* Polygon — custom shape with x,y coordinate pairs */\n.triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }\n.diamond  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }\n.hexagon  { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }\n\n/* All shapes work with images, divs, and any HTML element */',
         },
         {
           heading: "ellipse() — oval clips",
@@ -2221,6 +2248,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Basic geometric shapes",
           body: "Triangle: polygon(50% 0%, 0% 100%, 100% 100%). Diamond: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%). Pentagon: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%). Hexagon: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%). Each shape is defined by vertex coordinates as percentages of the element dimensions.",
+          codeExample: '/* CSS polygon clip-path examples */\n\n/* Arrow pointing right */\n.arrow {\n  clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);\n}\n\n/* Star (5-point) */\n.star {\n  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);\n}\n\n/* Message bubble */\n.message {\n  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 25% 75%, 15% 100%, 15% 75%, 0% 75%);\n}\n\n/* Cross / plus sign */\n.cross {\n  clip-path: polygon(35% 0%, 65% 0%, 65% 35%, 100% 35%, 100% 65%, 65% 65%, 65% 100%, 35% 100%, 35% 65%, 0% 65%, 0% 35%, 35% 35%);\n}',
         },
         {
           heading: "Stars and decorative shapes",
@@ -2273,6 +2301,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Transition basics",
           body: "Add transition: clip-path 0.3s ease to smoothly animate between clip-path states on hover or class changes. For example, transitioning from circle(0% at 50% 50%) to circle(100% at 50% 50%) creates a circular reveal. The browser interpolates each numeric value independently, producing smooth animation.",
+          codeExample: '/* Animate clip-path with CSS transitions */\n\n/* Hover reveal effect */\n.card {\n  clip-path: circle(0% at 50% 50%);\n  transition: clip-path 0.6s ease-in-out;\n}\n.card:hover {\n  clip-path: circle(100% at 50% 50%);\n}\n\n/* Morphing shapes with @keyframes */\n@keyframes morph {\n  0%   { clip-path: circle(50% at 50% 50%); }\n  25%  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }\n  50%  { clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); }\n  75%  { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }\n  100% { clip-path: circle(50% at 50% 50%); }\n}\n.shape { animation: morph 4s ease-in-out infinite; }',
         },
         {
           heading: "Polygon morphing",
@@ -2327,6 +2356,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Color adjustment filters",
           body: "brightness(%) scales the luminance of the element — 100% is unchanged, 0% is completely black, and values above 100% increase brightness. contrast(%) adjusts the difference between light and dark areas — 100% is normal, 0% produces a flat gray, and higher values create sharper contrast. saturate(%) controls color intensity — 0% is fully desaturated (gray), 100% is normal, and 200%+ produces vivid, oversaturated colors.",
+          codeExample: '/* CSS filter functions — complete reference */\n\n.blur       { filter: blur(4px); }           /* Gaussian blur */\n.brightness { filter: brightness(1.5); }      /* 0=black, 1=normal, 2=2x bright */\n.contrast   { filter: contrast(1.5); }        /* 0=gray, 1=normal */\n.grayscale  { filter: grayscale(100%); }      /* 0%=color, 100%=B&W */\n.hue-rotate { filter: hue-rotate(90deg); }    /* rotate color wheel */\n.invert     { filter: invert(100%); }         /* negative image */\n.opacity    { filter: opacity(50%); }         /* transparency */\n.saturate   { filter: saturate(200%); }       /* color intensity */\n.sepia      { filter: sepia(100%); }          /* warm vintage tone */\n\n/* Combine multiple filters */\n.vintage {\n  filter: sepia(60%) contrast(1.1) brightness(0.9) saturate(0.8);\n}\n\n/* Drop shadow (follows element shape, not box) */\n.icon { filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3)); }',
         },
         {
           heading: "Color transformation filters",
@@ -2379,6 +2409,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Grayscale on hover",
           body: "The most common image filter effect: set filter: grayscale(100%) on the image by default, then grayscale(0%) on :hover with a transition. This creates a reveal effect where images start desaturated and gain color on hover. Add transition: filter 0.3s ease for a smooth animation. This works great for team photo grids and portfolio galleries.",
+          codeExample: '/* CSS image effects using filters */\n\n/* Black & white photo */\n.bw { filter: grayscale(100%) contrast(1.1); }\n\n/* Vintage / retro look */\n.vintage { filter: sepia(40%) saturate(0.8) contrast(1.1) brightness(0.95); }\n\n/* Dreamy / soft focus */\n.dreamy { filter: blur(1px) brightness(1.1) saturate(1.3); }\n\n/* High contrast dramatic */\n.dramatic { filter: contrast(1.4) brightness(0.9) saturate(1.2); }\n\n/* Night vision effect */\n.nightvision { filter: hue-rotate(90deg) saturate(3) brightness(1.2); }\n\n/* Duotone effect */\n.duotone {\n  filter: grayscale(100%) contrast(1.2) brightness(0.8);\n  mix-blend-mode: multiply;\n}\n\n/* Hover transition */\nimg { filter: grayscale(100%); transition: filter 0.3s; }\nimg:hover { filter: grayscale(0%); }',
         },
         {
           heading: "Vintage and film effects",
@@ -2431,6 +2462,7 @@ export const batch6Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "filter applies to the element itself",
           body: "The filter property modifies the visual rendering of the element and everything inside it — text, images, children, borders, and backgrounds. If you blur a container with filter: blur(5px), all its children become blurry too. This is ideal for image effects, dimming elements, or creating disabled states. The element's box model and layout are not affected.",
+          codeExample: '/* filter vs backdrop-filter — when to use each */\n\n/* filter — applies to the ELEMENT itself */\n.blurred-image {\n  filter: blur(4px); /* blurs the image */\n}\n\n/* backdrop-filter — applies to what\'s BEHIND the element */\n.glass-card {\n  background: rgba(255, 255, 255, 0.2);\n  backdrop-filter: blur(10px);        /* blurs the background */\n  -webkit-backdrop-filter: blur(10px); /* Safari support */\n  border: 1px solid rgba(255, 255, 255, 0.3);\n}\n\n/* Common backdrop-filter uses */\n.frosted-nav    { backdrop-filter: blur(20px) saturate(180%); }\n.modal-overlay  { backdrop-filter: blur(4px) brightness(0.5); }\n.tooltip        { backdrop-filter: blur(8px); }\n\n/* Key difference:\n   filter: affects the element\'s own rendering\n   backdrop-filter: affects what\'s visible behind the element */',
         },
         {
           heading: "backdrop-filter applies to what is behind the element",
