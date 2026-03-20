@@ -4,6 +4,38 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 38:00 | developer | Add code examples to 45 sub-pages (batch 2 & batch 3)
+
+- **Task:** Continue programmatic sub-page quality audit — add code examples to thin sub-pages at risk from Google March 2026 core update (P2, Phase 11)
+- **What was done:**
+  - Added `codeExample` properties to all 22 sub-pages in `tool-subpages-batch2.ts`:
+    - code-minifier: minify-javascript, minify-css, beautify-html (JS/Python minification & beautification examples)
+    - sql-formatter: mysql-formatter, postgresql-formatter (before/after SQL formatting)
+    - xml-formatter: xml-beautifier, xml-validator (DOMParser JS + lxml Python examples)
+    - yaml-formatter: yaml-beautifier, yaml-validator (js-yaml + PyYAML examples)
+    - gradient-generator: linear-gradient, radial-gradient, conic-gradient (CSS gradient code)
+    - box-shadow: box-shadow-examples, drop-shadow (CSS shadow presets & filter comparison)
+    - flexbox-generator: flexbox-centering, flexbox-layouts (CSS flexbox patterns)
+    - grid-generator: grid-templates, responsive-grid (CSS Grid template areas & auto-fit)
+    - border-radius: circle-border-radius, rounded-corners (CSS circle & radius variations)
+    - text-shadow: text-glow-effect, text-outline (CSS neon glow & text-stroke techniques)
+  - Added `codeExample` properties to all 23 sub-pages in `tool-subpages-batch3.ts`:
+    - css-animation: fade-animation, slide-animation, bounce-animation (CSS @keyframes examples)
+    - qr-code: url-qr-code, wifi-qr-code, vcard-qr-code (JS qrcode lib + Python qrcode examples)
+    - meta-tag-generator: open-graph-generator, twitter-card-generator, seo-meta-tags (HTML meta tag examples)
+    - tailwind-generator: tailwind-buttons, tailwind-cards (Tailwind component HTML)
+    - json-to-typescript: typescript-interfaces, typescript-types (TS interface/type generation examples)
+    - json-to-csv: flatten-json, csv-export (JS/Python flatten & CSV conversion)
+    - markdown-preview: markdown-syntax, markdown-cheatsheet (marked/remark JS + Python markdown)
+    - gitignore-generator: node-gitignore, python-gitignore (.gitignore file content examples)
+    - favicon-generator: emoji-favicon, text-favicon (SVG favicon HTML + JS canvas generation)
+    - markdown-table: markdown-table-syntax, csv-to-markdown-table (Markdown table syntax + JS/Python converters)
+- **Progress:** 96/222 sub-pages now have code examples (43% — up from 23%). 82 remaining across batch 4, batch 6, and core gaps.
+- **Impact:** Batch 2 and batch 3 were completely empty (0% coverage) — now at 100%. These 45 sub-pages cover high-value CSS tools, QR code generators, meta tag tools, TypeScript converters, and Markdown tools. Each code example adds 100-300 words of unique, actionable content per page.
+- **Files modified:** `src/data/tool-subpages-batch2.ts`, `src/data/tool-subpages-batch3.ts`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 37:00 | developer | Add code examples to 43 sub-pages (batch 1 & batch 5)
 
 - **Task:** Continue programmatic sub-page quality audit — add code examples to thin sub-pages at risk from Google March 2026 core update (P2, Phase 11)

@@ -20,6 +20,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Fade animations are used for page-load entrance effects, modal and tooltip reveals, image gallery transitions, and notification banners that appear then auto-dismiss. They also improve perceived performance by gracefully revealing content that loads asynchronously, such as lazy-loaded images or API-driven data.",
+          codeExample: "/* CSS — fade in/out animations */\n\n@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n\n@keyframes fadeOut {\n  from { opacity: 1; }\n  to { opacity: 0; }\n}\n\n.element { animation: fadeIn 0.5s ease-in forwards; }\n\n/* Fade in with slide up */\n@keyframes fadeInUp {\n  from { opacity: 0; transform: translateY(20px); }\n  to { opacity: 1; transform: translateY(0); }\n}",
         },
       ],
       faqs: [
@@ -62,6 +63,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Slide animations are widely used for off-canvas navigation menus, carousel and slider transitions, notification toasts that enter from screen edges, and mobile app-style page transitions. They add a sense of direction and spatial context to UI interactions.",
+          codeExample: "/* CSS — slide animations */\n\n@keyframes slideInLeft {\n  from { transform: translateX(-100%); }\n  to { transform: translateX(0); }\n}\n\n@keyframes slideInRight {\n  from { transform: translateX(100%); }\n  to { transform: translateX(0); }\n}\n\n@keyframes slideUp {\n  from { transform: translateY(100%); }\n  to { transform: translateY(0); }\n}\n\n.panel { animation: slideInLeft 0.3s ease-out forwards; }",
         },
       ],
       faqs: [
@@ -104,6 +106,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Bounce animations are popular for call-to-action buttons, scroll-down indicators, notification badges, and attention-grabbing icons. They add personality and energy to a page, but should be used sparingly to avoid distracting users from primary content.",
+          codeExample: "/* CSS — bounce animation */\n\n@keyframes bounce {\n  0%, 100% { transform: translateY(0); }\n  40% { transform: translateY(-30px); }\n  60% { transform: translateY(-15px); }\n}\n\n.bounce { animation: bounce 1s ease infinite; }\n\n/* Gentle bounce for CTAs */\n@keyframes gentleBounce {\n  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-8px); }\n}\n.cta { animation: gentleBounce 2s ease-in-out infinite; }",
         },
       ],
       faqs: [
@@ -147,6 +150,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "URL QR codes are used on business cards and flyers to link to websites, in restaurants for digital menus, on product packaging for manuals or registration pages, and in marketing campaigns to bridge print media with online content. They are also common at events for sharing Wi-Fi login portals and registration links.",
+          codeExample: "// JavaScript — generate QR code with qrcode\nimport QRCode from 'qrcode';\n\n// Generate as data URL (for <img> src)\nconst dataUrl = await QRCode.toDataURL('https://example.com');\ndocument.getElementById('qr').src = dataUrl;\n\n// Generate as SVG string\nconst svg = await QRCode.toString('https://example.com', { type: 'svg' });\n\n# Python — generate QR code\nimport qrcode\nimg = qrcode.make('https://example.com')\nimg.save('qr.png')",
         },
       ],
       faqs: [
@@ -188,6 +192,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "WiFi QR codes are popular in hospitality settings like hotels, cafes, and co-working spaces where guests need quick network access. They are also used at home to share credentials with visitors without dictating complex passwords, and at events to connect attendees without printing passwords on signage.",
+          codeExample: "// WiFi QR code uses the WIFI: URI scheme\n// Format: WIFI:T:<auth>;S:<ssid>;P:<password>;;\n\n// JavaScript — generate WiFi QR code\nimport QRCode from 'qrcode';\nconst ssid = 'MyNetwork';\nconst pass = 'secret123';\nconst wifi = `WIFI:T:WPA;S:${ssid};P:${pass};;`;\nconst dataUrl = await QRCode.toDataURL(wifi);\n\n# Python — generate WiFi QR code\nimport qrcode\nwifi = 'WIFI:T:WPA;S:MyNetwork;P:secret123;;'\nqrcode.make(wifi).save('wifi-qr.png')",
         },
       ],
       faqs: [
@@ -229,6 +234,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "vCard QR codes are widely used on business cards to make digital contact exchange effortless, at trade shows and networking events for quick introductions, on employee badges for visitor check-in systems, and on email signatures or personal websites as a modern alternative to downloadable VCF files.",
+          codeExample: "// JavaScript — generate vCard QR code\nimport QRCode from 'qrcode';\nconst vcard = [\n  'BEGIN:VCARD', 'VERSION:3.0',\n  'FN:Jane Doe', 'TEL:+1234567890',\n  'EMAIL:jane@example.com',\n  'ORG:Acme Inc', 'END:VCARD'\n].join('\\n');\nconst qr = await QRCode.toDataURL(vcard);\n\n# Python — generate vCard QR code\nimport qrcode\nvcard = 'BEGIN:VCARD\\nVERSION:3.0\\nFN:Jane Doe\\nTEL:+1234567890\\nEND:VCARD'\nqrcode.make(vcard).save('vcard.png')",
         },
       ],
       faqs: [
@@ -273,6 +279,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Open Graph tags are essential for marketing pages, blog posts, product pages, and any content shared on social media. They ensure consistent branding across Facebook, LinkedIn, Pinterest, Slack, Discord, and iMessage link previews. They are also used by SEO tools and content aggregators to index and display page summaries.",
+          codeExample: "<!-- Open Graph meta tags for rich social previews -->\n<head>\n  <meta property=\"og:title\" content=\"Your Page Title\" />\n  <meta property=\"og:description\" content=\"Page description here.\" />\n  <meta property=\"og:image\" content=\"https://example.com/image.jpg\" />\n  <meta property=\"og:url\" content=\"https://example.com/page\" />\n  <meta property=\"og:type\" content=\"website\" />\n  <meta property=\"og:site_name\" content=\"Your Site\" />\n</head>\n\n<!-- Recommended og:image size: 1200 x 630 px -->",
         },
       ],
       faqs: [
@@ -315,6 +322,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Twitter Card tags are used by blogs, news sites, e-commerce stores, and SaaS landing pages to maximize engagement on X. A well-configured large image card can dramatically increase click-through rates compared to a plain URL. They are also respected by other platforms like Slack and Discord as a fallback when Open Graph tags are missing.",
+          codeExample: "<!-- Twitter Card meta tags (large image) -->\n<head>\n  <meta name=\"twitter:card\" content=\"summary_large_image\" />\n  <meta name=\"twitter:site\" content=\"@yourhandle\" />\n  <meta name=\"twitter:title\" content=\"Your Page Title\" />\n  <meta name=\"twitter:description\" content=\"Page description.\" />\n  <meta name=\"twitter:image\" content=\"https://example.com/image.jpg\" />\n</head>\n\n<!-- Summary card (small thumbnail) -->\n<meta name=\"twitter:card\" content=\"summary\" />",
         },
       ],
       faqs: [
@@ -357,6 +365,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Every web page that should appear in search results needs properly configured SEO meta tags. They are critical for blog posts, product pages, landing pages, and documentation sites. Well-crafted title tags and meta descriptions improve click-through rates in search results, while canonical tags prevent duplicate content penalties across paginated or parameterized URLs.",
+          codeExample: "<!-- Essential SEO meta tags -->\n<head>\n  <title>Primary Keyword — Brand Name</title>\n  <meta name=\"description\" content=\"120-155 char description with target keyword.\" />\n  <link rel=\"canonical\" href=\"https://example.com/page\" />\n  <meta name=\"robots\" content=\"index, follow\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n</head>\n\n<!-- Prevent indexing -->\n<meta name=\"robots\" content=\"noindex, nofollow\" />",
         },
       ],
       faqs: [
@@ -401,6 +410,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers use button generators to quickly prototype CTA buttons for landing pages, create consistent button styles across a design system, experiment with hover and focus states before committing to code, and build accessible buttons with proper contrast ratios and focus rings. It is especially useful for developers new to Tailwind who want to learn class names through visual feedback.",
+          codeExample: "<!-- Tailwind CSS button examples -->\n\n<!-- Primary button -->\n<button class=\"bg-blue-600 text-white px-6 py-2 rounded-lg\n  hover:bg-blue-700 focus:ring-2 focus:ring-blue-500\n  focus:ring-offset-2 transition-colors\">\n  Get Started\n</button>\n\n<!-- Outline button -->\n<button class=\"border-2 border-blue-600 text-blue-600\n  px-6 py-2 rounded-lg hover:bg-blue-50\">\n  Learn More\n</button>\n\n<!-- Pill button -->\n<button class=\"bg-emerald-500 text-white px-8 py-2\n  rounded-full hover:bg-emerald-600\">Subscribe</button>",
         },
       ],
       faqs: [
@@ -444,6 +454,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Cards are one of the most used UI patterns on the web. They appear as product tiles in e-commerce, blog post previews, team member profiles, pricing plan comparisons, and dashboard widgets. A card generator speeds up prototyping these components and ensures consistent spacing, shadow, and border-radius values across your design.",
+          codeExample: "<!-- Tailwind CSS card component -->\n<div class=\"bg-white rounded-xl shadow-md overflow-hidden\">\n  <img src=\"/image.jpg\" class=\"w-full h-48 object-cover\" />\n  <div class=\"p-6\">\n    <h3 class=\"text-lg font-semibold text-gray-900\">\n      Card Title\n    </h3>\n    <p class=\"mt-2 text-gray-600 text-sm\">\n      Card description text goes here.\n    </p>\n    <button class=\"mt-4 bg-blue-600 text-white px-4 py-2\n      rounded-lg text-sm hover:bg-blue-700\">\n      Read More\n    </button>\n  </div>\n</div>",
         },
       ],
       faqs: [
@@ -488,6 +499,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers use JSON-to-interface generators when integrating with REST APIs, defining database model types, creating form validation schemas, and migrating JavaScript codebases to TypeScript. Pasting a sample API response and generating interfaces saves significant manual typing and reduces the chance of type errors.",
+          codeExample: "// JSON input:\n// { \"id\": 1, \"name\": \"Alice\", \"address\": { \"city\": \"NYC\" } }\n\n// Generated TypeScript interface\ninterface Address {\n  city: string;\n}\n\ninterface User {\n  id: number;\n  name: string;\n  address: Address;\n}\n\n// Usage with API response\nconst res = await fetch('/api/user');\nconst user: User = await res.json();",
         },
       ],
       faqs: [
@@ -531,6 +543,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Type aliases are preferred when you need union types (e.g., Status = 'active' | 'inactive'), computed or mapped types, or when working with functional programming patterns. They are also common in libraries that export complex generic types and in projects that consistently use 'type' over 'interface' by convention.",
+          codeExample: "// JSON input:\n// { \"status\": \"active\", \"score\": 95.5, \"tags\": [\"admin\"] }\n\n// Generated TypeScript type aliases\ntype Status = 'active' | 'inactive' | 'pending';\n\ntype UserProfile = {\n  status: Status;\n  score: number;\n  tags: string[];\n};\n\n// Type aliases support unions and intersections\ntype AdminUser = UserProfile & { role: 'admin'; permissions: string[]; };",
         },
       ],
       faqs: [
@@ -574,6 +587,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "JSON flattening is commonly needed when exporting API responses to CSV or Excel, preparing data for flat-file databases, building search indexes from nested documents, and creating reporting dashboards that require tabular data. It is also useful for comparing two nested objects by reducing them to flat key-value pairs.",
+          codeExample: "// JavaScript — flatten nested JSON\nfunction flatten(obj, prefix = '') {\n  return Object.entries(obj).reduce((acc, [key, val]) => {\n    const path = prefix ? `${prefix}.${key}` : key;\n    if (val && typeof val === 'object' && !Array.isArray(val)) {\n      Object.assign(acc, flatten(val, path));\n    } else {\n      acc[path] = val;\n    }\n    return acc;\n  }, {});\n}\n\nflatten({ user: { name: 'Alice', address: { city: 'NYC' } } });\n// { 'user.name': 'Alice', 'user.address.city': 'NYC' }\n\n# Python — flatten nested dict\ndef flatten(d, parent='', sep='.'):\n    items = {}\n    for k, v in d.items():\n        key = f'{parent}{sep}{k}' if parent else k\n        if isinstance(v, dict):\n            items.update(flatten(v, key, sep))\n        else:\n            items[key] = v\n    return items",
         },
       ],
       faqs: [
@@ -616,6 +630,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers and analysts export JSON to CSV to import API data into spreadsheets for reporting, prepare datasets for data visualization tools, create bulk-upload files for CRM and marketing platforms, and archive structured data in a universally readable format. CSV is supported by virtually every data tool in existence.",
+          codeExample: "// JavaScript — convert JSON array to CSV\nfunction jsonToCsv(data) {\n  const headers = [...new Set(data.flatMap(Object.keys))];\n  const rows = data.map(obj =>\n    headers.map(h => JSON.stringify(obj[h] ?? '')).join(',')\n  );\n  return [headers.join(','), ...rows].join('\\n');\n}\n\nconst users = [{ name: 'Alice', age: 30 }, { name: 'Bob', age: 25 }];\nconsole.log(jsonToCsv(users));\n\n# Python — JSON to CSV\nimport csv, io\ndata = [{'name': 'Alice', 'age': 30}, {'name': 'Bob', 'age': 25}]\nout = io.StringIO()\nwriter = csv.DictWriter(out, fieldnames=data[0].keys())\nwriter.writeheader()\nwriter.writerows(data)\nprint(out.getvalue())",
         },
       ],
       faqs: [
@@ -660,6 +675,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Markdown is the standard for README files on GitHub and GitLab, documentation sites built with tools like Docusaurus and MkDocs, blog platforms like Ghost and DEV.to, note-taking apps like Obsidian and Notion, and comment systems on platforms like Reddit and Stack Overflow. Learning Markdown syntax is an essential skill for developers and technical writers.",
+          codeExample: "// JavaScript — parse Markdown with marked\nimport { marked } from 'marked';\nconst md = '# Hello\\n\\n**Bold** and *italic*\\n\\n- List item';\nconst html = marked.parse(md);\nconsole.log(html);\n// <h1>Hello</h1>\n// <p><strong>Bold</strong> and <em>italic</em></p>\n\n# Python — parse Markdown\nimport markdown\nmd = '# Hello\\n\\n**Bold** and *italic*'\nhtml = markdown.markdown(md)\nprint(html)\n# <h1>Hello</h1>\n# <p><strong>Bold</strong> and <em>italic</em></p>",
         },
       ],
       faqs: [
@@ -701,6 +717,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers keep a Markdown cheat sheet handy when writing README files, pull request descriptions, documentation pages, and blog posts. It is also valuable for non-developers like project managers and technical writers who need to format content in Markdown-based tools without memorizing every syntax rule.",
+          codeExample: "// JavaScript — convert Markdown to HTML with remark\nimport { remark } from 'remark';\nimport remarkHtml from 'remark-html';\nconst md = '## Title\\n\\n| Col A | Col B |\\n|-------|-------|\\n| 1     | 2     |';\nconst result = await remark().use(remarkHtml).process(md);\nconsole.log(String(result));\n\n# Python — Markdown with tables extension\nimport markdown\nmd = '| A | B |\\n|---|---|\\n| 1 | 2 |'\nhtml = markdown.markdown(md, extensions=['tables'])\nprint(html)",
         },
       ],
       faqs: [
@@ -745,6 +762,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Every Node.js project — whether Express, Next.js, Nuxt, Nest, or vanilla Node — needs a .gitignore. This generator is especially useful when starting new projects, adding TypeScript or a build tool to an existing project, or migrating between package managers. It saves time over manually writing rules and helps ensure nothing critical is accidentally committed.",
+          codeExample: "# Node.js .gitignore essentials\n\n# Dependencies\nnode_modules/\n\n# Build output\ndist/\nbuild/\n.next/\n.nuxt/\n\n# Environment\n.env\n.env.local\n.env.*.local\n\n# Logs\nnpm-debug.log*\nyarn-error.log\n\n# IDE\n.vscode/\n.idea/\n\n# OS\n.DS_Store\nThumbs.db\n\n# Test coverage\ncoverage/",
         },
       ],
       faqs: [
@@ -787,6 +805,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "This generator helps Python developers starting new projects with Django, Flask, FastAPI, or data science stacks (Jupyter, pandas, scikit-learn). It is also useful when onboarding team members who use different IDEs, ensuring all common artifacts are ignored regardless of whether a developer uses PyCharm, VS Code, or Vim.",
+          codeExample: "# Python .gitignore essentials\n\n# Bytecode\n__pycache__/\n*.py[cod]\n*.pyo\n\n# Virtual environments\nvenv/\n.venv/\nenv/\n\n# Distribution\ndist/\nbuild/\n*.egg-info/\n\n# Environment\n.env\n\n# IDE\n.idea/\n.vscode/\n*.swp\n\n# Jupyter\n.ipynb_checkpoints/\n\n# Testing\n.pytest_cache/\nhtmlcov/\n.coverage",
         },
       ],
       faqs: [
@@ -830,6 +849,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Emoji favicons are popular for personal blogs, side projects, developer tools, and prototypes where a custom-designed icon is not yet available. They add personality and instant recognition to browser tabs with zero design effort. They are also used by indie hackers and startups to quickly brand a minimum viable product before investing in a full icon design.",
+          codeExample: "<!-- SVG emoji favicon (resolution-independent) -->\n<link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>\" />\n\n<!-- favicon.svg file -->\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\">\n  <text y=\".9em\" font-size=\"90\">🚀</text>\n</svg>\n\n<!-- With PNG fallback -->\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon-32.png\" sizes=\"32x32\" />",
         },
       ],
       faqs: [
@@ -871,6 +891,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Text favicons are ideal for portfolios, corporate sites, SaaS products, and any brand that uses a logotype or monogram. They are faster to create than pixel-perfect icon designs and ensure the favicon remains legible at 16x16 pixels. Developers also use them during early development to give each project a distinct tab identity before finalizing branding.",
+          codeExample: "<!-- SVG text favicon -->\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\">\n  <rect width=\"100\" height=\"100\" rx=\"20\" fill=\"#3b82f6\" />\n  <text x=\"50\" y=\"50\" text-anchor=\"middle\" dy=\".35em\"\n    font-family=\"system-ui\" font-size=\"60\"\n    font-weight=\"bold\" fill=\"#fff\">DB</text>\n</svg>\n\n<!-- Usage in HTML -->\n<link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\" />\n\n// JavaScript — generate text favicon dynamically\nconst canvas = document.createElement('canvas');\ncanvas.width = canvas.height = 32;\nconst ctx = canvas.getContext('2d');\nctx.fillStyle = '#3b82f6';\nctx.fillRect(0, 0, 32, 32);\nctx.font = 'bold 20px system-ui';\nctx.fillStyle = '#fff';\nctx.textAlign = 'center';\nctx.fillText('DB', 16, 22);",
         },
       ],
       faqs: [
@@ -915,6 +936,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Markdown tables are used in README files to display feature comparisons, API parameter documentation, configuration options, changelog summaries, and quick-reference data. They are especially common in GitHub repositories, documentation sites, and knowledge bases where content is authored in Markdown.",
+          codeExample: "# Markdown table syntax\n\n| Feature    | Free | Pro  |\n| ---------- | ---- | ---- |\n| Tools      | 116  | 116  |\n| API access | No   | Yes  |\n\n# Column alignment with colons\n| Left    | Center  | Right  |\n| :------ | :-----: | -----: |\n| Alice   |   30    |   $100 |\n| Bob     |   25    |    $50 |",
         },
       ],
       faqs: [
@@ -957,6 +979,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "This converter is used when documenting data from spreadsheets in GitHub wikis or README files, publishing tabular research data in Markdown-based blogs, converting exported database results into documentation-friendly formats, and preparing comparison tables for technical specifications or feature matrices.",
+          codeExample: "// JavaScript — convert CSV to Markdown table\nfunction csvToMarkdown(csv) {\n  const rows = csv.trim().split('\\n').map(r => r.split(','));\n  const [header, ...data] = rows;\n  const sep = header.map(() => '---');\n  return [header, sep, ...data]\n    .map(r => '| ' + r.join(' | ') + ' |')\n    .join('\\n');\n}\n\nconsole.log(csvToMarkdown('Name,Age\\nAlice,30\\nBob,25'));\n// | Name | Age |\n// | --- | --- |\n// | Alice | 30 |\n// | Bob | 25 |\n\n# Python — CSV to Markdown table\nimport csv, io\ndef csv_to_md(text):\n    rows = list(csv.reader(io.StringIO(text)))\n    hdr = '| ' + ' | '.join(rows[0]) + ' |'\n    sep = '| ' + ' | '.join(['---'] * len(rows[0])) + ' |'\n    body = '\\n'.join('| ' + ' | '.join(r) + ' |' for r in rows[1:])\n    return f'{hdr}\\n{sep}\\n{body}'",
         },
       ],
       faqs: [

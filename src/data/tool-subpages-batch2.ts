@@ -19,6 +19,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "JavaScript minification is a standard step in production build pipelines. Frontend developers minify JS bundles before deploying to reduce bandwidth usage and improve load performance. It is also useful when embedding inline scripts, optimizing third-party widgets, or preparing code for CDN distribution where every kilobyte matters.",
+          codeExample: "// JavaScript — minify with terser\nimport { minify } from 'terser';\nconst result = await minify('function add(a, b) { return a + b; }');\nconsole.log(result.code);\n// function add(a,b){return a+b}\n\n# Python — minify with rjsmin\nimport rjsmin\nprint(rjsmin.jsmin('function add(a, b) { return a + b; }'))\n# function add(a,b){return a+b}",
         },
       ],
       faqs: [
@@ -60,6 +61,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Web developers minify CSS before deploying to production to reduce page load times. It is especially impactful for large stylesheets, CSS frameworks, and sites serving users on slow connections. Many build tools like Webpack and Vite include CSS minification, but this online tool is perfect for quick one-off compressions without setting up a build pipeline.",
+          codeExample: "// JavaScript — minify CSS with clean-css\nimport CleanCSS from 'clean-css';\nconst result = new CleanCSS().minify('body { margin: 0; padding: 0; }');\nconsole.log(result.styles);\n// body{margin:0;padding:0}\n\n# Python — minify CSS with rcssmin\nimport rcssmin\nprint(rcssmin.cssmin('body { margin: 0; padding: 0; }'))\n# body{margin:0;padding:0}",
         },
       ],
       faqs: [
@@ -101,6 +103,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "HTML beautification is essential when inspecting minified production pages, cleaning up generated markup from CMS tools, or reformatting code copied from browser DevTools. Developers also use beautifiers to enforce consistent formatting standards across teams or before committing HTML templates to version control.",
+          codeExample: "// JavaScript — beautify with js-beautify\nimport { html } from 'js-beautify';\nconst ugly = '<div><p>Hello</p><span>World</span></div>';\nconsole.log(html(ugly, { indent_size: 2 }));\n// <div>\n//   <p>Hello</p>\n//   <span>World</span>\n// </div>\n\n# Python — prettify with BeautifulSoup\nfrom bs4 import BeautifulSoup\nmarkup = '<div><p>Hello</p></div>'\nprint(BeautifulSoup(markup, 'html.parser').prettify())",
         },
       ],
       faqs: [
@@ -145,6 +148,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Database developers format MySQL queries when debugging slow queries from logs, preparing SQL for code reviews, or documenting stored procedures. It is also invaluable when working with ORM-generated queries that are output as single-line strings, making them nearly impossible to read without formatting.",
+          codeExample: "-- Before: single-line MySQL query\nSELECT u.name, o.total FROM users u JOIN orders o ON u.id = o.user_id WHERE o.total > 100 ORDER BY o.total DESC LIMIT 10;\n\n-- After: formatted MySQL query\nSELECT\n  u.name,\n  o.total\nFROM users u\nJOIN orders o\n  ON u.id = o.user_id\nWHERE o.total > 100\nORDER BY o.total DESC\nLIMIT 10;",
         },
       ],
       faqs: [
@@ -187,6 +191,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "PostgreSQL developers format queries when analyzing complex CTEs, debugging window functions, or preparing analytical queries for documentation. It is especially useful for data engineers working with long queries involving multiple joins, subqueries, and aggregations that become unreadable without proper formatting.",
+          codeExample: "-- Before: single-line PostgreSQL CTE\nWITH monthly AS (SELECT date_trunc('month', created_at) AS month, SUM(amount) AS total FROM payments GROUP BY 1) SELECT month, total FROM monthly;\n\n-- After: formatted PostgreSQL CTE\nWITH monthly AS (\n  SELECT\n    date_trunc('month', created_at) AS month,\n    SUM(amount) AS total\n  FROM payments\n  GROUP BY 1\n)\nSELECT\n  month,\n  total\nFROM monthly;",
         },
       ],
       faqs: [
@@ -232,6 +237,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers beautify XML when inspecting API responses (SOAP, RSS, Atom), debugging configuration files (Maven pom.xml, Spring beans, Android layouts), or reviewing data exports. It is also useful for formatting XML received from web services, log files, or database exports where the XML is delivered as a single compressed line.",
+          codeExample: "// JavaScript — pretty-print XML with DOMParser\nconst xml = '<root><item id=\"1\"><name>Widget</name></item></root>';\nconst doc = new DOMParser().parseFromString(xml, 'text/xml');\nconst s = new XMLSerializer().serializeToString(doc);\n\n# Python — pretty-print XML with lxml\nfrom lxml import etree\nxml = b'<root><item><name>Widget</name></item></root>'\ntree = etree.fromstring(xml)\nprint(etree.tostring(tree, pretty_print=True).decode())\n# <root>\n#   <item>\n#     <name>Widget</name>\n#   </item>\n# </root>",
         },
       ],
       faqs: [
@@ -273,6 +279,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers validate XML when troubleshooting parsing errors in API integrations, checking configuration files before deployment, or verifying XML exports from databases and CMS systems. It is also critical when building or consuming SOAP web services, processing RSS/Atom feeds, or working with XML-based data interchange formats.",
+          codeExample: "// JavaScript — validate XML with DOMParser\nconst xml = '<root><item>Hello</item></root>';\nconst doc = new DOMParser().parseFromString(xml, 'text/xml');\nconst err = doc.querySelector('parsererror');\nif (err) console.error('Invalid:', err.textContent);\nelse console.log('Valid XML');\n\n# Python — validate XML\nimport xml.etree.ElementTree as ET\ntry:\n    ET.fromstring('<root><item>Hello</item></root>')\n    print('Valid XML')\nexcept ET.ParseError as e:\n    print(f'Invalid XML: {e}')",
         },
       ],
       faqs: [
@@ -317,6 +324,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "DevOps engineers beautify YAML when cleaning up Kubernetes manifests, Docker Compose files, Ansible playbooks, and CI/CD pipeline configurations (GitHub Actions, GitLab CI). Developers also use it to normalize YAML generated by tools or serialization libraries that may produce inconsistent formatting.",
+          codeExample: "// JavaScript — normalize YAML with js-yaml\nimport yaml from 'js-yaml';\nconst data = yaml.load(rawYaml);\nconst formatted = yaml.dump(data, { indent: 2, lineWidth: 80 });\nconsole.log(formatted);\n\n# Python — normalize YAML with PyYAML\nimport yaml\nwith open('config.yml') as f:\n    data = yaml.safe_load(f)\nprint(yaml.dump(data, default_flow_style=False, indent=2))",
         },
       ],
       faqs: [
@@ -358,6 +366,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "YAML validation is essential before deploying Kubernetes manifests, pushing CI/CD pipeline configs, or updating Docker Compose files. A single indentation error can cause a deployment failure or, worse, silently misconfigure a service. Validating YAML locally catches these issues before they reach production.",
+          codeExample: "// JavaScript — validate YAML with js-yaml\nimport yaml from 'js-yaml';\ntry {\n  const data = yaml.load(yamlString);\n  console.log('Valid YAML:', data);\n} catch (e) {\n  console.error('Invalid YAML:', e.message);\n}\n\n# Python — validate YAML\nimport yaml\ntry:\n    data = yaml.safe_load(open('config.yml'))\n    print('Valid YAML:', data)\nexcept yaml.YAMLError as e:\n    print(f'Invalid YAML: {e}')",
         },
       ],
       faqs: [
@@ -403,6 +412,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Linear gradients are used for hero section backgrounds, button hover effects, text gradient overlays, progress bars, and decorative dividers. They can create depth and visual interest without loading image files, improving page performance. Multi-stop linear gradients can produce stripe patterns, color bands, and other creative effects.",
+          codeExample: "/* CSS — linear gradient examples */\n\n/* Top to bottom (default) */\n.hero { background: linear-gradient(#3b82f6, #1d4ed8); }\n\n/* Left to right */\n.banner { background: linear-gradient(to right, #f59e0b, #ef4444); }\n\n/* Diagonal with angle */\n.card { background: linear-gradient(135deg, #6366f1, #ec4899); }\n\n/* Multi-stop rainbow */\n.stripe {\n  background: linear-gradient(90deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);\n}",
         },
       ],
       faqs: [
@@ -445,6 +455,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Radial gradients are commonly used for spotlight and glow effects behind hero content, circular button highlights, vignette overlays on images, and decorative background orbs in modern web design. They also work well for simulating light sources, creating depth perception, and building abstract background patterns when layered.",
+          codeExample: "/* CSS — radial gradient examples */\n\n/* Default ellipse */\n.glow { background: radial-gradient(#3b82f6, #1e3a5f); }\n\n/* Circle from center */\n.spotlight {\n  background: radial-gradient(circle, #fff 0%, transparent 70%);\n}\n\n/* Off-center position */\n.orb {\n  background: radial-gradient(circle at 30% 40%, #6366f1, #1e1b4b);\n}\n\n/* Sized circle */\n.badge {\n  background: radial-gradient(circle closest-side, #22c55e, transparent);\n}",
         },
       ],
       faqs: [
@@ -487,6 +498,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Conic gradients are ideal for creating pure-CSS pie charts and donut charts, color wheel pickers, angular progress indicators, and decorative starburst backgrounds. Combined with border-radius, a conic gradient can produce a perfect color wheel. They are also used for loading spinners and creative UI elements that need angular color transitions.",
+          codeExample: "/* CSS — conic gradient examples */\n\n/* Color wheel */\n.wheel {\n  background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);\n  border-radius: 50%;\n}\n\n/* Pie chart (3 segments) */\n.pie {\n  background: conic-gradient(#3b82f6 0% 40%, #ef4444 40% 70%, #22c55e 70% 100%);\n  border-radius: 50%;\n}\n\n/* Angular progress indicator */\n.progress {\n  background: conic-gradient(#3b82f6 0deg 270deg, #e5e7eb 270deg 360deg);\n  border-radius: 50%;\n}",
         },
       ],
       faqs: [
@@ -532,6 +544,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Designers and developers use box shadow presets to quickly apply consistent elevation to cards, modals, dropdowns, and buttons. They save time during prototyping and ensure visual consistency across a UI. Preset collections are also valuable for design systems where shadow tokens need to be standardized across an entire application.",
+          codeExample: "/* CSS — box shadow presets */\n\n/* Subtle elevation */\n.card-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.06); }\n\n/* Material Design elevation 3 */\n.card-md { box-shadow: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12); }\n\n/* Large soft shadow */\n.card-lg { box-shadow: 0 20px 60px rgba(0,0,0,0.1); }\n\n/* Neumorphism */\n.neu {\n  background: #e0e5ec;\n  box-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #fff;\n}",
         },
       ],
       faqs: [
@@ -574,6 +587,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Drop-shadow is ideal for adding shadows to PNG images with transparent backgrounds, SVG icons and illustrations, elements with clip-path applied, and CSS shapes. It is commonly used for product images on e-commerce sites, icon sets, logo treatments, and any design element where the shadow needs to follow a complex or irregular outline rather than a rectangle.",
+          codeExample: "/* CSS — drop-shadow vs box-shadow */\n\n/* box-shadow: rectangular — ignores transparency */\n.logo-box { box-shadow: 4px 4px 8px rgba(0,0,0,0.3); }\n\n/* drop-shadow: follows the element's shape */\n.logo-drop { filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.3)); }\n\n/* Colored drop shadow on transparent PNG */\n.icon { filter: drop-shadow(0 4px 6px rgba(59,130,246,0.5)); }\n\n/* Layered glow effect */\n.glow {\n  filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 12px #3b82f6);\n}",
         },
       ],
       faqs: [
@@ -619,6 +633,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Flexbox centering is used for centering hero text over background images, vertically centering content in cards of varying heights, centering icons inside buttons, positioning modal dialogs in the viewport center, and centering form elements. It is the go-to technique for any centering task in modern CSS.",
+          codeExample: "/* CSS — Flexbox centering patterns */\n\n/* Center both axes */\n.center-both {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n}\n\n/* Center horizontally only */\n.center-x {\n  display: flex;\n  justify-content: center;\n}\n\n/* Center vertically only */\n.center-y {\n  display: flex;\n  align-items: center;\n  min-height: 300px;\n}",
         },
       ],
       faqs: [
@@ -661,6 +676,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers use Flexbox templates to quickly scaffold page layouts during prototyping, build responsive navigation headers, create equal-height card grids, implement sticky footer patterns, and set up sidebar-content layouts. Starting from a template saves significant time compared to writing Flexbox properties from scratch and ensures cross-browser compatibility.",
+          codeExample: "/* CSS — common Flexbox layout patterns */\n\n/* Navigation bar */\n.navbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem 2rem;\n}\n\n/* Equal-height card row */\n.card-row {\n  display: flex;\n  gap: 1.5rem;\n}\n.card-row > * { flex: 1; }\n\n/* Sticky footer layout */\n.page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\n.page > main { flex: 1; }",
         },
       ],
       faqs: [
@@ -706,6 +722,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Developers use Grid templates for admin dashboard layouts with sidebars and widget areas, portfolio and image gallery grids, blog and magazine layouts with featured post sections, and e-commerce product listing pages. Grid templates drastically reduce the CSS needed for complex layouts that would otherwise require nested containers and extensive positioning.",
+          codeExample: "/* CSS — Grid template areas (holy grail layout) */\n.layout {\n  display: grid;\n  grid-template-areas:\n    'header  header  header'\n    'sidebar main   aside'\n    'footer  footer  footer';\n  grid-template-columns: 200px 1fr 200px;\n  grid-template-rows: auto 1fr auto;\n  min-height: 100vh;\n}\n.header  { grid-area: header; }\n.sidebar { grid-area: sidebar; }\n.main    { grid-area: main; }\n.footer  { grid-area: footer; }",
         },
       ],
       faqs: [
@@ -748,6 +765,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Responsive grids are essential for product listing pages, image galleries, blog post grids, and any content that needs to display differently on phones versus desktops. The 'auto-fit, minmax()' pattern is particularly popular: 'grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))' creates a grid that automatically adjusts from 1 to many columns based on container width.",
+          codeExample: "/* CSS — responsive Grid with auto-fit */\n\n/* Auto-responsive card grid — no media queries needed */\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 1.5rem;\n}\n\n/* With explicit breakpoints */\n.grid-bp {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 1rem;\n}\n@media (min-width: 768px) {\n  .grid-bp { grid-template-columns: repeat(2, 1fr); }\n}\n@media (min-width: 1024px) {\n  .grid-bp { grid-template-columns: repeat(3, 1fr); }\n}",
         },
       ],
       faqs: [
@@ -793,6 +811,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Circular border radius is used for user profile avatars and thumbnails, round action buttons (like floating action buttons in Material Design), status indicator dots, notification badges, round icon containers, and decorative circular elements. It is one of the most commonly used CSS techniques in modern UI design.",
+          codeExample: "/* CSS — creating circles with border-radius */\n\n/* Perfect circle avatar */\n.avatar {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  object-fit: cover;\n}\n\n/* Circular icon button */\n.icon-btn {\n  width: 48px;\n  height: 48px;\n  border-radius: 50%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: #3b82f6;\n  color: #fff;\n}\n\n/* Status dot */\n.dot { width: 12px; height: 12px; border-radius: 50%; background: #22c55e; }",
         },
       ],
       faqs: [
@@ -835,6 +854,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Rounded corners are used on virtually every modern website for cards, buttons, input fields, modals, tooltips, images, and containers. Subtle rounding (4-8px) gives UI elements a polished, friendly appearance. Larger radius values create pill-shaped buttons and tags. Asymmetric rounding can create unique shapes like notched cards or speech bubble tails.",
+          codeExample: "/* CSS — border-radius variations */\n\n/* Uniform rounding */\n.card { border-radius: 8px; }\n\n/* Pill shape */\n.tag { border-radius: 9999px; padding: 4px 12px; }\n\n/* Top corners only */\n.header { border-radius: 16px 16px 0 0; }\n\n/* Elliptical corners (horizontal / vertical) */\n.blob { border-radius: 50% 20% / 10% 40%; }\n\n/* Individual corners: TL TR BR BL */\n.notch { border-radius: 20px 0 20px 0; }",
         },
       ],
       faqs: [
@@ -880,6 +900,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Text glow effects are popular for neon sign aesthetics on dark-themed websites, gaming and entertainment sites, landing page hero headings, retro and cyberpunk design themes, and interactive hover effects. Subtle white or colored glows also improve text readability over busy backgrounds by creating a luminous halo around letters.",
+          codeExample: "/* CSS — text glow effects */\n\n/* Neon glow */\n.neon {\n  color: #fff;\n  text-shadow:\n    0 0 5px #fff,\n    0 0 10px #fff,\n    0 0 20px #ff00de,\n    0 0 40px #ff00de,\n    0 0 80px #ff00de;\n}\n\n/* Subtle ambient glow */\n.soft-glow {\n  color: #3b82f6;\n  text-shadow: 0 0 10px rgba(59,130,246,0.6);\n}\n\n/* Pulsing glow animation */\n@keyframes pulse {\n  0%, 100% { text-shadow: 0 0 10px #3b82f6; }\n  50% { text-shadow: 0 0 30px #3b82f6, 0 0 60px #3b82f6; }\n}",
         },
       ],
       faqs: [
@@ -922,6 +943,7 @@ export const batch2Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Text outlines are used for hero headings over images or videos where the outline ensures legibility, hollow/outlined display typography for modern design aesthetics, sports and entertainment branding, retro and poster-style web designs, and creating visual hierarchy by differentiating outlined headings from filled body text. Outlined text also pairs well with variable font weight for dynamic visual effects.",
+          codeExample: "/* CSS — text outline techniques */\n\n/* -webkit-text-stroke (Chrome, Safari, Edge) */\n.outline {\n  -webkit-text-stroke: 2px #000;\n  color: transparent;\n}\n\n/* Cross-browser text-shadow outline */\n.outline-shadow {\n  color: #fff;\n  text-shadow:\n    -1px -1px 0 #000, 1px -1px 0 #000,\n    -1px  1px 0 #000, 1px  1px 0 #000;\n}\n\n/* Thick outline with paint-order */\n.thick {\n  -webkit-text-stroke: 4px #000;\n  paint-order: stroke fill;\n  color: #fff;\n}",
         },
       ],
       faqs: [
