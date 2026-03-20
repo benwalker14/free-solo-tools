@@ -137,4 +137,256 @@ Payload: { "user": "alice", "exp": 1700000000 }
 ⚠ Token expired: Nov 14, 2023`,
     },
   ],
+  "color-converter": [
+    {
+      label: "HEX to RGB",
+      action: "Convert",
+      input: "#3B82F6",
+      output: "rgb(59, 130, 246)",
+    },
+    {
+      label: "RGB to HSL",
+      action: "Convert",
+      input: "rgb(34, 197, 94)",
+      output: "hsl(142, 71%, 45%)",
+    },
+    {
+      label: "HSL to HEX",
+      action: "Convert",
+      input: "hsl(262, 83%, 58%)",
+      output: "#8B5CF6",
+    },
+  ],
+  "regex-tester": [
+    {
+      label: "Match email addresses",
+      action: "Test",
+      input: `Pattern: [\\w.-]+@[\\w.-]+\\.\\w+
+Text: Contact us at hello@devbolt.dev or support@example.com`,
+      output: `Match 1: hello@devbolt.dev
+Match 2: support@example.com`,
+    },
+    {
+      label: "Extract dates from text",
+      action: "Test",
+      input: `Pattern: \\d{4}-\\d{2}-\\d{2}
+Text: Released on 2026-03-19, updated 2026-04-01`,
+      output: `Match 1: 2026-03-19
+Match 2: 2026-04-01`,
+    },
+    {
+      label: "Validate IP addresses",
+      action: "Test",
+      input: `Pattern: ^\\d{1,3}(\\.\\d{1,3}){3}$
+Text: 192.168.1.1`,
+      output: `Match: 192.168.1.1 (full match)`,
+    },
+  ],
+  "url-parser": [
+    {
+      label: "Parse a full URL",
+      action: "Parse",
+      input: "https://api.example.com:8080/v2/users?page=3&sort=name#results",
+      output: `Protocol: https
+Host: api.example.com
+Port: 8080
+Path: /v2/users
+Query: page=3, sort=name
+Fragment: results`,
+    },
+    {
+      label: "Extract query parameters",
+      action: "Parse",
+      input: "https://shop.com/search?q=laptop&category=electronics&min_price=500",
+      output: `q: laptop
+category: electronics
+min_price: 500`,
+    },
+    {
+      label: "Identify URL components",
+      action: "Parse",
+      input: "ftp://user:pass@files.internal.net/uploads/report.pdf",
+      output: `Protocol: ftp
+Username: user
+Password: pass
+Host: files.internal.net
+Path: /uploads/report.pdf`,
+    },
+  ],
+  "epoch-converter": [
+    {
+      label: "Unix timestamp to date",
+      action: "Convert",
+      input: "1710864000",
+      output: "March 19, 2024 20:00:00 UTC",
+    },
+    {
+      label: "Date to Unix timestamp",
+      action: "Convert",
+      input: "2026-01-01 00:00:00 UTC",
+      output: "1767225600",
+    },
+    {
+      label: "Milliseconds to date",
+      action: "Convert",
+      input: "1710864000000",
+      output: "March 19, 2024 20:00:00.000 UTC",
+    },
+  ],
+  "password-generator": [
+    {
+      label: "Strong 20-character password",
+      action: "Generate",
+      input: "Length: 20, All character types",
+      output: "K#9mV&pL2$xQ8nR!wZ5j",
+    },
+    {
+      label: "Passphrase (4 words)",
+      action: "Generate",
+      input: "4 random words",
+      output: "correct-horse-battery-staple",
+    },
+    {
+      label: "PIN code",
+      action: "Generate",
+      input: "Length: 6, Numbers only",
+      output: "847293",
+    },
+  ],
+  "diff-checker": [
+    {
+      label: "Compare two code snippets",
+      action: "Diff",
+      input: `Old: const x = 5;
+New: const x = 10;`,
+      output: `- const x = 5;
++ const x = 10;
+  1 line changed`,
+    },
+    {
+      label: "Find config changes",
+      action: "Diff",
+      input: `Old: port: 3000
+New: port: 8080`,
+      output: `- port: 3000
++ port: 8080
+  1 modification`,
+    },
+    {
+      label: "Detect added lines",
+      action: "Diff",
+      input: `Old: line 1
+New: line 1, line 2`,
+      output: `  line 1
++ line 2
+  1 addition`,
+    },
+  ],
+  "case-converter": [
+    {
+      label: "Convert to camelCase",
+      action: "Convert",
+      input: "user_first_name",
+      output: "userFirstName",
+    },
+    {
+      label: "Convert to snake_case",
+      action: "Convert",
+      input: "getUserProfile",
+      output: "get_user_profile",
+    },
+    {
+      label: "Convert to kebab-case",
+      action: "Convert",
+      input: "MyComponentName",
+      output: "my-component-name",
+    },
+  ],
+  "csv-json": [
+    {
+      label: "CSV to JSON",
+      action: "Convert",
+      input: `name,age,city
+Alice,28,NYC
+Bob,35,London`,
+      output: `[
+  { "name": "Alice", "age": "28", "city": "NYC" },
+  { "name": "Bob", "age": "35", "city": "London" }
+]`,
+    },
+    {
+      label: "JSON to CSV",
+      action: "Convert",
+      input: `[{"id":1,"status":"active"},{"id":2,"status":"pending"}]`,
+      output: `id,status
+1,active
+2,pending`,
+    },
+    {
+      label: "Handle quoted fields",
+      action: "Convert",
+      input: `name,address
+"Smith, John","123 Main St, Apt 4"`,
+      output: `[
+  { "name": "Smith, John", "address": "123 Main St, Apt 4" }
+]`,
+    },
+  ],
+  "url-encoder": [
+    {
+      label: "Encode special characters",
+      action: "Encode",
+      input: "hello world & goodbye!",
+      output: "hello%20world%20%26%20goodbye%21",
+    },
+    {
+      label: "Decode URL-encoded string",
+      action: "Decode",
+      input: "search%3Fq%3Djavascript%26page%3D1",
+      output: "search?q=javascript&page=1",
+    },
+    {
+      label: "Encode Unicode characters",
+      action: "Encode",
+      input: "caf\u00e9 & r\u00e9sum\u00e9",
+      output: "caf%C3%A9%20%26%20r%C3%A9sum%C3%A9",
+    },
+  ],
+  "markdown-preview": [
+    {
+      label: "Format headers and lists",
+      action: "Render",
+      input: `# My Title
+- Item one
+- Item **two**
+- Item *three*`,
+      output: `<h1>My Title</h1>
+<ul>
+  <li>Item one</li>
+  <li>Item <strong>two</strong></li>
+  <li>Item <em>three</em></li>
+</ul>`,
+    },
+    {
+      label: "Render a table",
+      action: "Render",
+      input: `| Name | Role |
+|------|------|
+| Alice | Admin |
+| Bob | Editor |`,
+      output: `<table>
+  <tr><th>Name</th><th>Role</th></tr>
+  <tr><td>Alice</td><td>Admin</td></tr>
+  <tr><td>Bob</td><td>Editor</td></tr>
+</table>`,
+    },
+    {
+      label: "Code block with syntax",
+      action: "Render",
+      input: "```js\nconsole.log('hello');\n```",
+      output: `<pre><code class="language-js">
+console.log('hello');
+</code></pre>`,
+    },
+  ],
 };

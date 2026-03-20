@@ -519,4 +519,758 @@ export const toolInsights: Record<string, ToolInsight[]> = {
         "In HTML content: &lt; (<), &gt; (>), &amp; (&). In HTML attributes: add &quot; (\") and &#x27; ('). These 5 characters have special meaning in HTML — failing to encode them in user input creates either broken markup or security vulnerabilities. Everything else can be left as UTF-8.",
     },
   ],
+  "chmod-calculator": [
+    {
+      type: "tip",
+      title: "Use symbolic mode for readable, composable permissions",
+      content:
+        "chmod u+rwx,g+rx,o+r is clearer than chmod 754. Symbolic mode lets you add or remove specific permissions without recalculating the full octal number. Use + to add, - to remove, = to set exactly. Symbolic mode is especially useful in scripts where intent matters more than brevity.",
+    },
+    {
+      type: "pitfall",
+      title: "777 permissions are a security red flag",
+      content:
+        "chmod 777 grants read, write, and execute to everyone — including other users on the server. This is the most common misconfiguration in web deployments. For web files: 644 for files (owner read/write, others read), 755 for directories (owner full, others read/execute). Never use 777 in production.",
+    },
+    {
+      type: "security",
+      title: "The sticky bit prevents file deletion in shared directories",
+      content:
+        "Setting chmod 1777 on /tmp means any user can create files, but only the file owner can delete them. Without the sticky bit (just 777), any user can delete any other user's files. The sticky bit is the '1' prefix in octal notation or 't' in ls -l output (drwxrwxrwt).",
+    },
+    {
+      type: "example",
+      title: "SUID/SGID bits can be dangerous on executables",
+      content:
+        "chmod 4755 (SUID) makes an executable run as the file owner, not the user who invoked it. This is how /usr/bin/passwd can write to /etc/shadow. Misconfigured SUID binaries are a top privilege escalation vector. Audit SUID files regularly: find / -perm -4000 -type f.",
+    },
+  ],
+  "gradient-generator": [
+    {
+      type: "tip",
+      title: "Use oklch() color space for perceptually smooth gradients",
+      content:
+        "CSS linear-gradient in sRGB can produce muddy grays in the middle of a gradient (especially blue-to-yellow). Using color interpolation in oklch — background: linear-gradient(in oklch, blue, yellow) — produces vibrant, perceptually uniform transitions. Supported in all modern browsers since 2023.",
+    },
+    {
+      type: "pitfall",
+      title: "Gradients with too many color stops slow rendering",
+      content:
+        "Each color stop in a CSS gradient adds a calculation per pixel during paint. Gradients with 8+ stops on large elements can cause noticeable frame drops during scroll, especially on mobile. Use 2-4 stops for backgrounds. For complex gradients, consider a pre-rendered image with proper caching.",
+    },
+    {
+      type: "example",
+      title: "Repeating gradients create stripes and patterns without images",
+      content:
+        "repeating-linear-gradient(45deg, #000 0 10px, transparent 10px 20px) creates diagonal stripes with zero HTTP requests. Combine with background-size and background-blend-mode for complex patterns. This eliminates image assets for decorative backgrounds and reduces page weight.",
+    },
+    {
+      type: "security",
+      title: "Gradients in email HTML have minimal client support",
+      content:
+        "Outlook, Gmail, and Yahoo Mail either ignore or partially support CSS gradients. Always provide a solid background-color fallback before your gradient declaration. For email, use a background image hosted on a CDN rather than relying on CSS gradient rendering.",
+    },
+  ],
+  "xml-formatter": [
+    {
+      type: "tip",
+      title: "Use XML namespaces correctly to avoid element conflicts",
+      content:
+        "When combining XML from different sources (SOAP envelopes, SVG in HTML, RSS feeds), namespaces prevent element name collisions. Always declare namespaces on the root element with xmlns:prefix and reference elements as prefix:elementName. Default namespace (xmlns without prefix) applies to the element and all descendants.",
+    },
+    {
+      type: "pitfall",
+      title: "Self-closing tags behave differently in XML vs HTML",
+      content:
+        "In XML, <br/> is valid and means an empty br element. In HTML, <br/> is treated as <br> — the slash is ignored. But <script/> in HTML does NOT self-close — the browser waits for </script>. When generating XHTML or mixing XML/HTML, always use explicit closing tags for non-void elements.",
+    },
+    {
+      type: "security",
+      title: "XML External Entity (XXE) attacks can read server files",
+      content:
+        "An XML document with <!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]> can exfiltrate server files when parsed by a vulnerable XML processor. Disable external entity processing in every XML parser: set disallow-doctype-decl or disable external-general-entities. This is OWASP Top 10 #5.",
+    },
+    {
+      type: "example",
+      title: "CDATA sections let you embed raw text without escaping",
+      content:
+        "Instead of escaping every < and & in embedded code snippets, wrap them in <![CDATA[...]]>. Everything inside CDATA is treated as raw text. This is essential for RSS feed descriptions containing HTML and SOAP messages containing XML fragments. Note: CDATA cannot be nested.",
+    },
+  ],
+  "code-minifier": [
+    {
+      type: "tip",
+      title: "Enable source maps alongside minification for debugging",
+      content:
+        "Minification replaces variable names with single characters, making stack traces unreadable. Source maps (.map files) map minified code back to original source. Configure your bundler to generate source maps and upload them to your error tracking service (Sentry, Datadog). Never serve source maps publicly in production.",
+    },
+    {
+      type: "pitfall",
+      title: "CSS minification can break specificity in rare cases",
+      content:
+        "Some aggressive CSS minifiers merge selectors or reorder declarations. If your CSS relies on source order for specificity tie-breaking (two selectors with equal specificity), reordering changes which rule wins. Use explicit specificity (more specific selectors or layers) rather than relying on source order.",
+    },
+    {
+      type: "example",
+      title: "Gzip/Brotli compression after minification gives 80-90% reduction",
+      content:
+        "Minification alone typically reduces JavaScript by 30-50%. But Gzip or Brotli compression on the minified output achieves 80-90% total reduction. Enable both: minify during build (removes dead code, shortens names) and compress during transfer (HTTP Content-Encoding). They're complementary, not alternatives.",
+    },
+    {
+      type: "security",
+      title: "Minification is not obfuscation",
+      content:
+        "Minified code is smaller but not secret. Variable shortening is trivially reversed with a beautifier. If you need to protect client-side logic (license checks, API keys), move it to the server. No client-side technique — including obfuscation — prevents a determined attacker from reading your JavaScript.",
+    },
+  ],
+  "image-base64": [
+    {
+      type: "tip",
+      title: "Inline images under 4KB, external files above",
+      content:
+        "Base64 encoding increases size by 33%, but eliminates an HTTP request. For tiny icons and sprites under 4KB, the round-trip savings outweigh the size increase. Above 4KB, a separate file with caching headers is more efficient. Most bundlers (Webpack, Vite) have this threshold configurable via asset size limits.",
+    },
+    {
+      type: "pitfall",
+      title: "Base64 images bypass browser image caching",
+      content:
+        "When you inline a Base64 image in CSS or HTML, the browser cannot cache it separately. Every page load re-downloads the encoded data as part of the document. For images used across multiple pages (logos, icons), serve them as files with Cache-Control headers for maximum performance.",
+    },
+    {
+      type: "security",
+      title: "Validate image MIME types before encoding",
+      content:
+        "A file with a .png extension might actually be a script or executable. Always verify the file's magic bytes (file signature) match the expected format before accepting user uploads. For Base64-encoded images in data URIs, browsers enforce the MIME type — but your server-side code should too.",
+    },
+    {
+      type: "example",
+      title: "Use data URIs for placeholder images and loading states",
+      content:
+        "A 1x1 transparent PNG as Base64 is just 68 characters. Use it as a placeholder src while lazy-loading full images: src=\"data:image/png;base64,iVBOR...\" data-src=\"real-image.jpg\". This prevents layout shift (CLS) without any HTTP request for the placeholder.",
+    },
+  ],
+  "color-palette": [
+    {
+      type: "tip",
+      title: "Use the 60-30-10 rule for balanced color schemes",
+      content:
+        "Allocate 60% to your dominant/neutral color, 30% to your secondary color, and 10% to an accent color. This interior design principle works perfectly for UI: 60% background, 30% cards/containers, 10% buttons/CTAs. It creates visual hierarchy without requiring design expertise.",
+    },
+    {
+      type: "pitfall",
+      title: "Colors that look great together can fail accessibility",
+      content:
+        "A beautiful palette doesn't guarantee readability. Blue text on purple background may be aesthetically pleasing but fail WCAG contrast requirements (4.5:1 for normal text, 3:1 for large text). Always check contrast ratios between text and background colors — use DevBolt's Contrast Checker tool.",
+    },
+    {
+      type: "example",
+      title: "Generate palettes from a single brand color using HSL manipulation",
+      content:
+        "Start with your brand color in HSL. Create variants by adjusting lightness: 95% for backgrounds, 85% for borders, 50% for primary, 30% for hover, 15% for dark text. Adjust saturation: lower for neutrals, higher for accents. This systematic approach creates cohesive design tokens from one color choice.",
+    },
+    {
+      type: "security",
+      title: "Color alone should never convey critical information",
+      content:
+        "8% of men have color vision deficiency. A form that marks invalid fields only with red color is unusable for colorblind users. Always pair color with a second indicator: icons, text labels, patterns, or borders. WCAG 1.4.1 requires that color is not the sole means of conveying information.",
+    },
+  ],
+  "json-to-typescript": [
+    {
+      type: "tip",
+      title: "Prefer interfaces over types for object shapes",
+      content:
+        "TypeScript interfaces support declaration merging, better error messages, and faster type checking. Use 'interface' for object shapes (API responses, props, configs) and 'type' for unions, intersections, and mapped types. In large codebases, this distinction improves IDE performance and compiler speed.",
+    },
+    {
+      type: "pitfall",
+      title: "Inferred types from JSON samples miss nullable fields",
+      content:
+        "If your JSON sample has all fields populated, the generated TypeScript types won't include null or undefined. Real API responses often have optional fields. After generating types, review each field: should it be required or optional (?)? Can it be null? The sample data is just one snapshot — your types should cover all valid states.",
+    },
+    {
+      type: "example",
+      title: "Use utility types to derive related types",
+      content:
+        "Generate the base type from JSON, then use TypeScript utilities: Partial<User> for patch endpoints, Pick<User, 'id' | 'name'> for list views, Omit<User, 'password'> for public responses. This avoids duplicating type definitions and ensures changes propagate automatically.",
+    },
+    {
+      type: "security",
+      title: "Runtime validation must match your TypeScript types",
+      content:
+        "TypeScript types are erased at runtime — they don't validate actual API data. An API returning {age: \"thirty\"} won't trigger a type error at runtime even if you typed age as number. Use Zod, io-ts, or valibot to validate data at system boundaries (API calls, form inputs, file reads).",
+    },
+  ],
+  "yaml-formatter": [
+    {
+      type: "tip",
+      title: "Use 2-space indentation for YAML — it's the de facto standard",
+      content:
+        "Kubernetes, Docker Compose, GitHub Actions, and Ansible all use 2-space indentation in their documentation and examples. Using tabs in YAML is a syntax error. Using 4 spaces works but doubles visual nesting depth. Stick with 2 spaces to match ecosystem conventions and keep deeply nested configs readable.",
+    },
+    {
+      type: "pitfall",
+      title: "YAML treats 'no', 'off', and 'false' as boolean false",
+      content:
+        "A country code field with value NO (Norway), or a feature flag named 'off' will be silently coerced to boolean false. YAML 1.1 also treats y/n, on/off as booleans. Always quote ambiguous string values: country: \"NO\", mode: \"off\". YAML 1.2 is stricter but many parsers still default to 1.1 behavior.",
+    },
+    {
+      type: "security",
+      title: "YAML anchors can cause exponential memory consumption",
+      content:
+        "YAML anchors (&) and aliases (*) enable reuse, but a billion laughs attack uses nested anchors to expand a small document into gigabytes: a: &a [*b,*b], b: &b [*c,*c]... Set recursion depth limits and maximum document size in your YAML parser. Most libraries have these options but leave them disabled by default.",
+    },
+    {
+      type: "example",
+      title: "Multi-line strings: use | for literal, > for folded",
+      content:
+        "The | (pipe) preserves newlines exactly as written — ideal for scripts, SQL, and code blocks. The > (greater-than) folds newlines into spaces, creating paragraphs — ideal for descriptions and long text. Add - to strip trailing newlines (|-, >-) or + to preserve them (|+, >+).",
+    },
+  ],
+  "json-path": [
+    {
+      type: "tip",
+      title: "Use recursive descent (..) to find deeply nested values",
+      content:
+        "$.store..price finds all price fields regardless of depth — you don't need to know the exact path. This is invaluable when exploring unfamiliar API responses. Combine with filters: $..book[?(@.price < 10)] finds all books under $10 anywhere in the document.",
+    },
+    {
+      type: "pitfall",
+      title: "JSONPath implementations vary significantly",
+      content:
+        "There is no single JSONPath standard (RFC 9535 was published in 2024 but adoption is incomplete). Jayway (Java), Goessner (original), and jsonpath-plus (JS) handle filter expressions, array slicing, and script expressions differently. Always test your JSONPath queries against the specific library your production code uses.",
+    },
+    {
+      type: "example",
+      title: "Array slicing follows Python conventions",
+      content:
+        "$.items[0:3] returns the first 3 items (indices 0, 1, 2). $.items[-1:] returns the last item. $.items[::2] returns every other item. The syntax is [start:end:step]. These operations are much more efficient than fetching all items and filtering in application code when your JSONPath engine supports server-side evaluation.",
+    },
+    {
+      type: "security",
+      title: "Filter expressions can be injection vectors",
+      content:
+        "JSONPath filter expressions like [?(@.name == 'value')] can be vulnerable to injection if the value comes from user input without sanitization. An attacker could inject ')]|| true ||[?(1==1' to bypass filters. Always parameterize or sanitize user input in JSONPath queries, just like SQL.",
+    },
+  ],
+  "svg-optimizer": [
+    {
+      type: "tip",
+      title: "Remove metadata and editor data for 30-60% size reduction",
+      content:
+        "Design tools (Illustrator, Figma, Sketch) embed editor metadata, comments, hidden layers, and unused definitions in exported SVGs. Stripping this data typically reduces file size by 30-60% with zero visual change. SVGO is the standard optimizer — run it on every SVG before committing to your repo.",
+    },
+    {
+      type: "pitfall",
+      title: "Aggressive optimization can break SVG animations and filters",
+      content:
+        "Removing IDs, merging paths, or converting shapes to paths can break CSS animations targeting specific elements, SMIL animations, JavaScript interactions, and filter references. If your SVG uses animation or interactivity, test the optimized output thoroughly. Disable path merging and ID removal for interactive SVGs.",
+    },
+    {
+      type: "example",
+      title: "Inline SVG vs img tag: choose by use case",
+      content:
+        "Inline SVG (<svg> in HTML) allows CSS styling, JavaScript interaction, and eliminates an HTTP request — use for icons, logos, and interactive graphics. SVG as <img> is cached independently and doesn't increase DOM size — use for complex illustrations and decorative images that don't need manipulation.",
+    },
+    {
+      type: "security",
+      title: "SVGs can contain embedded JavaScript",
+      content:
+        "SVG supports <script> tags and event handlers (onload, onclick). An uploaded SVG with malicious JavaScript executes when rendered inline or viewed directly. Never serve user-uploaded SVGs inline — use <img> tag (blocks script execution), Content-Security-Policy, or sanitize with DOMPurify before rendering.",
+    },
+  ],
+  "image-compressor": [
+    {
+      type: "tip",
+      title: "Use WebP for photos, SVG for icons, AVIF for next-gen",
+      content:
+        "WebP gives 25-35% smaller files than JPEG at equivalent quality and is supported in all modern browsers. AVIF is 20% smaller still but slower to encode. SVG is infinitely scalable for icons and logos. Use the <picture> element with AVIF → WebP → JPEG fallback chain for maximum browser coverage.",
+    },
+    {
+      type: "pitfall",
+      title: "Quality 80 is the sweet spot — below 70 introduces visible artifacts",
+      content:
+        "JPEG quality 80-85 is visually indistinguishable from 100 but 60-70% smaller. Below quality 70, compression artifacts (banding in gradients, ringing around edges) become visible, especially on retina displays. For hero images, use quality 85. For thumbnails, quality 75 is acceptable.",
+    },
+    {
+      type: "example",
+      title: "Responsive images save 50%+ bandwidth on mobile",
+      content:
+        "A 2000px hero image on a 375px phone wastes 80% of pixels. Use srcset to serve appropriately sized images: <img srcset=\"hero-400.webp 400w, hero-800.webp 800w, hero-1600.webp 1600w\" sizes=\"100vw\">. Combined with compression, this can reduce mobile image bandwidth by 70-85%.",
+    },
+    {
+      type: "security",
+      title: "Image metadata can leak sensitive information",
+      content:
+        "EXIF data in photos can contain GPS coordinates, device model, camera serial number, and timestamps. Before publishing user-uploaded images, strip all metadata. Most image processing libraries (sharp, Pillow, ImageMagick) can remove EXIF data during conversion or optimization.",
+    },
+  ],
+  "box-shadow": [
+    {
+      type: "tip",
+      title: "Layer multiple shadows for realistic depth",
+      content:
+        "A single box-shadow looks flat. Layer 2-3 shadows with increasing blur and offset for natural-looking elevation: box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.08), 0 12px 24px rgba(0,0,0,0.06). This mimics how real objects cast soft, diffused shadows at multiple distances.",
+    },
+    {
+      type: "pitfall",
+      title: "Box shadows trigger paint on scroll — use sparingly",
+      content:
+        "CSS box-shadow forces the browser to repaint the element's layer on every frame during animations or scroll. For fixed/sticky headers with shadows, add will-change: box-shadow or use transform: translateZ(0) to promote the element to its own compositor layer. Better yet, use a pseudo-element for the shadow.",
+    },
+    {
+      type: "example",
+      title: "Use inset shadows for pressed/active button states",
+      content:
+        "An inset shadow creates the illusion of a pressed button: box-shadow: inset 0 2px 4px rgba(0,0,0,0.2). Combine with removing the outer shadow and a slight translateY for a convincing click effect. This costs zero additional DOM elements and works in all browsers.",
+    },
+    {
+      type: "security",
+      title: "Shadow tricks can be used for clickjacking indicators",
+      content:
+        "Exaggerated box-shadows or outlines are sometimes used to visually indicate iframe boundaries in clickjacking defense. If your site is framed, a visible shadow around the viewport helps users recognize they're in an embedded context. Always set X-Frame-Options or CSP frame-ancestors as the primary defense.",
+    },
+  ],
+  "contrast-checker": [
+    {
+      type: "tip",
+      title: "WCAG AA requires 4.5:1 for normal text, 3:1 for large text",
+      content:
+        "Large text is defined as 18pt (24px) regular weight or 14pt (18.66px) bold. Logos and decorative text are exempt. For AAA (enhanced) compliance: 7:1 for normal text, 4.5:1 for large text. Meeting AA is legally required in many jurisdictions (ADA, EAA, EN 301 549). AAA is best practice for public-facing content.",
+    },
+    {
+      type: "pitfall",
+      title: "Contrast ratios don't account for thin font weights",
+      content:
+        "WCAG contrast calculations use luminance values, not font weight. But a 400-weight font at 4.5:1 contrast is more readable than a 300-weight font at the same ratio. Light and thin font weights (100-300) need higher contrast to be legible, especially at small sizes. Use 500+ weight for body text.",
+    },
+    {
+      type: "example",
+      title: "Semi-transparent text has variable contrast",
+      content:
+        "Text with opacity: 0.7 or color: rgba(0,0,0,0.6) has different effective contrast depending on the background behind it. Over a white background it might pass, but over an image it might fail. Calculate contrast against the worst-case background. For text over images, add a solid or gradient overlay.",
+    },
+    {
+      type: "security",
+      title: "Low contrast can be a dark pattern",
+      content:
+        "Deliberately low-contrast text for unsubscribe links, terms of service links, or opt-out options is a dark pattern that may violate accessibility laws and FTC guidelines. The EU's Digital Services Act explicitly addresses deceptive interface design. Ensure all interactive elements meet minimum contrast requirements.",
+    },
+  ],
+  "flexbox-generator": [
+    {
+      type: "tip",
+      title: "Use gap instead of margin for consistent spacing",
+      content:
+        "The gap property (gap: 16px) creates uniform spacing between flex items without affecting the first/last item. Before gap support, developers used margin with negative margin on the container or :last-child overrides. gap works in Flexbox (all modern browsers since 2021) and eliminates spacing hacks.",
+    },
+    {
+      type: "pitfall",
+      title: "flex: 1 doesn't mean equal widths — it means equal growth",
+      content:
+        "flex: 1 sets flex-grow: 1, flex-shrink: 1, flex-basis: 0%. Items grow equally from 0 width, but content can make them unequal. For truly equal widths, use flex: 1 1 0% AND min-width: 0 (to allow items to shrink below content size). Or use CSS Grid with grid-template-columns: repeat(3, 1fr).",
+    },
+    {
+      type: "example",
+      title: "Centering anything: display:flex + place-items:center",
+      content:
+        "The CSS holy grail — centering vertically and horizontally — is one line: display: flex; place-items: center (shorthand for align-items + justify-items). Or use place-content: center for the container-level equivalent. No more margin: auto, transform: translate(-50%), or table-cell hacks.",
+    },
+    {
+      type: "security",
+      title: "Flexbox order changes visual order, not DOM order",
+      content:
+        "The CSS order property rearranges visual display but screen readers and keyboard navigation follow DOM order. If your flex order creates a different visual sequence than the tab order, keyboard users will be confused and disoriented. Keep visual and DOM order aligned for accessible navigation.",
+    },
+  ],
+  "grid-generator": [
+    {
+      type: "tip",
+      title: "Use minmax() with auto-fill for responsive grids without media queries",
+      content:
+        "grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) creates a responsive grid that automatically adjusts column count based on container width. Items are at least 250px wide and grow to fill space. Zero media queries, zero JavaScript — pure CSS responsive layout.",
+    },
+    {
+      type: "pitfall",
+      title: "auto-fill vs auto-fit: subtle but important difference",
+      content:
+        "auto-fill creates empty tracks when there's extra space. auto-fit collapses empty tracks, stretching items to fill. With 2 items in a 4-column grid: auto-fill leaves 2 empty column tracks; auto-fit stretches the 2 items to fill all space. Use auto-fit for most layouts, auto-fill when you need placeholder spacing.",
+    },
+    {
+      type: "example",
+      title: "Named grid areas create self-documenting layouts",
+      content:
+        "grid-template-areas: \"header header\" \"sidebar main\" \"footer footer\" reads like an ASCII art layout. Assign areas with grid-area: header. This is more maintainable than grid-column/grid-row coordinates for complex page layouts. Areas can be rearranged in media queries for responsive design.",
+    },
+    {
+      type: "security",
+      title: "CSS Grid can visually reorder form fields away from tab order",
+      content:
+        "Like Flexbox order, Grid placement (grid-row, grid-column, grid-area) changes visual position without affecting DOM/tab order. A login form where the password field visually appears before username but tabs in reverse order is confusing and could be exploited for phishing-style misdirection.",
+    },
+  ],
+  "border-radius": [
+    {
+      type: "tip",
+      title: "Use percentage for perfect circles and ellipses",
+      content:
+        "border-radius: 50% on a square element creates a perfect circle. On a rectangle, it creates an ellipse. For pill-shaped buttons, use border-radius: 9999px — this guarantees fully rounded ends regardless of the element's height. Avoid using exact pixel values for pill shapes, as they break when content changes size.",
+    },
+    {
+      type: "pitfall",
+      title: "Individual corner syntax has two notations — don't mix them",
+      content:
+        "The shorthand border-radius: 10px 20px 30px 40px sets all four corners (top-left, top-right, bottom-right, bottom-left — clockwise from top-left). The longhand border-top-left-radius: 10px 20px sets horizontal and vertical radii for elliptical corners. Mixing shorthand clockwise order with the longhand properties causes unexpected results.",
+    },
+    {
+      type: "example",
+      title: "Superellipse (squircle) shapes for iOS-style icons",
+      content:
+        "Apple's iOS icons use a superellipse, not border-radius. CSS can approximate this with border-radius values slightly less than 50%: try border-radius: 22% for a squircle effect. For pixel-perfect iOS icons, use SVG clip-path with a superellipse formula or the CSS clip-path: path() function.",
+    },
+    {
+      type: "security",
+      title: "Border radius clips content but doesn't clip pointer events",
+      content:
+        "A rounded element still has a rectangular click area unless you add clip-path. An invisible corner region can still receive clicks, causing unexpected button presses or link activations. For circular buttons, match the clickable area with border-radius: 50% AND a clip-path or explicit pointer-events handling.",
+    },
+  ],
+  "text-shadow": [
+    {
+      type: "tip",
+      title: "Multiple text-shadows create outline and glow effects",
+      content:
+        "Stack four shadows at 1px offsets in each direction for a text outline: text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000. For a glow effect, use 0 offset with large blur: text-shadow: 0 0 10px rgba(0,150,255,0.8). No additional markup needed.",
+    },
+    {
+      type: "pitfall",
+      title: "Text shadows render on every glyph — performance cost with long text",
+      content:
+        "Each text-shadow is rendered per character. Multiple shadows on large text blocks (especially with blur) can cause visible paint lag. Use text-shadow for headings and short UI labels. For body text, prefer background gradients or container shadows instead. Profile with Chrome DevTools Paint panel.",
+    },
+    {
+      type: "example",
+      title: "Improve readability of text over images with shadow",
+      content:
+        "White text on a photo is often illegible in bright areas. A subtle dark text-shadow — text-shadow: 0 1px 3px rgba(0,0,0,0.6) — ensures readability against any background. This is more performant than adding a gradient overlay to the image and works on dynamic content.",
+    },
+    {
+      type: "security",
+      title: "Text shadows can make hidden text visible to scrapers",
+      content:
+        "Some anti-scraping techniques use text-shadow to visually display data while keeping the DOM text different (honeypot characters). However, sophisticated scrapers parse computed styles including text-shadow. Don't rely on CSS tricks as a data protection mechanism — use proper access controls and rate limiting.",
+    },
+  ],
+  "css-animation": [
+    {
+      type: "tip",
+      title: "Animate only transform and opacity for 60fps performance",
+      content:
+        "Animating width, height, top, left, margin, or padding triggers layout recalculation on every frame. Animating transform (translate, scale, rotate) and opacity runs on the GPU compositor thread, bypassing the main thread entirely. This is the difference between janky 15fps and smooth 60fps animations.",
+    },
+    {
+      type: "pitfall",
+      title: "will-change creates a new stacking context and compositor layer",
+      content:
+        "will-change: transform promotes an element to its own GPU layer, which uses memory. Apply it to 2-5 elements max, not broadly. Overuse causes excessive memory consumption and can actually decrease performance. Only apply will-change just before the animation starts and remove it after.",
+    },
+    {
+      type: "example",
+      title: "Use @media (prefers-reduced-motion) to respect user preferences",
+      content:
+        "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } } Users with vestibular disorders enable reduced motion in their OS settings. Ignoring this preference is an accessibility violation.",
+    },
+    {
+      type: "security",
+      title: "Animations can be used for timing attacks",
+      content:
+        "CSS animations fire animationend events that reveal timing information. An attacker could measure animation completion time to infer CSS selector matches (history sniffing via :visited selectors was patched, but novel timing channels emerge periodically). Keep security-sensitive UI state independent of CSS animations.",
+    },
+  ],
+  "markdown-table": [
+    {
+      type: "tip",
+      title: "Use alignment colons for cleaner data presentation",
+      content:
+        "Add colons in the separator row: :--- for left-align, :---: for center, ---: for right-align. Right-align numeric columns (prices, counts, percentages) for easier comparison. This works on GitHub, GitLab, dev.to, and most Markdown renderers. It's the single most overlooked Markdown table feature.",
+    },
+    {
+      type: "pitfall",
+      title: "Markdown tables can't span rows or columns",
+      content:
+        "Unlike HTML tables, Markdown has no colspan or rowspan. Every cell must exist and cannot merge with neighbors. For complex layouts with merged cells, embedded HTML tables inside Markdown work on most renderers — but lose the clean syntax benefit. Consider restructuring your data to avoid the need for merges.",
+    },
+    {
+      type: "example",
+      title: "Pipe characters in cell content must be escaped",
+      content:
+        "To include a literal | in a Markdown table cell, use the HTML entity &#124; or escape it as \\|. This catches many developers when documenting shell commands (piping), regular expressions, or TypeScript union types. Most Markdown editors don't auto-escape pipes in table mode.",
+    },
+    {
+      type: "security",
+      title: "Markdown tables can contain injected links and images",
+      content:
+        "User-generated Markdown tables can include [phishing](https://evil.com) links or ![tracking pixel](https://evil.com/track) images that load when rendered. If rendering user Markdown, sanitize the output with allowlisted URL schemes (https only) and consider blocking external image URLs.",
+    },
+  ],
+  "text-binary": [
+    {
+      type: "tip",
+      title: "ASCII uses only 7 bits — the 8th bit enabled character sets",
+      content:
+        "Original ASCII maps 128 characters to 7-bit values (0-127). The 8th bit was unused, leading to dozens of incompatible extensions (Latin-1, Windows-1252, etc.) that each mapped 128-255 differently. UTF-8 solved this by using variable-length encoding: 1 byte for ASCII, 2-4 bytes for everything else. Always use UTF-8.",
+    },
+    {
+      type: "pitfall",
+      title: "Emoji and CJK characters are 3-4 bytes in UTF-8",
+      content:
+        "The string '😀' is 1 character but 4 bytes in UTF-8. 'Hello 😀' is 7 characters but 10 bytes. Database VARCHAR(10) might reject it if measured in bytes. JavaScript's String.length counts UTF-16 code units: '😀'.length === 2. Use Array.from('😀').length for true character count.",
+    },
+    {
+      type: "example",
+      title: "Binary representation reveals bitwise operations visually",
+      content:
+        "Seeing 5 (0101) AND 3 (0011) = 1 (0001) in binary makes bitwise operations intuitive. This is invaluable for understanding permission bitmasks (Unix chmod 755 = 111 101 101), IP subnet masks (255.255.255.0 = 24 ones followed by 8 zeros), and flag enums.",
+    },
+    {
+      type: "security",
+      title: "Unicode homoglyphs enable phishing attacks",
+      content:
+        "The Cyrillic 'а' (U+0430) looks identical to Latin 'a' (U+0061) but is a different byte sequence. Attackers use homoglyphs to create convincing phishing URLs (pаypal.com) and bypass text filters. Always validate domains using Punycode (xn-- prefix) and normalize Unicode input with NFC or NFKC before comparison.",
+    },
+  ],
+  "meta-tag-generator": [
+    {
+      type: "tip",
+      title: "Title tags should be 50-60 characters for full SERP display",
+      content:
+        "Google displays approximately 50-60 characters (or 600px) of your title tag. Longer titles get truncated with an ellipsis, losing your call-to-action or brand name. Front-load your primary keyword. Format: Primary Keyword — Secondary Keyword | Brand. Unique titles per page are essential.",
+    },
+    {
+      type: "pitfall",
+      title: "Duplicate meta descriptions across pages hurt SEO",
+      content:
+        "Google treats duplicate meta descriptions as a signal of low-quality or auto-generated content. Each page needs a unique 150-160 character description that accurately summarizes the content and includes a natural call-to-action. If you can't write unique descriptions, it's better to omit them and let Google auto-generate.",
+    },
+    {
+      type: "example",
+      title: "Open Graph tags control how your pages appear when shared",
+      content:
+        "og:title, og:description, og:image, and og:url are the four essential Open Graph tags. Without them, social platforms extract random text and images from your page. The og:image should be 1200x630px for optimal display on Facebook, LinkedIn, and Twitter. Add twitter:card: summary_large_image for full-width Twitter previews.",
+    },
+    {
+      type: "security",
+      title: "Meta tags can expose internal infrastructure",
+      content:
+        "The <meta name=\"generator\"> tag reveals your CMS and version (e.g., WordPress 6.4). <meta name=\"author\"> exposes employee names for social engineering. The referrer-policy meta tag controls what URL information is sent to external sites. Set referrer-policy to strict-origin-when-cross-origin to prevent URL leakage.",
+    },
+  ],
+  "json-schema": [
+    {
+      type: "tip",
+      title: "Use $ref to keep schemas DRY and maintainable",
+      content:
+        "Instead of repeating the same address object definition in user, order, and shipping schemas, define it once in $defs and reference it: {\"$ref\": \"#/$defs/address\"}. This mirrors how TypeScript interfaces work. Changes to the address schema automatically propagate to all references.",
+    },
+    {
+      type: "pitfall",
+      title: "additionalProperties defaults to true — your schema allows anything",
+      content:
+        "Without \"additionalProperties\": false, a schema requiring {name, email} happily accepts {name, email, isAdmin: true}. This is a common source of mass assignment vulnerabilities. Always set additionalProperties explicitly. Use \"additionalProperties\": false in strict APIs and true only when extensibility is intentional.",
+    },
+    {
+      type: "example",
+      title: "Combine allOf, oneOf, anyOf for complex validation",
+      content:
+        "allOf: all schemas must match (intersection, like TypeScript &). oneOf: exactly one must match (discriminated union). anyOf: at least one must match (union, like TypeScript |). Use oneOf with a discriminator field for tagged unions: {\"oneOf\": [{type: \"card\"}, {type: \"bank\"}], \"discriminator\": {\"propertyName\": \"type\"}}.",
+    },
+    {
+      type: "security",
+      title: "Validate schema constraints server-side, not just client-side",
+      content:
+        "Client-side JSON Schema validation improves UX but provides zero security. Attackers bypass your frontend entirely. Every API endpoint must validate request bodies server-side against the schema. Use AJV (JavaScript), jsonschema (Python), or similar libraries as middleware in your API handler.",
+    },
+  ],
+  "subnet-calculator": [
+    {
+      type: "tip",
+      title: "/24 gives 254 usable hosts — the standard small network",
+      content:
+        "A /24 subnet (255.255.255.0) provides 256 addresses with 254 usable for hosts (network and broadcast addresses are reserved). For most office LANs and VPCs, /24 is the right starting point. /16 gives ~65K hosts (large campus), /8 gives ~16M (enterprise backbone). Memorize /24, /16, /8 — derive others from there.",
+    },
+    {
+      type: "pitfall",
+      title: "Private IP ranges overlap — plan before peering VPCs",
+      content:
+        "RFC 1918 defines 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 as private. When connecting two VPCs or VPNs, overlapping CIDR blocks cause routing conflicts. If both use 10.0.0.0/16, you can't peer them. Plan non-overlapping ranges from day one: 10.1.0.0/16 for production, 10.2.0.0/16 for staging, etc.",
+    },
+    {
+      type: "example",
+      title: "Use /32 for single-host allow rules in security groups",
+      content:
+        "In AWS security groups, GCP firewall rules, or iptables, 203.0.113.5/32 means exactly one IP address. Use /32 for bastion host SSH rules and admin panel access. Common mistake: using /24 or /16 when you meant to restrict to a single IP, accidentally allowing 254 or 65K addresses.",
+    },
+    {
+      type: "security",
+      title: "IPv6 /128 is the equivalent of IPv4 /32",
+      content:
+        "In IPv6, a /128 prefix identifies a single host. The standard subnet allocation is /64 (18 quintillion addresses per subnet). ISPs typically assign /48 to businesses and /56 to residential customers. Never run IPv6 without a firewall — the myth that NAT provided security in IPv4 does not apply.",
+    },
+  ],
+  "gitignore-generator": [
+    {
+      type: "tip",
+      title: "Commit .gitignore before your first code commit",
+      content:
+        "Once a file is tracked by git, adding it to .gitignore won't untrack it. You must git rm --cached filename first. Start every project with a proper .gitignore to avoid accidentally committing node_modules, .env, build artifacts, or IDE config. GitHub's template collection (github/gitignore) covers most languages and frameworks.",
+    },
+    {
+      type: "pitfall",
+      title: "Negation patterns (!file) don't re-include files in ignored directories",
+      content:
+        "If you ignore dist/ and then try to include dist/important.js with !dist/important.js, it won't work. Git doesn't look inside ignored directories at all. You'd need to ignore dist/* (contents only, not the directory itself) and then negate. This subtle distinction causes many .gitignore bugs.",
+    },
+    {
+      type: "security",
+      title: "Always ignore .env and credential files",
+      content:
+        "The #1 cause of leaked secrets on GitHub is missing .gitignore entries for .env, .env.local, credentials.json, *.pem, and *.key files. Add these entries to your global .gitignore (~/.gitignore_global) so they're ignored across all projects. Use git-secrets or trufflehog as pre-commit hooks for additional safety.",
+    },
+    {
+      type: "example",
+      title: "Use global .gitignore for IDE and OS files",
+      content:
+        "Files like .DS_Store (macOS), Thumbs.db (Windows), .idea/ (JetBrains), .vscode/ (VS Code) are user-specific, not project-specific. Configure a global gitignore: git config --global core.excludesfile ~/.gitignore_global. This keeps project .gitignore clean and focused on language/framework patterns.",
+    },
+  ],
+  "cron-parser": [
+    {
+      type: "tip",
+      title: "Use @weekly, @daily, @hourly shortcuts for common schedules",
+      content:
+        "Instead of memorizing that 0 0 * * 0 means weekly on Sunday, use @weekly. Cron supports @yearly (Jan 1), @monthly (1st), @weekly (Sunday), @daily (midnight), @hourly, and @reboot. These are self-documenting and less error-prone. Supported in most cron implementations including crond, systemd timers, and GitHub Actions.",
+    },
+    {
+      type: "pitfall",
+      title: "Day-of-week numbering varies between implementations",
+      content:
+        "Standard cron uses 0-7 for Sunday-Saturday (both 0 and 7 are Sunday). But some systems use 1-7 (Monday-Sunday). AWS EventBridge uses 1-7 (Sunday-Saturday). Quartz (Java) uses 1-7 (Sunday-Saturday). Always check your specific platform's documentation and test the schedule before deploying.",
+    },
+    {
+      type: "example",
+      title: "Combine ranges and steps for business hours schedules",
+      content:
+        "Run every 15 minutes during business hours on weekdays: */15 9-17 * * 1-5. The range (9-17) limits hours, the step (*/15) sets frequency, and the day-of-week range (1-5) excludes weekends. This runs 36 times per day instead of 96 — a significant difference for rate-limited operations.",
+    },
+    {
+      type: "security",
+      title: "Cron jobs run with the scheduling user's full permissions",
+      content:
+        "A cron job added to root's crontab runs as root. If the script it executes is writable by other users, they can escalate privileges by modifying the script. Always ensure cron script files are owned by the cron user and not world-writable (chmod 700). Audit crontabs regularly with crontab -l.",
+    },
+  ],
+  "cron-generator": [
+    {
+      type: "tip",
+      title: "Stagger cron jobs to avoid thundering herd problems",
+      content:
+        "If 50 cron jobs all run at 0 * * * * (top of every hour), they compete for CPU, memory, and network simultaneously. Stagger them: use random minute offsets (7 * * * *, 23 * * * *, 41 * * * *) or hash-based scheduling. Cloud services like AWS often add jitter to prevent customer cron storms.",
+    },
+    {
+      type: "pitfall",
+      title: "Cron doesn't handle missed executions",
+      content:
+        "If your server was down when a daily backup job was scheduled to run, cron doesn't run it when the server comes back up. Use anacron for laptops and intermittently connected machines — it tracks the last run date and executes missed jobs. For cloud, use managed schedulers (AWS EventBridge, Cloud Scheduler) with retry policies.",
+    },
+    {
+      type: "example",
+      title: "Lock your cron jobs to prevent overlapping runs",
+      content:
+        "A cron job running every minute that takes 3 minutes to complete will have 3 concurrent instances. Use flock: * * * * * flock -n /tmp/myjob.lock /path/to/script.sh. The -n flag makes flock exit immediately if the lock is held. This prevents data corruption, duplicate emails, and resource exhaustion.",
+    },
+    {
+      type: "security",
+      title: "Redirect cron output or it becomes email",
+      content:
+        "By default, cron emails all stdout/stderr to the cron user. This can expose sensitive data in email logs and fill mail queues. Redirect output: */5 * * * * /path/to/job >> /var/log/myjob.log 2>&1. Set MAILTO=\"\" in crontab to disable emails entirely, then use proper log aggregation instead.",
+    },
+  ],
+  "favicon-generator": [
+    {
+      type: "tip",
+      title: "You need at least 3 sizes: 32x32, 180x180, and 192x192",
+      content:
+        "favicon.ico (32x32) for browser tabs, apple-touch-icon.png (180x180) for iOS home screen, and icon-192.png / icon-512.png for Android PWA manifest. Most generators produce 10+ sizes, but these three cover 95% of use cases. Use SVG favicon for modern browsers: <link rel=\"icon\" type=\"image/svg+xml\" href=\"icon.svg\">.",
+    },
+    {
+      type: "pitfall",
+      title: "Favicon caching is extremely aggressive",
+      content:
+        "Browsers cache favicons for days or weeks, ignoring standard Cache-Control headers. After updating your favicon, users may see the old one for a long time. Bust the cache by changing the filename (favicon-v2.png) or adding a query parameter (?v=2) to the link tag. Chrome requires clearing the favicon cache at chrome://favicon/.",
+    },
+    {
+      type: "example",
+      title: "SVG favicons support dark mode with @media queries",
+      content:
+        "An SVG favicon can include <style>@media (prefers-color-scheme: dark) { ... }</style> to show a different color in dark mode. No other format supports this. The SVG can also use currentColor to inherit theme colors. Browser support is excellent: Chrome 80+, Firefox 41+, Safari 15+.",
+    },
+    {
+      type: "security",
+      title: "Favicons can track users across sites",
+      content:
+        "The 'supercookie' technique uses favicon cache entries as a fingerprinting vector. By serving unique favicons per user and checking which cached versions a browser requests, trackers can identify users even after cookie deletion. Modern browsers are mitigating this by partitioning favicon caches by top-level site.",
+    },
+  ],
+  "slug-generator": [
+    {
+      type: "tip",
+      title: "Keep slugs under 75 characters for SEO",
+      content:
+        "Google displays about 75 characters of URL in search results before truncating. Shorter slugs are easier to share, copy, and remember. Remove stop words (the, a, an, in, of, for) and use 3-5 keywords maximum: /tools/json-formatter not /tools/the-best-json-formatter-and-validator-tool-for-developers.",
+    },
+    {
+      type: "pitfall",
+      title: "Changing slugs breaks existing links — always redirect",
+      content:
+        "Every external link, bookmark, and search engine index points to your current URL. Changing a slug without a 301 redirect creates 404 errors and loses accumulated SEO authority. In Next.js, add redirects in next.config.ts. Always maintain a redirect map for renamed pages.",
+    },
+    {
+      type: "example",
+      title: "Handle Unicode slugs with transliteration, not removal",
+      content:
+        "\"Über die Brücke\" should become uber-die-brucke, not -die-br-cke. Use a transliteration library (speakingurl, limax, slugify) that converts ü→u, ñ→n, é→e, ø→o. For CJK content, consider Pinyin romanization or keeping Unicode in the URL (modern browsers display it properly).",
+    },
+    {
+      type: "security",
+      title: "Validate slugs to prevent path traversal",
+      content:
+        "User-generated slugs like ../../../etc/passwd or ..\\windows\\system32 can enable directory traversal if used directly in file paths. Always sanitize: remove dots, slashes, and backslashes. Validate against a strict regex like /^[a-z0-9]+(?:-[a-z0-9]+)*$/ and never use slugs to construct file system paths without validation.",
+    },
+  ],
+  "curl-converter": [
+    {
+      type: "tip",
+      title: "Use -v (verbose) to debug request/response headers",
+      content:
+        "curl -v shows the full HTTP conversation: DNS resolution, TLS handshake, request headers, response headers, and body. Lines prefixed with > are sent, < are received, * are connection info. For HTTPS debugging, this reveals certificate issues, redirect chains, and header mismatches that -i alone doesn't show.",
+    },
+    {
+      type: "pitfall",
+      title: "Shell quoting differs between Bash, Zsh, and PowerShell",
+      content:
+        "curl -H 'Content-Type: application/json' works in Bash but fails in PowerShell (which uses different quoting). Windows cmd uses double quotes only. When converting cURL commands, always consider the target shell. Use -H \"Content-Type: application/json\" for maximum cross-platform compatibility.",
+    },
+    {
+      type: "example",
+      title: "Extract cURL commands from browser DevTools",
+      content:
+        "In Chrome/Firefox/Edge DevTools Network tab: right-click any request → Copy → Copy as cURL. This captures the exact headers, cookies, and authentication the browser sent. Paste it into DevBolt's converter to get equivalent Python, JavaScript, Go, or PHP code with all headers preserved.",
+    },
+    {
+      type: "security",
+      title: "cURL commands in documentation often contain real credentials",
+      content:
+        "Developers frequently paste cURL commands with Bearer tokens, API keys, or Basic auth into Slack, GitHub issues, and Stack Overflow. These credentials are harvestable by bots. Always replace real credentials with placeholders (YOUR_API_KEY) before sharing. Use environment variables: curl -H \"Authorization: Bearer $API_KEY\".",
+    },
+  ],
 };

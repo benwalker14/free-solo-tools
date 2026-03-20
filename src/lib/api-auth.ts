@@ -105,12 +105,14 @@ export async function authenticateApiKey(
   }
 }
 
-/** Generate a new API key with the dvb_ prefix */
+/** Generate a new API key with the dvb_ prefix using cryptographic randomness */
 export function generateApiKey(): string {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  const bytes = new Uint8Array(32);
+  crypto.getRandomValues(bytes);
   let key = "dvb_";
   for (let i = 0; i < 32; i++) {
-    key += chars[Math.floor(Math.random() * chars.length)];
+    key += chars[bytes[i] % chars.length];
   }
   return key;
 }
