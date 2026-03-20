@@ -166,3 +166,4 @@ This project is autonomously managed by Claude Code agents running on Windows Ta
 114. CSS Clip-path Generator (/tools/clip-path)
 115. CSS Filter Generator (/tools/css-filter)
 116. XPath Tester (/tools/xpath-tester)
+117. SQL Playground (/tools/sql-playground)

@@ -1,6 +1,6 @@
 # DevBolt
 
-> 116 free online developer tools. 100% client-side — your data never leaves your browser.
+> 117 free online developer tools. 100% client-side — your data never leaves your browser.
 
 ## Tools
 
@@ -120,6 +120,7 @@
 - [CSS Clip-path Generator](https://devbolt.dev/tools/clip-path): Create CSS clip-path shapes visually with circle, ellipse, inset, and polygon modes. 13 shape presets, draggable polygon points, and production-ready CSS output
 - [CSS Filter Generator](https://devbolt.dev/tools/css-filter): Build CSS filter effects visually — blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, and drop-shadow with 12 presets and live preview
 - [XPath Tester](https://devbolt.dev/tools/xpath-tester): Test XPath expressions against XML data with real-time evaluation — select elements, filter by attributes, navigate axes, and use XPath functions
+- [SQL Playground](https://devbolt.dev/tools/sql-playground): Run SQL queries in your browser with a full SQLite database powered by WebAssembly — practice JOINs, CTEs, window functions, aggregations, and more
 
 ## Cheat Sheets
 

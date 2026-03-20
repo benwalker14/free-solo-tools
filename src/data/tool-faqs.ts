@@ -2141,6 +2141,28 @@ export const toolFaqs: Record<string, FAQ[]> = {
         "Yes. CSS filter works on any HTML element including <img>, <video>, <canvas>, and inline SVG. For images, common uses include grayscale on hover (filter: grayscale(100%) → grayscale(0) on :hover), brightness adjustments, and color tinting with sepia + hue-rotate. Note that filter applies to the entire element — for per-channel control on SVG, use SVG filter primitives (feColorMatrix, feGaussianBlur) via the url() function instead.",
     },
   ],
+  "sql-playground": [
+    {
+      question: "How does this SQL playground work without a server?",
+      answer:
+        "This SQL playground runs a complete SQLite database engine directly in your browser using WebAssembly (WASM). The sql.js library compiles the official C-based SQLite source code to WebAssembly, giving you a fully functional relational database with zero server dependencies. Your queries execute locally — no data is transmitted over the network. The database exists only in memory and resets when you refresh the page.",
+    },
+    {
+      question: "What SQL features does SQLite support?",
+      answer:
+        "SQLite supports most of standard SQL including CREATE TABLE, INSERT, UPDATE, DELETE, SELECT with JOINs (INNER, LEFT, CROSS), subqueries, Common Table Expressions (WITH/CTEs), window functions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM/AVG OVER), GROUP BY with HAVING, UNION/INTERSECT/EXCEPT, CASE expressions, indexes, views, triggers, and transactions. SQLite uses dynamic typing with type affinities (INTEGER, REAL, TEXT, BLOB, NULL) rather than strict column types. It does not support RIGHT JOIN, FULL OUTER JOIN, or stored procedures.",
+    },
+    {
+      question: "Can I use this to practice for SQL interviews?",
+      answer:
+        "Yes — this playground is ideal for SQL interview preparation. You can create your own tables, insert test data, and practice common interview topics: JOINs, GROUP BY with HAVING, window functions (ROW_NUMBER, RANK, running totals), CTEs for recursive queries, subqueries, self-joins, and set operations (UNION, INTERSECT, EXCEPT). Use the sample datasets to get started quickly, or create custom schemas matching the problem you're studying. The in-browser execution gives you instant feedback without needing to install PostgreSQL or MySQL locally.",
+    },
+    {
+      question: "Is my SQL data safe in this tool?",
+      answer:
+        "Yes. The SQLite database runs entirely in your browser's memory using WebAssembly. No SQL statements, table data, or query results are sent to any server. You can verify this by checking your browser's Network tab — no requests are made when you run queries. The database is ephemeral: it resets completely when you refresh the page. This makes it safe for practicing with realistic data schemas without privacy concerns.",
+    },
+  ],
   "xpath-tester": [
     {
       question: "What is XPath and how does it work?",

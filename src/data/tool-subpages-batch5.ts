@@ -1022,4 +1022,178 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
       parentToolName: "Code Complexity Analyzer",
     },
   ],
+  "sql-playground": [
+    {
+      slug: "sql-join-practice",
+      title: "SQL JOIN Practice",
+      metaTitle: "SQL JOIN Practice Online — Interactive SQL Playground",
+      metaDescription:
+        "Practice SQL JOINs interactively with a real SQLite database in your browser. INNER JOIN, LEFT JOIN, CROSS JOIN examples with sample data. Free online SQL playground.",
+      h1: "SQL JOIN Practice — Interactive Examples",
+      intro:
+        "Master SQL JOINs with hands-on practice in a real database. This interactive playground lets you write and run JOIN queries against sample data instantly — no setup, no server, no signup required.",
+      content: [
+        {
+          heading: "Understanding SQL JOINs",
+          body: "SQL JOINs combine rows from two or more tables based on a related column. The most common types are INNER JOIN (returns only matching rows), LEFT JOIN (all rows from the left table plus matches), and CROSS JOIN (every combination of rows). SQLite supports INNER JOIN, LEFT JOIN, and CROSS JOIN but not RIGHT JOIN or FULL OUTER JOIN — you can achieve RIGHT JOIN by swapping table order in a LEFT JOIN.",
+        },
+        {
+          heading: "INNER JOIN Example",
+          body: "INNER JOIN is the default and most common join type. It returns only rows where the join condition matches in both tables. If an employee has no matching department, that row is excluded from results.",
+          codeExample: "SELECT e.name, d.name AS department\nFROM employees e\nINNER JOIN departments d\n  ON e.department_id = d.id;",
+          codeLanguage: "sql",
+        },
+        {
+          heading: "LEFT JOIN for Optional Relationships",
+          body: "LEFT JOIN returns all rows from the left table, filling in NULLs where no match exists in the right table. This is essential for finding missing relationships — for example, customers who have never placed an order, or products with no reviews.",
+          codeExample: "SELECT c.name, COUNT(o.id) AS order_count\nFROM customers c\nLEFT JOIN orders o ON c.id = o.customer_id\nGROUP BY c.id\nHAVING order_count = 0;",
+          codeLanguage: "sql",
+        },
+        {
+          heading: "Self-Joins and Multi-Table JOINs",
+          body: "A self-join joins a table to itself — useful for hierarchical data like org charts (employee → manager) or finding duplicates. Multi-table JOINs chain multiple JOIN clauses: SELECT * FROM orders o JOIN customers c ON o.customer_id = c.id JOIN products p ON o.product_id = p.id.",
+        },
+      ],
+      faqs: [
+        {
+          question: "What is the difference between INNER JOIN and LEFT JOIN?",
+          answer: "INNER JOIN returns only rows with matches in both tables. LEFT JOIN returns all rows from the left table, with NULLs for non-matching right-table columns.",
+        },
+        {
+          question: "Does SQLite support RIGHT JOIN or FULL OUTER JOIN?",
+          answer: "SQLite supports RIGHT JOIN as of version 3.39.0 (2022). FULL OUTER JOIN is also supported since 3.39.0. This playground uses the latest sql.js which includes these features.",
+        },
+        {
+          question: "How do I practice JOINs online?",
+          answer: "Use DevBolt's SQL Playground to create tables with related data and write JOIN queries. Click the 'JOINs' sample to load a pre-built employees/departments schema, then modify the queries to experiment.",
+        },
+      ],
+      keywords: [
+        "SQL JOIN practice",
+        "learn SQL JOINs",
+        "INNER JOIN example",
+        "LEFT JOIN tutorial",
+        "SQL JOIN online",
+        "practice SQL queries",
+        "SQL JOIN exercises",
+      ],
+      parentToolSlug: "sql-playground",
+      parentToolName: "SQL Playground",
+    },
+    {
+      slug: "sql-window-functions",
+      title: "SQL Window Functions",
+      metaTitle: "SQL Window Functions Tutorial — Interactive Online Playground",
+      metaDescription:
+        "Learn SQL window functions with interactive examples. ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, running totals with OVER and PARTITION BY. Free online SQL playground.",
+      h1: "SQL Window Functions — Interactive Tutorial",
+      intro:
+        "Window functions perform calculations across a set of rows related to the current row — without collapsing results like GROUP BY. Practice ROW_NUMBER, RANK, LAG, LEAD, running totals, and more in a real database.",
+      content: [
+        {
+          heading: "What Are Window Functions?",
+          body: "Window functions compute a value for each row based on a 'window' of related rows. Unlike aggregate functions with GROUP BY, window functions don't collapse rows — you get the computed value alongside every row. The OVER clause defines the window: PARTITION BY groups rows, ORDER BY sequences them within each partition.",
+        },
+        {
+          heading: "ROW_NUMBER, RANK, and DENSE_RANK",
+          body: "These ranking functions assign numbers to rows within a partition. ROW_NUMBER gives unique sequential numbers (1,2,3,4). RANK leaves gaps for ties (1,2,2,4). DENSE_RANK has no gaps (1,2,2,3). Common use: top-N per group queries.",
+          codeExample: "SELECT name, department, salary,\n  ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS row_num,\n  RANK() OVER (ORDER BY salary DESC) AS salary_rank\nFROM employees;",
+          codeLanguage: "sql",
+        },
+        {
+          heading: "Running Totals and Moving Averages",
+          body: "Use SUM() or AVG() with OVER to compute running totals or moving averages. The frame clause (ROWS BETWEEN) controls which rows are included: ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW for a running total, ROWS BETWEEN 2 PRECEDING AND CURRENT ROW for a 3-row moving average.",
+          codeExample: "SELECT sale_date, amount,\n  SUM(amount) OVER (ORDER BY sale_date) AS running_total,\n  AVG(amount) OVER (\n    ORDER BY sale_date\n    ROWS BETWEEN 2 PRECEDING AND CURRENT ROW\n  ) AS moving_avg_3\nFROM sales;",
+          codeLanguage: "sql",
+        },
+        {
+          heading: "LAG and LEAD for Row Comparisons",
+          body: "LAG(column, offset) accesses a previous row's value; LEAD(column, offset) accesses a following row's value. These are essential for calculating period-over-period changes: LAG(revenue, 1) gives last month's revenue so you can compute month-over-month growth without self-joins.",
+          codeExample: "SELECT month, revenue,\n  LAG(revenue, 1) OVER (ORDER BY month) AS prev_month,\n  revenue - LAG(revenue, 1) OVER (ORDER BY month) AS growth\nFROM monthly_sales;",
+          codeLanguage: "sql",
+        },
+      ],
+      faqs: [
+        {
+          question: "Does SQLite support window functions?",
+          answer: "Yes, SQLite has full window function support since version 3.25.0 (2018). All standard window functions work: ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD, FIRST_VALUE, LAST_VALUE, NTH_VALUE, plus aggregate functions (SUM, AVG, COUNT, MIN, MAX) used with OVER.",
+        },
+        {
+          question: "What is the difference between PARTITION BY and GROUP BY?",
+          answer: "GROUP BY collapses multiple rows into one summary row per group. PARTITION BY in a window function defines groups for the calculation but keeps all original rows in the output. You get the aggregate value alongside every detail row.",
+        },
+        {
+          question: "When should I use window functions instead of GROUP BY?",
+          answer: "Use window functions when you need both detail and aggregate data in the same query — for example, showing each employee's salary alongside their department average. They're also essential for ranking (top N per group), running totals, and comparing consecutive rows (LAG/LEAD).",
+        },
+      ],
+      keywords: [
+        "SQL window functions",
+        "ROW_NUMBER SQL",
+        "RANK SQL",
+        "PARTITION BY",
+        "running total SQL",
+        "LAG LEAD SQL",
+        "SQL OVER clause",
+        "window function tutorial",
+      ],
+      parentToolSlug: "sql-playground",
+      parentToolName: "SQL Playground",
+    },
+    {
+      slug: "sqlite-vs-postgresql",
+      title: "SQLite vs PostgreSQL",
+      metaTitle: "SQLite vs PostgreSQL — Differences, Syntax, and When to Use Each",
+      metaDescription:
+        "Compare SQLite and PostgreSQL: syntax differences, feature support, type systems, and when to use each database. Interactive SQL playground for both dialects.",
+      h1: "SQLite vs PostgreSQL — Key Differences",
+      intro:
+        "SQLite and PostgreSQL are both powerful SQL databases, but they serve different purposes. SQLite is an embedded, serverless, zero-config database perfect for prototyping and learning. PostgreSQL is a full client-server RDBMS for production workloads. Here's what's different and what transfers between them.",
+      content: [
+        {
+          heading: "Type System Differences",
+          body: "PostgreSQL enforces strict column types — inserting a string into an INTEGER column fails. SQLite uses dynamic typing with type affinities: any column can store any type. SQLite's INTEGER PRIMARY KEY is special (auto-incrementing alias for rowid). PostgreSQL has rich types: JSONB, UUID, ARRAY, INET, INTERVAL, ENUM, composite types. SQLite stores everything as INTEGER, REAL, TEXT, BLOB, or NULL.",
+        },
+        {
+          heading: "Syntax That Works in Both",
+          body: "Core SQL is identical: SELECT, INSERT, UPDATE, DELETE, CREATE TABLE, JOINs, GROUP BY, HAVING, ORDER BY, LIMIT, subqueries, CTEs (WITH), and window functions all work in both. CASE expressions, COALESCE, NULLIF, CAST, and common string functions (UPPER, LOWER, LENGTH, SUBSTR, REPLACE) are compatible. If you learn SQL with SQLite, 90% transfers directly to PostgreSQL.",
+          codeExample: "-- Works in both SQLite and PostgreSQL\nWITH ranked AS (\n  SELECT name, salary,\n    RANK() OVER (ORDER BY salary DESC) AS r\n  FROM employees\n)\nSELECT * FROM ranked WHERE r <= 5;",
+          codeLanguage: "sql",
+        },
+        {
+          heading: "PostgreSQL-Only Features",
+          body: "PostgreSQL supports features SQLite lacks: FULL OUTER JOIN (SQLite added in 3.39.0), LATERAL joins, RETURNING clause on INSERT/UPDATE/DELETE, ARRAY types and operators, JSONB with indexing and operators (@>, ->, #>>), ENUM types, table inheritance, materialized views, stored procedures (PL/pgSQL), and advanced indexing (GIN, GiST, BRIN). For production applications, PostgreSQL's ACID compliance, concurrent connections, and extensions (PostGIS, pg_trgm, pgvector) are critical.",
+        },
+        {
+          heading: "When to Use SQLite",
+          body: "SQLite excels for: local development and prototyping, embedded databases in mobile/desktop apps, learning and practicing SQL, unit testing (in-memory databases), CLI tools, and read-heavy workloads under moderate traffic. SQLite is the most deployed database engine in the world — it's in every smartphone, browser, and operating system. For web applications with concurrent writes, use PostgreSQL or MySQL instead.",
+        },
+      ],
+      faqs: [
+        {
+          question: "Can I practice PostgreSQL queries in this playground?",
+          answer: "This playground runs SQLite, but most standard SQL is identical between SQLite and PostgreSQL. JOINs, CTEs, window functions, aggregations, and subqueries work the same way. PostgreSQL-specific features like JSONB operators, ARRAY types, RETURNING clause, and PL/pgSQL stored procedures are not available in SQLite.",
+        },
+        {
+          question: "Is SQLite good for learning SQL?",
+          answer: "Yes — SQLite is excellent for learning SQL. It supports all core SQL features (JOINs, CTEs, window functions, triggers, views, indexes) and runs anywhere without installation. The vast majority of SQL syntax you learn with SQLite transfers directly to PostgreSQL, MySQL, and SQL Server.",
+        },
+        {
+          question: "What are the main limitations of SQLite?",
+          answer: "SQLite limitations vs PostgreSQL: no concurrent write access (single-writer), no RIGHT JOIN/FULL OUTER JOIN before 3.39.0, no ALTER TABLE DROP COLUMN before 3.35.0, no stored procedures, no GRANT/REVOKE permissions, limited ALTER TABLE support, no native JSONB indexing, and dynamic typing instead of strict type enforcement.",
+        },
+      ],
+      keywords: [
+        "SQLite vs PostgreSQL",
+        "SQL database comparison",
+        "SQLite limitations",
+        "PostgreSQL vs SQLite differences",
+        "learn SQL online",
+        "SQLite features",
+        "SQL dialect comparison",
+      ],
+      parentToolSlug: "sql-playground",
+      parentToolName: "SQL Playground",
+    },
+  ],
 };

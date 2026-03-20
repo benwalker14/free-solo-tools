@@ -926,4 +926,12 @@ export const tools: Tool[] = [
     icon: "X/",
     category: "Inspect",
   },
+  {
+    title: "SQL Playground",
+    description:
+      "Run SQL queries in your browser with a full SQLite database powered by WebAssembly — practice JOINs, CTEs, window functions, aggregations, and more",
+    href: "/tools/sql-playground",
+    icon: "▷",
+    category: "Inspect",
+  },
 ];
