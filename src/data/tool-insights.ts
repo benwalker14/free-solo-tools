@@ -2053,4 +2053,992 @@ export const toolInsights: Record<string, ToolInsight[]> = {
         "The alg: 'none' option creates unsigned tokens — useful for development and testing only. Attackers exploit misconfigured JWT libraries by sending tokens with alg: 'none' to bypass signature verification. Always validate the algorithm server-side and reject 'none' in production.",
     },
   ],
+  "lorem-ipsum": [
+    {
+      type: "tip",
+      title: "Use realistic placeholder text length for layout testing",
+      content:
+        "Lorem Ipsum is great for testing layouts, but don't use uniform paragraph lengths. Real content varies wildly — mix short and long paragraphs to catch overflow, truncation, and responsive layout issues before real content arrives.",
+    },
+    {
+      type: "pitfall",
+      title: "Lorem Ipsum hides content readability problems",
+      content:
+        "Because Lorem Ipsum is unreadable by design, it masks issues like font size being too small, line height being too tight, or contrast being too low. Test with real content samples alongside placeholder text to catch typography issues early.",
+    },
+    {
+      type: "example",
+      title: "Use structured placeholder data for component testing",
+      content:
+        "For cards, tables, and lists, pure Lorem Ipsum text doesn't reveal layout issues. Generate varied-length names (3-30 chars), descriptions (1-3 sentences), and numbers to stress-test component layouts realistically.",
+    },
+    {
+      type: "security",
+      title: "Remove all placeholder text before shipping to production",
+      content:
+        "Lorem Ipsum left in production pages damages SEO rankings and user trust. Search engines may flag pages with Latin placeholder text as low-quality. Add a build-time check or linter rule to catch leftover placeholder content.",
+    },
+  ],
+  "number-base-converter": [
+    {
+      type: "tip",
+      title: "Use hex for colors and memory addresses, binary for bit flags",
+      content:
+        "Each number base has its sweet spot: hexadecimal for colors (#FF5733), memory addresses, and byte values. Binary for bitwise operations and feature flags. Octal for Unix file permissions (chmod 755). Decimal for everything humans need to read.",
+    },
+    {
+      type: "pitfall",
+      title: "JavaScript parseInt() defaults to base 10, not auto-detect",
+      content:
+        "parseInt('010') returns 10 in modern JS (base 10), but returned 8 in older engines (octal). Always specify the radix: parseInt('0xFF', 16) for hex, parseInt('111', 2) for binary. The implicit radix has caused countless subtle bugs.",
+    },
+    {
+      type: "example",
+      title: "Hex is just a compact way to write binary",
+      content:
+        "Each hex digit maps to exactly 4 binary bits: 0xF = 1111, 0xA = 1010. This makes hex ideal for reading binary data — a 32-bit value like 11111111000000001010101001010101 becomes FF00AA55, which is actually readable.",
+    },
+    {
+      type: "security",
+      title: "Validate numeric inputs to prevent injection via unusual bases",
+      content:
+        "Attackers sometimes bypass input validation by encoding payloads in hex (0x) or octal (0). Ensure your input parsing handles all numeric representations consistently and doesn't accidentally interpret user input as a different base.",
+    },
+  ],
+  "tailwind-generator": [
+    {
+      type: "tip",
+      title: "Use @apply sparingly — it defeats Tailwind's purpose",
+      content:
+        "Extracting utility classes into @apply rules in CSS recreates the specificity and maintenance problems Tailwind was designed to solve. Use @apply only for truly repeated patterns (like .btn) that can't be handled with component extraction.",
+    },
+    {
+      type: "pitfall",
+      title: "Tailwind purges unused classes — dynamic class names break",
+      content:
+        "Tailwind's JIT compiler scans your source files for class names as static strings. Dynamically constructing classes like `bg-${color}-500` won't work — the compiler can't find them. Use complete class strings: `color === 'red' ? 'bg-red-500' : 'bg-blue-500'`.",
+    },
+    {
+      type: "example",
+      title: "Design tokens map cleanly to Tailwind's config",
+      content:
+        "Extend tailwind.config.js with your design system tokens: custom colors, spacing scale, font families. This gives you autocomplete and consistency while keeping Tailwind's utility-first approach. One config file replaces scattered CSS variables.",
+    },
+    {
+      type: "security",
+      title: "Never inject user-supplied values directly into class names",
+      content:
+        "If you build class names from user input (e.g., className={userInput}), an attacker could inject arbitrary CSS via Tailwind's arbitrary value syntax like [background:url(malicious-site)]. Always validate and whitelist allowed values.",
+    },
+  ],
+  "og-preview": [
+    {
+      type: "tip",
+      title: "Test OG images at 1200x630px — that's the universal sweet spot",
+      content:
+        "Facebook, LinkedIn, Twitter, and Slack all render OG images differently, but 1200x630px works well across all platforms. Keep important text in the center 60% of the image since platforms crop edges differently.",
+    },
+    {
+      type: "pitfall",
+      title: "OG tags are cached aggressively by social platforms",
+      content:
+        "Facebook and LinkedIn cache OG metadata for days to weeks. Changing your og:image or og:title won't update existing shares. Use Facebook's Sharing Debugger and LinkedIn's Post Inspector to force a cache refresh after updating.",
+    },
+    {
+      type: "example",
+      title: "og:description should be 55-200 characters for best display",
+      content:
+        "Too short and platforms may fall back to page content. Too long and it gets truncated mid-sentence. Write a compelling 2-sentence summary: what the page is + why someone should click. This is your ad copy for social sharing.",
+    },
+    {
+      type: "security",
+      title: "Sanitize user-generated content in dynamic OG tags",
+      content:
+        "If your OG tags include user-submitted content (like post titles), ensure proper HTML entity encoding. Unescaped quotes or angle brackets in og:title/og:description can break the meta tag structure and enable XSS via social sharing previews.",
+    },
+  ],
+  "js-playground": [
+    {
+      type: "tip",
+      title: "Use console.table() for arrays and objects in the playground",
+      content:
+        "console.log() outputs messy nested objects. console.table() renders arrays of objects as formatted tables, making it far easier to compare values. Also try console.dir() for interactive tree views of DOM elements and complex objects.",
+    },
+    {
+      type: "pitfall",
+      title: "Top-level await requires module mode or async wrapper",
+      content:
+        "If your code uses `await fetch(...)` at the top level, it needs to run in a module context or be wrapped in an async IIFE: `(async () => { const data = await fetch(...); })()`. Most playgrounds don't enable module mode by default.",
+    },
+    {
+      type: "example",
+      title: "Test array methods by chaining .map(), .filter(), .reduce()",
+      content:
+        "The playground is perfect for experimenting with functional array patterns. Try: `[1,2,3,4,5].filter(n => n % 2).map(n => n ** 2).reduce((a,b) => a+b, 0)` — understanding this chain is fundamental to modern JavaScript.",
+    },
+    {
+      type: "security",
+      title: "Browser playgrounds sandbox code — but be careful with production data",
+      content:
+        "Client-side JS playgrounds run code in your browser, not a server. But code you paste may contain API keys, tokens, or credentials. DevBolt never sends your code anywhere, but always scrub sensitive data from code snippets before testing.",
+    },
+  ],
+  "toml-converter": [
+    {
+      type: "tip",
+      title: "TOML preserves data types that JSON and YAML handle differently",
+      content:
+        "TOML natively supports dates (2024-01-15), times, and datetimes without string wrapping. When converting to JSON, these become strings. When converting to YAML, datetime support varies by parser. Be aware of type fidelity when round-tripping between formats.",
+    },
+    {
+      type: "pitfall",
+      title: "TOML tables and arrays of tables have non-obvious syntax",
+      content:
+        "[server] is a table (object). [[server]] is an array of tables (array of objects). Confusing these causes silent data corruption — your config ends up with one object instead of an array, or vice versa. Double brackets = array.",
+    },
+    {
+      type: "example",
+      title: "pyproject.toml is now the standard Python config format",
+      content:
+        "Python's ecosystem has consolidated on pyproject.toml (PEP 621, PEP 660). Tools like Poetry, Hatch, PDM, Ruff, Black, and pytest all read from it. If you're maintaining Python packages, learning TOML syntax is no longer optional.",
+    },
+    {
+      type: "security",
+      title: "Validate TOML configs before deployment — syntax errors fail silently",
+      content:
+        "Unlike JSON which fails loudly on parse errors, many TOML parsers silently ignore malformed sections or fall back to defaults. A typo in your Cargo.toml or pyproject.toml could mean missing dependencies or wrong build settings in production.",
+    },
+  ],
+  "encode-decode": [
+    {
+      type: "tip",
+      title: "Know when to use URL encoding vs Base64 vs Hex",
+      content:
+        "URL encoding (%20) for query parameters and form data. Base64 for embedding binary in text (emails, data URIs). Hex for debugging byte-level data and hash values. Each encoding serves a different purpose — using the wrong one creates bugs.",
+    },
+    {
+      type: "pitfall",
+      title: "Double-encoding is the most common encoding bug",
+      content:
+        "Encoding an already-encoded string turns %20 into %2520 (encoding the % sign). This happens when multiple layers (framework, middleware, manual code) each apply encoding. Decode first, then encode once at the boundary.",
+    },
+    {
+      type: "example",
+      title: "Base32 is used in TOTP/2FA secret keys",
+      content:
+        "Google Authenticator and similar 2FA apps use Base32-encoded secrets because Base32 uses only uppercase letters and digits 2-7, making it easy to type manually and resistant to confusion between similar characters (0/O, 1/I/l).",
+    },
+    {
+      type: "security",
+      title: "Encoding is not encryption — it provides zero confidentiality",
+      content:
+        "Base64, hex, URL encoding, and HTML entities are all trivially reversible. Never use encoding to 'hide' sensitive data. If you need confidentiality, use actual encryption (AES-256-GCM, ChaCha20-Poly1305). Encoding is for format compatibility, not security.",
+    },
+  ],
+  "privacy-policy": [
+    {
+      type: "tip",
+      title: "List every third-party service that receives user data",
+      content:
+        "GDPR and CCPA require you to disclose all data processors. This includes analytics (Google Analytics, Mixpanel), payment processors (Stripe), email services (SendGrid), CDNs (Cloudflare), and error tracking (Sentry). Missing one can result in enforcement action.",
+    },
+    {
+      type: "pitfall",
+      title: "Copy-pasting another site's privacy policy is legally risky",
+      content:
+        "A privacy policy must accurately describe YOUR data practices. If you copy a policy that mentions features you don't have or omits ones you do, it's misleading and potentially violates regulations. Generate one tailored to your actual stack.",
+    },
+    {
+      type: "example",
+      title: "Update your policy every time you add a new integration",
+      content:
+        "Adding Google Analytics? Adding a chat widget? Switching email providers? Each change requires a privacy policy update. Set a quarterly calendar reminder to audit your third-party services and update the policy accordingly.",
+    },
+    {
+      type: "security",
+      title: "A privacy policy is a legal document — consider lawyer review",
+      content:
+        "Generators create a solid starting point, but GDPR fines can reach 4% of global revenue. For any app handling PII (personally identifiable information), have a lawyer review your generated policy before publishing.",
+    },
+  ],
+  "http-status-codes": [
+    {
+      type: "tip",
+      title: "Use 201 Created for POST success, not 200 OK",
+      content:
+        "200 OK means 'request succeeded.' 201 Created means 'request succeeded AND a new resource was created.' Using the right status code helps API consumers handle responses correctly and makes your API self-documenting.",
+    },
+    {
+      type: "pitfall",
+      title: "Don't return 200 with an error message in the body",
+      content:
+        "APIs that return `{ status: 200, error: 'Not found' }` break HTTP semantics and make error handling unreliable. HTTP clients, proxies, and monitoring tools rely on status codes. Return 404 for not found, 400 for bad input, 500 for server errors.",
+    },
+    {
+      type: "example",
+      title: "429 Too Many Requests should include Retry-After header",
+      content:
+        "When rate limiting, always include a Retry-After header with the number of seconds until the client can retry. This lets well-behaved clients implement exponential backoff correctly instead of hammering your API in a tight loop.",
+    },
+    {
+      type: "security",
+      title: "Don't leak implementation details in error responses",
+      content:
+        "A 500 error that returns a stack trace, database connection string, or internal path gives attackers a roadmap. In production, return generic error messages with status codes. Log detailed errors server-side where only your team can see them.",
+    },
+  ],
+  "date-format-tester": [
+    {
+      type: "tip",
+      title: "ISO 8601 (YYYY-MM-DD) is the only unambiguous date format",
+      content:
+        "01/02/03 means January 2 in the US, February 1 in Europe, and February 3 in some Asian countries. ISO 8601 (2024-01-02) is internationally unambiguous and sorts correctly as a string. Always use it for APIs, logs, and data exchange.",
+    },
+    {
+      type: "pitfall",
+      title: "JavaScript's Date.parse() behavior varies across browsers",
+      content:
+        "Date.parse('2024-01-15') returns different results depending on whether a time zone is included. Without a timezone suffix, some browsers treat it as UTC, others as local time. Always include timezone: '2024-01-15T00:00:00Z' for UTC.",
+    },
+    {
+      type: "example",
+      title: "Go's time format uses a reference date, not symbols",
+      content:
+        "Go formats dates using the reference time 'Mon Jan 2 15:04:05 MST 2006' — each component has a specific value (Jan=1, 2=day, 15=3PM, 04=minute, 05=second, 2006=year). It's unintuitive at first but eliminates ambiguity in format strings.",
+    },
+    {
+      type: "security",
+      title: "Timezone-unaware dates cause authentication and billing bugs",
+      content:
+        "A subscription that 'expires on January 15' — in which timezone? A user in UTC+12 loses access 12 hours before a user in UTC-12. Always store timestamps in UTC with timezone info, and convert to local time only for display.",
+    },
+  ],
+  "readme-generator": [
+    {
+      type: "tip",
+      title: "A great README answers three questions in 30 seconds",
+      content:
+        "What does this do? How do I install/use it? Where can I get help? If a developer can't answer these within 30 seconds of landing on your repo, they'll move on. Lead with a one-sentence description, then installation, then usage example.",
+    },
+    {
+      type: "pitfall",
+      title: "Screenshots and GIFs dramatically increase engagement",
+      content:
+        "READMEs with visual content get 2-3x more stars and contributions than text-only ones. A 10-second GIF showing your tool in action is worth more than 500 words of description. Use tools like Kap, LICEcap, or asciinema.",
+    },
+    {
+      type: "example",
+      title: "Include a copy-pasteable quick start that works in under 60 seconds",
+      content:
+        "The best READMEs have a quick start section with 3-5 commands that a developer can copy-paste to see the project running. If it takes more than 60 seconds from git clone to 'hello world', simplify your setup.",
+    },
+    {
+      type: "security",
+      title: "Never include secrets, API keys, or internal URLs in your README",
+      content:
+        "Git history is permanent — even if you delete a secret from the README, it's in the commit history forever. Use .env.example with placeholder values instead. Review your README for any hardcoded URLs, IPs, or credentials before pushing.",
+    },
+  ],
+  "robots-generator": [
+    {
+      type: "tip",
+      title: "Block AI crawlers separately from search engine bots",
+      content:
+        "GPTBot, CCBot, Google-Extended, and anthropic-ai are separate from Googlebot. You can allow search indexing while blocking AI training crawlers. Add specific Disallow rules for each AI bot you want to exclude.",
+    },
+    {
+      type: "pitfall",
+      title: "robots.txt is advisory, not enforceable",
+      content:
+        "robots.txt is a gentleman's agreement — well-behaved crawlers respect it, but malicious scrapers ignore it completely. Don't rely on robots.txt for security. Use authentication, rate limiting, and IP blocking for actual access control.",
+    },
+    {
+      type: "example",
+      title: "Always include your sitemap URL in robots.txt",
+      content:
+        "Add `Sitemap: https://yourdomain.com/sitemap.xml` at the bottom of robots.txt. This helps search engines discover all your pages faster, even if they're not well-linked internally. It's the single most impactful line in the file.",
+    },
+    {
+      type: "security",
+      title: "Don't expose sensitive paths by listing them in Disallow rules",
+      content:
+        "Adding `Disallow: /admin` or `Disallow: /internal-api` to robots.txt tells every attacker exactly where your admin panel and internal APIs live. robots.txt is public. Secure sensitive paths with authentication, not crawl directives.",
+    },
+  ],
+  "zod-schema": [
+    {
+      type: "tip",
+      title: "Use z.infer<typeof schema> to keep types and validation in sync",
+      content:
+        "Define the Zod schema once and derive the TypeScript type from it. This guarantees your type definition and runtime validation are always identical. No more 'type says string but validation allows number' bugs.",
+    },
+    {
+      type: "pitfall",
+      title: "z.object() is strict about extra keys by default — z.passthrough() isn't",
+      content:
+        "z.object({name: z.string()}).parse({name: 'test', extra: true}) strips the extra key silently. Use .strict() to reject unknown keys, or .passthrough() to preserve them. The default behavior (strip) can silently lose data.",
+    },
+    {
+      type: "example",
+      title: "Chain .transform() for coercion + validation in one step",
+      content:
+        "z.string().transform(Number).pipe(z.number().min(0).max(100)) validates that input is a string, coerces it to a number, then validates the number is 0-100. This handles form inputs where everything starts as a string.",
+    },
+    {
+      type: "security",
+      title: "Always validate API inputs with Zod at the boundary",
+      content:
+        "TypeScript types disappear at runtime. A malicious API request can send any shape of data. Use Zod schemas as middleware to validate and sanitize every incoming request body, query parameter, and path parameter before your business logic touches it.",
+    },
+  ],
+  "placeholder-image": [
+    {
+      type: "tip",
+      title: "Match placeholder dimensions to your actual image requirements",
+      content:
+        "Using random placeholder sizes hides layout shift (CLS) issues. If your design calls for 16:9 thumbnails at 320x180, generate placeholders at exactly that size. This reveals how your layout handles the real aspect ratio.",
+    },
+    {
+      type: "pitfall",
+      title: "Placeholder services can go offline — breaking your dev environment",
+      content:
+        "External services like placeholder.com or placekitten.com can go down or change URLs. Generate placeholders client-side (using Canvas/SVG) for reliability. DevBolt generates locally — no external dependency.",
+    },
+    {
+      type: "example",
+      title: "Use colored placeholders to distinguish content zones in wireframes",
+      content:
+        "Assign different background colors to hero images (blue), thumbnails (green), avatars (purple), and ads (red). This makes wireframe reviews faster because stakeholders can instantly identify which content type goes where.",
+    },
+    {
+      type: "security",
+      title: "Never use placeholder images in production — they signal an unfinished product",
+      content:
+        "Placeholder images left in production erode user trust and can indicate neglected code. Add build-time checks that flag any remaining placeholder URLs (placeholder.com, via.placeholder, picsum.photos) before deploying.",
+    },
+  ],
+  "env-validator": [
+    {
+      type: "tip",
+      title: "Compare .env against .env.example on every deploy",
+      content:
+        "Your .env.example should list every variable your app needs (with empty or example values). Validate that production .env has all required keys before starting the app. Missing variables cause runtime crashes that are hard to debug.",
+    },
+    {
+      type: "pitfall",
+      title: "Quoted and unquoted .env values behave differently",
+      content:
+        "In most .env parsers, VALUE=hello world sets VALUE to 'hello world' (with space). But VALUE=\"hello world\" includes the quotes in some parsers and strips them in others. Be consistent: always quote values containing spaces or special characters.",
+    },
+    {
+      type: "example",
+      title: "Use dotenv-vault or SOPS for team .env sharing",
+      content:
+        "Sharing .env files via Slack, email, or git is insecure and error-prone. Tools like dotenv-vault encrypt .env files for safe version control, while SOPS (by Mozilla) encrypts individual values. Both support team key rotation.",
+    },
+    {
+      type: "security",
+      title: "Never commit .env files to git — add them to .gitignore immediately",
+      content:
+        "Even private repos can be leaked, forked, or accessed by contractors. Committed .env files with API keys are the #1 cause of credential leaks in GitHub repos. If you accidentally committed one, rotate ALL the secrets — git history is permanent.",
+    },
+  ],
+  "file-hash": [
+    {
+      type: "tip",
+      title: "SHA-256 is the standard for file integrity verification",
+      content:
+        "SHA-256 balances speed and collision resistance for file verification. MD5 is fast but broken for security purposes. SHA-1 has known collision attacks. SHA-512 adds marginal security for significantly more computation. SHA-256 is the sweet spot.",
+    },
+    {
+      type: "pitfall",
+      title: "Hash comparison must be constant-time to prevent timing attacks",
+      content:
+        "Comparing hashes with === in JavaScript short-circuits on the first different byte, leaking information about how many bytes matched. For security-critical comparisons, use crypto.timingSafeEqual() or a constant-time comparison function.",
+    },
+    {
+      type: "example",
+      title: "Verify downloaded files by comparing hashes from the publisher",
+      content:
+        "Software publishers provide SHA-256 checksums alongside downloads. After downloading, hash the file and compare. If the hashes don't match, the file was corrupted in transit or tampered with. This catches supply-chain attacks.",
+    },
+    {
+      type: "security",
+      title: "MD5 should never be used for security — only legacy compatibility",
+      content:
+        "MD5 collision attacks are practical — researchers generated two different PDF files with the same MD5 hash in 2005. Use SHA-256 minimum for integrity verification. MD5 is only acceptable for non-security checksums like cache busting.",
+    },
+  ],
+  "ascii-art": [
+    {
+      type: "tip",
+      title: "Use ASCII art banners in CLI tools for brand recognition",
+      content:
+        "Popular CLI tools like Vite, Nuxt, and Fastify show ASCII art logos on startup. It makes your tool memorable and adds personality. Keep it under 6 lines tall and test in both 80-column and 120-column terminals.",
+    },
+    {
+      type: "pitfall",
+      title: "ASCII art breaks with proportional fonts and narrow terminals",
+      content:
+        "ASCII art relies on monospace fonts where every character has equal width. If someone views it in a proportional font (email, web page without <pre>), the alignment breaks completely. Always wrap ASCII art in <pre> or code blocks.",
+    },
+    {
+      type: "example",
+      title: "Comment-wrapped ASCII art makes great file header separators",
+      content:
+        "Use ASCII art section headers in long config files or scripts to create visual landmarks. A bold banner saying '=== DATABASE CONFIG ===' is easier to spot when scrolling than a plain comment. Keep it tasteful — one line, not a whole paragraph.",
+    },
+    {
+      type: "security",
+      title: "Sanitize user input before rendering as ASCII art",
+      content:
+        "If users can input text that gets rendered as ASCII art in a web page, ensure proper HTML escaping. Characters like <, >, &, and quotes in the ASCII output could enable XSS if rendered as raw HTML instead of inside a code block.",
+    },
+  ],
+  "regex-generator": [
+    {
+      type: "tip",
+      title: "Start simple and add complexity — don't try to match everything at once",
+      content:
+        "The best regex patterns are built incrementally. Start with a pattern that matches the simplest case, then add groups and alternations for edge cases. A regex that's 90% accurate and readable beats a 100% accurate one that nobody can maintain.",
+    },
+    {
+      type: "pitfall",
+      title: "Regex for email/URL validation is almost always wrong",
+      content:
+        "The RFC 5322 email regex is 6,000+ characters long. Simple patterns like `^.+@.+\\..+$` reject valid emails. For email validation, check for @ and a dot in the domain — then send a confirmation email. That's the only real validation.",
+    },
+    {
+      type: "example",
+      title: "Use named capture groups for readable extraction",
+      content:
+        "Instead of `(\\d{4})-(\\d{2})-(\\d{2})` where you access matches by index, use `(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})`. Named groups make your code self-documenting: `match.groups.year` beats `match[1]`.",
+    },
+    {
+      type: "security",
+      title: "Untested regex can cause ReDoS — catastrophic backtracking",
+      content:
+        "Patterns like `(a+)+$` take exponential time on inputs like 'aaaaaaaaaaaaaab'. Attackers exploit this to DoS servers. Avoid nested quantifiers, use atomic groups or possessive quantifiers where available, and test with pathological inputs.",
+    },
+  ],
+  "token-counter": [
+    {
+      type: "tip",
+      title: "System prompts and tool definitions count toward your context window",
+      content:
+        "The context window isn't just for your messages — system prompts, function definitions, and tool schemas consume tokens too. A complex system prompt with 20 tool definitions can use 3,000-5,000 tokens before the conversation even starts.",
+    },
+    {
+      type: "pitfall",
+      title: "Token count varies dramatically between models for the same text",
+      content:
+        "GPT-4 and Claude use different tokenizers. The same 1,000-word essay might be 1,200 tokens in GPT-4 (cl100k) but 1,400 in Claude. Always count tokens with the specific model's tokenizer — estimates based on 'words ÷ 0.75' are unreliable.",
+    },
+    {
+      type: "example",
+      title: "Estimate API costs before running batch jobs",
+      content:
+        "Processing 10,000 documents through GPT-4o at $2.50/M input tokens and $10/M output tokens adds up fast. Token-count a representative sample, multiply by your dataset size, and calculate costs before running the full batch.",
+    },
+    {
+      type: "security",
+      title: "Long prompts can be used to hide prompt injection attacks",
+      content:
+        "Attackers embed malicious instructions deep in long documents, hoping the LLM follows them. If you're processing user-submitted content through an LLM, be aware that longer inputs provide more surface area for prompt injection.",
+    },
+  ],
+  "ai-model-comparison": [
+    {
+      type: "tip",
+      title: "Match model tier to task complexity — don't default to the largest model",
+      content:
+        "GPT-4o Mini and Claude 3.5 Haiku handle classification, extraction, and simple Q&A at 10-20x lower cost than their flagship siblings. Reserve GPT-4o and Claude Opus for complex reasoning, code generation, and multi-step tasks.",
+    },
+    {
+      type: "pitfall",
+      title: "Benchmark scores don't reflect real-world application performance",
+      content:
+        "A model scoring 90% on MMLU might perform poorly on your specific domain. Always evaluate models against your actual use case with a representative test set. Academic benchmarks measure general capability, not fitness for your task.",
+    },
+    {
+      type: "example",
+      title: "Use different models for different pipeline stages",
+      content:
+        "A cost-effective AI pipeline might use Haiku for initial classification, Sonnet for content generation, and Opus only for final quality review. Mixing model tiers in a pipeline can cut costs 60-80% with minimal quality loss.",
+    },
+    {
+      type: "security",
+      title: "Check data retention policies before sending sensitive content",
+      content:
+        "Some API tiers use your data for model training unless you opt out. OpenAI's default API doesn't train on data, but ChatGPT conversations may be used. Check each provider's data usage policy, especially for regulated industries (healthcare, finance).",
+    },
+  ],
+  "git-command-builder": [
+    {
+      type: "tip",
+      title: "Learn git reflog — it's your safety net for almost any mistake",
+      content:
+        "git reflog records every HEAD movement for 90 days. Accidentally deleted a branch? Reset too hard? Rebased wrong? Find the commit SHA in reflog and git checkout or git reset to recover. It's saved countless hours of lost work.",
+    },
+    {
+      type: "pitfall",
+      title: "git rebase rewrites history — never rebase shared branches",
+      content:
+        "Rebasing commits that others have pulled creates duplicate commits and merge conflicts for your entire team. Golden rule: only rebase your own unpushed commits. Once pushed, use merge or create a new commit to fix issues.",
+    },
+    {
+      type: "example",
+      title: "Use git stash with a message to avoid losing context",
+      content:
+        "`git stash` with no message creates unnamed stash entries that pile up into an unreadable list. Use `git stash push -m 'WIP: auth refactor'` so you can find your stashed work later with `git stash list`.",
+    },
+    {
+      type: "security",
+      title: "Sign your commits with GPG or SSH keys to prove authorship",
+      content:
+        "Git commits can have any author name and email — anyone can commit as you. GPG or SSH commit signing proves that commits genuinely came from you. GitHub shows a 'Verified' badge on signed commits. Enable it for any security-sensitive repository.",
+    },
+  ],
+  "code-screenshot": [
+    {
+      type: "tip",
+      title: "Use 2x resolution for crisp screenshots on Retina displays",
+      content:
+        "Export at 2x resolution to ensure code screenshots look sharp on high-DPI displays (MacBooks, modern phones). A 1x screenshot at 800x600 becomes blurry when shared on social media platforms that display at Retina resolution.",
+    },
+    {
+      type: "pitfall",
+      title: "Code screenshots are not accessible — always provide the actual code",
+      content:
+        "Screen readers cannot read text in images. Search engines cannot index it. Users cannot copy-paste from it. Use code screenshots for visual appeal in presentations and social media, but always include the actual code in an accessible format too.",
+    },
+    {
+      type: "example",
+      title: "Dark theme screenshots stand out on Twitter and LinkedIn feeds",
+      content:
+        "Social media feeds are dominated by light backgrounds. Dark-theme code screenshots (Dracula, One Dark, Monokai) create visual contrast that stops the scroll. Pair with a gradient background for extra pop.",
+    },
+    {
+      type: "security",
+      title: "Review code screenshots for leaked secrets before sharing",
+      content:
+        "It's easy to screenshot code that includes API keys, database URLs, internal hostnames, or .env variables. Unlike text posts, you can't search and redact images after sharing. Review every screenshot carefully before posting publicly.",
+    },
+  ],
+  "css-to-tailwind": [
+    {
+      type: "tip",
+      title: "Convert one component at a time, not the entire stylesheet",
+      content:
+        "Migrating a full CSS file to Tailwind at once creates an overwhelming diff and high risk of regressions. Convert one component, verify it visually, commit, then move to the next. Incremental migration reduces review burden and bug risk.",
+    },
+    {
+      type: "pitfall",
+      title: "Not every CSS property has a Tailwind utility — some need arbitrary values",
+      content:
+        "Tailwind covers 95% of common CSS but misses edge cases like specific grid-template-areas or complex animations. Use arbitrary values `[property:value]` for one-offs, or keep a small custom CSS file for truly unique styles.",
+    },
+    {
+      type: "example",
+      title: "CSS shorthand properties need to be expanded for Tailwind conversion",
+      content:
+        "`margin: 10px 20px 30px` must be split into `mt-2.5 mx-5 mb-7.5` (or the nearest Tailwind spacing values). Shorthand properties like background, border, and font each decompose into multiple Tailwind utilities.",
+    },
+    {
+      type: "security",
+      title: "Audit converted class names for accidentally exposed internal naming",
+      content:
+        "CSS class names like .admin-panel, .internal-api-form, or .billing-secret sometimes reveal application structure. When converting to Tailwind, these class names are removed from the DOM — an incidental security improvement.",
+    },
+  ],
+  "svg-to-jsx": [
+    {
+      type: "tip",
+      title: "Use React.forwardRef for icon components to support refs",
+      content:
+        "SVG icon components often need refs for tooltips, focus management, and animations. Wrapping your SVG component with React.forwardRef lets parent components attach refs to the underlying SVG element.",
+    },
+    {
+      type: "pitfall",
+      title: "SVG attributes use camelCase in JSX, not kebab-case",
+      content:
+        "stroke-width becomes strokeWidth, fill-opacity becomes fillOpacity, clip-path becomes clipPath. Missing these conversions causes React warnings and broken rendering. There are 80+ SVG attributes that need camelCase conversion.",
+    },
+    {
+      type: "example",
+      title: "Pass size and color as props for reusable icon components",
+      content:
+        "Instead of hardcoding width/height and fill in your SVG, accept them as props with sensible defaults: `({ size = 24, color = 'currentColor', ...props })`. Using 'currentColor' inherits the parent's text color automatically.",
+    },
+    {
+      type: "security",
+      title: "Sanitize SVG content before converting — SVGs can contain scripts",
+      content:
+        "SVG files can embed JavaScript via <script> tags, event handlers (onclick, onload), and xlink:href with javascript: URIs. When converting user-uploaded SVGs to React components, strip all script elements and event handler attributes first.",
+    },
+  ],
+  "prompt-builder": [
+    {
+      type: "tip",
+      title: "Structure prompts with clear sections: role, context, task, format",
+      content:
+        "The most effective prompts follow a consistent structure: (1) Role — who the AI should be, (2) Context — background information, (3) Task — exactly what to do, (4) Format — how to structure the output. This reduces ambiguity and improves response quality.",
+    },
+    {
+      type: "pitfall",
+      title: "Vague instructions produce vague outputs — be specific about format",
+      content:
+        "Saying 'summarize this code' gives unpredictable results. Saying 'explain what this function does in 2-3 sentences, then list its parameters as a markdown table with name, type, and description columns' gives consistent, usable output.",
+    },
+    {
+      type: "example",
+      title: "Include examples in your prompt for consistent output formatting",
+      content:
+        "Few-shot prompting (including 2-3 example input/output pairs) dramatically improves format consistency. Show the AI exactly what good output looks like, and it will follow the pattern. This is more effective than lengthy format instructions.",
+    },
+    {
+      type: "security",
+      title: "Never include secrets or credentials in prompt templates",
+      content:
+        "Prompt templates are often stored in version control, shared across teams, or sent to third-party API providers. Never embed API keys, database credentials, or internal URLs in your prompts. Reference them via environment variables instead.",
+    },
+  ],
+  "mcp-config-builder": [
+    {
+      type: "tip",
+      title: "Start with 2-3 MCP servers, not 20 — context window is finite",
+      content:
+        "Every MCP server adds tool definitions to the AI's context window, consuming tokens and potentially confusing the model. Start with the servers you actually need (filesystem, database, search) and add more only when you hit a real limitation.",
+    },
+    {
+      type: "pitfall",
+      title: "MCP server permissions are as dangerous as shell access",
+      content:
+        "An MCP server with filesystem access can read/write any file the process can access. A database MCP server can DROP tables. Always configure the narrowest permissions possible — read-only by default, write access only for specific paths or operations.",
+    },
+    {
+      type: "example",
+      title: "Use environment variables for server connection strings in MCP config",
+      content:
+        "Never hardcode database URLs, API keys, or connection strings in your MCP config file. Use env: references or a .env file. MCP configs are often committed to repos or shared in documentation, exposing embedded credentials.",
+    },
+    {
+      type: "security",
+      title: "Review MCP server source code before granting it system access",
+      content:
+        "MCP servers run as local processes with access to your system. A malicious or compromised MCP server could exfiltrate data, modify files, or open network connections. Only use MCP servers from trusted sources and review their capabilities.",
+    },
+  ],
+  "package-json-generator": [
+    {
+      type: "tip",
+      title: "Use the exports field instead of main for modern packages",
+      content:
+        "The 'exports' field in package.json provides precise control over what consumers can import. It supports conditional exports (import vs require), subpath exports, and prevents access to internal modules. It's the modern replacement for main, module, and types.",
+    },
+    {
+      type: "pitfall",
+      title: "Semver ranges in dependencies can break your build unexpectedly",
+      content:
+        "^1.2.3 allows any 1.x.x update, which can introduce breaking changes despite semver promises. Many packages don't follow semver strictly. Use a lockfile (package-lock.json) and review dependency updates deliberately rather than relying on automatic semver resolution.",
+    },
+    {
+      type: "example",
+      title: "Define scripts for the full development lifecycle",
+      content:
+        "A complete scripts section includes: dev, build, start, test, lint, format, typecheck, and clean. Add pre/post hooks like prebuild for type checking. Well-defined scripts make onboarding instant — new developers just run npm run dev.",
+    },
+    {
+      type: "security",
+      title: "Audit install scripts — they run with full system access",
+      content:
+        "npm packages can define preinstall and postinstall scripts that execute arbitrary code on `npm install`. Malicious packages have used this to steal credentials and crypto wallet keys. Use `npm audit` and review install scripts of new dependencies.",
+    },
+  ],
+  "git-diff-viewer": [
+    {
+      type: "tip",
+      title: "Side-by-side view is better for small changes, inline for large refactors",
+      content:
+        "Side-by-side (split) view clearly shows character-level differences in modified lines, ideal for code review of small changes. Inline (unified) view is better for understanding the flow of large refactors where lines move between functions.",
+    },
+    {
+      type: "pitfall",
+      title: "Whitespace-only changes hide real code changes in diffs",
+      content:
+        "Reformatting indentation or switching tabs to spaces can generate hundreds of diff lines that bury actual logic changes. Use `git diff -w` to ignore whitespace changes, or configure your diff viewer to collapse whitespace-only diffs.",
+    },
+    {
+      type: "example",
+      title: "Review diffs file-by-file, not as one massive scroll",
+      content:
+        "A 500-line diff across 20 files is overwhelming as a continuous scroll. Collapsible file sections let you review one file at a time, mark files as reviewed, and focus on the files you know are critical first.",
+    },
+    {
+      type: "security",
+      title: "Always diff before committing to catch accidentally staged secrets",
+      content:
+        "`git diff --staged` shows exactly what you're about to commit. Review it for accidentally added .env files, hardcoded tokens, debug credentials, or console.log statements before every commit. This 10-second habit prevents security incidents.",
+    },
+  ],
+  "compression-tester": [
+    {
+      type: "tip",
+      title: "Brotli compresses 15-25% better than Gzip for text content",
+      content:
+        "Brotli consistently beats Gzip on HTML, CSS, JavaScript, and JSON. The tradeoff: Brotli compression is slower (use static pre-compression for assets) but decompression is equally fast. All modern browsers support Brotli via the br content-encoding.",
+    },
+    {
+      type: "pitfall",
+      title: "Don't compress already-compressed formats like JPEG, PNG, or MP4",
+      content:
+        "Images, videos, and most binary formats are already compressed. Running them through Gzip or Brotli wastes CPU and can actually increase file size due to compression headers. Only compress text-based formats and uncompressed data.",
+    },
+    {
+      type: "example",
+      title: "Pre-compress static assets at build time with maximum compression",
+      content:
+        "Brotli level 11 compresses 50% better than level 1 but takes 100x longer. For static assets (JS, CSS), compress once at build time with maximum quality. For dynamic responses, use Brotli level 4-6 for a good speed/ratio tradeoff.",
+    },
+    {
+      type: "security",
+      title: "Be aware of BREACH attacks when compressing HTTP responses",
+      content:
+        "The BREACH attack exploits HTTP compression to extract secrets like CSRF tokens by measuring response sizes. Mitigations include: don't reflect user input and secrets on the same page, add random padding to responses, or use per-request CSRF tokens.",
+    },
+  ],
+  "http-request-builder": [
+    {
+      type: "tip",
+      title: "Use PUT for full resource replacement, PATCH for partial updates",
+      content:
+        "PUT replaces the entire resource — if you PUT a user object without the email field, the email is deleted. PATCH updates only the fields you send. Most API consumers want PATCH semantics but mistakenly use PUT, causing data loss.",
+    },
+    {
+      type: "pitfall",
+      title: "GET requests should never have side effects",
+      content:
+        "GET requests can be retried, cached, prefetched, and bookmarked by browsers and CDNs. A GET endpoint that deletes data or sends emails will trigger those actions every time someone shares the URL or a browser prefetches it.",
+    },
+    {
+      type: "example",
+      title: "Always include Content-Type and Accept headers for API requests",
+      content:
+        "Content-Type tells the server what format you're sending (application/json). Accept tells it what format you want back. Omitting these causes 415 Unsupported Media Type errors and format negotiation bugs that are hard to diagnose.",
+    },
+    {
+      type: "security",
+      title: "Never send credentials in URL query parameters",
+      content:
+        "Query strings are logged in server access logs, browser history, proxy logs, and referrer headers. Use Authorization headers (Bearer tokens) or request bodies for credentials. URLs with tokens also get indexed by search engines if linked.",
+    },
+  ],
+  "github-actions-validator": [
+    {
+      type: "tip",
+      title: "Pin action versions to full commit SHAs, not tags",
+      content:
+        "Using `uses: actions/checkout@v4` trusts that the tag won't be moved to malicious code. Pin to a specific SHA: `uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11`. Tags can be reassigned; commit SHAs are immutable.",
+    },
+    {
+      type: "pitfall",
+      title: "GitHub Actions secrets are not available in pull requests from forks",
+      content:
+        "For security, GitHub doesn't expose repository secrets to workflows triggered by pull_request from forks. This breaks CI for open-source projects. Use pull_request_target (carefully) or run secret-dependent tests only on push to protected branches.",
+    },
+    {
+      type: "example",
+      title: "Use concurrency groups to cancel outdated workflow runs",
+      content:
+        "Add `concurrency: { group: '${{ github.workflow }}-${{ github.ref }}', cancel-in-progress: true }` to cancel previous runs when you push again to the same branch. This saves CI minutes and speeds up feedback on the latest code.",
+    },
+    {
+      type: "security",
+      title: "Never use ${{ github.event.*.body }} in run: steps without sanitization",
+      content:
+        "PR titles, branch names, and issue bodies are user-controlled. Using them directly in shell commands enables injection: a branch named `; rm -rf /` executes as shell code. Always assign to an environment variable first and quote it.",
+    },
+  ],
+  "tailwind-to-css": [
+    {
+      type: "tip",
+      title: "Use this conversion to understand what Tailwind utilities actually generate",
+      content:
+        "Converting Tailwind to CSS is a great learning tool. Seeing that `flex items-center gap-4` produces `display: flex; align-items: center; gap: 1rem;` builds understanding of both CSS and Tailwind simultaneously.",
+    },
+    {
+      type: "pitfall",
+      title: "Tailwind responsive prefixes generate @media queries, not simple properties",
+      content:
+        "Converting `md:flex lg:grid` produces two separate @media queries, not just two properties. The CSS output can be significantly more verbose than the Tailwind input, which is exactly why Tailwind exists.",
+    },
+    {
+      type: "example",
+      title: "Extract Tailwind-to-CSS for email templates and non-Tailwind projects",
+      content:
+        "Email clients don't support utility-class CSS. Convert your Tailwind-styled component to plain CSS, then inline it for email compatibility. Also useful when contributing CSS to projects that don't use Tailwind.",
+    },
+    {
+      type: "security",
+      title: "Verify converted CSS doesn't include unsafe arbitrary values",
+      content:
+        "Tailwind's arbitrary value syntax (e.g., [background:url(...)]) passes through to CSS directly. When converting Tailwind to CSS, audit any arbitrary values for unexpected URLs, JavaScript expressions, or data URIs that could pose security risks.",
+    },
+  ],
+  "env-converter": [
+    {
+      type: "tip",
+      title: "Docker Compose env_file and environment behave differently",
+      content:
+        "env_file loads a .env file at container start. environment sets vars directly in the compose file. env_file values can be overridden by environment. Use env_file for defaults and environment for per-service overrides.",
+    },
+    {
+      type: "pitfall",
+      title: "Kubernetes ConfigMaps are not for secrets — use Secrets instead",
+      content:
+        "ConfigMaps are stored in plain text in etcd and visible to anyone with cluster read access. Use Kubernetes Secrets for credentials, API keys, and certificates. Even better: use a secrets manager like Vault, AWS Secrets Manager, or sealed-secrets.",
+    },
+    {
+      type: "example",
+      title: "Generate Kubernetes ConfigMap YAML from .env for fast deployments",
+      content:
+        "Instead of manually creating ConfigMap YAML, convert your .env file directly. Split sensitive vars into a Secret and non-sensitive vars into a ConfigMap. This ensures your K8s manifests stay in sync with your local dev environment.",
+    },
+    {
+      type: "security",
+      title: "Base64 encoding in K8s Secrets is not encryption",
+      content:
+        "Kubernetes Secrets are just Base64-encoded — anyone with kubectl access can decode them instantly. Enable etcd encryption at rest, use RBAC to limit Secret access, and consider external secrets managers for production workloads.",
+    },
+  ],
+  "css-unit-converter": [
+    {
+      type: "tip",
+      title: "Use rem for typography, px for borders, % or vw/vh for layout",
+      content:
+        "rem scales with the user's font size preference (accessibility). px is precise and predictable for borders and shadows. Viewport units (vw/vh) and percentages create fluid layouts. Mixing these purposefully is better than using one unit everywhere.",
+    },
+    {
+      type: "pitfall",
+      title: "1rem is not always 16px — users change their base font size",
+      content:
+        "1rem equals the root element's font-size, which defaults to 16px but can be changed by users for accessibility. Designing with rem means your layout respects user preferences. Hardcoding px ignores accessibility settings.",
+    },
+    {
+      type: "example",
+      title: "The 62.5% trick: set html { font-size: 62.5% } for easy rem math",
+      content:
+        "With 62.5%, 1rem = 10px, making conversions trivial: 14px = 1.4rem, 20px = 2rem. Body text then gets `font-size: 1.6rem` (16px). This preserves rem's accessibility benefits while eliminating mental math.",
+    },
+    {
+      type: "security",
+      title: "Viewport units can leak information about screen size",
+      content:
+        "In sensitive applications, CSS that uses vw/vh can be probed via JavaScript to determine exact screen dimensions. This is a minor fingerprinting vector but relevant for privacy-sensitive applications where you want to minimize device identification.",
+    },
+  ],
+  "aspect-ratio-calculator": [
+    {
+      type: "tip",
+      title: "Use CSS aspect-ratio property instead of the padding-top hack",
+      content:
+        "The old trick of `padding-top: 56.25%` for 16:9 is no longer needed. CSS `aspect-ratio: 16/9` does the same thing with clearer intent and works on any element. Browser support is universal since 2022.",
+    },
+    {
+      type: "pitfall",
+      title: "Aspect ratio changes when you add borders or padding",
+      content:
+        "With `box-sizing: content-box` (default), padding and borders are added outside the content area, changing the effective aspect ratio. Always use `box-sizing: border-box` with aspect-ratio to ensure the ratio includes padding and borders.",
+    },
+    {
+      type: "example",
+      title: "Common aspect ratios: 16:9 (video), 4:3 (photos), 1:1 (social avatars)",
+      content:
+        "YouTube/Vimeo embeds: 16:9. Instagram posts: 1:1 or 4:5. Twitter/X images: 16:9 or 2:1. Blog hero images: typically 2:1 or 21:9. Knowing these standards helps you create images that display without cropping on each platform.",
+    },
+    {
+      type: "security",
+      title: "Validate image dimensions server-side to prevent memory exhaustion",
+      content:
+        "An attacker could upload a 50000x50000px image that's only 1MB compressed but requires 10GB of memory when decompressed. Always validate image dimensions server-side and reject images exceeding reasonable limits for your use case.",
+    },
+  ],
+  "clip-path": [
+    {
+      type: "tip",
+      title: "Use clip-path for reveal animations instead of overflow: hidden",
+      content:
+        "clip-path can be animated with CSS transitions for smooth reveal effects: transition from `circle(0%)` to `circle(100%)` for a circular reveal, or `inset(0 100% 0 0)` to `inset(0)` for a horizontal wipe. These are GPU-accelerated and performant.",
+    },
+    {
+      type: "pitfall",
+      title: "clip-path clips everything including box-shadow and outline",
+      content:
+        "Elements with clip-path lose their box-shadow and outline because those are rendered outside the clipping region. Use filter: drop-shadow() instead of box-shadow for clipped elements — drop-shadow follows the clip-path shape.",
+    },
+    {
+      type: "example",
+      title: "Create custom shaped sections with polygon clip-path",
+      content:
+        "Angled section dividers (diagonal cuts between page sections) use `clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%)`. This creates a clean diagonal edge without SVG or pseudo-elements, and the angle is easily adjustable.",
+    },
+    {
+      type: "security",
+      title: "clip-path hides content visually but not from screen readers or DOM",
+      content:
+        "Clipped content is invisible but still present in the DOM and accessible to screen readers, search engines, and JavaScript. Never use clip-path to 'hide' sensitive information — use server-side rendering control instead.",
+    },
+  ],
+  "css-filter": [
+    {
+      type: "tip",
+      title: "Use filter: grayscale(1) for accessible disabled/inactive states",
+      content:
+        "Instead of reducing opacity (which can make text unreadable), use `filter: grayscale(1) opacity(0.7)` for disabled elements. The grayscale clearly signals 'inactive' while maintaining text legibility and contrast ratios.",
+    },
+    {
+      type: "pitfall",
+      title: "CSS filters create a new stacking context — z-index changes may break",
+      content:
+        "Any non-none filter value creates a new stacking context, which can cause z-index issues. Dropdown menus, modals, and tooltips inside a filtered parent may render incorrectly. This is a common source of 'why is my modal behind the overlay' bugs.",
+    },
+    {
+      type: "example",
+      title: "Chain multiple filters for image editing effects",
+      content:
+        "Instagram-style filters are just CSS filter chains. 'Vintage': `sepia(0.4) contrast(1.1) brightness(1.1) saturate(1.3)`. 'Dramatic': `contrast(1.4) brightness(0.9) saturate(1.5)`. Order matters — filters apply left to right.",
+    },
+    {
+      type: "security",
+      title: "CSS filters can be used to exfiltrate data via timing attacks",
+      content:
+        "In theory, computationally expensive filter chains (multiple blur() operations) can be used for CSS-based timing attacks. While impractical in most scenarios, be aware that complex filters on user-controlled content could theoretically leak information.",
+    },
+  ],
+  "xpath-tester": [
+    {
+      type: "tip",
+      title: "Use // for deep search, / for direct children only",
+      content:
+        "`//title` finds all title elements anywhere in the document. `/html/head/title` only matches the exact path. Start with // to explore, then tighten to / for precision. // is slower on large documents because it searches the entire tree.",
+    },
+    {
+      type: "pitfall",
+      title: "XPath 1.0 has no regex support — use contains() and starts-with()",
+      content:
+        "Browser-native XPath is version 1.0, which lacks regex. For pattern matching, chain string functions: `//a[contains(@href, 'example') and starts-with(@class, 'nav')]`. XPath 2.0+ has matches() with regex, but browsers don't support it natively.",
+    },
+    {
+      type: "example",
+      title: "Select elements by text content with text() and contains()",
+      content:
+        "`//button[text()='Submit']` matches exact text. `//button[contains(text(), 'Sign')]` matches partial text like 'Sign In', 'Sign Up', 'Sign Out'. Use normalize-space() to handle whitespace: `//p[normalize-space()='Hello World']`.",
+    },
+    {
+      type: "security",
+      title: "User-supplied XPath can enable injection in server-side queries",
+      content:
+        "If you build XPath queries from user input without sanitization, attackers can inject expressions to extract data. `//user[name='admin' or '1'='1']` bypasses authentication. Always parameterize or sanitize XPath inputs on the server side.",
+    },
+  ],
 };

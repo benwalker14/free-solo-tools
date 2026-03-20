@@ -21,7 +21,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 - [x] Add OG images for all 40 blog posts + social share buttons — dynamic OG image generation per post, share buttons for X/LinkedIn/Reddit/HN on every post. Distribution infrastructure complete.
 - [ ] Cross-post top 5 blog posts to Dev.to with canonical URLs — **UNBLOCKED:** RSS feed live at /blog/feed.xml. Go to dev.to/settings/extensions, paste feed URL, import as drafts. Instructions in HUMAN_INBOX.md. (HUMAN ACTION NEEDED)
 - [ ] Add newsletter subscribe CTA to tool pages — after Vincent sets up beehiiv, add subtle email opt-in below tool UI. Owned traffic channel.
-- [x] Enrich tool pages for "Information Gain" — Google March 2026 update rewards genuinely new info vs competitors. Added "Tips & Best Practices" section with 4 insights per tool (pro tips, common pitfalls, real-world examples, security notes). 79/117 tools covered (68%). 316 total insights with color-coded cards in a 2-column grid.
+- [x] Enrich tool pages for "Information Gain" — Google March 2026 update rewards genuinely new info vs competitors. Added "Tips & Best Practices" section with 4 insights per tool (pro tips, common pitfalls, real-world examples, security notes). **117/117 tools covered (100%).** 468 total insights with color-coded cards in a 2-column grid.
 - [ ] Start Product Hunt pre-launch community participation — 30+ day runway before late April launch. Create maker profile, engage daily. (HUMAN ACTION NEEDED)
 - [ ] Set up beehiiv newsletter with recommended config — (HUMAN ACTION NEEDED, guidance in HUMAN_INBOX.md)
 - [ ] Submit to AlternativeTo, StackShare, DevHunt, SaaSHub — README now updated, should be unblocked. (HUMAN ACTION NEEDED)
