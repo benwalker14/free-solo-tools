@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPost } from "@/data/blog-posts";
+import ShareButtons from "@/components/ShareButtons";
 import FlexboxVsGrid from "./posts/FlexboxVsGrid";
 import JsonVsYaml from "./posts/JsonVsYaml";
 import Sha256VsMd5 from "./posts/Sha256VsMd5";
@@ -224,6 +225,14 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <article>{content}</article>
+
+        {/* Share Buttons */}
+        <div className="mt-10 border-t border-gray-200 pt-6 dark:border-gray-800">
+          <ShareButtons
+            url={`https://devbolt.dev/blog/${slug}`}
+            title={post.title}
+          />
+        </div>
 
         {/* Author Bio — E-E-A-T signal */}
         <div className="mt-12 flex gap-4 rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-gray-800 dark:bg-gray-900/50">

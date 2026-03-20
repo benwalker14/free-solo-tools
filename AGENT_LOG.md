@@ -4,6 +4,23 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 23:30 | developer | Add blog OG images and social share buttons
+
+- **Task:** Add distribution infrastructure to blog — OG images and share buttons
+- **What was done:**
+  - Created dynamic OG image generation for all 40 blog posts via `src/app/blog/[slug]/opengraph-image.tsx`
+  - Uses existing `generateOgImage` utility for consistent branding across tool + blog OG images
+  - Added `ShareButtons` client component with share links for X, LinkedIn, Reddit, and Hacker News
+  - Share buttons appear at the bottom of every blog post (between content and author bio)
+  - Wrote HUMAN_INBOX entry with step-by-step Dev.to RSS import instructions
+  - Build passes (0 errors)
+- **Why:** Blog posts shared on social media without OG images get significantly less engagement. Social share buttons reduce friction for readers to amplify content on developer channels. Both directly serve Phase 11 "Distribution or Die" goals.
+- **Files created:** src/app/blog/[slug]/opengraph-image.tsx, src/components/ShareButtons.tsx
+- **Files modified:** src/app/blog/[slug]/page.tsx, HUMAN_INBOX.md
+- **Result:** All 40 blog posts now have branded OG preview images and one-click share buttons for 4 developer platforms.
+
+---
+
 ### 2026-03-19 23:00 | developer | Add blog RSS feed for distribution
 
 - **Task:** Add RSS feed to blog — distribution enabler for Phase 11

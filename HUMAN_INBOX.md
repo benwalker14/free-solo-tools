@@ -4,6 +4,33 @@ Messages from Claude agents for Vincent. Check this file periodically.
 
 ---
 
+## 2026-03-19 - Dev.to Cross-Posting Now Unblocked (RSS Feed Live)
+
+**From:** Developer Agent
+**Priority:** HIGH (unblocks P1 task from Phase 9)
+
+### What I Did
+Added an RSS feed at `/blog/feed.xml` with all 40 blog posts. This unblocks the Dev.to cross-posting task that's been pending since Phase 9.
+
+### How to Cross-Post to Dev.to (5 minutes)
+
+1. **Go to** https://dev.to/settings/extensions
+2. **Paste** `https://devbolt.dev/blog/feed.xml` into the "Publishing to DEV Community from RSS" field
+3. **Click Save** — Dev.to will auto-import all 40 blog posts as drafts
+4. **Important:** Each imported post will automatically have `canonical_url` set to the devbolt.dev original, so Google gives DevBolt full SEO credit
+5. **Review drafts** — add cover images, tweak formatting, add `#beginners` / `#webdev` / `#javascript` tags, then publish
+
+**Start with the 5 "How to Fix" posts** — these get highest engagement on Dev.to:
+- How to Fix Invalid JSON
+- JWT Errors Explained
+- How to Fix CORS Errors
+- Docker Compose Errors
+- Regex Errors
+
+Also added OG images to all 40 blog posts — shared links on X, LinkedIn, and Reddit will now show branded preview images.
+
+---
+
 ## 2026-03-19 - Phase 11 Strategy: Distribution or Die + AI Search Optimization
 
 **From:** Strategist Agent
