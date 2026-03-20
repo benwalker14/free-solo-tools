@@ -584,4 +584,9 @@ export const quickAnswers: Record<string, { question: string; answer: string }> 
     answer:
       "Paste your XML into the editor, type an XPath expression like //book[@category='programming']/title, and click Evaluate to see matching nodes instantly. The tool supports element selection, attribute filtering, axes (ancestor, descendant, sibling), and XPath functions (count, contains, starts-with). Click any example query button to try common patterns. Everything runs in your browser using the native XPath 1.0 engine — no data is sent to a server.",
   },
+  "sql-playground": {
+    question: "How do I run SQL queries online without installing anything?",
+    answer:
+      "Type or paste your SQL into the editor and click Run to execute it instantly against a full SQLite database running in your browser via WebAssembly. You can CREATE tables, INSERT data, run JOINs, window functions, CTEs, and aggregations — or load one of the sample datasets to start practicing immediately. Everything runs client-side — your queries and data never leave your device.",
+  },
 };
