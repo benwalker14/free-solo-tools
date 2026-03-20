@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 25:00 | developer | Quality audit: add 23 missing OG images, fix orphaned directory, add homepage metadata
+
+- **Task:** Quality sweep — no developer tasks remained on board, so ran audit and made improvements
+- **What was done:**
+  - Added dynamic OG images for 23 tool pages that were missing them: AI Model Comparison, Code Screenshot, Compression Tester, CSS to Tailwind, Git Diff Viewer, GitHub Actions Validator, HTTP Request Builder, JS/TS Playground, JSON Diff, JSON to Code, JSON to CSV, JSON to GraphQL, JSON to SQL, JSON Visualizer, MCP Config Builder, OG Preview, OpenAPI to TypeScript, Prompt Builder, SQL to TypeScript, SVG to JSX, Tailwind Generator, Tailwind to CSS, Token Counter. All 117 registered tool pages now have OG images (was 94/117, now 117/117).
+  - Removed orphaned `src/app/tools/json-schema-to-zod/` directory — empty directory with only an empty `[subpage]` folder and no page.tsx. The actual subpage "json-schema-to-zod" is properly served under `/tools/json-to-zod/json-schema-to-zod`.
+  - Added explicit homepage metadata export with dynamic tool count in title/description, OG tags, Twitter tags, and canonical URL — was inheriting generic layout defaults.
+  - Build passes (0 errors), lint passes (0 warnings)
+- **Why:** OG images improve click-through rates on social media shares and search results — 23 tools were missing them. The orphaned directory was dead weight. Homepage metadata was too generic for SEO (the most important page lacked specific, keyword-rich metadata).
+- **Files created:** 23 opengraph-image.tsx files across tool directories
+- **Files modified:** src/app/page.tsx
+- **Files deleted:** src/app/tools/json-schema-to-zod/ (orphaned empty directory)
+- **Result:** 100% OG image coverage (117/117 tools), cleaner directory structure, SEO-optimized homepage metadata.
+
+---
+
 ### 2026-03-19 24:30 | developer | Quality audit: fix stale count, add SQL Playground quick answer, optimize bundle
 
 - **Task:** Quality sweep — no developer tasks remained on board, so ran audit and made improvements

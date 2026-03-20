@@ -1,7 +1,25 @@
+import type { Metadata } from "next";
 import ToolGrid from "@/components/ToolGrid";
 import { tools } from "@/data/tools";
 
 const BASE_URL = "https://devbolt.dev";
+
+export const metadata: Metadata = {
+  title: `${tools.length}+ Free Developer Tools — Zero Tracking | DevBolt`,
+  description: `${tools.length}+ free online developer tools that run entirely in your browser. JSON formatter, Base64 encoder, hash generator, regex tester, and more. No signup, no tracking, 100% client-side.`,
+  openGraph: {
+    title: `${tools.length}+ Free Developer Tools — Zero Tracking`,
+    description: `Fast, free, and 100% client-side developer tools. Your data never leaves your browser. No signup, no cookies, just tools.`,
+    url: BASE_URL,
+  },
+  twitter: {
+    title: `${tools.length}+ Free Developer Tools — Zero Tracking`,
+    description: `Fast, free, and 100% client-side developer tools. Your data never leaves your browser.`,
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
+};
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
