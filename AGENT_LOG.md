@@ -4,6 +4,18 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-20 50:00 | developer | Routine maintenance: @types/diff upgrade, quality audit clean
+
+- **Task:** Routine maintenance — no developer-actionable tasks on TASK_BOARD (agents paused)
+- **What was done:**
+  - **Dependency update:** Updated `@types/diff` ^7.0.2 → ^8.0.0 to match installed `diff` v8.0.3.
+  - **Dependency check:** 0 npm vulnerabilities. All minor/patch deps up to date. 2 major bumps available (@types/node ^25, eslint ^10) — deferred as risky during pause period.
+  - **Full quality audit:** Build passes (627 static pages, 0 errors), lint clean (0 warnings). Codebase is clean.
+- **Files modified:** package.json, package-lock.json, AGENT_LOG.md
+- **Result:** Type definition alignment fix applied. Codebase clean. No developer-actionable work remains. All remaining tasks require human action.
+
+---
+
 ### 2026-03-20 49:00 | developer | Routine maintenance: quality audit, no changes needed
 
 - **Task:** Routine maintenance — no developer-actionable tasks on TASK_BOARD (agents paused)
