@@ -27,6 +27,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How JSON to YAML conversion works",
           body: "The conversion process parses the JSON input into a native data structure, then serializes it using YAML formatting rules. JSON objects become YAML mappings, arrays become sequences prefixed with hyphens, and primitive values are written without quotes where possible. Nested structures are represented through consistent indentation, typically two spaces per level. The converter preserves the complete data model — no information is lost because YAML is a superset of JSON.",
+          codeExample: "// JavaScript — convert JSON to YAML with js-yaml\nimport yaml from 'js-yaml';\nconst json = { name: 'app', port: 3000, debug: true };\nconst yamlStr = yaml.dump(json);\nconsole.log(yamlStr);\n// name: app\n// port: 3000\n// debug: true\n\n# Python — convert JSON to YAML\nimport json, yaml\ndata = json.loads('{\"name\": \"app\", \"port\": 3000}')\nprint(yaml.dump(data, default_flow_style=False))\n# name: app\n# port: 3000",
         },
         {
           heading: "Common tools that use YAML configuration",
@@ -86,6 +87,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "YAML to JSON in different programming languages",
           body: "In Python, you can convert with yaml.safe_load() followed by json.dumps(). In Node.js, use the js-yaml library's yaml.load() and JSON.stringify(). In Go, use gopkg.in/yaml.v3 to unmarshal YAML into a struct, then encoding/json to marshal it. In Ruby, YAML.load combined with JSON.generate handles the conversion. This online converter saves you from writing these scripts when you just need a quick one-off conversion.",
+          codeExample: "# Python — YAML to JSON\nimport yaml, json\nwith open('config.yml') as f:\n    data = yaml.safe_load(f)\nprint(json.dumps(data, indent=2))\n\n// JavaScript (Node.js) — YAML to JSON\nimport yaml from 'js-yaml';\nimport { readFileSync } from 'fs';\nconst data = yaml.load(readFileSync('config.yml', 'utf8'));\nconsole.log(JSON.stringify(data, null, 2));",
         },
         {
           heading: "JSON vs YAML performance",
@@ -144,6 +146,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "HTML elements and their Markdown equivalents",
           body: "Most HTML elements have direct Markdown counterparts. <h1> through <h6> become # through ######. <strong> and <b> become **bold**. <em> and <i> become *italic*. <a href> becomes [text](url). <img> becomes ![alt](src). <ul>/<li> becomes - items. <ol>/<li> becomes numbered lists. <code> becomes backticks. <pre><code> becomes fenced code blocks with triple backticks. <blockquote> becomes > prefixed lines. <table> converts to pipe-separated Markdown tables in GFM flavor.",
+          codeExample: "// JavaScript — HTML to Markdown with Turndown\nimport TurndownService from 'turndown';\nconst turndown = new TurndownService();\nconst html = '<h1>Title</h1><p>Hello <strong>world</strong></p>';\nconsole.log(turndown.turndown(html));\n// # Title\\n\\nHello **world**\n\n# Python — HTML to Markdown with markdownify\nfrom markdownify import markdownify\nhtml = '<h1>Title</h1><p>Hello <strong>world</strong></p>'\nprint(markdownify(html))\n# # Title\\n\\nHello **world**",
         },
         {
           heading: "Limitations and edge cases",
@@ -203,6 +206,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Markdown syntax to HTML mapping",
           body: "The conversion follows well-defined rules. # Heading becomes <h1>Heading</h1>. **bold** becomes <strong>bold</strong>. *italic* becomes <em>italic</em>. [text](url) becomes <a href=\"url\">text</a>. ![alt](src) becomes <img alt=\"alt\" src=\"src\" />. Unordered lists with - produce <ul><li> elements. Fenced code blocks with ``` produce <pre><code> with optional language classes for syntax highlighting. Block quotes with > produce <blockquote> elements.",
+          codeExample: "// JavaScript — Markdown to HTML with marked\nimport { marked } from 'marked';\nconst md = '# Hello\\n\\nThis is **bold** and *italic*.';\nconst html = marked.parse(md);\n// <h1>Hello</h1>\\n<p>This is <strong>bold</strong> and <em>italic</em>.</p>\n\n# Python — Markdown to HTML\nimport markdown\nmd = '# Hello\\n\\nThis is **bold** and *italic*.'\nhtml = markdown.markdown(md)\nprint(html)\n# <h1>Hello</h1>\\n<p>This is <strong>bold</strong> and <em>italic</em>.</p>",
         },
         {
           heading: "Markdown flavors compared",
@@ -257,6 +261,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is CSV to JSON conversion?",
           body: "CSV (Comma-Separated Values) is a flat tabular format, while JSON (JavaScript Object Notation) is a hierarchical structured format. Converting CSV to JSON transforms each row into a JSON object, using the header row as keys. This makes the data ready for use in web applications, APIs, and NoSQL databases that expect structured JSON input.",
+          codeExample: "// JavaScript — CSV to JSON\nfunction csvToJson(csv) {\n  const [headerLine, ...rows] = csv.trim().split('\\n');\n  const headers = headerLine.split(',');\n  return rows.map(row => {\n    const values = row.split(',');\n    return Object.fromEntries(headers.map((h, i) => [h, values[i]]));\n  });\n}\n\n# Python — CSV to JSON\nimport csv, json, io\nreader = csv.DictReader(io.StringIO(csv_string))\nresult = json.dumps(list(reader), indent=2)",
         },
         {
           heading: "Common use cases for CSV to JSON conversion",
@@ -298,6 +303,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is JSON to CSV conversion?",
           body: "JSON to CSV conversion takes an array of JSON objects and flattens them into a tabular CSV format. Object keys become column headers, and each object becomes a row. This is useful when you need to open structured API data in Excel, Google Sheets, or any other spreadsheet application for analysis or reporting.",
+          codeExample: "// JavaScript — JSON array to CSV\nfunction jsonToCsv(data) {\n  const headers = Object.keys(data[0]);\n  const rows = data.map(obj => headers.map(h => obj[h]).join(','));\n  return [headers.join(','), ...rows].join('\\n');\n}\n\n# Python — JSON to CSV\nimport csv, json, io\ndata = json.loads(json_string)\nout = io.StringIO()\nwriter = csv.DictWriter(out, fieldnames=data[0].keys())\nwriter.writeheader()\nwriter.writerows(data)\nprint(out.getvalue())",
         },
         {
           heading: "Common use cases for JSON to CSV conversion",
@@ -350,6 +356,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "TOML vs JSON syntax comparison",
           body: "TOML uses [section] headers for nested objects and key = value syntax for assignments. JSON uses curly braces and quoted keys. For example, a TOML section like [database] followed by host = \"localhost\" and port = 5432 becomes {\"database\": {\"host\": \"localhost\", \"port\": 5432}} in JSON. TOML also supports inline tables, arrays of tables with [[double brackets]], and dotted keys like server.host for nested access without section headers.",
+          codeExample: "# Python — TOML to JSON (3.11+ has built-in tomllib)\nimport tomllib, json\nwith open('config.toml', 'rb') as f:\n    data = tomllib.load(f)\nprint(json.dumps(data, indent=2))\n\n// JavaScript — TOML to JSON with smol-toml\nimport { parse } from 'smol-toml';\nconst toml = '[database]\\nhost = \"localhost\"\\nport = 5432';\nconst json = JSON.stringify(parse(toml), null, 2);\n// { \"database\": { \"host\": \"localhost\", \"port\": 5432 } }",
         },
         {
           heading: "Tools and ecosystems that use TOML",
@@ -405,6 +412,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Differences between TOML and YAML",
           body: "TOML uses explicit table headers and key-value pairs with clear delimiters, making it resistant to indentation errors. YAML relies on indentation for structure, which is more concise but can lead to subtle bugs. YAML supports more data types and features like anchors, while TOML focuses on simplicity and unambiguous parsing.",
+          codeExample: "# Python — TOML to YAML\nimport tomllib, yaml\nwith open('config.toml', 'rb') as f:\n    data = tomllib.load(f)\nprint(yaml.dump(data, default_flow_style=False))\n\n// JavaScript — TOML to YAML\nimport { parse } from 'smol-toml';\nimport yaml from 'js-yaml';\nconst data = parse(tomlString);\nconsole.log(yaml.dump(data));",
         },
       ],
       faqs: [
@@ -450,6 +458,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "JSON features that do not map to TOML",
           body: "Most JSON structures convert cleanly, but a few features require special handling. TOML does not support null values — these are typically omitted from the output. TOML requires arrays to have homogeneous types, so a JSON array like [1, \"two\", true] cannot be directly represented. Deeply nested objects may produce verbose TOML with many [section.subsection] headers. Very large JSON files with many nesting levels may be more readable in JSON format than the equivalent TOML.",
+          codeExample: "// JavaScript — JSON to TOML with @iarna/toml\nimport { stringify } from '@iarna/toml';\nconst data = { database: { host: 'localhost', port: 5432 } };\nconsole.log(stringify(data));\n// [database]\\n// host = \"localhost\"\\n// port = 5432\n\n# Python — JSON to TOML (requires tomli-w)\nimport json, tomli_w\ndata = json.loads('{\"database\": {\"host\": \"localhost\", \"port\": 5432}}')\nprint(tomli_w.dumps(data))\n# [database]\\n# host = \"localhost\"\\n# port = 5432",
         },
         {
           heading: "TOML structure and formatting",
@@ -508,6 +517,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases for text to binary conversion",
           body: "Text to binary conversion is used in computer science education to teach how computers store data, in programming challenges and CTF competitions, for encoding messages in binary format, and in understanding character encoding systems like ASCII and UTF-8. It is also useful for debugging data transmission issues at the bit level.",
+          codeExample: "// JavaScript — text to binary\nfunction textToBinary(text) {\n  return [...text]\n    .map(c => c.charCodeAt(0).toString(2).padStart(8, '0'))\n    .join(' ');\n}\ntextToBinary('Hi'); // '01001000 01101001'\n\n# Python — text to binary\ndef text_to_binary(text):\n    return ' '.join(format(ord(c), '08b') for c in text)\ntext_to_binary('Hi')  # '01001000 01101001'",
         },
       ],
       faqs: [
@@ -545,6 +555,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How binary to text conversion works",
           body: "Binary to text conversion reads sequences of 0s and 1s, groups them into 8-bit bytes, and maps each byte to its corresponding ASCII or UTF-8 character. For example, the binary sequence 01001000 01101001 decodes to \"Hi\". The converter handles both space-separated and continuous binary strings.",
+          codeExample: "// JavaScript — binary to text\nfunction binaryToText(bin) {\n  return bin.split(' ')\n    .map(b => String.fromCharCode(parseInt(b, 2)))\n    .join('');\n}\nbinaryToText('01001000 01101001'); // 'Hi'\n\n# Python — binary to text\ndef binary_to_text(bin_str):\n    return ''.join(chr(int(b, 2)) for b in bin_str.split())\nbinary_to_text('01001000 01101001')  # 'Hi'",
         },
         {
           heading: "Common use cases for binary to text conversion",
@@ -590,6 +601,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases for text to hex conversion",
           body: "Text to hex conversion is essential in web development for URL encoding and HTML color codes, in network analysis for inspecting packet data, in cryptography for viewing hash outputs and encryption keys, and in low-level programming for memory debugging. It is also used in CSS to define colors (like #FF5733) and in protocol analysis.",
+          codeExample: "// JavaScript — text to hex\nfunction textToHex(text) {\n  return [...text]\n    .map(c => c.charCodeAt(0).toString(16).padStart(2, '0'))\n    .join(' ');\n}\ntextToHex('Hi'); // '48 69'\n\n# Python — text to hex\ndef text_to_hex(text):\n    return ' '.join(f'{ord(c):02x}' for c in text)\ntext_to_hex('Hi')  # '48 69'",
         },
       ],
       faqs: [
@@ -634,6 +646,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases for image to Base64 conversion",
           body: "Developers embed Base64 images in HTML emails (where external images may be blocked), inline small icons in CSS to reduce HTTP requests, include images in JSON API responses, and embed assets in single-file HTML applications. It is especially useful for small images like logos, favicons, and UI icons where the overhead of a separate request outweighs the increased file size.",
+          codeExample: "// JavaScript (browser) — image file to Base64 data URI\nfunction imageToBase64(file) {\n  return new Promise((resolve) => {\n    const reader = new FileReader();\n    reader.onload = () => resolve(reader.result);\n    reader.readAsDataURL(file);\n  });\n}\n\n# Python — image to Base64\nimport base64\nwith open('logo.png', 'rb') as f:\n    encoded = base64.b64encode(f.read()).decode()\ndata_uri = f'data:image/png;base64,{encoded}'",
         },
       ],
       faqs: [
@@ -671,6 +684,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How Base64 to image conversion works",
           body: "Base64 to image conversion takes an ASCII-encoded string and decodes it back into binary image data that your browser can display. The tool detects the image format from the data URI header (e.g., data:image/png;base64,) or infers it from the decoded binary data. You can then preview the image and download it in its original format.",
+          codeExample: "// JavaScript — Base64 to image download\nfunction base64ToBlob(base64, mime = 'image/png') {\n  const bytes = atob(base64);\n  const arr = new Uint8Array(bytes.length);\n  for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);\n  return new Blob([arr], { type: mime });\n}\n\n# Python — Base64 to image file\nimport base64\nwith open('output.png', 'wb') as f:\n    f.write(base64.b64decode(base64_string))",
         },
         {
           heading: "Common use cases for Base64 to image conversion",
@@ -719,6 +733,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why encode HTML entities?",
           body: "Encoding HTML entities is essential for preventing XSS (cross-site scripting) vulnerabilities in web applications, displaying code snippets on web pages without the browser interpreting them as markup, correctly rendering special characters and symbols in HTML documents, and ensuring that user-generated content is safe to display.",
+          codeExample: "// JavaScript — encode HTML entities\nfunction encodeHtml(str) {\n  return str\n    .replace(/&/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;')\n    .replace(/'/g, '&#39;');\n}\nencodeHtml('<script>alert(1)</script>');\n// '&lt;script&gt;alert(1)&lt;/script&gt;'\n\n# Python — encode HTML entities\nimport html\nhtml.escape('<script>alert(1)</script>')\n# '&lt;script&gt;alert(1)&lt;/script&gt;'",
         },
       ],
       faqs: [
@@ -756,6 +771,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How HTML entity decoding works",
           body: "HTML entity decoding converts encoded references back into their original characters. Named entities like &amp; become &, numeric entities like &#60; become <, and hex entities like &#x3C; also become <. The decoder handles all standard HTML5 named entities as well as arbitrary numeric and hexadecimal character references.",
+          codeExample: "// JavaScript — decode HTML entities (browser)\nfunction decodeHtml(str) {\n  const el = document.createElement('textarea');\n  el.innerHTML = str;\n  return el.value;\n}\ndecodeHtml('&lt;div&gt;Hello &amp; world&lt;/div&gt;');\n// '<div>Hello & world</div>'\n\n# Python — decode HTML entities\nimport html\nhtml.unescape('&lt;div&gt;Hello &amp; world&lt;/div&gt;')\n# '<div>Hello & world</div>'",
         },
         {
           heading: "Common use cases for HTML entity decoding",
@@ -800,6 +816,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert cURL to Python?",
           body: "cURL is the go-to tool for testing HTTP requests from the command line, but integrating those requests into Python applications requires translating them into the requests library syntax. This converter saves time by automatically parsing cURL flags like -H for headers, -d for data, -X for methods, and authentication options, then generating equivalent Python code.",
+          codeExample: "# cURL command\n# curl -X POST https://api.example.com/users \\\n#   -H 'Content-Type: application/json' \\\n#   -d '{\"name\": \"Alice\"}'\n\n# Equivalent Python requests code\nimport requests\n\nresponse = requests.post(\n    'https://api.example.com/users',\n    headers={'Content-Type': 'application/json'},\n    json={'name': 'Alice'}\n)\nprint(response.status_code, response.json())",
         },
         {
           heading: "Common use cases for cURL to Python conversion",
@@ -841,6 +858,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert cURL to JavaScript?",
           body: "When building web applications or Node.js services, you need to translate HTTP requests into JavaScript code. Browser DevTools let you copy network requests as cURL commands, and API docs often provide cURL examples. This converter turns those commands into modern JavaScript fetch() calls or axios requests that you can use directly in your codebase.",
+          codeExample: "// cURL command:\n// curl -X POST https://api.example.com/users \\\n//   -H 'Content-Type: application/json' \\\n//   -d '{\"name\": \"Alice\"}'\n\n// Equivalent JavaScript fetch code\nconst response = await fetch('https://api.example.com/users', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ name: 'Alice' })\n});\nconst data = await response.json();",
         },
         {
           heading: "Common use cases for cURL to JavaScript conversion",
@@ -882,6 +900,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Why convert cURL to Go?",
           body: "Go's net/http package is powerful but verbose compared to a simple cURL command. Manually translating cURL flags into Go's http.NewRequest, Header.Set, and http.Client calls is tedious and error-prone. This converter automates the process, generating proper Go code with error handling, request body handling, and header configuration.",
+          codeExample: "// cURL: curl -X POST https://api.example.com/users \\\n//   -H 'Content-Type: application/json' -d '{\"name\":\"Alice\"}'\n\n// Equivalent Go code\npackage main\n\nimport (\n  \"bytes\"\n  \"fmt\"\n  \"io\"\n  \"net/http\"\n)\n\nfunc main() {\n  body := bytes.NewBufferString(`{\"name\":\"Alice\"}`)\n  req, _ := http.NewRequest(\"POST\", \"https://api.example.com/users\", body)\n  req.Header.Set(\"Content-Type\", \"application/json\")\n  resp, _ := http.DefaultClient.Do(req)\n  defer resp.Body.Close()\n  data, _ := io.ReadAll(resp.Body)\n  fmt.Println(string(data))\n}",
         },
         {
           heading: "Common use cases for cURL to Go conversion",
@@ -930,6 +949,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Where is camelCase used?",
           body: "camelCase is the standard naming convention for variables and functions in JavaScript, TypeScript, Java, and Swift. It is also used for JSON property names, CSS-in-JS properties, and React component props. Most JavaScript style guides (including Airbnb and Google) mandate camelCase for local variables and function names.",
+          codeExample: "// JavaScript — convert string to camelCase\nfunction toCamelCase(str) {\n  return str\n    .replace(/[-_\\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''));\n}\ntoCamelCase('user_first_name');  // 'userFirstName'\ntoCamelCase('hello-world');       // 'helloWorld'\n\n# Python — convert string to camelCase\ndef to_camel_case(s):\n    parts = s.replace('-', '_').split('_')\n    return parts[0].lower() + ''.join(w.capitalize() for w in parts[1:])\nto_camel_case('user_first_name')  # 'userFirstName'",
         },
       ],
       faqs: [
@@ -971,6 +991,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Where is snake_case used?",
           body: "snake_case is the standard naming convention in Python (PEP 8), Ruby, Rust, and PostgreSQL. It is also common for database column names, environment variables (often in SCREAMING_SNAKE_CASE), and REST API field names in Python-based frameworks like Django and FastAPI. C and C++ also traditionally use snake_case.",
+          codeExample: "// JavaScript — convert camelCase to snake_case\nfunction toSnakeCase(str) {\n  return str\n    .replace(/([A-Z])/g, '_$1')\n    .toLowerCase()\n    .replace(/^_/, '');\n}\ntoSnakeCase('userFirstName');  // 'user_first_name'\n\n# Python — convert camelCase to snake_case\nimport re\ndef to_snake_case(s):\n    return re.sub(r'(?<!^)(?=[A-Z])', '_', s).lower()\nto_snake_case('userFirstName')  # 'user_first_name'",
         },
       ],
       faqs: [
@@ -1012,6 +1033,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Where is kebab-case used?",
           body: "kebab-case is the standard convention for URL slugs, CSS class names, HTML attributes, and file names in web development. Frameworks like Angular and Vue use kebab-case for component selectors. It is also required for npm package names, custom HTML element names, and CSS custom properties (variables).",
+          codeExample: "// JavaScript — convert string to kebab-case\nfunction toKebabCase(str) {\n  return str\n    .replace(/([A-Z])/g, '-$1')\n    .replace(/[_\\s]+/g, '-')\n    .toLowerCase()\n    .replace(/^-/, '');\n}\ntoKebabCase('userFirstName');   // 'user-first-name'\ntoKebabCase('user_first_name'); // 'user-first-name'\n\n# Python — convert string to kebab-case\nimport re\ndef to_kebab_case(s):\n    s = re.sub(r'(?<!^)(?=[A-Z])', '-', s)\n    return re.sub(r'[_\\s]+', '-', s).lower()\nto_kebab_case('userFirstName')  # 'user-first-name'",
         },
       ],
       faqs: [
@@ -1052,6 +1074,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is binary to decimal conversion?",
           body: "Binary (base-2) uses only digits 0 and 1, while decimal (base-10) uses digits 0-9. Converting binary to decimal involves multiplying each binary digit by 2 raised to the power of its position, then summing the results. For example, binary 1010 equals (1×8) + (0×4) + (1×2) + (0×1) = 10 in decimal.",
+          codeExample: "// JavaScript — binary ↔ decimal\nparseInt('1010', 2);          // 10 (binary to decimal)\n(10).toString(2);             // '1010' (decimal to binary)\nparseInt('11111111', 2);      // 255\n(255).toString(2);            // '11111111'\n\n# Python — binary ↔ decimal\nint('1010', 2)    # 10 (binary to decimal)\nbin(10)           # '0b1010' (decimal to binary)\nformat(10, 'b')   # '1010' (without 0b prefix)",
         },
         {
           heading: "Common use cases for binary-decimal conversion",
@@ -1093,6 +1116,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What is hexadecimal to decimal conversion?",
           body: "Hexadecimal (base-16) uses digits 0-9 and letters A-F (where A=10, B=11, C=12, D=13, E=14, F=15). Converting hex to decimal multiplies each digit by 16 raised to its position power. For example, hex 1A3 equals (1×256) + (10×16) + (3×1) = 419 in decimal. Hex is compact and aligns naturally with binary (each hex digit = 4 bits).",
+          codeExample: "// JavaScript — hex ↔ decimal\nparseInt('1A3', 16);          // 419 (hex to decimal)\n(419).toString(16);           // '1a3' (decimal to hex)\nparseInt('FF', 16);           // 255\n(255).toString(16);           // 'ff'\n\n# Python — hex ↔ decimal\nint('1A3', 16)    # 419 (hex to decimal)\nhex(419)          # '0x1a3' (decimal to hex)\nformat(419, 'x')  # '1a3' (without 0x prefix)\nformat(419, 'X')  # '1A3' (uppercase)",
         },
         {
           heading: "Common use cases for hex-decimal conversion",
@@ -1138,6 +1162,7 @@ export const batch1Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases for octal-decimal conversion",
           body: "Octal is most commonly encountered in Unix/Linux file permissions (chmod values like 755, 644, and 777). It is also used in some programming languages as a number literal prefix (0o755 in Python, 0755 in C). Understanding octal to decimal conversion is important for correctly setting and interpreting file permissions on Linux servers.",
+          codeExample: "// JavaScript — octal ↔ decimal\nparseInt('755', 8);           // 493 (octal to decimal)\n(493).toString(8);            // '755' (decimal to octal)\nparseInt('644', 8);           // 420\n(420).toString(8);            // '644'\n\n# Python — octal ↔ decimal\nint('755', 8)     # 493 (octal to decimal)\noct(493)          # '0o755' (decimal to octal)\nformat(493, 'o')  # '755' (without 0o prefix)\n\n# Bash — set file permissions using octal\n# chmod 755 script.sh  (rwxr-xr-x)",
         },
       ],
       faqs: [

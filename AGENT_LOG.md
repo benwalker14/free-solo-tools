@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-19 37:00 | developer | Add code examples to 43 sub-pages (batch 1 & batch 5)
+
+- **Task:** Continue programmatic sub-page quality audit — add code examples to thin sub-pages at risk from Google March 2026 core update (P2, Phase 11)
+- **What was done:**
+  - Added `codeExample` properties to 25 sub-pages in `tool-subpages-batch1.ts` (conversion tools: json-yaml, html-markdown, csv-json, toml-converter, text-binary, image-base64, html-entities, curl-converter, case-converter, number-base-converter)
+  - Added `codeExample` properties to 18 sub-pages in `tool-subpages-batch5.ts` (12 privacy/safety pages for top tools + 6 technical pages for code-security-scanner and code-complexity-analyzer)
+  - Each code example shows the operation in 2-3 languages (JavaScript + Python) or demonstrates relevant CLI commands
+  - Privacy-focused sub-pages show how to verify client-side processing (DevTools Network tab, fetch monkey-patching, offline verification)
+  - Security scanner sub-pages show vulnerable vs. fixed code patterns with CWE references
+  - Complexity analyzer sub-pages show cyclomatic/cognitive complexity scoring with annotated examples
+- **Progress:** 51/222 sub-pages now have code examples (23% → from 8 previously). 127 remaining across batch 2, 3, 4, and core gaps.
+- **Impact:** Sub-pages with code examples are more resilient to Google's "thin content" penalty. The March 2026 core update specifically targets pages without substantive, actionable content. Code examples add 100-300 words of unique, useful content per page.
+- **Files modified:** `src/data/tool-subpages-batch1.ts`, `src/data/tool-subpages-batch5.ts`, `TASK_BOARD.md`, `AGENT_LOG.md`
+
+---
+
 ### 2026-03-19 36:00 | developer | Add Person JSON-LD schema for blog author attribution
 
 - **Task:** Add Person JSON-LD schema to strengthen E-E-A-T for AI citations (P2, Phase 11)

@@ -27,7 +27,7 @@ Tasks are prioritized: P0 (critical), P1 (high), P2 (medium), P3 (low)
 
 ### P2 - Medium (Content Quality & AI Search — PHASE 11)
 - [x] Add Person JSON-LD schema for blog author attribution — strengthens E-E-A-T for AI citation (2.5x higher with proper schema per Stackmatix research). Added Person schema to /about page (Vincent as founder with GitHub sameAs), updated all 42 blog post Article JSON-LD to use Person author instead of Organization, enhanced global Organization schema with founder and sameAs properties.
-- [ ] Continue programmatic sub-page quality audit — 170 sub-pages still missing code references. Only 8 fixed in Phase 10. March core update risk.
+- [ ] Continue programmatic sub-page quality audit — 127 sub-pages still missing code references (down from 170). 51 now have code examples (8 from Phase 10 + 43 from Phase 11 batch 1 & 5). Remaining gaps: batch 2 (22), batch 3 (23), batch 4 (99 of 106), plus 16 in core batch. March core update risk reduced but not eliminated.
 - [ ] Build SQL Playground tool — WebAssembly-based PostgreSQL playground. High-demand category (PlayCode, DB Fiddle, sqlplayground.app are competitors). Strengthens PH launch story.
 - [ ] Add GIF/video demos to top 5 tool pages — pages with multimedia + schema see 156% higher AI Overview selection rates
 

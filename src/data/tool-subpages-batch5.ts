@@ -27,6 +27,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to verify a JSON formatter is safe",
           body: "Before trusting any online tool with sensitive data, verify it yourself. Open DevTools (F12) and go to the Network tab. Clear the log, then paste your JSON and click format. If the tool is truly client-side, you will see zero network requests related to your data. Check the Sources tab too — look for analytics scripts that might capture input fields. DevBolt passes this test every time. You can also disconnect from the internet entirely and confirm the tool still works.",
+          codeExample: "// Step 1: Open DevTools Console and monitor network\nconst observer = new PerformanceObserver((list) => {\n  list.getEntries().forEach(e => console.log('REQUEST:', e.name));\n});\nobserver.observe({ entryTypes: ['resource'] });\n\n// Step 2: Verify JSON.parse/stringify run locally\nconst raw = '{\"key\": \"secret_value\"}';\nconst parsed = JSON.parse(raw);          // local only\nconst pretty = JSON.stringify(parsed, null, 2); // local only\n\n// Step 3: Confirm offline — run in DevTools after disconnecting\nconsole.log(navigator.onLine); // false = no network\nJSON.stringify(JSON.parse(raw)); // still works offline",
         },
       ],
       faqs: [
@@ -88,6 +89,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Verify this tool is safe",
           body: "Open your browser DevTools (F12), switch to the Network tab, and paste any Base64 string. Click encode or decode. You will see zero data-related network requests. DevBolt uses the Web APIs window.atob() and window.btoa() for standard Base64, and TextEncoder/TextDecoder for UTF-8 support. No server is involved at any point. The tool works fully offline after your first visit.",
+          codeExample: "// JavaScript — encode/decode Base64 locally (same as DevBolt)\nconst encoded = btoa('my-secret-api-key');  // bXktc2VjcmV0LWFwaS1rZXk=\nconst decoded = atob('bXktc2VjcmV0LWFwaS1rZXk='); // my-secret-api-key\n\n// Verify no network requests in DevTools Console\nperformance.getEntriesByType('resource')\n  .filter(e => e.initiatorType === 'fetch' || e.initiatorType === 'xmlhttprequest')\n  .length; // 0 — no data sent\n\n# Python equivalent (runs locally on your machine)\nimport base64\nbase64.b64encode(b'my-secret-api-key').decode()  # bXktc2VjcmV0LWFwaS1rZXk=\nbase64.b64decode('bXktc2VjcmV0LWFwaS1rZXk=').decode()  # my-secret-api-key",
         },
       ],
       faqs: [
@@ -144,6 +146,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to safely debug JWT issues in production",
           body: "When debugging authentication issues in production, you often need to inspect live JWT tokens. The safe approach: copy the token from your browser's DevTools or API response, paste it into DevBolt's client-side JWT decoder, inspect the claims (especially exp, iat, and iss), and check the header algorithm. At no point does the token leave your machine. Never paste production JWTs into server-based tools like jwt.io's online decoder — while jwt.io is reputable, any server-based tool introduces unnecessary risk.",
+          codeExample: "// JavaScript — decode JWT payload locally (no server needed)\nfunction decodeJwt(token) {\n  const [header, payload] = token.split('.').slice(0, 2)\n    .map(s => JSON.parse(atob(s.replace(/-/g,'+').replace(/_/g,'/'))));\n  return { header, payload };\n}\nconst { header, payload } = decodeJwt(myToken);\nconsole.log('Expires:', new Date(payload.exp * 1000));\n\n# Python — inspect JWT claims locally\nimport json, base64\ndef decode_jwt(token):\n    payload = token.split('.')[1] + '=='\n    return json.loads(base64.b64decode(payload))\nclaims = decode_jwt(my_token)\nprint('Subject:', claims.get('sub'))",
         },
       ],
       faqs: [
@@ -196,6 +199,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How browser-based password generation works",
           body: "DevBolt calls crypto.getRandomValues() to generate cryptographically secure random bytes, then maps those bytes to your chosen character set (uppercase, lowercase, digits, symbols). This is the same entropy source your browser uses for generating TLS session keys — it is backed by your operating system's CSPRNG (CryptGenRandom on Windows, /dev/urandom on Linux, SecRandomCopyBytes on macOS). No external entropy source or server-side randomness is needed.",
+          codeExample: "// JavaScript — generate a secure password in the browser\nfunction generatePassword(length = 20) {\n  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';\n  const values = crypto.getRandomValues(new Uint32Array(length));\n  return Array.from(values, v => chars[v % chars.length]).join('');\n}\nconsole.log(generatePassword()); // e.g. \"kR9$mBx&2LpQz7Wd#4\"\n\n# Python — equivalent using os.urandom()\nimport secrets, string\nalphabet = string.ascii_letters + string.digits + '!@#$%&*'\npassword = ''.join(secrets.choice(alphabet) for _ in range(20))\nprint(password)  # e.g. \"Hx4$nPq&8KvWz2Rm#5\"",
         },
         {
           heading: "What to look for in a safe password generator",
@@ -252,6 +256,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How browser-based hashing works",
           body: "DevBolt uses the SubtleCrypto.digest() method from the Web Crypto API for SHA-1, SHA-256, SHA-384, and SHA-512. This is the same hashing implementation your browser uses for TLS certificate verification and Subresource Integrity checks — it is hardware-accelerated on most modern processors. For MD5, DevBolt uses a pure JavaScript implementation since MD5 is not included in the Web Crypto API. All computation happens in your browser's JavaScript engine.",
+          codeExample: "// JavaScript — SHA-256 hash using Web Crypto API (same as DevBolt)\nasync function sha256(text) {\n  const data = new TextEncoder().encode(text);\n  const hash = await crypto.subtle.digest('SHA-256', data);\n  return Array.from(new Uint8Array(hash))\n    .map(b => b.toString(16).padStart(2, '0')).join('');\n}\nawait sha256('hello world');\n// \"b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9\"\n\n# Python — equivalent local hashing\nimport hashlib\nhashlib.sha256(b'hello world').hexdigest()\n# \"b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9\"",
         },
         {
           heading: "Common sensitive data that gets hashed",
@@ -312,6 +317,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to verify this diff checker is private",
           body: "Open DevTools (F12), go to the Network tab, and clear the log. Paste text into both input panels and click compare. You will see zero data-related requests. The diff is computed locally using a JavaScript LCS algorithm. You can also disconnect from the internet and verify the tool still works — proving no server connection is needed for the comparison.",
+          codeExample: "// Verify no network activity — paste in DevTools Console\nconst requests = performance.getEntriesByType('resource')\n  .filter(e => e.startTime > performance.now() - 5000);\nconsole.log('Recent requests:', requests.length); // 0 after diffing\n\n// The diff algorithm runs locally — same concept as:\n// JavaScript LCS-based diff (simplified)\nfunction diff(a, b) {\n  const linesA = a.split('\\n'), linesB = b.split('\\n');\n  // LCS matrix computed entirely in browser memory\n  return computeLCS(linesA, linesB);\n}\n\n# CLI equivalent — diff locally on your machine\ndiff --unified old.env new.env",
         },
       ],
       faqs: [
@@ -368,6 +374,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How to verify this JSON viewer is private",
           body: "Open DevTools (F12), switch to the Network tab, and paste your JSON data. Expand nodes, search for keys, and copy paths. Zero network requests related to your data will appear. The tree is built using React components that render directly from the parsed JSON object in memory. You can also use the tool offline after your first visit.",
+          codeExample: "// DevTools Console — audit network during JSON viewing\nconst log = [];\nconst origFetch = window.fetch;\nwindow.fetch = (...args) => { log.push(args[0]); return origFetch(...args); };\n// Now paste JSON and interact — then check:\nconsole.log('Fetch calls:', log); // [] — empty, no data sent\n\n// The tree is built client-side from parsed JSON:\nconst data = JSON.parse(rawInput);  // local parsing\nfunction buildTree(obj, depth = 0) {\n  return Object.entries(obj).map(([key, val]) =>\n    typeof val === 'object' ? buildTree(val, depth + 1) : `${key}: ${val}`\n  );\n}",
         },
       ],
       faqs: [
@@ -420,6 +427,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Safe for production queries",
           body: "When debugging slow queries or formatting complex JOINs, you often work with production SQL that references real tables and includes real filter conditions. DevBolt's SQL formatter handles all major SQL dialects (MySQL, PostgreSQL, SQLite, SQL Server, Oracle) and formats them locally. Paste your production query without worrying about exposing table names like 'users', 'payments', 'api_keys', or column names that reveal your data model.",
+          codeExample: "-- Before: unformatted production query with sensitive table names\nSELECT u.id,u.email,p.amount,p.status FROM users u JOIN payments p ON u.id=p.user_id WHERE p.status='active' AND u.created_at>'2025-01-01' ORDER BY p.amount DESC LIMIT 100;\n\n-- After: DevBolt formats locally — schema stays private\nSELECT\n  u.id,\n  u.email,\n  p.amount,\n  p.status\nFROM users u\nJOIN payments p ON u.id = p.user_id\nWHERE p.status = 'active'\n  AND u.created_at > '2025-01-01'\nORDER BY p.amount DESC\nLIMIT 100;",
         },
         {
           heading: "What SQL queries can reveal about your system",
@@ -480,6 +488,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How the client-side CSV parser works",
           body: "DevBolt's CSV parser handles quoted fields, embedded commas, newlines within quotes, custom delimiters, and header row detection — all in JavaScript running in your browser. The parser reads the CSV text character by character, builds an array of arrays, and then maps it to JSON objects using the header row as keys. No external service is called at any point in the process.",
+          codeExample: "// JavaScript — CSV to JSON conversion (same approach as DevBolt)\nfunction csvToJson(csv) {\n  const [headerLine, ...rows] = csv.trim().split('\\n');\n  const headers = headerLine.split(',');\n  return rows.map(row => {\n    const values = row.split(',');\n    return Object.fromEntries(headers.map((h, i) => [h, values[i]]));\n  });\n}\n\n// Input CSV (sensitive customer data stays in browser)\n// name,email,plan\n// Alice,alice@co.com,pro\n\n# Python equivalent\nimport csv, json, io\nreader = csv.DictReader(io.StringIO(csv_text))\nresult = json.dumps(list(reader), indent=2)",
         },
       ],
       faqs: [
@@ -536,6 +545,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Client-side regex execution",
           body: "DevBolt creates a JavaScript RegExp object from your pattern and executes it against your test string using the native regex engine. Match results, capture groups, and highlighting are all computed in your browser. There is no server-side regex engine, no pattern saving to a remote database, and no sharing of your test data. You can verify this in the DevTools Network tab.",
+          codeExample: "// JavaScript — regex matching runs locally (same as DevBolt)\nconst pattern = /([\\w.-]+)@([\\w.-]+\\.\\w+)/g;\nconst testData = 'Contact alice@company.com or bob@internal.dev';\nlet match;\nwhile ((match = pattern.exec(testData)) !== null) {\n  console.log(`Email: ${match[0]}, User: ${match[1]}, Domain: ${match[2]}`);\n}\n// Email: alice@company.com, User: alice, Domain: company.com\n// Email: bob@internal.dev, User: bob, Domain: internal.dev\n\n# Python — local regex, no server needed\nimport re\nmatches = re.findall(r'([\\w.-]+)@([\\w.-]+\\.\\w+)', test_data)\nprint(matches)  # [('alice','company.com'), ('bob','internal.dev')]",
         },
       ],
       faqs: [
@@ -588,6 +598,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Safe for production API debugging",
           body: "When debugging API issues, you often copy cURL commands from browser DevTools, Postman, or production logs. These commands contain live credentials. DevBolt converts them to Python requests, JavaScript fetch, Go http, PHP, Ruby, Rust, and Java — all without transmitting the command to any server. The parser handles headers, cookies, data flags, multipart forms, and authentication options locally.",
+          codeExample: "# Input: cURL with sensitive credentials (stays in your browser)\ncurl -X POST https://api.example.com/v1/charges \\\n  -H 'Authorization: Bearer sk_live_abc123secret' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"amount\": 2000, \"currency\": \"usd\"}'\n\n// Output: JavaScript fetch (generated locally by DevBolt)\nconst res = await fetch('https://api.example.com/v1/charges', {\n  method: 'POST',\n  headers: {\n    'Authorization': 'Bearer sk_live_abc123secret',\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({ amount: 2000, currency: 'usd' }),\n});",
         },
         {
           heading: "What credentials are embedded in cURL commands",
@@ -648,6 +659,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Validate YAML syntax privately",
           body: "YAML syntax errors in infrastructure configs can cause deployment failures. DevBolt validates your YAML and reports line-number-specific errors without transmitting the file content. Find indentation issues, missing colons, incorrect quoting, and invalid anchors locally. The validator uses the js-yaml library running in your browser — the same library used by thousands of Node.js applications in production.",
+          codeExample: "# Input: Kubernetes Secret with sensitive data (formatted locally)\napiVersion: v1\nkind: Secret\nmetadata:\n  name: db-credentials\ntype: Opaque\ndata:\n  DB_PASSWORD: cGFzc3dvcmQxMjM=    # base64-encoded\n  DB_HOST: cHJvZC1kYi5pbnRlcm5hbA==\n\n// JavaScript — validate YAML locally (same lib as DevBolt)\nimport yaml from 'js-yaml';\ntry {\n  const doc = yaml.load(yamlString);\n  console.log('Valid YAML:', doc);\n} catch (e) {\n  console.error(`Line ${e.mark.line}: ${e.message}`);\n}",
         },
       ],
       faqs: [
@@ -704,6 +716,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common vulnerabilities in AI-generated JavaScript",
           body: "The most frequent security issues in AI-generated JavaScript and TypeScript code: (1) Hardcoded secrets — AI often generates example API keys and leaves them in the code, (2) SQL injection — string concatenation in queries instead of parameterized statements, (3) XSS — using innerHTML or dangerouslySetInnerHTML with user data, (4) Command injection — passing user input to exec() or spawn(), (5) Insecure randomness — using Math.random() for tokens or session IDs, (6) Missing rate limiting on authentication endpoints. Each of these is detectable with pattern-based analysis.",
+          codeExample: "// BAD: AI-generated code with common vulnerabilities\nconst API_KEY = 'sk_live_abc123';              // Hardcoded secret\nconst query = `SELECT * FROM users WHERE id = ${userId}`; // SQL injection\nelement.innerHTML = userInput;                  // XSS vulnerability\nconst token = Math.random().toString(36);       // Insecure randomness\n\n// FIXED: Secure alternatives\nconst API_KEY = process.env.API_KEY;            // Environment variable\nconst query = 'SELECT * FROM users WHERE id = ?'; // Parameterized\nelement.textContent = userInput;                // Safe text insertion\nconst token = crypto.randomUUID();              // Cryptographic randomness",
         },
       ],
       faqs: [
@@ -757,6 +770,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "JavaScript-specific security patterns",
           body: "JavaScript has unique security concerns: eval() and new Function() enable arbitrary code execution, prototype pollution through bracket notation can bypass security checks, Math.random() is predictable and should never be used for security, template literals with ${} in database queries enable injection, and the dynamic typing system can be exploited for type confusion attacks. This scanner checks for all of these patterns with specific fix recommendations.",
+          codeExample: "// VULNERABLE: eval() — arbitrary code execution (CWE-95)\nconst result = eval(userInput);\n// FIX: Use JSON.parse() for data, or a sandbox like vm2\nconst result = JSON.parse(userInput);\n\n// VULNERABLE: Prototype pollution (CWE-1321)\nobj[userKey] = userValue; // can set __proto__\n// FIX: Validate keys or use Map\nif (!['__proto__','constructor','prototype'].includes(userKey)) {\n  obj[userKey] = userValue;\n}\n\n// VULNERABLE: Path traversal (CWE-22)\nconst file = fs.readFileSync('/uploads/' + filename);\n// FIX: Resolve and validate the path\nconst safe = path.resolve('/uploads', filename);\nif (!safe.startsWith('/uploads/')) throw new Error('Invalid path');",
         },
       ],
       faqs: [
@@ -806,6 +820,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What secrets this scanner detects",
           body: "The scanner identifies: API keys with common naming patterns (api_key, apiKey, secret_key, client_secret), AWS access key IDs (AKIA prefix), authentication tokens (auth_token, access_token, bearer tokens), database passwords (password, passwd, DB_PASSWORD), private keys and client secrets, and hardcoded connection strings with embedded credentials. Each finding includes the exact line number and a recommendation to move the secret to environment variables.",
+          codeExample: "// Examples of hardcoded secrets this scanner catches:\nconst API_KEY = 'your-api-key-here';                     // API key\nconst AWS_KEY = 'AKIA_EXAMPLE_KEY_ID';                   // AWS access key\nconst db = 'postgresql://admin:p@ssw0rd@prod-db:5432/app'; // DB connection\nconst token = 'ghp_0000000000000000000000000000000000000'; // GitHub PAT\n\n// FIX: Move to environment variables\nconst API_KEY = process.env.STRIPE_API_KEY;\nconst AWS_KEY = process.env.AWS_ACCESS_KEY_ID;\nconst db = process.env.DATABASE_URL;\nconst token = process.env.GITHUB_TOKEN;\n\n# .gitignore — prevent .env from being committed\n.env\n.env.local\n.env.production",
         },
         {
           heading: "Best practices for managing secrets",
@@ -859,6 +874,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "How cyclomatic complexity is calculated",
           body: "Cyclomatic complexity was introduced by Thomas McCabe in 1976. It counts the number of linearly independent paths through a program's control flow graph. In practice, CC = 1 + the number of decision points: each if, else if, case, for, while, do, catch, ternary (?:), logical AND (&&), logical OR (||), and nullish coalescing (??) adds 1 to the count. A function with no branches has CC=1.",
+          codeExample: "// CC = 1 (no branches — simple and easy to test)\nfunction add(a, b) {\n  return a + b;\n}\n\n// CC = 4 (if + else if + && = 3 decision points + 1 base)\nfunction getDiscount(user) {\n  if (user.isPremium && user.years > 2) {   // +1 (if) +1 (&&)\n    return 0.2;\n  } else if (user.isStudent) {              // +1 (else if)\n    return 0.1;\n  }\n  return 0;\n}\n\n// CC = 7 — getting complex, consider refactoring\nfunction processOrder(order) {\n  if (!order) return null;                  // +1\n  for (const item of order.items) {         // +1\n    if (item.qty > 0 && item.price > 0) {   // +1, +1\n      if (item.taxable || item.imported) {   // +1, +1\n        applyTax(item);\n      }\n    }\n  }\n}",
         },
         {
           heading: "Industry thresholds",
@@ -916,6 +932,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Scoring rules",
           body: "Cognitive complexity increments for breaks in linear flow: if, else if, else, for, while, do, switch, catch, ternary, and logical operators (&&, ||). For nesting structures (if, for, while, do, switch, catch), a nesting penalty equal to the current nesting depth is added on top of the base increment. So a deeply nested if might add 1 (base) + 4 (nesting) = 5 to the total, while a top-level if adds just 1.",
+          codeExample: "// Cognitive Complexity = 1 (flat, easy to read)\nfunction isValid(x) {\n  if (x > 0) return true;    // +1 (nesting 0)\n  return false;\n}\n\n// Cognitive Complexity = 9 (deeply nested — hard to follow)\nfunction process(data) {\n  if (data) {                       // +1 (nesting 0)\n    for (const item of data) {      // +2 (1 base + 1 nesting)\n      if (item.active) {            // +3 (1 base + 2 nesting)\n        if (item.value > 0) {       // +4 (1 base + 3 nesting) ← penalty!\n          handle(item);             // Total: 1+2+3+4 = 10\n        }\n      }\n    }\n  }\n}\n\n// Refactored: Cognitive Complexity = 3 (guard clauses + extraction)\nfunction process(data) {\n  if (!data) return;                // +1\n  for (const item of data) {        // +1\n    if (item.active && item.value > 0) handle(item); // +1\n  }\n}",
         },
         {
           heading: "Reducing cognitive complexity",
@@ -968,6 +985,7 @@ export const batch5Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "What to check in AI-generated code",
           body: "Run any AI-generated function through this analyzer and look for: cyclomatic complexity above 10 (too many branches to test easily), cognitive complexity above 15 (too hard to read during code review), nesting depth above 3 (flatten with early returns), and functions longer than 30 lines (split into focused helpers). AI tools excel at generating boilerplate but struggle with architectural decisions — that is where human review adds the most value.",
+          codeExample: "// BEFORE: Typical AI-generated code (CC=8, CogC=12, nesting=4)\nfunction handleRequest(req) {\n  if (req.method === 'POST') {\n    if (req.body) {\n      if (req.body.email) {\n        if (isValidEmail(req.body.email)) {\n          return createUser(req.body);\n        } else { return { error: 'Invalid email' }; }\n      } else { return { error: 'Email required' }; }\n    } else { return { error: 'Body required' }; }\n  } else { return { error: 'POST only' }; }\n}\n\n// AFTER: Refactored with guard clauses (CC=5, CogC=5, nesting=1)\nfunction handleRequest(req) {\n  if (req.method !== 'POST') return { error: 'POST only' };\n  if (!req.body) return { error: 'Body required' };\n  if (!req.body.email) return { error: 'Email required' };\n  if (!isValidEmail(req.body.email)) return { error: 'Invalid email' };\n  return createUser(req.body);\n}",
         },
         {
           heading: "Refactoring AI code for maintainability",
