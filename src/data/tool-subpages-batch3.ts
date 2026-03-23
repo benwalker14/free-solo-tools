@@ -936,7 +936,7 @@ export const batch3Subpages: Record<string, ToolSubpage[]> = {
         {
           heading: "Common use cases",
           body: "Markdown tables are used in README files to display feature comparisons, API parameter documentation, configuration options, changelog summaries, and quick-reference data. They are especially common in GitHub repositories, documentation sites, and knowledge bases where content is authored in Markdown.",
-          codeExample: "# Markdown table syntax\n\n| Feature    | Free | Pro  |\n| ---------- | ---- | ---- |\n| Tools      | 118  | 118  |\n| API access | No   | Yes  |\n\n# Column alignment with colons\n| Left    | Center  | Right  |\n| :------ | :-----: | -----: |\n| Alice   |   30    |   $100 |\n| Bob     |   25    |    $50 |",
+          codeExample: "# Markdown table syntax\n\n| Feature    | Free | Pro  |\n| ---------- | ---- | ---- |\n| Tools      | 117  | 117  |\n| API access | No   | Yes  |\n\n# Column alignment with colons\n| Left    | Center  | Right  |\n| :------ | :-----: | -----: |\n| Alice   |   30    |   $100 |\n| Bob     |   25    |    $50 |",
         },
       ],
       faqs: [

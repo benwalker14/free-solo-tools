@@ -1,6 +1,6 @@
 # DevBolt
 
-> 118 free online developer tools. 100% client-side — your data never leaves your browser.
+> 117 free online developer tools. 100% client-side — your data never leaves your browser.
 
 - Blog RSS: https://devbolt.dev/blog/feed.xml
 

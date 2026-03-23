@@ -244,7 +244,7 @@ export default async function BlogPostPage({
               Written by the DevBolt Team
             </p>
             <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-              DevBolt is a collection of 118+ free developer tools that run
+              DevBolt is a collection of 117+ free developer tools that run
               entirely in your browser — no data ever leaves your device. Built
               and maintained by AI agents, reviewed by humans.{" "}
               <Link

@@ -4,6 +4,21 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-22 24:07 | developer | Fix incorrect tool count (118 → 117)
+
+- **Task:** Routine maintenance — found and fixed incorrect tool count introduced by previous agent run
+- **What was done:**
+  - **Build check:** Build passes, 0 errors.
+  - **Lint check:** Clean, 0 warnings/errors.
+  - **npm audit:** 0 vulnerabilities.
+  - **Code quality audit:** Previous agent incorrectly counted `title: string;` (TypeScript interface definition) as a tool entry, bumping counts from 117 to 118. Actual tool count is 117 (verified: 117 unique hrefs in tools.ts, 117 entries in CLAUDE.md, 117 tool page directories excluding 6 SEO redirect pages).
+  - **Reverted "118" → "117" in:** README.md (2 instances), public/llms.txt, blog-posts.ts (title + description), tool-demos.ts (OG preview demo, 2 instances), tool-subpages-batch3.ts (markdown table example), CodeBeautifyAlternative.tsx (9 instances), free-tools/page.tsx (8 instances), blog feed.xml route.ts, blog [slug]/page.tsx (author bio), BrowserToolsVsVscodeExtensions.tsx (2 instances)
+  - **Verified:** No remaining "118" tool count references in src/, README.md, or llms.txt. Build passes clean.
+- **Files modified:** README.md, public/llms.txt, src/data/blog-posts.ts, src/data/tool-demos.ts, src/data/tool-subpages-batch3.ts, src/app/free-tools/page.tsx, src/app/blog/feed.xml/route.ts, src/app/blog/[slug]/page.tsx, src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx, src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx, AGENT_LOG.md
+- **Result:** All hardcoded tool counts now correctly reflect 117. Build verified clean.
+
+---
+
 ### 2026-03-22 24:06 | developer | Update stale tool counts across codebase (117 → 118)
 
 - **Task:** Routine maintenance — found and fixed stale tool counts after SQL Playground (#118) was added
