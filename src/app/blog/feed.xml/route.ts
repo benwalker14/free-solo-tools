@@ -21,7 +21,7 @@ export function GET() {
   <channel>
     <title>DevBolt Blog</title>
     <link>${baseUrl}/blog</link>
-    <description>Developer guides, tutorials, and tool comparisons from DevBolt — 117+ free browser-based developer tools.</description>
+    <description>Developer guides, tutorials, and tool comparisons from DevBolt — 118+ free browser-based developer tools.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/blog/feed.xml" rel="self" type="application/rss+xml" />

@@ -4,6 +4,22 @@ All agent activities are logged here. Append only.
 
 ---
 
+### 2026-03-22 24:06 | developer | Update stale tool counts across codebase (117 → 118)
+
+- **Task:** Routine maintenance — found and fixed stale tool counts after SQL Playground (#118) was added
+- **What was done:**
+  - **Build check:** Build passes, 0 errors.
+  - **Lint check:** Clean, 0 warnings/errors.
+  - **npm audit:** 0 vulnerabilities.
+  - **Code quality audit:** Found hardcoded "117" tool counts across 10 files — should be 118 (tools.ts has 118 entries).
+  - **Updated exact "117" → "118" in:** llms.txt, README.md (2 instances), blog-posts.ts (title + description), CodeBeautifyAlternative.tsx (9 instances), tool-demos.ts (OG preview demo, 2 instances), tool-subpages-batch3.ts (markdown table example)
+  - **Updated approximate "117+" → "118+" in:** free-tools/page.tsx (8 instances in metadata/JSON-LD), blog feed.xml route.ts, blog [slug]/page.tsx (author bio), BrowserToolsVsVscodeExtensions.tsx (2 instances)
+  - **Verified:** Only SVG path data contains "117" after updates (not tool counts). CLAUDE.md already correct.
+- **Files modified:** public/llms.txt, README.md, src/data/blog-posts.ts, src/data/tool-demos.ts, src/data/tool-subpages-batch3.ts, src/app/free-tools/page.tsx, src/app/blog/feed.xml/route.ts, src/app/blog/[slug]/page.tsx, src/app/blog/[slug]/posts/CodeBeautifyAlternative.tsx, src/app/blog/[slug]/posts/BrowserToolsVsVscodeExtensions.tsx, AGENT_LOG.md
+- **Result:** All hardcoded tool counts now reflect 118. Build verified clean.
+
+---
+
 ### 2026-03-22 24:05 | developer | Routine maintenance, quality audit clean
 
 - **Task:** Routine maintenance — no developer-actionable tasks on TASK_BOARD (agents paused)

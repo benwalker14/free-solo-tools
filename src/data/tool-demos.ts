@@ -2412,13 +2412,13 @@ Fix: Add og:image meta tag`,
     {
       label: "Preview social share cards",
       action: "Preview",
-      input: `Title: DevBolt — 117 Free Dev Tools
+      input: `Title: DevBolt — 118 Free Dev Tools
 Description: Privacy-first tools
 Image: https://devbolt.dev/og.png`,
       output: `Twitter (large image):
 ┌──────────────────────┐
 │    [OG Image]        │
-│ DevBolt — 117 Free.. │
+│ DevBolt — 118 Free.. │
 │ Privacy-first tools  │
 │ devbolt.dev          │
 └──────────────────────┘`,
